@@ -255,13 +255,13 @@ For more details on how the `note` field interacts with the `add` and `edit` com
 
 ##### Interacting with the `note` command
 
-The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
+The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 nt/Likes to eat`.
 
 ![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
 
 The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
 
-> The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
+> The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 nt/`).
 
 #### Height and weight feature in FitBook
 The height and weight feature allows users to keep track of past height and weight measurements of a client.
