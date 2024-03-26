@@ -10,6 +10,8 @@ import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_NAME_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_2;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_1;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_4;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +50,20 @@ public class GroupTest {
         Group group = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
         assertDoesNotThrow(group::toString);
     }
+
+    @Test
+    public void uncompletedSkills_doesNotThrow() {
+        Group group = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
+        assertDoesNotThrow(group::uncompletedSkills);
+    }
+
+    @Test
+    public void completedSkills_doesNotThrow() {
+        Group group = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_4);
+        assertDoesNotThrow(group::completedSkills);
+    }
+
+
 
     @Test
     public void equalsMethod() {
