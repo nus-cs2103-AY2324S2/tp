@@ -127,15 +127,12 @@ public class ParserUtil {
      */
     public static LocalDate parseExpiryDate(String expiryDate) throws ParseException {
         requireNonNull(expiryDate);
-
-        try {
-            String trimmedExpiryDate = expiryDate.trim();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-            return LocalDate.parse(trimmedExpiryDate, formatter);
-        } catch (DateTimeParseException e) {
+        String trimmedExpiryDate = expiryDate.trim();
+        if (!Policy.isValidExpiryDate(trimmedExpiryDate)) {
             throw new ParseException(Policy.EXPIRY_DATE_MESSAGE_CONSTRAINTS);
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return LocalDate.parse(trimmedExpiryDate, formatter);
     }
 
     /**

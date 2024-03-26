@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Person's policy in the address book.
@@ -31,10 +33,10 @@ public class Policy {
     }
 
     /**
-            * Constructs a {@code Policy}.
-            *
-            * @param policy A valid policy.
-            * @param expiryDate The expiry date of the policy.
+    * Constructs a {@code Policy}.
+    *
+    * @param policy A valid policy.
+    * @param expiryDate The expiry date of the policy.
      * @param premium The premium amount of the policy.
      */
     public Policy(String policy, LocalDate expiryDate, double premium) {
@@ -42,6 +44,25 @@ public class Policy {
         value = policy;
         this.expiryDate = expiryDate;
         this.premium = premium;
+    }
+
+    /**
+     * Returns true if a given string is a valid expiry date.
+     */
+    public static boolean isValidExpiryDate(String expiryDate) {
+        try {
+            String trimmedExpiryDate = expiryDate.trim();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate parsedDate = LocalDate.parse(trimmedExpiryDate, formatter);
+
+            if (parsedDate.isBefore(LocalDate.now())) {
+                return false;
+            }
+
+            return true; // Expiry date is valid
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**
