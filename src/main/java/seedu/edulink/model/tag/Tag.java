@@ -47,6 +47,10 @@ public class Tag {
         return tagName.equals(otherTag.tagName);
     }
 
+    public String getTagName() {
+        return tagName;
+    }
+
     @Override
     public int hashCode() {
         return tagName.hashCode();
