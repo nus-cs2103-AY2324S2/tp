@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddCategoryCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -28,6 +29,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         boolean hasEntry = true;
+        EntryList entryList = new EntryList();
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_CATEGORY, PREFIX_DESCRIPTION);
 
@@ -42,38 +45,61 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && !arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             hasEntry = false;
-        }
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        } else if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+                && arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException("Category cannot be empty!");
-        }
-
-        if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && !arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        } else if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+                && !arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             throw new ParseException("Description cannot be empty!");
+        } else {
+            String[] category = null;
+            String[] description = null;
+            if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+                String categoryString = argMultimap.getValue(PREFIX_CATEGORY).get().trim();
+                if (!categoryString.isEmpty()) {
+                    category = categoryString.split(",");
+                } else {
+                    throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
+                }
+            }
+            if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+                String descriptionString = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
+                if (!descriptionString.isEmpty()) {
+                    description = descriptionString.split(",");
+                } else {
+                    throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
+                }
+            }
+
+            if (category != null && description != null) {
+                if (category.length > description.length) {
+                    throw new ParseException("Not enough description input.");
+                } else if (category.length < description.length) {
+                    throw new ParseException("Not enough category input.");
+                } else {
+                    for (int i = 0; i < category.length; i++) {
+                        String catString = category[i].trim();
+                        String desString = description[i].trim();
+                        if (catString.isEmpty() || desString.isEmpty()) {
+                            throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
+                        } else {
+                            Entry entry = new Entry(catString, desString);
+                            entryList.add(entry);
+                        }
+                    }
+                }
+            } else {
+                throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
+            }
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
         Entry name = ParserUtil.parse("Name", argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        String category = "";
-        String description = "";
-        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            category = argMultimap.getValue(PREFIX_CATEGORY).get().trim();
-        }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
-        }
-        Entry entry = new Entry(category, description);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY) && arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
-            && (category.equals("") || description.equals(""))) {
-            throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
-        }
-
         Person person = new Person(name, tagList);
         if (hasEntry) {
-            return new AddCommand(person, entry);
+            return new AddCommand(person, entryList);
         } else {
             return new AddCommand(person, null);
         }

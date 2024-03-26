@@ -15,7 +15,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 
 public class AddCommandTest {
-
     /**
      * A default model stub that have all of the methods failing.
      */
