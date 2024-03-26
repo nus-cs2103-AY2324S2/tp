@@ -5,34 +5,34 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.employee.NameContainsKeywordsPredicate;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all employees in TaskMasterPro whose name contains any of the argument keywords.
+ * Finds and lists all tasks in TaskMasterPro whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindTasksCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findtasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all employees whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with descriptions containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " project";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TaskNameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindTasksCommand(TaskNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredEmployeeList(predicate);
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, model.getFilteredEmployeeList().size()),
-                false, true, false, false);
+                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()),
+                false, false, true, false);
     }
 
     @Override
@@ -42,11 +42,11 @@ public class FindCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof FindTasksCommand)) {
             return false;
         }
 
-        FindCommand otherFindCommand = (FindCommand) other;
+        FindTasksCommand otherFindCommand = (FindTasksCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 
@@ -57,3 +57,4 @@ public class FindCommand extends Command {
                 .toString();
     }
 }
+
