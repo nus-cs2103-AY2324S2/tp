@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -110,7 +110,8 @@ public class HelpWindow extends UiPart<Stage> {
             try {
                 Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
             } catch (IOException | URISyntaxException e) {
-                logger.warning("An error occurred when trying to open the URL: " + USERGUIDE_URL + " " + e.getMessage());
+                logger.warning("An error occurred when trying to open the URL: "
+                        + USERGUIDE_URL + " " + e.getMessage());
             }
         } else {
             logger.warning("Desktop is not supported on this platform. Unable to open the URL in browser.");
