@@ -22,6 +22,8 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label name;
+    @FXML
     private Label meetingText;
 
     /**
@@ -35,6 +37,7 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
+        name.setText(meeting.getName());
         meetingText.setText(meeting.toString()); // Assuming Meeting has a getText() method
     }
 }

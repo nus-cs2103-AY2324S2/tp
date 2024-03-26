@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; is always valid
  */
 public class Meeting implements Comparable<Meeting> {
-
+    private static String name;
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting has to be in yyyy-MM-dd HH:mm:ss format, and it should not be blank";
     // The VALIDATION_REGEX for meeting time
@@ -57,7 +57,15 @@ public class Meeting implements Comparable<Meeting> {
             return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         }
     }
+    
+    public void setName(String finalName) {
+        name = finalName;
+    }
 
+    public String getName() {
+        return name;
+    }
+    
     @Override
     public String toString() {
         return meeting.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss"));
