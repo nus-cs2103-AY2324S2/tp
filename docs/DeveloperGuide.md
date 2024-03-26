@@ -191,7 +191,7 @@ implementation of storing clients and order details.
 
 In this enhancement, the `Storage` component has been extended to support the storage and retrieval of both client and
 order details.
-Previosuly, the `Storage` component was primarily designed to handle address book data and user preferences. However,
+Previously, the `Storage` component was primarily designed to handle address book data and user preferences. However,
 with the growing requirements of our application, it becomes necessary to accommodate the storage of clients and orders.
 
 #### Implementation Details:
@@ -218,8 +218,8 @@ enhanced to better meet the evolving needs of our users. These changes not only 
 application but also lay the groundwork for future enhancements and features.
 
 Future plans may involve further optimizing the storage mechanisms, exploring alternative storage formats, or
-integrating
-additional data validation checks to ensure data integrity. Overall, the recent enhancements to the `Storage` component
+integrating additional data validation checks to ensure data integrity. Overall, the recent enhancements to
+the `Storage` component
 mark a significant step forward in enhancing the robustness and flexibility of our application.
 
 --------------------------------------------------------------------------------------------------------------------
