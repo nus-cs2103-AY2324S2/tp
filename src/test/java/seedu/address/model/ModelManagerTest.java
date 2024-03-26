@@ -237,4 +237,29 @@ public class ModelManagerTest {
         // Check if the model manager has the relationship with the same descriptor
         assertTrue(modelManager.hasRelationshipWithDescriptor(relationship));
     }
+
+    @Test
+    public void setPerson_validPerson_personSet() {
+        // Create a ModelManager instance
+        ModelManager modelManager = new ModelManager();
+
+        // Create a person and add it to the ModelManager
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Person person1 = new Person(attributes1);
+        modelManager.addPerson(person1);
+
+        // Create a new person with the same UUID but different attributes
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes2 = new Attribute[]{name2};
+        Person editedPerson = new Person(attributes2);
+
+        // Set the person in the ModelManager
+        modelManager.setPerson(person1, editedPerson);
+    }
+
+    @Test
+    public void getFilteredRelationshipList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRelationshipList().remove(0));
+    }
 }

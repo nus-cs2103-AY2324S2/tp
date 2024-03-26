@@ -183,4 +183,37 @@ public class RelationshipUtilTest {
         String test2 = "";
         assertEquals(test.equals(test2), false);
     }
+
+    @Test
+    public void deleteRelationshipsOfPerson_existingRelationships_relationshipsDeleted() {
+        // Create dummy people for testing
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute name3 = new NameAttribute("Name", "Jim Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+        Attribute[] attributes3 = new Attribute[]{name3};
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        Person person3 = new Person(attributes3);
+        UUID uuid1 = person1.getUuid();
+        UUID uuid2 = person2.getUuid();
+        UUID uuid3 = person3.getUuid();
+
+        // Create relationships involving person1
+        Relationship relationship1 = new Relationship(uuid1, uuid2, "family");
+        Relationship relationship2 = new Relationship(uuid1, uuid3, "friend");
+
+        // Create RelationshipUtil instance and add the relationships
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+        relationshipUtil.addRelationship(relationship1);
+        relationshipUtil.addRelationship(relationship2);
+
+        // Delete all relationships involving person1
+        relationshipUtil.deleteRelationshipsOfPerson(uuid1);
+
+        // Check if the relationships involving person1 have been deleted
+        assertFalse(relationshipUtil.hasRelationship(relationship1));
+        assertFalse(relationshipUtil.hasRelationship(relationship2));
+    }
 }
