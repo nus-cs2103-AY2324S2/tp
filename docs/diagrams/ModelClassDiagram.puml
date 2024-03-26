@@ -22,11 +22,16 @@ Class PostalCode
 Class Street
 Class Level
 Class UnitNumber
+Class Block
 Class Buyer extends Person
 Class Seller extends Person
 Class House
-Class Landed extends House
-Class NonLanded extends House
+'Class Landed extends House
+'Class NonLanded extends House
+Class Condo implements House
+Class HDB implements House
+Class Landed implements House
+Class Budget
 
 Class I #FFFFFF
 }
@@ -52,9 +57,11 @@ Person *--> "*" Tag
 House *--> PostalCode
 House *--> UnitNumber
 House *--> Street
-Seller *--> House
-
-
+Seller *--> "1..*" House : sells
+Buyer *--> "*" House : buy
+Buyer --> Budget
+'NonLanded *--> Block
+'NonLanded *--> Level
 
 
 Person -[hidden]up--> I
