@@ -21,11 +21,11 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_GITHUB = "github username";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_PHONE = BENSON.getPhone().get().value;
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_CLASS_GROUP = BENSON.getClassGroup().toString();
-    private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
-    private static final String VALID_GITHUB = BENSON.getGithub().toString();
+    private static final String VALID_TELEGRAM = BENSON.getTelegram().get().telegramId;
+    private static final String VALID_GITHUB = BENSON.getGithub().get().githubId;
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -56,14 +56,6 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, INVALID_PHONE,
                         VALID_EMAIL, VALID_CLASS_GROUP, VALID_TELEGRAM, VALID_GITHUB);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null,
-                VALID_EMAIL, VALID_CLASS_GROUP, VALID_TELEGRAM, VALID_GITHUB);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

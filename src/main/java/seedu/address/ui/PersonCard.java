@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
 
 /**
@@ -57,7 +58,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         classGroup.setText(person.getClassGroup().classGroup);
         email.setText("E-mail: " + person.getEmail().value);
-        phone.setText("Phone Number: " + person.getPhone().value);
+        phone.setText(
+                "Phone Number: " + person.getPhone().orElse(Phone.EMPTY).value);
         telegram.setText(
                 "Telegram ID: " + person.getTelegram().orElse(Telegram.EMPTY).telegramId);
         github.setText(

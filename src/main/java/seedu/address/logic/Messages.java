@@ -42,7 +42,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(person.getPhone().isPresent() ? person.getPhone().get().value : "")
                 .append("; Telegram: ")
                 .append(person.getTelegram().isPresent() ? person.getTelegram().get().telegramId : "")
                 .append("; Github: ")
