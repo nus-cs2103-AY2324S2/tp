@@ -72,10 +72,16 @@ public class Relationship {
                 person2.toString(), this.relationshipDescriptor);
     }
 
+    /**
+     * Adds a new relationship type to the list of valid relationship types.
+     */
     public static String showRelationshipTypes() {
         return String.format("Valid relationship types are: %s", validDescriptors.toString());
     }
 
+    /**
+     * Adds a new relationship type to the list of valid relationship types.
+     */
     public static void deleteRelationType(String relationType) {
         if (!validDescriptors.contains(relationType)) {
             throw new IllegalArgumentException("Relationship type does not exist yet");

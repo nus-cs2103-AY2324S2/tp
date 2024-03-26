@@ -7,6 +7,9 @@ import seedu.address.model.Model;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Lists all the relationship types in the address book.
+ */
 public class ListRelationshipTypesCommand extends Command {
     public static final String COMMAND_WORD = "listRelations";
 
