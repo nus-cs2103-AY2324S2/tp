@@ -37,6 +37,7 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+PersonListPanel -down-> "1" DisplayCard
 
 MainWindow -left-|> UiPart
 
@@ -46,8 +47,10 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+DisplayCard --|> UiPart
 
 PersonCard ..> Model
+DisplayCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
