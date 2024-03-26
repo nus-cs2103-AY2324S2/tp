@@ -112,6 +112,18 @@ public class Person {
         return result;
     }
 
+    public String getBookListToStringWithIndex() {
+        this.bookList.sort(Comparator.comparing(book -> book.bookTitle));
+        String result = "";
+        for (int i = 0; i < bookList.size(); i++) {
+            result += (i+1) + ". " + this.bookList.get(i).bookTitle.toString();
+            if (i != bookList.size() - 1) {
+                result += "\n";
+            }
+        }
+        return result;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
