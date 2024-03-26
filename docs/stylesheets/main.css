@@ -70,7 +70,7 @@ mark {
   top: var(--sticky-header-height);
   flex: 0 0 auto;
   max-width: 300px;
-  max-height: calc(100vh - var(--sticky-header-height));
+  max-height: max-content;
   width: 300px;
 }
 
@@ -167,4 +167,15 @@ h4,
 h5,
 h6 {
   color: #e46c0a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body,
+.btn {
+  font-family: 'Helvetica';
 }

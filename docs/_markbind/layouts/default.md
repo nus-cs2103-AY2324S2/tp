@@ -22,17 +22,18 @@
 <div id="flex-body">
   <nav id="site-nav">
     <div class="site-nav-top">
-      <div class="fw-bold mb-2" style="font-size: 1.25rem;">Site Map</div>
+      <!-- <div class="fw-bold mb-2" style="font-size: 1.25rem;">Site Map</div> -->
     </div>
     <div class="nav-component slim-scroll">
       <site-nav>
-* [Home]({{ baseUrl }}/index.html)
-* [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
+* [**Home**]({{ baseUrl }}/index.html)
+* [**User Guide**]({{ baseUrl }}/UserGuide.html)
   * [Quick Start]({{ baseUrl }}/UserGuide.html#quick-start)
+  * [Commands]({{ baseUrl }}/UserGuide.html#commands)
   * [Features]({{ baseUrl }}/UserGuide.html#features)
   * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
   * [Command Summary]({{ baseUrl }}/UserGuide.html#faq)
-* [Developer Guide]({{ baseUrl }}/DeveloperGuide.html) :expanded:
+* [**Developer Guide**]({{ baseUrl }}/DeveloperGuide.html)
   * [Acknowledgements]({{ baseUrl }}/DeveloperGuide.html#acknowledgements)
   * [Setting Up]({{ baseUrl }}/DeveloperGuide.html#setting-up-getting-started)
   * [Design]({{ baseUrl }}/DeveloperGuide.html#design)
@@ -40,11 +41,11 @@
   * [Documentation, logging, testing, configuration, dev-ops]({{ baseUrl }}/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops)
   * [Appendix: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-requirements)
   * [Appendix: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-instructions-for-manual-testing)
-* Tutorials
+* **Tutorials**
   * [Tracing code]({{ baseUrl }}/tutorials/TracingCode.html)
   * [Adding a command]({{ baseUrl }}/tutorials/AddRemark.html)
   * [Removing Fields]({{ baseUrl }}/tutorials/RemovingFields.html)
-* [About Us]({{ baseUrl }}/AboutUs.html)
+* [**About Us**]({{ baseUrl }}/AboutUs.html)
       </site-nav>
     </div>
   </nav>
