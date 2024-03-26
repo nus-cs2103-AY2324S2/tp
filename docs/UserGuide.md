@@ -17,7 +17,7 @@ but its use cases can be extended to Head Tutors of other courses. Our user guid
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have `Java 11` or above installed in your computer.
 
@@ -41,7 +41,7 @@ but its use cases can be extended to Head Tutors of other courses. Our user guid
 
 ## Features
 
-### Viewing help : `help`
+### Getting Help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -72,7 +72,7 @@ Format: `help`
 
 </box>
 
-### Adding a person: `add`
+### Adding a Person: `add`
 
 Adds a person.
 
@@ -101,7 +101,7 @@ Example:
 
 For more details on each parameter, [click here](#command-format-summary).
 
-### Listing all persons : `list`
+### Listing All Persons : `list`
 
 Shows a list of all persons.
 
@@ -112,7 +112,7 @@ Format: `list`
 >
 >![list success message](images/success_images/list_success.png)
 
-### Editing a person : `edit`
+### Editing a Person : `edit`
 
 Edits an existing person.
 
@@ -137,7 +137,7 @@ Examples:
 
 For more details on each parameter, [click here](#command-format-summary).
 
-### Filtering persons: `find`
+### Filtering Persons: `find`
 
 Filter persons based on specific criteria within their records.
 
@@ -161,7 +161,7 @@ Examples:
 
 For more details on each parameter, [click here](#command-format-summary).
 
-### Copy email addresses: `copy`
+### Copy Email Addresses: `copy`
 
 Copies the emails of currently displayed persons into your clipboard.
 
@@ -175,7 +175,7 @@ Format: `copy`
 * The emails are copied into your clipboard such that you may easily broadcast emails
   to specific groups of people.
 
-### Deleting a person : `delete`
+### Deleting a Person : `delete`
 
 Deletes the specified person.
 
@@ -193,7 +193,7 @@ Examples:
 >
 >![delete success message](images/success_images/delete_success.png)
 
-### Clearing all entries : `clear`
+### Clearing All Entries : `clear`
 
 Deletes all entries.
 
@@ -203,7 +203,7 @@ Format: `clear`
 >
 >![clear success message](images/success_images/clear_success.png)
 
-### Exporting Data to a CSV file : `export`
+### Exporting Data to a CSV File : `export`
 
 Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
 
@@ -229,7 +229,7 @@ A new CSV file of the same name in the same location will again be created when 
 
 </box>
 
-### Importing Data from a CSV file : `import`
+### Importing Data from a CSV File : `import`
 
 Imports all persons and their details from a CSV file from a specified file path. This filepath should be an
 absolute filePath.
@@ -244,7 +244,7 @@ imports the persons saved in `FILEPATH` to `avengersassemble.json`
 
 For more details on the input parameter, [click here](#command-format-summary).
 
-### Exiting the program : `exit`
+### Exiting the Program : `exit`
 
 Exits the program.
 
@@ -254,11 +254,11 @@ Format: `exit`
 
 ## Additional Information
 
-### Saving the data
+### Saving the Data
 
 All data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the Data File
 
 All data are saved automatically as a JSON file, `[JAR file location]/data/avengersassemble.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -269,14 +269,47 @@ If your changes to the data file makes its format invalid, Avengers Assemble wil
 Furthermore, certain edits can cause the Avengers Assemble application to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Command Format Summary
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AA home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Known Issues
+
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command Summary
+
+Below is a summary of the commands available in Avengers Assemble.
+
+| Action            | Format, Examples                                                                                                                                                                                                                |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
+| **Clear**         | `clear`                                                                                                                                                                                                                         |
+| **Delete**        | `delete INDEX` e.g., `delete 3`                                                                                                                                                                                                 |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
+| **Find**          | `find PREFIX/KEYWORD` e.g., `find n/James`                                                                                                                                                                                      |
+| **Copy**          | `copy`                                                                                                                                                                                                                          |
+| **List**          | `list`                                                                                                                                                                                                                          |
+| **Help**          | `help`                                                                                                                                                                                                                          |
+| **Export to CSV** | `export`                                                                                                                                                                                                                        |
+| **Import**        | `import i/FILEPATH`                                                                                                                                                                                                             |
+
+
+## Command Format Summary
 
 Some commands require you to include parameters. These parameters are identified by prefixes. Here are a list of valid prefixes and what they each refer to.
 
 <box type="info" seamless>
 
 **Note:** </br>
-* Prefixes encased with '[ ]' are optional. 
+* Prefixes encased with '[ ]' are optional.
 * Prefixes with '…' after them can be used multiple times.
 
 </box>
@@ -293,34 +326,3 @@ Some commands require you to include parameters. These parameters are identified
 | [r/]   | Recitation Group           | The first letter must be an uppercase 'R', followed by any number.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | [s/]   | Studio Group               | The first letter must be an uppercase 'S', followed by any number.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | [t/]…  | Tags                       | Should be alphanumeric, and should not contain spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AA home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action            | Format, Examples                                                                                                                                                                                                                |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
-| **Clear**         | `clear`                                                                                                                                                                                                                         |
-| **Delete**        | `delete INDEX` e.g., `delete 3`                                                                                                                                                                                                 |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
-| **Find**          | `find PREFIX/KEYWORD` e.g., `find n/James`                                                                                                                                                                                      |
-| **Copy**          | `copy`                                                                                                                                                                                                                          |
-| **List**          | `list`                                                                                                                                                                                                                          |
-| **Help**          | `help`                                                                                                                                                                                                                          |
-| **Export to CSV** | `export`                                                                                                                                                                                                                        |
-| **Import**        | `import i/FILEPATH`                                                                                                                                                                                                             |
-
