@@ -85,4 +85,8 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    public void showMessage(String msg) {
+        mainWindow.showMessage(msg);
+    }
+
 }

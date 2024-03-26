@@ -28,13 +28,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final PersonListPanel personListPanel;
+    private final ResultDisplay resultDisplay = new ResultDisplay();
+    private final HelpWindow helpWindow = new HelpWindow();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -60,13 +60,12 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -111,10 +110,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
+        // resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -193,4 +191,9 @@ public class MainWindow extends UiPart<Stage> {
         }
         return commandResult;
     }
+
+    public void showMessage(String msg) {
+        resultDisplay.setFeedbackToUser(msg);
+    }
+
 }

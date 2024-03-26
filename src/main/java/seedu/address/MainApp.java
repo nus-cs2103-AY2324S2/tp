@@ -15,8 +15,10 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -56,7 +58,19 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
-        model = new ModelManager(storage.readInitialAddressBook(), userPrefs);
+        ReadOnlyAddressBook initialAddressBook;
+        try {
+            initialAddressBook = storage.readInitialAddressBook();
+        } catch (DataLoadingException e) {
+            final String dataLoadingWarning =
+                    "WARNING: Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
+                    + "Will be starting with an empty AddressBook. Entering a command will override the old data file.";
+            logger.warning(dataLoadingWarning);
+            ui.showMessage(dataLoadingWarning);
+            initialAddressBook = new AddressBook();
+        }
+
+        model = new ModelManager(initialAddressBook, userPrefs);
 
         logic = new LogicManager(model, storage);
 
