@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "<<class>>\nCommandType" as CommandTypeClass LOGIC_COLOR
+participant "t:CommandType" as CommandType LOGIC_COLOR
+participant "<<class>>\nEditAssetCommand" as EditAssetCommandClass LOGIC_COLOR
+participant "e:EditAssetCommand" as EditAssetCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edita old/Aircon new/Hammer")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edita old/Aircon new/Hammer")
+activate AddressBookParser
+
+AddressBookParser -> CommandTypeClass : valueOf("EDITA")
+activate CommandTypeClass
+
+create CommandType
+CommandTypeClass -> CommandType
+activate CommandType
+
+CommandType -> CommandTypeClass : t
+deactivate CommandType
+
+CommandTypeClass -> AddressBookParser : t
+deactivate CommandTypeClass
+
+AddressBookParser -> CommandType : createCommand()
+activate CommandType
+
+CommandType -> EditAssetCommandClass : of("old/Aircon new/Hammer")
+activate EditAssetCommandClass
+
+create EditAssetCommand
+EditAssetCommandClass -> EditAssetCommand
+activate EditAssetCommand
+
+EditAssetCommand --> EditAssetCommandClass : e
+deactivate EditAssetCommand
+
+EditAssetCommandClass --> CommandType : e
+deactivate EditAssetCommandClass
+
+CommandType --> AddressBookParser : e
+deactivate CommandType
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+
+LogicManager -> EditAssetCommand : execute(m)
+activate EditAssetCommand
+
+EditAssetCommand -> Model : editAsset(old, new)
+activate Model
+
+Model --> EditAssetCommand
+deactivate Model
+
+EditAssetCommand --> LogicManager : result
+deactivate EditAssetCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
