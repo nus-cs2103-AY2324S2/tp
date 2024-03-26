@@ -140,9 +140,28 @@ Examples:
 
 ### Listing all internships: `list`
 
-Shows a list of all internships in the application
+Shows a list of all internships in the application.
 
-Format: `list`
+**Format:** `list`
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Tip:**<br>
+When you first start the application, you will see a list of all the internships you have added. <br>
+The [find](#finding-internships-by-keywords-find) command might be used to filter the visible list of internships. <br>
+If you want to see all internships again, simply type `list` and press enter.
+<br><br>
+
+1. Input:<br>
+   `list`<br>
+   ![Before listing all internships](./images/list/list-before.png)
+In this example, the current view shows only internships with location 'REMOTE'.
+<br><br>
+
+2. Successful Output after executing list: <br>
+   ![After successfully listing all internships](./images/list/list-after.png)
+Any present filter will be removed, and all internships will be displayed in the list.
+</div>
 
 ### Viewing an internship entry's details
 
