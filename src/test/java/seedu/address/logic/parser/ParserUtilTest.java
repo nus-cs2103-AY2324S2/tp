@@ -6,13 +6,17 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -203,5 +207,40 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseDateTime_validDateTimeString_returnsDateTime() throws Exception {
+        LocalDateTime expectedDateTime = LocalDateTime.of(2024, 3, 18, 9, 0);
+        String validDateTimeString1 = expectedDateTime.format(
+                DateTimeFormatter.ofPattern(DateUtil.DATETIME_INPUT_FORMAT));
+        LocalDateTime actualDateTime1 = ParserUtil.parseDateTime(validDateTimeString1);
+        assertEquals(expectedDateTime, actualDateTime1);
+
+        // With whitespaces
+        LocalDateTime actualDateTime2 = ParserUtil.parseDateTime("  2024-03-18 09:00  ");
+        assertEquals(expectedDateTime, actualDateTime2);
+    }
+
+    @Test
+    public void parseDateTime_invalidDateTimeString_throwsException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2024-03-18"));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("23/12/1999"));
+    }
+
+    @Test
+    public void parseHasAttended_validBoolean_returnsHasAttended() throws Exception {
+        Assertions.assertEquals(true, ParserUtil.parseHasAttended("true"));
+        Assertions.assertEquals(true, ParserUtil.parseHasAttended("   TruE  "));
+
+        Assertions.assertEquals(false, ParserUtil.parseHasAttended("false"));
+        Assertions.assertEquals(false, ParserUtil.parseHasAttended(" FalSE  "));
+    }
+    @Test
+    public void parseHasAttended_invalidBoolean_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseHasAttended("f alse"));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("test"));
     }
 }
