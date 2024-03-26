@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.TelegramChat;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -21,13 +22,15 @@ public class JsonAdaptedGroup {
     private final String name;
     private final List<JsonAdaptedCourseMate> members = new ArrayList<>();
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
+    private final String telegramChat;
 
     /**
      * Constructs a {@code JsonAdaptedGroup} with the given group details.
      */
     public JsonAdaptedGroup(@JsonProperty("name") String name,
                             @JsonProperty("members") List<JsonAdaptedCourseMate> members,
-                            @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
+                            @JsonProperty("skills") List<JsonAdaptedSkill> skills,
+                            @JsonProperty("telegramChat") String telegramChat) {
         this.name = name;
         if (members != null) {
             this.members.addAll(members);
@@ -35,6 +38,7 @@ public class JsonAdaptedGroup {
         if (skills != null) {
             this.skills.addAll(skills);
         }
+        this.telegramChat = telegramChat;
     }
 
     /**
@@ -48,6 +52,11 @@ public class JsonAdaptedGroup {
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
+        if (source.getTelegramChat() != null) {
+            telegramChat = source.getTelegramChat().value;
+        } else {
+            telegramChat = "";
+        }
     }
 
     /**
@@ -75,6 +84,17 @@ public class JsonAdaptedGroup {
         }
 
         Name modelName = new Name(name);
-        return new Group(modelName, modelMembers, modelSkills);
+
+        TelegramChat modelTelegramChat;
+        if (telegramChat.isEmpty()) {
+            modelTelegramChat = null;
+        } else {
+            if (!TelegramChat.isValidTelegramChat(telegramChat)) {
+                throw new IllegalValueException(TelegramChat.MESSAGE_CONSTRAINTS);
+            }
+            modelTelegramChat = new TelegramChat(telegramChat);
+        }
+
+        return new Group(modelName, modelMembers, modelSkills, modelTelegramChat);
     }
 }

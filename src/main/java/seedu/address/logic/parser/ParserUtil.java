@@ -13,6 +13,7 @@ import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.group.TelegramChat;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -140,5 +141,17 @@ public class ParserUtil {
             courseMateSet.add(parseQueryableCourseMate(courseMateName));
         }
         return courseMateSet;
+    }
+
+    /**
+     * Parses a {@code String telegramChat} into a {@code TelegramChat}.
+     */
+    public static TelegramChat parseTelegramChat(String telegramChat) throws ParseException {
+        requireNonNull(telegramChat);
+        String trimmedTelegramChat = telegramChat.trim();
+        if  (!TelegramChat.isValidTelegramChat(trimmedTelegramChat)) {
+            throw new ParseException(TelegramChat.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramChat(trimmedTelegramChat);
     }
 }
