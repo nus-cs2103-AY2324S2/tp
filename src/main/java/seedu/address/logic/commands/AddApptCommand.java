@@ -17,11 +17,11 @@ import seedu.address.model.person.Nric;
 
 
 /**
- * Creates an AddAppCommand to add the specified {@code Appointment}
+ * Creates an AddApptCommand to add the specified {@code Appointment}
  */
-public class AddAppCommand extends Command {
+public class AddApptCommand extends Command {
 
-    public static final String COMMAND_WORD = "addApp";
+    public static final String COMMAND_WORD = "addAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient identified by the NRIC given. \n"
@@ -43,14 +43,15 @@ public class AddAppCommand extends Command {
 
     public static final String MESSAGE_ADD_APPOINTMENT_SUCCESS = "New appointment added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in CLInic";
+    public static final String MESSAGE_ADD_DUPLICATE_APPOINTMENT_FAILURE =
+            "This appointment already exists in CLInic";
 
     private final Appointment apptToAdd;
 
     /**
-     * Creates an AddAppCommand to add the specified {@code Appointment}
+     * Creates an AddApptCommand to add the specified {@code Appointment}
      */
-    public AddAppCommand(Appointment appointment) {
+    public AddApptCommand(Appointment appointment) {
         requireNonNull(appointment);
         this.apptToAdd = appointment;
     }
@@ -61,11 +62,11 @@ public class AddAppCommand extends Command {
         Nric targetNric = apptToAdd.getNric();
 
         if (!model.hasPersonWithNric(targetNric)) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 
         if (model.hasAppointment(apptToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            throw new CommandException(MESSAGE_ADD_DUPLICATE_APPOINTMENT_FAILURE);
         }
 
         model.addAppointment(apptToAdd);
@@ -79,12 +80,12 @@ public class AddAppCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddAppCommand)) {
+        if (!(other instanceof AddApptCommand)) {
             return false;
         }
 
-        AddAppCommand otherAddAppCommand = (AddAppCommand) other;
-        return apptToAdd.equals(otherAddAppCommand.apptToAdd);
+        AddApptCommand otherAddApptCommand = (AddApptCommand) other;
+        return apptToAdd.equals(otherAddApptCommand.apptToAdd);
     }
 
     @Override

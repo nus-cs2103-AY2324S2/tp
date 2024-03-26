@@ -16,11 +16,11 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a patient to CLInic.
  */
-public class AddCommand extends Command {
+public class AddPatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addPatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the CLInic. "
             + "Parameters: "
@@ -41,29 +41,30 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "insulin "
             + PREFIX_TAG + "panadol";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in the CLInic";
+    public static final String MESSAGE_ADD_PATIENT_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_ADD_DUPLICATE_PATIENT_FAILURE =
+            "This patient already exists in the CLInic";
 
-    private final Person toAdd;
+    private final Person patientToAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddPatientCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddPatientCommand(Person person) {
         requireNonNull(person);
-        toAdd = person;
+        patientToAdd = person;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasPerson(patientToAdd)) {
+            throw new CommandException(MESSAGE_ADD_DUPLICATE_PATIENT_FAILURE);
         }
 
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        model.addPerson(patientToAdd);
+        return new CommandResult(String.format(MESSAGE_ADD_PATIENT_SUCCESS, Messages.format(patientToAdd)));
     }
 
     @Override
@@ -73,18 +74,18 @@ public class AddCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddPatientCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddPatientCommand otherAddPatientCommand = (AddPatientCommand) other;
+        return patientToAdd.equals(otherAddPatientCommand.patientToAdd);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("toAdd", toAdd)
+                .add("toAdd", patientToAdd)
                 .toString();
     }
 }

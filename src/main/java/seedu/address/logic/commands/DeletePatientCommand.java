@@ -9,22 +9,22 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Nric;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a patient identified by their NRIC.
  */
-public class DeleteCommand extends Command {
+public class DeletePatientCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deletePatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the NRIC number used in the displayed person list.\n"
+            + ": Deletes the patient identified by the NRIC number.\n"
             + "Parameters: NRIC (must be a existing NRIC in database)\n"
             + "Example: " + COMMAND_WORD + " S1234567A";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
     private final Nric targetNric;
 
-    public DeleteCommand(Nric targetNric) {
+    public DeletePatientCommand(Nric targetNric) {
         this.targetNric = targetNric;
     }
 
@@ -33,12 +33,11 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasPersonWithNric(targetNric)) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 
-        String message = String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+        String message = String.format(MESSAGE_DELETE_PATIENT_SUCCESS,
                 Messages.format(model.getPersonWithNric(targetNric)));
-        model.deleteAppointmentsWithNric(targetNric);
         model.deletePersonWithNric(targetNric);
         return new CommandResult(message);
     }
@@ -50,12 +49,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeletePatientCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetNric.equals(otherDeleteCommand.targetNric);
+        DeletePatientCommand otherDeletePatientCommand = (DeletePatientCommand) other;
+        return targetNric.equals(otherDeletePatientCommand.targetNric);
     }
 
     @Override

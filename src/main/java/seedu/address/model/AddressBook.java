@@ -94,6 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void deletePersonWithNric(Nric nric) {
         requireNonNull(nric);
         persons.deletePersonWithNric(nric);
+        appointments.deleteAppointmentsWithNric(nric);
     }
 
     /**
@@ -227,10 +228,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.getMatchingAppointment(nric, date, timePeriod);
     }
 
-    public void deleteAppointmentsWithNric(Nric targetNric) {
-        appointments.deleteAppointmentsWithNric(targetNric);
-    }
-
     /**
      * Create AppointmentView from appointment
      */
@@ -251,7 +248,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && appointments.equals(otherAddressBook.appointments);
     }
 
     @Override

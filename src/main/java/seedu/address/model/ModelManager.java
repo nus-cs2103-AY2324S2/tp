@@ -128,7 +128,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
     @Override
@@ -164,12 +164,6 @@ public class ModelManager implements Model {
     @Override
     public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
         return addressBook.getMatchingAppointment(nric, date, timePeriod);
-    }
-
-    @Override
-    public void deleteAppointmentsWithNric(Nric targetNric) {
-        requireNonNull(targetNric);
-        addressBook.deleteAppointmentsWithNric(targetNric);
     }
 
     //=========== Filtered Person List Accessors =============================================================

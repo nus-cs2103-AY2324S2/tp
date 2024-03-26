@@ -17,9 +17,9 @@ import seedu.address.testutil.AppointmentBuilder;
 
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddAppCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddApptCommand}.
  */
-public class AddAppCommandIntegrationTest {
+public class AddApptCommandIntegrationTest {
 
     private Model model;
 
@@ -36,8 +36,8 @@ public class AddAppCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addAppointment(validAppointment);
 
-        assertCommandSuccess(new AddAppCommand(validAppointment), model,
-                String.format(AddAppCommand.MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(validAppointment)),
+        assertCommandSuccess(new AddApptCommand(validAppointment), model,
+                String.format(AddApptCommand.MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(validAppointment)),
                 expectedModel);
     }
 
@@ -45,14 +45,14 @@ public class AddAppCommandIntegrationTest {
     public void execute_appointmentNricNotFound_throwsCommandException() {
         Appointment appointmentWithNoMatchNric = new AppointmentBuilder()
                 .withNric("G9876543K").build();
-        assertCommandFailure(new AddAppCommand(appointmentWithNoMatchNric), model,
-                Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
+        assertCommandFailure(new AddApptCommand(appointmentWithNoMatchNric), model,
+                Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
     }
 
     @Test
     public void execute_duplicateAppointment_throwsCommandException() {
         Appointment appointmentInList = model.getAddressBook().getAppointmentList().get(0);
-        assertCommandFailure(new AddAppCommand(appointmentInList), model,
-                AddAppCommand.MESSAGE_DUPLICATE_APPOINTMENT);
+        assertCommandFailure(new AddApptCommand(appointmentInList), model,
+                AddApptCommand.MESSAGE_ADD_DUPLICATE_APPOINTMENT_FAILURE);
     }
 }

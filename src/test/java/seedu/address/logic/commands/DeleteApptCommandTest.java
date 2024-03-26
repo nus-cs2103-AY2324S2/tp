@@ -23,57 +23,57 @@ import seedu.address.model.person.Nric;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code CancelAppCommand}.
  */
-public class CancelAppCommandTest {
+public class DeleteApptCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBookWithAppointments(), new UserPrefs());
 
     @Test
     public void execute_validInput_success() {
-        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+        DeleteApptCommand deleteApptCommand = new DeleteApptCommand(
                 ALICE_APPT.getNric(),
                 ALICE_APPT.getDate(),
                 ALICE_APPT.getTimePeriod()
         );
 
         // Expected message after successful cancellation
-        String expectedMessage = String.format(CancelAppCommand.MESSAGE_CANCEL_APPOINTMENT_SUCCESS,
+        String expectedMessage = String.format(DeleteApptCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.format(ALICE_APPT));
 
-        assertCommandSuccess(cancelAppCommand, model, expectedMessage, model);
+        assertCommandSuccess(deleteApptCommand, model, expectedMessage, model);
     }
 
     @Test
     public void execute_appointmentNotFound_throwsCommandException() {
-        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+        DeleteApptCommand deleteApptCommand = new DeleteApptCommand(
                 ALICE_APPT.getNric(),
                 new Date("1900-02-02"),
                 ALICE_APPT.getTimePeriod()
         );
 
-        assertCommandFailure(cancelAppCommand, model, Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
+        assertCommandFailure(deleteApptCommand, model, Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
     }
 
     @Test
     public void execute_nricNotFound_throwsCommandException() {
         Nric missingNric = new Nric(MISSING_NRIC);
-        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+        DeleteApptCommand deleteApptCommand = new DeleteApptCommand(
                 missingNric,
                 ALICE_APPT.getDate(),
                 ALICE_APPT.getTimePeriod()
         );
 
-        assertCommandFailure(cancelAppCommand, model, Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
+        assertCommandFailure(deleteApptCommand, model, Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
     }
 
     @Test
     public void equals() {
 
-        CancelAppCommand cancelFirstAppointment = new CancelAppCommand(
+        DeleteApptCommand cancelFirstAppointment = new DeleteApptCommand(
                 ALICE_APPT.getNric(),
                 ALICE_APPT.getDate(),
                 ALICE_APPT.getTimePeriod()
         );
-        CancelAppCommand cancelSecondAppointment = new CancelAppCommand(
+        DeleteApptCommand cancelSecondAppointment = new DeleteApptCommand(
                 ALICE_APPT_1.getNric(),
                 ALICE_APPT_1.getDate(),
                 ALICE_APPT_1.getTimePeriod()
@@ -83,7 +83,7 @@ public class CancelAppCommandTest {
         assertTrue(cancelFirstAppointment.equals(cancelFirstAppointment));
 
         //same values --> returns true
-        CancelAppCommand cancelFirstAppointmentCopy = new CancelAppCommand(
+        DeleteApptCommand cancelFirstAppointmentCopy = new DeleteApptCommand(
                 ALICE_APPT.getNric(),
                 ALICE_APPT.getDate(),
                 ALICE_APPT.getTimePeriod()
@@ -103,16 +103,16 @@ public class CancelAppCommandTest {
 
     @Test
     public void toStringMethod() {
-        CancelAppCommand cancelAppCommand = new CancelAppCommand(
+        DeleteApptCommand deleteApptCommand = new DeleteApptCommand(
                 ALICE_APPT.getNric(),
                 ALICE_APPT.getDate(),
                 ALICE_APPT.getTimePeriod()
         );
 
-        String expected = CancelAppCommand.class.getCanonicalName()
+        String expected = DeleteApptCommand.class.getCanonicalName()
                 + "{nric=" + ALICE_APPT.getNric() + ", "
                 + "date=" + ALICE_APPT.getDate() + ", "
                 + "timePeriod=" + ALICE_APPT.getTimePeriod() + "}";
-        assertEquals(expected, cancelAppCommand.toString());
+        assertEquals(expected, deleteApptCommand.toString());
     }
 }

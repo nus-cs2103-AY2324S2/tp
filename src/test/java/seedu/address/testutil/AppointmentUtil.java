@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.logic.commands.AddAppCommand;
+import seedu.address.logic.commands.AddApptCommand;
 import seedu.address.model.appointment.Appointment;
 
 /**
@@ -19,7 +19,7 @@ public class AppointmentUtil {
      * Returns an addApp command string for adding the {@code appointment}.
      */
     public static String getAddAppCommand(Appointment appointment) {
-        return AddAppCommand.COMMAND_WORD + " " + getAppointmentDetails(appointment);
+        return AddApptCommand.COMMAND_WORD + " " + getAppointmentDetails(appointment);
     }
 
     /**

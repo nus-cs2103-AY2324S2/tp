@@ -37,8 +37,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditPersonCommand;
-import seedu.address.logic.commands.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPatientCommand;
+import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -46,16 +46,16 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 
-public class EditPersonCommandParserTest {
+public class EditPatientCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPatientCommand.MESSAGE_USAGE);
 
-    private EditPersonCommandParser parser = new EditPersonCommandParser();
+    private EditPatientCommandParser parser = new EditPatientCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -63,7 +63,7 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, VALID_NRIC_AMY, EditPersonCommand.MESSAGE_EDIT_PERSON_NO_FIELDS);
+        assertParseFailure(parser, VALID_NRIC_AMY, EditPatientCommand.MESSAGE_EDIT_PATIENT_NO_FIELDS_FAILURE);
 
         // no nric and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -117,10 +117,10 @@ public class EditPersonCommandParserTest {
         String userInput = targetNric + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + DOB_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withDateOfBirth(VALID_DOB_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditPersonCommand expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        EditPatientCommand expectedCommand = new EditPatientCommand(targetNric, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -130,9 +130,10 @@ public class EditPersonCommandParserTest {
         Nric targetNric = new Nric(VALID_NRIC_AMY);
         String userInput = targetNric + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPatientCommand.EditPatientDescriptor descriptor =
+                new EditPatientDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditPersonCommand expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        EditPatientCommand expectedCommand = new EditPatientCommand(targetNric, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -142,38 +143,38 @@ public class EditPersonCommandParserTest {
         // name
         Nric targetNric = new Nric(VALID_NRIC_BOB);
         String userInput = targetNric + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditPersonCommand expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditPatientCommand expectedCommand = new EditPatientCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // dob
         userInput = targetNric + DOB_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withDateOfBirth(VALID_DOB_AMY).build();
-        expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        descriptor = new EditPatientDescriptorBuilder().withDateOfBirth(VALID_DOB_AMY).build();
+        expectedCommand = new EditPatientCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetNric + PHONE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        descriptor = new EditPatientDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        expectedCommand = new EditPatientCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetNric + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        descriptor = new EditPatientDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        expectedCommand = new EditPatientCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetNric + ADDRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        descriptor = new EditPatientDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        expectedCommand = new EditPatientCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetNric + TAG_DESC_FRIEND;
-        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        descriptor = new EditPatientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditPatientCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -214,8 +215,8 @@ public class EditPersonCommandParserTest {
         Nric targetNric = new Nric(VALID_NRIC_BOB);
         String userInput = targetNric + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
-        EditPersonCommand expectedCommand = new EditPersonCommand(targetNric, descriptor);
+        EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withTags().build();
+        EditPatientCommand expectedCommand = new EditPatientCommand(targetNric, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

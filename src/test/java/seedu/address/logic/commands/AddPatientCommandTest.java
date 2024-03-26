@@ -5,12 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
-import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -29,82 +28,67 @@ import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.PersonBuilder;
 
-public class AddAppCommandTest {
+public class AddPatientCommandTest {
 
     @Test
-    public void constructor_nullAppointment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddAppCommand(null));
+    public void constructor_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddPatientCommand(null));
     }
 
     @Test
-    public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
-        Appointment validAppointment = new AppointmentBuilder(ALICE_APPT).build();
-        ModelStub modelStub = new ModelStubWithPerson(ALICE);
-        CommandResult commandResult = new AddAppCommand(validAppointment).execute(modelStub);
+    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPatient = new PersonBuilder().build();
 
-        assertEquals(String.format(AddAppCommand.MESSAGE_ADD_APPOINTMENT_SUCCESS, Messages.format(validAppointment)),
+        CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
+
+        assertEquals(String.format(AddPatientCommand.MESSAGE_ADD_PATIENT_SUCCESS, Messages.format(validPatient)),
                 commandResult.getFeedbackToUser());
-        assertTrue(modelStub.hasAppointment(validAppointment));
+        assertEquals(Arrays.asList(validPatient), modelStub.personsAdded);
     }
 
     @Test
-    public void execute_duplicateAppointment_throwsCommandException() {
-        Appointment validAppointment = new AppointmentBuilder().build();
-        AddAppCommand addAppCommand = new AddAppCommand(validAppointment);
-        ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
+    public void execute_duplicatePerson_throwsCommandException() {
+        Person validPatient = new PersonBuilder().build();
+        AddPatientCommand addPatientCommand = new AddPatientCommand(validPatient);
+        ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
-        assertThrows(CommandException.class, AddAppCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppCommand
-                .execute(modelStub));
-    }
-
-    @Test
-    public void execute_patientNotFound_throwsCommandException() {
-        Appointment validAppointment = new AppointmentBuilder(BOB_APPT).build();
-        AddAppCommand addAppCommand = new AddAppCommand(validAppointment);
-        ModelStub modelStub = new ModelStubWithPerson(ALICE);
-
-        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NRIC_NOT_FOUND, () -> addAppCommand
-                .execute(modelStub));
+        assertThrows(CommandException.class,
+                AddPatientCommand.MESSAGE_ADD_DUPLICATE_PATIENT_FAILURE, ()
+                        -> addPatientCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Appointment aliceAppointment = new AppointmentBuilder().withNric("T0000001A").build();
-        Appointment bobAppointment = new AppointmentBuilder().withNric("T0000002A").build();
-        Appointment aliceSecondAppointment = new AppointmentBuilder().withDate("2023-01-01").build();
-
-        AddAppCommand addAliceAppCommand = new AddAppCommand(aliceAppointment);
-        AddAppCommand addBobAppCommand = new AddAppCommand(bobAppointment);
-        AddAppCommand addAliceSecondAppCommand = new AddAppCommand(aliceSecondAppointment);
+        Person alice = new PersonBuilder().withName("Alice").build();
+        Person bob = new PersonBuilder().withName("Bob").build();
+        AddPatientCommand addAliceCommand = new AddPatientCommand(alice);
+        AddPatientCommand addBobCommand = new AddPatientCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceAppCommand.equals(addAliceAppCommand));
+        assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddAppCommand addAliceAppCommandCopy = new AddAppCommand(aliceAppointment);
-        assertTrue(addAliceAppCommand.equals(addAliceAppCommandCopy));
+        AddPatientCommand addAliceCommandCopy = new AddPatientCommand(alice);
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceAppCommand.equals(1));
+        assertFalse(addAliceCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceAppCommand.equals(null));
+        assertFalse(addAliceCommand.equals(null));
 
-        // appointment with different nric -> returns false
-        assertFalse(addAliceAppCommand.equals(addBobAppCommand));
-
-        // appointment with different date -> returns false
-        assertFalse(addAliceAppCommand.equals(addAliceSecondAppCommand));
+        // different patient -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddAppCommand addAppCommand = new AddAppCommand(ALICE_APPT);
-        String expected = AddAppCommand.class.getCanonicalName()
-                + "{appointment=" + ALICE_APPT + "}";
-        assertEquals(expected, addAppCommand.toString());
+        AddPatientCommand addPatientCommand = new AddPatientCommand(ALICE);
+        String expected = AddPatientCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        assertEquals(expected, addPatientCommand.toString());
     }
 
     /**
@@ -198,7 +182,7 @@ public class AddAppCommandTest {
 
         @Override
         public boolean hasAppointment(Appointment appointment) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -208,7 +192,7 @@ public class AddAppCommandTest {
 
         @Override
         public void addAppointment(Appointment appointment) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -218,11 +202,12 @@ public class AddAppCommandTest {
 
         @Override
         public ObservableList<Appointment> getFilteredAppointmentList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -231,36 +216,8 @@ public class AddAppCommandTest {
         }
 
         @Override
-        public void deleteAppointmentsWithNric(Nric targetNric) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<AppointmentView> getFilteredAppointmentViewList() {
-            return null;
-        }
-    }
-
-    /**
-     * A Model stub that contains a single appointment.
-     */
-    private class ModelStubWithAppointment extends ModelStub {
-        private final Appointment appointment;
-
-        ModelStubWithAppointment(Appointment appointment) {
-            requireNonNull(appointment);
-            this.appointment = appointment;
-        }
-
-        @Override
-        public boolean hasPersonWithNric(Nric nric) {
-            return true;
-        }
-
-        @Override
-        public boolean hasAppointment(Appointment appointment) {
-            requireNonNull(appointment);
-            return this.appointment.equals(appointment);
+            throw new AssertionError("This method should not be called.");
         }
     }
 
@@ -268,40 +225,36 @@ public class AddAppCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        final ArrayList<Appointment> appointmentsAdded;
         private final Person person;
 
         ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
-            this.appointmentsAdded = new ArrayList<>();
         }
 
         @Override
-        public boolean hasPersonWithNric(Nric nric) {
-            requireNonNull(nric);
-            return person.getNric().equals(nric);
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.person.isSamePerson(person);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public boolean hasAppointment(Appointment appointment) {
-            requireNonNull(appointment);
-            return appointmentsAdded.stream().anyMatch(appointment::equals);
-        }
-
-        @Override
-        public Person getPersonWithNric(Nric nric) {
-            requireNonNull(nric);
-            if (person.getNric().equals(nric)) {
-                return person;
-            }
-            return null;
-        }
-
-        @Override
-        public void addAppointment(Appointment appointment) {
-            requireNonNull(appointment);
-            appointmentsAdded.add(appointment);
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
         }
 
         @Override
@@ -310,4 +263,3 @@ public class AddAppCommandTest {
         }
     }
 }
-

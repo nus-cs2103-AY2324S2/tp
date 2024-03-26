@@ -18,14 +18,14 @@ import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 
 /**
- * Cancels an appointment identified using its NRIC, date, start time and end time.
+ * Deletes an appointment identified using its NRIC, date, start time and end time.
  */
-public class CancelAppCommand extends Command {
+public class DeleteApptCommand extends Command {
 
-    public static final String COMMAND_WORD = "cancelApp";
+    public static final String COMMAND_WORD = "deleteAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Cancels the appointment identified by the NRIC, date, start time and end time given.\n"
+            + ": Deletes the appointment identified by the NRIC, date, start time and end time given.\n"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_DATE + "DATE "
@@ -37,9 +37,9 @@ public class CancelAppCommand extends Command {
             + PREFIX_START_TIME + "11:00 "
             + PREFIX_END_TIME + "11:30 ";
 
-    public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled Appointment: %1$s";
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
-    private Appointment apptToCancel;
+    private Appointment apptToDelete;
     private final Nric nricToMatch;
     private final Date dateToMatch;
     private final TimePeriod timePeriodToMatch;
@@ -47,11 +47,11 @@ public class CancelAppCommand extends Command {
     /**
      * Creates a CancelAppCommand to add the specified {@code Nric, Date, TimePeriod}
      */
-    public CancelAppCommand(Nric nricToMatch, Date dateToMatch, TimePeriod timePeriodToMatch) {
+    public DeleteApptCommand(Nric nricToMatch, Date dateToMatch, TimePeriod timePeriodToMatch) {
         this.nricToMatch = nricToMatch;
         this.dateToMatch = dateToMatch;
         this.timePeriodToMatch = timePeriodToMatch;
-        this.apptToCancel = null;
+        this.apptToDelete = null;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class CancelAppCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasPersonWithNric(nricToMatch)) {
-            throw new CommandException(Messages.MESSAGE_PERSON_NRIC_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
 
         Appointment mockAppointmentToMatch = new Appointment(nricToMatch, dateToMatch, timePeriodToMatch,
@@ -68,10 +68,10 @@ public class CancelAppCommand extends Command {
             throw new CommandException(Messages.MESSAGE_APPOINTMENT_NOT_FOUND);
         }
 
-        this.apptToCancel = model.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch);
+        this.apptToDelete = model.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch);
 
-        model.cancelAppointment(apptToCancel);
-        return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, Messages.format(apptToCancel)));
+        model.cancelAppointment(apptToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, Messages.format(apptToDelete)));
     }
 
     @Override
@@ -81,16 +81,16 @@ public class CancelAppCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CancelAppCommand)) {
+        if (!(other instanceof DeleteApptCommand)) {
             return false;
         }
 
-        CancelAppCommand otherCancelAppCommand = (CancelAppCommand) other;
+        DeleteApptCommand otherDeleteApptCommand = (DeleteApptCommand) other;
 
         // Check if all fields are equal except apptToCancel as not initialised until execute
-        return nricToMatch.equals(otherCancelAppCommand.nricToMatch)
-                && dateToMatch.equals(otherCancelAppCommand.dateToMatch)
-                && timePeriodToMatch.equals(otherCancelAppCommand.timePeriodToMatch);
+        return nricToMatch.equals(otherDeleteApptCommand.nricToMatch)
+                && dateToMatch.equals(otherDeleteApptCommand.dateToMatch)
+                && timePeriodToMatch.equals(otherDeleteApptCommand.timePeriodToMatch);
     }
 
     @Override

@@ -22,15 +22,15 @@ import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.date.Date;
-import seedu.address.logic.commands.CancelAppCommand;
+import seedu.address.logic.commands.DeleteApptCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
-public class CancelAppCommandParserTest {
+public class DeleteApptCommandParserTest {
 
-    private final CancelAppCommandParser parser = new CancelAppCommandParser();
+    private final DeleteApptCommandParser parser = new DeleteApptCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -39,7 +39,7 @@ public class CancelAppCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                         + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB,
-                new CancelAppCommand(
+                new DeleteApptCommand(
                         expectedAppointment.getNric(),
                         expectedAppointment.getDate(),
                         expectedAppointment.getTimePeriod()
@@ -48,7 +48,7 @@ public class CancelAppCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelAppCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteApptCommand.MESSAGE_USAGE);
 
         // missing NRIC prefix
         assertParseFailure(parser, DATE_DESC_APPOINTMENT_BOB + START_TIME_DESC_APPOINTMENT_BOB
@@ -97,6 +97,6 @@ public class CancelAppCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                         + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelAppCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteApptCommand.MESSAGE_USAGE));
     }
 }

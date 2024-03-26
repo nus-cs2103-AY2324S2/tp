@@ -40,16 +40,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddAppCommand;
+import seedu.address.logic.commands.AddApptCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
-public class AddAppCommandParserTest {
+public class AddApptCommandParserTest {
 
-    private final AddAppCommandParser parser = new AddAppCommandParser();
+    private final AddApptCommandParser parser = new AddApptCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -59,7 +59,7 @@ public class AddAppCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                 + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB
                 + TYPE_DESC_APPOINTMENT_BOB + NOTE_DESC_APPOINTMENT_BOB,
-                new AddAppCommand(expectedAppointment));
+                new AddApptCommand(expectedAppointment));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class AddAppCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddApptCommand.MESSAGE_USAGE);
 
         // missing NRIC prefix
         assertParseFailure(parser, DATE_DESC_APPOINTMENT_BOB + START_TIME_DESC_APPOINTMENT_BOB
@@ -163,7 +163,7 @@ public class AddAppCommandParserTest {
         // missing note prefix is ok
         assertParseSuccess(parser, NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                         + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB + TYPE_DESC_APPOINTMENT_BOB,
-                new AddAppCommand(new AppointmentBuilder(BOB_APPT).withNote("").build()));
+                new AddApptCommand(new AppointmentBuilder(BOB_APPT).withNote("").build()));
     }
 
     @Test
@@ -199,6 +199,6 @@ public class AddAppCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NRIC_DESC_BOB + DATE_DESC_APPOINTMENT_BOB
                         + START_TIME_DESC_APPOINTMENT_BOB + END_TIME_DESC_APPOINTMENT_BOB
                         + VALID_APPOINTMENT_TYPE_BOB + VALID_APPOINTMENT_NOTE_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddApptCommand.MESSAGE_USAGE));
     }
 }
