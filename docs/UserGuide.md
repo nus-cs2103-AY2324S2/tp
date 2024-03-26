@@ -3,12 +3,18 @@ layout: page
 title: User Guide
 ---
 
-TeachStack is a **desktop app for managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeachStack can get your student management tasks done faster than traditional GUI apps.
+## Welcome!
+
+Thank you for choosing to use TeachStack! Our product aims to help you allocate resources to keep track of weaker students,
+and is optimized to be used with the Command Line Interface (CLI).
+This is achieved through the use of focus groups, which identifies students in need and monitors their performance.
+So, are you ready to help students in need?
 
 ## Table of contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Target user/audience
 
 The growing population of computer science students worldwide presents a novel set of problems administratively for computer science instructors which TeachStack aims to address. Therefore, TeachStack is tailored for computer science instructors, not limited to those within NUS.
@@ -18,13 +24,6 @@ The growing population of computer science students worldwide presents a novel s
 2. We also assume that users are somewhat familiar with computers and have used computer applications in the past, which will help them follow this guide and use TeachStack effectively. Since most instructors will have used similar applications (e.g. Canvas), this is a reasonable assumption to make.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Welcome!
-
-Thank you for choosing to use TeachStack! Our product aims to help you allocate resources to keep track of weaker students,
-and is optimized to be used with the Command Line Interface (CLI). 
-This is achieved through the use of focus groups, which identifies students in need and monitors their performance.
-So, are you ready to help students in need? 
 
 ## Quick start
 
