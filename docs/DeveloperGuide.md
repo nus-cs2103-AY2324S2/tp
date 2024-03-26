@@ -197,10 +197,9 @@ harder to manage and maintain. Another alternative could be the use of reflectio
 which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection. 
 Additionally, the `EditPersonDescriptor` could be completely remove as the implementation of the `Entry` class would allow the edit of categories directly.
 
-
 ### Find function
 
-The Find Command feature within the provided address book application is structured to enable users to search for persons based on specified criteria. 
+The Find Command feature within the provided address book application is structured to enable users to search for persons based on specified criteria.
 
 #### Implementation
 
@@ -344,6 +343,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+* [Cedric's design details](Cedric.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -550,7 +550,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum sCize. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.

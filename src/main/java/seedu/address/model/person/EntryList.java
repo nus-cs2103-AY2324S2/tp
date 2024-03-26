@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import seedu.address.commons.util.ToStringBuilder;
 
@@ -51,5 +52,8 @@ public class EntryList {
                     .add("Description", entry.getDescription());
         }
         return builder.toString();
+    }
+    public void sort() {
+        Collections.sort(entryList);
     }
 }
