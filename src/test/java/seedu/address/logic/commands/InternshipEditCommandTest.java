@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_COMPANY_NAME_BOB;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_CONTACT_EMAIL_BOB;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.showInternshipAtIndex;
