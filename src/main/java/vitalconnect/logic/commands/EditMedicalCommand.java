@@ -63,19 +63,19 @@ public class EditMedicalCommand extends Command {
             throw new CommandException(MESSAGE_CONTACT_INFO_NOT_FOUND);
         }
 
-        if (!height.isEmpty()) {
+        if (height != null) {
             medicalInformation.setHeight(height);
         }
 
-        if (!weight.isEmpty()) {
+        if (weight != null) {
             medicalInformation.setWeight(weight);
         }
 
-        if (!overwriteTag.isEmpty()) {
+        if (overwriteTag != null) {
             medicalInformation.setAllergyTag(overwriteTag);
         }
 
-        if (!appendTag.isEmpty()) {
+        if (appendTag != null) {
             for (AllergyTag tag : appendTag) {
                 medicalInformation.appendAllergyTag(tag);
             }
