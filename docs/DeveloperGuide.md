@@ -185,7 +185,7 @@ This is equivalent to a user removing the previous `Remark` of a `Person`.
 
 The following sequence diagram shows how the remark value is parsed through the `Logic` component:
 
-![RemarkSequenceDiagram-Logic](images/RemarkSequenceDiagram-Logic.png)
+![RemarkSequenceDiagram-Logic](images/RemarkSequenceDiagram-Logic.svg)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
