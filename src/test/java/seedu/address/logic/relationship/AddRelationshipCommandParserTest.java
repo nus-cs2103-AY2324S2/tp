@@ -28,7 +28,7 @@ class AddRelationshipCommandParserTest {
     @Test
     void parseInvalidInput_throwsParseException() {
         String userInput = "0001 19000 family";
-        assertParseFailure(parser, userInput, "The UUID provided is invalid.");
+        assertParseFailure(parser, userInput, "The UUID provided is invalid: ");
     }
     @Test
     void parse_invalidInputMissingParts_throwsIllegalArgumentException() {

@@ -1,5 +1,6 @@
-package seedu.address.logic.attributes;
+package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,8 +30,6 @@ public class PersonAttributeCommandParser {
 
         if ("addAttribute".equals(commandType)) {
             return parseAddCommand(parts);
-        } else if ("deleteAttribute".equals(commandType)) {
-            return parseDeleteCommand(parts);
         } else {
             throw new ParseException("Unknown command or operation.");
         }
@@ -45,16 +44,5 @@ public class PersonAttributeCommandParser {
         String attributeValue = parts[3];
 
         return new AddAttributeCommand(uuid, attributeName, attributeValue);
-    }
-
-    private Command parseDeleteCommand(String[] parts) throws ParseException {
-        if (parts.length < 3) {
-            throw new ParseException("Incomplete command for deleting an attribute.");
-        }
-        String uuid = parts[1];
-        String attributeName = parts[2];
-
-        // The DeleteAttributeCommand constructor accepts the entire command parts for further processing.
-        return new DeleteAttributeCommand(uuid, attributeName);
     }
 }

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersonsUuid.ALICE_UUID;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.attributes.AddAttributeCommand;
-import seedu.address.logic.attributes.DeleteAttributeCommand;
+import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -57,8 +57,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + ALICE_UUID);
+        assertEquals(new DeleteCommand(ALICE_UUID), command);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addAttribute() throws Exception {
-        String userInput = "addAttribute \\uuid 4000 \\name John";
+        String userInput = "addAttribute 4000 \\name John";
         Command command = parser.parseCommand(userInput);
 
         assertTrue(command instanceof AddAttributeCommand);
@@ -97,7 +97,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delAttribute() throws Exception {
-        String userInput = "deleteAttribute \\uuid 4000 \\name John";
+        String userInput = "deleteAttribute 4000 /name";
         Command command = parser.parseCommand(userInput);
 
         assertTrue(command instanceof DeleteAttributeCommand);

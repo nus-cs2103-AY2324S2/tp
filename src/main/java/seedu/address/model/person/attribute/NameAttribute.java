@@ -7,4 +7,8 @@ public class NameAttribute extends StringAttribute {
     public NameAttribute(String name, String value) {
         super(name, value);
     }
+
+    public String toString() {
+        return value;
+    }
 }

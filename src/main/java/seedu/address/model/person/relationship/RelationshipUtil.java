@@ -1,13 +1,20 @@
 package seedu.address.model.person.relationship;
 
-import java.util.ArrayList;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a utility class for managing the relationships associated with a person.
  * Allows for adding, deleting, and checking for existing relationships.
  */
 public class RelationshipUtil {
-    private static ArrayList<Relationship> relationshipsTracker = new ArrayList<>();
+    private final ObservableList<Relationship> relationshipsTracker = FXCollections.observableArrayList();
+    private final ObservableList<Relationship> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(relationshipsTracker);
 
     /**
      * Adds a new relationship to the tracker.
@@ -83,11 +90,19 @@ public class RelationshipUtil {
     }
 
     /**
-     * Retrieves the list of relationships in the tracker.
-     * @return The list of relationships in the tracker.
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ArrayList<Relationship> getRelationshipsTracker() {
-        return relationshipsTracker;
+    public ObservableList<Relationship> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    /**
+     * Replaces the contents of this list with {@code relationships}.
+     * {@code persons} must not contain duplicate relationships.
+     */
+    public void setRelationships(List<Relationship> relationships) {
+        requireAllNonNull(relationships);
+        relationshipsTracker.setAll(relationships);
     }
 
     @Override

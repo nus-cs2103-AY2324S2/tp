@@ -60,7 +60,7 @@ class AddRelationshipCommandTest {
         AddRelationshipCommand addRelationshipCommand =
                 new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
         assertCommandFailure(addRelationshipCommand, model,
-                "The UUID provided is invalid.");
+                "The UUID provided is invalid: ");
     }
     @Test
     void testExecuteAddingExistingRelationshipThrowsException() {

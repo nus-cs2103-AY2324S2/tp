@@ -9,12 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.attributes.AddAttributeCommand;
-import seedu.address.logic.attributes.DeleteAttributeCommand;
-import seedu.address.logic.attributes.PersonAttributeCommandParser;
+import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -91,6 +90,7 @@ public class AddressBookParser {
         case ListRelationshipTypesCommand.COMMAND_WORD:
             return new ListRelationshipTypesCommand();
         case DeleteAttributeCommand.COMMAND_WORD:
+            return new DeleteAttributeCommandParser().parse(arguments);
 
         case AddAttributeCommand.COMMAND_WORD:
             return new PersonAttributeCommandParser().parse(userInput);
