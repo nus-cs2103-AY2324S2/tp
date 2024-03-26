@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SELECT_TASK;
 import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
@@ -23,9 +24,10 @@ public class InternshipAddDeadlineCommand extends InternshipCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a deadline to the task of the internship "
             + "identified by the index number used in the displayed internship data. "
-            + "Parameters: INDEX_INTERNSHIP (must be a positive integer) INDEX_TASK (must be a positive integer) "
-            + PREFIX_DEADLINE + " DEADLINE "
-            + "Example: " + COMMAND_WORD + " 1 1 "
+            + "Parameters: INDEX_INTERNSHIP (must be a positive integer)" + PREFIX_SELECT_TASK
+            + " INDEX_TASK (must be a positive integer) "
+            + PREFIX_DEADLINE + " DEADLINE\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEADLINE + " 1 "
             + PREFIX_DEADLINE + " 20/4/2024";
 
     public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Deadline Added: %1$s";
