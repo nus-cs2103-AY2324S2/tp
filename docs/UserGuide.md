@@ -10,6 +10,29 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Useful Notations and Glossary
+
+While exploring PoochPlanner’s features with this user guide, do take note of these symbols used and what they represent.
+
+Symbol | Meaning
+--------|------------------
+:information_source: | Important Information
+:exclamation: | Warning or Caution
+:bulb: | Additional Information such as Tips or Notes
+
+The following glossary table provides clarification on commonly-used terms as well as terminology that is possibly unknown to you.
+
+Abbreviation/Nomenclature | Meaning
+--------|------------------
+GUI | GUI stands for Graphical User Interface and it represents the visual display of PoochPlanner that users can see when the application is run.
+GUI Component | A subsection of the GUI. For more information on specific GUI components, refer to this [section](#navigating-the-gui).
+CLI | CLI stands for Command Line Interface and it represents a text-based user interface to interact with the application.
+Command | An input from the user that tells PoochPlanner to perform an action. View PoochPlanner’s [command summary](#command-summary).
+Prefix | Prefixes are like fields in a form you are required to fill up. They are information needed to be passed together with the command so that it can be executed.
+Case-Sensitive | The casing of the alphabetic characters matters (e.g. “good” is different from “GOOD”).
+Case-Insensitive | The casing of the alphabetic characters does not matter (e.g. “good” is taken to be equal to “GOOD”).
+
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -327,7 +350,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
