@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Bolt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Major major;
     private Star star;
+    private Bolt bolt;
     private Set<Tag> tags;
 
     /**
@@ -38,6 +40,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         major = new Major(DEFAULT_MAJOR);
         star = Star.NO_STAR; // default value from Star
+        bolt = Bolt.NO_BOLT; // default value from Bolt
         tags = new HashSet<>();
     }
 
@@ -50,6 +53,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         major = personToCopy.getMajor();
         star = personToCopy.getStar();
+        bolt = personToCopy.getBolt();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -102,12 +106,20 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Bolt} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBolt(Integer bolt) {
+        this.bolt = new Bolt(bolt);
+        return this;
+    }
+
+    /**
      * Builds a new Person.
      * @return A new Person built from the values given.
      */
     public Person build() {
-        return new Person(name, phone, email, major, star, tags);
-        // we do not include star here because our constructor creates a default value of new Star(0)
+        return new Person(name, phone, email, major, star, bolt, tags);
+        // we do not include star here because our constructor creates a default value of new Star(0) and new Bolt(0)
     }
 
 }

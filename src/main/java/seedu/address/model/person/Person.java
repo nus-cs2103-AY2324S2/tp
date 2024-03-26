@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final Major major;
     private final Star star;
+    private final Bolt bolt;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -36,19 +37,22 @@ public class Person {
         this.email = email;
         this.major = major;
         this.star = Star.NO_STAR;
+        this.bolt = Bolt.NO_BOLT;
         this.tags.addAll(tags);
     }
 
     /**
-     * Every field must be present and not null. Alternative constructor to instantiate a Person with an existing star.
+     * Every field must be present and not null. Alternative constructor to instantiate a Person
+     * with an existing star and bolt.
      */
-    public Person(Name name, Phone phone, Email email, Major major, Star star, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Major major, Star star, Bolt bolt, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, major, star, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.major = major;
         this.star = star;
+        this.bolt = bolt;
         this.tags.addAll(tags);
     }
 
@@ -71,6 +75,10 @@ public class Person {
     public Star getStar() {
         return star;
     } // get the stars
+
+    public Bolt getBolt() {
+        return bolt;
+    } // get the bolts
 
     public int getStarCount() {
         return star.numOfStars;
@@ -118,13 +126,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && major.equals(otherPerson.major)
                 && star.equals(otherPerson.star)
+                && bolt.equals(otherPerson.bolt)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, major, star, tags);
+        return Objects.hash(name, phone, email, major, star, bolt, tags);
     }
 
     @Override
@@ -135,6 +144,7 @@ public class Person {
                 .add("email", email)
                 .add("major", major)
                 .add("star", star)
+                .add("bolt", bolt)
                 .add("tags", tags)
                 .toString();
     }
