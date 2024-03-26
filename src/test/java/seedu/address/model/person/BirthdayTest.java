@@ -28,11 +28,14 @@ public class BirthdayTest {
         assertFalse(Birthday.isValidBirthday("")); // empty string
         assertFalse(Birthday.isValidBirthday(" ")); // spaces only
         assertFalse(Birthday.isValidBirthday("12-12")); // missing year fields
+        assertFalse(Birthday.isValidBirthday("30-02-2024")); // invalid day of month
+        assertFalse(Birthday.isValidBirthday("12-12-2024")); // future date
+        assertFalse(Birthday.isValidBirthday("12-13-2024")); // invalid month
 
         // valid birthday
-        assertTrue(Birthday.isValidBirthday("12-12-2024"));
-        assertTrue(Birthday.isValidBirthday("12/12/2024"));
+        assertTrue(Birthday.isValidBirthday("12/12/2003"));
         assertTrue(Birthday.isValidBirthday("29/02/2024"));
+        assertTrue(Birthday.isValidBirthday("26/03/2024"));
     }
 
     @Test
