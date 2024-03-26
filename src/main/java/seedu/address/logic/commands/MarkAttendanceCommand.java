@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEK;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.generateMessageUsage;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_NUSNET;
+import static seedu.address.logic.commands.util.ParameterSyntax.PARAMETER_WEEK;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -23,13 +24,11 @@ public class MarkAttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the person identified by their NusNet "
-            + "by adding the specified week to their attendance set. "
-            + "Parameters: "
-            + PREFIX_NUSNET + "NUSNET "
-            + PREFIX_WEEK + "WEEK\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NUSNET + "e0123456 " + PREFIX_WEEK + " 1";
+    public static final String MESSAGE_USAGE = generateMessageUsage(
+            COMMAND_WORD,
+            "Marks the attendance of the person identified by their NusNet by adding the specified week to "
+                    + "their attendance set. ",
+            PARAMETER_NUSNET, PARAMETER_WEEK);
 
     private final NusNet nusNet;
     private final WeekNumber weekNumber;
