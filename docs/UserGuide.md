@@ -3,12 +3,39 @@ layout: page
 title: User Guide
 ---
 
+![Ui](images/PoochPlannerLogo.png)
+
+## Welcome to PoochPlanner
+
 PoochPlanner is an **address book manager for managing contacts, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PoochPlanner can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Useful Notations and Glossary
+
+While exploring PoochPlanner’s features with this user guide, do take note of these symbols used and what they represent.
+
+Symbol | Meaning
+--------|------------------
+:information_source: | Important Information
+:exclamation: | Warning or Caution
+:bulb: | Additional Information such as Tips or Notes
+
+The following glossary table provides clarification on commonly-used terms as well as terminology that is possibly unknown to you.
+
+Abbreviation/Nomenclature | Meaning
+--------|------------------
+GUI | GUI stands for Graphical User Interface and it represents the visual display of PoochPlanner that users can see when the application is run.
+GUI Component | A subsection of the GUI. For more information on specific GUI components, refer to this [section](#navigating-the-gui).
+CLI | CLI stands for Command Line Interface and it represents a text-based user interface to interact with the application.
+Command | An input from the user that tells PoochPlanner to perform an action. View PoochPlanner’s [command summary](#command-summary).
+Prefix | Prefixes are like fields in a form you are required to fill up. They are information needed to be passed together with the command so that it can be executed.
+Case-Sensitive | The casing of the alphabetic characters matters (e.g. “good” is different from “GOOD”).
+Case-Insensitive | The casing of the alphabetic characters does not matter (e.g. “good” is taken to be equal to “GOOD”).
+
 
 ## Quick start
 
@@ -36,6 +63,23 @@ PoochPlanner is an **address book manager for managing contacts, optimised for u
    * `/exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Navigating the GUI
+
+PoochPlanner has a Graphical User Interface (GUI) that gives our users a pleasant visual experience.
+Here's a quick look at the different parts of our GUI and some tips on how to use it.
+
+### Basic Orientation
+
+![Quick Orientation](images/ug-images/basicGuiNavigation.png)
+
+### Contact Card
+
+![Employee Card](images/ug-images/personCardGuiNavigation.png)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,7 +158,7 @@ Examples:
 
 * `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
 
-  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively. 
+  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively.
 
 * `/edit-supplier ; name : Supplier1 ; field : { product : kibble ; price : $75/bag}`
 
@@ -131,7 +175,6 @@ Examples:
 * Salary and commission must be in format ${Number}/hr.
 * Price must be in format ${Number}/{quantity}.
 </div>
-
 
 ### Searching a contact : `search`
 
@@ -169,13 +212,13 @@ Examples:
 
 Delete a **person / staff / supplier / maintainer** contact from the Pooch Planner.
 
+
 Format: `/delete ; name : [name]`
 
 Examples:
 * `/delete ; name : Poochie`
 
    The above command deletes the contact with name **_Poochie_**, provided **_Poochie_** exists as a name of a contact in Pooch Contact Book
-
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
 * Name is a compulsory field that is case-insensitive but space-sensitive.
@@ -330,20 +373,22 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add Staff** | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]` <br> e.g., `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/h ; employment : part-time`
-**Add Supplier** | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]` <br> e.g., `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
-**Add Helper** | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
-**Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` <br> e.g., `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`
-**Delete** | `/delete name : [name] `<br> e.g., `delete ; name : Poochie`
-**Edit** | `/edit-person ; name : [name] ; field : { field : data ; field : data }`<br> e.g., `/edit-person ; name : Poochie ; field : { name : Mochi }` <br> e.g.,`/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`
-**Search** | `/search ; parameter : [value]`<br> e.g., `/search ; name : Poochie`
-**List** | `/list`
-**Help** | `/help ; command : [command type]`
-**Rate** | `/rate ; name : [name] ; rating : [rating]`<br> e.g., `/rate ; name : Poochie ; rating : 5`
-**Undo Command** | `/undo`
-**Redo Command** | `/redo`
-`
+| Action                | Format                                                                                                                                      | Examples                                                                                                                                                        |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Staff**         | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]`    | `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
+| **Add Supplier**      | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]`         | `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`         |
+| **Add Maintainer**    | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` | `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |
+| **Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]`        | `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`                                                      |
+| **Delete**            | `/delete name : [name] `                                                                                                                    | `/delete ; name : Poochie`                                                                                                                                      |
+| **Edit**              | `/edit-person ; name : [name] ; field : { field : data ; field : data }`                                                                    | `/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`                                                              |
+| **Search**            | `/search ; parameter : [value]`                                                                                                             | `/search ; name : Poochie`                                                                                                                                      |
+| **List**              | `/list`                                                                                                                                     | `/list`                                                                                                                                                         |
+| **Help**              | `/help ; command : [command type]`                                                                                                          | `/help ; command : delete`                                                                                                                                      |
+| **Rate**              | `/rate ; name : [name] ; rating : [rating]`                                                                                                 | `/rate ; name : Poochie ; rating : 5`                                                                                                                           |
+| **Undo Command**      | `/undo`                                                                                                                                     | `/undo`                                                                                                                                                         |        
+| **Redo Command**      | `/redo`                                                                                                                                     | `/redo`                                                                                                                                                         |
+| **Pin**               | `/pin ; name : [name]`                                                                                                                      | `/pin ; name : Poochie`                                                                                                                                         |
+| **Sort**              | `/sort ; [field]`                                                                                                                           | `/sort ; name`                                                                                                                                                  |
+| **Exit**              | `exit`                                                                                                                                      | `exit`                                                                                                                                                          |

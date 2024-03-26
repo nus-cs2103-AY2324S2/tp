@@ -212,9 +212,12 @@ class JsonAdaptedPerson {
         if (!Note.isValidNote(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
+
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+        Person currPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+
+        return currPerson;
     }
 
 }
