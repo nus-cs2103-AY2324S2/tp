@@ -1,0 +1,44 @@
+@startuml
+
+interface DistanceFunction {
+  calculateDistance(T, T)
+}
+
+interface CommandMatcher {
+  findClosestMatch(T)
+}
+
+class FuzzyCommandParser {
+  +parseCommand()
+}
+
+class BkTreeCommandMatcher {
+  -closestDistance:int
+  +BkTreeCommandMatcher(List<T>)
+  +getClosestDistance()
+  -insert(BkTreeNode<T>, T)
+  -findMatch(BkTreeNode<T>, T)
+}
+
+class LevenshteinDistance {
+
+}
+
+class BkTreeNode {
+  -item
+  -children: Map<Integer, BkTreeNode<T>>
+  +BkTreeNode(T)
+  +getItem()
+  +getChildren()
+}
+
+CommandMatcher <|--- BkTreeCommandMatcher
+
+BkTreeNode "*" <--- BkTreeCommandMatcher
+
+BkTreeCommandMatcher <--- FuzzyCommandParser
+
+DistanceFunction <|--- LevenshteinDistance
+
+LevenshteinDistance <|--- BkTreeCommandMatcher
+@enduml

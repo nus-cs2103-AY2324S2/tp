@@ -1,0 +1,18 @@
+@startuml
+start
+if (read user input) then (empty)
+    #pink:throw ParseException;
+    kill
+else
+    switch ( condition )
+    case ( name )
+        :sortByName;
+    case ( tag )
+        :sortByTag;
+    case ( unrecognised input )
+        #pink:throw ParseException;
+        kill
+    endswitch
+:return sorted contacts in AddressBook;
+stop
+@enduml

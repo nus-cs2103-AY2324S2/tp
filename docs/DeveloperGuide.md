@@ -288,6 +288,10 @@ Given below is an example usage scenario and how the fuzzy input mechanism behav
   * When calculating the distance between 2 items, `BkTree` calls `DistanceFunction#calculateDistance()` method.
     * In this case, LevenshteinDistance class will calculate the distance.
 
+<puml src="diagrams/FuzzyInputClassDiagram.puml" alt="FuzzyInputClassDiagram" />
+<puml src="diagrams/FuzzyInputObjectDiagram.puml" alt="FuzzyInputObjectDiagram" />
+
+
 * Step 2 : User entered unsupported command `peek`
     * The `peek` command calls `FuzzyCommandParser#parseCommand())`, causing `BkTreeCommandMatcher#findClosestMatch()` to
       get called in response.
@@ -354,8 +358,6 @@ sorting class based on the input. After sorting, it then updates the list of per
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-* <Insert UML diagrams>
-
 * Step 1: The user launches the application for the first time, no contacts will be present in the `AddressBook`.
 When user `add` contacts in the `AddressBook`, contacts will be sorted based on their timestamp.
 
@@ -364,8 +366,10 @@ When user `add` contacts in the `AddressBook`, contacts will be sorted based on 
   * `sortCommand#execute` will pass the current model's `AddressBook` to `sortStrategy#sort`, where `UniquePersonsList` 
   will be obtained and sorted lexicographically by name 
   * After sorting, the model will be updated to reflect the newly sorted contacts list, alongside a return statement
-  to provide confirmation to the user. 
+  to provide confirmation to the user.
 
+    <puml src="diagrams/SortCommandSequenceDiagram.puml" alt="SortCommandSequenceDiagram" />
+    
 * Step 3: The user executes `sort tag` command.
     * The `sortCommand#` constructor will initialise with the `sortByTag` strategy stored as `SortStrategy`.
     * `sortCommand#execute` will pass the current model's `AddressBook` to `sortStrategy#sort`, where `UniquePersonsList`
@@ -377,7 +381,9 @@ When user `add` contacts in the `AddressBook`, contacts will be sorted based on 
   * The `sortCommand#` constructor will first verify the presence of `condition input` before proceeding with 
   initialisation.
   * Since there is no condition stated, a `ParseException` will be thrown and a statement will be displayed to provide 
-  the correct input and conditions to be stated. 
+  the correct input and conditions to be stated.
+
+    <puml src="diagrams/SortCommandActivityDiagram.puml" alt="SortCommandActivityDiagram" />
 
 ### Design consideration:
 `SolidStrategy` interface was implemented for sorting functionality to adhere to SOLID principles, particularly the

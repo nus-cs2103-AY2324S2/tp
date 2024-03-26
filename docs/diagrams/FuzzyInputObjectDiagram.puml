@@ -1,0 +1,12 @@
+@startuml
+
+object FuzzyCommandParser
+object BkTreeCommandMatcher
+FuzzyCommandParser --> BkTreeCommandMatcher
+
+object BkTreeNode
+object DistanceFunction
+BkTreeCommandMatcher --> BkTreeNode
+BkTreeCommandMatcher --> DistanceFunction
+
+@enduml
