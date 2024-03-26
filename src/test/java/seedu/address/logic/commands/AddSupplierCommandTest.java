@@ -77,5 +77,4 @@ public class AddSupplierCommandTest {
         String expected = AddSupplierCommand.class.getCanonicalName() + "{toAdd=" + ALICESUPPLIER + "}";
         assertEquals(expected, addCommand.toString());
     }
-
 }

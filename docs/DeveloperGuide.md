@@ -284,7 +284,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`          | forgetful user                        | star contacts that are important                           | remember to contact them easily                       |
 | `**`          | careless user                         | undo previous command                                      | fix my mistakes easily                                |
 | `**`          | careless user                         | retrieve state before undo                                 | fix my mistakes easily                                |
-| `**`          | well connected use                    | pin contacts                                               | easily view frequent contacts                         |
+| `**`          | well connected user                   | pin contacts                                               | easily view frequent contacts                         |
+| `**`          | well connected user                   | unpin contacts                                             | focus on my frequent contacts                         |
+| `**`          | profit-maximising user                | rate the efficiency/productivity/performance of contacts   | evaluate and justify my business expenses             |
 *{More to be added}*
 
 ### Use cases
@@ -469,10 +471,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    * Steps 1c1 - 1c2 are repeated until a valid field is inputted by the User.
    * Use case resumes from step 2.
 
+
 ---
 **System**: `PoochPlanner`
 
-**Use case**: `UC05 - Help Tutorial`
+**Use case**: `UC05 - Rate Contact of a Person`
+
+**Actor**: `User`
+
+**MSS**:
+
+1.  User requests to rate the contact of a person with the specified rating.
+2.  PoochPlanner updates the contact rating with the rating provided.
+3.  PoochPlanner confirms the successful rating of the contact.
+
+    Use case ends.
+
+**Extensions**:
+
+* 1a. PoochPlanner detects a missing name in the entered input.
+
+   * 1a1. PoochPlanner displays the error message.
+   * 1a2. User re-enters the correct command with a specified name.
+   * Steps 1a1 - 1a2 are repeated until a valid name is inputted by the User.
+   * Use case resumes from step 2.
+
+* 1b. PoochPlanner detects an invalid rating in the entered input.
+
+   * 1b1. PoochPlanner displays the error message.
+   * 1b2. User re-enters the correct command with a new rating value.
+   * Steps 1b1 - 1b2 are repeated until the rating provided is an integer between 1 and 5 inclusive.
+   * Use case resumes from step 2.
+
+
+**System**: `PoochPlanner`
+
+**Use case**: `UC06 - Help Tutorial`
 
 **Actor**: `User`
 
@@ -722,6 +756,47 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `/edit-maintainer ; name : Maintainer1 ; field : { commission : $12/hr ; skill : janitor}`<br>
       Expected: The commission and skill field of contact named 'Maintainer1' is edited to `$12/hr` and `janitor` respectively. Details of the edited contact shown in the status message.
+
+### Deleting a contact
+
+1. Deleting a person while all persons are being shown
+
+   1. Prerequisites: only **one** contact with the name **_Poochie_** should exist in PoochPlanner. If not, run the following command to ensure add **_Poochie_** into PoochPlanner.
+      ```
+      /pooch-add ; name : Poochie ; phone : 98883888 ; address : Pooch Street 32 ; email : impoochie@gmail.com
+      ```
+
+   1. Test case: `/delete ; name : Poochie`<br>
+      Expected: Contact named **_Poochie_** is deleted from the list. Contact type and name of the deleted contact is shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `/delete ; name : Moochie`<br>
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `/delete`<br>
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `/delete`, `delete ; name :`<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Rating a person
+
+1. Rates a person while all persons are being shown
+
+   1. Prerequisites: only **one** contact with the name **_Poochie_** should exist in PoochPlanner. If not, run the following command to ensure add **_Poochie_** into PoochPlanner.
+      ```
+      /pooch-add ; name : Poochie ; phone : 98883888 ; address : Pooch Street 32 ; email : impoochie@gmail.com
+      ```
+
+   1. Test case: `/rate ; name : Poochie ; rating : 5`<br>
+      Expected: Contact named **_Poochie_** is updated with a rating of 5. Contact type and name of the rated contact is shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `/rate ; name : Moochie ; rating : 5`<br>
+      Expected: No contact is rated. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `/rate ; name : Poochie ; rating : 6`<br>
+      Expected: No contact is rated. Error details shown in the status message. Status bar remains the same.
 
 1. _{ more test cases …​ }_
 

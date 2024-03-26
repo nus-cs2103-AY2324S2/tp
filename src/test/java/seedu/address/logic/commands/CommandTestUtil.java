@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -11,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -67,7 +69,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_MAINTAINER = "maintainer";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + "get kibble";
+    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + "Cancel shipment with bob";
+    public static final String RATING_DESC_BOB = " " + PREFIX_RATING + "0";
+    public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + "2019-10-10";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -91,10 +95,13 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String INVALID_NAME = "invalid name here";
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_RATING_DESC = " " + PREFIX_RATING; // empty string not allowed for ratings
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "20";
     public static final String INVALID_EMPLOYMENT_DESC = " " + PREFIX_EMPLOYMENT + "employment";
@@ -103,6 +110,7 @@ public class CommandTestUtil {
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL;
     public static final String INVALID_COMMISSION_DESC = " " + PREFIX_COMMISSION + "20";
     public static final String INVALID_DESC_BOB = " " + PREFIX_NOTE;
+    public static final String INVALID_DEADLINENOTE_BOB = " " + PREFIX_NOTE + "20";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -215,7 +223,7 @@ public class CommandTestUtil {
         Person person;
 
         try {
-            person = model.findByName(targetName);
+            person = model.findPersonByName(targetName);
             final String[] splitName = person.getName().fullName.split("\\s+");
             model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

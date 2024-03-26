@@ -91,12 +91,24 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Update the person list to display pinned contacts first.
+     */
+    void updatePinnedPersonList();
+
+    /**
+     * Find a contact by their name.
+     * @param targetName Refers to the name identifier.
+     * @return Person that matches the name.
+     */
+    Person findByName(Name targetName);
+
+    /**
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
      * @return Person that matches the name.
      * @throws CommandException Handles invalid person message.
      */
-    Person findByName(Name targetName) throws CommandException;
+    Person findPersonByName(Name targetName) throws CommandException;
 
     /**
      * Find the maintainer by their name.

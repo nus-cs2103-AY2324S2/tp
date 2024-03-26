@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.List;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.DeleteMessages;
@@ -22,7 +20,7 @@ public class DeleteCommand extends Command {
             + ": Deletes the person identified by their name.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "Example: " + COMMAND_WORD + " Moochie";
+            + "Example: " + COMMAND_WORD + PREFIX_NAME + "Moochie";
 
     private final Name targetName;
 
@@ -30,32 +28,13 @@ public class DeleteCommand extends Command {
         this.targetName = name;
     }
 
-    /**
-     * Finds a person from a List of persons identified by its name.
-     *
-     * @param personList The list of persons to search from.
-     * @param targetName The name of the person to return.
-     *
-     * @return The person object with name equals to {@code targetName}.
-     * */
-    public Person findByName(List<Person> personList, Name targetName) {
-        for (Person person: personList) {
-            Name name = person.getName();
-            if (name.equals(targetName)) {
-                return person;
-            }
-        }
-        return null;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
         Person personToDelete;
 
-        personToDelete = findByName(lastShownList, targetName);
+        personToDelete = model.findByName(targetName);
 
         if (personToDelete == null) {
             throw new CommandException(DeleteMessages.MESSAGE_DELETE_NAME_NOT_FOUND);

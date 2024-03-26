@@ -94,6 +94,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Person findPersonByName(Name targetName) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public Maintainer findMaintainerByName(Name targetName) {
         throw new AssertionError("This method should not be called.");
     }
@@ -130,6 +135,11 @@ public class ModelStub implements Model {
 
     @Override
     public void redoAddressBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updatePinnedPersonList() {
         throw new AssertionError("This method should not be called.");
     }
 

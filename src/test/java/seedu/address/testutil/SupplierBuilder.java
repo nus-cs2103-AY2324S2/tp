@@ -6,9 +6,11 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Price;
 import seedu.address.model.person.Product;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
@@ -21,6 +23,8 @@ public class SupplierBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NOTE = "Cancel shipment with amy";
+    public static final String DEFAULT_RATING = "0";
     public static final String DEFAULT_TAG = "supplier";
     public static final String DEFAULT_PRODUCT = "pooch food";
     public static final String DEFAULT_PRICE = "$50/bag";
@@ -29,6 +33,8 @@ public class SupplierBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Note note;
+    private Rating rating;
     private Price price;
     private Product product;
     private Set<Tag> tags;
@@ -42,6 +48,8 @@ public class SupplierBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        note = new Note(DEFAULT_NOTE);
+        rating = new Rating(DEFAULT_RATING);
         tags = new HashSet<>();
         tag = new Tag(DEFAULT_TAG);
         tags.add(tag);
@@ -57,9 +65,11 @@ public class SupplierBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        note = personToCopy.getNote();
         tags = new HashSet<>(personToCopy.getTags());
         tag = new Tag(DEFAULT_TAG);
         tags.add(tag);
+        rating = personToCopy.getRating();
         product = personToCopy.getProduct();
         price = personToCopy.getPrice();
     }
@@ -87,6 +97,22 @@ public class SupplierBuilder {
      */
     public SupplierBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code Supplier} that we are building.
+     */
+    public SupplierBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Supplier} that we are building.
+     */
+    public SupplierBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
         return this;
     }
 
@@ -123,7 +149,7 @@ public class SupplierBuilder {
     }
 
     public Supplier build() {
-        return new Supplier(name, phone, email, address, tags, product, price);
+        return new Supplier(name, phone, email, address, note, tags, product, price, rating);
     }
 
 }
