@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getFilteredAppointmentViewList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        dayViewListPanel = new DayViewListPanel(logic.getFilteredAppointmentViewList());
+        dayViewListPanel = new DayViewListPanel(logic.getFilteredAppointmentDayViewList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

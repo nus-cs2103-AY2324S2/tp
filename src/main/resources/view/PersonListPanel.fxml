@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  spacing="30.0" mouseTransparent="true">
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  spacing="30.0">
   <VBox HBox.hgrow="ALWAYS">
     <children>
         <Label text="Patients" />
