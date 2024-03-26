@@ -101,4 +101,6 @@ public interface Model {
      * Assigns specific task to a person
      */
     void assignTask(Task task, Person person);
+
+    void markTask(Task task);
 }

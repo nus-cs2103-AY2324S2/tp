@@ -173,6 +173,11 @@ public class AddCommandTest {
         public void assignTask(Task task, Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
