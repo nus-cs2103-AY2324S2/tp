@@ -30,7 +30,7 @@ public class RemarkCommandParserTest {
     }
 
     @Test
-public void parse_invalidPreamble_failure() {
+    public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, "-5" + REMARK_DESC, MESSAGE_INVALID_FORMAT);
 
