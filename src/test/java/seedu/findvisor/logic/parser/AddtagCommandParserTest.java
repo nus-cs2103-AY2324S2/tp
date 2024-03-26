@@ -14,17 +14,7 @@ import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.commons.core.index.Index;
-import seedu.findvisor.logic.Messages;
 import seedu.findvisor.logic.commands.AddtagCommand;
-import seedu.findvisor.logic.commands.DeleteCommand;
-import seedu.findvisor.logic.commands.EditCommand;
-import seedu.findvisor.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.findvisor.model.person.Address;
-import seedu.findvisor.model.person.Email;
-import seedu.findvisor.model.person.Name;
-import seedu.findvisor.model.person.Phone;
-import seedu.findvisor.model.tag.Tag;
-import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 public class AddtagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             AddtagCommand.MESSAGE_USAGE);

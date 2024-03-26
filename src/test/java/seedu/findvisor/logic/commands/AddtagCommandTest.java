@@ -34,12 +34,12 @@ public class AddtagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void constructor_nullIndex_throwsNullPointerException(){
+    public void constructor_nullIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddtagCommand(null, SET_OF_VALID_TAGS));
     }
 
     @Test
-    public void constructor_nullTag_throwsNullPointerException(){
+    public void constructor_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddtagCommand(INDEX_FIRST_PERSON, null));
     }
 

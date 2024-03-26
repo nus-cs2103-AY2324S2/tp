@@ -13,13 +13,11 @@ import static seedu.findvisor.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.findvisor.commons.core.index.Index;
 import seedu.findvisor.logic.commands.exceptions.CommandException;
-import seedu.findvisor.logic.parser.ParserUtil;
 import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.person.Meeting;
