@@ -125,7 +125,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXT_OF_KIN d/DESCRIPTION
 
 Parameters:
 
-| Parameter    | Description                                        | Constraints                           |
+| Parameter    | Description                                        | Remarks                               |
 |--------------|----------------------------------------------------|---------------------------------------|
 | NAME         | Name of client that you want to add                | Name must be unique and is compulsory |
 | PHONE_NUMBER | Phone Number of client that you want to add        | Compulsory                            |
@@ -158,9 +158,9 @@ Format: `list`
 
 Examples:
 
-
 The screenshots below are what you would expect when using the `list` command. In this example, after using the `find` command,
-only `Bernice Yeo` was shown in the list. Thereafter, the `list` command was used, displaying the entire list of contacts.
+only `Bernice Yeo` was shown in the list. Thereafter, the `list` command was used, displaying the entire list of client contacts.
+&nbsp;  
 
 <div class="image-container" align="middle" style="display:flex">
     <pic src="images/user-guide/list_command_before.png" alt="list">
@@ -170,6 +170,7 @@ only `Bernice Yeo` was shown in the list. Thereafter, the `list` command was use
         Figure 1.2: After the list command is executed
     </pic>
 </div>
+&nbsp;  
 
 ### Updating a client : `update`
 
@@ -206,7 +207,7 @@ Parameter:
 
 __INSERT TABLE HERE__
 
-Examples: Lets say your contact list contains the following contacts:
+Examples: Lets say your client list contains the following clients:
 <img src="images/ExampleClientList.png" /> <USE IMAGE LIKE LIST COMMAND HERE>
 
 -   `find n/alex` would return `Alex Lee` as well as `Alex Chan`
@@ -272,20 +273,50 @@ Examples: `display John` would display all of John's information as a contact ca
 
 ### Deleting a client: `delete`
 
-_This command allows you to delete a client at a specified `INDEX` from your contact list._
+_This command allows you to delete a client at a specified `INDEX` from your client list._
 
 Format: `delete INDEX`
 
 Parameters:
 
-<INSERT TABLE HERE>
+| Parameter | Description                            | Remarks                                                                                            |
+|-----------|----------------------------------------|----------------------------------------------------------------------------------------------------|
+| INDEX     | Index of the client you want to delete | Index needs to be a number 1 or greater and cannot be more than the number of clients in your list |
 
-Examples: `delete 1` would delete the first client in your client list.
+Examples:
+- `delete 1` would delete the first client in your client list.
+- `delete 2` would delete the second client in your client list.
 
-Usage of delete command
+Walkthrough:
 
-<img src="images/user-guide/Delete_command_before.png" width="375"/> <img src="images/user-guide/Delete_command_after.png" width="375"/>
-<IMAGE SHOULD BE LIKE LIST COMMAND>
+The screenshots below are what you would expect when using the `delete` command. In this example, after using the `list` command,
+the full clients list is displayed. Thereafter, the `delete 1` command was used, removing `David Li`, the first person in the list, from the list of client contacts.
+
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/user-guide/delete_command_before.png" alt="list">
+        Figure 1.1: Before the delete command is executed
+    </pic>
+    <pic src="images/user-guide/delete_command_after.png" alt="list">
+        Figure 1.2: After the delete command is executed
+    </pic>
+</div>
+&nbsp;  
+
+What if the command was used with an incorrect index? In the left example, `delete 0` command was used, which is an invalid index.
+Here the error message shown is `Invalid command format! ... Parameters: INDEX (must be a positive integer)` which lets you know to retype the command with a larger index value.
+In the right example, `delete 5` is used, which again is invalid. Here the error message shown is `The person index provided is invalid` which lets you know to retype the command with a lower index.
+As the commands given were invalid, there would be no changes to the client list.
+&nbsp;  
+
+<div class="image-container" align="middle" style="display: flex;">
+    <pic src="images/user-guide/delete_command_after_invalid_0.png" alt="delete"> 
+        Figure 1.2: After the invalid "delete 0" command is executed
+    </pic>
+    <pic src="images/user-guide/delete_command_after_invalid_5.png" alt="delete">
+        Figure 1.3: After the invalid "delete 5" command is executed
+    </pic>
+</div>
+&nbsp;  
 
 ### Clearing all entries : `clear`
 
