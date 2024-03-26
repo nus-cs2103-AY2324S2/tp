@@ -17,14 +17,14 @@ _This page is for ConnectCare users. If you're a developer, see also the
 <page-nav-print />
 
 ## Introduction
-Welcome to *ConnectCare User Guide*, a guide to use the *ConnectCare* application.
-*ConnectCare* helps you manage your client contacts faster and more reliably.
-If you are experiencing issues or are new to this application, this is a good place to start!
+Welcome to *ConnectCare User Guide*, your comprehensive resource for efficiently managing client contacts with ease and reliability!
+Designed for social workers grappling with demanding caseloads, *ConnectCare* empowers users to navigate their client interactions seamlessly. Whether you're troubleshooting issues, just getting started, or looking to enhance your workflow, this guide is tailored to meet your needs.
 
 
 ## Who ConnectCare Is For
 
-ConnectCare is a powerful application designed to make social workers' lives easier, especially those juggling high caseloads. It prioritizes keyboard shortcuts, eliminating the need to constantly switch between keyboard and mouse. This focus on keyboard navigation translates to:
+ConnectCare caters to the needs of social workers juggling high caseloads, providing a solution that streamlines client management processes. This application is ideal for both new and experienced users, offering intuitive features that prioritize efficiency, accuracy, and productivity. 
+Whether you're a seasoned professional or new to social work practice, ConnectCare is designed to enhance your workflow and elevate your client management experience.. It prioritizes keyboard shortcuts, eliminating the need to constantly switch between keyboard and mouse. This focus on keyboard navigation translates to:
 
 * Increased Efficiency: Spend less time navigating the software and more time directly helping clients.
 * Reduced Errors: Minimize the possibility of errors caused by switching between input methods.
@@ -271,6 +271,25 @@ _This command allows you to view a client's information in a more detailed manne
 Format: `display n/NAME`
 
 Examples: `display John` would display all of John's information as a contact card on the application.
+
+<panel header="Parameter Descriptions and Remarks" alt="Parameters" minimized>
+<markdown>
+
+| Parameter | Description                     | Remarks                            |
+|-----------|---------------------------------|------------------------------------|
+| NAME      | Name of client you want to view | Name must be unique and compulsory |
+</markdown>
+</panel>
+
+**Examples:**
+- `display John` would display all of John's information as a contact card on the application.
+
+**Walkthrough:**
+
+The screenshots below are what you would expect when using the `display` command. In this example, after using the `list` command,
+the full clients list is displayed. Thereafter, the `display John` command was used, displaying John.
+
+_IMAGE_BEFORE and IMAGE_AFTER TBA_
 
 ### Deleting a client: `delete`
 
