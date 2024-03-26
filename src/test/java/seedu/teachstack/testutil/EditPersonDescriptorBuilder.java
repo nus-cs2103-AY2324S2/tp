@@ -36,6 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setStudentId(person.getStudentId());
         descriptor.setEmail(person.getEmail());
+        descriptor.setGrade(person.getGrade());
         descriptor.setGroups(person.getGroups());
     }
 

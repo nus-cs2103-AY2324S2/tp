@@ -8,6 +8,13 @@ TeachStack is a **desktop app for managing contacts, optimized for use via a Com
 ## Table of contents
   {:toc}
 
+
+## Welcome!
+
+Thank you for choosing to use TeachStack! Our product aims to help you allocate resources to keep track of weaker students,
+and is optimized to be used with the Command Line Interface (CLI). 
+This is achieved through the use of focus groups, which identifies students in need and monitors their performance.
+So, are you ready to help students in need? 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Purpose of User Guide (UG)
@@ -22,6 +29,8 @@ and Graphical User Interface (GUI), the UG aims to streamline student management
 and ensure optimal utilization of the application's capabilities.
 
 --------------------------------------------------------------------------------------------------------------------
+
+
 
 ## Quick start
 

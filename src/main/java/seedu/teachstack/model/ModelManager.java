@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachstack.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.teachstack.commons.core.GuiSettings;
 import seedu.teachstack.commons.core.LogsCenter;
 import seedu.teachstack.model.person.Person;
+import seedu.teachstack.model.person.StudentId;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,6 +35,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.addressBook.sort();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -80,6 +84,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        this.addressBook.sort();
     }
 
     @Override
@@ -101,6 +106,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        addressBook.sort();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,6 +115,18 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        addressBook.sort();
+    }
+
+    @Override
+    public Person getPerson(StudentId id) {
+        List<Person> lastShownList = getAddressBook().getPersonList();
+
+        Optional<Person> personOptional = lastShownList.stream()
+                .filter(p -> p.getStudentId().equals(id))
+                .findFirst();
+
+        return personOptional.orElse(null);
     }
 
     //=========== Filtered Person List Accessors =============================================================
