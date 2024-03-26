@@ -12,7 +12,7 @@ public class DateUtil {
     public static final String DATETIME_DISPLAY_FORMAT = "dd MMM yyyy, hh:mm a";
 
     /**
-     * Formats a LocalDateTime object into a string for display
+     * Parses a LocalDateTime object into a string for storage
      * @return Parsed date time frmo String, or if unable to parse, returns null
      */
     public static LocalDateTime parseDateTime(String dateTime) {
