@@ -1,13 +1,15 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EXAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EXAM;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
@@ -26,7 +28,7 @@ public class EditExamCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Exam editedExam = new Exam("CA1",  new Score(100));
+        Exam editedExam = new Exam("CA1", new Score(100));
         EditExamDescriptor descriptor = new EditExamDescriptorBuilder(editedExam).build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_FIRST_EXAM, descriptor);
 
@@ -40,7 +42,7 @@ public class EditExamCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Exam editedExam = new Exam("CA1",  new Score(100));
+        Exam editedExam = new Exam("CA1", new Score(100));
         EditExamDescriptor descriptor = new EditExamDescriptorBuilder().withName("CA1").build();
         EditExamCommand editExamCommand = new EditExamCommand(INDEX_FIRST_EXAM, descriptor);
 
@@ -73,18 +75,18 @@ public class EditExamCommandTest {
     @Test
     public void equals() {
 
-        EditExamDescriptor DESC_MIDTERM = new EditExamDescriptorBuilder().withName("Midterm")
+        EditExamDescriptor descMidterm = new EditExamDescriptorBuilder().withName("Midterm")
                                                                          .withScore(new Score(100))
                                                                          .build();
 
-        EditExamDescriptor DESC_FINAL= new EditExamDescriptorBuilder().withName("Final")
+        EditExamDescriptor descFinal = new EditExamDescriptorBuilder().withName("Final")
                                                                       .withScore(new Score(100))
                                                                       .build();
 
-        final EditExamCommand standardCommand = new EditExamCommand(INDEX_FIRST_EXAM, DESC_MIDTERM);
+        final EditExamCommand standardCommand = new EditExamCommand(INDEX_FIRST_EXAM, descMidterm);
 
         // same values -> returns true
-        EditExamDescriptor copyDescriptor = new EditExamDescriptor(DESC_MIDTERM);
+        EditExamDescriptor copyDescriptor = new EditExamDescriptor(descMidterm);
 
         EditExamCommand commandWithSameValues = new EditExamCommand(INDEX_FIRST_EXAM, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -99,10 +101,10 @@ public class EditExamCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditExamCommand(INDEX_SECOND_EXAM, DESC_MIDTERM)));
+        assertFalse(standardCommand.equals(new EditExamCommand(INDEX_SECOND_EXAM, descMidterm)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditExamCommand(INDEX_FIRST_EXAM, DESC_FINAL)));
+        assertFalse(standardCommand.equals(new EditExamCommand(INDEX_FIRST_EXAM, descFinal)));
     }
 
     @Test

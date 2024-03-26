@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +12,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Score;
-import seedu.address.model.exam.Exam;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddScoreCommandTest {

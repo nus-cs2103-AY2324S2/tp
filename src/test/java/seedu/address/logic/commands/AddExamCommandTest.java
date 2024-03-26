@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -50,7 +49,8 @@ public class AddExamCommandTest {
         ModelStub modelStub = new ModelStubAcceptingExamAdded();
         modelStub.addExam(validExam);
 
-        assertThrows(CommandException.class, AddExamCommand.MESSAGE_DUPLICATE_EXAM, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                    AddExamCommand.MESSAGE_DUPLICATE_EXAM, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class AddExamCommandTest {
         AddExamCommand addMathFinalCommand = new AddExamCommand(mathFinal);
 
         assertEquals(addMathFinalCommand.toString(),
-        "seedu.address.logic.commands.AddExamCommand{toAdd=Math Final: 100}");
+              "seedu.address.logic.commands.AddExamCommand{toAdd=Math Final: 100}");
     }
 
     private class ModelStub implements Model {
