@@ -69,4 +69,8 @@ public class Relationship {
         return String.format("%s and %s are %s", person1.toString(),
                 person2.toString(), this.relationshipDescriptor);
     }
+
+    public static String showRelationshipTypes() {
+        return String.format("Valid relationship types are: %s", validDescriptors.toString());
+    }
 }

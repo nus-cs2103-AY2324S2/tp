@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -103,4 +104,6 @@ public interface Model {
     Person getPersonByUuid(UUID id);
 
     boolean hasAttribute(String uuidString, String attributeName);
+
+    String showRelationshipTypes();
 }

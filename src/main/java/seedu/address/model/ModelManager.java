@@ -129,6 +129,11 @@ public class ModelManager implements Model {
     public void deleteRelationship(Relationship toDelete) {
         addressBook.deleteRelationship(toDelete);
     }
+
+    public String showRelationshipTypes() {
+        return Relationship.showRelationshipTypes();
+    }
+
     public String getExistingRelationship(Relationship toGet) {
         return addressBook.getExistingRelationship(toGet);
     }
