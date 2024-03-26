@@ -13,7 +13,7 @@ public class DateUtil {
 
     /**
      * Parses a LocalDateTime object into a string for storage
-     * @return Parsed date time frmo String, or if unable to parse, returns null
+     * @return Parsed date time from String, or if unable to parse, returns null
      */
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
