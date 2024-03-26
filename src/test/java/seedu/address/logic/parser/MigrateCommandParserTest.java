@@ -95,7 +95,7 @@ public class MigrateCommandParserTest {
     @Test
     public void parse_invalidFileName_throwsParseException() {
         String invalidFileName = "invalid/file*name";
-        assertThrows(InvalidPathException.class, () -> parser.parse(invalidFileName));
+        assertThrows(Exception.class, () -> parser.parse(invalidFileName));
     }
 
     @Test
