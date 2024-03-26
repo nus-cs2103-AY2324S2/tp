@@ -21,6 +21,8 @@ public class Grade implements Comparable<Grade> {
 
     public final String value;
 
+    private String thresholdGrade = "C+";
+
     /**
      * Constructs an {@code Grade}.
      *
@@ -98,4 +100,16 @@ public class Grade implements Comparable<Grade> {
     public int compareTo(Grade o) {
         return this.gradeToInt() - o.gradeToInt();
     }
+
+    /**
+     * Returns whether grade constitutes weak or not
+     */
+    public boolean isWeak() {
+        if (this.value.compareTo(thresholdGrade) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
