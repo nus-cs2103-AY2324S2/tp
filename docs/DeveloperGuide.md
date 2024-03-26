@@ -353,9 +353,9 @@ Priorities: High (must have) - `* * * *`, Medium (nice to have) - `* * *`, Low (
 
 **Extensions**
 
-* 1a. The query has missing parameters
+* 1a. The query has missing parameters.
 
-    * 1a1. CogniCare shows an error message that the index is invalid.
+    * 1a1. CogniCare displays an error message that the index is invalid.
 
     Use case ends.
 
