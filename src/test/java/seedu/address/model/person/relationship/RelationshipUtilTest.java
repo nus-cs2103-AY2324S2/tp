@@ -203,11 +203,13 @@ public class RelationshipUtilTest {
         // Create relationships involving person1
         Relationship relationship1 = new Relationship(uuid1, uuid2, "family");
         Relationship relationship2 = new Relationship(uuid1, uuid3, "friend");
+        Relationship relationship3 = new Relationship(uuid2, uuid1, "friend");
 
         // Create RelationshipUtil instance and add the relationships
         RelationshipUtil relationshipUtil = new RelationshipUtil();
         relationshipUtil.addRelationship(relationship1);
         relationshipUtil.addRelationship(relationship2);
+        relationshipUtil.addRelationship(relationship3);
 
         // Delete all relationships involving person1
         relationshipUtil.deleteRelationshipsOfPerson(uuid1);
@@ -215,5 +217,6 @@ public class RelationshipUtilTest {
         // Check if the relationships involving person1 have been deleted
         assertFalse(relationshipUtil.hasRelationship(relationship1));
         assertFalse(relationshipUtil.hasRelationship(relationship2));
+        assertFalse(relationshipUtil.hasRelationship(relationship3));
     }
 }
