@@ -26,6 +26,8 @@ public class AddScoreCommandParser implements Parser<AddScoreCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScoreCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SCORE);
+
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         Score score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get());
 
