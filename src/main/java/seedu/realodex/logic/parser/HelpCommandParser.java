@@ -3,8 +3,6 @@ package seedu.realodex.logic.parser;
 import seedu.realodex.logic.commands.HelpCommand;
 import seedu.realodex.logic.parser.exceptions.ParseException;
 
-import static seedu.realodex.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
