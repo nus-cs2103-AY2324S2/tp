@@ -15,6 +15,10 @@ public class MoneyOwed {
             "Money Owed should be at most 2 decimal places in the following format 'xxx.xx' or '-xxx.xx'. ";
     public static final String VALIDATION_REGEX = "^(?:-)?\\d+(\\.\\d{0,2})?";
 
+    public static final String NO_MONEY_OWED_MESSAGE = "You don't owe each other anything";
+    public static final String USER_OWES_MONEY_MESSAGE = "You owe $%s";
+    public static final String PERSON_OWES_MONEY_MESSAGE = "Owes you $%s";
+
     /**
      * This comparator will sort contacts with no money owed to the back.
      * Contacts that the user owes the most money to will be put first.
@@ -69,12 +73,12 @@ public class MoneyOwed {
      */
     public String getMessage() {
         if (moneyOwed == 0) {
-            return "You don't owe each other anything";
+            return NO_MONEY_OWED_MESSAGE;
         }
         if (userOwesMoney()) {
-            return "You owe $" + toString().substring(1);
+            return String.format(USER_OWES_MONEY_MESSAGE, toString().substring(1));
         } else {
-            return String.format("Owes you $" + this);
+            return String.format(PERSON_OWES_MONEY_MESSAGE, this);
         }
     }
 

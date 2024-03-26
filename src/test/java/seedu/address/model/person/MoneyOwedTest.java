@@ -25,4 +25,21 @@ public class MoneyOwedTest {
         assertThrows(IllegalArgumentException.class, () -> new MoneyOwed("abc"));
     }
 
+    @Test
+    public void getMessage_noOwe() {
+        MoneyOwed moneyOwed = new MoneyOwed("0");
+        assertEquals(moneyOwed.getMessage(), MoneyOwed.NO_MONEY_OWED_MESSAGE);
+    }
+
+    @Test
+    public void getMessage_userOwes() {
+        MoneyOwed moneyOwed = new MoneyOwed("-12.5");
+        assertEquals(moneyOwed.getMessage(), String.format(MoneyOwed.USER_OWES_MONEY_MESSAGE, "12.50"));
+    }
+
+    @Test
+    public void getMessage_owesUser() {
+        MoneyOwed moneyOwed = new MoneyOwed("5.40");
+        assertEquals(moneyOwed.getMessage(), String.format(MoneyOwed.PERSON_OWES_MONEY_MESSAGE, "5.40"));
+    }
 }
