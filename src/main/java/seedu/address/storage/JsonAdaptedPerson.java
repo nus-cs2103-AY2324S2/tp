@@ -51,17 +51,19 @@ class JsonAdaptedPerson {
         this.address = address;
         this.tag = tag;
 
-//        if (tag.equals("No Reply")) {
-//            this.tag = "NR";
-//        } else if (tag.equals("Online Assessment")) {
-//            this.tag = "OA";
-//        } else if (tag.equals("Interview")) {
-//            this.tag = "I";
-//        } else if (tag.equals("Reject")) {
-//            this.tag = "R";
-//        } else if (tag.equals("Offer")) {
-//            this.tag = "O";
-//        }
+        /*
+        if (tag.equals("No Reply")) {
+            this.tag = "NR";
+        } else if (tag.equals("Online Assessment")) {
+            this.tag = "OA";
+        } else if (tag.equals("Interview")) {
+            this.tag = "I";
+        } else if (tag.equals("Reject")) {
+            this.tag = "R";
+        } else if (tag.equals("Offer")) {
+            this.tag = "O";
+        }
+        */
 
         this.jobDescription = jobDescription;
         this.interviewDate = interviewDate;
