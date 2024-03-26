@@ -34,7 +34,7 @@ enum Tags {
                 return tag;
             }
         }
-         throw new IllegalArgumentException("Invalid tag: " + input);
+        throw new IllegalArgumentException("Invalid tag: " + input);
     }
 }
 
