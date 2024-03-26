@@ -17,7 +17,8 @@ import seedu.address.model.person.Policy;
 
 public class PolicyCommandParserTest {
     private PolicyCommandParser parser = new PolicyCommandParser();
-    private final Policy samplePolicy = new Policy("some policy");
+    private final String Sample = "some policy";
+    private final Policy samplePolicy = new Policy(Sample);
     private final Set<Policy> nonEmptyPolicy = new HashSet<>();
     private final Set<Policy> emptyPolicy = new HashSet<>();
 
@@ -26,7 +27,7 @@ public class PolicyCommandParserTest {
         nonEmptyPolicy.add(samplePolicy);
         // have policy
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + samplePolicy;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_POLICY + Sample;
         PolicyCommand expectedCommand = new PolicyCommand(INDEX_FIRST_PERSON, nonEmptyPolicy);
         assertParseSuccess(parser, userInput, expectedCommand);
 

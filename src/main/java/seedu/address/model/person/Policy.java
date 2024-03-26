@@ -10,7 +10,8 @@ import java.time.LocalDate;
  */
 public class Policy {
     public static final String EXPIRY_DATE_MESSAGE_CONSTRAINTS = "Expiry date format should be dd/mm/yyyy.";
-    public static final String PREMIUM_MESSAGE_CONSTRAINTS = "Premium value should be larger than or equal 0.0$.";
+    public static final String PREMIUM_MESSAGE_CONSTRAINTS = "Premium value should be a floating number which is "
+            + "larger than or equal 0.0.";
 
     public final String value;
     public final LocalDate expiryDate;
@@ -47,7 +48,12 @@ public class Policy {
      * Returns true if a given string is a valid premium.
      */
     public static boolean isValidPremium(String test) {
-        return Double.parseDouble(test) >= 0.0;
+        try {
+            double value = Double.parseDouble(test);
+            return value >= 0.0;
+        } catch (NumberFormatException e) {
+            return false; // Parsing failed, so the string is not a valid double
+        }
     }
 
     @Override

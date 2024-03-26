@@ -39,6 +39,10 @@ public class PolicyCommandParser implements Parser<PolicyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyCommand.MESSAGE_USAGE), ive);
         }
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_POLICY)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyCommand.MESSAGE_USAGE));
+        }
+
         Set<Policy> policies = new HashSet<>();
         List<String> policyValues = argMultimap.getAllValues(PREFIX_POLICY);
         List<String> expiryDates = argMultimap.getAllValues(PREFIX_EXPIRY_DATE);
