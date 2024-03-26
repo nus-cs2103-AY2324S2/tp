@@ -140,32 +140,32 @@ How the Logic component works:
 
 To implement the new Order Logic, a new package has to be created within the commands package to cater to the order type
 commands. The key changes would be:
-1. Creation of new parser class:
-    1. Created a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
+- Creation of new parser class:
+    - Created a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
        flow is as intended, and will allow us to get the required parameters typed by the user.
-    2. Created a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+    - Created a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
        This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
-2. Creation of new classes:
-    1. Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will have the required logic
+- Creation of new classes:
+    - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will have the required logic
        to return the appropriate Command to be executed in the main logic.
-    2. Created a `DeleteOrderCommand` class to cater to delete orders by their index in their ObservedList class. This
-       will allow the users to delete by index instead of the UUID.
-3. Update `Model` to provide methods to support the new classes. such as creating the new `ObservableList` object to
+    - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their ObservedList class. This
+       will allow the users to delete by index instead of the UUID. 
+- Update `Model` to provide methods to support the new classes. such as creating the new `ObservableList` object to
    update the JavaFX element in the UI.
-4. JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
+- JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
    ensure that future updates do not alter their behavior.
 
 #### Why is it implemented this way:
 
 It was done in this manner so as to:
-1. Separation of Concerns: By delegating specific responsibilities to specialized classes (like AddressBookParser,
+- Separation of Concerns: By delegating specific responsibilities to specialized classes (like AddressBookParser,
    AddOrderCommandParser, etc.), the design adheres to the principle of separation of concerns. This means each part of the
    system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
-2. Provide Extendibility: With a modular structure, adding new functionality (like future order implementations)
+- Provide Extendibility: With a modular structure, adding new functionality (like future order implementations)
    involves creating new classes and modifying existing ones minimally. This approach makes the system more extendible, as
    seen with the introduction of new parser and command classes for handling orders.
 
-By doing so, I am able to emphasize on the  clear separation of duties among components and allowing flexibility to add
+By doing so, I am able to emphasize on the clear separation of duties among components and allowing flexibility to add
 new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
 enhances our future ability to develop and create requirements or changes in functionality without affecting much of the
 codebase.
