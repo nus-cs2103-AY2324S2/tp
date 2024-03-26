@@ -121,20 +121,54 @@ call as an example.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
-How the `Logic` component works:
+How the Logic component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates
-   a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which
-   is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
-   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take
-   several interactions (between the command object and the `Model`) to achieve.
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+1. When Logic is invoked to execute a command, it delegates the command to an AddressBookParser object. This object then
+   creates a parser corresponding to the command type (e.g., DeleteCommandParser) and utilizes it to interpret the command.
+2. This process generates a Command object (to be more specific, an instance of one of its subclasses, e.g.,
+   DeleteCommand) which is then executed by the LogicManager.
+3. During execution, the command can interact with the Model (e.g., to delete a Client or manage Order details).<br>
+   While this interaction is depicted as a singular step in the above diagram for the sake of simplicity, the actual
+   implementation may involve multiple interactions (between the command object and the Model) to accomplish the intended
+   task.
+4. The outcome of the command's execution is encapsulated within a CommandResult object, which is then returned from
+   Logic. Additional classes in Logic (not shown in the class diagram above) that are utilized for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+
+#### Implementation Details
+
+To implement the new Order Logic, a new package has to be created within the commands package to cater to the order type
+commands. The key changes would be:
+- Creation of new parser class:
+    - Created a `AddOrderCommandParser` class to create the respective `Command` object by parsing the user input. This
+       flow is as intended, and will allow us to get the required parameters typed by the user.
+    - Created a `DeleteOrderCommandParser` class to create the respective `Command` object by parsing the user input.
+       This flow is as intended, and will allow us to get index of the Order object in the `ObservableList`.
+- Creation of new classes:
+    - Created a `AddOrderCommand` class to cater to order creation inputs by the user. This will have the required logic
+       to return the appropriate Command to be executed in the main logic.
+    - Created a `DeleteOrderCommand` class to cater to delete orders by their index in their ObservedList class. This
+       will allow the users to delete by index instead of the UUID. 
+- Update `Model` to provide methods to support the new classes. such as creating the new `ObservableList` object to
+   update the JavaFX element in the UI.
+- JUnit Test: To verify that the classes and methods behave as expected throughout the development phases, and to
+   ensure that future updates do not alter their behavior.
+
+#### Why is it implemented this way:
+
+It was done in this manner so as to:
+- Separation of Concerns: By delegating specific responsibilities to specialized classes (like AddressBookParser,
+   AddOrderCommandParser, etc.), the design adheres to the principle of separation of concerns. This means each part of the
+   system has a clear responsibility, reducing complexity and making the codebase easier to understand and maintain.
+- Provide Extendibility: With a modular structure, adding new functionality (like future order implementations)
+   involves creating new classes and modifying existing ones minimally. This approach makes the system more extendible, as
+   seen with the introduction of new parser and command classes for handling orders.
+
+By doing so, I am able to emphasize on the clear separation of duties among components and allowing flexibility to add
+new features with minimal disruption This strategy not only facilitates easier maintenance and scalability but also
+enhances our future ability to develop and create requirements or changes in functionality without affecting much of the
+codebase.
 
 How the parsing works:
 
