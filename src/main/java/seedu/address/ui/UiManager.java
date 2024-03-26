@@ -84,6 +84,7 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    @Override
     public void showMessage(String msg) {
         mainWindow.showMessage(msg);
     }
