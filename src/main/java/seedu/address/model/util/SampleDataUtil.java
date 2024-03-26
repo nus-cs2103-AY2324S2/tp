@@ -22,7 +22,6 @@ import seedu.address.model.allergen.Allergen;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static final MembershipPoints EMPTY_MEMSHIP = new MembershipPoints();
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -30,7 +29,7 @@ public class SampleDataUtil {
                 getAllergenSet("LF"), new Points("0"), getOrderArrayList("Cupcake x 3@2007-12-03T10:15:30")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new MembershipPoints(),
-                getAllergenSet("TN", "friends"), new Points("0"),
+                getAllergenSet("TN", "LF"), new Points("0"),
                     getOrderArrayList("Cookies x 5@2012-03-21T07:45:01", "Cupcake x 2@2014-12-11T13:01:02")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new MembershipPoints(),
