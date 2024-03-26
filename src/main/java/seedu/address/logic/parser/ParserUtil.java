@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -72,5 +74,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static EntryList parseEntries(List<String> categories, List<String> descriptions) throws ParseException {
+        requireNonNull(categories);
+        requireNonNull(descriptions);
+        EntryList e = new EntryList();
+        for (int i = 0; i < categories.size(); i++) {
+            String category = categories.get(i);
+            String description = descriptions.get(i);
+            Entry entry = new Entry(category, description);
+            e.add(entry);
+        }
+        return e;
     }
 }
