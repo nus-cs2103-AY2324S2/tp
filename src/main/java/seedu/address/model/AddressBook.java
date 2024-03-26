@@ -85,7 +85,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasPerson(Person person) {
-        requireNonNull(person);
         return persons.contains(person);
     }
 
@@ -104,7 +103,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
         save();
         persons.setPerson(target, editedPerson);
     }
@@ -124,7 +122,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns true if an asset with the same identity as {@code asset} exists in the address book.
      */
     public boolean hasAsset(Asset asset) {
-        requireNonNull(asset);
         return persons.asUnmodifiableObservableList()
                 .stream()
                 .anyMatch(person -> person.hasAsset(asset));
@@ -134,10 +131,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Changes all assets that equal target to editedAsset.
      */
     public void editAsset(Asset target, Asset editedAsset) {
-        requireNonNull(target);
         save();
         for (Person person : getPersonList()) {
-            if (person.getAssets().contains(target)) {
+            if (person.hasAsset(target)) {
                 Person editedPerson = person.editAsset(target, editedAsset);
                 persons.setPerson(person, editedPerson);
             }
