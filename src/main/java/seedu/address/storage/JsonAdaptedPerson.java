@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -19,13 +21,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
 
-
 /**
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
+
 
     private final String name;
     private final String phone;
@@ -61,17 +63,18 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        meeting = source.getMeeting().value;
+        this.name = source.getName().fullName;
+        this.phone = source.getPhone().value;
+        this.email = source.getEmail().value;
+        this.address = source.getAddress().value;
+        this.meeting = source.getMeeting().value;
 
-        tags.addAll(source.getTags().stream()
+        this.tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
 
-        policies.addAll(source.getPolicies().stream()
+        this.policies.addAll(source.getPolicies().stream()
+                .peek(policy -> logger.info(policy.toString()))
                 .map(JsonAdaptedPolicyTag::new)
                 .collect(Collectors.toList()));
     }

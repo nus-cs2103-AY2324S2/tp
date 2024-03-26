@@ -1,43 +1,47 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Policy;
-
-
-
 
 /**
  * Jackson-friendly version of {@link Policy}.
  */
 public class JsonAdaptedPolicyTag {
-    private final String tagName;
+    public final String policyName;
+    public final String policyNumber;
+    public final String premiumTerm;
+    public final String premium;
+    public final String benefit;
+
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedPolicyTag(String tagName) {
-        this.tagName = tagName;
+    public JsonAdaptedPolicyTag(@JsonProperty("policyName") String policyName,
+                                @JsonProperty("policyNumber") String policyNumber,
+                                @JsonProperty("premiumTerm") String premiumTerm,
+                                @JsonProperty("premium") String premium,
+                                @JsonProperty("benefit") String benefit) {
+        this.policyName = policyName;
+        this.policyNumber = policyNumber;
+        this.premiumTerm = premiumTerm;
+        this.premium = premium;
+        this.benefit = benefit;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedPolicyTag(Policy source) {
-        tagName = source.policyName;
-    }
-
-    /**
-     * Gets the tag name associated with this adapted policy tag.
-     *
-     * @return The name of the policy tag.
-     */
-    @JsonValue
-    public String getTagName() {
-        return tagName;
+        policyName = source.policyName;
+        policyNumber = source.policyNumber;
+        premiumTerm = source.premiumTerm;
+        premium = source.premium;
+        benefit = source.benefit;
     }
 
     /**
@@ -49,6 +53,6 @@ public class JsonAdaptedPolicyTag {
         if (!Policy.isValidPolicy(tagName)) {
             throw new IllegalValueException(Policy.MESSAGE_CONSTRAINTS);
         }
-        return new Policy(tagName);
+        return new Policy(policyName, policyNumber, premiumTerm, premium, benefit);
     }
 }
