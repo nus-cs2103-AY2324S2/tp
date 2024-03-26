@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Person MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant ":Analytics" as Analytics MODEL_COLOR
+end box
+
+[-> Person : getAnalytics()
+activate Person
+
+Person -> Analytics : getAnalytics(LoanRecords)
+activate Analytics
+
+Analytics -> Analytics :updateNumFields(Loan)
+Analytics -> Analytics :updateValueFields(Loan)
+Analytics -> Analytics :updateDateFields(Loan)
+Analytics -> Analytics :updatePropFields(Loan)
+Analytics -> Analytics :updateAverageFields(Loan)
+Analytics --> Person :
+deactivate Analytics
+
+[<-- Person
+deactivate Person
+
+@enduml
