@@ -13,7 +13,6 @@ import seedu.address.model.person.Person;
 import seedu.address.ui.ConfirmationBox;
 import seedu.address.ui.Prompt;
 
-
 /**
  * Deletes a person identified using the email id from the address book.
  */
@@ -72,19 +71,19 @@ public class DeleteCommand extends Command {
         String deletedInformation = "";
         for (Person person : lastShownList) {
             if (person.getId().equals(this.targetId)) {
-                boolean confirmation;
+                boolean isConfirmed;
                 if (confirmationBox == null) {
-                    confirmation = new ConfirmationBox().display("Confirmation",
+                    isConfirmed = new ConfirmationBox().display("Confirmation",
                             "Are you sure you want to delete this person?");
                 } else {
                     // This branch is designed for tests only.
                     // In actual use this branch will not be visited.
-                    confirmation = confirmationBox.display("test", "test");
+                    isConfirmed = confirmationBox.display("test", "test");
                 }
-                if (!confirmation) {
+                if (!isConfirmed) {
                     throw new CommandException(MESSAGE_DELETION_CANCELLED);
                 }
-                assert confirmation;
+                assert isConfirmed;
 
                 Person personToDelete = person;
                 model.deletePerson(personToDelete);
