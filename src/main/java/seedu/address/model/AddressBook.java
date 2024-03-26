@@ -45,7 +45,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Empties the redoList.
      */
-    private void emptyRedoList() {
+    private void clearRedoList() {
         while (!redoStack.empty()) {
             redoStack.pop();
         }
@@ -64,7 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Makes a copy of persons, and stores it in personsList.
      */
     private void save() {
-        emptyRedoList();
+        clearRedoList();
         savePersonsTo(undoStack);
     }
 
