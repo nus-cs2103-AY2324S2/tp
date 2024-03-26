@@ -2,9 +2,6 @@ package seedu.teachstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-import java.util.Optional;
-
 import seedu.teachstack.commons.util.ToStringBuilder;
 import seedu.teachstack.logic.Messages;
 import seedu.teachstack.logic.commands.exceptions.CommandException;
@@ -36,17 +33,12 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getAddressBook().getPersonList();
+        Person personToDelete = model.getPerson(targetId);
 
-        Optional<Person> personOptional = lastShownList.stream()
-                .filter(p -> p.getStudentId().equals(targetId))
-                .findFirst();
-
-        if (!personOptional.isPresent()) {
+        if (personToDelete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_STUDENT_ID);
         }
 
-        Person personToDelete = personOptional.get();
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }

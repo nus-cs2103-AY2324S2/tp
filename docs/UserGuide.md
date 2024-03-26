@@ -19,6 +19,13 @@ The growing population of computer science students worldwide presents a novel s
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Welcome!
+
+Thank you for choosing to use TeachStack! Our product aims to help you allocate resources to keep track of weaker students,
+and is optimized to be used with the Command Line Interface (CLI). 
+This is achieved through the use of focus groups, which identifies students in need and monitors their performance.
+So, are you ready to help students in need? 
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
