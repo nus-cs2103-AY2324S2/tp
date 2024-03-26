@@ -85,11 +85,11 @@ public class Exam {
 
         Exam otherExam = (Exam) other;
         return name.equals(otherExam.name)
-                && maxScore == otherExam.maxScore;
+                && maxScore.equals(otherExam.maxScore);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return name.hashCode() + maxScore.hashCode();
     }
 }
