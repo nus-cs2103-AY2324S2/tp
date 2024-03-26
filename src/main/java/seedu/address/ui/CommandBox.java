@@ -8,6 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import java.util.List;
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -17,6 +19,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+
+
 
     @FXML
     private TextField commandTextField;
@@ -29,6 +33,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
     }
 
     /**
@@ -55,6 +60,7 @@ public class CommandBox extends UiPart<Region> {
     private void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
+
 
     /**
      * Sets the command box style to indicate a failed command.

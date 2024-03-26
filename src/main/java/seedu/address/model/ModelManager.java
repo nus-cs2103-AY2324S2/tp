@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,8 +25,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final VersionedAddressBook versionedAddressBook;
-    private final SimpleObjectProperty<Person> selectedPerson = new SimpleObjectProperty<>();
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -178,4 +178,6 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+
 }

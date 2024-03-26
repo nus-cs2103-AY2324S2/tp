@@ -6,13 +6,16 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -66,10 +69,20 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
+        // Create a command with multiple indices separated by space
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INDEX_SECOND_PERSON.getOneBased());
+
+        // Create a list containing the indices used to construct the command
+        List<Index> indices = new ArrayList<>();
+        indices.add(INDEX_FIRST_PERSON);
+        indices.add(INDEX_SECOND_PERSON);
+
+        // Assert that the parsed command is equal to a command constructed with the same indices
+        assertEquals(new DeleteCommand(indices), command);
     }
+
 
     @Test
     public void parseCommand_edit() throws Exception {
