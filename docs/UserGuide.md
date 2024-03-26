@@ -4,10 +4,10 @@ title: SweetRewards User Guide
 ---
 
 # Introduction
-Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. SweetRewards is a dynamic desktop application designed for small bakery owners to manage their loyalty program memberships efficiently. By leveraging the robustness of a Command Line Interface (CLI) while retaining the intuitive nature of a Graphical User Interface (GUI), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
+Welcome to the SweetRewards User Guide! This guide is your comprehensive manual to navigating and maximizing the SweetRewards application. SweetRewards is a dynamic desktop application designed for small bakery owners to **manage their loyalty program memberships** efficiently. By leveraging the robustness of a **Command Line Interface (CLI)** while retaining the intuitive nature of a Graphical User Interface (GUI), SweetRewards delivers an optimized experience for fast typers and GUI enthusiasts alike.
 
 ## Target Audience
-This guide is intended for small to medium-sized bakery owners or staff responsible for managing customer relationships and loyalty programs. We assume that users have a basic understanding of command-line interfaces and desktop applications but do not require advanced technical skills. SweetRewards is crafted to simplify your membership tracking, offering a seamless integration into your daily operations.
+This guide is intended for small to medium-sized bakery owners or staff responsible for managing customer relationships and loyalty programs. We assume that users have a basic understanding of command-line interfaces and desktop applications but **do not require advanced technical skills**. SweetRewards is crafted to simplify your membership tracking, offering a seamless integration into your daily operations.
 
 ## Table of Contents
 
@@ -41,24 +41,25 @@ This guide is intended for small to medium-sized bakery owners or staff responsi
 The purpose of this User Guide is to assist you in understanding and utilizing the SweetRewards application to its fullest potential. Whether you are looking to onboard new members, track orders, manage reward points or update membership tiers this guide will provide step-by-step instructions to ensure a smooth experience.
 
 ## About SweetRewards
-SweetRewards is not just a contact management tool; it's your partner in cultivating customer loyalty and enhancing your bakery's membership program. With SweetRewards, you can:
+SweetRewards is not just a contact management tool; it's your partner in cultivating **customer loyalty and enhancing your bakery's membership program**. With SweetRewards, you can:
 
-* Track member information: Keep a detailed record of each member, including their name, phone number, email, address, accumulated points, membership tier, and order history.
-* Manage orders and points: Seamlessly add orders and update points to reflect customer purchases and interactions.
-* Update membership tiers: Elevate members' tiers based on their accumulated points, unlocking new rewards and benefits aligned with each tier.
+* **Track member information**: Keep a detailed record of each member, including their name, phone number, email, address, allergens, accumulated points, membership tier, and order history.
+* **Manage orders and points**: Seamlessly add orders and update points to reflect customer purchases and interactions.
+* **Update membership tiers**: Elevate members' tiers based on their accumulated points, unlocking new rewards and benefits aligned with each tier.
 
 ### Understanding Membership Tiers
-One of the core features of SweetRewards is the Membership Tier System. This system rewards your loyal customers by categorizing them into different tiers based on the points they have accumulated through purchases at your bakery. Each tier offers different benefits, such as discounts, free items, or exclusive products. Here is a breakdown of the tiers:
+One of the core features of SweetRewards is the Membership Tier System. This system rewards your loyal customers by **categorizing them into different tiers** based on the points they have accumulated through purchases at your bakery. Each tier offers different benefits, such as discounts, free items, or exclusive products that can be customised by you. Here is a breakdown of the tiers:
 
-Bronze Tier (T1): This is the starting tier for all new members. Members need to accumulate at least 100 points to move to the next tier.
-Silver Tier (T2): Members who have accumulated 200 points are upgraded to the Silver Tier, which offers more benefits than the Bronze Tier.
-Gold Tier (T3): This is the highest tier, reserved for members who have collected 500 points. Gold Tier members receive the best benefits, underlining their importance to your bakery.
+**Bronze Tier**: This is the starting tier for all new members. Members need to accumulate at least 100 points to move to the next tier.
+**Silver Tier**: Members who have accumulated 200 points are upgraded to the Silver Tier, which offers more benefits than the Bronze Tier.
+**Gold Tier**: Members who have accumulated 500 points are upgraded to the Gold Tier, which offers more benefits than the Silver Tier.
+**Platinum Tier**: This is the highest tier, reserved for members who have collected 1000 points. Gold Tier members receive the best benefits, underlining their importance to your bakery.
 Points can be accumulated by making purchases and participating in bakery events. Ensure to regularly update member points using the addpoints command to reflect their current balance. Upgrading membership tiers can be done using the updatemembership command once a member reaches the required points threshold.
 
 🌟 Benefit: By maintaining and upgrading membership tiers, you foster a stronger relationship with your customers, encouraging them to return to your bakery. This system not only enhances customer loyalty but also drives sales by offering tangible rewards for continued patronage.
 
 ## Getting Started with SweetRewards
-To begin using SweetRewards, ensure that your device meets the software’s compatibility requirements. Follow the installation instructions provided in the "Getting Started" section. After installation, familiarize yourself with the GUI elements and practice basic CLI commands through the introductory tutorial.
+To begin using SweetRewards, ensure that your device meets the **software’s compatibility requirements**. Follow the installation instructions provided in the "Getting Started" section. After installation, familiarize yourself with the GUI elements and practice basic CLI commands through the introductory tutorial.
 
 ## Navigating this Guide
 This User Guide is structured to help you find information quickly and easily. Use the table of contents to navigate to specific sections. Throughout the guide, you’ll find tips, warnings, and best practices highlighted to draw your attention to important information. If you’re new to CLI, refer to the section on CLI usage for an explanation of commands and syntax.
@@ -71,11 +72,11 @@ Throughout the guide, you'll encounter various icons that signify different type
 
 ⚠️ **Warning**: This icon alerts you to potential pitfalls or actions that could negatively impact your use of the application.
 
-🌟 Benefit: This icon signifies key benefits and positive outcomes from using a feature within SweetRewards.
+🌟 **Benefit**: This icon signifies key benefits and positive outcomes from using a feature within SweetRewards.
 
-🚫 Problem: Identifies common challenges or issues you may encounter.
+🚫 **Problem**: Identifies common challenges or issues you may encounter.
 
-✅ Solution: Provides answers or solutions to the problems presented.
+✅ **Solution**: Provides answers or solutions to the problems presented.
 
 Use these icons as a guide to help focus your attention on key information as you read through the manual.
 
@@ -119,16 +120,16 @@ Use these icons as a guide to help focus your attention on key information as yo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/MEMBER_NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/MEMBER_NAME [ag/ALLERGEN]` can be used as `n/John Doe ag/GF` or as `n/John Doe`.
 
 * Items with `…' after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[ag/ALLERGEN]…` can be used as ` ` (i.e. 0 times), `ag/GF`, `ag/GF ag/LF` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME hp/PHONE_NUMBER`, `hp/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/MEMBER_NAME hp/MEMBER_PHONE`, `hp/MEMBER_PHONE n/MEMBER_NAME` is also acceptable. 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -158,17 +159,17 @@ Format: `seedData`
 * If all members in sample data already exists, it will display the following message:  
   `Every member from seed data already exist in the address book!`
 
-### Adding a member : `addmember`
+### Adding a member : `addmem`
 
 Adds a member to the loyalty program.
 
-🌟 Grow your bakery's community and keep track of your customers' preferences and purchases by adding them as members. Use addmember to easily enroll new customers into your loyalty program, helping you personalize their experience and encourage repeat business.
+🌟 Grow your bakery's community and keep track of your customers' preferences and purchases by adding them as members. Use addmem to easily enroll new customers into your loyalty program, helping you personalize their experience and encourage repeat business.
 
-Format: `addmember n/MEMBER_NAME a/MEMBER_ADDRESS hp/MEMBER_PHONE e/MEMBER_EMAIL …​`
+Format: `addmem n/MEMBER_NAME hp/PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​`
 
 Examples:
 * `addmember n/John Doe a/John street, block 123, #01-01 hp/98765432 e/johnd@example.com `
-* `addmember n/Betsy Crowe a/Newton Street hp/1234567 e/betsycrowe@example.com `
+* `addmember n/Betsy Crowe a/Newton Street hp/1234567 e/betsycrowe@example.com ag/GF `
 
 ### Listing all members : `list`
 
@@ -203,7 +204,7 @@ Adds points for a member in the loyalty program.
 
 🌟 Encourage repeat business and reward customer loyalty by using addpoints to add reward points to members' accounts. This helps keep your customers engaged and appreciative of the value they get from shopping at your bakery.
 
-Format: `addpoints n/MEMBER_NAME p/POINTS`
+Format: `addpoints n/MEMBER_NAME p/POINTS` 
 
 💡 Use unique attributes of members when adding orders to avoid errors. Partial names are matched to the closest resembling member.
 
@@ -211,7 +212,7 @@ Format: `addpoints n/MEMBER_NAME p/POINTS`
 * The points **must be a positive integer** 1, 2, 3, … 200
 
 Examples:
-* `addpoints n/John Doe p/50`
+* `addpoints n/John Doe p/50` Adds `50` points to the points `John Doe` initially had
 
 ### Updating membership: `addmship`
 
@@ -219,15 +220,15 @@ Updates the membership tier of a member in the loyalty program.
 
 🌟 Motivate your customers to keep coming back by using addmship to upgrade their membership tier. Higher tiers can offer better rewards, creating a sense of achievement and encouraging more purchases.
 
-Format: `addmship n/MEMBER_NAME ms/MEMBERSHIP_TEIR`
+Format: `addmship n/MEMBER_NAME ms/MEMBERSHIP_TIER`
 
 * Updates the membership tier of a member based on their name to the one stated.
-* The membership tier must be one of the following: T1, T2, T3
+* The membership tier must be one of the following: Platinum, Gold, Silver, Bronze
 
 💡 Use unique attributes of members when updating membership tier to avoid errors. Partial names are matched to the closest resembling member.
 
 Examples:
-* `addmship n/John Doe ms/T2`
+* `addmship n/John Doe ms/Gold`
 
 ### Editing a member : `edit`
 
@@ -235,7 +236,7 @@ Edits an existing member in the loyalty program.
 
 🌟 Keep your customer records up-to-date with the edit command. Whether a member moves to a new address or changes their phone number, you can easily update their profile, ensuring effective communication and personalized service.
 
-Format: `edit INDEX [n/NAME] [hp/PHONE] [e/EMAIL] [a/ADDRESS] [p/POINTS] [t/TAG]…​`
+Format: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER_ADDRESS] [p/POINTS] [ag/ALLERGEN]…​`
 
 * Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -246,7 +247,7 @@ Format: `edit INDEX [n/NAME] [hp/PHONE] [e/EMAIL] [a/ADDRESS] [p/POINTS] [t/TAG]
 
 Examples:
 *  `edit 1 hp/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower ag/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing allergens.
 
 ### Locating members by name : `find`
 
@@ -349,6 +350,17 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: How can I add points to a member's account?
+**A**: Use the addpoints command with the member's name and the number of points you want to add. For example, addpoints n/John Doe p/50 adds 50 points to John Doe’s account.
+
+**Q**: How do I upgrade a member's membership tier?
+**A**: Use the addmship command followed by the member’s name and the new membership tier. For example, addmship n/John Doe ms/Gold upgrades John Doe to the Gold membership tier.
+
+**Q**: Can I delete a member from the loyalty program?
+**A**: Yes, you can use the delete command followed by the member's index number in the list. For example, delete 3 will delete the third member listed in the current view.
+
+**Q**: How are the points and membership tiers related?
+**A**: Membership tiers are based on the accumulated points. Refer to the 'About SweetRewards' section for a detailed breakdown of points required for each tier.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting
@@ -368,23 +380,13 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 ### Operational Questions
 1. Adding Points to Wrong Member
     * 🚫 Problem: Points were mistakenly added to the wrong member. 
-    * ✅ Solution: Use the edit command to adjust the points for both involved members. Subtract the incorrectly added points from the wrong member and add them to the correct one. For example, edit 2 p/-50 to remove points and edit 3 p/50 to add them where needed.
+    * ✅ Solution: Use the edit command to adjust the points for both involved members. Replace the newly updated (wrong) number of points with the initial (correct) number of points and add the points for the new member again. For example, edit 2 p/50 to replace the wrongly updated points and addpoints 3 p/50 to add points to the correct member.
 
 2. Incorrect Member Information Entered
    * 🚫 Problem: Incorrect information (e.g., phone number or email) was entered for a member.
    * ✅ Solution: Utilize the edit command to update the member's information. For instance, edit 1 e/johndoe@example.com changes the email of the first listed member.
 
-3. Understanding Membership Tiers
-
-   * 🚫 Problem: Confusion about what constitutes different membership tiers.
-   * ✅ Solution: Membership tiers are based on the accumulated points. Refer to the 'About SweetRewards' section for a detailed breakdown of points required for each tier.
-
-4. Redeeming Points for Rewards
-   * 🚫 Problem: Not sure how to redeem points for rewards.
-   * ✅ Solution: Currently, points redemption is handled manually. Track the points reduction using the edit command. Consult the 'Managing Membership Tiers and Rewards' section for guidance on rewarding members based on their tier and points.
-   
-5. Orders Not Reflecting in Member's History
-
+3. Orders Not Reflecting in Member's History
    * 🚫 Problem: After adding an order to a member, it does not appear in their order history.
    * ✅ Solution: Ensure the addorder command was used correctly with the correct member name and order details. Remember, the order is linked to the member's name, so ensure the name is spelled correctly and corresponds to an existing member.
    
@@ -395,7 +397,7 @@ Facing issues with SweetRewards? Here are some common problems and how to resolv
 
 Action | Format, Examples
 --------|------------------
-**[Add](#adding-a-member--addmember)** | `add n/NAME hp/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho hp/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**[Add](#adding-a-member--addmember)** | `addmem n/MEMBER_NAME hp/MEMBER_PHONE e/MEMBER_EMAIL a/MEMBER_ADDRESS [ag/ALLERGEN]…​` <br> e.g., `addmem n/James Ho hp/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ag/GF ag/LF`
 **[Add Order](#adding-orders-to-a-member--addorder)** | `addorder n/MEMBER_NAME o/ORDER_DETAILS` <br> e.g., `addorder n/John Doe o/Butter Cake`
 **[Add Points](#adding-points--addpoints)** | `addpoints n/MEMBER_NAME p/POINTS` <br> e.g., `addpoints n/John Doe p/50`
 **[Update Membership](#updating-membership--addmship)** | `addmship n/MEMBER_NAME ms/MEMBERSHIP_TIER` <br> e.g., `addmship n/John Doe ms/T2`
