@@ -16,6 +16,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 /**
@@ -30,6 +32,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String tag;
+    private final String schedule;
+    private final String remark;
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
 
     /**
@@ -39,12 +43,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("nusId") String nusId,
             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("tag") String tag,
-            @JsonProperty("groups") List<JsonAdaptedGroup> groups) {
+            @JsonProperty("groups") List<JsonAdaptedGroup> groups,
+            @JsonProperty("schedule") String schedule, @JsonProperty("remark") String remark) {
         this.nusId = nusId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.tag = tag;
+        this.schedule = schedule;
+        this.remark = remark;
         if (groups != null) {
             this.groups.addAll(groups);
         }
@@ -59,6 +66,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         tag = source.getTag().value.toString();
+        schedule = source.getSchedule().date.toString();
+        remark = source.getRemark().value.toString();
         groups.addAll(source.getGroups().stream()
                 .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
@@ -115,8 +124,23 @@ class JsonAdaptedPerson {
         }
         final NusId modelNusId = new NusId(nusId);
 
+        if (schedule == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Schedule.class.getSimpleName()));
+        }
+        if (!Schedule.isValidSchedule(schedule)) {
+            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        final Schedule modelSchedule = new Schedule(schedule);
+
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
         final Set<Group> modelGroups = new HashSet<>(personGroups);
-        return new Person(modelNusId, modelName, modelPhone, modelEmail, modelTag, modelGroups);
+        return new Person(modelNusId, modelName, modelPhone, modelEmail,
+                modelTag, modelGroups, modelSchedule, modelRemark);
     }
 
 }

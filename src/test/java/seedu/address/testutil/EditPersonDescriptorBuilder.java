@@ -10,6 +10,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
 import seedu.address.model.person.Tag;
 
 /**
@@ -35,6 +37,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
+        descriptor.setSchedule(person.getSchedule());
+        descriptor.setRemark(person.getRemark());
         descriptor.setTag(person.getTag());
         descriptor.setGroups(person.getGroups());
     }
@@ -78,6 +82,22 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withGroups(String... groups) {
         Set<Group> groupSet = Stream.of(groups).map(Group::new).collect(Collectors.toSet());
         descriptor.setGroups(groupSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Schedule} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSchedule(String schedule) {
+        descriptor.setSchedule(new Schedule(schedule));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark(new Remark(remark));
         return this;
     }
 
