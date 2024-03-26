@@ -30,21 +30,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private Label tags;
     @FXML
     private Label jobDescription;
     @FXML
     private Label interviewDate;
-    @FXML
-    private Label internDuration;
-    @FXML
-    private Label salary;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,13 +44,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getCompanyName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        tags.setText(person.getTag().getTagName());
-        jobDescription.setText(person.getJobDescription().value);
-        interviewDate.setText(person.getInterviewDate().toString());
-        internDuration.setText(person.getInternDuration().value);
-        salary.setText(person.getSalary().value);
+        tags.setText("Status: " + person.getTag().getTagName());
+        jobDescription.setText("Job Description: " + person.getJobDescription().value);
+        if ((person.getInterviewDate().toString()).equals("")) {
+            interviewDate.setText("Interview Date: -");
+        } else {
+            interviewDate.setText("Interview Date: " + person.getInterviewDate().toString());
+        }
+
     }
 }
