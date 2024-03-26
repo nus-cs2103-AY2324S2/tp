@@ -29,6 +29,7 @@
                     <Insets top="5" right="5" bottom="50" left="15" />
                 </padding>
             <Label styleClass="detail_small_label" text="Members: " minWidth="180" />
+            <FlowPane fx:id="groupMembers" />
             <HBox fx:id="telegramChatBox" spacing="5" alignment="CENTER_LEFT">
                 <children>
                     <Label fx:id="telegramChat" text="\$telegramChat" styleClass="cell_small_label">
@@ -49,7 +50,6 @@
                     <Insets bottom="10.0" right="10.0" top="5.0" />
                 </padding>
             </HBox>
-            <FlowPane fx:id="groupMembers" />
         </VBox>
     </GridPane>
 </HBox>
