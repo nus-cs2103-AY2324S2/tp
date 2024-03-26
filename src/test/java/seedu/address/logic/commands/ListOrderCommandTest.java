@@ -25,7 +25,7 @@ public class ListOrderCommandTest {
         ListOrderCommand listOrderCommand = new ListOrderCommand(validIndex);
         CommandResult commandResult = listOrderCommand.execute(model);
 
-        String expectedMessageStart = "Orders for the selected person:\n";
+        String expectedMessageStart = "Order(s) for the selected person:\n";
         assertTrue(commandResult.getFeedbackToUser().startsWith(expectedMessageStart));
     }
 
@@ -34,7 +34,7 @@ public class ListOrderCommandTest {
         ListOrderCommand listOrderCommand = new ListOrderCommand(Index.fromOneBased(2));
         CommandResult commandResult = listOrderCommand.execute(model);
 
-        String expectedMessage = "Orders for the selected person:\n";
+        String expectedMessage = "Order(s) for the selected person:\n";
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
     }
 
