@@ -75,7 +75,7 @@ public class DisplayCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        birthday.setText(Optional.ofNullable(person.getBirthday()).orElse(new Birthday("")).toString());
+        birthday.setText(person.getBirthday().toString());
         moneyOwed.setText(person.getMoneyOwed().getMessage());
         tagLabel.setText(TAG_LABEL);
         phoneLabel.setText(PHONE_LABEL);
