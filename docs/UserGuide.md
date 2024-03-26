@@ -101,7 +101,7 @@ Format: `help`
 
   <box type="success">
     A GUI similar to below should appear upon successful command input.<br><br>
-    <img src="images/ui/delete/afterdelete.png" width="452.5" height="369.5"><br><br>
+    <img src="images/ui/delete/afterDelete.png" width="452.5" height="369.5"><br><br>
   </box>
 
   <box type="wrong">
