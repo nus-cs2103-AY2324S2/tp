@@ -33,7 +33,6 @@ public class AttendanceCommand extends Command {
             + "Example: " + COMMAND_WORD + " w/1 i/1, 2, 3";
 
     public static final String MESSAGE_SUCCESS = "Attendance successfully marked for %1$s";
-    public static final String MESSAGE_ALREADY_MARKED = "Attendance for %1$s has already been marked";
 
     private static final Logger logger = LogsCenter.getLogger(AttendanceCommand.class);
     private final Week week;
