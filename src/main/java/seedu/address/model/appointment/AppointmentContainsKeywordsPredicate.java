@@ -10,7 +10,7 @@ import seedu.address.model.person.Nric;
 /**
  * Tests that a {@code Appointment}'s {@code NRIC}, {@code Date}, {@code Time} matches any of the filters given.
  */
-public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
+public class AppointmentContainsKeywordsPredicate implements Predicate<AppointmentView> {
     private final Optional<Nric> nricFilter;
     private final Optional<Date> dateFilter;
     private final Optional<Time> timeFilter;
@@ -31,25 +31,25 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
     }
 
     @Override
-    public boolean test(Appointment appointment) {
+    public boolean test(AppointmentView appointment) {
         boolean matchesNric = true;
         boolean matchesDate = true;
         boolean matchesTimePeriod = true;
 
         if (nricFilter.isPresent()) {
             Nric filterNric = nricFilter.get();
-            matchesNric = appointment.getNric().equals(filterNric);
+            matchesNric = appointment.getAppointment().getNric().equals(filterNric);
         }
 
         if (dateFilter.isPresent()) {
             Date filterDate = dateFilter.get();
-            matchesDate = appointment.getDate().equals(filterDate);
+            matchesDate = appointment.getAppointment().getDate().equals(filterDate);
         }
 
         if (timeFilter.isPresent()) {
             Time filterTime = timeFilter.get();
-            matchesTimePeriod = appointment.getTimePeriod().getStartTime().compareTo(filterTime) == 1
-                    || appointment.getTimePeriod().getStartTime().equals(filterTime);
+            matchesTimePeriod = appointment.getAppointment().getTimePeriod().getStartTime().compareTo(filterTime) == 1
+                    || appointment.getAppointment().getTimePeriod().getStartTime().equals(filterTime);
         }
 
         return matchesNric && matchesDate && matchesTimePeriod;

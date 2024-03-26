@@ -31,7 +31,7 @@ public class FindAppCommand extends Command {
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
-                        model.getFilteredAppointmentList().size()));
+                        model.getFilteredAppointmentViewList().size()));
     }
 
     @Override

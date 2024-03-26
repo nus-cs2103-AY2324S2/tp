@@ -49,7 +49,7 @@ public class FindAppCommandParser implements Parser<FindAppCommand> {
 
         if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
             if (isValidNric(argMultimap.getValue(PREFIX_NRIC).orElse(""))) {
-                nricFilter = Optional.of(new Nric(argMultimap.getValue(PREFIX_NRIC).orElse("")));
+                nricFilter = Optional.of(new Nric(argMultimap.getValue(PREFIX_NRIC).get()));
             } else {
                 throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
             }
@@ -57,7 +57,7 @@ public class FindAppCommandParser implements Parser<FindAppCommand> {
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             if (isValidDate(argMultimap.getValue(PREFIX_DATE).orElse(""))) {
-                dateFilter = Optional.of(new Date(argMultimap.getValue(PREFIX_DATE).orElse("")));
+                dateFilter = Optional.of(new Date(argMultimap.getValue(PREFIX_DATE).get()));
             } else {
                 throw new ParseException(Date.MESSAGE_CONSTRAINTS);
             }
@@ -65,7 +65,7 @@ public class FindAppCommandParser implements Parser<FindAppCommand> {
 
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
             if (isValidTime(argMultimap.getValue(PREFIX_START_TIME).orElse(""))) {
-                timeFilter = Optional.of(new Time(argMultimap.getValue(PREFIX_START_TIME).orElse("")));
+                timeFilter = Optional.of(new Time(argMultimap.getValue(PREFIX_START_TIME).get()));
             } else {
                 throw new ParseException(Time.MESSAGE_CONSTRAINTS);
             }
