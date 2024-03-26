@@ -84,7 +84,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -94,7 +94,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
   e.g. in `add /com COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add /com Google`.
 
 * Items in square brackets are optional.<br>
-  e.g `/com COMPANY_NAME [/poc NAME_OF_CONTACT]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `/com COMPANY_NAME [/poc NAME_OF_CONTACT]` can be used as `/com Alibaba /poc Jack Ma` or as `/com Alibaba`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `/com COMPANY_NAME /desc DESCRIPTION`, `/desc DESCRIPTION /com COMPANY_NAME` is also acceptable.
@@ -140,9 +140,28 @@ Examples:
 
 ### Listing all internships: `list`
 
-Shows a list of all internships in the application
+Shows a list of all internships in the application.
 
-Format: `list`
+**Format:** `list`
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Tip:**<br>
+When you first start the application, you will see a list of all the internships you have added. <br>
+The [find](#finding-internships-by-keywords-find) command might be used to filter the visible list of internships. <br>
+If you want to see all internships again, simply type `list` and press enter.
+<br><br>
+
+1. Input:<br>
+   `list`<br>
+   ![Before listing all internships](./images/list/list-before.png)
+In this example, the current view shows only internships with location 'REMOTE'.
+<br><br>
+
+2. Successful Output after executing list: <br>
+   ![After successfully listing all internships](./images/list/list-after.png)
+Any present filter will be removed, and all internships will be displayed in the list.
+</div>
 
 ### Viewing an internship entry's details
 
@@ -183,7 +202,7 @@ Examples:
 
 Finds internship entries whose specified fields contains the keywords.
 
-Format: `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`
+**Format:** `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`
 
 * MODE is either 'withall' or 'withany'.
   * 'withall' returns internships that match each prefix-keyword predicate.
@@ -196,17 +215,47 @@ Format: `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/l
 * Internship matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
-Examples:
-* `find withall /status accepted /loc local` returns Internships with both status `accepted` and location `local`
-  ![result for 'find withall /status accepted /loc local'](images/findWithallStatusAcceptedLocLocalResult.png)
-* `find withany /status rejected /loc remote` returns Internships with either status `rejected` or location `remote`
-  ![result for 'find withany /status rejected /loc remote'](images/findWithanyStatusRejectedLocRemoteResult.png)
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+1. Input:<br>
+   `find withall /status to_apply /loc remote`<br>
+   ![Before filtering by all toapply and remote](./images/find/find-before.png)<br><br>
+This will filter the list of internships to show only those with both status `TO_APPLY` and location `REMOTE`.
+
+2. Successful Output after filtering:<br>
+   ![After successfully filtering by all toapply and remote](./images/find/findToApplyRemote-after.png)<br><br>
+
+3. Other examples:<br>
+   i.`find withany /com Google /loc local` returns Internships with either company name (case-insensitive) `Google` or location `LOCAL`<br>
+   ii.`find withall /poc John /desc paperwork` returns Internships with both contact name (case-insensitive) `John` and description containing `paperwork`
+</div>
+
+**Common errors:**
+1. If no field prefixes are specified to search by, the command will be rejected with error message:<br>
+`At least one field prefix and keyword must be specified to be searched.`
+2. MODE must be present, and be either `withall` or `withany`. If not, the command will be rejected with error message:<br>
+`Invalid mode specified. Please specify either 'withall' or 'withany'.`
 
 ### Clearing all internships: `clear`
 
 Clears all entries from the application.
 
-Format: `clear`
+**Format:** `clear`
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+1. Input:<br>
+   `clear`<br>
+   ![Before clearing](./images/clear/clear-before.png)<br><br>
+
+2. Successful Output after clearing entries:<br>
+   ![After successfully clearing](./images/clear/clear-after.png)
+There are no more internships in the list.
+</div>
 
 ### Exiting the program: `exit`
 
@@ -237,8 +286,8 @@ After every command that changes the data, CareerSync performs a save automatica
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. 
-The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen.<br>
+**The solution** is to delete the `preferences.json` file from the folder where you installed the application. Then, run the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
