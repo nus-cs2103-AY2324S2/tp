@@ -26,15 +26,13 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
     public AddNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTE, PREFIX_FLAG);
-        String trimmedArgs = args.trim();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE)
-                || trimmedArgs.isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
-        IdentityCardNumber ic;
         try {
+            IdentityCardNumber ic = ParserUtil.parseIC(argMultimap.getPreamble());
             String note = "";
             boolean isReplace = false;
 
@@ -47,10 +45,9 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
                 note = argMultimap.getValue(PREFIX_NOTE).orElse("");
             }
 
-            ic = ParserUtil.parseIC(argMultimap.getPreamble());
             return new AddNoteCommand(new IdentityCardNumberMatchesPredicate(ic), new Note(note), isReplace);
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(IdentityCardNumber.MESSAGE_CONSTRAINTS), ive);
         }
     }
 

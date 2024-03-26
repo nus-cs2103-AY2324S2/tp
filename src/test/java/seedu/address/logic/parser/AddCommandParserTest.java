@@ -35,7 +35,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
@@ -98,7 +98,7 @@ public class AddCommandParserTest {
 
         // multiple ic
         assertParseFailure(parser, IC_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC_NUMBER));
 
         // multiple age
         assertParseFailure(parser, AGE_DESC_AMY + validExpectedPersonString,
@@ -146,7 +146,7 @@ public class AddCommandParserTest {
 
         // invalid ic
         assertParseFailure(parser, INVALID_IC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC_NUMBER));
 
         // valid value followed by invalid value
 
@@ -176,7 +176,7 @@ public class AddCommandParserTest {
 
         // invalid ic
         assertParseFailure(parser, validExpectedPersonString + INVALID_IC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_IC_NUMBER));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,16 @@ public class AddNoteCommandParserTest {
         // no parameters
         assertParseFailure(parser, AddNoteCommand.COMMAND_WORD, expectedMessage);
 
-        // no index
-        assertParseFailure(parser, AddNoteCommand.COMMAND_WORD + " " + nonEmptyNote, expectedMessage);
+        // no ic and note
+        assertParseFailure(parser, AddNoteCommand.COMMAND_WORD + " " + nonEmptyNote,
+                expectedMessage);
+
+        // no ic
+        assertParseFailure(parser, AddNoteCommand.COMMAND_WORD + PREFIX_NOTE + nonEmptyNote,
+                expectedMessage);
+
+        // no note
+        assertParseFailure(parser, AddNoteCommand.COMMAND_WORD + "s0123456a",
+                expectedMessage);
     }
 }
