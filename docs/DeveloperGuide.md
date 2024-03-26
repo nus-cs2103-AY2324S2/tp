@@ -1,6 +1,6 @@
 
 
-# AB-3 Developer Guide
+# Rainbow Dragon Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -196,6 +196,35 @@ of classes and potentially simplify the command's initiation process. However, t
 harder to manage and maintain. Another alternative could be the use of reflection to dynamically update fields in the `Person` class based on input, 
 which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection. 
 Additionally, the `EditPersonDescriptor` could be completely remove as the implementation of the `Entry` class would allow the edit of categories directly.
+
+### DeleteCategory function
+
+The command `deleteCategory INDEX c/CATEGORY` allows users to delete the `CATEGORY` of a person at the specified `INDEX`.
+The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("deleteCategory 1 c/Clan")` API call as an example.
+
+<puml src="diagrams/DeleteCategorySequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `deleteCategory 1 c/Clan` Command" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCategoryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+
+</box>
+
+The feature of deleting category is implemented by the `DeleteCategoryCommand` and `DeleteCategoryCommandParser` classes.
+The `DeleteCategoryCommand` class handles the logic of deleting one of user's category.
+The execute class in `DeleteCategoryCommand` class checks if the input category is existing.
+The `DeleteCategoryCommandParser` class parses user input into an `DeleteCategoryCommand` object. It validates the input and extracts the necessary information to instantiate an `DeleteCategoryCommand`.
+If the format of command is correct, the `DeleteCategory` object will try to call the `deleteEntry` method from `Parser` class to delete the corresponding category.
+If the format of command is wrong or the category does not exist, the `DeleteCategoryCommand` or `DeleteCategoryCommandParser` class will throw an exception.
+
+<box type="info" seamless>
+
+**Note:** There are some caveat for `deleteCategory` command:
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The category **must exist**.
+
+</box>
 
 ### \[Proposed\] Undo/redo feature
 
