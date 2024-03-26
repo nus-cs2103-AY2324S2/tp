@@ -1,11 +1,11 @@
-
 package seedu.address.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@code AddressBook} that keeps track of its own history.
@@ -100,15 +100,6 @@ public class VersionedAddressBook extends AddressBook {
                 && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
                 && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
     }
-
-    public void archivePerson(Person person) {
-        if (!super.hasPerson(person)) {
-            throw new PersonNotFoundException();
-        }
-        archivedPersons.add(person);
-        super.removePerson(person);
-    }
-
 
 
     /**
