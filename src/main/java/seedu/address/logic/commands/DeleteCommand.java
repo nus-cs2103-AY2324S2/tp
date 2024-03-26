@@ -41,10 +41,6 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = model.getPersonByUuid(targetUuid);
 
-        if (personToDelete == null) {
-            throw new CommandException("Person not found.");
-        }
-
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
