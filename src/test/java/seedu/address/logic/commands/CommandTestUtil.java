@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BANKDETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIRSTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LASTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYRATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_SEX_AMY = "f";
     public static final String VALID_SEX_BOB = "m";
-    public static final String VALID_EMPLOYMENTTYPE_AMY = "ft";
-    public static final String VALID_EMPLOYMENTTYPE_BOB = "pt";
+    public static final double VALID_PAYRATE_AMY = 14.0;
+    public static final double VALID_PAYRATE_BOB = 18.5;
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_BANKDETAILS_AMY = "8374219837";
@@ -56,8 +56,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String SEX_DESC_AMY = " " + PREFIX_SEX + VALID_SEX_AMY;
     public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_SEX_BOB;
-    public static final String EMPLOYMENTTYPE_DESC_AMY = " " + PREFIX_EMPLOYMENTTYPE + VALID_EMPLOYMENTTYPE_AMY;
-    public static final String EMPLOYMENTTYPE_DESC_BOB = " " + PREFIX_EMPLOYMENTTYPE + VALID_EMPLOYMENTTYPE_BOB;
+    public static final String PAYRATE_DESC_AMY = " " + PREFIX_PAYRATE + VALID_PAYRATE_AMY;
+    public static final String PAYRATE_DESC_BOB = " " + PREFIX_PAYRATE + VALID_PAYRATE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String BANKDETAILS_DESC_AMY = " " + PREFIX_BANKDETAILS + VALID_BANKDETAILS_AMY;
@@ -69,8 +69,7 @@ public class CommandTestUtil {
     public static final String INVALID_FIRSTNAME_DESC = " " + PREFIX_FIRSTNAME + "James&"; // '&' not allowed in
     public static final String INVALID_LASTNAME_DESC = " " + PREFIX_LASTNAME + "Char.les"; // '&' not allowed in
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "u"; // 'u' is not an allowed sex
-    public static final String INVALID_EMPLOYMENTTYPE_DESC = " " + PREFIX_EMPLOYMENTTYPE + "ut";
-    //'ut' is not an allowed employment type
+    public static final String INVALID_PAYRATE_DESC = " " + PREFIX_PAYRATE + "ut"; //'ut' is not an allowed payrate
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_BANKDETAILS_DESC = " " + PREFIX_BANKDETAILS
         + "3213-421321"; // '-' not allowed in bank details

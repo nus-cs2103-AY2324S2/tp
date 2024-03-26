@@ -40,7 +40,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label sex;
     @FXML
-    private Label employmentType;
+    private Label payRate;
     @FXML
     private Label hoursWorked;
     @FXML
@@ -59,25 +59,13 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
         sex.setText(getFullSexString(person.getSex().value));
-        employmentType.setText(getFullEmploymentTypeString(person.getEmploymentType().value));
+        payRate.setText(person.getPayRate().toString());
         address.setText(person.getAddress().value);
         bankDetails.setText(person.getBankDetails().value);
         hoursWorked.setText(person.getWorkHours().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
-    /**
-     * Returns the full employment type string based on the short form string returned from EmploymentType.
-     */
-    private String getFullEmploymentTypeString(String shortFormString) {
-        if (shortFormString.equals("ft")) {
-            return "Full-Time";
-        } else if (shortFormString.equals("pt")) {
-            return "Part-Time";
-        }
-        return "Invalid Employment Type"; // should not reach here
     }
 
     /**

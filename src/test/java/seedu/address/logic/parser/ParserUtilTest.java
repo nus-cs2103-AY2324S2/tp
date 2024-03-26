@@ -23,7 +23,7 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_SEX = "x";
-    private static final String INVALID_EMPLOYMENTTYPE = "invalid";
+    private static final String INVALID_PAYRATE = "invalid";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -113,13 +113,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmploymentType_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmploymentType((String) null));
+    public void parsePayRate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePayRate((String) null));
     }
 
     @Test
-    public void parseEmploymentType_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmploymentType(INVALID_EMPLOYMENTTYPE));
+    public void parsePayRate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePayRate(INVALID_PAYRATE));
     }
 
     @Test
