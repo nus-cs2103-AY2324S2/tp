@@ -52,6 +52,9 @@ public class CommandListPanel extends UiPart<Region> {
         commandListView.setCellFactory(listView -> new CommandListViewCell());
     }
 
+    /**
+     * Initalizes the CommandListPanel object.
+     */
     @FXML
     public void initialize() {
 
