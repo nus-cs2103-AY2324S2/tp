@@ -122,7 +122,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns true if an asset with the same identity as {@code asset} exists in the address book.
      */
     public boolean hasAsset(Asset asset) {
-        requireNonNull(asset);
         return persons.asUnmodifiableObservableList()
                 .stream()
                 .anyMatch(person -> person.hasAsset(asset));
@@ -132,8 +131,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Changes all assets that equal target to editedAsset.
      */
     public void editAsset(Asset target, Asset editedAsset) {
-        requireNonNull(target);
-        requireNonNull(editedAsset);
         save();
         for (Person person : getPersonList()) {
             if (person.hasAsset(target)) {

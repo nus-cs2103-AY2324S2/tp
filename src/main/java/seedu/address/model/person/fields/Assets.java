@@ -1,6 +1,7 @@
 package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.Set;
@@ -12,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.model.asset.Asset;
 
 /**
- * Represents a collection of tags associated to a person in the address book.
+ * Represents a collection of assets associated to a person in the address book.
  */
 public class Assets implements Field {
 
@@ -22,18 +23,20 @@ public class Assets implements Field {
     /**
      * Constructs a new {@code Assets} from a list of assets.
      *
-     * @param assets A list of tags, or null.
+     * @param assets A list of assets.
      */
     public Assets(Asset... assets) {
+        requireNonNull(assets);
         this.assets = Stream.of(assets)
                             .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
      * Constructs a new {@code Assets} from a list of strings.
-     * @param assetNames A list of strings, or null.
+     * @param assetNames A list of strings.
      */
     public Assets(String... assetNames) {
+        requireNonNull(assetNames);
         this.assets = Stream.of(assetNames)
                             .map(Asset::new)
                             .collect(Collectors.toUnmodifiableSet());
@@ -52,16 +55,21 @@ public class Assets implements Field {
         return assets;
     }
 
+    /**
+     * Checks if {@code Assets} contain asset.
+     */
     public boolean contains(Asset asset) {
+        requireNonNull(asset);
         return assets.contains(asset);
     }
 
     /**
-     * Changes name of asset.
+     * Changes name of an asset.
      * @param target asset to be edited
      * @param editedAsset new asset name
      */
     public Assets edit(Asset target, Asset editedAsset) {
+        requireAllNonNull(target, editedAsset);
         return new Assets(assets.stream()
                 .map(asset -> asset.equals(target) ? editedAsset : asset)
                 .toArray(Asset[]::new));

@@ -21,18 +21,20 @@ public class Tags implements Field {
 
     /**
      * Constructs a new Tags from a list of tags.
-     * @param tags A list of tags, or null.
+     * @param tags A list of tags.
      */
     public Tags(Tag... tags) {
+        requireNonNull(tags);
         this.tags = Stream.of(tags)
                           .collect(Collectors.toUnmodifiableSet());
     }
 
     /**
      * Constructs a new Tags from a list of strings.
-     * @param tagNames A list of strings, or null.
+     * @param tagNames A list of strings.
      */
     public Tags(String... tagNames) {
+        requireNonNull(tagNames);
         this.tags = Stream.of(tagNames)
                           .map(Tag::new)
                           .collect(Collectors.toUnmodifiableSet());
