@@ -87,11 +87,90 @@ public class PatientContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new PatientContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
+    }
 
-        // // Keywords match phone, email and address, but does not match name
-        // predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        // assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-        // .withEmail("alice@email.com").withAddress("Main Street").build()));
+    @Test
+    public void test_nricContainsKeywords_returnsTrue() {
+        // One NRIC
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Collections.singletonList("T1234567A"));
+        assertTrue(predicate.test(new PatientBuilder().withNric("T1234567A").build()));
+
+        // NRIC substring
+        predicate = new PatientContainsKeywordsPredicate(Collections.singletonList("1234"));
+        assertTrue(predicate.test(new PatientBuilder().withNric("T1234567A").build()));
+
+        // Multiple NRICs
+        predicate = new PatientContainsKeywordsPredicate(Arrays.asList("T0170911E", "S1234567A"));
+        assertTrue(predicate.test(new PatientBuilder().withNric("T0170911E").build()));
+    }
+
+    @Test
+    public void test_nricContainsKeywords_returnsFalse() {
+        // Zero keywords
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new PatientBuilder().withNric("T0170911E").build()));
+
+        // Non-matching keyword
+        predicate = new PatientContainsKeywordsPredicate(Arrays.asList("T0170911E"));
+        assertFalse(predicate.test(new PatientBuilder().withNric("S1234567A").build()));
+    }
+
+    @Test
+    public void test_dobContainsKeywords_returnsTrue() {
+        // One dob
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Collections.singletonList("2001-01-01"));
+        assertTrue(predicate.test(new PatientBuilder().withDoB("2001-01-01").build()));
+
+        // dob substring
+        predicate = new PatientContainsKeywordsPredicate(Collections.singletonList("01"));
+        assertTrue(predicate.test(new PatientBuilder().withDoB("2001-01-01").build()));
+
+        // multiple dob
+        predicate = new PatientContainsKeywordsPredicate(Arrays.asList("2001-01-01", "2001-01-02"));
+        assertTrue(predicate.test(new PatientBuilder().withDoB("2001-01-01").build()));
+    }
+
+    @Test
+    public void test_dobContainsKeywords_returnsFalse() {
+        // Zero keywords
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new PatientBuilder().withDoB("2001-01-01").build()));
+
+        // Non-matching keyword
+        predicate = new PatientContainsKeywordsPredicate(Arrays.asList("22"));
+        assertFalse(predicate.test(new PatientBuilder().withDoB("2001-01-01").build()));
+    }
+
+    @Test
+    public void test_phoneContainsKeywords_returnsTrue() {
+        // One phone
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Collections.singletonList("91234567"));
+        assertTrue(predicate.test(new PatientBuilder().withPhone("91234567").build()));
+
+        // phone substring
+        predicate = new PatientContainsKeywordsPredicate(Collections.singletonList("4567"));
+        assertTrue(predicate.test(new PatientBuilder().withPhone("91234567").build()));
+
+        // multiple phone numbers
+        predicate = new PatientContainsKeywordsPredicate(Arrays.asList("91234567", "99991111"));
+        assertTrue(predicate.test(new PatientBuilder().withPhone("91234567").build()));
+    }
+
+    @Test
+    public void test_phoneContainsKeywords_returnsFalse() {
+        // Zero keywords
+        PatientContainsKeywordsPredicate predicate =
+                new PatientContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new PatientBuilder().withPhone("91234567").build()));
+
+        // Non-matching keyword
+        predicate = new PatientContainsKeywordsPredicate(Arrays.asList("7654"));
+        assertFalse(predicate.test(new PatientBuilder().withPhone("91234567").build()));
     }
 
     @Test
