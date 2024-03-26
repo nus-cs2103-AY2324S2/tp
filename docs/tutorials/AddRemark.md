@@ -1,11 +1,14 @@
 ---
-layout: page
-title: "Tutorial: Adding a command"
+  layout: default.md
+  title: "Tutorial: Adding a command"
+  pageNav: 3
 ---
+
+# Tutorial: Adding a command
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the CodeConnect application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -22,13 +25,13 @@ For now, let’s keep `RemarkCommand` as simple as possible and print some outpu
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing contact in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -43,7 +46,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `CodeConnectParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -57,16 +60,16 @@ Run `Main#main` and try out your new `RemarkCommand`. If everything went well, y
 
 While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw a `CommandException` to accurately reflect that our command is still a work in progress.
 
-![The relationship between RemarkCommand and Command](../images/add-remark/RemarkCommandClass.png)
+<puml src="../diagrams/add-remark/RemarkClass.puml" alt="The relationship between RemarkCommand and Command"/>
 
 Following the convention in other commands, we add relevant messages as constants and use them.
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Edits the remark of the contact identified "
+            + "by the index number used in the last contact listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -90,7 +93,7 @@ Let’s change `RemarkCommand` to parse input from the user.
 
 We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`. While we are at it, let’s change the error message to echo the values. While this is not a replacement for tests, it is an obvious way to tell if our code is functioning as intended.
 
-``` java
+```java
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 //...
 public class RemarkCommand extends Command {
@@ -101,8 +104,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the contact in the filtered contact list to edit the remark
+     * @param remark of the contact to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -142,13 +145,13 @@ Now let’s move on to writing a parser that will extract the index and remark f
 
 Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
-![The relationship between Parser and RemarkCommandParser](../images/add-remark/RemarkCommandParserClass.png)
+<puml src="../diagrams/add-remark/ParserClass.puml" alt="The relationship between Parser and RemarkCommandParser"/>
 
 Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.
 
 **`ArgumentTokenizer.java`:**
 
-``` java
+```java
 /**
  * Tokenizes an arguments string and returns an {@code ArgumentMultimap}
  * object that maps prefixes to their respective argument values. Only the
@@ -166,7 +169,7 @@ We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` a
 
 **`ArgumentMultimap.java`:**
 
-``` java
+```java
 /**
  * Returns the last value of {@code prefix}.
  */
@@ -181,7 +184,7 @@ This appears to be what we need to get a String of the remark. But what about th
 
 **`DeleteCommandParser.java`:**
 
-``` java
+```java
 Index index = ParserUtil.parseIndex(args);
 return new DeleteCommand(index);
 ```
@@ -192,7 +195,7 @@ Now that we have the know-how to extract the data that we need from the user’s
 
 **`RemarkCommandParser.java`:**
 
-``` java
+```java
 public RemarkCommand parse(String args) throws ParseException {
     requireNonNull(args);
     ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
@@ -212,22 +215,22 @@ public RemarkCommand parse(String args) throws ParseException {
 }
 ```
 
-<div markdown="span" class="alert alert-primary">
+<box type="info" seamless>
 
-:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+Don’t forget to update `CodeConnectParser` to use our new `RemarkCommandParser`!
 
-</div>
+</box>
 
 If you are stuck, check out the sample
 [here](https://github.com/se-edu/addressbook-level3/commit/dc6d5139d08f6403da0ec624ea32bd79a2ae0cbf#diff-8bf239e8e9529369b577701303ddd96af93178b4ed6735f91c2d8488b20c6b4a).
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of contact data. We achieve that by working with the `Contact` model. Each field in a Contact is implemented as a separate class (e.g. a `Name` object represents the contact’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a contact.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.contact`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -238,13 +241,13 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each contact.
 
-Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
+Simply add the following to [`seedu.address.ui.ContactCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
-**`PersonCard.java`:**
+**`ContactCard.java`:**
 
-``` java
+```java
 @FXML
 private Label remark;
 ```
@@ -252,9 +255,9 @@ private Label remark;
 
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
-Then insert the following into [`main/resources/view/PersonListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
+Then insert the following into [`main/resources/view/ContactListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
 
-**`PersonListCard.fxml`:**
+**`ContactListCard.fxml`:**
 
 ``` xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
@@ -264,54 +267,54 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Contact` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `ContactCard` displays data from a `Contact`, we need to update `Contact` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Contact`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Contact` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Contact`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Contact` will cause other commands to break, you will have to modify these commands to use the updated `Contact`!
 
-<div markdown="span" class="alert alert-primary">
+<box type="tip" seamless>
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+Use the `Find Usages` feature in IntelliJ IDEA on the `Contact` class to find these commands.
 
-</div>
+</box>
 
 Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c) and check that you have got everything in order!
 
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+CodeConnect stores data by serializing `JsonAdaptedContact` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedContact` to work with our new `Contact`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
-<div markdown="span" class="alert alert-warning">
+<box type="warning" seamless>
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+You must delete CodeConnect’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
 
-</div>
+</box>
 
 Check out [this commit](https://github.com/se-edu/addressbook-level3/commit/556cbd0e03ff224d7a68afba171ad2eb0ce56bbf)
 to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Contact` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
-**`PersonCard.java`:**
+**`ContactCard.java`:**
 
-``` java
-public PersonCard(Person person, int displayedIndex) {
+```java
+public ContactCard(Contact contact, int displayedIndex) {
     //...
-    remark.setText(person.getRemark().value);
+    remark.setText(contact.getRemark().value);
 }
 ```
 
@@ -323,43 +326,43 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
-save it with `Model#setPerson()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Contact`. Since all fields in a `Contact` are immutable, we create a new instance of a `Contact` with the values that we want and
+save it with `Model#setContact()`.
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Contact: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Contact: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Contact> lastShownList = model.getFilteredContactList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+        Contact contactToEdit = lastShownList.get(index.getZeroBased());
+        Contact editedContact = new Contact(
+                contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
+                contactToEdit.getAddress(), remark, contactToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setContact(contactToEdit, editedContact);
+        model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedContact));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code personToEdit}.
+     * {@code contactToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Contact contactToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, contactToEdit);
     }
 ```
 
@@ -396,4 +399,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to CodeConnect.

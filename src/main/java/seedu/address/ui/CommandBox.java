@@ -3,7 +3,10 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.CommandHistoryView;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,17 +21,25 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
 
+    private final CommandHistory history;
+
+    private CommandHistoryView historyView;
+
     @FXML
     private TextField commandTextField;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, CommandHistory history) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.history = history;
+        this.historyView = new CommandHistoryView(history);
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+
+        addArrowKeyHandler();
     }
 
     /**
@@ -43,10 +54,42 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
+            // command should only be added to history if execution results in no exceptions.
+            history.add(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        } finally {
+            // reset the history viewer
+            historyView = new CommandHistoryView(history);
         }
+    }
+
+    private void addArrowKeyHandler() {
+        this.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            String commandText = commandTextField.getText();
+
+            switch(event.getCode()) {
+            case UP:
+                historyView.updateCurrentCommand(commandText);
+                historyView.next().ifPresent(nextCommand -> {
+                    commandTextField.setText(nextCommand);
+                    commandTextField.positionCaret(nextCommand.length());
+                });
+                event.consume();
+                break;
+            case DOWN:
+                historyView.updateCurrentCommand(commandText);
+                historyView.previous().ifPresent(nextCommand -> {
+                    commandTextField.setText(nextCommand);
+                    commandTextField.positionCaret(nextCommand.length());
+                });
+                event.consume();
+                break;
+            default:
+                // KeyEvent is not consumed and will continue propagating down.
+            }
+        });
     }
 
     /**

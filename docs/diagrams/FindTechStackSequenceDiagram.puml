@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CodeConnectParser" as CodeConnectParser LOGIC_COLOR
+participant ":FindTechStackCommandParser" as FindTechStackCommandParser LOGIC_COLOR
+participant "fts:FindTechStackCommand" as FindTechStackCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find-ts Java")
+activate LogicManager
+
+LogicManager -> CodeConnectParser : parseCommand("find-ts Java")
+activate CodeConnectParser
+
+create FindTechStackCommandParser
+CodeConnectParser -> FindTechStackCommandParser
+activate FindTechStackCommandParser
+
+FindTechStackCommandParser --> CodeConnectParser
+deactivate FindTechStackCommandParser
+
+CodeConnectParser -> FindTechStackCommandParser : parse("Java")
+activate FindTechStackCommandParser
+
+create FindTechStackCommand
+FindTechStackCommandParser -> FindTechStackCommand
+activate FindTechStackCommand
+
+FindTechStackCommand --> FindTechStackCommandParser :
+deactivate FindTechStackCommand
+
+FindTechStackCommandParser --> CodeConnectParser : fts
+deactivate FindTechStackCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTechStackCommandParser -[hidden]-> CodeConnectParser
+destroy FindTechStackCommandParser
+
+CodeConnectParser --> LogicManager : fts
+deactivate CodeConnectParser
+
+LogicManager -> FindTechStackCommand : execute(m)
+activate FindTechStackCommand
+
+FindTechStackCommand -> Model : updateFilteredContactList(predicate)
+activate Model
+
+Model --> FindTechStackCommand
+deactivate Model
+
+create CommandResult
+FindTechStackCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FinTechStackCommand
+deactivate CommandResult
+
+FindTechStackCommand --> LogicManager : r
+deactivate FindTechStackCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

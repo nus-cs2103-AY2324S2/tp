@@ -9,11 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.contact.Address;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.GitHubUsername;
+import seedu.address.model.contact.Name;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.ProfilePicture;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.techstack.TechStack;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -81,6 +84,31 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String profilePictureURL} into an {@code ProfilePicture}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static ProfilePicture parseProfilePicture(String profilePictureURLArgument) {
+        return new ProfilePicture(profilePictureURLArgument);
+    }
+
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static GitHubUsername parseGitHubUsername(String gitHubUsername) throws ParseException {
+        requireNonNull(gitHubUsername);
+        String trimmedUsername = gitHubUsername.trim();
+        if (!GitHubUsername.isValidGitHubUsername(trimmedUsername)) {
+            throw new ParseException(GitHubUsername.MESSAGE_CONSTRAINTS);
+        }
+        return new GitHubUsername(trimmedUsername);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +121,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String techStack} into a {@code TechStack}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code techStack} is invalid.
+     */
+    public static TechStack parseTechStack(String techStack) throws ParseException {
+        requireNonNull(techStack);
+        String trimmedTechStack = techStack.trim();
+        if (!Tag.isValidTagName(trimmedTechStack)) {
+            throw new ParseException(TechStack.MESSAGE_CONSTRAINTS);
+        }
+        return new TechStack(trimmedTechStack);
+    }
+
+    /**
+     * Parses {@code Collection<String> techStack} into a {@code Set<TechStack>}.
+     */
+    public static Set<TechStack> parseTechStacks(Collection<String> techStack) throws ParseException {
+        requireNonNull(techStack);
+        final Set<TechStack> techStackSet = new HashSet<>();
+        for (String techStackName : techStack) {
+            techStackSet.add(parseTechStack(techStackName));
+        }
+        return techStackSet;
     }
 
     /**

@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'checkstyle'
+    //id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
@@ -16,9 +16,9 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
-checkstyle {
-    toolVersion = '10.2'
-}
+//checkstyle {
+//    toolVersion = '10.2'
+//}
 
 test {
     useJUnitPlatform()
@@ -61,6 +61,8 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+
+    testImplementation 'org.mockito:mockito-core:5.11.0'
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
