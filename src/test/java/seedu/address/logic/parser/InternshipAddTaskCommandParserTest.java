@@ -1,11 +1,5 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.InternshipAddTaskCommand;
-import seedu.address.model.internship.Task;
-
-import org.junit.jupiter.api.Test;
-
 import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.TASK_DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_TASK_AMY;
@@ -13,6 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_SECOND_INTERNSHIP;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.InternshipAddTaskCommand;
+import seedu.address.model.internship.Task;
 
 public class InternshipAddTaskCommandParserTest {
     private static final String SAMPLE_TASK = "Sample task";

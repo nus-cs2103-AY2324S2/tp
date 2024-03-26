@@ -5,6 +5,8 @@ import static seedu.address.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALICE_MICROSOFT;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -17,9 +19,6 @@ import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Task;
-
-import java.util.ArrayList;
-
 
 public class JsonAdaptedInternshipTest {
     private static final String INVALID_COMPANY_NAME = "";

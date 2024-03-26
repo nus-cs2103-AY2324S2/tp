@@ -9,7 +9,8 @@
     "status" : "ongoing",
     "description" : "Use Figma to design User-friendly web interfaces",
     "role" : "Frontend Engineer",
-    "remark" : ""
+    "remark" : "",
+    "taskList": []
   }, {
     "companyName" : "Google",
     "contactName" : "Benson Meier",
@@ -19,7 +20,8 @@
     "status" : "pending",
     "description" : "Write REST APIs for services",
     "role" : "Backend Engineer",
-    "remark" : ""
+    "remark" : "",
+    "taskList": []
   }, {
     "companyName" : "OpenAI",
     "contactName" : "Carl Kurz",
@@ -29,6 +31,7 @@
     "status" : "rejected",
     "description" : "Enter prompts into ChatGPT",
     "role" : "Prompt Engineer",
-    "remark" : ""
+    "remark" : "",
+    "taskList": []
   } ]
 }

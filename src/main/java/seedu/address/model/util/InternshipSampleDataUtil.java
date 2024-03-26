@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
  */
 public class InternshipSampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
-    public static final TaskList EMPTY_TASKLIST = new TaskList("[]");
+    public static final TaskList EMPTY_TASKLIST = new TaskList();
 
     public static Internship[] getSampleInternships() {
         return new Internship[]{

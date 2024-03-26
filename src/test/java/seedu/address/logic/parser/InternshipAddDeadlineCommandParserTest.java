@@ -1,24 +1,20 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.InternshipAddDeadlineCommand;
-import seedu.address.model.internship.Deadline;
-import seedu.address.model.internship.Task;
-
-import org.junit.jupiter.api.Test;
-
 import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.DEADLINE_DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.INVALID_DEADLINE_DESC;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.TASK_DESC_AMY;
 import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_DEADLINE_AMY;
-import static seedu.address.logic.commands.InternshipCommandTestUtil.VALID_TASK_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELECT_TASK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_SECOND_INTERNSHIP;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.InternshipAddDeadlineCommand;
+import seedu.address.model.internship.Deadline;
 
 public class InternshipAddDeadlineCommandParserTest {
     private static final String SAMPLE_DEADLINE = "Sample deadline";
@@ -70,12 +66,12 @@ public class InternshipAddDeadlineCommandParserTest {
                 taskIndex.getOneBased(), DEADLINE_DESC_AMY);
         String userInputZeroInternshipIndex = String.format("%d %s %d %s", 0, PREFIX_SELECT_TASK,
                 taskIndex.getOneBased(), DEADLINE_DESC_AMY);
-        String userInputNegativeTaskIndex = String.format("%d %s %d %s", internshipIndex.getOneBased(), PREFIX_SELECT_TASK,
-                -5, DEADLINE_DESC_AMY);
+        String userInputNegativeTaskIndex = String.format("%d %s %d %s", internshipIndex.getOneBased(),
+                PREFIX_SELECT_TASK, -5, DEADLINE_DESC_AMY);
         String userInputZeroTaskIndex = String.format("%d %s %d %s", internshipIndex.getOneBased(), PREFIX_SELECT_TASK,
                 0, DEADLINE_DESC_AMY);
-        String userInputWithInvalidDeadline = String.format("%d %s %d %s", internshipIndex.getOneBased(), PREFIX_SELECT_TASK,
-                0, INVALID_DEADLINE_DESC);
+        String userInputWithInvalidDeadline = String.format("%d %s %d %s", internshipIndex.getOneBased(),
+                PREFIX_SELECT_TASK, 0, INVALID_DEADLINE_DESC);
         // negative index
         assertParseFailure(parser, userInputNegativeInternshipIndex, MESSAGE_INVALID_FORMAT);
 

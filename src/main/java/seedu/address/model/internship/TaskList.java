@@ -1,10 +1,6 @@
 package seedu.address.model.internship;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import seedu.address.logic.commands.InternshipAddTaskCommand;
 
 /**
  * Represents a list of tasks in the internship book.
@@ -27,34 +23,28 @@ public class TaskList {
     }
 
     /**
-     * Returns the taskList with ArrayList<Task> type. Primarily for JSON purposes.
+     * Adds tasks from a comma-separated string into the task list. Only for testing purposes using TypicalInternships.
+     *
+     * @param tasksString the string containing comma-separated tasks
      */
-    public ArrayList<Task> getArrayListTaskList() {
-        return taskList;
-    }
-
-    /**
-     * Constructs a TaskList object from a string representation of a task list.
-     */
-    public TaskList(String taskListString) {
-        if (taskListString.equals("[]") || taskListString.isEmpty()) {
+    public TaskList(String tasksString) {
+        if (tasksString.equals("") || tasksString.equals(" ")) {
             this.taskList = new ArrayList<>();
         } else {
             ArrayList<Task> taskList = new ArrayList<>();
-            Pattern pattern = Pattern.compile("\\{\"task\": \"(.*?)\", \"deadline\": \"(.*?)\"\\}");
-            Matcher matcher = pattern.matcher(taskListString);
-
-            while (matcher.find()) {
-                String task = matcher.group(1).trim();
-                String deadline = matcher.group(2).trim();
-                if (deadline.isEmpty()) {
-                    taskList.add(new Task(task));
-                } else {
-                    taskList.add(new Task(task, deadline));
-                }
+            String[] tasksArray = tasksString.split(", ");
+            for (String taskDescription : tasksArray) {
+                taskList.add(new Task(taskDescription.trim()));
             }
             this.taskList = taskList;
         }
+    }
+
+    /**
+     * Returns the taskList with {@code ArrayList<Task>} type. Primarily for JSON purposes.
+     */
+    public ArrayList<Task> getArrayListTaskList() {
+        return taskList;
     }
 
     public void addTask(Task task) {
@@ -118,16 +108,24 @@ public class TaskList {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof InternshipAddTaskCommand)) {
+        if (!(other instanceof TaskList)) {
             return false;
         }
 
         TaskList otherTaskList = (TaskList) other;
-        for (int i = 0; i < taskList.size(); i++) {
-            if (!taskList.get(i).equals(otherTaskList.getTask(i + 1))) {
+        if (this.taskList.size() != otherTaskList.taskList.size()) {
+            return false;
+        }
+        for (int i = 0; i < this.taskList.size(); i++) {
+            if (!this.taskList.get(i).equals(otherTaskList.taskList.get(i))) {
                 return false;
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return taskList.hashCode();
     }
 }

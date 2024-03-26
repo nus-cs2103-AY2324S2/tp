@@ -44,8 +44,8 @@ public class InternshipAddDeadlineCommandParser implements InternshipParser<Inte
                     InternshipAddDeadlineCommand.MESSAGE_EMPTY_DEADLINE));
         }
 
-        if (argMultimap.getValue(PREFIX_SELECT_TASK).isEmpty() ||
-                argMultimap.getValue(PREFIX_SELECT_TASK).get().isBlank()) {
+        if (argMultimap.getValue(PREFIX_SELECT_TASK).isEmpty()
+                || argMultimap.getValue(PREFIX_SELECT_TASK).get().isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     InternshipAddDeadlineCommand.MESSAGE_INVALID_TASK_INDEX));
         }

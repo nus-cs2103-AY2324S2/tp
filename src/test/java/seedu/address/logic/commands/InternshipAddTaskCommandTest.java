@@ -36,7 +36,7 @@ public class InternshipAddTaskCommandTest {
         InternshipAddTaskCommand addTaskCommand = new InternshipAddTaskCommand(INDEX_FIRST_INTERNSHIP, DEFAULT_TASK);
 
         String expectedMessage = String.format(InternshipAddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
-                InternshipMessages.format(internshipWithAddedTask));
+                DEFAULT_TASK);
 
         InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()),
                 new InternshipUserPrefs());

@@ -23,20 +23,12 @@ public class TaskListTest {
     }
 
     @Test
-    public void JSONConstructorTest() {
-        TaskList taskList = new TaskList("[{\"task\": \"Submit Supporting Documents\", \"deadline\": \"\"},"
-                + " {\"task\": \"Finish Resume\", \"deadline\": \"\"}]");
-        assertEquals(taskList.getTask(1), new Task("Submit Supporting Documents"));
-        assertEquals(taskList.getTask(2), new Task("Finish Resume"));
-    }
-
-    @Test
     public void getTaskTest() {
         TaskList taskList = new TaskList();
         taskList.addTask(new Task("Submit Supporting Documents"));
         taskList.addTask(new Task("Finish Resume"));
-        assertEquals(taskList.getTask(1), new Task("Submit Supporting Documents"));
-        assertEquals(taskList.getTask(2), new Task("Finish Resume"));
+        assertEquals(taskList.getTask(0), new Task("Submit Supporting Documents"));
+        assertEquals(taskList.getTask(1), new Task("Finish Resume"));
     }
 
     @Test
@@ -54,8 +46,10 @@ public class TaskListTest {
         taskList.addTask(new Task("Finish Resume"));
 
         // same values -> returns true
-        assertTrue(taskList.equals(new TaskList("[{\"task\": \"Submit Supporting Documents\", \"deadline\":"
-                + " \"\"}, {\"task\": \"Finish Resume\", \"deadline\": \"\"}]")));
+        TaskList taskList2 = new TaskList();
+        taskList2.addTask(new Task("Submit Supporting Documents"));
+        taskList2.addTask(new Task("Finish Resume"));
+        assertTrue(taskList2.equals(taskList));
 
         // same object -> returns true
         assertTrue(taskList.equals(taskList));
@@ -67,7 +61,8 @@ public class TaskListTest {
         assertFalse(taskList.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(taskList.equals(new TaskList("[{\"task\": \"Submit Supporting Documents\", \"deadline\": \"\"},"
-                + " {\"task\": \"Complete Behavioural Assessment Form\", \"deadline\": \"\"}]")));
+        TaskList taskList3 = new TaskList();
+        taskList3.addTask(new Task("Submit Supporting Documents"));
+        assertFalse(taskList.equals(taskList3));
     }
 }

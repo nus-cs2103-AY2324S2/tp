@@ -20,6 +20,7 @@ import seedu.address.model.InternshipModelManager;
 import seedu.address.model.InternshipUserPrefs;
 import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Internship;
+import seedu.address.testutil.InternshipBuilder;
 
 /**
  * Contains integration tests (interaction with the InternshipModel) and unit tests for InternshipAddDeadlineCommand.
@@ -27,14 +28,22 @@ import seedu.address.model.internship.Internship;
 public class InternshipAddDeadlineCommandTest {
     private static final Index INDEX_FIRST_TASK = Index.fromOneBased(1);
     private static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
-    private static final Deadline DEFAULT_DEADLINE = new Deadline("22/04/2024");
+    private static final Deadline DEFAULT_DEADLINE = new Deadline("20/04/2024");
     private final InternshipModel model = new InternshipModelManager(getTypicalInternshipData(),
             new InternshipUserPrefs());
 
     @Test
     public void execute_internshipWithSpecifiedTaskAndDeadline_success() {
-        Internship internshipWithAddedDeadline = getTypicalInternships().get(0);
-        internshipWithAddedDeadline.getTaskList().getTask(1).addDeadline(DEFAULT_DEADLINE);
+        //this is ALICE_MICROSOFT, cannot add deadline to it directly because the change will persist and affect
+        //other tests
+        Internship internshipWithAddedDeadline = new InternshipBuilder().withCompanyName("Microsoft")
+                .withContactName("Alice Pauline").withContactEmail("alice@example.com").withContactNumber("94351253")
+                .withApplicationStatus("ongoing").withLocation("remote")
+                .withDescription("Use Figma to design User-friendly web interfaces").withRole("Frontend Engineer")
+                .withRemark("Has a behavioural interview!")
+                .withTaskList("Submit Documents, Submit Resume").build();
+        internshipWithAddedDeadline.getTaskList().getTask(0).addDeadline(DEFAULT_DEADLINE);
+
         InternshipAddDeadlineCommand addDeadlineCommand = new InternshipAddDeadlineCommand(INDEX_FIRST_INTERNSHIP,
                 INDEX_FIRST_TASK, DEFAULT_DEADLINE);
 
@@ -43,7 +52,6 @@ public class InternshipAddDeadlineCommandTest {
 
         InternshipModel expectedModel = new InternshipModelManager(new InternshipData(model.getInternshipData()),
                 new InternshipUserPrefs());
-        expectedModel.setInternship(model.getFilteredInternshipList().get(0), internshipWithAddedDeadline);
 
         assertCommandSuccess(addDeadlineCommand, model, expectedMessage, expectedModel);
     }

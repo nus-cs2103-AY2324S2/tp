@@ -1,13 +1,13 @@
 package seedu.address.model.internship;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.internship.Deadline.isValidDeadline;
+
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.internship.Deadline.isValidDeadline;
 
 /**
  * Represents an internship's Task in the internship book

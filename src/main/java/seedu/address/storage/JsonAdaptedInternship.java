@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,11 +18,6 @@ import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Task;
 import seedu.address.model.internship.TaskList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Jackson-friendly version of {@link Internship}.

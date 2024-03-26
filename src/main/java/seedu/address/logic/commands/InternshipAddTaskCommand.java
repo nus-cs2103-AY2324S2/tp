@@ -5,25 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.InternshipMessages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.InternshipModel;
-import seedu.address.model.internship.ApplicationStatus;
-import seedu.address.model.internship.CompanyName;
-import seedu.address.model.internship.ContactEmail;
-import seedu.address.model.internship.ContactName;
-import seedu.address.model.internship.ContactNumber;
-import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.Location;
-import seedu.address.model.internship.Remark;
-import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Task;
 import seedu.address.model.internship.TaskList;
 
