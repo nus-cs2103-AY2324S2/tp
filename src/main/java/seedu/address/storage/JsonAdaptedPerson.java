@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Book;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.BookList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.Name;
@@ -32,7 +31,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String meritScore;
-    private final ArrayList<Book> bookCollection;
+    private final ArrayList<JsonAdaptedBook> bookList = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -42,14 +41,16 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("meritScore") String meritScore,
-            @JsonProperty("bookTitle") ArrayList<Book> bookCollection,
+            @JsonProperty("bookList") ArrayList<JsonAdaptedBook> bookList,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.meritScore = meritScore;
-        this.bookCollection = bookCollection;
+        if (bookList != null) {
+            this.bookList.addAll(bookList);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -64,7 +65,9 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         meritScore = source.getMeritScore().meritScore;
-        bookCollection = source.getBookList().getBookCollection();
+        bookList.addAll(source.getBookList().stream()
+                .map(JsonAdaptedBook::new)
+                .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -81,6 +84,10 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+        final List<Book> personBooks = new ArrayList<>();
+        for (JsonAdaptedBook book : bookList) {
+            personBooks.add(book.toModelType());
         }
 
         if (name == null) {
@@ -124,20 +131,7 @@ class JsonAdaptedPerson {
         }
         final MeritScore modelMeritScore = new MeritScore(meritScore);
 
-        if (bookCollection == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    BookList.class.getSimpleName()));
-        }
-
-        for (int i = 0; i < bookCollection.size(); i++) {
-            Book currentBook = bookCollection.get(i);
-            String currentBookTitle = currentBook.bookTitle;
-            if (!Book.isValidBookTitle(currentBookTitle)) {
-                throw new IllegalValueException(Book.MESSAGE_CONSTRAINTS);
-            }
-        }
-
-        final BookList modelBookList = new BookList(bookCollection);
+        final ArrayList<Book> modelBookList = new ArrayList<>(personBooks);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeritScore, modelBookList, modelTags);

@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.book.Book;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +27,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final MeritScore meritScore;
-    private final BookList bookList;
+    private final ArrayList<Book> bookList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -40,7 +43,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.meritScore = new MeritScore(0);
-        this.bookList = new BookList();
+        this.bookList = new ArrayList<>();
     }
 
     /**
@@ -48,7 +51,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  MeritScore meritScore, BookList bookList, Set<Tag> tags) {
+                  MeritScore meritScore, ArrayList<Book> bookList, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -93,8 +96,20 @@ public class Person {
     /**
      * @return the book list
      */
-    public BookList getBookList() {
+    public ArrayList<Book> getBookList() {
         return bookList;
+    }
+
+    public String getBookListToString() {
+        this.bookList.sort(Comparator.comparing(book -> book.bookTitle));
+        String result = "";
+        for (int i = 0; i < bookList.size(); i++) {
+            result += this.bookList.get(i).bookTitle.toString();
+            if (i != bookList.size() - 1) {
+                result += "\n";
+            }
+        }
+        return result;
     }
 
     /**

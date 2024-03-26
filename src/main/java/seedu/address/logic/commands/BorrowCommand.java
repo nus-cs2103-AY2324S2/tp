@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKLIST;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -11,7 +12,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.book.Book;
-import seedu.address.model.person.BookList;
 import seedu.address.model.person.Person;
 
 /**
@@ -64,8 +64,8 @@ public class BorrowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE);
         }
 
-        personToEdit.getBookList().addBook(book);
-        BookList updatedBookList = personToEdit.getBookList();
+        personToEdit.getBookList().add(book);
+        ArrayList<Book> updatedBookList = personToEdit.getBookList();
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
             personToEdit.getAddress(), personToEdit.getMeritScore().decrementScore(), updatedBookList,
