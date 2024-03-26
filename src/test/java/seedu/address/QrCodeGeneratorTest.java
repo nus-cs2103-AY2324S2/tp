@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import com.google.zxing.WriterException;
 
+import seedu.address.logic.QrCodeGenerator;
+
 class QrCodeGeneratorTest {
 
     @Test

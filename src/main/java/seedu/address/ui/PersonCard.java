@@ -4,12 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -58,24 +58,10 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         // Set fields with information from the person
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().getValue());
-        phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
-        email.setText(person.getEmail().getValue());
+        name.setText(person.getName().toString());
+        phone.setText(person.getPhone().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getValue()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
-        note.setText(person.getNote().getValue());
-        qrcode.setImage(new Image(person.getQrCodePath().toUri().toString()));
-
-        // Bind manageability (presence) of node based on presence of value for optional
-        // fields
-        address.setVisible(!person.getAddress().getValue().isEmpty());
-        email.setVisible(!person.getEmail().getValue().isEmpty());
-        note.setVisible(!person.getNote().getValue().isEmpty());
-
-        address.managedProperty().bind(address.visibleProperty());
-        email.managedProperty().bind(email.visibleProperty());
-        note.managedProperty().bind(note.visibleProperty());
+                .sorted(Comparator.comparing(Tag::toString))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
     }
 }

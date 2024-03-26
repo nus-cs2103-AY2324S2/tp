@@ -21,17 +21,18 @@ public class NoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the note of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing note will be overwritten by the input.\n"
+            + ": Updates and overrides the note of the client identified "
+            + "by their corresponding index.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NOTE + "NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "note/ Likes to swim.";
 
-    public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
+    public static final String MESSAGE_ADD_NOTE_SUCCESS =
+            "Successfully added note to client!\n---------------------------------\n%1$s";
 
-    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
+    public static final String MESSAGE_DELETE_NOTE_SUCCESS =
+            "Successfully removed note from client!\n--------------------------------------\n%1$s";
 
     private final Index index;
     private final Note note;
@@ -73,7 +74,7 @@ public class NoteCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !note.getValue().isEmpty() ? MESSAGE_ADD_NOTE_SUCCESS : MESSAGE_DELETE_NOTE_SUCCESS;
-        return String.format(message, Messages.format(personToEdit));
+        return String.format(message, personToEdit.getFormattedMessage());
     }
 
     @Override

@@ -59,6 +59,17 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Person ALICE_WITHOUT_EMAIL = new PersonBuilder().withName("Alice Pauline")
+            .withAddress("").withEmail("")
+            .withPhone("94351253")
+            .withTags()
+            .withNote("Best friend").build();
+
+    public static final Person BENSON_WITHOUT_EMAIL = new PersonBuilder().withName("Benson Meier")
+            .withAddress("")
+            .withEmail("").withPhone("98765432")
+            .withTags().build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {
@@ -77,5 +88,17 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static AddressBook getTypicalAddressBookWithoutEmail() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersonsWithoutEmail()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    public static List<Person> getTypicalPersonsWithoutEmail() {
+        return new ArrayList<>(Arrays.asList(ALICE_WITHOUT_EMAIL, BENSON_WITHOUT_EMAIL));
     }
 }

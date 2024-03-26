@@ -8,8 +8,10 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="FitBook" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
@@ -40,18 +42,24 @@
         </StackPane>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+                   minHeight="120" prefHeight="120" maxHeight="120">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                          <VBox fx:id="personList" maxWidth="340.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                     <children>
+                   <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     </children>
+              </VBox>
+                  <StackPane fx:id="personDetailsPanelPlaceholder" alignment="TOP_RIGHT" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
