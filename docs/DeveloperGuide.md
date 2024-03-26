@@ -189,6 +189,10 @@ Appointment List are saved under a separate file `appointments.json` in the data
 
 
 #### Design Considerations
+**Aspect: Patient ID**
+- We needed some method to ensure that the patient was unique, therefore a running Id was required for the patient that could act like the primary key of the patient object.
+
+
 **Aspect: Appointment ID**
 - **Alternative 1 (current choice):** Generate auto-increasing fixed appointment ID when creating a new appointment. Fail commands that attempt to set the appointment ID still increase the appointment ID.
   - Pros: 
