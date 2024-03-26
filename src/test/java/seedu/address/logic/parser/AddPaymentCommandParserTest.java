@@ -31,12 +31,10 @@ public class AddPaymentCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
 
         // missing ID value
-        assertParseFailure(parser, " -id -payment 100",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " -id -payment 100", Id.MESSAGE_CONSTRAINTS);
 
         // missing payment value
-        assertParseFailure(parser, " -id 000001 -payment ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPaymentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " -id 000001 -payment ", Payment.MESSAGE_INVALID_PAYMENT);
 
         // non-numeric payment amount
         assertParseFailure(parser, " -id 000002 -payment xyz",

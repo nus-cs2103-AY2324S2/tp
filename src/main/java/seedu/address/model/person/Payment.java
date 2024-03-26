@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Payment {
 
-    public static final String MESSAGE_CONSTRAINTS = "Payments must be a non-negative amount";
+    public static final String MESSAGE_CONSTRAINTS = "Payments must be a non-negative amount.";
 
-    public static final String MESSAGE_INVALID_PAYMENT = "Payment amount must be a valid number";
+    public static final String MESSAGE_INVALID_PAYMENT = "Payment amount must be a valid number.";
 
     public final String value;
     private final double amount;

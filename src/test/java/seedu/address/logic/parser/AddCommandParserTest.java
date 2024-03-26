@@ -13,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUBJECT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PAYMENT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PAYMENT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -73,7 +75,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_repeatedNonTagValue_failure() {
         String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + SUBJECT_DESC_BOB + PAYMENT_DESC_BOB;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
@@ -94,7 +96,7 @@ public class AddCommandParserTest {
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
-                        + validExpectedPersonString,
+                        + PAYMENT_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
 
         // invalid value followed by valid value
@@ -159,11 +161,13 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB + SUBJECT_DESC_BOB
+                        + PAYMENT_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
+                        + SUBJECT_DESC_BOB + PAYMENT_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing

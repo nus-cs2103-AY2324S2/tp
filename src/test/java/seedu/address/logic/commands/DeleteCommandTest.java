@@ -28,7 +28,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(ID_FIRST_PERSON.getInt());
+        Person personToDelete = model.getPersonByUniqueId(ID_FIRST_PERSON.toString());
         DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON.toString());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -45,14 +45,14 @@ public class DeleteCommandTest {
         int outOfBoundIndex = model.getFilteredPersonList().size() + 1;
         DeleteCommand deleteCommand = new DeleteCommand(String.valueOf(outOfBoundIndex));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteCommand.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, ID_FIRST_PERSON.getInt());
 
-        Person personToDelete = model.getFilteredPersonList().get(ID_FIRST_PERSON.getInt());
+        Person personToDelete = model.getPersonByUniqueId(ID_FIRST_PERSON.toString());
         DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON.toString());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -73,9 +73,9 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(String.valueOf(outOfBoundIndex));
+        DeleteCommand deleteCommand = new DeleteCommand(ID_SECOND_PERSON.toString());
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteCommand.MESSAGE_PERSON_NOT_FOUND);
     }
 
     @Test

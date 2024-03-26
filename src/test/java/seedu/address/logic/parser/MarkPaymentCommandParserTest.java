@@ -28,8 +28,7 @@ public class MarkPaymentCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkPaymentCommand.MESSAGE_USAGE));
 
         // missing payment amount
-        assertParseFailure(parser, " -id 000002 -payment ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkPaymentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " -id 000002 -payment ", Payment.MESSAGE_INVALID_PAYMENT);
 
         // non-numeric payment amount
         assertParseFailure(parser, " -id 000002 -payment xyz",
