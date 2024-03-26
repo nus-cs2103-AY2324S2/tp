@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDateTime;
@@ -16,6 +18,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
@@ -71,6 +74,37 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+    @Test
+    public void parseIndices_multipleValidInput_success() throws Exception {
+        Index[] expected = new Index[]{INDEX_FIRST_PERSON, INDEX_FIRST_NOTE};
+        assertArrayEquals(expected, ParserUtil.parseIndices("1 1"));
+    }
+
+    @Test
+    public void parseIndices_validInputWithWhitespaces_success() throws Exception {
+        Index[] expected = new Index[]{INDEX_FIRST_PERSON, INDEX_FIRST_NOTE};
+        assertArrayEquals(expected, ParserUtil.parseIndices("  1   1  "));
+    }
+
+    @Test
+    public void parseIndices_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1 a 3"));
+    }
+
+    @Test
+    public void parseIndices_emptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(""));
+    }
+
+    @Test
+    public void parseIndices_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(Long.toString((long) Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseIndices_onlyWhitespaces_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("    "));
     }
 
     @Test

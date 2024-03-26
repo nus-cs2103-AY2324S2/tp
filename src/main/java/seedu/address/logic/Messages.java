@@ -55,7 +55,7 @@ public class Messages {
      */
     public static String format(Note note) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Date: ")
+        builder.append(" Date: ")
                 .append(note.getDateTime())
                 .append("; Description: ")
                 .append(note.getDescription());
