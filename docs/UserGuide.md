@@ -283,16 +283,16 @@ Some commands require you to include parameters. These parameters are identified
 
 ## Command summary
 
-| Action | Format, Examples
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action | Format, Examples                                                                                                                                                                                      
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
-| **Clear**  | `clear`                                                                                                                                                                                        |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                              |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                    |
-| **Copy**   | `copy`                                                                                                                                                                                         |
-| **List**   | `list`                                                                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                                                                         |
-| **Export to CSV** | `export`                                                                                                                                                                                       |
-| **Import** | `import FILEPATH`                                                                                                                                                                              |
+| **Clear**  | `clear`                                                                                                                                                                                               |
+| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                       |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
+| **Find**   | `find PREFIX/PARAMETER KEYWORD` e.g., `find n/James`                                                                                                                                                  |
+| **Copy**   | `copy`                                                                                                                                                                                                |
+| **List**   | `list`                                                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                                                |
+| **Export to CSV** | `export`                                                                                                                                                                                              |
+| **Import** | `import i/FILEPATH`                                                                                                                                                                                   |
 
