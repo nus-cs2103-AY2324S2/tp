@@ -1,3 +1,12 @@
+---
+layout: page
+title: User Guide
+---
+Gene-nie is our address book reimagined. It is a desktop app able to not only manage your contacts, but also to help you keep track of your genetic information. Gene-nie acts as your personal autobiographer, providing you with information on your family tree and history.
+
+* Table of Contents
+{:toc}
+
 <h1 align="center"><i>GENE-NIE USER GUIDE</i></h1>
 <p align="center">
 Gene-nie is our address book reimagined. It is a desktop app able to not only manage your contacts, but also to help you 
