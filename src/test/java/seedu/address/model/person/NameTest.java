@@ -54,7 +54,7 @@ public class NameTest {
         assertFalse(tname.compareTo(fname) == 0);
 
         // Name object where method is invoked upon with lower lexicographical ordering
-        // than the Name object passed in as argument -> returns -1
+        // than the Name object passed in as argument -> returns negative value
         assertTrue(fname.compareTo(sname) < 0);
         assertTrue(sname.compareTo(tname) < 0);
         assertTrue(fname.compareTo(tname) < 0);
@@ -63,7 +63,7 @@ public class NameTest {
         assertFalse(tname.compareTo(fname) < 0);
 
         // Name object where method is invoked upon with higher lexicographical ordering
-        // than the Name object passed in as argument -> returns 1
+        // than the Name object passed in as argument -> returns positive value
         assertTrue(sname.compareTo(fname) > 0);
         assertTrue(tname.compareTo(sname) > 0);
         assertTrue(tname.compareTo(fname) > 0);
