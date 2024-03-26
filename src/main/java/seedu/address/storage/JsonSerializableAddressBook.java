@@ -66,6 +66,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasPerson(archivedPerson)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
+            archivedPerson.setArchived(true);
             addressBook.addArchivedPerson(archivedPerson);
         }
         return addressBook;
