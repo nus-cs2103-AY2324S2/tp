@@ -18,6 +18,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteMemberCommand;
 import seedu.address.logic.commands.DeleteSkillCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditGroupCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -128,6 +129,13 @@ public class MatchMateParserTest {
     public void parseCommand_deleteMember() throws Exception {
         assertTrue(parser.parseCommand(DeleteMemberCommand.COMMAND_WORD + " CS2103T Group -cm John Doe")
                 instanceof DeleteMemberCommand);
+    }
+
+    @Test
+    public void parseCommand_editGroup() throws Exception {
+        assertTrue(parser.parseCommand(EditGroupCommand.COMMAND_WORD
+                + " CS2103T Group -t https://t.me/+3Jh9eXVeRh7qoaIN")
+                instanceof EditGroupCommand);
     }
 
     @Test
