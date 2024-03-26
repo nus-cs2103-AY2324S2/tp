@@ -78,8 +78,6 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
         }
 
-        System.out.println(command);
-
         switch (command) {
 
         case AddCommand.COMMAND_WORD:
