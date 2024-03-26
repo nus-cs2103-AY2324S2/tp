@@ -6,14 +6,13 @@ import seedu.address.model.person.Staff;
 import seedu.address.model.person.Supplier;
 
 /**
- * Container for user note command visible messages.
+ * Container for user unpin command visible messages.
  */
-public class NoteMessages extends Messages {
-    public static final String MESSAGE_ADD_NOTE_SUCCESS =
-            "Woof! Added note to Pooch Contact %1$s successfully! \uD83D\uDC36";
-
-    public static final String MESSAGE_NOTE_NAME_NOT_FOUND = "Failed to add note to Pooch Contact - "
-            + "Name does not exist in our address book \uD83D\uDC3E";
+public class UnpinMessages {
+    public static final String MESSAGE_UNPIN_PERSON_SUCCESS = "Woof! Unpinned %1$s successfully! \uD83D\uDC36";
+    public static final String MESSAGE_UNPIN_INVALID_NAME = "Failed to unpin Pooch Contact. %1$s \uD83D\uDC3E";
+    public static final String MESSAGE_UNPIN_MISSING_NAME = "Failed to unpin Pooch Contact - "
+            + "Unpin requires a name field. %1$s \uD83D\uDC3E";
 
     /**
      * Formats the {@code person} for display to the user.

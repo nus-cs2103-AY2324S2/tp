@@ -46,6 +46,7 @@ class JsonAdaptedPerson {
 
     private String commission;
     private String note;
+    private String pin;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -61,6 +62,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("product") String product,
                              @JsonProperty("price") String price,
                              @JsonProperty("skill") String skill,
+                             @JsonProperty("pin") String pin,
                              @JsonProperty("commission") String commission) {
         this.name = name;
         this.phone = phone;
@@ -72,6 +74,7 @@ class JsonAdaptedPerson {
         this.price = price;
         this.skill = skill;
         this.note = note;
+        this.pin = pin;
         this.commission = commission;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -87,6 +90,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         note = source.getNote().toString();
+        pin = source.getPin().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,6 +118,10 @@ class JsonAdaptedPerson {
 
     public void setCommission(String commission) {
         this.commission = commission;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     /**
@@ -173,6 +181,9 @@ class JsonAdaptedPerson {
             Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress,
                     modelTags, modelSalary, modelEmployment);
             currStaff.setNoteContent(note);
+            if (pin.equals("true")) {
+                currStaff.toPin();
+            }
             return currStaff;
         }
 
@@ -188,6 +199,9 @@ class JsonAdaptedPerson {
             Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                     modelProduct, modelPrice);
             currSupplier.setNoteContent(note);
+            if (pin.equals("true")) {
+                currSupplier.toPin();
+            }
             return currSupplier;
         }
 
@@ -203,8 +217,12 @@ class JsonAdaptedPerson {
             Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                     modelSkill, modelCommission);
             currMaintainer.setNoteContent(note);
+            if (pin.equals("true")) {
+                currMaintainer.toPin();
+            }
             return currMaintainer;
         }
+
 
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
@@ -212,9 +230,14 @@ class JsonAdaptedPerson {
         if (!Note.isValidNote(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
+
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+        Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+        if (pin.equals("true")) {
+            personToAdd.toPin();
+        }
+        return personToAdd;
     }
 
 }
