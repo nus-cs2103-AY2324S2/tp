@@ -24,9 +24,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @JsonIgnore
     public static final String MESSAGE_REDO_STACK_EMPTY = "There are no previous undo commands to reverse.";
     @JsonIgnore
-    private final Stack<UniquePersonList> undoList = new Stack<>();
+    private final Stack<UniquePersonList> undoStack = new Stack<>();
     @JsonIgnore
-    private final Stack<UniquePersonList> redoList = new Stack<>();
+    private final Stack<UniquePersonList> redoStack = new Stack<>();
 
     private final UniquePersonList persons = new UniquePersonList();
 
@@ -46,8 +46,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Empties the redoList.
      */
     private void emptyRedoList() {
-        while (!redoList.empty()) {
-            redoList.pop();
+        while (!redoStack.empty()) {
+            redoStack.pop();
         }
     }
 
@@ -65,32 +65,32 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     private void save() {
         emptyRedoList();
-        savePersonsTo(undoList);
+        savePersonsTo(undoStack);
     }
 
     /**
      * Returns true if there are states to reverse to.
      */
     public boolean canUndo() {
-        return !undoList.empty();
+        return !undoStack.empty();
     }
 
     /**
      * Undoes the latest change to address book.
      */
     public void undo() {
-        if (undoList.empty()) {
+        if (undoStack.empty()) {
             throw new AddressBookException(MESSAGE_UNDO_STACK_EMPTY);
         }
-        savePersonsTo(redoList);
-        persons.setPersons(undoList.pop());
+        savePersonsTo(redoStack);
+        persons.setPersons(undoStack.pop());
     }
 
     /**
      * Returns true if there are undo states to reverse.
      */
     public boolean canRedo() {
-        return !redoList.empty();
+        return !redoStack.empty();
     }
 
     /**
@@ -98,11 +98,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Does not reverse if a modifying command is executed after undo command.
      */
     public void redo() {
-        if (redoList.empty()) {
+        if (redoStack.empty()) {
             throw new AddressBookException(MESSAGE_REDO_STACK_EMPTY);
         }
-        savePersonsTo(undoList);
-        persons.setPersons(redoList.pop());
+        savePersonsTo(undoStack);
+        persons.setPersons(redoStack.pop());
     }
 
     //// list overwrite operations
