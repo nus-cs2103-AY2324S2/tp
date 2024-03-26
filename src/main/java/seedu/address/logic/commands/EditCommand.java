@@ -32,14 +32,14 @@ import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing client in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -52,9 +52,9 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -170,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, meeting, tags);
         }
 
         public void setName(Name name) {
