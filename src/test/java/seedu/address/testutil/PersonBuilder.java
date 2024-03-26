@@ -21,7 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "";
-    public static final String DEFAULT_TAG = "NA";
+    public static final String DEFAULT_TAG = "NR";
     public static final String DEFAULT_JOB_DESCRIPTION = "Software Developer Intern";
     public static final String DEFAULT_INTERVIEW_DATE = null;
     public static final String DEFAULT_INTERN_DURATION = "6 months";

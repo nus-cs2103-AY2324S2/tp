@@ -10,6 +10,7 @@ enum Tags {
     R("Reject"),
     O("Offer");
 
+
     public final String descriptiveName;
 
     Tags(String descriptiveName) {
@@ -33,7 +34,7 @@ enum Tags {
                 return tag;
             }
         }
-        throw new IllegalArgumentException("Invalid tag: " + input);
+         throw new IllegalArgumentException("Invalid tag: " + input);
     }
 }
 
@@ -44,6 +45,7 @@ enum Tags {
 public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags should only contain NR, OA, I, R and O";
     public final Tags value;
+    public final String tagInput;
 
     /**
      * Constructs a {@code Tag}.
@@ -52,6 +54,7 @@ public class Tag {
      */
     public Tag(String tag) {
         requireNonNull(tag);
+        this.tagInput = tag;
         Tags enumTag = Tags.fromString(tag);
         checkArgument(Tags.isValidTag(tag), MESSAGE_CONSTRAINTS);
         this.value = enumTag;
@@ -98,6 +101,11 @@ public class Tag {
     public String getTagName() {
         return this.value.descriptiveName;
     }
+
+    public String getTagShort() {
+        return this.tagInput;
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();
