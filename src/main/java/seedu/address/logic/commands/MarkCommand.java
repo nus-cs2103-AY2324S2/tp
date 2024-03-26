@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class AttendanceCommand extends Command {
+public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
@@ -34,19 +34,19 @@ public class AttendanceCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Attendance successfully marked for %1$s";
 
-    private static final Logger logger = LogsCenter.getLogger(AttendanceCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
     private final Week week;
     private final List<Index> absentees;
 
     /**
-     * Creates an AttendanceCommand to add the specified {@code Person}
+     * Creates an MarkCommand to add the specified {@code Person}
      */
-    public AttendanceCommand(Week week, List<Index> absentees) {
+    public MarkCommand(Week week, List<Index> absentees) {
         requireNonNull(week);
         requireNonNull(absentees);
         this.week = week;
         this.absentees = absentees;
-        logger.info("AttendanceCommand created for " + week + " with absentees: " + absentees);
+        logger.info("MarkCommand created for " + week + " with absentees: " + absentees);
     }
 
     @Override
@@ -82,12 +82,12 @@ public class AttendanceCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AttendanceCommand)) {
+        if (!(other instanceof MarkCommand)) {
             return false;
         }
 
-        AttendanceCommand otherAttendanceCommand = (AttendanceCommand) other;
-        return week.equals(otherAttendanceCommand.week) && absentees.equals(otherAttendanceCommand.absentees);
+        MarkCommand otherMarkCommand = (MarkCommand) other;
+        return week.equals(otherMarkCommand.week) && absentees.equals(otherMarkCommand.absentees);
     }
 
     @Override
