@@ -63,7 +63,7 @@ public class TaskList {
 
     public Task getTask(int index) {
         // Index is 1-based
-        return taskList.get(index - 1);
+        return taskList.get(index);
     }
 
     /**

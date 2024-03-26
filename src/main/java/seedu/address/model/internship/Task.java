@@ -1,5 +1,7 @@
 package seedu.address.model.internship;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -55,23 +57,23 @@ public class Task {
      * Constructs a {@code Task}.
      * @param task
      * @param deadline
+     * @param isDeadlineSet
      */
     @JsonCreator
     public Task(@JsonProperty("task") String task,
-                @JsonProperty("deadline") String deadline,
+                @JsonProperty("deadline") Map<String, String> deadlineMap,
                 @JsonProperty("isDeadlineSet") boolean isDeadlineSet) {
         requireNonNull(task);
         checkArgument(isValidTask(task), MESSAGE_CONSTRAINTS);
         this.task = task;
 
-        // Only create a Deadline object if the deadline is not null and isDeadlineSet is true
-        if (isDeadlineSet && deadline != null) {
-            checkArgument(isValidDeadline(deadline), Deadline.MESSAGE_CONSTRAINTS); // Assuming Deadline has its MESSAGE_CONSTRAINTS
-            this.deadline = new Deadline(deadline);
+        if (isDeadlineSet && deadlineMap != null && deadlineMap.containsKey("deadline")) {
+            String deadlineStr = deadlineMap.get("deadline");
+            this.deadline = new Deadline(deadlineStr);
         } else {
             this.deadline = null;
         }
-        this.isDeadlineSet = isDeadlineSet || deadline != null;
+        this.isDeadlineSet = isDeadlineSet;
     }
 
 
