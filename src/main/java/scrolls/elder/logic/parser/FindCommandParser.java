@@ -58,7 +58,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     }
 
-    private static FindType parseForRoles(String[] nameKeywords) throws ParseException{
+    private static FindType parseForRoles(String[] nameKeywords) throws ParseException {
         boolean searchVolunteer = false;
         boolean searchBefriendee = false;
 
@@ -79,7 +79,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             searchVolunteer = false;
         }
 
-         if (searchVolunteer) {
+        if (searchVolunteer) {
             return FindType.VOLUNTEER_ONLY;
         } else if (searchBefriendee) {
             return FindType.BEFRIENDEE_ONLY;

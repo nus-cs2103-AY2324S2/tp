@@ -24,6 +24,9 @@ public class FindCommand extends Command {
     private final Boolean searchVolunteer;
     private final Boolean searchBefriendee;
 
+    /**
+     * Creates a FindCommand to find the specified {@code NameContainsKeywordsPredicate}
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate, Boolean searchVolunteer, Boolean searchBefriendee) {
         this.predicate = predicate;
         this.searchBefriendee = searchBefriendee;
@@ -38,17 +41,15 @@ public class FindCommand extends Command {
             model.updateFilteredPersonList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
-        }
 
-        else if (searchVolunteer) {
+        } else if (searchVolunteer) {
             model.updateFilteredVolunteerList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW_WITH_ROLE,
                             model.getFilteredVolunteerList().size(),
                             "volunteer"));
-        }
 
-        else if (searchBefriendee) {
+        } else if (searchBefriendee) {
             model.updateFilteredBefriendeeList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW_WITH_ROLE,

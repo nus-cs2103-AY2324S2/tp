@@ -27,12 +27,12 @@ public class FindCommandParserTest {
         assertParseFailure(parser, CommandTestUtil.ROLE_DESC_BEFRIENDEE,
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser,  CommandTestUtil.ROLE_DESC_VOLUNTEER,
+        assertParseFailure(parser, CommandTestUtil.ROLE_DESC_VOLUNTEER,
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_validArgs_findAllPersons_returnsFindCommand() {
+    public void parse_validArgsFindAllPersons_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
@@ -45,7 +45,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_findVolunteer_returnsFindCommand() {
+    public void parse_validArgsFindVolunteer_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
@@ -58,7 +58,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_findBefriendee_returnsFindCommand() {
+    public void parse_validArgsFindBefriendee_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
