@@ -18,6 +18,7 @@ Person *--> Name
 Person *--> Email
 Person *--> Address
 Person *--> Course
+Person *--> Role
 Person *--> "*" Phone
 
 @enduml
