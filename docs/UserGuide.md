@@ -84,7 +84,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -94,7 +94,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
   e.g. in `add /com COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add /com Google`.
 
 * Items in square brackets are optional.<br>
-  e.g `/com COMPANY_NAME [/poc NAME_OF_CONTACT]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `/com COMPANY_NAME [/poc NAME_OF_CONTACT]` can be used as `/com Alibaba /poc Jack Ma` or as `/com Alibaba`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `/com COMPANY_NAME /desc DESCRIPTION`, `/desc DESCRIPTION /com COMPANY_NAME` is also acceptable.
