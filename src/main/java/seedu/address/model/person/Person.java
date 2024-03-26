@@ -100,6 +100,15 @@ public class Person {
     }
 
     /**
+     * Removes an order from the order list
+     * @param order the order to be removed
+     */
+    public void removeOrder(Order order) {
+        orders.remove(order);
+    }
+
+
+    /**
      * Sets the person specified by the contact as favourite
      */
     public void addFavourite() {

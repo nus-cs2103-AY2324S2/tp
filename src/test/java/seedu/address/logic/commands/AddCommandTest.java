@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -166,6 +167,16 @@ public class AddCommandTest {
 
         @Override
         public ArrayList<Order> getOrders(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteOrder(Person person, Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Order> getSortedOrders(Person person) {
             throw new AssertionError("This method should not be called.");
         }
     }

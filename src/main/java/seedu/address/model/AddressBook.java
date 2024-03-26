@@ -107,6 +107,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Deletes an order from the person.
+     * The person must exist in the address book.
+     */
+    public void deleteOrder(Person target, Order order) {
+        requireNonNull(target);
+        requireNonNull(order);
+
+        target.removeOrder(order);
+        persons.setPerson(target, target);
+    }
+
+    /**
      * Gets the orders of the person.
      *  The person must exist in the address book.
      */
