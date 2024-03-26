@@ -23,9 +23,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, FindCommand.ACCEPTED_PREFIXES);
 
         Prefix prefix = extractPrefixForFindCommand(argMultimap);
+        String keyword = extractValidKeyword(argMultimap, prefix);
+        
 
         return new FindCommand(
-            new PersonDetailContainsKeywordPredicate(prefix, argMultimap.getValue(prefix).get()));
+            new PersonDetailContainsKeywordPredicate(prefix, keyword));
     }
 
     /**
@@ -46,5 +48,18 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
-
+    
+    /**
+     * Checks if the value of the given ArgumentMultimap is a positive integer
+     * if the prefix is PREFIX_LESSTHAN or PREFIX_GREATERTHAN.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    private String extractValidKeyword(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
+        if (prefix.equals(CliSyntax.PREFIX_LESSTHAN) || prefix.equals(CliSyntax.PREFIX_GREATERTHAN)) {
+            if (!argMultimap.getValue(prefix).get().matches("\\d+")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+        }
+        return argMultimap.getValue(prefix).get();
+    }
 }
