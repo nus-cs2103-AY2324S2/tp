@@ -15,6 +15,7 @@
       "expiryDate" : null,
       "premium" : 0.0
     } ],
+    "clientStatus": "1",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -27,6 +28,7 @@
       "expiryDate" : null,
       "premium" : 0.0
     } ],
+    "clientStatus": "1",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -35,6 +37,7 @@
     "address" : "wall street",
     "relationship" : "client",
     "policies" : [ ],
+    "clientStatus": "1",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -43,6 +46,7 @@
     "address" : "10th street",
     "relationship" : "client",
     "policies" : [ ],
+    "clientStatus": "1",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -51,6 +55,7 @@
     "address" : "michegan ave",
     "relationship" : "partner",
     "policies" : [ ],
+    "clientStatus": "0",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -59,6 +64,7 @@
     "address" : "little tokyo",
     "relationship" : "partner",
     "policies" : [ ],
+    "clientStatus": "0",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -67,6 +73,7 @@
     "address" : "4th street",
     "relationship" : "partner",
     "policies" : [ ],
+    "clientStatus": "0",
     "tags" : [ ]
   } ]
 }

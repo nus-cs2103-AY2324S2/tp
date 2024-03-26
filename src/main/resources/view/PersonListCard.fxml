@@ -29,7 +29,8 @@
       <FlowPane fx:id="tags" styleClass="tags-container"/>
       <Label fx:id="relationship" styleClass="relationship-label"/>
       <FlowPane fx:id="policies" styleClass="policies-container"/>
-      <Label fx:id="phone" styleClass="cell_small_label"/>
+        <Label fx:id="clientStatus" styleClass="cell_small_label"/>
+        <Label fx:id="phone" styleClass="cell_small_label"/>
       <Label fx:id="address" styleClass="cell_small_label"/>
       <Label fx:id="email" styleClass="cell_small_label"/>
     </VBox>
