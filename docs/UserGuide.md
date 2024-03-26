@@ -211,7 +211,7 @@ Examples:
 3. ATTEND
    1. Must be either `true` or `false` (case-insensitive)
 
-### Listing all patients : `queryappointments`
+### Listing all appointments: `queryappointments`
 
 Shows a list of all students in the address book. Can be filtered by multiple criteria.
 
