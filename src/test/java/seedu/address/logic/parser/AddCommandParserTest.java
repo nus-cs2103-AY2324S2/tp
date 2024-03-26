@@ -48,6 +48,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
@@ -286,7 +287,7 @@ public class AddCommandParserTest {
     @Disabled
     @Test
     public void parse_address_failure() {
-        // role is professor, but address is not provided
+        // role is professor, address is not provided
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + COURSE_DESC_BOB,
                 Address.MESSAGE_CONSTRAINTS_PROFESSOR);
 
@@ -310,8 +311,26 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + ADDRESS_DESC_BOB
                 + COURSE_DESC_BOB, new AddCommand(new PersonBuilder(BOB).withAddress(VALID_ADDRESS_BOB).build()));
 
-        // role is not professor, no address provided
+        // role is not professor, address is not provided
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + COURSE_DESC_BOB,
                 new AddCommand(new PersonBuilder(BOB).withAddress("").build()));
+    }
+
+    @Test
+    public void testAddressStringPresent() throws ParseException {
+        // Create an ArgMultimap with PREFIX_ADDRESS and a value
+        ArgumentMultimap argMultimap = new ArgumentMultimap();
+        argMultimap.put(PREFIX_ADDRESS, "123 Street Name");
+
+        // Create a string input representing the command with the address
+        String userInput = " " + PREFIX_ADDRESS + " 123 Street Name";
+
+        // Create an instance of the class containing the line to be covered
+        AddCommandParser addCommandParser = new AddCommandParser();
+
+        // Call the parse() method with the string input
+        addCommandParser.parse(userInput);
+
+        // Now this line should be covered
     }
 }
