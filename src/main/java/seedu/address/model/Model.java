@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns a person with the given phone number.
+     * Returns {@code null} if no person with the given phone number is found.
+     */
+    Person getPersonByPhoneNumber(Phone phoneNumber);
+
+    /**
+     * Updates the details of the specified person in the address book with the details of the updated person.
+     * @param personToUpdate The person to be updated.
+     */
+    void updatePerson(Person personToUpdate);
 }

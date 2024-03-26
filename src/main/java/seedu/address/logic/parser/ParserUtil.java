@@ -10,9 +10,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.BankDetails;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -66,6 +70,41 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String sex} into a {@code Sex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sex} is invalid.
+     */
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
+        }
+        return new Sex(trimmedSex);
+    }
+
+    /**
+     * Parses a {@code String employmentType} into a {@code EmploymentType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code employmentType} is invalid.
+     */
+    public static PayRate parsePayRate(String payRate) throws ParseException {
+        requireNonNull(payRate);
+        String trimmedPayRate = payRate.trim();
+        try {
+            double rate = Double.parseDouble(trimmedPayRate);
+            if (rate <= 0) {
+                throw new ParseException("Pay rate cannot be zero or negative");
+            }
+            return new PayRate(rate);
+        } catch (NumberFormatException e) {
+            throw new ParseException(PayRate.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -81,18 +120,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String bankDetails} into an {@code BankDetails}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code bankDetails} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static BankDetails parseBankDetails(String bankDetails) throws ParseException {
+        requireNonNull(bankDetails);
+        String trimmedBankDetails = bankDetails.trim();
+        if (!BankDetails.isValidBankAccount(trimmedBankDetails)) {
+            throw new ParseException(BankDetails.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new BankDetails(trimmedBankDetails);
     }
 
     /**
@@ -121,4 +160,26 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a string representation of work hours into a WorkHours object.
+     *
+     * @param workHours A string representing the number of work hours.
+     * @return A WorkHours object representing the parsed work hours.
+     * @throws ParseException if the work hours string is invalid or cannot be parsed.
+     */
+    public static WorkHours parseWorkHours(String workHours) throws ParseException {
+        requireNonNull(workHours);
+        String trimmedWorkHours = workHours.trim();
+        try {
+            int hours = Integer.parseInt(trimmedWorkHours);
+            if (hours < 0) {
+                throw new ParseException("Work hours cannot be negative");
+            }
+            return new WorkHours(hours);
+        } catch (NumberFormatException e) {
+            throw new ParseException(WorkHours.MESSAGE_CONSTRAINTS);
+        }
+    }
+
 }

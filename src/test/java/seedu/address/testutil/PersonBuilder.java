@@ -4,10 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.BankDetails;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,25 +19,37 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_FIRSTNAME = "Amy";
+    public static final String DEFAULT_LASTNAME = "Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_SEX = "f";
+    public static final double DEFAULT_PAY_RATE = 15;
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_BANK_ADDRESS = "12345678";
+    public static final int DEFAULT_WORK_HOURS = 0;
 
-    private Name name;
+    private Name firstName;
+    private Name lastName;
     private Phone phone;
-    private Email email;
+    private Sex sex;
+    private PayRate payRate;
     private Address address;
+    private BankDetails bankDetails;
+    private WorkHours hoursWorked;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
+        firstName = new Name(DEFAULT_FIRSTNAME);
+        lastName = new Name(DEFAULT_LASTNAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        sex = new Sex(DEFAULT_SEX);
+        payRate = new PayRate(DEFAULT_PAY_RATE);
         address = new Address(DEFAULT_ADDRESS);
+        bankDetails = new BankDetails(DEFAULT_BANK_ADDRESS);
+        hoursWorked = new WorkHours(DEFAULT_WORK_HOURS);
         tags = new HashSet<>();
     }
 
@@ -42,25 +57,37 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
+        firstName = personToCopy.getFirstName();
+        lastName = personToCopy.getLastName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        sex = personToCopy.getSex();
+        payRate = personToCopy.getPayRate();
+        bankDetails = personToCopy.getBankDetails();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
+
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code firstName} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+    public PersonBuilder withFirstName(String name) {
+        this.firstName = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code lastName} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withLastName(String name) {
+        this.lastName = new Name(name);
         return this;
     }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -82,15 +109,39 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Sex} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withSex(String sex) {
+        this.sex = new Sex(sex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmploymentType} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPayRate(double payRate) {
+        this.payRate = new PayRate(payRate);
+        return this;
+    }
+
+    /**
+     * Sets the {@code BankDetails} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBankDetails(String bankDetails) {
+        this.bankDetails = new BankDetails(bankDetails);
+        return this;
+    }
+
+    /**
+     * Sets the {@code WorkHours} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWorkedHours(int hoursWorked) {
+        this.hoursWorked = new WorkHours(hoursWorked);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(firstName, lastName, phone, sex, payRate, address, bankDetails, hoursWorked, tags);
     }
 
 }

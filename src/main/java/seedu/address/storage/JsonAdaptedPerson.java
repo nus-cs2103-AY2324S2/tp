@@ -11,10 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.BankDetails;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
+import seedu.address.model.person.WorkHours;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,23 +27,37 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final String name;
+    private final String firstName;
+    private final String lastName;
     private final String phone;
-    private final String email;
+    private final String sex;
+    private final double payRate;
     private final String address;
+    private final String bankDetails;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final int workHours;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-        this.name = name;
+    public JsonAdaptedPerson(@JsonProperty("firstName") String firstName,
+                             @JsonProperty("lastName") String lastName,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("sex") String sex,
+                             @JsonProperty("payRate") double payRate,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("bankDetails") String bankDetails,
+                             @JsonProperty("workHours") int workHours,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
-        this.email = email;
+        this.sex = sex;
+        this.payRate = payRate;
         this.address = address;
+        this.bankDetails = bankDetails;
+        this.workHours = workHours;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -50,13 +67,17 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        firstName = source.getFirstName().value;
+        lastName = source.getLastName().value;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
+        sex = source.getSex().value;
+        payRate = source.getPayRate().getPayRate();
         address = source.getAddress().value;
+        bankDetails = source.getBankDetails().value;
+        workHours = source.getWorkHours().getHoursWorked();
         tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -70,13 +91,21 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        if (name == null) {
+        if (firstName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Name.isValidName(firstName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Name modelFirstName = new Name(firstName);
+
+        if (lastName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(lastName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelLastName = new Name(lastName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -86,13 +115,15 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        if (sex == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!Sex.isValidSex(sex)) {
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Sex modelSex = new Sex(sex);
+
+        final PayRate modelPayRate = new PayRate(payRate);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -102,8 +133,21 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (bankDetails == null) {
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, BankDetails.class.getSimpleName()));
+        }
+        if (!BankDetails.isValidBankAccount(bankDetails)) {
+            throw new IllegalValueException(BankDetails.MESSAGE_CONSTRAINTS);
+        }
+        final BankDetails modelBankDetails = new BankDetails(bankDetails);
+
+        final WorkHours modelWorkHours = new WorkHours(workHours);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelFirstName, modelLastName, modelPhone, modelSex, modelPayRate,
+            modelAddress,
+            modelBankDetails, modelWorkHours, modelTags);
     }
 
 }

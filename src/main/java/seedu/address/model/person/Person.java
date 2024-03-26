@@ -17,40 +17,74 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final Name firstName;
+    private final Name lastName;
     private final Phone phone;
-    private final Email email;
 
     // Data fields
+    private final Sex sex;
+    private final PayRate payRate;
     private final Address address;
+    private final BankDetails bankDetails;
     private final Set<Tag> tags = new HashSet<>();
+    private WorkHours hoursWorked;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Person(Name firstName, Name lastName, Phone phone, Sex sex,
+                  PayRate payRate, Address address,
+                  BankDetails bankDetails, WorkHours hoursWorked, Set<Tag> tags) {
+        requireAllNonNull(firstName, lastName, phone, address, bankDetails, tags);
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
-        this.email = email;
+        this.sex = sex;
+        this.payRate = payRate;
         this.address = address;
+        this.bankDetails = bankDetails;
         this.tags.addAll(tags);
+        this.hoursWorked = hoursWorked;
     }
 
     public Name getName() {
-        return name;
+        return new Name(firstName + " " + lastName);
+    }
+
+    public Name getFirstName() {
+        return firstName;
+    }
+
+    public Name getLastName() {
+        return lastName;
     }
 
     public Phone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Sex getSex() {
+        return sex;
+    }
+
+    public PayRate getPayRate() {
+        return payRate;
     }
 
     public Address getAddress() {
         return address;
+    }
+
+    public BankDetails getBankDetails() {
+        return bankDetails;
+    }
+
+    public WorkHours getWorkHours() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(WorkHours hoursWorked) {
+        this.hoursWorked = hoursWorked;
     }
 
     /**
@@ -71,7 +105,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.phone.equals(phone);
     }
 
     /**
@@ -90,28 +124,34 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        return getName().equals(otherPerson.getName())
+            && phone.equals(otherPerson.phone)
+            && sex.equals(otherPerson.sex)
+            && payRate.equals(otherPerson.payRate)
+            && address.equals(otherPerson.address)
+            && bankDetails.equals(otherPerson.bankDetails)
+            && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(firstName, lastName, phone, sex, payRate, address, bankDetails,
+            tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+            .add("firstName", firstName)
+            .add("lastName", lastName)
+            .add("phone", phone)
+            .add("sex", sex)
+            .add("payRate", payRate)
+            .add("address", address)
+            .add("bankDetails", bankDetails)
+            .add("tags", tags)
+            .toString();
     }
 
 }

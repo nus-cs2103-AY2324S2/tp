@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -29,31 +31,48 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox vBox;
+    @FXML
     private Label name;
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
+    @FXML
+    private Label phone;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, boolean isFullView) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (isFullView) {
+            Label sex = new Label(getFullSexString(person.getSex().value));
+            Label payRate = new Label(person.getPayRate().toString());
+            Label address = new Label(person.getAddress().value);
+            Label bankDetails = new Label(person.getBankDetails().value);
+            Label hoursWorked = new Label(person.getWorkHours().toString());
+            vBox.getChildren().addAll(new Label[]{sex, payRate, address, bankDetails, hoursWorked});
+        }
+    }
+
+    /**
+     * Returns the full sex string based on the short form string returned from Sex.
+     */
+    private String getFullSexString(String shortFormString) {
+        if (shortFormString.equals("m")) {
+            return "Male";
+        } else if (shortFormString.equals("f")) {
+            return "Female";
+        }
+        return "Invalid Sex"; // should not reach here
     }
 }
