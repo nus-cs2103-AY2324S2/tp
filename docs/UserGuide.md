@@ -164,8 +164,8 @@ A meeting can have any number of descriptions (including 0).
 
 Examples:
 
-- `addMeeting client/1 dt/02-01-2025 12:00 d/Sign life plan`
-- `addMeeting client/2 dt/06-01-2025 15:00 d/Meeting to discuss finances`
+- `addMeeting client/1 dt/02-01-2025 12:00 d/Sign life plan` Adds a meeting with description "Sign life plan" and meeting date 02-01-2025 12:00 to client with index 1.
+- `addMeeting client/2 dt/06-01-2025 15:00 d/Meeting to discuss finances` Adds a meeting with description "Meeting to discuss finances" and meeting date 06-01-2025 15:00 to client with index 2.
 
 ### Listing all Meetings for a Client: `view`
 
@@ -173,17 +173,17 @@ Shows a list of all meetings for a specific client.
 
 Format: `view c CLIENT_INDEX`
 
-- `CLIENT_INDEX` refers to the index number shown in the displayed client list.
+- `CLIENT_INDEX` refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​.
 
 Example:
 
-- `view c 1` Lists all meetings for the first client.
+- `view c 1` Lists all meetings of the first client.
 
 ### Editing a Meeting: `edit`
 
 Edits an existing meeting for a client.
 
-Format: `edit CLIENT_INDEX MEETING_INDEX [n/NAME] [dt/DATE_TIME] [v/VENUE] [d/DESCRIPTION]…​`
+Format: `editMeeting clientIndex/CLIENT_INDEX meetingIndex/MEETING_INDEX n/DESCRIPTION d/DATE_TIME`
 
 - Edits the meeting specified by `MEETING_INDEX` for the client specified by `CLIENT_INDEX`. Both indexes must be positive integers 1, 2, 3, …​.
 - At least one of the optional fields must be provided.
@@ -193,20 +193,19 @@ Format: `edit CLIENT_INDEX MEETING_INDEX [n/NAME] [dt/DATE_TIME] [v/VENUE] [d/DE
 
 Examples:
 
-- `edit 1 2 n/Annual Review dt/2023-12-01 10:00 v/Main Office` Edits the name, date/time, and venue of the 2nd meeting for the 1st client.
-- `edit 2 1 n/Budget Meeting d/` Edits the name of the 1st meeting for the 2nd client and clears all existing descriptions.
+- `editMeeting clientIndex/1 meetingIndex/2 n/starbucks meeting d/01-01-2024 12:00` Edits the description and date/time of the 2nd meeting for the 1st client.
 
 ### Deleting a Meeting: `delete`
 
 Deletes a specific meeting for a client.
 
-Format: `deleteMeeting client/ CLIENT_INDEX meeting/ MEETING_INDEX`
+Format: `deleteMeeting client/CLIENT_INDEX meeting/MEETING_INDEX`
 
 - Deletes the meeting specified by `MEETING_INDEX` for the client specified by `CLIENT_INDEX`. Both indexes must be positive integers 1, 2, 3, …​.
 
 Example:
 
-- `deleteMeeting client/ 1 meeting/ 1` Deletes the first meeting for the third client.
+- `deleteMeeting client/1 meeting/1` Deletes the first meeting for the first client.
 
 ### Clearing all entries : `clear`
 
@@ -272,12 +271,12 @@ To keep track of your clients/meetings, you can follow the various commands in t
 
 ### Meeting Functions
 
-| Action     | Format, Examples                                                |
-| ---------- |-----------------------------------------------------------------|
-| **Add**    | `add CLIENT_INDEX n/NAME`<br>e.g., `add 1 n/James Ho`           |
-| **List**   | `view c CLIENT_INDEX`<br>e.g., `view c 2`                       |
-| **Edit**   | `edit CLIENT_INDEX MEETING_INDEX`<br>e.g.,`edit 1 2 n/Jamal Ho` |
-| **Delete** | `delete CLIENT_INDEX MEETING_INDEX`<br>e.g., `delete 3 1`       |
+| Action     | Format, Examples                                                                                                                     |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `addMeeting clientIndex/CLIENT_INDEX dt/DATE_TIME d/DESCRIPTION`<br>e.g., `addMeeting client/1 dt/02-01-2025 12:00 d/Sign life plan` |
+| **List**   | `view c CLIENT_INDEX`<br>e.g., `view c 2`                                                                                            |
+| **Edit**   | `edit CLIENT_INDEX MEETING_INDEX`<br>e.g.,`edit 1 2 n/Jamal Ho`                                                                      |
+| **Delete** | `deleteMeeting client/CLIENT_INDEX meeting/MEETING_INDEX`<br>e.g., `deleteMeeting client/1 meeting/1`                                |
 
 ### General Functions
 
