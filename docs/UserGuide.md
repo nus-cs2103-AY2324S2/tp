@@ -82,7 +82,7 @@ Format: `help`
 
 ### Adding a patient: `patient`
 
-Adds a person to the address book.
+Adds a patient to the address book.
 
 Format: `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​`
 
@@ -99,7 +99,7 @@ Format: `patient n/NAME p/PHONE_NUMBER e/EMAIL [a/AFFLIATED_WITH]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of affiliations (including 0)
+**Tip:** A patient can have any number of affiliations (including 0)
 </box>
 
 Examples:
@@ -135,12 +135,12 @@ This is similar to SQL database behaviour where the auto-increment primary key g
 </box>
 
 
-### Listing all persons : `querystudents`
+### Listing all patients : `querystudents`
 
 Shows a list of all students in the address book.
 
 
-### Listing selected persons that meets specified criterion / criteria : `querystudents`
+### Listing selected patients that meets specified criterion / criteria : `querystudents`
 
 Shows a list of all students in the address book that matches _ALL_ the conditions that are specified.
 
@@ -154,37 +154,37 @@ For example: to find all the "Jeromes" that are stored in the CogniCare applicat
 Format: `querystudents n/Jerome p/987 e/example.com ​`
 
 
-### Editing a person : `edit`
+### Editing a patient : `edit`
 
-Edits an existing person in the address book.
+Edits an existing patient in the address book.
 
 Format: `edit STUDENT_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [a/AFFLIATED_WITH]…​`
 
-* Edits the person at the specified `STUDENT_ID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient at the specified `STUDENT_ID`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed; i.e. adding of tags is not cumulative.
+* When editing tags, the existing tags of the patient will be removed; i.e. adding of tags is not cumulative.
 * The `STUDENT_ID` will not be changed when you edit an individual's information.
-* You can remove all the person’s tags by typing `a/` without
+* You can remove all the patient’s tags by typing `a/` without
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower a/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower a/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
-Deletes the specified person from the address book from the specified student index.
+Deletes the specified patient from the address book from the specified student index.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 90` deletes the person with the studentId of 90 in the address book.
+* `list` followed by `delete 90` deletes the patient with the studentId of 90 in the address book.
 
 ### Adding an appointment: `appointment`
 
@@ -211,7 +211,7 @@ Examples:
 3. ATTEND
    1. Must be either `true` or `false` (case-insensitive)
 
-### Listing all persons : `queryappointments`
+### Listing all patients : `queryappointments`
 
 Shows a list of all students in the address book. Can be filtered by multiple criteria.
 

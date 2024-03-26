@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class PersonTest {
+public class PatientTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Patient patient = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> patient.getTags().remove(0));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Patient editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withId(100).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -41,7 +41,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Patient editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSamePerson(editedBob));
 
         // Name has extra white space in between words, all other attributes same -> returns true
@@ -57,7 +57,7 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Patient aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -73,7 +73,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Patient editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
@@ -91,7 +91,7 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+        String expected = Patient.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", tags=" + ALICE.getTags() + ", id=" + ALICE.getSid() + "}";
         assertEquals(expected, ALICE.toString());
     }

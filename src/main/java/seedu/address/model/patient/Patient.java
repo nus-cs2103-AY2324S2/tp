@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.patient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Patient {
 
     private static int idTracker = 1;
 
@@ -30,7 +30,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Set<Tag> tags) {
         this(name, phone, email, tags, idTracker);
     }
 
@@ -38,7 +38,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags, int studentId) {
+    public Patient(Name name, Phone phone, Email email, Set<Tag> tags, int studentId) {
         requireAllNonNull(name, phone, email, tags, studentId);
         this.name = name;
         this.phone = phone;
@@ -53,7 +53,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags, int studentId, boolean updatedPerson) {
+    public Patient(Name name, Phone phone, Email email, Set<Tag> tags, int studentId, boolean updatedPerson) {
         // TODO: This method needs a rewrite in v1.3
         // The constructor has an additional boolean variable to make sure that the Java compiler treats
         // it as a totally different constructor.
@@ -87,7 +87,7 @@ public class Person {
     }
 
     public static int getIdTracker() {
-        return Person.idTracker;
+        return Patient.idTracker;
     }
 
     /**
@@ -102,13 +102,13 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Patient otherPatient) {
+        if (otherPatient == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPatient != null
+                && otherPatient.getName().equals(getName());
     }
 
     /**
@@ -122,16 +122,16 @@ public class Person {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Patient)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
+        Patient otherPatient = (Patient) other;
+        return name.equals(otherPatient.name)
+                && phone.equals(otherPatient.phone)
+                && email.equals(otherPatient.email)
                 // && id == otherPerson.id
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPatient.tags);
     }
 
     @Override

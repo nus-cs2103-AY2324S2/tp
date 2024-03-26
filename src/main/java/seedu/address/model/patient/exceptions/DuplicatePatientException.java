@@ -1,4 +1,4 @@
-package seedu.address.model.person.exceptions;
+package seedu.address.model.patient.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Patient (Patients are considered duplicates if they have the same

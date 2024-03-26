@@ -20,26 +20,26 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeletePatientCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                Messages.format(patientToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(patientToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -57,14 +57,14 @@ public class DeleteCommandTest {
         // TODO: Update test case for the deletion by Sid.
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+                Messages.format(patientToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(patientToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -73,7 +73,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_indexSevenHundred_success() {
-        Optional<Person> personToDelete = model.getFilteredPersonList().stream()
+        Optional<Patient> personToDelete = model.getFilteredPersonList().stream()
                 .filter(person -> person.getSid() == INDEX_SEVEN_HUNDRED_PERSON)
                 .findFirst();
 

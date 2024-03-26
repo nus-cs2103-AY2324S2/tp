@@ -14,8 +14,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsAppointmentIdPredicate;
 import seedu.address.model.appointment.AppointmentContainsPatientIdPredicate;
 import seedu.address.model.appointment.AppointmentContainsPatientNamePredicate;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.util.RelationshipUtil;
 
 /**
@@ -23,8 +23,8 @@ import seedu.address.model.util.RelationshipUtil;
  */
 public class ListAppointmentCommandParser implements Parser<ListAppointmentCommand> {
 
-    private final List<Person> patients;
-    public ListAppointmentCommandParser(List<Person> patients) {
+    private final List<Patient> patients;
+    public ListAppointmentCommandParser(List<Patient> patients) {
         this.patients = patients;
     }
     @Override

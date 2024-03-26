@@ -7,14 +7,14 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.ReadOnlyAppointmentList;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Patient> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
@@ -60,35 +60,35 @@ public interface Model {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Patient patient);
 
     /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deletePerson(Patient target);
 
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addPerson(Patient patient);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Patient target, Patient editedPatient);
 
     /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Patient> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<Patient> predicate);
 
     /**
      * Returns true if an appointment with the same details as {@code appointment} exists in the appointment list.

@@ -10,18 +10,18 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.EmailContainsKeywordPredicate;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.patient.EmailContainsKeywordPredicate;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.PhoneContainsKeywordsPredicate;
 
 
 /**
  * Parses input arguments and creates a new ListCommand object
  */
-public class ListCommandParser implements Parser<ListCommand> {
+public class ListPatientCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -29,7 +29,7 @@ public class ListCommandParser implements Parser<ListCommand> {
                         CliSyntax.PREFIX_EMAIL, PREFIX_ALIAS);
 
 
-        List<Predicate<Person>> predicates = new ArrayList<>();
+        List<Predicate<Patient>> predicates = new ArrayList<>();
 
         // Checks if there is at least one prefix available.
         boolean hasAtLeastOnePrefixPresent = ParserUtil.hasAtLeastOnePrefixPresent(argMultimap, CliSyntax.PREFIX_NAME,
@@ -60,7 +60,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
 
         // Combine predicates with AND logic
-        Predicate<Person> combinedPredicate = predicates.stream()
+        Predicate<Patient> combinedPredicate = predicates.stream()
                 .reduce(p -> true, Predicate::and);
 
         return new ListCommand(combinedPredicate);

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 
 /**
@@ -18,7 +18,7 @@ public class RelationshipUtil {
      * @param patients List of {@code Person}
      * @return
      */
-    public static boolean personExists(int id, List<Person> patients) {
+    public static boolean personExists(int id, List<Patient> patients) {
         return patients.stream().anyMatch(patient -> patient.getSid() == id);
     }
 

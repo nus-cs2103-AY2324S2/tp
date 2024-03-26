@@ -8,7 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Panel containing the list of persons, appointments and case logs.
@@ -18,17 +18,17 @@ public class ListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Patient> personListView;
     @FXML
     private ListView<Appointment> appointmentListView;
     @FXML
-    private ListView<Person> caseLogListView;
+    private ListView<Patient> caseLogListView;
     /**
      * Creates a {@code ListPanel} with the given {@code ObservableLists}.
      */
-    public ListPanel(ObservableList<Person> personList, ObservableList<Appointment> appointmentList) {
+    public ListPanel(ObservableList<Patient> patientList, ObservableList<Appointment> appointmentList) {
         super(FXML);
-        personListView.setItems(personList);
+        personListView.setItems(patientList);
         appointmentListView.setItems(appointmentList);
         //Temporarily removed for v1.2
         //caseLogListView.setItems(personList);

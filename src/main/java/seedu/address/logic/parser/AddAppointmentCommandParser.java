@@ -13,14 +13,14 @@ import java.util.List;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.util.RelationshipUtil;
 
 /**
  * Parses input arguments and creates a new AddAppointmentCommand object
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
-    private final List<Person> patients;
+    private final List<Patient> patients;
     private final List<Appointment> appointments;
 
     /**
@@ -29,7 +29,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
      * @param patients List of patients
      * @param appointments List of appointments
      */
-    public AddAppointmentCommandParser(List<Person> patients, List<Appointment> appointments) {
+    public AddAppointmentCommandParser(List<Patient> patients, List<Appointment> appointments) {
         this.patients = patients;
         this.appointments = appointments;
     }
