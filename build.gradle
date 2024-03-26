@@ -69,4 +69,7 @@ shadowJar {
     archiveFileName = 'StaffConnect.jar'
 }
 
+run {
+    enableAssertions = true
+}
 defaultTasks 'clean', 'test'
