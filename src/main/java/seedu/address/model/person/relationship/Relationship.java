@@ -89,6 +89,7 @@ public class Relationship {
         if (relationType.equals("family") || relationType.equals("friend")) {
             throw new IllegalArgumentException("Cannot delete default relationship type");
         }
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
         if (RelationshipUtil.descriptorExists(relationType)) {
             throw new IllegalArgumentException("There are relationships under this relation type. Please delete them first.");
         }
