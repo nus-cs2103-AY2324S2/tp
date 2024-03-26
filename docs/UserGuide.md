@@ -113,7 +113,7 @@ This section allows you to start caring for your clients as soon as possible!
     
     <img src="images/jar-file.png" />
 
-5. Copy the jar file to the folder you want to use as the home folder.
+3. Copy the jar file to the folder you want to use as the home folder.
 4. Double-click the file to start the application! Alternatively, use [this guide](https://www.baeldung.com/java-run-jar-with-arguments) to run the `.jar` file and start the application.
 
 You should now be able to manage your clients with ease!
