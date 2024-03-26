@@ -34,6 +34,7 @@ public class Birthday {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday.trim()), MESSAGE_CONSTRAINTS);
         value = parseDate(birthday.trim()).orElse(null);
+        assert this.value != null;
     }
 
     /**
