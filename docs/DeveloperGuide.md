@@ -328,14 +328,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add a contact.
 2. User specifies details of the contact.
-3. System adds the contact.
+3. AB3 adds the contact.
 
 Use case ends.
 
 **Extensions**
 
-2a. System detects user input is invalid. <br>
-&emsp;2a1. System displays an error message. <br>
+2a. AB3 detects user input is invalid. <br>
+&emsp;2a1. AB3 displays an error message. <br>
 &emsp;2a2. User enters new input. <br>
 &emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 2.
@@ -345,7 +345,7 @@ Use case ends.
 **Use case: UC2 - List contacts**
 **MSS**
 1. User requests to list contacts.
-2. System displays all contacts.
+2. AB3 displays all contacts.
 
 Use case ends.
 
@@ -355,14 +355,14 @@ Use case ends.
 **MSS**
 1. User requests to search contacts.
 2. User specifies details to search by.
-3. System displays all matching contacts.
+3. AB3 displays all matching contacts.
 
 Use case ends.
 
 **Extensions**
 
-2a. System detects user input is invalid. <br>
-&emsp;2a1. System displays an error message. <br>
+2a. AB3 detects user input is invalid. <br>
+&emsp;2a1. AB3 displays an error message. <br>
 &emsp;2a2. User enters new input. <br>
 &emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 2. 
@@ -374,16 +374,16 @@ Use case ends.
 1. User !!lists contacts(UC2)!!.
 2. User requests to edit a contact.
 3. User specifies the index of the contact and details to edit.
-4. System updates the contact.
+4. AB3 updates the contact.
 
 Use case ends.
 
 **Extensions**
 
-1a. System displays no contacts. <br>
+1a. AB3 displays no contacts. <br>
 &emsp;Use case ends. <br>
-3a. System detects user input is invalid. <br>
-&emsp;3a1. System displays an error message. <br>
+3a. AB3 detects user input is invalid. <br>
+&emsp;3a1. AB3 displays an error message. <br>
 &emsp;3a2. User enters new input. <br>
 &emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 3. <br>
@@ -395,14 +395,14 @@ Use case ends.
 1. User !!lists contacts(UC2)!!.
 2. User requests to delete a contact.
 3. User specifies the index of the contact to delete.
-4. System deletes the contact.
+4. AB3 deletes the contact.
 
 Use case ends.
 
 **Extensions**
 
-3a. System detects user input is invalid. <br>
-&emsp;3a1. System displays an error message. <br>
+3a. AB3 detects user input is invalid. <br>
+&emsp;3a1. AB3 displays an error message. <br>
 &emsp;3a2. User enters new input. <br>
 &emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
 &emsp;Use case resumes from step 3. <br>
@@ -413,14 +413,14 @@ Use case ends.
 **MSS**
 1. User adds a new person to the json file.
 2. User runs the application.
-3. System reads the json file and shows the updated contact list.
+3. AB3 reads the json file and shows the updated contact list.
 
 Use case ends.
 
 **Extensions**
 
-2a. System detects that the json file is invalid. <br>
-&emsp;2a1. System displays an error message. <br>
+2a. AB3 detects that the json file is invalid. <br>
+&emsp;2a1. AB3 displays an error message. <br>
 &emsp;Use case ends. <br>
 
 ---
