@@ -5,7 +5,7 @@ title: User Guide
 
 Welcome to Dook: a **cutting-edge desktop application** for **computing students** engineered for the seamless management of consultations and 
 contacts, blending the power of a [**Command Line Interface (CLI)**](#glossary) with the intuitive accessibility of a 
-**Graphical User Interface (GUI)**. 
+[**Graphical User Interface (GUI)**](#glossary). 
 
 Designed specifically for the dynamic needs of the NUS 
 School of Computing community, Dook centralizes faculty information
