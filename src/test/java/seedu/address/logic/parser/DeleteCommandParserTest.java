@@ -20,9 +20,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
     private static final Index INDEX_SECOND_PERSON = Index.fromOneBased(2);
     private static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
+    private DeleteCommandParser parser = new DeleteCommandParser();
+
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
