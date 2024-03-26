@@ -63,10 +63,10 @@ public class InternshipAddDeadlineCommand extends InternshipCommand {
 
         Internship internshipToAddDeadline = lastShownList.get(internshipIndex.getZeroBased());
 
-        if (taskIndex.getOneBased() > internshipToAddDeadline.getTaskList().getTaskListSize()) {
+        if (taskIndex.getZeroBased() > internshipToAddDeadline.getTaskList().getTaskListSize()) {
             throw new CommandException(InternshipMessages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        internshipToAddDeadline.getTaskList().getTask(taskIndex.getOneBased()).addDeadline(deadline);
+        internshipToAddDeadline.getTaskList().getTask(taskIndex.getZeroBased()).addDeadline(deadline);
 
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(String.format(MESSAGE_ADD_DEADLINE_SUCCESS,

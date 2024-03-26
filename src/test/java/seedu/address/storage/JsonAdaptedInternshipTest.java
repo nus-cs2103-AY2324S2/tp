@@ -16,6 +16,9 @@ import seedu.address.model.internship.ContactNumber;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Task;
+
+import java.util.ArrayList;
 
 
 public class JsonAdaptedInternshipTest {
@@ -37,7 +40,7 @@ public class JsonAdaptedInternshipTest {
     private static final String VALID_DESCRIPTION = ALICE_MICROSOFT.getDescription().toString();
     private static final String VALID_ROLE = ALICE_MICROSOFT.getRole().toString();
     private static final String VALID_REMARK = ALICE_MICROSOFT.getRemark().toString();
-    private static final String VALID_TASKLIST = ALICE_MICROSOFT.getTaskList().toString();
+    private static final ArrayList<Task> VALID_TASKLIST = ALICE_MICROSOFT.getTaskList().getArrayListTaskList();
 
     @Test
     public void toModelType_validInternshipDetails_returnsInternship() throws Exception {

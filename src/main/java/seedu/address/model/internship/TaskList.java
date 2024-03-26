@@ -27,6 +27,13 @@ public class TaskList {
     }
 
     /**
+     * Returns the taskList with ArrayList<Task> type. Primarily for JSON purposes.
+     */
+    public ArrayList<Task> getArrayListTaskList() {
+        return taskList;
+    }
+
+    /**
      * Constructs a TaskList object from a string representation of a task list.
      */
     public TaskList(String taskListString) {
@@ -46,7 +53,6 @@ public class TaskList {
                     taskList.add(new Task(task, deadline));
                 }
             }
-
             this.taskList = taskList;
         }
     }
@@ -71,6 +77,23 @@ public class TaskList {
         for (Task task : taskList) {
             builder.append(count++).append(". ").append(task.toString()).append("\n");
         }
+        return builder.toString();
+    }
+
+    /**
+     * Converts the task list to a JSON string.
+     * @return JSON string representation of the task list
+     */
+    public String convertToJsonString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (Task task : taskList) {
+            builder.append(task.convertToJsonString()).append(",");
+        }
+        if (taskList.size() > 0) {
+            builder.deleteCharAt(builder.length() - 1);
+        }
+        builder.append("]");
         return builder.toString();
     }
 

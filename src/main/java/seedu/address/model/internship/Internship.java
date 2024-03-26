@@ -153,6 +153,7 @@ public class Internship {
                 .add("description", description)
                 .add("role", role)
                 .add("remark", remark)
+                .add("taskList", taskList)
                 .toString();
     }
 }

@@ -1,5 +1,8 @@
 package seedu.address.model.internship;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.internship.Deadline.isValidDeadline;
@@ -48,12 +51,42 @@ public class Task {
         isDeadlineSet = true;
     }
 
+    /**
+     * Constructs a {@code Task}.
+     * @param task
+     * @param deadline
+     */
+    @JsonCreator
+    public Task(@JsonProperty("task") String task,
+                @JsonProperty("deadline") String deadline,
+                @JsonProperty("isDeadlineSet") boolean isDeadlineSet) {
+        requireNonNull(task);
+        checkArgument(isValidTask(task), MESSAGE_CONSTRAINTS);
+        this.task = task;
+
+        // Only create a Deadline object if the deadline is not null and isDeadlineSet is true
+        if (isDeadlineSet && deadline != null) {
+            checkArgument(isValidDeadline(deadline), Deadline.MESSAGE_CONSTRAINTS); // Assuming Deadline has its MESSAGE_CONSTRAINTS
+            this.deadline = new Deadline(deadline);
+        } else {
+            this.deadline = null;
+        }
+        this.isDeadlineSet = isDeadlineSet || deadline != null;
+    }
+
 
     /**
      * Returns true if a given string is a valid task.
      */
     public static boolean isValidTask(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid task.
+     */
+    public String convertToJsonString() {
+        return "{\"task\": \"" + task + "\", \"deadline\": \"" + deadline + "\"}";
     }
 
     /**

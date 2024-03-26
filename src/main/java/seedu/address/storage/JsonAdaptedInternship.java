@@ -14,7 +14,13 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Task;
 import seedu.address.model.internship.TaskList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Jackson-friendly version of {@link Internship}.
@@ -33,7 +39,7 @@ public class JsonAdaptedInternship {
     private final String role;
     private final String remark;
 
-    private final String taskList;
+    private final ArrayList<Task> taskList;
 
     /**
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
@@ -48,7 +54,7 @@ public class JsonAdaptedInternship {
                                  @JsonProperty("description") String description,
                                  @JsonProperty("role") String role,
                                  @JsonProperty("remark") String remark,
-                                 @JsonProperty("taskList") String taskList) {
+                                 @JsonProperty("taskList") ArrayList<Task> taskList) {
         this.companyName = companyName;
         this.contactName = contactName;
         this.contactEmail = contactEmail;
@@ -74,7 +80,7 @@ public class JsonAdaptedInternship {
         description = source.getDescription().description;
         role = source.getRole().role;
         remark = source.getRemark().value;
-        taskList = source.getTaskList().toString();
+        taskList = source.getTaskList().getArrayListTaskList();
     }
 
     /**
@@ -168,6 +174,4 @@ public class JsonAdaptedInternship {
         return new Internship(modelCompanyName, modelContactName, modelContactEmail, modelContactNumber,
                 modelLocation, modelApplicationStatus, modelDescription, modelRole, modelRemark, modelTaskList);
     }
-
-
 }

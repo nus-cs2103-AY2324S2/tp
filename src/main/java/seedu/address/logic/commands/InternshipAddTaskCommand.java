@@ -60,9 +60,10 @@ public class InternshipAddTaskCommand extends InternshipCommand {
         Internship internshipToAddTask = lastShownList.get(index.getZeroBased());
         internshipToAddTask.addTask(task);
 
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.setInternship(internshipToAddTask, internshipToAddTask);
+
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
-                InternshipMessages.format(internshipToAddTask)));
+                this.task));
     }
 
     @Override

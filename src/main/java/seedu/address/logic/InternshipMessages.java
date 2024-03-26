@@ -52,7 +52,11 @@ public class InternshipMessages {
                 .append("; Contact Number: ")
                 .append(internship.getContactNumber())
                 .append("; Application Status: ")
-                .append(internship.getApplicationStatus());
+                .append(internship.getApplicationStatus())
+                .append("; Remark: ")
+                .append(internship.getRemark())
+                .append("; Tasks: ")
+                .append(internship.getTaskList());
         return builder.toString();
     }
 

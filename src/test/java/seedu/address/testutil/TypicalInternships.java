@@ -34,7 +34,7 @@ public class TypicalInternships {
             .withApplicationStatus("ongoing").withLocation("remote")
             .withDescription("Use Figma to design User-friendly web interfaces").withRole("Frontend Engineer")
             .withRemark("Has a behavioural interview!")
-            .withTaskList("[{\"task\": \"interview\", \"deadline\": \"24/04/2024\"}]").build();
+            .withTaskList("[]").build();
 
     public static final Internship BENSON_GOOGLE = new InternshipBuilder().withCompanyName("Google")
             .withContactName("Benson Meier").withContactEmail("benson@example.com").withContactNumber("98765432")
