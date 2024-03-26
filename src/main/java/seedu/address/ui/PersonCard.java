@@ -43,8 +43,6 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
-    @FXML
-    private Label attendance;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -61,6 +59,5 @@ public class PersonCard extends UiPart<Region> {
                 "Telegram ID: " + person.getTelegram().orElse(Telegram.EMPTY).telegramId);
         github.setText(
                 "GitHub ID: " + person.getGithub().orElse(Github.EMPTY).githubId);
-        attendance.setText(person.getAttendance().toString());
     }
 }
