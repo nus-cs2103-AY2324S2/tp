@@ -37,6 +37,7 @@ TeachStack is a **desktop app for managing contacts, optimized for use via a Com
 * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
 ## Understanding Our GUI
 
 --------------------------------------------------------------------------------------------------------------------
@@ -44,18 +45,18 @@ TeachStack is a **desktop app for managing contacts, optimized for use via a Com
 
 This guide explains how you can use TeachStack to manage weaker students. It will walk you through each feature and functionality of the app, ensuring you're equipped to make the most of Teachstack's capabilities.
 
-* To get started with TeachStack. [Quick Start](#Quick-Start)
-* To understand the GUI. [Understanding Our GUI](Understanding-Our-GUI)
-* To see details of the commands and features. [Features](#Features)
-* To quickly navigate to a specific section. [Table of Contents](#Table-of-Content)
-* If you encounter any technical term, please refer to the glossary. [Glossary] (#Glossary)
-* If you encounter any problem, you may find your answer in the FAQ. [FAQ](#FAQ)
+* To get started with TeachStack. [Quick Start](#quick-start)
+* To understand the GUI. [Understanding Our GUI](#understanding-our-gui)
+* To see details of the commands and features. [Features](#features)
+* To quickly navigate to a specific section. [Table of Contents](#table-of-contents)
+* If you encounter any technical term, please refer to the glossary. [Glossary](#glossary)
+* If you encounter any problem, you may find your answer in the FAQ. [FAQ](#faq)
 
 ## Terminologies / Symbols
 
 Extra information are given in boxes:
 * <div markdown="block" class="alert alert-info">:information_source: denotes additional information</div>
-* <div markdown="block" class="alert alert-info">:exclamation: denotes warning that can cause error</div>
+* <div markdown="block" class="alert alert-warning">:exclamation: denotes warning that can cause error</div>
 
 The explanation of each command will be formatted in the following convention
 1. What the command does
