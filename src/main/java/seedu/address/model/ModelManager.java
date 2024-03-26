@@ -179,7 +179,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Maintains the filtered list after edit command is used.
+     * Maintains the filtered list.
      */
     public void setToInitialList() {
         this.filteredPersons = this.initialPersons;
