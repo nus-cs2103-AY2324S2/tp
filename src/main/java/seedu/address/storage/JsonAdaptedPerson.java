@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Price;
 import seedu.address.model.person.Product;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.Skill;
 import seedu.address.model.person.Staff;
@@ -46,6 +47,7 @@ class JsonAdaptedPerson {
 
     private String commission;
     private String note;
+    private String rating;
     private String pin;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -55,7 +57,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("note") String note,
+                             @JsonProperty("note") String note, @JsonProperty("rating") String rating,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("salary") String salary,
                              @JsonProperty("employment") String employment,
@@ -74,6 +76,7 @@ class JsonAdaptedPerson {
         this.price = price;
         this.skill = skill;
         this.note = note;
+        this.rating = rating;
         this.pin = pin;
         this.commission = commission;
         if (tags != null) {
@@ -167,7 +170,11 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Note modelNote = new Note(note);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
+        final Rating modelRating = new Rating("0");
 
         if (salary != null && employment != null) {
             if (!Salary.isValidSalary(salary)) {
@@ -178,8 +185,8 @@ class JsonAdaptedPerson {
             }
             final Salary modelSalary = new Salary(salary);
             final Employment modelEmployment = new Employment(employment);
-            Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress,
-                    modelTags, modelSalary, modelEmployment);
+            Staff currStaff = new Staff(modelName, modelPhone, modelEmail, modelAddress, modelNote,
+                    modelTags, modelSalary, modelEmployment, modelRating);
             currStaff.setNoteContent(note);
             if (pin.equals("true")) {
                 currStaff.toPin();
@@ -196,8 +203,8 @@ class JsonAdaptedPerson {
             }
             final Product modelProduct = new Product(product);
             final Price modelPrice = new Price(price);
-            Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelProduct, modelPrice);
+            Supplier currSupplier = new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags,
+                    modelProduct, modelPrice, modelRating);
             currSupplier.setNoteContent(note);
             if (pin.equals("true")) {
                 currSupplier.toPin();
@@ -214,8 +221,8 @@ class JsonAdaptedPerson {
             }
             final Skill modelSkill = new Skill(skill);
             final Commission modelCommission = new Commission(commission);
-            Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelTags,
-                    modelSkill, modelCommission);
+            Maintainer currMaintainer = new Maintainer(modelName, modelPhone, modelEmail, modelAddress, modelNote,
+                    modelTags, modelSkill, modelCommission, modelRating);
             currMaintainer.setNoteContent(note);
             if (pin.equals("true")) {
                 currMaintainer.toPin();
@@ -231,9 +238,8 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
         }
 
-        final Note modelNote = new Note(note);
-
-        Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags);
+        Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags,
+                modelRating);
         if (pin.equals("true")) {
             personToAdd.toPin();
         }

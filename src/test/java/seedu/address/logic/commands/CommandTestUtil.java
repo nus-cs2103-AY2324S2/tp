@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -68,7 +69,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_MAINTAINER = "maintainer";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + "get kibble";
+    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + "Cancel shipment with bob";
+    public static final String RATING_DESC_BOB = " " + PREFIX_RATING + "0";
     public static final String DEADLINE_DESC_BOB = " " + PREFIX_DEADLINE + "2019-10-10";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -99,6 +101,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_RATING_DESC = " " + PREFIX_RATING; // empty string not allowed for ratings
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "20";
     public static final String INVALID_EMPLOYMENT_DESC = " " + PREFIX_EMPLOYMENT + "employment";

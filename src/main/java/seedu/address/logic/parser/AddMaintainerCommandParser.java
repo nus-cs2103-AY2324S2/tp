@@ -7,7 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.HashSet;
@@ -21,7 +23,9 @@ import seedu.address.model.person.Commission;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Skill;
 import seedu.address.model.tag.Tag;
 
@@ -62,13 +66,17 @@ public class AddMaintainerCommandParser implements Parser<AddMaintainerCommand> 
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        String noteContent = argMultimap.getValue(PREFIX_NOTE).orElse("");
+        Note note = noteContent.equals("") ? new Note(noteContent) : ParserUtil.parseNote(noteContent);
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
+
         Tag tag = new Tag("maintainer");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
         Skill skill = ParserUtil.parseSkill(argMultimap.getValue(PREFIX_SKILL).get());
         Commission commission = ParserUtil.parseCommission(argMultimap.getValue(PREFIX_COMMISSION).get());
 
-        Maintainer person = new Maintainer(name, phone, email, address, tags, skill, commission);
+        Maintainer person = new Maintainer(name, phone, email, address, note, tags, skill, commission, rating);
 
         return new AddMaintainerCommand(person);
     }

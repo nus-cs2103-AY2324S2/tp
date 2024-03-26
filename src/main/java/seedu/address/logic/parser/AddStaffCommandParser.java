@@ -7,7 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -21,7 +23,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Employment;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
@@ -63,13 +67,16 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        String noteContent = argMultimap.getValue(PREFIX_NOTE).orElse("");
+        Note note = noteContent.equals("") ? new Note(noteContent) : ParserUtil.parseNote(noteContent);
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
         Tag tag = new Tag("staff");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
         Employment employment = ParserUtil.parseEmployment(argMultimap.getValue(PREFIX_EMPLOYMENT).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
 
-        Staff person = new Staff(name, phone, email, address, tags, salary, employment);
+        Staff person = new Staff(name, phone, email, address, note, tags, salary, employment, rating);
 
         return new AddStaffCommand(person);
     }

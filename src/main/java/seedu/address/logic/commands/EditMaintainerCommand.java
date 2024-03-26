@@ -26,7 +26,9 @@ import seedu.address.model.person.Commission;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Skill;
 import seedu.address.model.tag.Tag;
 
@@ -99,13 +101,15 @@ public class EditMaintainerCommand extends Command {
         Phone updatedPhone = editMaintainerDescriptor.getPhone().orElse(maintainerToEdit.getPhone());
         Email updatedEmail = editMaintainerDescriptor.getEmail().orElse(maintainerToEdit.getEmail());
         Address updatedAddress = editMaintainerDescriptor.getAddress().orElse(maintainerToEdit.getAddress());
+        Note presentNote = maintainerToEdit.getNote(); //edit cannot change note
+        Rating presentRating = maintainerToEdit.getRating(); //edit cannot change rating
         Set<Tag> updatedTags = editMaintainerDescriptor.getTags().orElse(maintainerToEdit.getTags());
         Skill updatedSkill = editMaintainerDescriptor.getSkill().orElse(maintainerToEdit.getSkill());
         Commission updatedCommission = editMaintainerDescriptor.getCommission()
                 .orElse(maintainerToEdit.getCommission());
 
-        return new Maintainer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedSkill, updatedCommission);
+        return new Maintainer(updatedName, updatedPhone, updatedEmail, updatedAddress, presentNote,
+                updatedTags, updatedSkill, updatedCommission, presentRating);
     }
 
     @Override

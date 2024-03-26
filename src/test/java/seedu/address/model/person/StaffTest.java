@@ -99,6 +99,7 @@ public class StaffTest {
                 + ", email=" + ALICESTAFF.getEmail() + ", address="
                 + ALICESTAFF.getAddress()
                 + ", tags=" + ALICESTAFF.getTags()
+                + ", rating=" + ALICESTAFF.getRating()
                 + ", salary=" + ALICESTAFF.getSalary()
                 + ", employment=" + ALICESTAFF.getEmployment()
                 + "}";
