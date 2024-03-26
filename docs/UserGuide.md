@@ -92,6 +92,7 @@ Important warnings that you should keep in mind while using this User Guide.
 
 ## Quick start
 <IMPROVE BY ADDING SCREENSHOTS AND LINKS>
+
 1. Ensure Java 11 is installed in your computer. If it's not, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
 2. Download the latest ConnectCare.jar <Link here>
 3. Copy the jar file to the folder you want to use as the home folder
@@ -275,47 +276,55 @@ Examples: `display John` would display all of John's information as a contact ca
 
 _This command allows you to delete a client at a specified `INDEX` from your client list._
 
-Format: `delete INDEX`
+**Format:** `delete INDEX`
 
-Parameters:
+<panel header="Parameter Descriptions and Remarks" alt="Parameters" minimized>
+<markdown>
 
 | Parameter | Description                            | Remarks                                                                                            |
 |-----------|----------------------------------------|----------------------------------------------------------------------------------------------------|
 | INDEX     | Index of the client you want to delete | Index needs to be a number 1 or greater and cannot be more than the number of clients in your list |
+</markdown>
+</panel>
 
-Examples:
+&nbsp;
+
+**Examples:**
 - `delete 1` would delete the first client in your client list.
 - `delete 2` would delete the second client in your client list.
 
-Walkthrough:
+**Walkthrough:**
 
 The screenshots below are what you would expect when using the `delete` command. In this example, after using the `list` command,
 the full clients list is displayed. Thereafter, the `delete 1` command was used, removing `David Li`, the first person in the list, from the list of client contacts.
 
 <div class="image-container" align="middle" style="display:flex">
     <pic src="images/user-guide/delete_command_before.png" alt="list">
-        Figure 1.1: Before the delete command is executed
+        <markdown> Figure 1.2: Before the `delete 1` command is executed </markdown>
     </pic>
     <pic src="images/user-guide/delete_command_after.png" alt="list">
-        Figure 1.2: After the delete command is executed
+        <markdown> Figure 1.2: After the `delete 1` command is executed </markdown>
     </pic>
 </div>
+
 &nbsp;  
 
-What if the command was used with an incorrect index? In the left example, `delete 0` command was used, which is an invalid index.
+What if the command was used with an incorrect index? In the example on the left, `delete 0` command was used, which is an invalid index.
 Here the error message shown is `Invalid command format! ... Parameters: INDEX (must be a positive integer)` which lets you know to retype the command with a larger index value.
-In the right example, `delete 5` is used, which again is invalid. Here the error message shown is `The person index provided is invalid` which lets you know to retype the command with a lower index.
+In the example on the right, `delete 5` is used, which again is invalid. Here the error message shown is `The person index provided is invalid` which lets you know to retype the command with a lower index.
 As the commands given were invalid, there would be no changes to the client list.
+
 &nbsp;  
 
 <div class="image-container" align="middle" style="display: flex;">
     <pic src="images/user-guide/delete_command_after_invalid_0.png" alt="delete"> 
-        Figure 1.2: After the invalid "delete 0" command is executed
+        <markdown> Figure 1.2: After the invalid `delete 0` command is executed </markdown>
     </pic>
     <pic src="images/user-guide/delete_command_after_invalid_5.png" alt="delete">
-        Figure 1.3: After the invalid "delete 5" command is executed
+        <markdown> Figure 1.3: After the invalid  `delete 5` command is executed </markdown> 
     </pic>
 </div>
+
 &nbsp;  
 
 ### Clearing all entries : `clear`
