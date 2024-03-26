@@ -84,7 +84,7 @@ public class AppointmentCard extends UiPart<Region> {
         cardPane.styleProperty().bind(
                 Bindings.when(isBeforeCurrentTime(appt))
                         .then("-fx-background-color: #FF7074")
-                        .otherwise("-fx-background-color: defaultColor")
+                        .otherwise("-fx-background-color: transparent")
         );
     }
 
