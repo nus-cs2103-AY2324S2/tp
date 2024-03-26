@@ -6,13 +6,19 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="650" maxHeight="960" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -24,36 +30,193 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
+     <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+       <Menu mnemonicParsing="false" text="File">
+         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+       </Menu>
+     </MenuBar>
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox>
+               <children>
+                  <TitledPane animated="false" collapsible="false" text="Filter">
+                    <content>
+                         <AnchorPane prefHeight="400">
+                              <children>
+                                 <VBox>
+                                    <children>
+                                       <HBox>
+                                          <children>
+                                              <StackPane>
+                                                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Assessment" />
+                                                  <padding>
+                                                      <Insets bottom="5" left="10" right="5" top="5" />
+                                                  </padding>
+                                              </StackPane>
+                                              <Region HBox.hgrow="ALWAYS" />
+                                              <StackPane>
+                                                  <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                  <padding>
+                                                      <Insets bottom="5" left="5" top="5" />
+                                                  </padding>
+                                              </StackPane>
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <StackPane>
+                                                <padding>
+                                                   <Insets bottom="5" left="10" right="5" top="5" />
+                                                </padding>
+                                                <children>
+                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Technical Assessment" />
+                                                </children>
+                                             </StackPane>
+                                              <Region HBox.hgrow="ALWAYS" />
+                                             <StackPane>
+                                                <padding>
+                                                    <Insets bottom="5" left="5" top="5" />
+                                                </padding>
+                                                <children>
+                                                    <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                </children>
+                                             </StackPane>
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <StackPane>
+                                                <padding>
+                                                   <Insets bottom="5" left="10" right="5" top="5" />
+                                                </padding>
+                                                <children>
+                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interview" />
+                                                </children>
+                                             </StackPane>
+                                              <Region HBox.hgrow="ALWAYS" />
+                                             <StackPane>
+                                                <padding>
+                                                    <Insets bottom="5" left="5" top="5" />
+                                                </padding>
+                                                <children>
+                                                    <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                </children>
+                                             </StackPane>
+                                          </children>
+                                       </HBox>
+                                       <HBox>
+                                          <children>
+                                             <StackPane>
+                                                <padding>
+                                                   <Insets bottom="5" left="10" right="5" top="5" />
+                                                </padding>
+                                                <children>
+                                                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Decision &amp; Offer" />
+                                                </children>
+                                             </StackPane>
+                                              <Region HBox.hgrow="ALWAYS" />
+                                             <StackPane>
+                                                <padding>
+                                                   <Insets bottom="5" left="5" top="5" />
+                                                </padding>
+                                                <children>
+                                                    <RadioButton mnemonicParsing="false" prefWidth="0.0" />
+                                                </children>
+                                             </StackPane>
+                                          </children>
+                                       </HBox>
+                                    </children>
+                                 </VBox>
+                              </children>
+                        </AnchorPane>
+                    </content>
+                        <graphic>
+                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/filter_icon.png" />
+                              </image></ImageView>
+                        </graphic>
+                  </TitledPane>
+                  <TitledPane animated="false" collapsible="false" text="Overview">
+                    <content>
+                      <AnchorPane prefHeight="400.0">
+                              <children>
+                                 <VBox>
+                                    <children>
+                                       <StackPane alignment="CENTER_LEFT">
+                                          <padding>
+                                             <Insets bottom="5" left="10" right="5" top="5" />
+                                          </padding>
+                                          <children>
+                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Assessment (0)" />
+                                          </children>
+                                       </StackPane>
+                                       <StackPane alignment="CENTER_LEFT">
+                                          <padding>
+                                             <Insets bottom="5" left="10" right="5" top="5" />
+                                          </padding>
+                                          <children>
+                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Technical Assessment (0)" />
+                                          </children>
+                                       </StackPane>
+                                       <StackPane alignment="CENTER_LEFT">
+                                          <padding>
+                                             <Insets bottom="5" left="10" right="5" top="5" />
+                                          </padding>
+                                          <children>
+                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interview (0)" />
+                                          </children>
+                                       </StackPane>
+                                       <StackPane alignment="CENTER_LEFT">
+                                          <padding>
+                                             <Insets bottom="5" left="10" right="5" top="5" />
+                                          </padding>
+                                          <children>
+                                             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Decision &amp; Offer (0)" />
+                                          </children>
+                                       </StackPane>
+                                    </children>
+                                 </VBox>
+                              </children></AnchorPane>
+                    </content>
+                        <graphic>
+                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/chart_icon.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                  </TitledPane>
+               </children>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+              <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+                </padding>
+              </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+              <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+                </padding>
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+              <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+               </children>
+            </VBox>
+        </HBox>
       </VBox>
     </Scene>
   </scene>
