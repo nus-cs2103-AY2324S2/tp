@@ -3,6 +3,7 @@ package seedu.address.model.person.relationship;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -94,6 +95,15 @@ public class RelationshipUtil {
      */
     public ObservableList<Relationship> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Deletes all relationships associated with a person.
+     * @param personUuid The UUID of the person whose relationships are to be deleted.
+     */
+    public void deleteRelationshipsOfPerson(UUID personUuid) {
+        relationshipsTracker.removeIf(relationship -> relationship.getPerson1().equals(personUuid)
+                || relationship.getPerson2().equals(personUuid));
     }
 
     /**

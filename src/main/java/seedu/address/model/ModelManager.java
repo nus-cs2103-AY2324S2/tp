@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Relationship> filteredRelationships;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredRelationships = new FilteredList<>(this.addressBook.getRelationshipList());
     }
 
     public ModelManager() {
@@ -140,6 +142,20 @@ public class ModelManager implements Model {
 
     public String getExistingRelationship(Relationship toGet) {
         return addressBook.getExistingRelationship(toGet);
+    }
+
+    @Override
+    public void deleteRelationshipsOfPerson(UUID personUuid) {
+        addressBook.deleteRelationshipsOfPerson(personUuid);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Relationship} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Relationship> getFilteredRelationshipList() {
+        return filteredRelationships;
     }
 
     //=========== Filtered Person List Accessors =============================================================
