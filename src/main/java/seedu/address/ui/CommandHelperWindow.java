@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -25,6 +26,8 @@ public class CommandHelperWindow extends AnchorPane {
     private Button sendButton;
 
     private AddCommandHelper addCommandHelper;
+
+
 
     /**
      * Starts the CommandHelper Window
@@ -56,7 +59,8 @@ public class CommandHelperWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input),
                 DialogBox.getDukeDialog(response));
-
         userInput.clear();
     }
+
+
 }

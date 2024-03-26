@@ -42,6 +42,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ExitWindow exitWindow;
 
+    private CommandHelperWindow commandHelperWindow;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -63,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-        System.out.println("yay");
+        //System.out.println("yay");
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
@@ -76,6 +78,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         exitWindow = new ExitWindow();
+
+
 
     }
 
@@ -173,6 +177,9 @@ public class MainWindow extends UiPart<Stage> {
         }
 
     }
+
+
+
 
     void show() {
         primaryStage.show();

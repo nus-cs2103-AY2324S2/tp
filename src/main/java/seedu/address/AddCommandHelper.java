@@ -4,12 +4,14 @@ package seedu.address;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormattedCommandPerson;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.Status;
@@ -21,6 +23,19 @@ import seedu.address.ui.Status;
  * so the user can copy over to addressbook.
  */
 public class AddCommandHelper {
+
+    private static final String SUCCESS_MESSAGE = "You have successfully entered ";
+
+    private static final String NEXT_PROMPT = ". Next, please enter ";
+
+    private static final String COMPLETE_COMMAND_MESSAGE = "You have entered all the fields! "
+            + "Please enter \"cp\" to copy the command to your clipboard.";
+
+    private static final String EXIT_MESSAGE = "Thank you for using AddByStep!";
+
+    private static final String COPY_SUCCESSS_MESSAGE = "You have copied the command to your clipboard!"
+            + "Type \"cp\" if you wish to copy again. You may close the window to go back to LookMeUp";
+    private static final String COPY_COMMAND = "cp";
 
     private Status status;
 
@@ -48,11 +63,7 @@ public class AddCommandHelper {
      * @throws ParseException if the information the user entered is invalid
      */
     public String getResponse(String text) throws ParseException {
-        if (this.status == Status.COMPLETE) {
-            return formattedCommand();
-        } else {
-            return processInput(text);
-        }
+        return processInput(text);
     }
 
     /**
@@ -63,37 +74,33 @@ public class AddCommandHelper {
      * @throws ParseException if the input entered by the user is invalid.
      */
     private String processInput(String input) throws ParseException {
-        String output = "";
+        Status oldStatus = this.status;
+
         switch (this.status) {
         case GET_NAME:
             processName(input);
-            output = this.status.toString();
-            setStatus(this.status);
             break;
         case GET_NUMBER:
             processNumber(input);
-            output = this.status.toString();
-            setStatus(this.status);
             break;
         case GET_EMAIL:
             processEmail(input);
-            output = this.status.toString();
-            setStatus(this.status);
             break;
         case GET_ADDRESS:
             processAddress(input);
-            output = this.status.toString();
-            setStatus(this.status);
             break;
         case GET_TAG:
             processTag(input);
-            output = this.status.toString();
-            setStatus(this.status);
+            break;
+        case COMPLETE:
+            processCommand(input);
+            break;
+        case COPY:
             break;
         default:
             assert false : "The status should only be those values";
-
         }
+        String output = getSuccessMessage(oldStatus, status);
 
         return output;
     }
@@ -121,55 +128,84 @@ public class AddCommandHelper {
         case GET_TAG:
             this.status = Status.COMPLETE;
             break;
-
+        case COMPLETE:
+            this.status = Status.COPY;
+            break;
+        case COPY:
+            break;
         default:
             assert false : "The status should only be those values";
         }
     }
 
-    private String processName(String name) throws ParseException {
+    private void processName(String name) throws ParseException {
         Name processedName = ParserUtil.parseName(name);
         this.name = processedName;
-        return processedName.toString();
+        setStatus(this.status);
     }
 
-    private String processNumber(String num) throws ParseException {
+    private void processNumber(String num) throws ParseException {
         Phone processedNum = ParserUtil.parsePhone(num);
         this.phone = processedNum;
-        return processedNum.toString();
+        setStatus(this.status);
     }
 
-    private String processEmail(String email) throws ParseException {
+    private void processEmail(String email) throws ParseException {
         Email processedEmail = ParserUtil.parseEmail(email);
         this.email = processedEmail;
-        return processedEmail.toString();
+        setStatus(this.status);
     }
 
-    private String processAddress(String address) throws ParseException {
+    private void processAddress(String address) throws ParseException {
         Address processedAddress = ParserUtil.parseAddress(address);
         this.address = processedAddress;
-        return processedAddress.toString();
+        setStatus(this.status);
     }
 
-    private String processTag(String tag) throws ParseException {
+    private void processTag(String tag) throws ParseException {
         String processedTag = tag.trim();
         if (processedTag.length() > 0) {
             Tag t = ParserUtil.parseTag(tag);
             this.tags.add(t);
-            return t.toString();
+        }
+        setStatus(this.status);
+    }
+
+    private void processCommand(String cmd) {
+        if (cmd.equals(COPY_COMMAND)) {
+            copyCommand();
+            setStatus(this.status);
+        }
+    }
+
+    private String formattedCommand() {
+        assert this.status != Status.COMPLETE : "Command should have been compeleted before this function is called.";
+        FormattedCommandPerson p = new FormattedCommandPerson(name, phone, email, address, tags);
+        return "add " + p.getFormattedCommand();
+    }
+
+    private boolean isExitCommand(String cmd) {
+        return cmd.equals("exit");
+    }
+
+    private String getSuccessMessage(Status oldStatus, Status newStatus) {
+        if (newStatus.equals(Status.COPY)) {
+            return COPY_SUCCESSS_MESSAGE;
+        } else if (newStatus.equals(Status.COMPLETE)) {
+            return COMPLETE_COMMAND_MESSAGE;
         } else {
-            return "";
+            return SUCCESS_MESSAGE + oldStatus + NEXT_PROMPT + newStatus;
         }
 
     }
 
-
-
-
-    private String formattedCommand() {
-        assert this.status != Status.COMPLETE : "Command should have been compeleted before this function is called.";
-        Person p = new Person(name, phone, email, address, tags);
-        return p.getFormattedCommand();
+    private void copyCommand() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent command = new ClipboardContent();
+        assert this.status.equals(Status.COMPLETE) : "Command must be completed before "
+                + "it is copied.";
+        command.putString(formattedCommand());
+        clipboard.setContent(command);
     }
 
 }

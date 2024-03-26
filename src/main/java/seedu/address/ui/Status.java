@@ -5,26 +5,32 @@ package seedu.address.ui;
  * they key in fields for the add command by by step.
  */
 public enum Status {
-    GET_NAME, GET_NUMBER, GET_EMAIL, GET_ADDRESS, GET_TAG, COMPLETE;
+    GET_NAME, GET_NUMBER, GET_EMAIL, GET_ADDRESS, GET_TAG, COMPLETE, COPY;
 
     @Override
     public String toString() {
         String msg = "";
         switch(this) {
         case GET_NAME:
-            msg = "Successfully entered a valid name, please enter number next.";
+            msg = "name";
             break;
         case GET_NUMBER:
-            msg = "Successfully entered a valid naumber, please enter email next.";
+            msg = "number";
             break;
         case GET_EMAIL:
-            msg = "Successfully entered a valid email, please enter address next.";
+            msg = "email";
             break;
         case GET_ADDRESS:
-            msg = "Successfully entered a valid address, please enter 0 or 1 tag next.";
+            msg = "address";
             break;
         case GET_TAG:
-            msg = "Successfully entered all necessary fields.Please press ENTER to show the whole command.";
+            msg = "tag (optional)";
+            break;
+        case COMPLETE:
+            msg = "complete command";
+            break;
+        case COPY:
+            msg = "copy";
             break;
         default:
             assert false : "The enum should not reach this stage";

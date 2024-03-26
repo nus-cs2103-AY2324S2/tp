@@ -1,11 +1,6 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,13 +17,13 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    protected final Name name;
+    protected final Phone phone;
+    protected final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    protected final Address address;
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -119,22 +114,7 @@ public class Person {
                 .toString();
     }
 
-    public String getFormattedCommand() {
-        StringBuilder cmd = new StringBuilder();
-        cmd.append(PREFIX_NAME);
-        cmd.append(name);
-        cmd.append(" " + PREFIX_PHONE);
-        cmd.append(phone);
-        cmd.append(" " + PREFIX_EMAIL);
-        cmd.append(email);
-        cmd.append(" " + PREFIX_ADDRESS);
-        cmd.append(address);
-        if (this.tags.size() > 0) {
-            cmd.append(" " + PREFIX_TAG);
-            cmd.append(this.tags);
-        }
-        return cmd.toString();
-    }
+
 
 
 
