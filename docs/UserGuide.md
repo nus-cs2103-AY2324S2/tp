@@ -3,23 +3,45 @@
   title: "User Guide"
   pageNav: 3
 ---
+![Logo](images/TutorsContactsProLogo.png)
 
-# TutorsContactsPro User Guide
-
-TutorsContactsPro is a **desktop app for tutors teaching Computer Science courses to manage their students, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorsContactsPro can help you to gain faster and more convenient access to your list of students, even if they are from different classes.
-
-<!-- * Table of Contents -->
+# Table of Contents
+<!-- TOC -->
 <page-nav-print />
 
 ## Quick Overview
 
-* [Quick start ](#feature-start)
+* [Introduction ](#feature-introduction)
+
+    * [About TutorsContactsPro ](#feature-about)
+
+    * [About the User Guide](#feature-aboutUG)
+
+    * [Navigating the User Guide ](#navigating-the-user-guide)
+
+* [Getting Started](#feature-gettingStarted)
+
+   * [Installing and Launching TutorsContactsPro ](#feature-install)
+
+   * [Learning about TutorsContactsPro components](#feature-learn)
+
+   * [Learning about TutorsContactsPro User Interface (UI)](#feature-ui)
+
+   * [Quick Start](#feature-quickStart)
 
 * [Features ](#feature-features)
+
+* [Basic Commands](#feature-basicCommand)
 
   * [Viewing help: `help` ](#feature-help)
 
   * [Listing all students: `list` ](#feature-list)
+
+  * [Clearing all entries: `clear`](#feature-clear)
+
+  * [Exiting the program: `exit` ](#feature-exit)
+
+* [Student Commands](#feature-studentCommand) 
 
   * [Adding a student: `add`](#feature-add)
 
@@ -31,6 +53,8 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
   * [Deleting a student: `delete`](#feature-delete)
 
+* [Group Commands](#feature-groupCommand)
+
   * [Adding a group: `addgroup`](#feature-addgroup)
 
   * [Editing a group: `editgroup`](#feature-editgroup)
@@ -39,34 +63,187 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
   * [Mail broadcast: `mail`](#feature-mail)
 
-  * [Clearing all entries: `clear`](#feature-clear)
-
-  * [Exiting the program: `exit` ](#feature-exit)
-
 * [FAQ](#feature-faq)
 
 * [Known issues](#feature-issues)
 
 * [Command Summary](#feature-summary)
 
+* [Appendix A: Installing Java](#feature-appendix-a-installing-java)
+
+--------------------------------------------------------------------------------------------------------------------
+# <span id='feature-introduction'> Introduction <span>
+
+# <span id='feature-about'> About TutorsContactsPro <span>
+TutorsContactsPro is a **desktop app for tutors teaching Computer Science courses to manage their students, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorsContactsPro can help you to gain faster and more convenient access to your list of students, even if they are from different classes.
+
+TutorsContactsPro uses a **Command Line Interface (CLI)** for you to type in your desired **actions**. If you are a **fast typist**, this is perfect for you as it allows you to execute commands without having to leave the keyboard and allows you to manage your students more conveniently than traditional GUI apps.
+
+TutorsContactsPro also uses a **Graphical User Interface (GUI)** to display **content and data**. This allows for data to be presented to you in an **elegant, fuss-free** manner.
+
+Start today with TutorsContactsPro to better streamline your TA journey!
+
+[Return to Table of Contents](#table-of-contents)
+
+
+## <span id='feature-aboutUG'> About the User Guide <span>
+
+This user guide aims to provide you with the information needed to get started with TutorsContactsPro.
+
+Feel free to turn back to this user guide if you encounter any problems or doubts while using TutorsContactsPro. 
+
+* If you are **new** to TutorsContactsPro, you may refer to the **[Navigating the User Guide](#navigating-the-user-guide)** section first, then to the **[Getting Started](#getting-started)** section to start installing and using TutorsContactsPro.
+
+* If you would like to find out more about its **individual features**, you may refer to the **[Features](#feature-features)** section.
+
+* If you are an **experienced user** and want to quickly refer to the various commands, you may refer to the **[Command Summary](#feature-summary)** section.
+
+* If you would like to find out more about the **technical aspects of TaskHub**, you may refer to our **[Developer Guide](https://ay2324s2-cs2103t-W10-4.github.io/tp/DeveloperGuide.html)**.
+
+* Finally, if you would like an **overview** of this entire user guide, you may refer to our **[Table of Contents](#table-of-contents)**.
+
+
+## <span id='#navigating-the-user-guide'> Navigating the User Guide <span>
+Throughout this user guide, the following symbols and keywords will be utilized for your convenience. 
+
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip:** Offers information that may not be essential but could **enrich your user experience**..<br>
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Information:** Provides information that will be **useful to know**.<br>
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Important:** Provides **important** information about a feature/command.<br>
+
+</div>
+
+Below is the glossary for important technical terms that you may find useful. 
+
+| Technical terms | Meaning                                                                                                                                                                      | 
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI             | CLI stands for Command Line Interface. It is a text-based interface used for interacting with computer systems and executing commands by typing them into a terminal window. | 
+| GUI             | GUI stands for Graphical User Interface, a visual way of interacting with computers using icons and menus instead of text commands.                                          | 
+| Command         | Command refers to a directive or instruction given to a computer system to perform a specific task or function.                                                              |             
+| GUI component   | GUI component refers to an element or part of a graphical user interface (GUI) that allows users to interact with the software application.                                  |        
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
+
+# <span id='feature-gettingStarted'>  Getting Started <span>
+
+## <span id='feature-install'> Installing and Launching TaskHub <span>
+
+### Step 1: Install Java
+
+Ensure you have Java `11` or above installed on your computer. If you don't have Java installed, follow the steps in [Appendix A: Installing Java](#appendix-a-installing-java).
+
+### Step 2: Download 
+
+Download the latest `TutorsContactsPro.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+
+### Step 3: Set up TutorsContactsPro Home Folder
+
+Copy or move the downloaded `TutorsContactsPro.jar` file to the folder you want to use as the _home folder_ for your TutorsContactsPro.
+
+### Step 4: Launch TutorsContactsPro
+
+1. Open a terminal (MacOS) or command prompt (Windows).
+
+2. Navigate to the folder where you placed the `TutorsContactsPro.jar` file using the `cd` command. For example, John Doe has his `TutorsContactsPro.jar` file in `/Users/JohnDoe/Desktop/TutorsContactsPro`, so he'll run:
+
+    ```bash
+    cd /Users/JohnDoe/Desktop/TutorsContactsPro
+    ```
+
+3. Verify that your working directory contains `TutorsContactsPro.jar` by using the `ls` command. You should see `TutorsContactsPro.jar` in the list of files printed. Here's what our John Doe got when running this command.
+
+    ```bash
+    JohnDoe@johndoe TutorsContactsPro % ls
+    TutorsContactsPro.jar
+    ```
+4. Once your terminal's working directory is the folder that contains `TutorsContactsPro.jar`, run the following command to launch TutorsContactsPro:
+
+    ```bash 
+    java -jar TutorsContactsPro.jar
+    ```
+
+   After executing this command, a graphical user interface (GUI) similar to the one below should appear shortly:
+
+   <img src="images/UpdatedUi.png" width="700">
+
+   Note: The application comes with some sample data for your reference.  
+
+---
+
+## <span id='feature-learn'> Learning about TutorsContactsPro components <span>
+
+---
+
+### Students
+A 'Student' is an individual that you will store in TutorsContactsPro. 
+It is an individual that attends one or more [`Groups`](#groups) that you teach.
+TutorsContactsPro allows you to store essential information or attributes about the student and store remarks for them.
+
+#### Attributes:
+
+| Parameter         | Representation                        | Prefix | Constraints                                                                             |
+|-------------------|---------------------------------------|--------|-----------------------------------------------------------------------------------------|
+| `NAME`            | Name of the student                   | `n/`   | Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed      |
+| `PHONE_NUMBER`    | Phone number of the student           | `p/`   | Singapore phone number, 8 digits, without country code                                  |
+| `EMAIL`           | Email of the student                  | `e/`   | Must be in email format `username`@`email`.com                                          |
+| `YEAR`            | Academic Year of the student          | `y/`   | A number ranging from 1 - 6, inclusive                                                  |
+| `MAJOR`           | Academic Major of the student contact | `m/`   | String to represent the major                                                           |
+| `TELEGRAM_HANDLE` | Telegram handle of the student        | `tg/`  | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
+| `REMARKS`         | Additional remarks of the student     | `r/`   | A case-sensitive string. This can be anything                                           |
+| `GROUP`           | Tutorial/Lab/Recitation slot          | `g/`   | Must be in correct slot format TUT/LAB/REC`2-digit number`                              |
+
+### Groups
+
+A `Group` is a lesson that is taught by you and attended by students. 
+It can be a tutorial/recitation/lab. 
+
+#### Attributes:
+
+| Parameter       | Representation             | Prefix | Constraints                                                   |
+|-----------------|----------------------------|--------|---------------------------------------------------------------|
+| `NAME`          | Name of the group          | `g/`   | Group name must begin with 'TUT'/'REC'/'LAB' + 2-digit number |
+| `TELEGRAM_LINK` | Telegram link of the group | `tg/`  | Must be a valid telegram group link                           |
+
+
+## <span id='feature-ui'> Understanding the User Interface (UI) <span>
+TutorsContactsPro's UI consists of 4 main parts that you will be using:
+
+### Menu Bar
+* The menu bar is where you can exit TutorsContactsPro or even open the help window with a simple click of your mouse!
+* While commands to exit TutorsContactsPro or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
+
+### Help:
+Upon clicking help on the menu bar or by using the shortcut `F1`, you will be assisted with a help window pop-up. 
+More is to be explained in [`help`](#feature-help) feature.
+
+### Command Panel
+* The command panel is the main panel that you will be interacting with to key in commands and also get back the results of those commands.
+* The upper box is where you can type in your command.
+* And the lower box is where you will see the results of those commands.
+
+### Student Panel
+* The Student panel is a panel that you can use to see the list of students stored in TutorsContactsPro.
+* You can see student's name, phone number, year of student, major, email address, group, telegram handle and even whatever remarks that you have for each of them as needed!
+
+![Student Panel](images/StudentPanel.png)
+
+
 ## <span id='feature-start'> Quick start <span>
-
-> [!important]
-> 1. Ensure you have Java `11` or above installed in your Computer.
-
-[//]: # (<box type="info" seamless>)
-
-2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UpdatedUi.png)
-
-4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all students.
@@ -79,18 +256,26 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
    * `filter TUT10` : Lists all the students in group 'TUT10'
 
+   * `addgroup g/TUT01` : Adds the group 'TUT01' to TutorsContactsPro.
+
+   * `editgroup g/TUT01` : Edits the group 'TUT01' in TutorsContactsPro.
+   
+   * `deletegroup g/TUT01` : Deletes the group 'TUT01' in TutorsContactsPro.
+   
+   * `mail` : Generates a mail link to all the students on the list. 
+
    * `delete 3` : Deletes the 3rd student shown in the current list.
 
    * `clear` : Deletes all students on the list.
-
+ 
    * `exit` : Exits the app.
 
 
-5. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Command Notes and Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id='feature-features'> Features <span>
+## <span id='feature-features'> Command Notes <span>
 
 [//]: # (<box type="info" seamless>)
 
@@ -104,12 +289,19 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 | Order                 | Parameters can be in any order                                                                                                  | if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. |
 | Extraneous parameters |  Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored | if the command specifies `help 123`, it will be interpreted as `help`                         |                                                                                                 | Singapore phone number, 8 digits, without country code                                        |
 
-> [!Note]
-> If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Warning:**<br> If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application. 
+
+</div>
+
+## <span id='feature-basicCommands'> Basic Commands <span>
+This section contains the basic commands of TutorsContactsPro.
+
 
 ### <span id='feature-help'> Viewing help : `help` </span>
 
-Allows you to easily access tge features in TutorsContactsPro
+Allows you to easily access the features in TutorsContactsPro. 
 
 ![help message](images/helpMessage.png)
 
@@ -123,25 +315,27 @@ Format: `list`
 
 **Tip:** Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed
 
+### <span id='feature-clear'> Clearing all entries : `clear` <span>
 
+Clears all student entries from TutorsContactsPro.
+
+Format: `clear`
+
+### <span id='feature-exit'> Exiting the program : `exit` <span>
+
+Exits the program.
+
+Format: `exit`
+
+## <span id='feature-studentCommands'> Student Commands <span>
+
+This section contains commands for managing students in TutorsContactsPro.
 
 ### <span id='feature-add'> Adding a student: `add` </span>
 
 You can add a student to the list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/REMARK] [g/Group]...`
-
-
-| Parameter         | Representation                        | Constraints                                                                             |
-|-------------------|---------------------------------------|-----------------------------------------------------------------------------------------|
-| `NAME`            | Name of the student                   | Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed      |
-| `PHONE_NUMBER`    | Phone number of the student           | Singapore phone number, 8 digits, without country code                                  |
-| `EMAIL`           | Email of the student                  | Must be in email format `username`@`email`.com                                          |
-| `YEAR`            | Academic Year of the student          | A number ranging from 1 - 6, inclusive                                                  |
-| `MAJOR`           | Academic Major of the student contact | String to represent the major                                                           |
-| `TELEGRAM_HANDLE` | Telegram handle of the student        | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
-| `REMARKS`         | Additional remarks of the student     | A case-sensitive string. This can be anything                                           |
-| `GROUP`           | Tutorial/Lab/Recitation slot          | Must be in correct slot format TUT/LAB/REC`2-digit number`                              |
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
@@ -154,12 +348,14 @@ Edits an existing student you have selected.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR] [m/MAJOR] [tg/TELEGRAM_HANDLE] [r/REMARK] [g/Group]`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative.
-* You can remove all the student’s groups by typing `g/` without specifying any groups after it.
-* You can remove the remark of a student by typing `r/` without specifying any groups after it. 
+<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ <br>
+* At least one of the optional fields must be provided. <br>
+* Existing values will be updated to the input values. <br>
+* When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative. <br>
+* You can remove all the student’s groups by typing `g/` without specifying any groups after it. <br>
+* You can remove the remark of a student by typing `r/` without specifying any groups after it. <br>
+</div>
 
 Examples:
 *  `edit 1 n/John e/john01@example.com` Edits the name of the first student to `John` and email to `john01@example.com` respectively.
@@ -215,6 +411,11 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the major book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+
+## <span id='feature-groupCommands'> Group Commands <span>
+
+This section contains commands for managing groups in TutorsContactsPro.
+
 ### <span id='feature-addgroup'> Adding a group: `addgroup` <span>
 
 You can add a new group to TutorsContactsPro.
@@ -261,17 +462,6 @@ Examples:
 * `mail LAB05` generates a mailto link with email addresses of all students belonging to `LAB05`.
 ![result for 'mail LAB05'](images/MailFeature.png)
 
-### <span id='feature-clear'> Clearing all entries : `clear` <span>
-
-Clears all student entries from TutorsContactsPro.
-
-Format: `clear`
-
-### <span id='feature-exit'> Exiting the program : `exit` <span>
-
-Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
@@ -323,3 +513,35 @@ _Details coming soon ..._
 | **deletegroup** | `deletegroup g/GROUPNAME`                                                                                                                                                                                          |
 | **Mail**        | `mail [KEYWORD]`<br> e.g., `mail TUT01`                                                                                                                                                                            |  
 | **Clear**       | `clear`                                                                                                                                                                                                            |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## <span id='feature-appendix-a-installing-java'> Appendix A: Installing Java <span>
+
+Follow these steps to install Java on your computer:
+
+1. **Download Java 11:**
+- Download Java 11 from [Oracle's website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) based on your operating system.
+
+2. **Follow the instructions on Oracle's website**
+    - Go to the appropriate guide page and follow the instructions based on your operating system to complete the installation.
+        - [MacOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+        - [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA)
+        - [Linux](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8)
+
+3. **Verify Installation:**
+   After installation, open a terminal (on MacOS) or Command Prompt (on Windows) and run the following commands to verify that Java is installed:
+
+  ```
+   java -version
+  ```
+If installed correctly, you should see version information for both Java and the Java Compiler. The message should look something like this:
+```
+openjdk version "11.0.20" 2023-07-18 LTS
+OpenJDK Runtime Environment Zulu11.66+15-CA (build 11.0.20+8-LTS)
+OpenJDK 64-Bit Server VM Zulu11.66+15-CA (build 11.0.20+8-LTS, mixed mode)
+```
+
+Now, you're ready to proceed with the launching of TutorsContactsPro. Click [here](#feature-install) to get back to the installation tutorial.
+
