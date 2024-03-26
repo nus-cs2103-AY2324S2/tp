@@ -12,8 +12,8 @@ title: Developer Guide
 
 | Module                                  | Description                               |
 |-----------------------------------------|-------------------------------------------|
-| [JavaFX](https://openjfx.io/)                   | UI generation for Java |
-| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java |
+| [JavaFX](https://openjfx.io/)                   | UI generation for Java             |
+| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java         |
 | [JUnit5](https://github.com/junit-team/junit5)  | Automated testing library for Java |
 | [ZXing](https://github.com/zxing/zxing)         | Barcode image processing library for Java |
 
@@ -271,6 +271,20 @@ We can refer to the sequence diagram [above](#interacting-with-the-note-command)
 For more details on how the `height` and `weight` fields interact with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
 
 #### Viewing height and weight history of a client
+
+### Searching Clients
+Search for clients is done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
+
+The sequence diagram below shows the logic flow of executing the command `find n/wendy`.
+
+![FindCommandSequenceDiagram-Logic](images/FindCommandSequenceDiagram-Logic.png)
+
+Note that the main searching logic is defined by creating a `Predicate`, which in turn calls the `isMatch()` method of the attribute.
+
+Therefore, to define how an attribute is being searched, one would simply take the following steps:
+1. Define the implementation of the `isMatch()` method of the respective attribute. (e.g `Name::isMatch()`)
+1. Create a new class that extends `Predicate` (e.g `NameContainsSubstringPredicate`)
+1. Update the `parse()` method in `FindCommandParser` to uses the new predicate
 
 ### Adding or editing a client
 
