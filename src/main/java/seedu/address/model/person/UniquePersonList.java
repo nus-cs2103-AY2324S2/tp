@@ -2,7 +2,9 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,6 +97,18 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Sorts the list of persons by the attribute represented by the given prefix.
+     */
+    public void sortPersons(String prefix) {
+        requireNonNull(prefix);
+        if (PREFIX_NAME.getPrefix().equals(prefix)) {
+            internalList.sort(Comparator.comparing(Person::getName));
+        } else {
+            throw new IllegalArgumentException("Invalid prefix supplied.");
+        }
     }
 
     /**

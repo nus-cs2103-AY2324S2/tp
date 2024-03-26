@@ -22,6 +22,7 @@ public class Messages {
     public static final String MESSAGE_ARTICLES_LISTED_OVERVIEW = "%1$d articles listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_SORTING_PREFIX = "Invalid prefix given for sorting";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

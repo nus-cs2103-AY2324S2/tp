@@ -116,6 +116,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void sortAddressBook(String prefix) {
+        addressBook.sortAddressBook(prefix);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -169,7 +174,7 @@ public class ModelManager implements Model {
         articleBook.setArticle(target, editedArticle);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Article List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Article} backed by the internal list of

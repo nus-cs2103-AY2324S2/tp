@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -76,6 +79,19 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void sortAddressBook_validPrefix_sortsPeopleInAddressBookByAttributeCapturedByPrefix() {
+        addressBook.addPerson(CARL);
+        addressBook.addPerson(BOB);
+        addressBook.addPerson(ALICE);
+        addressBook.sortAddressBook(PREFIX_NAME.getPrefix());
+        AddressBook expected = new AddressBook();
+        expected.addPerson(ALICE);
+        expected.addPerson(BOB);
+        expected.addPerson(CARL);
+        assertEquals(expected, addressBook);
     }
 
     @Test
