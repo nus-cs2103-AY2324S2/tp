@@ -42,17 +42,17 @@ public class FilterCommandParserTest {
         Set<Tag> queryTags = new HashSet<>();
         queryTags.add(testTag1);
 
-        FilterCommand expeectedFilterCommand =
+        FilterCommand expectedFilterCommand =
                 new FilterCommand(new TagsContainQueryTagsPredicate(queryTags));
-        assertParseSuccess(parser, "filter t/TA", expeectedFilterCommand);
+        assertParseSuccess(parser, "filter t/TA", expectedFilterCommand);
 
         // Filter - 2 tags
         Tag testTag2 = new Tag("Smart");
         queryTags.add(testTag2);
-        assertParseSuccess(parser, "filter t/TA t/Smart", expeectedFilterCommand);
+        assertParseSuccess(parser, "filter t/TA t/Smart", expectedFilterCommand);
 
         // Filter - White Spaces
-        assertParseSuccess(parser, "filter t/ TA t/      Smart      ", expeectedFilterCommand);
+        assertParseSuccess(parser, "filter t/ TA t/      Smart      ", expectedFilterCommand);
     }
 
 
