@@ -89,7 +89,8 @@ public class PersonTest {
                 null,
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
-                ALICE.getBirthday());
+                ALICE.getBirthday(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutEmail));
         assertFalse(aliceCopyWithoutEmail.equals(ALICE));
 
@@ -99,7 +100,8 @@ public class PersonTest {
                 ALICE.getEmail(),
                 null,
                 ALICE.getTelegram(),
-                ALICE.getBirthday());
+                ALICE.getBirthday(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutRoomNumber));
         assertFalse(aliceCopyWithoutRoomNumber.equals(ALICE));
 
@@ -109,7 +111,8 @@ public class PersonTest {
                 ALICE.getEmail(),
                 ALICE.getRoomNumber(),
                 null,
-                ALICE.getBirthday());
+                ALICE.getBirthday(),
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutTelegram));
         assertFalse(aliceCopyWithoutTelegram.equals(ALICE));
 
@@ -119,7 +122,8 @@ public class PersonTest {
                 ALICE.getEmail(),
                 ALICE.getRoomNumber(),
                 ALICE.getTelegram(),
-                null);
+                null,
+                ALICE.getTags());
         assertFalse(ALICE.equals(aliceCopyWithoutBirthday));
         assertFalse(aliceCopyWithoutBirthday.equals(ALICE));
     }
@@ -127,7 +131,7 @@ public class PersonTest {
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
+                + ", tags=[[Mon:1000-1400]]" + ", email=" + ALICE.getEmail() + ", roomNumber=" + ALICE.getRoomNumber()
                 + ", telegram=" + ALICE.getTelegram() + ", birthday=" + ALICE.getBirthday() + "}";
         assertEquals(expected, ALICE.toString());
     }

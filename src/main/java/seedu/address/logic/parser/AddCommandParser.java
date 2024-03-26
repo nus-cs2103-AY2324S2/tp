@@ -3,12 +3,14 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOMNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -20,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RoomNumber;
 import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -35,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
-                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY);
+                        PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -62,7 +65,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Optional<String> birthdayText = argMultimap.getValue(PREFIX_BIRTHDAY);
         Birthday birthday = birthdayText.isPresent() ? ParserUtil.parseBirthday(birthdayText.get()) : null;
 
-        Person person = new Person(name, phone, email, roomNumber, telegram, birthday);
+        Optional<String> freeTimeTagText = argMultimap.getValue(PREFIX_FREETIMETAG);
+        Set<FreeTimeTag> freeTimeTags = ParserUtil.parseFreeTimeTags(argMultimap.getAllValues(PREFIX_FREETIMETAG));
+
+        Person person = new Person(name, phone, email, roomNumber, telegram, birthday, freeTimeTags);
         return new AddCommand(person);
     }
 
