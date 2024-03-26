@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -12,7 +13,6 @@ import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -120,7 +120,7 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final List<Relationship> relationships = Collections.emptyList();
+        private final ObservableList<Relationship> relationships = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -132,7 +132,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public List<Relationship> getRelationshipList() {
+        public ObservableList<Relationship> getRelationshipList() {
             return relationships;
         }
     }
@@ -230,6 +230,31 @@ public class AddressBookTest {
 
         // Check if invoking getExistingRelationship with the non-existing relationship throws an exception
         assertThrows(IllegalArgumentException.class, () -> addressBook.getExistingRelationship(testRelationship));
+    }
+
+    @Test
+    public void hashCode_sameObject_equals() {
+        AddressBook addressBook1 = new AddressBook();
+        addressBook1.addPerson(ALICE);
+        addressBook1.addPerson(HOON);
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(ALICE);
+        addressBook2.addPerson(HOON);
+
+        assertEquals(addressBook1.hashCode(), addressBook2.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentObject_notEquals() {
+        AddressBook addressBook1 = new AddressBook();
+        addressBook1.addPerson(ALICE);
+        addressBook1.addPerson(HOON);
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(CAT);
+
+        assertNotEquals(addressBook1.hashCode(), addressBook2.hashCode());
     }
 
     @Test
