@@ -6,7 +6,7 @@ package seedu.address.model.person.attribute;
  * providing a means to store and retrieve string-based information about a person.
  */
 public class StringAttribute extends Attribute {
-    private String value;
+    protected String value;
 
     /**
      * Constructs a new StringAttribute instance with a specified name and value.
