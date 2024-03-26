@@ -9,8 +9,10 @@
 Avengers Assemble (AA) is a **desktop app for managing contacts, meant for use with a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). 
 
-The application is designed for Head Tutors of the CS1101S Programming Methodology course, 
-but its use cases can be extended to Head Tutors of other courses. Our user guide hence aims to aid users in understanding how to get started with the application.
+The application is designed for Head Tutors of the NUS CS1101S Programming Methodology course, who intend to simplify their administrative tasks relating to contact management between students, other teaching assistants, and course instructors.
+However, its use cases can be extended to Head Tutors of other courses outside CS1101S. 
+
+Our user guide aims to aid users in understanding how to get started with the application.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -205,13 +207,13 @@ Format: `clear`
 
 ### Exporting Data to a CSV File : `export`
 
-Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
+Exports currently listed persons and their details to a CSV file, `avengersassemble.csv`, which can be found in `addressbookdata`.
 
 **Steps:**
 1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or
 [`list`](#listing-all-persons--list) command.
 2. Type `export` to export the currently listed persons and their details to a CSV file.
-3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
+3. Upon export, a folder named `addressbookdata` will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named `avengersassemble.csv`, containing the exported data.
 
 Format: `export`
 
@@ -221,10 +223,10 @@ Format: `export`
 
 <box type="info" seamless>
 
-**Important:** When performing an export, the current information will overwrite the existing CSV file named avengersassemble.csv located within the addressbookdata folder.
+**Important:** When performing an export, the current information will overwrite the existing CSV file named `avengersassemble.csv` located within the `addressbookdata` folder.
 A new CSV file will not be created with each export.
 
-Users have the option to manually move the current CSV file out of the addressbookdata folder if they do not want the information to be overwritten in the next export.
+Users have the option to manually move the current CSV file out of the `addressbookdata` folder if they do not want the information to be overwritten in the next export.
 A new CSV file of the same name in the same location will again be created when performing the next export.
 
 </box>
@@ -236,7 +238,11 @@ absolute filePath.
 
 Format: `import i/FILEPATH`
 
-> A success message for the above command will be shown as followed, indicating the filepath that has been imported:
+Example:
+
+`import i/C:/Users/alk/Downloads/avengersassemble.csv`
+
+> A success message for the above command will be shown as followed, indicating the filepath that has been imported and showing all imported contacts:
 > 
 > ![import success message](images/success_images/import_success.png)
 
@@ -286,20 +292,20 @@ Furthermore, certain edits can cause the Avengers Assemble application to behave
 
 ## Command Summary
 
-Below is a summary of the commands available in Avengers Assemble.
+Below is a summary of the commands available in Avengers Assemble. Some examples are included for your convenience.
 
-| Action            | Format, Examples                                                                                                                                                                                                                |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
-| **Clear**         | `clear`                                                                                                                                                                                                                         |
-| **Delete**        | `delete INDEX` e.g., `delete 3`                                                                                                                                                                                                 |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
-| **Find**          | `find PREFIX/KEYWORD` e.g., `find n/James`                                                                                                                                                                                      |
-| **Copy**          | `copy`                                                                                                                                                                                                                          |
-| **List**          | `list`                                                                                                                                                                                                                          |
-| **Help**          | `help`                                                                                                                                                                                                                          |
-| **Export to CSV** | `export`                                                                                                                                                                                                                        |
-| **Import**        | `import i/FILEPATH`                                                                                                                                                                                                             |
+| Action            | Format, Examples                                                                                                                                                                                                                         |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` <br><br>• e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
+| **Clear**         | `clear`                                                                                                                                                                                                                                  |
+| **Delete**        | `delete INDEX` <br><br>• e.g. `delete 3`                                                                                                                                                                                                 |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` <br><br>• e.g.`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
+| **Find**          | `find PREFIX/KEYWORD` <br><br>• e.g. `find n/James`                                                                                                                                                                                      |
+| **Copy**          | `copy`                                                                                                                                                                                                                                   |
+| **List**          | `list`                                                                                                                                                                                                                                   |
+| **Help**          | `help`                                                                                                                                                                                                                                   |
+| **Export to CSV** | `export`                                                                                                                                                                                                                                 |
+| **Import**        | `import i/FILEPATH` <br><br>• e.g. `import i/C:/Users/alk/Downloads/avengersassemble.csv`                                                                                                                                                |
 
 
 ## Command Format Summary
