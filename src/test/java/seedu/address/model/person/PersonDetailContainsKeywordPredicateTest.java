@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.junit.jupiter.api.Test;
@@ -178,6 +181,84 @@ public class PersonDetailContainsKeywordPredicateTest {
         predicate = new PersonDetailContainsKeywordPredicate(PREFIX_TAG, "Main Street");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("Friend").build()));
+    }
+
+    @Test
+    public void test_matricContainsKeyword_returnsTrue() {
+        // One keyword
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_MATRIC_NUMBER, "A1234567A");
+
+        assertTrue(predicate.test(new PersonBuilder().withMatric("A1234567A").build()));
+        // Mixed-case keywords
+        predicate = new PersonDetailContainsKeywordPredicate(PREFIX_MATRIC_NUMBER, "a1234567a");
+        assertTrue(predicate.test(new PersonBuilder().withMatric("A1234567A").build()));
+    }
+
+    @Test
+    public void test_matricDoesNotContainKeyword_returnsFalse() {
+        // Non-matching keyword
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_MATRIC_NUMBER, "A1234567A");
+
+        assertFalse(predicate.test(new PersonBuilder().withMatric("A1234567B").build()));
+
+        // Keywords match tag, but does not match matric
+        predicate = new PersonDetailContainsKeywordPredicate(PREFIX_MATRIC_NUMBER, "Friend");
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withAddress("Main Street").withTags("Friend").build()));
+    }
+
+    @Test
+    public void test_reflectionContainsKeyword_returnsTrue() {
+        // One keyword
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_REFLECTION, "R1");
+
+        assertTrue(predicate.test(new PersonBuilder().withReflection("R1").build()));
+        // Mixed-case keywords
+        predicate = new PersonDetailContainsKeywordPredicate(PREFIX_REFLECTION, "r1");
+        assertTrue(predicate.test(new PersonBuilder().withReflection("R1").build()));
+    }
+
+    @Test
+    public void test_reflectionDoesNotContainKeyword_returnsFalse() {
+        // Non-matching keyword
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_REFLECTION, "R1");
+
+        assertFalse(predicate.test(new PersonBuilder().withReflection("R2").build()));
+
+        // Keywords match matric, but does not match reflection
+        predicate = new PersonDetailContainsKeywordPredicate(PREFIX_REFLECTION, "A1234567A");
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withMatric("A1234567A").withReflection("R1").build()));
+    }
+
+    @Test
+    public void test_studioContainsKeyword_returnsTrue() {
+        // One keyword
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_STUDIO, "S1");
+
+        assertTrue(predicate.test(new PersonBuilder().withStudio("S1").build()));
+        // Mixed-case keywords
+        predicate = new PersonDetailContainsKeywordPredicate(PREFIX_STUDIO, "s1");
+        assertTrue(predicate.test(new PersonBuilder().withStudio("S1").build()));
+    }
+
+    @Test
+    public void test_studioDoesNotContainKeyword_returnsFalse() {
+        // Non-matching keyword
+        PersonDetailContainsKeywordPredicate predicate =
+            new PersonDetailContainsKeywordPredicate(PREFIX_STUDIO, "S1");
+
+        assertFalse(predicate.test(new PersonBuilder().withStudio("S2").build()));
+
+        // Keywords match reflection, but does not match studio
+        predicate = new PersonDetailContainsKeywordPredicate(PREFIX_STUDIO, "R1");
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+                .withEmail("alice@email.com").withReflection("R1").withStudio("S1").build()));
     }
 
     @Test
