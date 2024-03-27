@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 /**
- * Represents a Person's Grade in the address book.
+ * Represents a Student's Grade in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGrade(String)}
  */
 public class Grade {
