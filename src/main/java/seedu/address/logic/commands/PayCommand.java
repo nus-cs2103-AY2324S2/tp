@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_MOBILE;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -48,5 +50,24 @@ public class PayCommand extends Command {
         }
         return new CommandResult(
                 String.format(MESSAGE_GENERATE_QR_SUCCESS, Messages.format(personToPay)), personToPay);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof PayCommand)) {
+            return false;
+        }
+        PayCommand otherCommand = (PayCommand) other;
+        return Objects.equals(targetIndex, otherCommand.targetIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
     }
 }
