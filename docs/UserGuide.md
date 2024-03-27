@@ -171,8 +171,8 @@ If you have faced issues opening the app, you can find the alternative solution 
 1. To start ClientCare, simply open up the folder where your downloaded `clientcare.jar`.
 2. Next, double left-click on `clientcare.jar` to start the application.
 ![Starting up app on macOS](images/ug/startUpAppMacOS.png =600x)
-3. There we go! You should see ClientCare running on your computer!
-   <br> If you do not see the app running, do visit the [installation guide](#installation-instructions)
+
+If you have faced issues opening the app, you can find the alternative solution [here](#known-issues-and-troubleshooting).
 
 <br>
 --------------------------------------------------------------------------------------------------------------------
@@ -292,7 +292,6 @@ Let's type the following command into the Command Input:
 
 ![success_schedule](images/ug/success_add.png =600x)
 
-<div style="page-break-after: always;"></div>
 
 5. Now let's get interesting. What happens if we encounter an error?
 
@@ -353,8 +352,13 @@ Fields usage for client details:
 | 'c/PHONE_NUMBER' | Phone numbers should only contain numbers, and it should be at least 3 digits long | `c/98765432`                    |
 | 'e/EMAIL'        | Email should be in the format of `local-part@domain`                               | `e/johndoe@email.com`           |
 | 'a/ADDRESS'      | Address can take any text value                                                    | `a/311, Clementi Ave 2, #02-25` |
+<<<<<<< HEAD
+| 'b/BIRTHDAY'     | Birthday should be in the format of `YYYY-MM-DD`                                   | `b/1990-01-01`                  |
+| 'p/PRIORITY'     | Priority can be `low`, `medium`, `high` or `vip`                                   | `p/medium`, `p/h`               |
+=======
 | 'd/BIRTHDAY'     | Birthday should be in the format of `YYYY-MM-DD`                                   | `d/1990-01-01`                  |
-| 'p/PRIORITY'     | Priority can be `low`, `medium`, `high`, `vip`, or `l`, `m`, `h`, `v`              | `p/medium`, `p/h`               |
+| 'p/PRIORITY'     | Priority can be `low`, `medium`, `high` or `vip`                                   | `p/medium`, `p/h`              |
+>>>>>>> master
 | 't/TAG'          | Tags can be any text value                                                         | `t/friends`                     |
 
 Examples:
@@ -697,9 +701,12 @@ Furthermore, certain edits can cause the ClientCare to behave in unexpected ways
     4. Hit ENTER and there we go! You should see ClientCare running on your computer! <br> <br>
 
     **For macOS:**
-    1. A
-   
-    2. B
+   1. If you see the following prompt, fret not! Simply click on OK and follow the following.
+       ![Unidentified developer prompt on macOS](images/ug/unidentifiedDeveloperMacOS.png =600x)
+   2. To bypass the prompt, right-click on the 'clientcare.jar' app and select 'Open'.
+      ![Bypassing the prompt on macOS](images/ug/bypassPromptMacOS.png =600x)
+   3. Select 'Open' to start the application.
+      ![Confirmation to open the app on macOS](images/ug/confirmOpenMacOS.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
