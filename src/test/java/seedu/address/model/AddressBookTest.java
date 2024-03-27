@@ -16,6 +16,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -86,6 +88,25 @@ public class AddressBookTest {
     }
 
     @Test
+    public void addListener_withInvalidationListener_listenerAdded() {
+        SimpleIntegerProperty counter = new SimpleIntegerProperty();
+        InvalidationListener listener = observable -> counter.set(counter.get() + 1);
+        addressBook.addListener(listener);
+        addressBook.addPerson(ALICE);
+        assertEquals(1, counter.get());
+    }
+
+    @Test
+    public void removeListener_withInvalidationListener_listenerRemoved() {
+        SimpleIntegerProperty counter = new SimpleIntegerProperty();
+        InvalidationListener listener = observable -> counter.set(counter.get() + 1);
+        addressBook.addListener(listener);
+        addressBook.removeListener(listener);
+        addressBook.addPerson(ALICE);
+        assertEquals(0, counter.get());
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
                 + ", tasks=" + addressBook.getTaskList() + "}";
@@ -112,6 +133,16 @@ public class AddressBookTest {
         @Override
         public ObservableList<Task> getTaskList() {
             return null;
+        }
+
+        @Override
+        public void addListener(InvalidationListener listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeListener(InvalidationListener listener) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

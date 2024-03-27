@@ -9,6 +9,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -51,7 +52,7 @@ public class AssignTaskCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Person> personList = model.getFilteredPersonList();
 
@@ -66,6 +67,7 @@ public class AssignTaskCommand extends Command {
         }
 
         model.assignTask(task, assignedTo);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
                 Messages.printTask(task), Messages.printName(assignedTo)));
     }
