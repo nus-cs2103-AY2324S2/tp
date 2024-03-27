@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -14,6 +15,13 @@ import seedu.address.model.person.Meeting;
  * Parses input arguments and creates a new {@code AddMeetingCommand} object
  */
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
+
+    public static String parseErrorMsg = "Oops, please input the meeting command in the following format:\n"
+            + "mtg <contact_name> m/<mtg_description> t/dd-MM-YYYY HHmm-HHmm\n"
+            + "Example: mtg alex m/interview t/23-03-2024 1400-1500";
+
+    public static String emptyDesc = "Oops, please input the description of your meeting.\n"
+            + "Example: mtg alex m/interview t/23-03-2024 1400-1500";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
@@ -31,16 +39,23 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         if (meeting.isEmpty()) {
             return new AddMeetingCommand(contactName, new Meeting("", "", "", ""));
         }
-        String[] parts = meeting.split("t/");
-        String desc = parts[0].trim();
-        String timing = parts[1].trim();
-        String[] dateTime = timing.split(" ");
-        String date = dateTime[0].trim();
-        String[] startEnd = dateTime[1].split("-");
-        String start = startEnd[0].trim();
-        String end = startEnd[1].trim();
+        try {
+            String[] parts = meeting.split("t/");
+            String desc = parts[0].trim();
+            if (desc.isEmpty()) {
+                throw new ParseException(emptyDesc);
+            }
+            String timing = parts[1].trim();
+            String[] dateTime = timing.split(" ");
+            String date = dateTime[0].trim();
+            String[] startEnd = dateTime[1].split("-");
+            String start = startEnd[0].trim();
+            String end = startEnd[1].trim();
 
-        return new AddMeetingCommand(contactName, new Meeting(desc, date, start, end));
+            return new AddMeetingCommand(contactName, new Meeting(desc, date, start, end));
+        } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(parseErrorMsg);
+        }
     }
     /**
      * Parses the given {@code meeting} string of the Meeting.toString() output format
