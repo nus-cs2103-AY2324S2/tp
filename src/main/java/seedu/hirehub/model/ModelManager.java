@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.hirehub.commons.core.GuiSettings;
 import seedu.hirehub.commons.core.LogsCenter;
+import seedu.hirehub.model.job.Job;
+import seedu.hirehub.model.job.UniqueJobList;
 import seedu.hirehub.model.person.Person;
 
 /**
@@ -25,6 +27,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     private Optional<Person> lastMentionedPerson;
+    private final UniqueJobList jobList;
+    private final FilteredList<Job> filteredJobs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +42,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         lastMentionedPerson = Optional.<Person>empty();
+        jobList = new UniqueJobList();
+        filteredJobs = new FilteredList<>(jobList.asUnmodifiableObservableList());
     }
 
     public ModelManager() {
@@ -142,6 +148,49 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== JobList ================================================================================
+
+    @Override
+    public boolean hasJob(Job job) {
+        requireNonNull(job);
+        return jobList.containsJob(job);
+    }
+
+    @Override
+    public void deleteJob(Job target) {
+        jobList.removeJob(target);
+    }
+
+    @Override
+    public void addJob(Job job) {
+        jobList.addJob(job);
+        updateFilteredJobList(PREDICATE_SHOW_ALL_JOBS);
+    }
+
+    @Override
+    public void setJob(Job target, Job editedJob) {
+        requireAllNonNull(target, editedJob);
+        jobList.setJob(target, editedJob);
+    }
+
+    //=========== Filtered Job List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Job} backed by the internal list of
+     * {@code UniqueJobList}
+     */
+    @Override
+    public ObservableList<Job> getFilteredJobList() {
+        return filteredJobs;
+    }
+
+    @Override
+    public void updateFilteredJobList(Predicate<Job> predicate) {
+        requireNonNull(predicate);
+        filteredJobs.setPredicate(predicate);
+    }
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -156,7 +205,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && jobList.equals((otherModelManager.jobList));
     }
 
 }

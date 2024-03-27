@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.hirehub.commons.core.LogsCenter;
 import seedu.hirehub.logic.commands.AddCommand;
+import seedu.hirehub.logic.commands.AddJobCommand;
 import seedu.hirehub.logic.commands.ClearCommand;
 import seedu.hirehub.logic.commands.Command;
 import seedu.hirehub.logic.commands.CommentCommand;
@@ -97,6 +98,9 @@ public class AddressBookParser {
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
+
+        case AddJobCommand.COMMAND_WORD:
+            return new AddJobCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

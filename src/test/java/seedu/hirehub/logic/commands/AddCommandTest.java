@@ -23,6 +23,7 @@ import seedu.hirehub.model.AddressBook;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ReadOnlyAddressBook;
 import seedu.hirehub.model.ReadOnlyUserPrefs;
+import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.testutil.PersonBuilder;
 
@@ -166,6 +167,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasJob(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteJob(Job target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addJob(Job job) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setJob(Job target, Job editedJob) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Job> getFilteredJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredJobList(Predicate<Job> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

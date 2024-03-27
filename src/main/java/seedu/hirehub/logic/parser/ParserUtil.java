@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.hirehub.commons.core.index.Index;
 import seedu.hirehub.commons.util.StringUtil;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
+import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Country;
 import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
@@ -125,6 +126,37 @@ public class ParserUtil {
         }
         return new Tag(trimmedTag);
     }
+
+    /**
+     * Parses a {@code String title} into an {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static String parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Job.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Job.TITLE_CONSTRAINTS);
+        }
+        return trimmedTitle;
+    }
+
+    /**
+     * Parses a {@code String vacancy} into an {@code int}.
+     *
+     * @throws ParseException if the given {@code vacancy} is invalid.
+     */
+    public static int parseVacancy(String vacancy) throws ParseException {
+        requireNonNull(vacancy);
+        String trimmedVacancy = vacancy.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedVacancy)) {
+            throw new ParseException(Job.VACANCY_CONSTRAINTS);
+        }
+        return Integer.parseInt(trimmedVacancy);
+    }
+
+
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
