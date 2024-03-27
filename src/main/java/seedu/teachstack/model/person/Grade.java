@@ -117,4 +117,8 @@ public class Grade implements Comparable<Grade> {
         thresholdGrade = g;
     }
 
+    public String retrieveThreshold() {
+        return thresholdGrade.value;
+    }
+
 }

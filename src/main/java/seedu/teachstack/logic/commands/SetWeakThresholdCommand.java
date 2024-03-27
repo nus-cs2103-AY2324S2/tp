@@ -30,4 +30,8 @@ public class SetWeakThresholdCommand extends Command {
         Grade.modifyThreshold(newThreshold);
         return new CommandResult(String.format(MESSAGE_SET_THRESHOLD_SUCCESS));
     }
+
+    public Grade retrieveGrade() {
+        return newThreshold;
+    }
 }
