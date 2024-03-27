@@ -10,7 +10,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 
 public class ReminderCommandParser implements Parser<ReminderCommand> {
-    public static final String INVALID_NUMBER_OF_DAYS = "Number of days must be a positive integer.";
+    public static final String INVALID_NUMBER_OF_DAYS = "Reminder should be followed by a positive integer for the number of days. \n"
+            + "Example: reminder 4";
+    public static final String NEGATIVE_NUMBER_OF_DAYS = "Number of days cannot be negative.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the ReminderCommand
@@ -22,7 +24,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
         try {
             int numberOfDays = Integer.parseInt(args.trim());
             if (numberOfDays <= 0) {
-                throw new ParseException(INVALID_NUMBER_OF_DAYS);
+                throw new ParseException(NEGATIVE_NUMBER_OF_DAYS);
             }
             return new ReminderCommand(numberOfDays);
         } catch (NumberFormatException e) {

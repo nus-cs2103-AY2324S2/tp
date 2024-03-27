@@ -4,14 +4,11 @@ import java.util.function.Predicate;
 
 import seedu.internhub.model.Model;
 import seedu.internhub.model.person.Person;
-
 /**
  * Filters list to upcoming interviews in the next 'n' days
  */
 public class ReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
-    public static final String MESSAGE_USAGE = "Reminder should be followed by the number of days.\n"
-            + "Example: reminder 4";
     public static final String MESSAGE_SUCCESS = "Listed applications that are due or have interviews in %1$d days.";
 
     private int numberOfDays;
