@@ -68,8 +68,8 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        // descriptor.getScores().ifPresent(
-        //         scores -> scores.forEach((exam, score) -> sb.append(exam.getName()).append(score).append(" ")));
+        descriptor.getScores().ifPresent(
+                scores -> scores.forEach((exam, score) -> sb.append(exam.getName()).append(score).append(" ")));
 
         return sb.toString();
     }

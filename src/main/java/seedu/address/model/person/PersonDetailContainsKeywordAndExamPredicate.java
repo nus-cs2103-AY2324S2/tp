@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GREATERTHAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSTHAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MORETHAN;
 
 import java.util.function.Predicate;
 
@@ -15,7 +15,7 @@ import seedu.address.model.exam.Exam;
 public class PersonDetailContainsKeywordAndExamPredicate implements Predicate<Person> {
     private final Prefix prefix;
     private final String keyword;
-    private final Exam exam; 
+    private final Exam exam;
 
     /**
      * Constructor for the PersonDetailContainsKeywordPredicate.
@@ -35,22 +35,21 @@ public class PersonDetailContainsKeywordAndExamPredicate implements Predicate<Pe
     public boolean test(Person person) {
         if (PREFIX_LESSTHAN.equals(prefix)) {
             if (person.getScores().containsKey(exam)) {
-                return Double.parseDouble(person.getScores().get(exam).toString()) 
+                return Double.parseDouble(person.getScores().get(exam).toString())
                         < Double.parseDouble(keyword);
             } else {
                 // Handle case when the selected exam is not found in the person's scores
                 return false;
             }
-        } else if (PREFIX_GREATERTHAN.equals(prefix)) {
+        } else if (PREFIX_MORETHAN.equals(prefix)) {
             if (person.getScores().containsKey(exam)) {
-                return Double.parseDouble(person.getScores().get(exam).toString()) 
+                return Double.parseDouble(person.getScores().get(exam).toString())
                         > Double.parseDouble(keyword);
             } else {
                 // Handle case when the selected exam is not found in the person's scores
                 return false;
             }
-        }
-         else {
+        } else {
             // Code should not reach here
             return false;
         }
@@ -83,7 +82,8 @@ public class PersonDetailContainsKeywordAndExamPredicate implements Predicate<Pe
     @Override
     public String toString() {
         return new ToStringBuilder(this).add("prefix", prefix.getPrefix())
-                                        .add("keyword", keyword).toString();
+                .add("keyword", keyword)
+                .add("exam", exam).toString();
     }
 
     /**
@@ -91,7 +91,7 @@ public class PersonDetailContainsKeywordAndExamPredicate implements Predicate<Pe
      * @return True if the prefix is PREFIX_LESSTHAN or PREFIX_GREATERTHAN.
      */
     public boolean isExamRequired() {
-        return prefix.equals(PREFIX_LESSTHAN) || prefix.equals(PREFIX_GREATERTHAN);
+        return prefix.equals(PREFIX_LESSTHAN) || prefix.equals(PREFIX_MORETHAN);
     }
 }
 

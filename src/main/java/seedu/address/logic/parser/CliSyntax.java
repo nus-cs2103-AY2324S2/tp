@@ -21,5 +21,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_SCORE = new Prefix("s/");
 
     public static final Prefix PREFIX_LESSTHAN = new Prefix("lt/");
-    public static final Prefix PREFIX_GREATERTHAN = new Prefix("gt/");
+    public static final Prefix PREFIX_MORETHAN = new Prefix("mt/");
 }

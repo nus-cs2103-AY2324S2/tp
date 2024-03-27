@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GREATERTHAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSTHAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MORETHAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -27,8 +27,8 @@ import seedu.address.model.person.PersonDetailContainsKeywordPredicate;
 public class FindCommand extends Command {
 
     public static final Prefix[] ACCEPTED_PREFIXES = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                                                      PREFIX_ADDRESS, PREFIX_TAG, PREFIX_LESSTHAN, 
-                                                      PREFIX_GREATERTHAN};
+                                                      PREFIX_ADDRESS, PREFIX_TAG, PREFIX_LESSTHAN,
+                                                      PREFIX_MORETHAN};
 
     public static final String COMMAND_WORD = "find";
 
@@ -50,9 +50,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
         Exam selectedExam = model.getSelectedExam().getValue();
         if (predicate.isExamRequired()) {
             if (!isAnyNonNull(selectedExam)) {
@@ -64,7 +63,7 @@ public class FindCommand extends Command {
             model.updateFilteredPersonList(predicate.withExam(selectedExam));
         } else {
             model.updateFilteredPersonList(predicate);
-        }        
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

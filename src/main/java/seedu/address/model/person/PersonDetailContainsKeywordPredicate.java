@@ -2,8 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GREATERTHAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSTHAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MORETHAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -88,7 +88,7 @@ public class PersonDetailContainsKeywordPredicate implements Predicate<Person> {
      * @return True if the prefix is PREFIX_LESSTHAN or PREFIX_GREATERTHAN.
      */
     public boolean isExamRequired() {
-        return prefix.equals(PREFIX_LESSTHAN) || prefix.equals(PREFIX_GREATERTHAN);
+        return prefix.equals(PREFIX_LESSTHAN) || prefix.equals(PREFIX_MORETHAN);
     }
 
     /**
