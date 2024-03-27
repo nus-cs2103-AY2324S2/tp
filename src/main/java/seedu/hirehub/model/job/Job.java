@@ -14,7 +14,7 @@ import seedu.hirehub.commons.util.ToStringBuilder;
 public class Job {
     public static final String TITLE_CONSTRAINTS =
             "Titles should contain at least one non whitespace character"
-                    + "and have a character limit of 100";
+            + "and have a character limit of 100";
 
     public static final String VACANCY_CONSTRAINTS = "Vacancy must be a positive unsigned integer";
     public static final String VALIDATION_REGEX = "^(?!\\s+$).{1,100}$";
@@ -52,7 +52,7 @@ public class Job {
         }
 
         return otherJob != null
-                && title.equals(otherJob.title);
+            && title.equals(otherJob.title);
     }
 
     /**
@@ -71,8 +71,8 @@ public class Job {
         }
         Job otherJob = (Job) other;
         return title.equals(otherJob.title)
-                && description.equals(otherJob.description)
-                && vacancy == otherJob.vacancy;
+            && description.equals(otherJob.description)
+            && vacancy == otherJob.vacancy;
     }
 
     // hash only the title, as different jobs are not allowed to have the same title

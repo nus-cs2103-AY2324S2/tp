@@ -9,6 +9,7 @@ src/main/resources/docs/
 /*.iml
 
 # Storage/log files
+/bin/
 /data/
 /config.json
 /preferences.json
