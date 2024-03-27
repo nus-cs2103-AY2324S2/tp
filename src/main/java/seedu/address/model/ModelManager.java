@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -29,6 +31,8 @@ public class ModelManager implements Model {
     private boolean isAwaitingClear;
     private boolean isConfirmClear;
 
+    private boolean isViewingArchivedList;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,15 +44,44 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        ObservableList<Person> combinedPersons = FXCollections.observableArrayList();
+        combinedPersons.addAll(this.addressBook.getPersonList());
+        combinedPersons.addAll(this.addressBook.getArchivedPersonList());
+        this.filteredPersons = new FilteredList<>(combinedPersons);
+        this.filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+
+        // Listener for changes in personList
+        ListChangeListener<Person> personListChangeListener = change -> {
+            while (change.next()) {
+                if (change.wasAdded() || change.wasRemoved()) {
+                    updateCombinedPersonsList(combinedPersons);
+                }
+            }
+        };
+
+        // Attach listeners to both lists
+        this.addressBook.getPersonList().addListener(personListChangeListener);
+        this.addressBook.getArchivedPersonList().addListener(personListChangeListener);
+
         filteredReservations = new FilteredList<>(this.addressBook.getReservationList());
+
         this.isConfirmClear = false;
         this.isAwaitingClear = false;
+        this.isViewingArchivedList = false;
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
+
+    // Method to update the combined list
+    private void updateCombinedPersonsList(ObservableList<Person> combinedPersons) {
+        combinedPersons.clear();
+        combinedPersons.addAll(this.addressBook.getPersonList());
+        combinedPersons.addAll(this.addressBook.getArchivedPersonList());
+    }
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -113,14 +146,35 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    // For adding straight into the archive list
+    @Override
+    public void addArchivedPerson(Person person) {
+        requireNonNull(person);
+        person.setArchived(true);
+        addressBook.addArchivedPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void archivePerson(Person target) {
+        addressBook.archivePerson(target);
+        target.setArchived(true);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void unarchivePerson(Person target) {
+        addressBook.unarchivePerson(target);
+        target.setArchived(false);
+        updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
     }
 
     //=========== Reservations in AddressBook ================================================================
@@ -156,7 +210,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        if (isViewingArchivedList) {
+            // Apply the predicate only to archived persons if viewing archived list
+            filteredPersons.setPredicate(person -> person.isArchived() && predicate.test(person));
+        } else {
+            // Apply the predicate only to non-archived persons if not viewing archived list
+            filteredPersons.setPredicate(person -> !person.isArchived() && predicate.test(person));
+        }
     }
 
     /**
@@ -211,5 +271,15 @@ public class ModelManager implements Model {
     @Override
     public void setConfirmClear(boolean isConfirmClear) {
         this.isConfirmClear = isConfirmClear;
+    }
+
+    @Override
+    public void setViewingArchivedList(boolean isViewingArchived) {
+        this.isViewingArchivedList = isViewingArchived;
+    }
+
+    @Override
+    public boolean isViewingArchivedList() {
+        return this.isViewingArchivedList;
     }
 }

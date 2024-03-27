@@ -125,6 +125,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addArchivedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -201,6 +206,26 @@ public class AddCommandTest {
         public void setConfirmClear(boolean isConfirmClear) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isViewingArchivedList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setViewingArchivedList(boolean isViewingArchived) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archivePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unarchivePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -226,17 +251,35 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Person> archivedPersonsAdded = new ArrayList<>();
+
+        private boolean isViewingArchivedList = false;
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::isSamePerson)
+                    || archivedPersonsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
         public void addPerson(Person person) {
             requireNonNull(person);
-            personsAdded.add(person);
+            if (!isViewingArchivedList()) {
+                personsAdded.add(person);
+            } else {
+                archivedPersonsAdded.add(person);
+            }
+        }
+
+        @Override
+        public boolean isViewingArchivedList() {
+            return this.isViewingArchivedList;
+        }
+
+        @Override
+        public void setViewingArchivedList(boolean isViewingArchived) {
+            this.isViewingArchivedList = isViewingArchived;
         }
 
         @Override

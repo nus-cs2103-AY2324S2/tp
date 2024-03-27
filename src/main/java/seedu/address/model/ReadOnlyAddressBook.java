@@ -16,8 +16,15 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     /**
+     * Returns an unmodifiable view of the archived persons list.
+     * This list will not contain any duplicate persons.
+     */
+    ObservableList<Person> getArchivedPersonList();
+
+    /**
      * Returns an unmodifiable view of the reservations list.
      * This list will not contain any duplicate reservations.
      */
     ObservableList<Reservation> getReservationList();
+
 }

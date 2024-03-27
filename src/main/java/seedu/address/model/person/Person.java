@@ -25,6 +25,9 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    // Archived flag
+    private boolean isArchived = false;
+
     /**
      * Every field must be present and not null.
      */
@@ -61,6 +64,14 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void setArchived(boolean isArchived) {
+        this.isArchived = isArchived;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -94,13 +105,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && (otherPerson.isArchived == this.isArchived);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, isArchived);
     }
 
     @Override
@@ -111,6 +123,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("archived", isArchived)
                 .toString();
     }
 
