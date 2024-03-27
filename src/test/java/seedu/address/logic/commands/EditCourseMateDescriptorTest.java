@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,10 +46,6 @@ public class EditCourseMateDescriptorTest {
         // different email -> returns false
         editedAmy = new EditCourseMateDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different skills -> returns false
-        editedAmy = new EditCourseMateDescriptorBuilder(DESC_AMY).withSkills(VALID_SKILL_JAVA).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
     }
 
     @Test
@@ -59,8 +54,7 @@ public class EditCourseMateDescriptorTest {
         String expected = EditCommand.EditCourseMateDescriptor.class.getCanonicalName() + "{name="
                 + editCourseMateDescriptor.getName().orElse(null) + ", phone="
                 + editCourseMateDescriptor.getPhone().orElse(null) + ", email="
-                + editCourseMateDescriptor.getEmail().orElse(null) + ", skills="
-                + editCourseMateDescriptor.getSkills().orElse(null) + "}";
+                + editCourseMateDescriptor.getEmail().orElse(null) + "}";
         assertEquals(expected, editCourseMateDescriptor.toString());
     }
 }

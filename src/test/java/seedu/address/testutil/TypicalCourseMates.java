@@ -20,7 +20,10 @@ import seedu.address.model.coursemate.CourseMate;
  * A utility class containing a list of {@code CourseMate} objects to be used in tests.
  */
 public class TypicalCourseMates {
-
+    public static final CourseMate A = new CourseMateBuilder().withName("a")
+            .withEmail("a@example.com")
+            .withPhone("32183127")
+            .withSkills("JS").build();
     public static final CourseMate ALICE = new CourseMateBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withPhone("94351253")

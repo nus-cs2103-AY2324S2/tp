@@ -32,7 +32,7 @@ public class Skill {
         }
 
         Skill otherSkill = (Skill) other;
-        return skillName.equals(otherSkill.skillName);
+        return skillName.equalsIgnoreCase(otherSkill.skillName);
     }
 
     @Override

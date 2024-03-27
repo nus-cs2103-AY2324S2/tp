@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
+import seedu.address.model.skill.Skill;
 import seedu.address.testutil.CourseMateBuilder;
 
 public class UniqueCourseMateListTest {
@@ -69,6 +70,14 @@ public class UniqueCourseMateListTest {
         uniqueCourseMateList.add(ALICE);
         assertDoesNotThrow(() -> uniqueCourseMateList.findCourseMate(ALICE.getName()));
     }
+
+    @Test
+    public void isSkillFound_skillsFound() {
+        uniqueCourseMateList.add(ALICE);
+        assertTrue(uniqueCourseMateList.isSkillFound(new Skill("java")));
+        assertFalse(uniqueCourseMateList.isSkillFound(new Skill("c")));
+    }
+
 
     @Test
     public void setCourseMate_nullTargetCourseMate_throwsNullPointerException() {

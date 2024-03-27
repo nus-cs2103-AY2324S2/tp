@@ -9,8 +9,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.coursemate.exceptions.DuplicateCourseMateException;
+import seedu.address.model.skill.Skill;
 
 /**
  * A list of course mates that enforces uniqueness between its elements and does not allow nulls.
@@ -64,7 +66,7 @@ public class UniqueCourseMateList implements Iterable<CourseMate> {
         ArrayList<CourseMate> arrayList = new ArrayList<>();
         boolean foundCourseMate = false;
         for (CourseMate courseMate: internalList) {
-            if (courseMate.getName().toString().contains(name.toString())) {
+            if (StringUtil.containsIgnoreCase(courseMate.getName().fullName, name.fullName)) {
                 arrayList.add(courseMate);
                 foundCourseMate = true;
             }
@@ -74,6 +76,20 @@ public class UniqueCourseMateList implements Iterable<CourseMate> {
             return arrayList;
         }
         throw new CourseMateNotFoundException();
+    }
+
+    /**
+     * Returns true if any of the coursemate's skill matches with the skill provided
+     */
+    public boolean isSkillFound(Skill skill) {
+        for (CourseMate courseMate: internalList) {
+            for (Skill courseMateSkill: courseMate.getSkills()) {
+                if (courseMateSkill.equals(skill)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**

@@ -33,7 +33,7 @@ public class CreateGroupCommandTest {
     @Test
     public void constructor_nullParameters_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new CreateGroupCommand(null, null, null));
+                new CreateGroupCommand(null, null, null, null));
     }
 
     @Test
@@ -41,7 +41,8 @@ public class CreateGroupCommandTest {
         CreateGroupCommand createGroupCommand = new CreateGroupCommand(
                 SAMPLE_GROUP_NAME_1,
                 SAMPLE_QUERYABLE_SET_1,
-                new HashSet<>(SAMPLE_SKILL_LIST_1));
+                new HashSet<>(SAMPLE_SKILL_LIST_1),
+                null);
         assertThrows(NullPointerException.class, () ->
                 createGroupCommand.execute(null));
     }
@@ -51,7 +52,8 @@ public class CreateGroupCommandTest {
         CreateGroupCommand createGroupCommand = new CreateGroupCommand(
                 SAMPLE_GROUP_NAME_1,
                 SAMPLE_QUERYABLE_SET_1,
-                new HashSet<>(SAMPLE_SKILL_LIST_1));
+                new HashSet<>(SAMPLE_SKILL_LIST_1),
+                null);
         assertTrue(model.hasGroup(SAMPLE_GROUP_1));
         assertThrows(CommandException.class, () ->
                 createGroupCommand.execute(model));
@@ -62,7 +64,8 @@ public class CreateGroupCommandTest {
         CreateGroupCommand createGroupCommand = new CreateGroupCommand(
                 SAMPLE_GROUP_NAME_1,
                 SAMPLE_QUERYABLE_SET_1,
-                new HashSet<>(SAMPLE_SKILL_LIST_1));
+                new HashSet<>(SAMPLE_SKILL_LIST_1),
+                null);
         assertDoesNotThrow(() -> createGroupCommand.execute(emptyGroupListModel));
     }
 
@@ -71,7 +74,8 @@ public class CreateGroupCommandTest {
         CreateGroupCommand createGroupCommand = new CreateGroupCommand(
                 SAMPLE_GROUP_NAME_1,
                 SAMPLE_UNQUERYABLE_SET_1,
-                new HashSet<>(SAMPLE_SKILL_LIST_1));
+                new HashSet<>(SAMPLE_SKILL_LIST_1),
+                null);
         assertThrows(CommandException.class, () -> createGroupCommand.execute(emptyGroupListModel));
     }
 

@@ -1,16 +1,11 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCourseMateDescriptor;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
-import seedu.address.model.skill.Skill;
 
 /**
  * A utility class to help with building EditCourseMateDescriptor objects.
@@ -35,7 +30,6 @@ public class EditCourseMateDescriptorBuilder {
         descriptor.setName(courseMate.getName());
         descriptor.setPhone(courseMate.getPhone());
         descriptor.setEmail(courseMate.getEmail());
-        descriptor.setSkills(courseMate.getSkills());
     }
 
     /**
@@ -59,16 +53,6 @@ public class EditCourseMateDescriptorBuilder {
      */
     public EditCourseMateDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
-        return this;
-    }
-
-    /**
-     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditCourseMateDescriptor}
-     * that we are building.
-     */
-    public EditCourseMateDescriptorBuilder withSkills(String... skills) {
-        Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
-        descriptor.setSkills(skillSet);
         return this;
     }
 

@@ -18,25 +18,33 @@ public class Group extends UniqueCourseMateList {
 
     private final Name name;
     private Set<Skill> skills;
+    private final TelegramChat telegramChat; // can be null
 
     /**
      * A basic constructor for a {@code Group} that also initializes an iterable collection as a list of members.
      */
     public Group(Name name, Iterable<CourseMate> members) {
-        this(name, members, new HashSet<>());
+        this(name, members, new HashSet<>(), null);
     }
 
     /**
      * A basic constructor for a group.
      */
     public Group(Name name) {
-        this(name, new HashSet<>(), new HashSet<>());
+        this(name, new HashSet<>(), new HashSet<>(), null);
     }
 
     /**
      * A constructor for a {@code Group} that takes members and a list of skills.
      */
     public Group(Name name, Iterable<CourseMate> members, Iterable<Skill> skills) {
+        this(name, members, skills, null);
+    }
+
+    /**
+     * A constructor for a {@code Group} that takes members, a list of skills and a {@code TelegramChat}.
+     */
+    public Group(Name name, Iterable<CourseMate> members, Iterable<Skill> skills, TelegramChat telegramChat) {
         super();
         requireAllNonNull(name, members, skills);
         this.name = name;
@@ -44,13 +52,15 @@ public class Group extends UniqueCourseMateList {
 
         this.skills = new HashSet<>();
         skills.forEach(this.skills::add);
+
+        this.telegramChat = telegramChat;
     }
 
     /**
      * Copy constructor for a {@code Group}.
      */
     public Group(Group toCopy) {
-        this(toCopy.name, toCopy.asUnmodifiableObservableList(), toCopy.skills);
+        this(toCopy.name, toCopy.asUnmodifiableObservableList(), toCopy.skills, toCopy.telegramChat);
     }
 
     public Name getName() {
@@ -59,6 +69,44 @@ public class Group extends UniqueCourseMateList {
 
     public Set<Skill> getSkills() {
         return Collections.unmodifiableSet(skills);
+    }
+
+    /**
+     * Returns a set containing all the skills that have been fulfilled.
+     * Fulfilled means that any one of the group member has a corresponding skill
+     * that matches with a specific group skill
+     */
+    public Set<Skill> completedSkills() {
+        Set<Skill> completed = new HashSet<>();
+        for (Skill skill: skills) {
+            if (isSkillFound(skill)) {
+                completed.add(skill);
+            }
+        }
+        return Collections.unmodifiableSet(completed);
+    }
+
+    /**
+     * Returns a set containing all the skills that have are still unfulfilled.
+     * Unfulfilled means that all the group members do not have a skill
+     * that matches with a corresponding group skill
+     */
+    public Set<Skill> uncompletedSkills() {
+        Set<Skill> uncompleted = new HashSet<>();
+        for (Skill skill: skills) {
+            if (!isSkillFound(skill)) {
+                uncompleted.add(skill);
+            }
+        }
+        return Collections.unmodifiableSet(uncompleted);
+    }
+    /**
+     * Returns the {@code TelegramChat} of the group.
+     * No guarantees on nullability.
+     * @return
+     */
+    public TelegramChat getTelegramChat() {
+        return telegramChat;
     }
 
     /**

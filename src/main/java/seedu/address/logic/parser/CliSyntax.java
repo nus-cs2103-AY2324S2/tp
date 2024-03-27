@@ -11,5 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("-e");
     public static final Prefix PREFIX_SKILL = new Prefix("-s");
     public static final Prefix PREFIX_COURSEMATE = new Prefix("-cm");
+    public static final Prefix PREFIX_TELEGRAM = new Prefix("-t");
 
 }

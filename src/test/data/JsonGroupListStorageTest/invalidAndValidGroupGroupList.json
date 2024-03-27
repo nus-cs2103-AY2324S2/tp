@@ -1,7 +1,8 @@
 {
   "groups" : [ {
     "name" : "group 1",
-    "members" : [ ]
+    "members" : [ ],
+    "telegramChat": "https://t.me/+AAAAAEQ1J9J9J9J9J9J9J9"
   }, {
     "name" : "Invalid name: gr@up 2",
     "members" : [ {
@@ -9,6 +10,7 @@
       "phone" : "87438807",
       "email" : "alexyeoh@example.com",
       "skills" : [ "friends" ]
-    } ]
+    } ],
+    "telegramChat": "https://t.me/+AAAAAEQ1J9J9J9J9J9J9J9"
   } ]
 }

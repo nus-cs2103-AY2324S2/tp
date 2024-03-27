@@ -48,14 +48,6 @@ public class CourseMateUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" ").append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(" ").append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(" ").append(email.value).append(" "));
-        if (descriptor.getSkills().isPresent()) {
-            Set<Skill> skills = descriptor.getSkills().get();
-            if (skills.isEmpty()) {
-                sb.append(PREFIX_SKILL);
-            } else {
-                skills.forEach(s -> sb.append(PREFIX_SKILL).append(" ").append(s.skillName).append(" "));
-            }
-        }
         return sb.toString();
     }
 
