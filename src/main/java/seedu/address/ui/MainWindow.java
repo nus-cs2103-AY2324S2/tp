@@ -245,7 +245,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowDayView()) {
+            if (commandResult.isSwitchView()) {
+                switchView();
+            }
+
+            if (currentView.equals("Day") && commandResult.isOverallCommand()) {
                 switchView();
             }
 

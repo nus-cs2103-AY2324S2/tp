@@ -12,6 +12,6 @@ public class SwitchViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false, false, false, true);
     }
 }

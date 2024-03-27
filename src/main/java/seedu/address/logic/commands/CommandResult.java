@@ -14,22 +14,35 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean isShowHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean isExit;
 
-    /** The appointment day view should be shown to the user */
-    private final boolean showDayView;
+    /** The application should switch between the overall and day view*/
+    private final boolean isSwitchView;
+
+    /** The application should switch back to overall view */
+    private final boolean isOverallCommand;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showDayView) {
+    public CommandResult(String feedbackToUser, boolean isOverallCommand, boolean showHelp,
+                         boolean exit, boolean showDayView) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.showDayView = showDayView;
+        this.isOverallCommand = isOverallCommand;
+        this.isShowHelp = showHelp;
+        this.isExit = exit;
+        this.isSwitchView = showDayView;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code isOverallCommand},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean isOverallCommand) {
+        this(feedbackToUser, isOverallCommand, false, false, false);
     }
 
     /**
@@ -37,7 +50,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -45,15 +58,19 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return isShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
     }
 
-    public boolean isShowDayView() {
-        return showDayView;
+    public boolean isSwitchView() {
+        return isSwitchView;
+    }
+
+    public boolean isOverallCommand() {
+        return isOverallCommand;
     }
 
     @Override
@@ -69,23 +86,24 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && showDayView == otherCommandResult.showDayView;
+                && isShowHelp == otherCommandResult.isShowHelp
+                && isExit == otherCommandResult.isExit
+                && isSwitchView == otherCommandResult.isSwitchView;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showDayView);
+        return Objects.hash(feedbackToUser, isOverallCommand, isShowHelp, isExit, isSwitchView);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("feedbackToUser", feedbackToUser)
-                .add("showHelp", showHelp)
-                .add("exit", exit)
-                .add("showDayView", showDayView)
+                .add("isOverallCommand", isOverallCommand)
+                .add("isShowHelp", isShowHelp)
+                .add("isExit", isExit)
+                .add("isSwitchView", isSwitchView)
                 .toString();
     }
 

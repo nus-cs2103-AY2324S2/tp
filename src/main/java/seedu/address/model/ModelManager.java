@@ -18,6 +18,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
@@ -151,8 +152,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void cancelAppointment(Appointment appointment) {
-        addressBook.cancelAppointment(appointment);
+    public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
+        addressBook.cancelAppointment(appointment, apptView);
     }
 
     @Override
@@ -170,6 +171,11 @@ public class ModelManager implements Model {
     @Override
     public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
         return addressBook.getMatchingAppointment(nric, date, timePeriod);
+    }
+
+    @Override
+    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
+        return addressBook.getMatchingAppointmentView(name, appt);
     }
 
     @Override
