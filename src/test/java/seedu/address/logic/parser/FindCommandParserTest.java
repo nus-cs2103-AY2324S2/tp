@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSTHAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -87,6 +88,20 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " t/  friends  ", expectedFindCommand);
     }
 
+    @Test
+    public void parse_validLessThanArg_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new PersonDetailContainsKeywordPredicate(PREFIX_LESSTHAN, "50"));
+        assertParseSuccess(parser, " lt/50", expectedFindCommand);
 
+        // whitespace before keyword
+        assertParseSuccess(parser, " lt/  50  ", expectedFindCommand);
+    }
 
+    @Test
+    public void parse_invalidLessThanArg_throwsParseException() {
+        assertParseFailure(parser, " lt/abc",
+                           String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
 }
