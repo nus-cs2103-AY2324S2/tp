@@ -168,7 +168,7 @@ This section describes some noteworthy details on how certain features are imple
   before the end time of the next `Period`. E.g. for the case of `Period` of 12-14, `Period` of 14-16 is allowed,
   but `Period` of 13-15 is not.
 
-![StudentClassDiagram.png](diagrams%2FStudentClassDiagram.png)
+<puml src="diagrams/StudentClassDiagram.puml" width="450"/>
 
 #### Adding/Editing a Student's Timetable
 * The `Timetable` of the `Student` is specified during the `add` command, indicated with a `c/` prefix.
@@ -180,7 +180,7 @@ This section describes some noteworthy details on how certain features are imple
   * E.g. an accepted `String` is `"mon: 13-15, 15-17 tue: 12-14 thu: 12-18"`
 * Below shows the sequence diagram when <u>adding</u> a student.
 
-![AddSequenceDiagram.png](diagrams%2FAddSequenceDiagram.png)
+<puml src="diagrams/AddSequenceDiagram.puml" width="450"/>
 
 #### \[Proposed\] Finding a Common Slot
 
