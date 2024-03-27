@@ -155,6 +155,20 @@ public class LoanRecords {
     }
 
     /**
+     * Marks a loan of the specified index as returned.
+     */
+    public void markLoan(int idx) {
+        loans.get(idx).markAsReturned();
+    }
+
+    /**
+     * Marks a loan of the specified index as not returned.
+     */
+    public void unmarkLoan(int idx) {
+        loans.get(idx).markAsNotReturned();
+    }
+
+    /**
      * @return The number of loans in the list.
      */
     public int size() {

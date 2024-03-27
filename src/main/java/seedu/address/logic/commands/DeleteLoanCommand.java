@@ -67,8 +67,7 @@ public class DeleteLoanCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * Generates a command execution success message after loan is deleted from the
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Name personName, Loan removedLoan) {

@@ -102,7 +102,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_markLoan() throws Exception {
-        assertTrue(parser.parseCommand(MarkLoanCommand.COMMAND_WORD + " 1 l/2") instanceof MarkLoanCommand);
+        MarkLoanCommand markLoanCommand = (MarkLoanCommand) parser.parseCommand(MarkLoanCommand.COMMAND_WORD
+                + " 1 " + PREFIX_LOAN_INDEX + "2");
+        MarkLoanCommand test = new MarkLoanCommand(INDEX_FIRST_PERSON, Index.fromOneBased(2));
+        assertEquals(test, markLoanCommand);
     }
 
     @Test
