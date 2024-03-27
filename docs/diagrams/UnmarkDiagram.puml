@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskMasterProParser" as TaskMasterProParser LOGIC_COLOR
+participant ":UnmarkCommandParser" as UnmarkCommandParser LOGIC_COLOR
+participant "a:UnmarkCommand" as UnmarkCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mark 1")
+activate LogicManager
+
+LogicManager -> TaskMasterProParser : parseCommand("unmark 1")
+activate TaskMasterProParser
+
+create UnmarkCommandParser
+TaskMasterProParser -> UnmarkCommandParser
+activate UnmarkCommandParser
+
+UnmarkCommandParser --> TaskMasterProParser
+deactivate UnmarkCommandParser
+
+TaskMasterProParser -> UnmarkCommandParser : parse(" 1")
+activate UnmarkCommandParser
+
+create UnmarkCommand
+UnmarkCommandParser -> UnmarkCommand
+activate UnmarkCommand
+
+UnmarkCommand --> UnmarkCommandParser :
+deactivate UnmarkCommand
+
+UnmarkCommandParser --> TaskMasterProParser : a
+deactivate UnmarkCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnmarkCommandParser -[hidden]-> TaskMasterProParser
+destroy UnmarkCommandParser
+
+TaskMasterProParser --> LogicManager : a
+deactivate TaskMasterProParser
+
+LogicManager -> UnmarkCommand : execute(m)
+activate UnmarkCommand
+
+'Put this into a ref block'
+
+group ref [update existing Employee fields]
+UnmarkCommand -[hidden]-> Model
+end
+
+'Up to here is inside the ref block'
+
+create CommandResult
+UnmarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnmarkCommand
+deactivate CommandResult
+
+UnmarkCommand --> LogicManager : r
+deactivate UnmarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

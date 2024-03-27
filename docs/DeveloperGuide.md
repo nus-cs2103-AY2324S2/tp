@@ -547,14 +547,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Note that if none of the taskId == 1, an invalid taskId exception will be thrown.
 If none of the employeeId == 6, an invalid employeeId exception will be thrown.
 
-**Use case: Mark/unmark a task as done/not done**
+**Use case: Mark a task as done**
 
 **MSS**
 
 1.  User requests to list tasks
 2.  TaskMasterPro shows a list of tasks with their ids
-3.  User requests to mark/unmark a specific task in the list by their id as done/not done
-4.  TaskMasterPro marks/unmarks that task as done/not done.
+3.  User requests to mark a specific task in the list by their id as done
+4.  TaskMasterPro marks that task as done/not done.
 
     Use case ends.
 
@@ -572,6 +572,36 @@ If none of the employeeId == 6, an invalid employeeId exception will be thrown.
 
 ![Interactions Inside the Logic Component for the `mark 1` Command](images/MarkDiagram.png)
 ![Interactions for mark for the `mark 1` command](images/MarkRefDiagram.png)
+
+Note that if none of the taskId == 1, an invalid taskId exception will be thrown.
+
+
+**Use case: Unmark a task as not done**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TaskMasterPro shows a list of tasks with their ids
+3.  User requests to unmark a specific task in the list by their id
+4.  TaskMasterPro unmarks that task as not done.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given id is invalid.
+
+    * 3a1. TaskMasterPro shows an error message.
+
+      Use case resumes at step 2.
+
+![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkDiagram.png)
+![Interactions for unmark for the `unmark 1` command](images/UnmarkRefDiagram.png)
+
 Note that if none of the taskId == 1, an invalid taskId exception will be thrown.
 
 ### Non-Functional Requirements
