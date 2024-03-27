@@ -40,7 +40,7 @@ public class PayCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(payCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(payCommand, model, new CommandResult(expectedMessage, personToPay), expectedModel);
     }
 
     @Test
