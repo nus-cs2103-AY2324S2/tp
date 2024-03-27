@@ -1,15 +1,5 @@
 package vitalconnect.logic.parser;
 
-import vitalconnect.logic.commands.EditMedicalCommand;
-import vitalconnect.logic.parser.exceptions.ParseException;
-import vitalconnect.model.person.identificationinformation.Nric;
-import vitalconnect.model.person.medicalinformation.AllergyTag;
-import vitalconnect.model.person.medicalinformation.Height;
-import vitalconnect.model.person.medicalinformation.Weight;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static vitalconnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_APPENDTAG;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_HEIGHT;
@@ -17,11 +7,26 @@ import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_OVERWRITETAG;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
-public class EditMedicalCommandParser implements Parser<EditMedicalCommand>{
+import java.util.Set;
+import java.util.stream.Stream;
+
+import vitalconnect.logic.commands.EditMedicalCommand;
+import vitalconnect.logic.parser.exceptions.ParseException;
+import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
+import vitalconnect.model.person.medicalinformation.Height;
+import vitalconnect.model.person.medicalinformation.Weight;
+
+
+/**
+ * Edits the medical information of an existing person in the clinic.
+ */
+public class EditMedicalCommandParser implements Parser<EditMedicalCommand> {
     @Override
     public EditMedicalCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NRIC, PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_WEIGHT, PREFIX_OVERWRITETAG, PREFIX_APPENDTAG);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NRIC, PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_WEIGHT,
+                        PREFIX_OVERWRITETAG, PREFIX_APPENDTAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
                 || !argMultimap.getPreamble().isEmpty()) {

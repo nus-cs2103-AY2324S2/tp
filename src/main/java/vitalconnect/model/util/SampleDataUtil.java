@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import vitalconnect.model.Clinic;
 import vitalconnect.model.ReadOnlyClinic;
-import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.Person;
 import vitalconnect.model.person.identificationinformation.IdentificationInformation;
 import vitalconnect.model.person.identificationinformation.Name;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 
 /**
  * Contains utility methods for populating {@code Clinic} with sample data.

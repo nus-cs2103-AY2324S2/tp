@@ -14,11 +14,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import vitalconnect.logic.parser.exceptions.ParseException;
-import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.contactinformation.Address;
 import vitalconnect.model.person.contactinformation.Email;
 import vitalconnect.model.person.contactinformation.Phone;
 import vitalconnect.model.person.identificationinformation.Name;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

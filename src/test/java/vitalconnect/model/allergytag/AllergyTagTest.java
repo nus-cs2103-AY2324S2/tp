@@ -3,6 +3,7 @@ package vitalconnect.model.allergytag;
 import static vitalconnect.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import vitalconnect.model.person.medicalinformation.AllergyTag;
 
 public class AllergyTagTest {

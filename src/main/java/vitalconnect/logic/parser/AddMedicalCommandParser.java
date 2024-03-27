@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import vitalconnect.logic.commands.AddMedInfoCommand;
 import vitalconnect.logic.parser.exceptions.ParseException;
-import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.identificationinformation.Nric;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 import vitalconnect.model.person.medicalinformation.Height;
 import vitalconnect.model.person.medicalinformation.MedicalInformation;
 import vitalconnect.model.person.medicalinformation.Weight;
