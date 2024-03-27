@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
 /**
@@ -9,10 +10,11 @@ import java.time.temporal.ChronoUnit;
  */
 public class InterviewDate {
 
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final String MESSAGE_CONSTRAINTS =
+            "Interview Date & Time needs to follow this pattern : dd-mm-yyyy HHmm\n"
+                    + "Interview Date & Time cannot be before today's date !";
     public final LocalDateTime value;
-
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-
     /**
      * Constructs an {@code interview date}.
      *
@@ -22,7 +24,22 @@ public class InterviewDate {
         if (interviewDate == null) {
             value = null;
         } else {
-            value = LocalDateTime.parse(interviewDate, formatter);
+            value = LocalDateTime.parse(interviewDate, DATE_FORMAT);
+        }
+    }
+    /**
+     * Checks if the entered interview date follows the format
+     */
+    public static boolean isValidDate(String test) {
+        try {
+            // Check the format of the interview date by parse
+            LocalDateTime inputDate = LocalDateTime.parse(test, DATE_FORMAT);
+            LocalDateTime currentDate = LocalDateTime.now();
+            // Set the time part of currentDate to 00:00
+            currentDate = currentDate.withHour(0).withMinute(0).withSecond(0);
+            return inputDate.isAfter(currentDate);
+        } catch (DateTimeParseException e) {
+            return false;
         }
     }
 
@@ -61,21 +78,25 @@ public class InterviewDate {
     public int hashCode() {
         return value.hashCode();
     }
-
+    /**
+     * Checks if this InterviewDate is in the next 3 days.
+     */
     public boolean isWithin3Days() {
+        if (value == null) {
+            return false;
+        }
         // Get the current date and time
         LocalDateTime currentDate = LocalDateTime.now();
 
         // Calculate the difference in days between the interview date and the current date
         long daysDifference = ChronoUnit.DAYS.between(currentDate, value);
-
         // Check if the difference is less than or equal to 3
-        return daysDifference >= 0 && daysDifference <= 3;
+        return daysDifference > 0 && daysDifference <= 3;
     }
 
-    public int compareTo(InterviewDate otherInterviewDate) {
-        // Assuming you want to compare interview dates directly
-        return value.compareTo(otherInterviewDate.value);
-    }
+    //    public int compareTo(InterviewDate otherInterviewDate) {
+    //        // Assuming you want to compare interview dates directly
+    //        return value.compareTo(otherInterviewDate.value);
+    //    }
 
 }

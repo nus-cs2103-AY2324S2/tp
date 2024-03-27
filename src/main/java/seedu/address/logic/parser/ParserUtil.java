@@ -134,6 +134,9 @@ public class ParserUtil {
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
         String trimmedDateTime = interviewDate.trim();
+        if (!InterviewDate.isValidDate(trimmedDateTime)) {
+            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
+        }
         return new InterviewDate(trimmedDateTime);
     }
 
