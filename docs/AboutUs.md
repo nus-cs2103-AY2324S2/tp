@@ -9,51 +9,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Bajaj Aditya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adityab4.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/AdityaB4)]
+[[portfolio](team/adityab4.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilites: Code Writer and Scheduling
 
-### Jean Doe
+### Brandon Lau
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/blaukc.png" width="200px" height="200px" style="object-fit: cover; object-position: bottom">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/blaukc)]
+[[portfolio](team/blaukc.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Code Quality
+
+### Yadunand Prem
+
+<img src="images/yadunut.png" width="200px">
+
+[[homepage](https://gitea.ts.yadunut.com)]
+[[github](http://github.com/yadunut)]
+[[portfolio](team/yadunut.md)]
+
+* Role: Developer
+* Responsibilities: Code Writer
+
+### Taufiq Mohammed
+
+<img src="images/taufiq.png" width="200px">
+
+[[github](http://github.com/taufiq)]
+[[portfolio](team/taufiq.md)]
+
+* Role: Developer
+* Responsibilities: Code Writer

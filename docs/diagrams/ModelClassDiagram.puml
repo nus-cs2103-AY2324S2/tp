@@ -12,8 +12,8 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueStudentList
+Class Student
 Class Address
 Class Email
 Class Name
@@ -21,6 +21,13 @@ Class Phone
 Class Tag
 
 Class I #FFFFFF
+
+Class ModuleMap
+
+Class Module
+Class ModuleCode
+Class Title
+Class Description
 }
 
 Class HiddenOutside #FFFFFF
@@ -31,24 +38,34 @@ AddressBook .up.|> ReadOnlyAddressBook
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager -right-> "1" AddressBook
+ModelManager -right-> "1" ModuleMap
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> Name
+Student *--> Phone
+Student *--> Email
+Student *--> Address
+Student *--> "*" Tag
+Student *--> "*" ModuleCode
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Student -[hidden]up--> I
+UniqueStudentList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Student
+
+ModuleMap --> "~* all" Module
+Module *--> ModuleCode
+Module *--> Title
+Module *--> Description
+
+ModuleCode -[hidden]right-> Title
+Title -[hidden]right-> Description
 @enduml
