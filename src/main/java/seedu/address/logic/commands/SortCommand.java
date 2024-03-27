@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.PersonCompanyNameComparator;
@@ -60,8 +61,20 @@ public class SortCommand extends Command {
             model.updateSortedPersonList(new PersonSalaryComparator());
             break;
         default:
-            throw new CommandException("Invalid Sort Command Index");
+            throw new CommandException(Messages.MESSAGE_INVALID_SORT_COMMAND_INDEX);
         }
         return new CommandResult(MESSAGE_LIST_SORTED_SUCCESS);
+    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+        SortCommand otherSort = (SortCommand) other;
+        return info.equals(otherSort.info);
     }
 }

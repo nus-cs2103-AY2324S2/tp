@@ -32,12 +32,13 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withTags("friends")
             .withProgrammingLanguages("Java")
+            .withSalary("2000")
             .withPriority(2)
             .build();
     public static final Person BENSON = new PersonBuilder().withCompanyName("Amazon").withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withDateTime("121220221500")
+            .withTags("owesMoney", "friends").withDateTime("121220221500").withSalary("1000")
             .withProgrammingLanguages("Java").withPriority(1).build();
     public static final Person CARL = new PersonBuilder().withCompanyName("Shopee").withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street")
