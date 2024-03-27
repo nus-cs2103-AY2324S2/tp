@@ -185,7 +185,7 @@ Step 2. The user executes `add n/John Doe …` to add the person in the address 
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-<puml src="diagrams/AddCommandSequenceDiagram.puml" alt="AddCommandSequenceDiagram" />
+<puml src="diagrams/AddCommandDiagram.puml" alt="AddCommandDiagram" />
 
 <box type="info" seamless>
 
@@ -195,7 +195,7 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/AddCommandActivityDiagram.puml" width="250" />
+<puml src="diagrams/AddCommandActivityDiagram.puml" width="250" align="center"/>
 
 #### Design Considerations & Alternatives Considered:
 
@@ -255,7 +255,7 @@ The following sequence diagram shows how an addnote operation goes through the `
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250" />
+<puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250" align="center"/>
 
 #### Design Considerations & Alternatives Considered
 
@@ -312,7 +312,7 @@ The following sequence diagram shows how a find operation goes through the `Logi
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/FindCommandActivityDiagram.puml" width="250" />
+<puml src="diagrams/FindCommandActivityDiagram.puml" width="250" align="center"/>
 
 #### Design Considerations & Alternatives Considered
 
@@ -347,7 +347,7 @@ The delete command calls `Model#deletePerson(Person target)`, causing the modifi
 
 The following sequence diagram shows how a delete operation goes through the `Logic` component:
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="FindSequenceDiagram" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="DeleteSequenceDiagram" />
 
 <box type="info" seamless>
 
@@ -357,7 +357,7 @@ The following sequence diagram shows how a delete operation goes through the `Lo
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250" />
+<puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250" align="center"/>
 
 #### Design Considerations & Alternatives Considered
 
@@ -401,7 +401,7 @@ The following sequence diagram shows how an edit operation goes through the `Log
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/EditCommandActivityDiagram.puml" width="250" />
+<puml src="diagrams/EditCommandActivityDiagram.puml" width="250" align="center"/>
 
 #### Design Considerations & Alternatives Considered
 
@@ -446,7 +446,7 @@ The following sequence diagram shows how a show operation goes through the `Logi
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/ShowCommandActivityDiagram.puml" width="250" />
+<puml src="diagrams/ShowCommandActivityDiagram.puml" width="250" align="center"/>
 
 #### Design Considerations & Alternatives Considered
 
