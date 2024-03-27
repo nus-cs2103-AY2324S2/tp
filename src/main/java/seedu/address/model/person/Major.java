@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's major in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMajor(String)}
  */
-public class Major {
+public class Major implements  Comparable<Major> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -77,4 +77,9 @@ public class Major {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Major other) {
+        String otherMajor = other.value;
+        return this.value.compareTo(otherMajor);
+    }
 }

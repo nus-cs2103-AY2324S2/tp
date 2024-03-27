@@ -101,7 +101,7 @@ public class ModelManagerTest {
         modelManager.addPerson(BENSON);
         modelManager.addPerson(CARL);
 
-        modelManager.updateSortedPersonListSortAscending();
+        modelManager.updateSortedPersonListSortStarsAscending();
         assert ALICE.getStarCount() == 5 : "ALICE's stars should be 5";
         assert BENSON.getStarCount() == 0 : "BENSON's stars should be 0";
         assert CARL.getStarCount() == 0 : "CARL's stars should be 0";

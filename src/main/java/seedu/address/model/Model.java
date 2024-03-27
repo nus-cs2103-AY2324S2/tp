@@ -95,7 +95,13 @@ public interface Model {
      * Updates the sorted state of the sorted person list to the ascending order of stars
      * and updates the sorted list.
      */
-    void updateSortedPersonListSortAscending();
+    void updateSortedPersonListSortStarsAscending();
+
+    /**
+     * Updates the sorted state of the sorted person list based off a given field
+     * either in ascending or descending order
+     */
+    void updateSortedPersonListByField(String field, boolean isAscending);
 
 
 

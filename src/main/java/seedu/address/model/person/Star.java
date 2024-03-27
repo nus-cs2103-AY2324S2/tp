@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Student's stars in the address book.
  */
-public class Star {
+public class Star implements Comparable<Star> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Stars given should be more than 0.";
@@ -51,6 +51,12 @@ public class Star {
 
         Star otherPhone = (Star) other;
         return numOfStars.equals(otherPhone.numOfStars);
+    }
+
+    @Override
+    public int compareTo(Star other) {
+        int otherStars = other.numOfStars;
+        return this.numOfStars.compareTo(otherStars);
     }
 
     @Override

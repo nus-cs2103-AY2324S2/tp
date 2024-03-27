@@ -138,10 +138,39 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    // Shall we deprecate this?
     @Override
-    public void updateSortedPersonListSortAscending() {
+    public void updateSortedPersonListSortStarsAscending() {
         Comparator<Person> ascendingComparator = Comparator.comparingInt(Person::getStarCount);
         sortedPersons.setComparator(ascendingComparator);
+    }
+
+    @Override
+    public void updateSortedPersonListByField(String field, boolean isAscending) {
+        Comparator<Person> comparator;
+        switch (field.toLowerCase()) {
+        case "email":
+            comparator = Comparator.comparing(Person::getEmail);
+            break;
+        case "major":
+            comparator = Comparator.comparing(Person::getMajor);
+            break;
+        case "name":
+            comparator = Comparator.comparing(Person::getName);
+            break;
+        case "phone":
+            comparator = Comparator.comparing(Person::getPhone);
+            break;
+        case "star":
+            comparator = Comparator.comparing(Person::getStar);
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid field for sorting: " + field);
+        }
+        if (!isAscending) {
+            comparator = comparator.reversed();
+        }
+        sortedPersons.setComparator(comparator);
     }
 
     @Override
