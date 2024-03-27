@@ -14,7 +14,7 @@ public class SetWeakThresholdCommand extends Command {
     public static final String COMMAND_WORD = "setweak";
 
     public static final String MESSAGE_SET_THRESHOLD_SUCCESS = "Weakness Threshold was updated";
-    public static final String MESSAGE_SET_THRESHOLD_FAIL = "ba";
+    public static final String MESSAGE_SET_THRESHOLD_FAIL = "Check if the grade you entered is valid.";
     private Grade newThreshold;
 
     /**
