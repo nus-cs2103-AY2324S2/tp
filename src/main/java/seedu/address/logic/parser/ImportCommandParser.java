@@ -21,7 +21,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
     public ImportCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORT);
-
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_IMPORT);
         if (!isPrefixPresent(
                 argMultimap)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -29,6 +29,9 @@ public class ImportCommandParser implements Parser<ImportCommand> {
         }
 
         Path path = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_IMPORT).orElse(""));
+        if (!isCsvFile(path)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+        }
         return new ImportCommand(path);
     }
 
@@ -38,5 +41,14 @@ public class ImportCommandParser implements Parser<ImportCommand> {
      */
     private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap) {
         return argumentMultimap.getValue(CliSyntax.PREFIX_IMPORT).isPresent();
+    }
+
+    /**
+     * Returns true if the file is a CSV file.
+     * @param path the path of the file
+     * @return true if the file is a CSV file
+     */
+    private static boolean isCsvFile(Path path) {
+        return path.toString().endsWith(".csv");
     }
 }

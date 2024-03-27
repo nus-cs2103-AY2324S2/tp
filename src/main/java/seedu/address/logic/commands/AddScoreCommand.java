@@ -33,7 +33,8 @@ public class AddScoreCommand extends Command {
     public static final String MESSAGE_ADD_SCORE_SUCCESS = "Added score %s for %s";
     public static final String MESSAGE_SCORE_EXISTS = "This person already has a score for this exam."
             + " Use editScore instead.";
-    public static final String MESSAGE_SCORE_GREATER_THAN_MAX = "Score cannot be greater than the maximum score.";
+    public static final String MESSAGE_SCORE_GREATER_THAN_MAX =
+            "Score for %s cannot be greater than the maximum score.";
 
     private final Index targetIndex;
     private final Score score;
@@ -63,7 +64,7 @@ public class AddScoreCommand extends Command {
         }
 
         if (selectedExam.getMaxScore().getScore() < score.getScore()) {
-            throw new CommandException(MESSAGE_SCORE_GREATER_THAN_MAX);
+            throw new CommandException(String.format(MESSAGE_SCORE_GREATER_THAN_MAX, selectedExam.getName()));
         }
 
         if (updatedScores.containsKey(selectedExam)) {
@@ -94,5 +95,13 @@ public class AddScoreCommand extends Command {
                 personToEdit.getStudio(),
                 updatedScores
         );
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof AddScoreCommand
+                && targetIndex.equals(((AddScoreCommand) other).targetIndex)
+                && score.equals(((AddScoreCommand) other).score));
     }
 }

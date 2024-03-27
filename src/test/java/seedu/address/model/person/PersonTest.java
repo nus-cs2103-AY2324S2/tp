@@ -11,7 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.MIDTERM;
 
+import java.util.Collections;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
@@ -96,6 +98,11 @@ public class PersonTest {
 
         // different studio -> returns false
         editedAlice = new PersonBuilder(ALICE).withStudio("S143").build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different scores -> returns false
+        editedAlice = new PersonBuilder(ALICE).withScores(Collections.singletonMap(MIDTERM, new Score(70)))
+                                              .build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
