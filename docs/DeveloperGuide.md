@@ -391,7 +391,12 @@ Step 1. The user launches the TaskMasterPro. Assume that there are existing task
 
 Step 2. The user enters the command `findtasks meeting`. This returns "Project 1 Meeting" and "Client Meeting".
 
-[//]: # (![AssignTaskSequence-Model]&#40;images/AssignTaskSequence-Model.png&#41;)
+The following sequence diagram shows how a `findtasks` operation goes through the `Logic` component:
+![FindTasksSequence-Model](images/FindTasksSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes `findtasks project meeting`:
+
+![FindTasksActivityDiagram](images/FindTasksActivityDiagram.png)
 
 
 #### Design considerations:

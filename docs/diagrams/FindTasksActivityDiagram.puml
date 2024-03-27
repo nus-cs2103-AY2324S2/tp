@@ -1,0 +1,23 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes "findtasks
+project meeting" command;
+
+:Split "project meeting" using
+ whitespaces.;
+
+:A keyword array containing
+"project" and "meeting" is
+ created.;
+
+:Iterates through the tasklist
+to find tasks that matches
+any of the keywords.;
+
+:Display the tasks that matches
+any of the keywords.;
+stop
+@enduml
