@@ -342,7 +342,13 @@ financial advisor`, unless specified otherwise)
 3. FinCliq displays updated meeting to the advisor.
     - Use case ends.
 
-_{More to be added}_
+Use Case: Delete Meeting
+
+**MSS:**
+1. Financial advisor requests to delete a specific client's meeting
+2. FinCliq retrieves and updates meeting's details
+3. FinCliq displays successful deletion message
+    - Use case ends
 
 ### Non-Functional Requirements
 
