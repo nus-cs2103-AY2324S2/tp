@@ -75,7 +75,6 @@ public class DeleteCommand extends Command {
             for (int i = 0; i < lastShownList.size(); i++) {
                 if (lastShownList.get(i).getGroups().equals(deletedGroup) ) {
                     peopleToDelete.add(lastShownList.get(i));
-                    //System.out.println(lastShownList.get(i).toString());
                 }
             }
             System.out.println(lastShownList.size());
