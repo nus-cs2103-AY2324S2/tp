@@ -138,7 +138,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person(s) from the address book.
 
 Format: `delete INDEX`
 
@@ -149,6 +149,19 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+
+You can also delete multiple people by chaining the indices using a comma.
+
+Format: `delete INDEX1, INDEX2, INDEX3, …​`
+
+* A comma (`,`) must be used to separate each pair of Indices.
+* The indices do not need to be listed in order. (i.e. `2, 4, 6` is the same as `6, 2, 4`)
+* Listing the same index more than once will result in an error message being displayed.
+* Each `INDEX` must still adhere to the points listed above.
+
+Example:
+* `delete 3, 1, 7, 8` deletes the first, third, seventh, and eighth person in the address book.
 
 ### Clearing all entries : `clear`
 

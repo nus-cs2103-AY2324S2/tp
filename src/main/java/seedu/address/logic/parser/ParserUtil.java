@@ -26,10 +26,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_DUPLICATE_INDEX = "There is a duplicate Index listed.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -38,6 +40,29 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code args}, seperated by a common {@code sep}, into a list of
+     * distinct {@code Index} and returns it.
+     *
+     * @throws ParseException If any of the specified index is invalid, or there are duplicate input indices.
+     */
+    public static List<Index> parseIndices(String args, String sep) throws ParseException {
+        final String[] splitArgs = args.split(sep);
+        final ArrayList<Index> indices = new ArrayList<>();
+
+        for (int i = 0; i < splitArgs.length; i++) {
+            Index index = parseIndex(splitArgs[i]);
+            if (indices.contains(index)) {
+                // Duplicated Index.
+                throw new ParseException(MESSAGE_DUPLICATE_INDEX);
+            }
+
+            indices.add(index);
+        }
+
+        return indices;
     }
 
     /**
@@ -100,6 +125,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String address} into a {@code Optional<Address>}, allowing empty input.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Optional<Address> parseOptionalAddress(String address) throws ParseException {
+        requireNonNull(address);
+        if (address.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(parseAddress(address));
+    }
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -141,7 +179,7 @@ public class ParserUtil {
         if (!Role.isValidRole(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Role(trimmedRole);
+        return Role.valueOf(trimmedRole);
     }
 
     /**
