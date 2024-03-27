@@ -41,8 +41,8 @@ public class DeleteEventCommand extends Command {
             + COMMAND_WORD + " 1 "
             + "e/ 1 ";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %2$s for Patient: %1$s"
-            + "successfully";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Event %1$s with ID %2$s on %3$s successfully deleted "
+            + "for Patient %4$s with ID %5$s";
 
     private final Index targetPatientIndex;
     private final Index targetEventIndex;
@@ -103,9 +103,9 @@ public class DeleteEventCommand extends Command {
         Patient editedPatient = createEditedPatient(patientToDeleteEvent, editPatientDescriptor);
         model.setPatient(patientToDeleteEvent, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS,
-                Messages.format(patientToDeleteEvent),
-                eventToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.name,
+                targetEventIndex.getOneBased(), eventToDelete.date, patientToDeleteEvent.getName(),
+                targetPatientIndex.getOneBased()));
     }
 
     @Override
