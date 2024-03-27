@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -101,22 +100,4 @@ public interface Model {
      * Returns null if the person does not exist.
      */
     Person getPersonByUniqueId(String uniqueId);
-
-    /**
-     * Adds a payment to the person identified by the uniqueId.
-     * The person must exist in the address book.
-     */
-    void addPayment(Id uniqueId, double amount);
-
-    /**
-     * Marks a payment as paid for the person identified by the uniqueId.
-     * The person must exist in the address book.
-     */
-    void markPayment(Id uniqueId, double amount);
-
-    /**
-     * Resets all payments for the person identified by the uniqueId to 0.
-     * The person must exist in the address book.
-     */
-    void resetPayments(Id uniqueId);
 }

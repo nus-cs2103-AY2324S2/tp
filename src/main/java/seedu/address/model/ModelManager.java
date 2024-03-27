@@ -13,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Id;
-import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 
 /**
@@ -183,40 +182,4 @@ public class ModelManager implements Model {
         return addressBook.getTotalPersons();
     }
 
-    @Override
-    public void addPayment(Id uniqueId, double amount) {
-        Person person = getPersonByUniqueId(uniqueId.toString());
-        if (person != null) {
-            Payment newPayment = new Payment(person.getPayment().getAmount() + amount);
-            Person updatedPerson = new Person(person.getName(), person.getPhone(),
-                    person.getEmail(), person.getAddress(), person.getTags(),
-                    person.getSubject(), uniqueId, newPayment);
-            setPerson(person, updatedPerson);
-        }
-    }
-
-    @Override
-    public void markPayment(Id uniqueId, double amount) {
-        Person person = getPersonByUniqueId(uniqueId.toString());
-        if (person != null) {
-            double newAmount = Math.max(0, person.getPayment().getAmount() - amount);
-            Payment newPayment = new Payment(newAmount);
-            Person updatedPerson = new Person(person.getName(), person.getPhone(),
-                    person.getEmail(), person.getAddress(), person.getTags(),
-                    person.getSubject(), uniqueId, newPayment);
-            setPerson(person, updatedPerson);
-        }
-    }
-
-    @Override
-    public void resetPayments(Id uniqueId) {
-        Person person = getPersonByUniqueId(uniqueId.toString());
-        if (person != null) {
-            Payment newPayment = new Payment(0);
-            Person updatedPerson = new Person(person.getName(), person.getPhone(),
-                    person.getEmail(), person.getAddress(), person.getTags(),
-                    person.getSubject(), uniqueId, newPayment);
-            setPerson(person, updatedPerson);
-        }
-    }
 }
