@@ -46,6 +46,13 @@ public class Group extends UniqueCourseMateList {
         skills.forEach(this.skills::add);
     }
 
+    /**
+     * Copy constructor for a {@code Group}.
+     */
+    public Group(Group toCopy) {
+        this(toCopy.name, toCopy.asUnmodifiableObservableList(), toCopy.skills);
+    }
+
     public Name getName() {
         return name;
     }

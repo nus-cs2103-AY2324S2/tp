@@ -71,7 +71,7 @@ public class DeleteMemberCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
         }
 
-        Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList());
+        Group modifiedGroup = new Group(toModify);
         try {
             for (CourseMate courseMate: courseMateList) {
                 modifiedGroup.remove(courseMate);
