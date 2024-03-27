@@ -7,6 +7,7 @@ import com.google.zxing.WriterException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,7 +21,8 @@ import seedu.address.model.person.Person;
 public class PaymentWindow extends UiPart<Stage> {
     private static final String FXML = "PaymentWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(PaymentWindow.class);
-
+    private static final String HELP_TOOLTIP_TEXT = "Open your banking application and scan this QR code to pay %s!\n"
+            + "Note that this QR code only works if the mobile number is registered to a bank account.";
     private final Person personToPay;
     private final Runnable onResetDebt;
 
@@ -31,6 +33,8 @@ public class PaymentWindow extends UiPart<Stage> {
 
     @FXML
     private Button resetButton;
+    @FXML
+    private Tooltip helpTooltip;
 
     /**
      * Creates a new QrWindow.
@@ -47,6 +51,7 @@ public class PaymentWindow extends UiPart<Stage> {
         if (person.getMoneyOwed().moneyOwed == 0) {
             resetButton.setManaged(false);
         }
+        helpTooltip.setText(String.format(HELP_TOOLTIP_TEXT, person.getName()));
     }
 
 
