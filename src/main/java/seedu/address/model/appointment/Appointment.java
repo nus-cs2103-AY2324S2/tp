@@ -69,7 +69,7 @@ public class Appointment {
      * @param appointmentDate Date to check validity of
      * @return boolean if appointment is valid or not
      */
-    private boolean isValidAppointment(AppointmentDate appointmentDate) {
+    public boolean isValidAppointment(AppointmentDate appointmentDate) {
         AppointmentDate currentDate = new AppointmentDate(LocalDate.now());
         return appointmentDate.compareTo(currentDate) > -1;
     }

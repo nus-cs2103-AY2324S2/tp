@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -44,6 +45,23 @@ class AppointmentTest {
         AppointmentDate appointmentDate = new AppointmentDate(LocalDate.now());
         Appointment appointment = new Appointment(new Nric("S1234567A"), new Nric("T1234567A"), appointmentDate);
         assertEquals(appointmentDate, appointment.getAppointmentDate());
+    }
+
+    @Test
+    void isValidAppointment_validDate_returnsTrue() {
+        AppointmentDate futureDate = new AppointmentDate(LocalDate.now().plusDays(1));
+        Appointment appointment = new Appointment(new Nric("S1234567A"), new Nric("T1234567A"), futureDate);
+
+        assertTrue(appointment.isValidAppointment(futureDate));
+    }
+
+    @Test
+    void isValidAppointment_pastDate_returnsFalse() {
+        AppointmentDate pastDate = new AppointmentDate(LocalDate.now().minusDays(1));
+        // Use assertThrows to check if IllegalArgumentException is thrown
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Appointment(new Nric("S1234567A"), new Nric("T1234567A"), pastDate);
+        });
     }
 
     @Test
