@@ -12,8 +12,8 @@ title: Developer Guide
 
 | Module                                  | Description                               |
 |-----------------------------------------|-------------------------------------------|
-| [JavaFX](https://openjfx.io/)                   | UI generation for Java |
-| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java |
+| [JavaFX](https://openjfx.io/)                   | UI generation for Java             |
+| [Jackson](https://github.com/FasterXML/jackson) | Json processing library for Java         |
 | [JUnit5](https://github.com/junit-team/junit5)  | Automated testing library for Java |
 | [ZXing](https://github.com/zxing/zxing)         | Barcode image processing library for Java |
 
@@ -196,13 +196,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### QR Code Generation
+### QR Code
 
-The following activity diagram summarizes what happens when a QR Code is generated for any `Person`.
+Each client has a QR code that allows users to save their contact information to their phones easily.
 
-![QRGenerationActivityDiagram](images/QRGenerationActivityDiagram.png)
+![QrNewUi](images/QrNewUi.png)
 
-_vCard_ is a data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
+Initially, we wanted to simply add a QR code to the list of persons as seen below.
+
+![QrOldUi](images/QrOldUi.png)
+
+However, we found that in practice, the QR codes were difficult to scan for two main reasons:
+
+1. The QR codes themselves were too small
+1. The QR codes of other contacts was interfering with the one we wanted to scan
+
+Thus, we decided to move the QR code to its own separate part of the UI.
+
+#### QR Code Generation
+
+Whenever a new client is added to the address book, a QR code is generated for them that contains their information in a vCard format.
+
+The following sequence diagram illustrates this.
+
+![QrAddPersonSequenceDiagram](images/QrAddPersonSequenceDiagram.png)
+
+We considered generating the QR code upon the creation of a `Person` object. However, we discovered that it was possible for a `Person` to be created, but never added to the address book, as shown in the following activity diagram.
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+Thus, we chose to only generate QR codes when the person is successfully added to avoid unnecessary QR code generations.
+
+This approach was also taken for the editing/deleting of QR codes.
+
+#### QR Code Image Naming
+
+QR codes associated with a client are named according to the format: [FULL NAME]_[PHONE_NUMBER].png
+
+This format was chosen as clients with the same name and phone number are not allowed in FitBook, so these two fields are enough to uniquely identify every client.
 
 ### Deleting a client from FitBook
 
@@ -210,15 +241,50 @@ The activity diagram below illustrates what happens when a client is deleted fro
 
 ![DeleteCommandActivityDiagram](images/DeleteCommandActivityDiagram.png)
 
-### Adding a Note To An Existing Client
+### Additional user details in FitBook
+On top of what AB3 has to offer, FitBook allows users to add additional details to each client to better track their health status.
 
-The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 note/Likes to eat`.
+This includes:
+* [Height and weight](#height-and-weight-feature-in-fitbook)
+* [Note](#note-feature-in-fitbook)
+
+#### Note feature in FitBook
+The `note` feature allows users to add any relevant health information to each client.
+
+For more details on how the `note` field interacts with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
+
+##### Interacting with the `note` command
+
+The sequence diagram below shows how the components interact with each other when the user inputs the command `note 1 nt/Likes to eat`.
 
 ![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
 
 The diagram highlights the four main components of FitBook, highlighted in their respective colors. For more information regarding the four main components, see [Main components of the architecture](#main-components-of-the-architecture).
 
-> The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 note/`).
+> The above sequence diagram also applies to the removal of a note from an existing client when no input string or prefix is entered for the `note` command. (i.e. `note 1`, or `note 1 nt/`).
+
+#### Height and weight feature in FitBook
+The height and weight feature allows users to keep track of past height and weight measurements of a client.
+
+We can refer to the sequence diagram [above](#interacting-with-the-note-command) to see how the addition of such fields to clients interact with the components of FitBook.
+
+For more details on how the `height` and `weight` fields interact with the `add` and `edit` command, refer [here](#adding-or-editing-a-client).
+
+#### Viewing height and weight history of a client
+
+### Searching Clients
+Search for clients is done using the `find` command. The command has been designed to be extendable, allowing for developers to easily define how new fields (attributes) in the clients can be searched.
+
+The sequence diagram below shows the logic flow of executing the command `find n/wendy`.
+
+![FindCommandSequenceDiagram-Logic](images/FindCommandSequenceDiagram-Logic.png)
+
+Note that the main searching logic is defined by creating a `Predicate`, which in turn calls the `isMatch()` method of the attribute.
+
+Therefore, to define how an attribute is being searched, one would simply take the following steps:
+1. Define the implementation of the `isMatch()` method of the respective attribute. (e.g `Name::isMatch()`)
+1. Create a new class that extends `Predicate` (e.g `NameContainsSubstringPredicate`)
+1. Update the `parse()` method in `FindCommandParser` to uses the new predicate
 
 ### Adding or editing a client
 
@@ -390,10 +456,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view list
-2. FitBook shows a list of clients
-3. User requests to delete a specific client in the list
-4. FitBook deletes the client from the list
-5. Use case ends
+1. FitBook shows a list of clients
+1. User requests to delete a specific client in the list
+1. FitBook deletes the client from the list
+1. Use case ends
 
 **Extensions**
 
@@ -418,9 +484,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view usage instructions
-2. FitBook displays the usage instructions such as how to add, edit, delete or search for clients
-3. User reads the instructions to understand how to use the FitBook
-4. Use case ends
+1. FitBook displays the usage instructions such as how to add, edit, delete or search for clients
+1. User reads the instructions to understand how to use the FitBook
+1. Use case ends
 
 <hr>
 
@@ -433,8 +499,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a new client
-2. FitBook displays a success message after the new client is successfully added
-3. Use case ends
+1. FitBook displays a success message after the new client is successfully added
+1. Use case ends
 
 **Extensions**
 
@@ -457,9 +523,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to see a list of all clients
-2. FitBook displays a success message followed by the list of clients
-3. User views the list
-4. Use case ends
+1. FitBook displays a success message followed by the list of clients
+1. User views the list
+1. Use case ends
 
 **Extensions**
 
@@ -509,6 +575,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Usage instructions**: Documentation detailing FitBook's features and how to navigate about them
 * **User**: The person using FitBook
 * **UI (User Interface)**: Manages user interactions with graphic interface elements
+* **AB3**: [AddressBook-Level3](https://github.com/se-edu/addressbook-level3), a project created by the [SE-EDU initiative](https://se-education.org).
+* **vCard**: A data format for contact information. Detailed information can be found in [RFC 6350](https://datatracker.ietf.org/doc/html/rfc6350).
 
 --------------------------------------------------------------------------------------------------------------------
 
