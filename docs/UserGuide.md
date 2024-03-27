@@ -83,7 +83,7 @@ TutorsContactsPro also uses a **Graphical User Interface (GUI)** to display **co
 
 Start today with TutorsContactsPro to better streamline your TA journey!
 
-[Return to Table of Contents](#table-of-contents)
+[Table of Contents](#table-of-contents)
 
 
 ## <span id='feature-aboutUG'> About the User Guide <span>
@@ -106,23 +106,12 @@ Feel free to turn back to this user guide if you encounter any problems or doubt
 ## <span id='#navigating-the-user-guide'> Navigating the User Guide <span>
 Throughout this user guide, the following symbols and keywords will be utilized for your convenience. 
 
-<div markdown="span" class="alert alert-primary">
+| Icons/Syntax | Meaning                                    |
+|--------------|--------------------------------------------|
+| ℹ️           | Information that you should take note of   |
+| 💡           | Useful advice and tips                     |
+| ⚠️           | Warnings you should read before proceeding |
 
-**:bulb: Tip:** Offers information that may not be essential but could **enrich your user experience**..<br>
-
-</div>
-
-<div markdown="span" class="alert alert-info">
-
-**:information_source: Information:** Provides information that will be **useful to know**.<br>
-
-</div>
-
-<div markdown="span" class="alert alert-warning">
-
-**:warning: Important:** Provides **important** information about a feature/command.<br>
-
-</div>
 
 Below is the glossary for important technical terms that you may find useful. 
 
@@ -131,9 +120,9 @@ Below is the glossary for important technical terms that you may find useful.
 | CLI             | CLI stands for Command Line Interface. It is a text-based interface used for interacting with computer systems and executing commands by typing them into a terminal window. | 
 | GUI             | GUI stands for Graphical User Interface, a visual way of interacting with computers using icons and menus instead of text commands.                                          | 
 | Command         | Command refers to a directive or instruction given to a computer system to perform a specific task or function.                                                              |             
-| GUI component   | GUI component refers to an element or part of a graphical user interface (GUI) that allows users to interact with the software application.                                  |        
+| GUI component   | GUI component refers to an element or part of a graphical user interface (GUI) that allows users to interact with the software application.                                  |
 
-
+[Table Of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -273,6 +262,8 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 
 5. Refer to the [Command Notes and Features](#features) below for details of each command.
 
+[Table Of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## <span id='feature-features'> Command Notes <span>
@@ -289,11 +280,10 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 | Order                 | Parameters can be in any order                                                                                                  | if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. |
 | Extraneous parameters |  Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored | if the command specifies `help 123`, it will be interpreted as `help`                         |                                                                                                 | Singapore phone number, 8 digits, without country code                                        |
 
-<div markdown="span" class="alert alert-warning">
 
-**:warning: Warning:**<br> If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application. 
-
-</div>
+> **⚠️Warning**
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application. 
+</box>
 
 ## <span id='feature-basicCommands'> Basic Commands <span>
 This section contains the basic commands of TutorsContactsPro.
@@ -313,7 +303,9 @@ Shows a list of all your students.
 
 Format: `list`
 
-**Tip:** Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed
+> 💡**Tips**
+Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed
+
 
 ### <span id='feature-clear'> Clearing all entries : `clear` <span>
 
@@ -348,14 +340,16 @@ Edits an existing student you have selected.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR] [m/MAJOR] [tg/TELEGRAM_HANDLE] [r/REMARK] [g/Group]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ <br>
-* At least one of the optional fields must be provided. <br>
-* Existing values will be updated to the input values. <br>
-* When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative. <br>
-* You can remove all the student’s groups by typing `g/` without specifying any groups after it. <br>
-* You can remove the remark of a student by typing `r/` without specifying any groups after it. <br>
-</div>
+> ℹ️ **Information** 
+> * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ 
+> * At least one of the optional fields must be provided. 
+
+> 💡**Tips**
+> * Existing values will be updated to the input values. <br>
+> * When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative. <br>
+> * You can remove all the student’s groups by typing `g/` without specifying any groups after it. <br>
+> * You can remove the remark of a student by typing `r/` without specifying any groups after it. <br>
+
 
 Examples:
 *  `edit 1 n/John e/john01@example.com` Edits the name of the first student to `John` and email to `john01@example.com` respectively.
@@ -368,10 +362,11 @@ You can find the student even if the keywords **matches partially**.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the student's name is searched.
-* Students matching at least one keyword will be returned (i.e. `OR` search).
+> ℹ️ **Information**
+> * The search is case-insensitive. e.g `hans` will match `Hans`
+> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> * Only the student's name is searched.
+> * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -386,10 +381,11 @@ You can filter students when the keywords **matches fully**.
 
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only student's group name is searched.
-* Students matching at least one keyword will be returned (i.e. `OR` search).
+> ℹ️ **Information**
+> * The search is case-insensitive. e.g `hans` will match `Hans`
+> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+> * Only student's group name is searched.
+> * Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -403,9 +399,10 @@ Deletes your specified student from the current list.
 
 Format: `delete INDEX`
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the current displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+> ℹ️ **Information**
+> * Deletes the student at the specified `INDEX`.
+> * The index refers to the index number shown in the current displayed student list.
+> * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the major book.
@@ -422,6 +419,9 @@ You can add a new group to TutorsContactsPro.
 
 Format: `addgroup g/GROUP_NAME`
 
+> ⚠️️ **Constraint**
+> * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
+
 Examples:
 * `addgroup g/TUT01`
   ![result for 'filter TU'](images/filterFeature.png)
@@ -431,6 +431,9 @@ Examples:
 You can edit an existing group in TutorsContactsPro.
 
 Format: `editgroup g/GROUP_NAME tg/TELEGRAM_LINK`
+
+> ⚠️️ **Constraint**
+> * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
 
 Examples:
 * `editgroup g/TUT01 tg/telegramexample.com`
@@ -442,6 +445,9 @@ You can delete an existing group in TutorsContactsPro.
 
 Format: `deletegroup g/GROUP_NAME`
 
+> ⚠️️ **Constraint**
+> * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
+
 Examples:
 * `deletegroup g/TUT01`
   ![result for 'filter TU'](images/filterFeature.png)
@@ -452,10 +458,11 @@ You can generate a mailto link with email addresses pre-filled based on specific
 
 Format: `mail [KEYWORD]`
 
-* `[KEYWORD]` are based on student's group name
-* It requires a **full match** for the keyword 
-* `[KEYWORD]` is optional and when no `[KEYWORD]` is entered, email addresses of all students on the current list will be included
-* If `[KEYWORD]` is entered, only email addresses of students belonging to the group name that fully matches the `[KEYWORD]` will be included
+> ℹ️ **Information**
+> * `[KEYWORD]` are based on student's group name
+> * It requires a **full match** for the keyword 
+> * `[KEYWORD]` is optional and when no `[KEYWORD]` is entered, email addresses of all students on the current list will be included
+> * If `[KEYWORD]` is entered, only email addresses of students belonging to the group name that fully matches the `[KEYWORD]` will be included
 
 Examples:
 * `mail` generates a mailto link with email addresses of all students on the current list. 
@@ -473,7 +480,7 @@ TutorsContactsPro data are saved automatically as a JSON file `[JAR file locatio
 
 [//]: # (<box type="warning" seamless>)
 
-> [**Caution:**]
+> [**⚠️ Caution:**]
 If your changes to the data file makes its format invalid, TutorsContactsPro will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the TutorsContactsPro to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
@@ -482,6 +489,8 @@ Furthermore, certain edits can cause the TutorsContactsPro to behave in unexpect
 
 _Details coming soon ..._
 
+[Table Of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## <span id='feature-faq'> FAQ <span>
@@ -489,11 +498,15 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsContactsPro home folder.
 
+[Table Of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## <span id='feature-issues'> Known issues <span>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+[Table Of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -514,6 +527,8 @@ _Details coming soon ..._
 | **Mail**        | `mail [KEYWORD]`<br> e.g., `mail TUT01`                                                                                                                                                                            |  
 | **Clear**       | `clear`                                                                                                                                                                                                            |
 
+
+[Table Of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -545,3 +560,4 @@ OpenJDK 64-Bit Server VM Zulu11.66+15-CA (build 11.0.20+8-LTS, mixed mode)
 
 Now, you're ready to proceed with the launching of TutorsContactsPro. Click [here](#feature-install) to get back to the installation tutorial.
 
+[Table Of Contents](#table-of-contents)
