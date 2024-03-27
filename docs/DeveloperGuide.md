@@ -212,9 +212,19 @@ The current allowed formats for required fields are as follows:
 
 The following sequence diagram shows how the `AddTag` interacts with `Logic` and `Model`.
 
-1. The user keys in `addtags 1 t/validTag1 t/validTag2` to add 2 valid tags to the `person` at the first `index`
-2. The `AddTagCommandParser` checks that the `index` and `tags` are valid, then returns a new `AddTagCommand` with the corresponding index and set of tags
-3. sgesg
+![AddTagSequenceDiagram](images/AddTagSequenceDiagram.svg)
+
+1. The user keys in `addtags 1 t/validTag1 t/validTag2` to add 2 valid tags to the `person` at the first `index`.
+2. The `AddTagCommandParser` checks that the `index` and `tags` are valid, then returns a new `AddTagCommand` with the corresponding index and set of tags.
+3. The `LogicManager` then executes the `AddTagCommand`.
+4. The `AddTagCommand` finds the `Person` to add tags to using `Index` and creates a new `Person` with the added tags.
+5. `AddTagCommand` then calls the `setPerson(person, personWithAddedTags)` method to set the old `Person` to the newly created `Person`.
+6. `AddTagCommand` then calls `updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` to update `UI` to display the person with the newly added `Tags`.
+7. `CommandResult` is then returned to `LogicManager`.
+
+#### Proposed Changes
+Allow users to add tags to multiple people at once.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
