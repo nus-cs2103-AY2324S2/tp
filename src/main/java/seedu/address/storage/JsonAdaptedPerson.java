@@ -39,6 +39,7 @@ class JsonAdaptedPerson {
     private final String info;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedProgrammingLanguage> programmingLanguages = new ArrayList<>();
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -50,7 +51,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("salary") String salary, @JsonProperty("info") String info,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("programmingLanguages") List<JsonAdaptedProgrammingLanguage>
-                                         programmingLanguages) {
+                                         programmingLanguages,
+                             @JsonProperty("priority") String priority) {
         this.companyName = companyName;
         this.name = name;
         this.phone = phone;
@@ -65,6 +67,7 @@ class JsonAdaptedPerson {
         if (programmingLanguages != null) {
             this.programmingLanguages.addAll(programmingLanguages);
         }
+        this.priority = priority;
     }
 
     /**
@@ -85,6 +88,7 @@ class JsonAdaptedPerson {
         programmingLanguages.addAll(source.getProgrammingLanguages().stream()
                 .map(JsonAdaptedProgrammingLanguage::new)
                 .collect(Collectors.toList()));
+        priority = Integer.toString(source.getPriority());
     }
 
     /**
@@ -156,14 +160,26 @@ class JsonAdaptedPerson {
         if (!Salary.isValidSalary(salary)) {
             throw new IllegalValueException(Salary.MESSAGE_CONSTRAINTS);
         }
+
         final Salary modelSalary = new Salary(salary);
 
         final Info modelInfo = new Info(info);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         final Set<ProgrammingLanguage> modelProgrammingLanguages = new HashSet<>(personProgrammingLanguages);
 
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Priority"));
+        }
+
+        if (!Person.isValidPriority(priority)) {
+            throw new IllegalValueException("Priority level should be between 1 and 3");
+        }
+
+        final int modelPriority = Integer.parseInt(priority);
+
         return new Person(modelCompanyName, modelName, modelPhone, modelEmail, modelAddress, modelDateTime,
-                modelSalary, modelInfo, modelTags, modelProgrammingLanguages);
+                modelSalary, modelInfo, modelTags, modelProgrammingLanguages, modelPriority);
     }
 }

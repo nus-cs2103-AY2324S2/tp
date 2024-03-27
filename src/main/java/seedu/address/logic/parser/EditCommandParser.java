@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,7 +43,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_INTERVIEWTIME, PREFIX_SALARY, PREFIX_INFO,
-                        PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE);
+                        PREFIX_TAG, PREFIX_PROGRAMMING_LANGUAGE, PREFIX_PRIORITY);
 
         Index index;
 
@@ -54,7 +55,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_COMPANY_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SALARY, PREFIX_INFO,
-                PREFIX_ADDRESS, PREFIX_INTERVIEWTIME);
+                PREFIX_ADDRESS, PREFIX_INTERVIEWTIME, PREFIX_PRIORITY);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
@@ -83,6 +84,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_INFO).isPresent()) {
             editPersonDescriptor.setInfo(ParserUtil.parseInfo(argMultimap.getValue(PREFIX_INFO).get()));
         }
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            editPersonDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseProgrammingLanguagesForEdit(argMultimap.getAllValues(PREFIX_PROGRAMMING_LANGUAGE))
                 .ifPresent(editPersonDescriptor::setProgrammingLanguages);
@@ -90,7 +94,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditCommand(index, editPersonDescriptor);
     }
     /**

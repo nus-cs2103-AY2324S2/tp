@@ -9,7 +9,8 @@
     "salary" : "0",
     "info" : "Friend of boss",
     "tags": [ "friends" ],
-    "programmingLanguages": [ "Java" ]
+    "programmingLanguages": [ "Java" ],
+    "priority" : "3"
   }, {
     "companyName": "Google",
     "name": "Alice Pauline",
@@ -20,6 +21,7 @@
     "salary" : "0",
     "info" : "Friend of boss",
     "tags": [ "friends" ],
-    "programmingLanguages": [ "Java" ]
+    "programmingLanguages": [ "Java" ],
+    "priority" : "3"
   } ]
 }

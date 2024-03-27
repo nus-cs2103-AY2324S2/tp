@@ -109,6 +109,10 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different Priority -> returns True
+        editedAlice = new PersonBuilder(ALICE).withPriority(1).build();
+        assertTrue(ALICE.equals(editedAlice));
     }
 
     @Test
@@ -138,6 +142,7 @@ public class PersonTest {
                 + ", info=" + ALICE.getInfo()
                 + ", tags=" + ALICE.getTags()
                 + ", programming-languages=" + ALICE.getProgrammingLanguages()
+                + ", priority=" + ALICE.getPriority()
                 + "}";
         assertEquals(expected, ALICE.toString());
     }

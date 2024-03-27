@@ -106,4 +106,26 @@ public class Salary {
     public boolean isRange() {
         return isRange;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Salary)) {
+            return false;
+        }
+
+        if (isRange != ((Salary) other).isRange) {
+            return false;
+        }
+
+        if (isRange) {
+            return salary1 == ((Salary) other).salary1 && salary2 == ((Salary) other).salary2;
+        } else {
+            return salary1 == ((Salary) other).salary1;
+        }
+    }
 }
