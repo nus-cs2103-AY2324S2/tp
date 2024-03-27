@@ -80,10 +80,18 @@ class AppointmentTest {
         Nric patientNric = new Nric("T1234567A");
         AppointmentDate appointmentDate = new AppointmentDate(LocalDate.now());
         Appointment appointment = new Appointment(doctorNric, patientNric, appointmentDate);
+
+        // False Doctor and Patient
         Person doctor = new DoctorBuilder().withNric("S7654321A").build();
         Person patient = new PatientBuilder().withNric("T7654321A").build();
         assertFalse(appointment.appointmentContainsPerson(doctor));
         assertFalse(appointment.appointmentContainsPerson(patient));
+
+        // True Doctor and Patient
+        doctor = new DoctorBuilder().withNric("S1234567A").build();
+        patient = new PatientBuilder().withNric("T1234567A").build();
+        assertTrue(appointment.appointmentContainsPerson(doctor));
+        assertTrue(appointment.appointmentContainsPerson(patient));
     }
 
     @Test
