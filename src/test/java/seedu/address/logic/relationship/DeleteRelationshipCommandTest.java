@@ -82,7 +82,7 @@ class DeleteRelationshipCommandTest {
     }
 
     @Test
-    void execute_deleteRelationType_relationshipTypeNotExists_throwsCommandException() {
+    void execute_deleteRelationTypeRelationshipTypeNotExists_throwsCommandException() {
         String relationshipDescriptor = "nonexistent";
 
         DeleteRelationshipCommand deleteRelationshipCommand = new DeleteRelationshipCommand(
