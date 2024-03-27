@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_OWED_FOR_SPLIT_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_FOR_SPLIT_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -13,10 +15,10 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -33,7 +35,25 @@ class SplitCommandTest {
         Float totalAmount = (float) 10.20;
         int numPeople = 2;
         Float expectedAmount = (float) 5.10;
-        Assertions.assertEquals(SplitCommand.getSplitAmount(totalAmount, numPeople), expectedAmount);
+        assertEquals(SplitCommand.getSplitAmount(totalAmount, numPeople), expectedAmount);
+    }
+    @Test
+    public void execute_withInvalidSplitAmount_throwsCommandException() {
+        List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        MoneyOwed totalOwed = new MoneyOwed(INVALID_MONEY_OWED_FOR_SPLIT_COMMAND);
+        SplitCommand splitCommand = new SplitCommand(indexList, totalOwed);
+        String expectedMessage = SplitCommand.MESSAGE_INVALID_AMOUNT;
+        assertCommandFailure(splitCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_withInvalidIndex_throwsCommandException() {
+        Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        List<Index> indexList = Arrays.asList(invalidIndex, INDEX_SECOND_PERSON);
+        MoneyOwed totalOwed = new MoneyOwed(VALID_MONEY_OWED_FOR_SPLIT_COMMAND);
+        SplitCommand splitCommand = new SplitCommand(indexList, totalOwed);
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        assertCommandFailure(splitCommand, model, expectedMessage);
     }
 
     @Test
