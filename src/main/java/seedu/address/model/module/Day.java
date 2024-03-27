@@ -16,6 +16,7 @@ import java.util.Locale;
 public class Day {
     public static final String MESSAGE_CONSTRAINTS =
             "Day should be in the format like Mon, Tue, Wed, Thu, Fri, Sat, Sun";
+    // E format requires the first 3 characters of the day of the week, i.e. Monday -> Mon
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E");
     private final DayOfWeek day;
 
