@@ -346,20 +346,15 @@ All other fields (with the exception of tags) cannot have duplicate parameters. 
 
 Fields usage for client details:
 
-| Field            | Usage                                                                              | Example                         |
-|------------------|------------------------------------------------------------------------------------|---------------------------------|
-| 'n/NAME'         | All names in the system must be unique                                             | `n/John Doe`                    |
-| 'c/PHONE_NUMBER' | Phone numbers should only contain numbers, and it should be at least 3 digits long | `c/98765432`                    |
-| 'e/EMAIL'        | Email should be in the format of `local-part@domain`                               | `e/johndoe@email.com`           |
-| 'a/ADDRESS'      | Address can take any text value                                                    | `a/311, Clementi Ave 2, #02-25` |
-<<<<<<< HEAD
-| 'b/BIRTHDAY'     | Birthday should be in the format of `YYYY-MM-DD`                                   | `b/1990-01-01`                  |
-| 'p/PRIORITY'     | Priority can be `low`, `medium`, `high` or `vip`                                   | `p/medium`, `p/h`               |
-=======
-| 'd/BIRTHDAY'     | Birthday should be in the format of `YYYY-MM-DD`                                   | `d/1990-01-01`                  |
-| 'p/PRIORITY'     | Priority can be `low`, `medium`, `high` or `vip`                                   | `p/medium`, `p/h`              |
->>>>>>> master
-| 't/TAG'          | Tags can be any text value                                                         | `t/friends`                     |
+| Field            | Usage                                                                              | Example                          |
+|------------------|------------------------------------------------------------------------------------|----------------------------------|
+| 'n/NAME'         | All names in the system must be unique                                             | `n/John Doe`                     |
+| 'c/PHONE_NUMBER' | Phone numbers should only contain numbers, and it should be at least 3 digits long | `c/98765432`                     |
+| 'e/EMAIL'        | Email should be in the format of `local-part@domain`                               | `e/johndoe@email.com`            |
+| 'a/ADDRESS'      | Address can take any text value                                                    | `a/311, Clementi Ave 2, #02-25`  |
+| 'd/BIRTHDAY'     | Birthday should be in the format of `YYYY-MM-DD`                                   | `d/1990-01-01`                   |
+| 'p/PRIORITY'     | Priority can be `low`, `medium`, `high`, `vip`, or `l`, `m`, `h`, `v`              | `p/medium`, `p/h`                |
+| 't/TAG'          | Tags can be any text value                                                         | `t/friends`                      |
 
 Examples:
 * `add n/John Doe c/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/1990-01-01 p/low t/friends t/owesMoney`
