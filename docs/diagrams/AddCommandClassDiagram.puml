@@ -1,0 +1,56 @@
+@startuml
+
+hide empty attributes
+hide empty methods
+hide circle
+
+skinparam shadowing false
+skinparam classFontStyle Bold
+skinparam ActivityBackgroundColor Silver
+skinparam ActivityBorderColor DimGray
+
+skinparam classAttributeIconSize 0
+
+skinparam class {
+    BackgroundColor Cornsilk
+    ArrowColor DimGray
+    BorderThickness 1
+    BorderColor DimGray
+}
+
+title "Add Command Class diagram"
+
+class "AddCommand" as Object\AddCommand {
+     - toAdd: Person
+     + execute(model) : CommandResult
+     + equals(other) : boolean
+}
+
+Interface "Command" as Object\Command <<abstract>> {
+    + execute(model)
+}
+
+class "Person" as Object\Person {
+    - companyName: Name
+    - phone: Phone Number
+    - email: Email
+    - tag: Tag
+    - address: Address;
+    - jobDescription: JobDescription
+    - interviewDate: InterviewDate
+    - internDuration: InternDuration
+    - salary: Salary
+    - note: Note
+}
+
+class "Model" as Object\Model <<interace>> {
+    - addressbook: AddressBook
+    + hasPerson(person: Person): boolean
+    + addPerson(person: Person): void
+}
+
+Object\AddCommand --> Object\Model
+Object\AddCommand ...> Object\Person
+Object\AddCommand --|> Object\Command
+
+@enduml

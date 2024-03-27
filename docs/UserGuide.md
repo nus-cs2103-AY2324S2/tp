@@ -7,7 +7,7 @@ pageNav: 3
 # Internhub User Guide
 
 ## Welcome !
-Are you an undergraduate navigating the maze of internship opportunities? 
+Are you an undergraduate navigating the maze of internship opportunities?
 Look no further! InternHub is here to revolutionize the way you manage your internship contacts.
 This User Guide (UG) serves as a comprehensive resource to aid users in understanding and effectively utilizing the application.
 It provides detailed instructions on installation, usage, and navigation, ensuring users can maximize the benefits of Intern Hub for managing internship contacts.
@@ -15,7 +15,7 @@ It provides detailed instructions on installation, usage, and navigation, ensuri
 ## Who can use InternHub ?
 InternHub is designed for undergraduates, professors, and career guidance officers seeking a streamlined approach to managing internship contacts.
 InternHub is crafted with the intention of being user-friendly for individuals with varying levels of computer experience.
-We trust that you'll find the interface intuitive and easy to navigate, whether you're a tech-savvy enthusiast or just starting to explore desktop applications. 
+We trust that you'll find the interface intuitive and easy to navigate, whether you're a tech-savvy enthusiast or just starting to explore desktop applications.
 We're here to support you every step of the way on your internship management journey!
 
 <!-- * Table of Contents -->
@@ -188,7 +188,7 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data 
+### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
