@@ -3,7 +3,7 @@ package seedu.teachstack.logic.commands;
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.teachstack.model.util.SampleDataUtil.getGroupSet;
-import static seedu.teachstack.model.util.SampleDataUtil.getStudentIdSet;
+import static seedu.teachstack.model.util.SampleDataUtil.getStudentIdSetFromStudentIds;
 import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
@@ -30,8 +30,18 @@ public class GroupCommandTest {
      */
     @Test
     public void clear_validID_success() {
-        Person alice = new PersonBuilder(TypicalPersons.ALICE).build();
+        // Alice will have no groups
+        Person alice = new PersonBuilder(TypicalPersons.ALICE).withGroups().build();
+        GroupCommand groupCommand = new GroupCommand(getGroupSet(),
+                getStudentIdSetFromStudentIds(alice.getStudentId()));
 
+        // Should clear all groups
+        String expectedMessage = String.format(GroupCommand.MESSAGE_CLEAR_SUCCESS, Messages.format(alice));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getPerson(alice.getStudentId()), alice);
+
+        assertCommandSuccess(groupCommand, model, expectedMessage, expectedModel);
     }
 
     /**
@@ -45,7 +55,7 @@ public class GroupCommandTest {
 
         //change alice to group 99
         Person editedPerson = new PersonBuilder(TypicalPersons.ALICE).withGroups("Group 99").build();
-        Set<StudentId> studentIds = getStudentIdSet(TypicalPersons.ALICE.getStudentId());
+        Set<StudentId> studentIds = getStudentIdSetFromStudentIds(TypicalPersons.ALICE.getStudentId());
         GroupCommand groupCommand = new GroupCommand(editedPerson.getGroups(), studentIds);
 
         String expectedMessage = String.format(GroupCommand.MESSAGE_GROUP_SUCCESS, Messages.format(editedPerson));
@@ -74,7 +84,7 @@ public class GroupCommandTest {
     }
 
     /**
-     * Adds a student to a group. Then, adds that student to another group.
+     * Adds a student to a group 99. Then, adds that student to another group 100.
      * The student should be in both groups in the end.
      */
     @Test
