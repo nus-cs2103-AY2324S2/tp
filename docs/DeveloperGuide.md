@@ -159,21 +159,21 @@ The undo/redo mechanism is implemented within `AddressBook.java` by saving the e
 * `AddressBook#undo()` — Restores the previous `persons` list state from the `undoStack`.
 * `AddressBook#redo()` — Restores a previously undone `persons` list state from the `redoStack`.
 
-`save()` is used within the `AddressBook` class methods, saving only when the persons list is about to be modified. `save()` is set to private to prevent potential misuse from other classes, and Law of Demeter violations.
+`save()` is used within the `AddressBook` class methods, saving only when the persons list is about to be modified. `save()` is set to be private to prevent potential misuse from other classes, and Law of Demeter violations.
 
 `undo` and `redo` are exposed in the `Model` interface as `Model#undo()`, `Model#redo()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `persons` list will be initialized with the initial address book state, with the `undoStack` and `redoStack` empty.
+Step 1. The user launches the application for the first time. The `persons` list will be initialized with the initial address book state (State 0), with the `undoStack` and `redoStack` empty.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls several other functions until it calls `save()`. This causes the state of the `persons` list **before** the `delete 5` command is executed to be saved into the `undoStack`. The 5th person is then removed from the `persons` list.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls several other functions until it calls `save()`. This causes the state of the `persons` list **before** the `delete 5` command is executed (State 0) to be saved into the `undoStack`. The 5th person is then removed from the `persons` list (State 1).
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also eventually calls `save()`, causing another `persons` list state to be saved into the `undoStack`, before adding the person.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `save()`, causing another `persons` list state (State 1) to be saved into the `undoStack`, before adding the person (State 2).
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -184,11 +184,11 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 </box>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will:
-1. Copy the `persons` list into the `redoStack`.
-2. Pop the latest `persons` list state from the `undoStack`.
-3. Copy this popped state into the `persons` list.
+1. Copy the `persons` list (State 2) into the `redoStack`.
+2. Pop the latest `persons` list state (State 1) from the `undoStack`.
+3. Copy this popped state (State 1) into the `persons` list.
 
-Notice that the states are copied into the `persons` list instead of replacing it, resulting in the exact same object being used. This is to prevent synchronization issues and to reduce coupling with the GUI, as the GUI can now use this same list object throughout the program's life.
+Notice that the states are copied into the `persons` list instead of replacing it, resulting in the exact same object being used. This is to prevent synchronization issues and to reduce coupling with the GUI, allowing the GUI to use this same list object throughout the program's life.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
@@ -235,56 +235,73 @@ Reason: It no longer makes sense to redo the `add n/David …​` command and ig
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command (excluding undo & redo):
 
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
+<puml src="diagrams/SaveActivityDiagram.puml" width="250" />
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (selected choice):** Save the entire address book as objects.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
+    * Pros:
+      * Easy to implement.
+      * Unlikely to have bugs.
+    * Cons:
+      * May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Save the entire address book into storage as JSON files.
-  * Pros: Easy to implement.
-          Saves history between different program launches.
-  * Cons: May have performance issues with many storage accesses.
-          Increases coupling as `Model` will now need a reference to `Storage`.
+    * Pros:
+      * Saves history between different program launches.
+    * Cons:
+      * May have performance issues with many storage accesses.
+      * Increases coupling as `Model` will now need a reference to `Storage`.
 
 
 * **Alternative 3:** Save the entire address book as a JSON `String`.
-  * Pros: Reduces memory footprint as compared to objects.
-          Faster than JSON files as there are no accesses to storage.
-  * Cons: May have performance issues as they have to be deserialized each time.
-  
+    * Pros:
+      * Reduces memory footprint as compared to objects.
+      * Faster than JSON files as there are no accesses to storage.
+    * Cons:
+      * May have performance issues as it has to be deserialized each time.
+
 
 * **Alternative 4:** Individual command knows how to undo/redo by itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-          Best performance.
-  * Cons: We must ensure that the implementation of each individual `undo` command is correct.
-          This would be especially difficult for commands that modify multiple people at once (e.g. `asset` editing commands)
+    * Pros:
+      * Will use less memory (e.g. for `delete`, just save the person being deleted).
+      * Best performance.
+    * Cons:
+      * We must ensure that the implementation of each individual `undo` command is correct.
+        This would be especially difficult for commands that modify multiple people at once (e.g. `asset` editing commands)
 
 **Aspect: Data structure used to store undo & redo states:**
 
 * **Alternative 1 (selected choice):** 2 Stacks.
-  * Pros: Easy to implement. Simple data structure. Easy to clear all redo states.
-  * Cons: May have performance issues if many redo states are cleared at once (but is still amortized O(1)).
+    * Pros:
+      * Easy to implement.
+      * Simple data structure.
+      * Easy to clear all redo states.
+    * Cons:
+      * May have performance issues if many redo states are cleared at once.
 
 
 * **Alternative 2:** ArrayList, using pointers for current state and redo limit.
-  * Pros: Redo states no longer have to be cleared, as they are tracked by pointers and can be replaced at indexes as needed.
-  * Cons: Harder to implement. `add()` and `set()` have to be used appropriately to prevent synchronization issues.
-          Pointers have to be carefully implemented.
+    * Pros:
+      * Redo states no longer have to be cleared, as they are tracked by pointers and can be replaced at indexes as needed.
+    * Cons:
+      * Harder to implement.
+      * `add()` and `set()` have to be used appropriately to prevent synchronization issues.
+      * Pointers have to be carefully implemented.
 
 
 * **Alternative 3:** LinkedList.
-  * Pros: Fast in dropping many nodes after an index. Simple data structure.
-  * Cons: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index.
-          A custom data structure would have to be used, and is hence time-consuming to implement.
-          Does not take into account garbage collection time.
+    * Pros:
+      * Fast in dropping many nodes after a specified index.
+      * Simple data structure.
+    * Cons:
+      * Time-consuming to implement: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index,
+        and hence a custom data structure would have to be used.
+
 
 ### \[Proposed\] Data archiving
 
