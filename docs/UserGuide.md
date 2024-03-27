@@ -128,8 +128,15 @@ It will help you [install](#installation-instructions) and [start](#startup-inst
 5. Copy the jar file to the folder you want to use as the home folder.
 
 ### Startup instructions
-6. Double-click on the `addressbook.jar` file to start the application. If you are facing issues, you can consult [this guide](https://www.wikihow.com/Run-a-.Jar-Java-File).
-7. Go to the [command summary](#command-summary) for a list of commands to try out!
+
+6. Double-click on the `addressbook.jar` file to start the application. 
+   - If you are facing issues, you can consult [this guide](https://www.wikihow.com/Run-a-.Jar-Java-File).
+
+**Your first command**
+- Type this command to add and manage your first client
+    
+    `add n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 d/Suffers from depression k/Jasmin Doe t/mentalIllness`
+- Go to the [command summary](#command-summary) for a list of different commands to try out!
 
 ___
 
