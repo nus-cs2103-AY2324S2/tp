@@ -47,5 +47,15 @@ public class StatusTest {
 
         // different values -> returns false
         assertFalse(status.equals(new Status("Late")));
+
+        // check for enum
+        assertFalse(Status.StatusEnum.PENDING.equals(null));
+        assertFalse(Status.StatusEnum.PENDING.toString().equals("Arrived"));
+        assertFalse(Status.StatusEnum.ARRIVED.toString().equals("Late"));
+        assertFalse(Status.StatusEnum.LATE.toString().equals("Pending"));
+
+        assertTrue(Status.StatusEnum.PENDING.toString().equals("Pending"));
+        assertTrue(Status.StatusEnum.ARRIVED.toString().equals("Arrived"));
+        assertTrue(Status.StatusEnum.LATE.toString().equals("Late"));
     }
 }
