@@ -105,7 +105,7 @@ public class Trie {
         StringBuilder sb = new StringBuilder();
         for (char c : prefix.toCharArray()) {
             if (current.getChild(c) == null) {
-                return null;
+                return "";
             }
             sb.append(c);
             current = current.getChild(c);
@@ -121,6 +121,6 @@ public class Trie {
             sb.append(c);
             return findFirstWordWithPrefixHelper(current.getChild(c), sb);
         }
-        return null;
+        return "";
     }
 }

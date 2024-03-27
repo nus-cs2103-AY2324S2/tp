@@ -26,6 +26,15 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Returns the autocomplete text based on the input.
+     *
+     * @param commandText The input as entered by the user.
+     * @return the autocomplete text to be appended to the input.
+     * @see seedu.address.logic.autocomplete.AutoComplete#getAutoComplete(String)
+     */
+    String autoComplete(String commandText);
+
+    /**
      * Returns the AddressBook.
      *
      * @see seedu.address.model.Model#getAddressBook()

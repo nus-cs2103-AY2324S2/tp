@@ -189,4 +189,23 @@ public class LogicManagerTest {
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
+
+    /**
+     * Tests that the logic component correctly autocompletes the user input, ensuring the correctness
+     * of the high level abstraction.
+     */
+    @Test
+    void autoComplete() {
+        String fullAddPersonCommand = AddPersonCommand.COMMAND_WORD;
+        String prefix = fullAddPersonCommand.substring(0, 2);
+        String remaining = fullAddPersonCommand.substring(2);
+
+        assertEquals(remaining, logic.autoComplete(prefix));
+
+        String fullListPersonCommand = ListPersonCommand.COMMAND_WORD;
+        prefix = fullListPersonCommand.substring(0, 2);
+        remaining = fullListPersonCommand.substring(2);
+
+        assertEquals(remaining, logic.autoComplete(prefix));
+    }
 }
