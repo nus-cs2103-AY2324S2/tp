@@ -52,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Payment payment = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT).get());
+        Payment payment = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT));
 
         Person person = new Person(name, phone, email, address, tagList, subject, null, payment);
 
