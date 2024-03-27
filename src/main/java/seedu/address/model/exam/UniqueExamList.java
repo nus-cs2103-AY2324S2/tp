@@ -25,7 +25,7 @@ public class UniqueExamList implements Iterable<Exam> {
      */
     public boolean contains(Exam toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameExam);
     }
 
     /**
@@ -51,7 +51,7 @@ public class UniqueExamList implements Iterable<Exam> {
             throw new ExamNotFoundException();
         }
 
-        if (!target.equals(editedExam) && contains(editedExam)) {
+        if (!target.isSameExam(editedExam) && contains(editedExam)) {
             throw new DuplicateExamException();
         }
 
@@ -128,7 +128,7 @@ public class UniqueExamList implements Iterable<Exam> {
     private boolean examsAreUnique(List<Exam> exams) {
         for (int i = 0; i < exams.size() - 1; i++) {
             for (int j = i + 1; j < exams.size(); j++) {
-                if (exams.get(i).equals(exams.get(j))) {
+                if (exams.get(i).isSameExam(exams.get(j))) {
                     return false;
                 }
             }

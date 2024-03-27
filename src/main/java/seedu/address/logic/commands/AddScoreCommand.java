@@ -96,4 +96,12 @@ public class AddScoreCommand extends Command {
                 updatedScores
         );
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof AddScoreCommand
+                && targetIndex.equals(((AddScoreCommand) other).targetIndex)
+                && score.equals(((AddScoreCommand) other).score));
+    }
 }

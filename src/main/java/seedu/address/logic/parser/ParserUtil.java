@@ -241,11 +241,35 @@ public class ParserUtil {
         requireNonNull(score);
         String trimmedScore = score.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedScore)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(Score.MESSAGE_CONSTRAINTS);
         }
 
         int parsedScore = Integer.parseInt(trimmedScore);
-        if (!Exam.isValidScore(parsedScore)) {
+
+
+        if (!Score.isValidScore(parsedScore)) {
+            throw new ParseException(Score.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Score(parsedScore);
+    }
+
+    /**
+     * Parses a {@code String examScore} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code examScore} is invalid.
+     */
+    public static Score parseExamScore(String score) throws ParseException {
+        requireNonNull(score);
+        String trimmedScore = score.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedScore)) {
+            throw new ParseException(Score.MESSAGE_CONSTRAINTS);
+        }
+
+        int parsedScore = Integer.parseInt(trimmedScore);
+
+        if (!Exam.isValidExamScore(parsedScore)) {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
 
