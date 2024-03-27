@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.teachstack.commons.util.ToStringBuilder;
+import seedu.teachstack.model.person.Grade;
 import seedu.teachstack.model.person.Person;
 import seedu.teachstack.model.person.UniquePersonList;
 
@@ -16,6 +17,7 @@ import seedu.teachstack.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

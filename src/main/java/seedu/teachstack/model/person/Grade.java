@@ -113,4 +113,8 @@ public class Grade implements Comparable<Grade> {
         }
     }
 
+    public static void modifyThreshold(Grade g) {
+        thresholdGrade = g;
+    }
+
 }
