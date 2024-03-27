@@ -2,26 +2,25 @@
 layout: page
 title: User Guide
 ---
+This guide provides and overview and explains the essential features of Dook.
 
-Welcome to Dook: a **cutting-edge desktop application** for **computing students** engineered for the seamless management of consultations and 
-contacts, blending the power of a [**Command Line Interface (CLI)**](#glossary) with the intuitive accessibility of a 
+## What is Dook?
+An **elegant desktop application** for **NUS computing students** to easily manage consultations. This lightweight platform was enables users to quickly view and manage consultations and
+people. Dook blends the power of a nimble [**Command Line Interface (CLI)**](#glossary) together with the intuitive accessibility of a 
 [**Graphical User Interface (GUI)**](#glossary). 
 
-Designed specifically for the dynamic needs of the NUS 
-School of Computing community, Dook centralizes faculty information
-in an innovative manner, standing on the shoulders of AddressBook Level 3
-(AB3) as an advanced brownfield project. 
+Designed for the dynamic needs of the NUS 
+School of Computing (SoC) community, Dook centralizes faculty information
+in an innovative manner, allowing one to easily find their professors by taking advantage of the basic CLI familiarity of SoC students.
 
 For the quick typist, Dook elevates your ability to swiftly organize your academic consultations with professors
-and teaching assistants, outpacing conventional GUI-based applications.
+and teaching assistants, outpacing conventional GUI-based applications, making management of consultations a breeze.
 
-We hope that you will find this guide helpful in maximising you Dook experience! :)
+We hope that you will find this guide helpful in maximising your Dook experience! :)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Using the Guide
-This user guide walks you through the essential features of *Dook*.
-
 We hope that this guide will familiarise you with the [CLI](#glossary) commands and [GUI](#glossary) and interface. If you
 are unfamiliar with some jargon here, do have a quick look at our [glossary](#glossary) below! :)
 
@@ -48,8 +47,6 @@ Content in green boxes provides tips and good practices to help you use the appl
 Content in red boxes draws your attention to potential pitfalls to avoid and alert you to possible errors.
 </div>
 
-Do look out for them!
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
@@ -58,7 +55,7 @@ Do look out for them!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Installation and Quick start
 
 1. Ensure you have [Java](#faq) `11` or above installed in your Computer.
 
@@ -127,9 +124,18 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+```
+add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [t/TAG]…​
+```
+Adds a new person to the address book.
 
-Format: `add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [t/TAG]…​`
+| Param            | Remarks                                                                                                        |
+|------------------|----------------------------------------------------------------------------------------------------------------|
+| **NAME**         | Must be non-null and unique                                                                                    |
+| **PHONE_NUMBER** | Optional, only numbers and minimum 3 digits                                                                    |
+| **EMAIL**        | Optional, follow standard email formats (i.e xxx@xxx)                                                          |
+| **ADDRESS**      | Optional                                                                                                       |
+| **TAG**          | Optional, each tag should start with -t (i.e. for two tags `friend`, `groupmate` use `-t friend -t groupmate`) |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
