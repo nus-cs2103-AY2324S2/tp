@@ -17,6 +17,7 @@ import seedu.hirehub.logic.parser.DeleteConfirmationStageParser;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.ReadOnlyAddressBook;
+import seedu.hirehub.model.job.Job;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.storage.Storage;
 
@@ -92,6 +93,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+    @Override
+    public ObservableList<Job> getFilteredJobList() {
+        return model.getFilteredJobList();
     }
 
     @Override
