@@ -100,6 +100,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String address} into a {@code Optional<Address>}, allowing empty input.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Optional<Address> parseOptionalAddress(String address) throws ParseException {
+        requireNonNull(address);
+        if (address.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(parseAddress(address));
+    }
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -141,7 +154,7 @@ public class ParserUtil {
         if (!Role.isValidRole(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Role(trimmedRole);
+        return Role.valueOf(trimmedRole);
     }
 
     /**

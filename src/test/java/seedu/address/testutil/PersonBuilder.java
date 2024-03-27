@@ -30,7 +30,7 @@ public class PersonBuilder {
     private Optional<Phone> phone;
     private Email email;
     private Role role;
-    private Address address;
+    private Optional<Address> address;
     private Course course;
     private Set<Tag> tags;
 
@@ -41,8 +41,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = Optional.of(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
-        role = new Role(DEFAULT_ROLE);
-        address = new Address(DEFAULT_ADDRESS);
+        role = Role.valueOf(DEFAULT_ROLE);
+        address = Optional.of(new Address(DEFAULT_ADDRESS));
         course = new Course(DEFAULT_COURSE);
         tags = new HashSet<>();
     }
@@ -80,7 +80,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = Optional.of(new Address(address));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class PersonBuilder {
      * Sets the {@code Role} of the {@code Person} that we are building.
      */
     public PersonBuilder withRole(String role) {
-        this.role = new Role(role);
+        this.role = Role.valueOf(role);
         return this;
     }
 
