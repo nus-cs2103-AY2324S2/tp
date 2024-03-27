@@ -31,7 +31,7 @@ public class Address {
     }
 
     public Address() {
-        value = "1";
+        value = "Woodlands";
     }
 
     /**

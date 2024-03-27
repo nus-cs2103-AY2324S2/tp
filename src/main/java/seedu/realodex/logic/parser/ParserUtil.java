@@ -61,11 +61,11 @@ public class ParserUtil {
      * @param name The name string to parse.
      * @return A ParserUtilResult containing the parsed Name or an exception message.
      */
-    public static ParserUtilResult<Name> parseNameReturnStored(String name) throws ParseException {
+    public static ParserUtilResult<Name> parseNameReturnStored(String name) {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            return new ParserUtilResult<>(Name.MESSAGE_CONSTRAINTS, new Name(capitalizeWords("Ud")));
+            return new ParserUtilResult<>(Name.MESSAGE_CONSTRAINTS, new Name());
         }
         return new ParserUtilResult<>("", new Name(capitalizeWords(trimmedName)));
     }
@@ -118,7 +118,7 @@ public class ParserUtil {
      * @param phone The phone string to parse.
      * @return A ParserUtilResult containing the parsed Phone or an exception message.
      */
-    public static ParserUtilResult<Phone> parsePhoneReturnStored(String phone) throws ParseException {
+    public static ParserUtilResult<Phone> parsePhoneReturnStored(String phone) {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
@@ -149,7 +149,7 @@ public class ParserUtil {
      * @param income The income string to parse.
      * @return A ParserUtilResult containing the parsed Income or an exception message.
      */
-    public static ParserUtilResult<Income> parseIncomeReturnStored(String income) throws ParseException {
+    public static ParserUtilResult<Income> parseIncomeReturnStored(String income) {
         requireNonNull(income);
         String trimmedIncome = income.trim();
         if (!Income.isValidIncome(trimmedIncome)) {
@@ -181,7 +181,7 @@ public class ParserUtil {
      * @return A ParserUtilResult containing the parsed Address or an exception message.
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static ParserUtilResult<Address> parseAddressReturnStored(String address) throws ParseException {
+    public static ParserUtilResult<Address> parseAddressReturnStored(String address) {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
@@ -214,7 +214,7 @@ public class ParserUtil {
      * @return A ParserUtilResult containing the parsed Email or an exception message.
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static ParserUtilResult<Email> parseEmailReturnStored(String email) throws ParseException {
+    public static ParserUtilResult<Email> parseEmailReturnStored(String email) {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
@@ -247,7 +247,7 @@ public class ParserUtil {
      * @return A ParserUtilResult containing the parsed Family or an exception message.
      * @throws ParseException if the given {@code family} is invalid.
      */
-    public static ParserUtilResult<Family> parseFamilyReturnStored(String family) throws ParseException {
+    public static ParserUtilResult<Family> parseFamilyReturnStored(String family) {
         requireNonNull(family);
         String trimmedFamily = family.trim();
         if (!Family.isValidFamily(trimmedFamily)) {
