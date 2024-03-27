@@ -18,7 +18,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
@@ -31,7 +30,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
-    private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<AppointmentView> filteredAppointmentsView;
     private final FilteredList<AppointmentView> filteredAppointmentsDayView;
 
@@ -46,7 +44,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
-        this.filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
         this.filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
         this.filteredAppointmentsDayView = new FilteredList<>(this.addressBook.getAppointmentViewList());
         this.updateFilteredAppointmentDayViewList();
@@ -152,14 +149,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
-        addressBook.cancelAppointment(appointment, apptView);
+    public void cancelAppointment(Appointment appointment) {
+        addressBook.cancelAppointment(appointment);
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_VIEWS);
     }
 
     @Override
@@ -174,17 +171,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
-        return addressBook.getMatchingAppointmentView(name, appt);
-    }
-
-    @Override
     public void deleteAppointmentsWithNric(Nric targetNric) {
         requireNonNull(targetNric);
         addressBook.deleteAppointmentsWithNric(targetNric);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Patient List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
@@ -207,10 +199,6 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
      * {@code versionedAddressBook}
      */
-    @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointments;
-    }
 
     @Override
     public ObservableList<AppointmentView> getFilteredAppointmentViewList() {
@@ -238,6 +226,7 @@ public class ModelManager implements Model {
             Optional.empty());
         filteredAppointmentsDayView.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object other) {

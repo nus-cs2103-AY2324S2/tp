@@ -10,6 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
+import seedu.address.ui.ViewMode;
 
 /**
  * Finds and lists all patients in address book whose name OR NRIC contains the argument keywords.
@@ -41,7 +42,8 @@ public class FindPatientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
+                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW,
+                        model.getFilteredPatientList().size()), ViewMode.OVERALL);
     }
 
     @Override

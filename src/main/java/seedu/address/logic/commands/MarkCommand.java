@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_VIEWS;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
@@ -21,7 +21,7 @@ import seedu.address.model.patient.Nric;
 
 /**
  * Marks an existing appointment in the CLInic as completed.
- */
+ * */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
@@ -71,8 +71,7 @@ public class MarkCommand extends Command {
             appt.getAppointmentType(), appt.getNote(), new Mark(true));
 
         model.setAppointment(appt, newAppt);
-
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_VIEWS);
         return new CommandResult(String.format(MESSAGE_MARK_APPOINTMENT_SUCCESS, Messages.format(newAppt)));
     }
 

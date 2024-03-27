@@ -23,10 +23,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
+import seedu.address.ui.ViewMode;
 
 /**
  * Contains helper methods for testing commands.
@@ -151,6 +152,16 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage} and boolean {@code isOverallCommand}.
+     */
+    public static void assertOverallCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, ViewMode.OVERALL);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
@@ -162,13 +173,12 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Patient> expectedFilteredPatientList = new ArrayList<>(actualModel.getFilteredPatientList());
-        List<Appointment> expectedFilteredAppointmentList =
-                new ArrayList<>(actualModel.getFilteredAppointmentList());
-
+        List<AppointmentView> expectedFilteredAppointmentViewList =
+                new ArrayList<>(actualModel.getFilteredAppointmentViewList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredPatientList, actualModel.getFilteredPatientList());
-        assertEquals(expectedFilteredAppointmentList, actualModel.getFilteredAppointmentList());
+        assertEquals(expectedFilteredAppointmentViewList, actualModel.getFilteredAppointmentViewList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the

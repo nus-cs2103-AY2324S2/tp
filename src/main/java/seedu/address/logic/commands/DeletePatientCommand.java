@@ -35,9 +35,10 @@ public class DeletePatientCommand extends Command {
         if (!model.hasPatientWithNric(targetNric)) {
             throw new CommandException(Messages.MESSAGE_PATIENT_NRIC_NOT_FOUND);
         }
-
         String message = String.format(MESSAGE_DELETE_PATIENT_SUCCESS,
                 Messages.format(model.getPatientWithNric(targetNric)));
+
+        model.deleteAppointmentsWithNric(targetNric);
         model.deletePatientWithNric(targetNric);
         return new CommandResult(message);
     }

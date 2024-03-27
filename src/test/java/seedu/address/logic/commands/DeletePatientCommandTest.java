@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.MISSING_NRIC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
+import static seedu.address.testutil.TypicalAppointments.AMY_APPT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import seedu.address.model.patient.Patient;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeletePatientCommand}.
  */
 public class DeletePatientCommandTest {
 
@@ -31,7 +31,7 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_validNric_success() {
-        Patient patientToDelete = model.getPatientWithNric(ALICE.getNric());
+        Patient patientToDelete = model.getPatientWithNric(new Nric(VALID_NRIC_AMY));
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDelete.getNric());
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
@@ -45,7 +45,7 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_validNricNoAppointments_success() {
-        Patient patientToDelete = model.getPatientWithNric(ALICE.getNric());
+        Patient patientToDelete = model.getPatientWithNric(new Nric(VALID_NRIC_AMY));
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDelete.getNric());
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
@@ -59,8 +59,8 @@ public class DeletePatientCommandTest {
 
     @Test
     public void execute_validNricWithAppointments_success() {
-        Patient patientToDelete = ALICE;
-        model.addAppointment(ALICE_APPT);
+        Patient patientToDelete = model.getPatientWithNric(new Nric(VALID_NRIC_AMY));
+        model.addAppointment(AMY_APPT);
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(patientToDelete.getNric());
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PATIENT_SUCCESS,
@@ -70,7 +70,7 @@ public class DeletePatientCommandTest {
         expectedModel.deletePatientWithNric(patientToDelete.getNric());
 
         assertCommandSuccess(deletePatientCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredAppointmentList().isEmpty());
+        assertTrue(model.getFilteredAppointmentViewList().isEmpty());
     }
 
     @Test

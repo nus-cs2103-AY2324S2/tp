@@ -13,11 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
-import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 
 /**
@@ -43,7 +41,6 @@ public class DeleteApptCommand extends Command {
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
     private Appointment apptToDelete;
-    private AppointmentView apptViewToDelete;
     private final Nric nricToMatch;
     private final Date dateToMatch;
     private final TimePeriod timePeriodToMatch;
@@ -56,7 +53,6 @@ public class DeleteApptCommand extends Command {
         this.dateToMatch = dateToMatch;
         this.timePeriodToMatch = timePeriodToMatch;
         this.apptToDelete = null;
-        this.apptViewToDelete = null;
     }
 
     @Override
@@ -74,10 +70,8 @@ public class DeleteApptCommand extends Command {
         }
 
         this.apptToDelete = model.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch);
-        Name name = model.getPatientWithNric(nricToMatch).getName();
-        this.apptViewToDelete = model.getMatchingAppointmentView(name, apptToDelete);
 
-        model.cancelAppointment(apptToDelete, apptViewToDelete);
+        model.cancelAppointment(apptToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, Messages.format(apptToDelete)));
     }
 

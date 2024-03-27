@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -35,14 +34,6 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withAppointment(Appointment appt) {
         addressBook.addAppointment(appt);
-        return this;
-    }
-
-    /**
-     * Adds a new {@code Appointment} to the {@code AddressBook} that we are building.
-     */
-    public AddressBookBuilder withAppointmentView(AppointmentView apptView) {
-        addressBook.addAppointmentView(apptView);
         return this;
     }
 

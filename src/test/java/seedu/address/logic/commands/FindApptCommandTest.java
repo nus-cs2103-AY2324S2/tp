@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.date.Date.isValidDate;
 import static seedu.address.logic.Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertOverallCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -90,7 +90,7 @@ public class FindApptCommandTest {
         );
         FindApptCommand command = new FindApptCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertOverallCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE_APPT_VIEW), model.getFilteredAppointmentViewList());
     }
 
@@ -102,7 +102,7 @@ public class FindApptCommandTest {
         );
         FindApptCommand command = new FindApptCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertOverallCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE_APPT_VIEW, ALICE_APPT_VIEW_1),
                 model.getFilteredAppointmentViewList());
     }
@@ -115,7 +115,7 @@ public class FindApptCommandTest {
         );
         FindApptCommand command = new FindApptCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertOverallCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE_APPT_VIEW, ALICE_APPT_VIEW_1),
                 model.getFilteredAppointmentViewList());
     }
@@ -128,7 +128,7 @@ public class FindApptCommandTest {
         );
         FindApptCommand command = new FindApptCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertOverallCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(), model.getFilteredAppointmentViewList());
     }
 
