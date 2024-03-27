@@ -15,18 +15,21 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.Rating;
 import seedu.address.model.skill.Skill;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_RATING = "6";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "C++";
     private static final String VALID_SKILL_2 = "Python";
+    private static final String VALID_RATING = "5";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -157,4 +160,33 @@ public class ParserUtilTest {
     public void parseQueryableCourseMate_normalName_returnsNameQueryableCourseMate() throws Exception {
         assertTrue(ParserUtil.parseQueryableCourseMate("John Doe").isName());
     }
+
+    @Test
+    public void parseRating_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRating((String) null));
+    }
+
+    @Test
+    public void parseRating_emptyString_throwsNullPointerException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRating(""));
+    }
+
+    @Test
+    public void parseRating_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRating(INVALID_RATING));
+    }
+
+    @Test
+    public void parseRating_validValueWithoutWhitespace_returnsRating() throws Exception {
+        Rating expectedRating = new Rating(VALID_RATING);
+        assertEquals(expectedRating, ParserUtil.parseRating(VALID_RATING));
+    }
+
+    @Test
+    public void parseRating_validValueWithWhitespace_returnsTrimmedRating() throws Exception {
+        String ratingWithWhitespace = WHITESPACE + VALID_RATING + WHITESPACE;
+        Rating expectedRating = new Rating(VALID_RATING);
+        assertEquals(expectedRating, ParserUtil.parseRating(ratingWithWhitespace));
+    }
+
 }
