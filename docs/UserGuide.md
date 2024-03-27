@@ -5,7 +5,18 @@ pageNav: 3
 ---
 
 # Internhub User Guide
-Intern Hub is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). If you can type fast, InternHub can help you complete your contact management tasks more efficiently than traditional GUI apps. Intern Hub is designed for undergraduates, professors, and carreer guidance officers seeking a streamlined approach to managing internship contacts.Intern Hub simplifies the process of organizing and accessing contact information, making it ideal for users who value efficiency and productivity.
+
+## Welcome !
+Are you an undergraduate navigating the maze of internship opportunities? 
+Look no further! InternHub is here to revolutionize the way you manage your internship contacts.
+This User Guide (UG) serves as a comprehensive resource to aid users in understanding and effectively utilizing the application.
+It provides detailed instructions on installation, usage, and navigation, ensuring users can maximize the benefits of Intern Hub for managing internship contacts.
+
+## Who can use InternHub ?
+InternHub is designed for undergraduates, professors, and career guidance officers seeking a streamlined approach to managing internship contacts.
+InternHub is crafted with the intention of being user-friendly for individuals with varying levels of computer experience.
+We trust that you'll find the interface intuitive and easy to navigate, whether you're a tech-savvy enthusiast or just starting to explore desktop applications. 
+We're here to support you every step of the way on your internship management journey!
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -14,13 +25,25 @@ Intern Hub is a desktop app for managing contacts, optimized for use via a Comma
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. **Check Java Version & Install Java**
+    - For this application, your system is required to have Java 11 installed
+    - To check if you have Java installed, open your command prompt or terminal and type : `java -version`
+      - If Java is installed, you will see the version number in the output : `openjdk version "11.0.22" 2024-01-16 LTS`
+    - If Java is not installed or your version does not match as the output above :
+      - Visit the Official [Oracle website](https://www.oracle.com/java/technologies/downloads/#java11) to download jdk-11 & follow the download instructions
+      - For **mac** users, download the jdk-11 from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx#zulu)
 
 2. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your InternHub.
+    - The home folder refers to the directory or location on your computer where you want to store the files and data related to InternHub
+    - This folder will serve as the central location where InternHub will read and write its files, such as configuration files, databases, or any other files it may use.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Once you have set up the _home folder_, right-click on the _home folder_ and click copy to copy the path to this directory.
+
+5. Type `cd ` and paste the _home folder_ path, your command should look something like this : `cd /Users/john/home folder`, then hit enter.
+
+4. Now in the same command prompt or terminal window, enter the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -77,9 +100,9 @@ Format: `help`
 To add a internship contact to your address book, follow these simple steps:
 
 1. Type `add` followed by the details of the contact you want to add.
-2. Use `c/` for the company name, `p/` for the phone number, `e/` for the email, `a/` for the address, `t/` for tags, `jd/` for job description, `d/` for interview date, `id/` for intern duration, and `s/` for salary.
+2. Use `c/` for the company name, `p/` for the phone number, `e/` for the email, `a/` for the address, `t/` for tags, `jd/` for job description, `d/` for interview date, `id/` for intern duration, `s/` for salary and `n/` for note.
 
-Format: `add c/COMPANY_NAME p/PHONE_NUMBER e/EMAIL a/[ADDRESS] t/TAG jd/JOB_DESCRIPTION d/[INTERVIEW_DATE] id/INTERN_DURATION s/salary`
+Format: `add c/COMPANY_NAME p/PHONE_NUMBER e/EMAIL a/[ADDRESS] t/TAG jd/JOB_DESCRIPTION d/[INTERVIEW_DATE] id/INTERN_DURATION s/salary n/[NOTE]`
 
 <box type="tip" seamless> heheh
 
@@ -187,6 +210,33 @@ To find specific data entries, use the `find` command followed by keywords relat
 
 Format: `find Grab`
 
+### Adding a Note : `note`
+
+This command will allow you to add & edit notes to an internship company contact. There are 2 ways to execute this command based on your use<br>
+
+Format: `note INDEX`
+
+1. Adding a note when **creating a new company contact**
+    - Simply include the note you want in the **add** command using the syntax `n/[NOTE]`
+    - `add c/FoodPanda ...other attributes... n/This is a note`
+
+2. Updating a note of an **existing company contact**
+    - Suppose you want to edit the note of company contact at index **2**
+    - Use the `note 2` and when you hit enter, it will retrieve the note content of the company contact at index 2 in the command box **as an edit command** :
+      - `edit 2 n/[note that exists currently in the company contact at index 2]`
+    - Simply update the note content and hit enter again, now the company contact will reflect the latest note
+
+To delete a note, simply use `edit INDEX n/`
+
+<box type="warning" seamless>
+
+**Caution:**
+If you use `edit INDEX n/your updates for the new note`, this **WILL OVERWRITE** the old note of the company contact at `INDEX`<br>
+For these kinds of scenarios, make use of the `note INDEX` function !
+
+</box>
+
+
 ### Filtering the data (by tags) : `filter`
 
 Filtering data allows you to narrow down your search results to focus on specific criteria. Use the `filter t/` command to filter by tag and find exactly the internships that have an interview.
@@ -238,6 +288,7 @@ Format: `reminder`
 | **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                        |
 | **Edit**     | `Edit INDEX c/[COMPANY_NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] t/[TAG] jd/[JOB_DESCRIPTION] d/[INTERVIEW_DATE] id/[INTERN_DURATION] s/[salary]`<br> e.g.,`Edit 2 p/9998765`                                                                           |
 | **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find foodpanda`                                                                                                                                                                                                  |
+| **Note**     | `note INDEX`                                                                                                                                                                                                                                               |
 | **List**     | `list`                                                                                                                                                                                                                                                     |
 | **View**     | `view INDEX`<br> e.g., `view 3`                                                                                                                                                                                                                            |
 | **Help**     | `help`                                                                                                                                                                                                                                                     |

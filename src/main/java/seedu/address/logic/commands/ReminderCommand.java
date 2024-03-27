@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.Model;
-
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+/**
+ * Filters list to upcoming interviews in the next 3 days
+ */
 public class ReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
     public static final String MESSAGE_USAGE = "Reminder should not have any arguments.";

@@ -38,8 +38,8 @@ public class FilterCommandTest {
         assertTrue(filterFirstTag.equals(filterFirstTag));
 
         // same values -> returns true
-        FilterCommand FilterFirstTagCopy = new FilterCommand(firstPredicate);
-        assertTrue(FilterFirstTagCopy.equals(FilterFirstTagCopy));
+        FilterCommand filterFirstTagCopy = new FilterCommand(firstPredicate);
+        assertTrue(filterFirstTagCopy.equals(filterFirstTagCopy));
 
         // different types -> returns false
         assertFalse(filterFirstTag.equals(1));
