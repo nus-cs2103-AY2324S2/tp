@@ -5,32 +5,23 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Represents a Person's telegram handle in the logbook.
  * Guarantees: immutable; is valid as declared in {@link #isValidBirthday(String)}
  */
 public class Birthday {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Birthday should not be blank and has to be in one of the given format: "
-            + "[dd/MM/yyyy] [dd-MM-yyyy] [yyyy-MM-dd] [yyyy/MM/dd]";
-
-    /*
-     * The first character of the birthday must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final DateTimeFormatter VALIDATION_FORMATTER = new DateTimeFormatterBuilder()
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
-            .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-            .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
-            .toFormatter(Locale.ENGLISH);
-
     public static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+    private static final String[] VALID_FORMATS = {"dd/MM/yyyy", "dd-MM-yyyy", "yyyy-MM-dd", "yyyy/MM/dd"};
+    private static final String[] VALID_FORMATS_REGEX = {"\\d{2}/\\d{2}/\\d{4}", "\\d{2}-\\d{2}-\\d{4}",
+        "\\d{4}-\\d{2}-\\d{2}", "\\d{4}/\\d{2}/\\d{2}"};
+    public static final String MESSAGE_CONSTRAINTS =
+            "Birthday should not be blank and has to be in one of the given format: ["
+            + String.join("] [", VALID_FORMATS) + ']';
+
 
     public final LocalDate value;
 
@@ -42,7 +33,8 @@ public class Birthday {
     public Birthday(String birthday) {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday.trim()), MESSAGE_CONSTRAINTS);
-        value = LocalDate.parse(birthday.trim(), VALIDATION_FORMATTER);
+        value = parseDate(birthday.trim()).orElse(null);
+        assert this.value != null;
     }
 
     /**
@@ -50,11 +42,22 @@ public class Birthday {
      */
     public static boolean isValidBirthday(String test) {
         try {
-            LocalDate.parse(test, VALIDATION_FORMATTER);
-            return true;
+            return parseDate(test).isPresent();
         } catch (DateTimeParseException e) {
             return false;
         }
+    }
+
+    private static Optional<LocalDate> parseDate(String date) {
+        for (int i = 0; i < VALID_FORMATS.length; ++i) {
+            if (date.matches(VALID_FORMATS_REGEX[i])) {
+                DateTimeFormatter validationFormatter = DateTimeFormatter.ofPattern(VALID_FORMATS[i], Locale.ENGLISH);
+                LocalDate parsed = LocalDate.parse(date, validationFormatter);
+                return Optional.of(parsed)
+                        .filter(d -> d.format(validationFormatter).equals(date) && !d.isAfter(LocalDate.now()));
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
