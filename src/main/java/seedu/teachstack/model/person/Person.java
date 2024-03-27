@@ -119,6 +119,12 @@ public class Person implements Comparable<Person> {
                 .toString();
     }
 
+
+    public boolean isWeak() {
+        return grade.isWeak();
+    }
+
+
     @Override
     public int compareTo(Person o) {
         return this.grade.compareTo(o.grade);
