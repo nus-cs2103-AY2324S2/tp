@@ -6,32 +6,40 @@ import java.util.stream.Collectors;
 
 import seedu.internhub.model.Model;
 import seedu.internhub.model.person.Person;
+
 /**
- * Filters list to upcoming interviews in the next 3 days
+ * Filters list to upcoming interviews in the next 'n' days
  */
 public class ReminderCommand extends Command {
     public static final String COMMAND_WORD = "reminder";
-    public static final String MESSAGE_USAGE = "Reminder should not have any arguments.";
-    public static final String MESSAGE_SUCCESS = "Listed applications that are due or have interviews in 3 days.";
+    public static final String MESSAGE_USAGE = "Reminder should be followed by the number of days.\n"
+            + "Example: reminder 4";
+    public static final String MESSAGE_SUCCESS = "Listed applications that are due or have interviews in %1$d days.";
+
+    private int numberOfDays;
+
+    public ReminderCommand(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
 
     @Override
     public CommandResult execute(Model model) {
-        // Define a predicate to filter persons with interviews within 3 days
-        Predicate<Person> isWithin3DaysPredicate = person ->
-                person.getInterviewDate() != null && person.getInterviewDate().isWithin3Days();
+        // Define a predicate to filter persons with interviews within N days
+        Predicate<Person> isWithinNDaysPredicate = person ->
+                person.getInterviewDate() != null && person.getInterviewDate().isWithinNDays(numberOfDays);
 
         // Get all persons from the model
         List<Person> allPersons = model.getAddressBook().getPersonList();
 
         // Filter the persons using the predicate
         List<Person> reminderList = allPersons.stream()
-                .filter(isWithin3DaysPredicate)
+                .filter(isWithinNDaysPredicate)
                 .collect(Collectors.toList());
 
         // Update the filtered list in the model using a predicate
-        model.updateFilteredPersonList(isWithin3DaysPredicate);
+        model.updateFilteredPersonList(isWithinNDaysPredicate);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, numberOfDays));
     }
 
     @Override
