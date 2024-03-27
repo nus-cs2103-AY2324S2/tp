@@ -16,11 +16,11 @@ import seedu.address.model.person.Meeting;
  */
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
-    public static String parseErrorMsg = "Oops, please input the meeting command in the following format:\n"
+    private static String parseErrorMsg = "Oops, please input the meeting command in the following format:\n"
             + "mtg <contact_name> m/<mtg_description> t/dd-MM-YYYY HHmm-HHmm\n"
             + "Example: mtg alex m/interview t/23-03-2024 1400-1500";
 
-    public static String emptyDesc = "Oops, please input the description of your meeting.\n"
+    private static String emptyDesc = "Oops, please input the description of your meeting.\n"
             + "Example: mtg alex m/interview t/23-03-2024 1400-1500";
 
     /**
