@@ -21,6 +21,7 @@ public class CourseMate {
     private final Phone phone;
     private final Email email;
     private final TelegramHandle telegramHandle;
+    private final Rating rating;
 
     // Data fields
     private final Set<Skill> skills = new HashSet<>();
@@ -28,6 +29,8 @@ public class CourseMate {
     /**
      * Every field except telegramHandle must be present and not null.
      * Telegram handle is optional.
+     * A basic constructor for {@code CourseMate}.
+     * Every field must be present and not null.
      */
     public CourseMate(Name name, Phone phone, Email email, TelegramHandle telegramHandle,
             Set<Skill> skills) {
@@ -37,6 +40,22 @@ public class CourseMate {
         this.email = email;
         this.telegramHandle = telegramHandle;
         this.skills.addAll(skills);
+        this.rating = new Rating("0");
+    }
+
+    /**
+     * A basic constructor for {@code CourseMate} that takes in a {@code Rating}.
+     * Every field must be present and not null.
+     */
+    public CourseMate(Name name, Phone phone, Email email, TelegramHandle telegramHandle,
+            Set<Skill> skills, Rating rating) {
+        requireAllNonNull(name, phone, email, skills, rating);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.skills.addAll(skills);
+        this.telegramHandle = telegramHandle;
+        this.rating = rating;
     }
 
     public Name getName() {
@@ -49,6 +68,10 @@ public class CourseMate {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     /**
@@ -104,13 +127,14 @@ public class CourseMate {
                         ? otherCourseMate.telegramHandle == null
                         : telegramHandle.equals(otherCourseMate.telegramHandle)
                 )
+                && rating.equals(otherCourseMate.rating)
                 && skills.equals(otherCourseMate.skills);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, telegramHandle, skills);
+        return Objects.hash(name, phone, email, telegramHandle, rating, skills);
     }
 
     @Override
@@ -120,6 +144,7 @@ public class CourseMate {
                 .add("phone", phone)
                 .add("email", email)
                 .add("telegramHandle", telegramHandle)
+                .add("rating", rating)
                 .add("skills", skills)
                 .toString();
     }
