@@ -20,10 +20,7 @@ Class Name
 Class Phone
 Class Course
 Class Tag
-Class Course
-Enum "<<enumeration>>\nRole" {
-    STUDENT, TA, PROFESSOR
-} as Role
+Enum "<<enumeration>>\nRole" as Role
 
 Class I #FFFFFF
 }
@@ -49,6 +46,7 @@ Person *--> Course
 Person *--> "*" Phone
 Person *--> "*" Tag
 Person *--> Role
+
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
