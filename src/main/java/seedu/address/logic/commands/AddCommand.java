@@ -56,7 +56,13 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        if (model.isViewingArchivedList()) {
+            // Add to archived list
+            model.addArchivedPerson(toAdd);
+        } else {
+            // Add to persons list
+            model.addPerson(toAdd);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
