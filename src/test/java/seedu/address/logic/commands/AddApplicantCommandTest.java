@@ -97,6 +97,10 @@ public class AddApplicantCommandTest {
         }
 
         @Override
+        public void sortInterview() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
