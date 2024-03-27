@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private ToggleGroup toggleGroup;
+    private String currentView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -73,12 +74,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
-
         helpWindow = new HelpWindow();
-
         setNavbar();
+        this.currentView = "Overall";
     }
 
     public Stage getPrimaryStage() {
@@ -176,6 +175,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowDayView() {
         personListPanelPlaceholder.getChildren().remove(0);
         personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
+        currentView = "Day";
     }
 
     /**
@@ -185,6 +185,24 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowOverallView() {
         personListPanelPlaceholder.getChildren().remove(0);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        currentView = "Overall";
+    }
+
+    /**
+     * Switches between displaying the overall view and day-view
+     */
+    @FXML
+    public void switchView() {
+        personListPanelPlaceholder.getChildren().remove(0);
+        if (currentView.equals("Overall")) {
+            personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
+            currentView = "Day";
+            dayViewButton.setSelected(true);
+        } else if (currentView.equals("Day")) {
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            currentView = "Overall";
+            overallViewButton.setSelected(true);
+        }
     }
 
 
@@ -225,6 +243,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowDayView()) {
+                switchView();
             }
 
             return commandResult;
