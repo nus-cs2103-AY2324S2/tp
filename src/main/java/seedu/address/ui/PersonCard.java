@@ -41,6 +41,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label nusId;
     @FXML
+    private Label schedule;
+    @FXML
+    private Label remark;
+    @FXML
     private FlowPane groups;
 
     /**
@@ -55,6 +59,8 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         tag.setText(person.getTag().value.toString());
         email.setText(person.getEmail().value);
+        schedule.setText(person.getSchedule().date);
+        remark.setText(person.getRemark().value);
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))
                 .forEach(group -> groups.getChildren().add(new Label(group.groupName)));

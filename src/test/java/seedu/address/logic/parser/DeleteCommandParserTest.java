@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.NusId;
 
 /**
@@ -21,9 +22,15 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteCommandNusId() {
         NusId testNusId = new NusId("E1234567");
-        assertParseSuccess(parser, "E1234567", new DeleteCommand(testNusId));
+        assertParseSuccess(parser, "delete id/E1234567", new DeleteCommand(testNusId));
+    }
+
+    @Test
+    public void parse_validArgs_returnsDeleteCommandGroup() {
+        Group testGroup = new Group("husband");
+        assertParseSuccess(parser, "delete g/husband", new DeleteCommand(testGroup));
     }
 
     @Test
