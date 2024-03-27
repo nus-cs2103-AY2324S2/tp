@@ -9,7 +9,7 @@
 ## Introduction
 
 EffiTrack is a **desktop app for managing employees, tracking the efficiency of employees, 
-optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EffiTrack can get your contact management tasks done faster than traditional GUI apps.
 
 EffiTrack simplifies the task of measuring and monitoring employee efficiency for
 HR departments. </br> Instead of using time-consuming and error-prone methods like manual documentation or
