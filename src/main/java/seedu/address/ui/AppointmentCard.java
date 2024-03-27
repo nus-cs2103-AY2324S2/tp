@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javafx.animation.Animation;
@@ -18,7 +19,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 
 /**
- * An UI component that displays information of a {@code Appointment}.
+ * A UI component that displays information of a {@code Appointment}.
  */
 public class AppointmentCard extends UiPart<Region> {
 
@@ -76,7 +77,9 @@ public class AppointmentCard extends UiPart<Region> {
 
     private Timeline getTimeline() {
         EventHandler<ActionEvent> appointmentMissedEventHandler = event -> {
-            bindCardPaneStyle();
+            if (!appt.getMark().isMarked) {
+                bindCardPaneStyle();
+            }
         };
         KeyFrame keyframe = new KeyFrame(Duration.seconds(1), appointmentMissedEventHandler);
         Timeline timeline = new Timeline(keyframe);
@@ -86,15 +89,17 @@ public class AppointmentCard extends UiPart<Region> {
 
     private void bindCardPaneStyle() {
         cardPane.styleProperty().bind(
-                Bindings.when(isBeforeCurrentTime(appt))
+                Bindings.when(isPastAppointment(appt))
                         .then("-fx-background-color: #FF7074")
-                        .otherwise("-fx-background-color: transparent")
+                        .otherwise("")
         );
     }
 
-    private BooleanBinding isBeforeCurrentTime(Appointment appt) {
-        return Bindings.createBooleanBinding(() ->
-            appt.getStartTime().value.isBefore(LocalTime.now())
+    private BooleanBinding isPastAppointment(Appointment appt) {
+        return Bindings.createBooleanBinding(() -> (
+                appt.getStartTime().value.isBefore(LocalTime.now())
+                        && !appt.getDate().value.isAfter(LocalDate.now()))
+                        || appt.getDate().value.isBefore(LocalDate.now())
         );
     }
 }

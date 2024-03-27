@@ -205,7 +205,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-
     void show() {
         primaryStage.show();
     }
@@ -220,10 +219,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

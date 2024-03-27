@@ -29,13 +29,13 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false)));
 
         // different showDayView value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true)));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class CommandResultTest {
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", isOverallCommand=" + commandResult.isOverallCommand()
                 + ", isShowHelp=" + commandResult.isShowHelp()
-                + ", isExit=" + commandResult.isExit() + ", isShowDayView="
+                + ", isExit=" + commandResult.isExit() + ", isSwitchView="
                 + commandResult.isSwitchView() + "}";
         assertEquals(expected, commandResult.toString());
     }
