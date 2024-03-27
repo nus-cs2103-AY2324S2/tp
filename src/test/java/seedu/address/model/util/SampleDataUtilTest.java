@@ -32,4 +32,9 @@ public class SampleDataUtilTest {
             assertNotNull(samplePerson.getTags());
         }
     }
+
+    @Test
+    public void testGetSampleAddressBook() {
+        assertNotNull(sample.getSampleAddressBook());
+    }
 }
