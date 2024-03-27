@@ -1,7 +1,5 @@
 package seedu.internhub.logic.parser;
 
-import static seedu.internhub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.internhub.logic.commands.ReminderCommand;
 import seedu.internhub.logic.parser.exceptions.ParseException;
 
