@@ -1,17 +1,17 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Person;
+import seedu.internhub.logic.commands.AddCommand;
+import seedu.internhub.model.person.Person;
 
 /**
  * A utility class for Person.

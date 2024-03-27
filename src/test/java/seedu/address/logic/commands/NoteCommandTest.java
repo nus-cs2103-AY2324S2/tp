@@ -9,12 +9,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.internhub.commons.core.index.Index;
+import seedu.internhub.logic.commands.CommandResult;
+import seedu.internhub.logic.commands.NoteCommand;
+import seedu.internhub.logic.commands.exceptions.CommandException;
+import seedu.internhub.model.Model;
+import seedu.internhub.model.ModelManager;
+import seedu.internhub.model.UserPrefs;
+import seedu.internhub.model.person.Person;
 
 class NoteCommandTest {
 
@@ -71,7 +73,7 @@ class NoteCommandTest {
         NoteCommand noteCommand = new NoteCommand(index);
 
         // Create the expected string representation using variables
-        String expectedToString = String.format("seedu.address.logic.commands.NoteCommand{targetIndex=%s}", index);
+        String expectedToString = String.format("seedu.internhub.logic.commands.NoteCommand{targetIndex=%s}", index);
 
         // Perform the assertion
         assertEquals(expectedToString, noteCommand.toString());

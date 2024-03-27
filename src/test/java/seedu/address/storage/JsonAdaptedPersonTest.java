@@ -1,23 +1,24 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.internhub.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.InternDuration;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.JobDescription;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Tag;
+import seedu.internhub.commons.exceptions.IllegalValueException;
+import seedu.internhub.model.person.Address;
+import seedu.internhub.model.person.Email;
+import seedu.internhub.model.person.InternDuration;
+import seedu.internhub.model.person.InterviewDate;
+import seedu.internhub.model.person.JobDescription;
+import seedu.internhub.model.person.Name;
+import seedu.internhub.model.person.Person;
+import seedu.internhub.model.person.Phone;
+import seedu.internhub.model.person.Salary;
+import seedu.internhub.model.person.Tag;
+import seedu.internhub.storage.JsonAdaptedPerson;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

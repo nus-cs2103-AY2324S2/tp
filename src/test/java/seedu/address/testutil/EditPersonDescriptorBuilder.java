@@ -1,16 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.InternDuration;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.JobDescription;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Tag;
+import seedu.internhub.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.internhub.model.person.Address;
+import seedu.internhub.model.person.Email;
+import seedu.internhub.model.person.InternDuration;
+import seedu.internhub.model.person.InterviewDate;
+import seedu.internhub.model.person.JobDescription;
+import seedu.internhub.model.person.Name;
+import seedu.internhub.model.person.Person;
+import seedu.internhub.model.person.Phone;
+import seedu.internhub.model.person.Salary;
+import seedu.internhub.model.person.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

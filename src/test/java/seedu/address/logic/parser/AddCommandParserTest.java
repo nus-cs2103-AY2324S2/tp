@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internhub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -36,31 +36,32 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOB_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.InternDuration;
-import seedu.address.model.person.JobDescription;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Salary;
-import seedu.address.model.person.Tag;
+import seedu.internhub.logic.Messages;
+import seedu.internhub.logic.commands.AddCommand;
+import seedu.internhub.logic.parser.AddCommandParser;
+import seedu.internhub.model.person.Email;
+import seedu.internhub.model.person.InternDuration;
+import seedu.internhub.model.person.JobDescription;
+import seedu.internhub.model.person.Name;
+import seedu.internhub.model.person.Person;
+import seedu.internhub.model.person.Phone;
+import seedu.internhub.model.person.Salary;
+import seedu.internhub.model.person.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+import seedu.internhub.model.person.MatchingTagPredicate;
 
 public class MatchingTagPredicateTest {
 

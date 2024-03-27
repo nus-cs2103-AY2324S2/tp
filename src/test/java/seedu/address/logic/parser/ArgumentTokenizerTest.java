@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import seedu.internhub.logic.parser.ArgumentMultimap;
+import seedu.internhub.logic.parser.ArgumentTokenizer;
+import seedu.internhub.logic.parser.Prefix;
 
 public class ArgumentTokenizerTest {
 

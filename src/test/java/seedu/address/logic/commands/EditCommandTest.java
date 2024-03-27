@@ -24,14 +24,17 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.internhub.commons.core.index.Index;
+import seedu.internhub.logic.Messages;
+import seedu.internhub.logic.commands.ClearCommand;
+import seedu.internhub.logic.commands.CommandResult;
+import seedu.internhub.logic.commands.EditCommand;
+import seedu.internhub.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.internhub.model.AddressBook;
+import seedu.internhub.model.Model;
+import seedu.internhub.model.ModelManager;
+import seedu.internhub.model.UserPrefs;
+import seedu.internhub.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 

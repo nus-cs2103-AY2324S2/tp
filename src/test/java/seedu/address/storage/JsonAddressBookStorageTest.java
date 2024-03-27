@@ -15,9 +15,10 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.internhub.commons.exceptions.DataLoadingException;
+import seedu.internhub.model.AddressBook;
+import seedu.internhub.model.ReadOnlyAddressBook;
+import seedu.internhub.storage.JsonAddressBookStorage;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");

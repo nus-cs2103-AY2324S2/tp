@@ -1,12 +1,14 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.internhub.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
+import seedu.internhub.logic.commands.CommandResult;
+import seedu.internhub.logic.commands.HelpCommand;
+import seedu.internhub.model.Model;
+import seedu.internhub.model.ModelManager;
 
 public class HelpCommandTest {
     private Model model = new ModelManager();

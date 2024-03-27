@@ -17,4 +17,5 @@ Person *--> InternDuration
 Person *--> InterviewDate
 Person *--> JobDescription
 Person *--> Salary
+Person *--> Note
 @enduml

@@ -2,27 +2,30 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.internhub.commons.core.index.Index;
+import seedu.internhub.logic.commands.Command;
+import seedu.internhub.logic.commands.CommandResult;
+import seedu.internhub.logic.commands.EditCommand;
+import seedu.internhub.logic.commands.exceptions.CommandException;
+import seedu.internhub.model.AddressBook;
+import seedu.internhub.model.Model;
+import seedu.internhub.model.person.NameContainsKeywordsPredicate;
+import seedu.internhub.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -105,7 +108,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);

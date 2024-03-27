@@ -13,10 +13,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.internhub.logic.commands.FindCommand;
+import seedu.internhub.model.Model;
+import seedu.internhub.model.ModelManager;
+import seedu.internhub.model.UserPrefs;
+import seedu.internhub.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

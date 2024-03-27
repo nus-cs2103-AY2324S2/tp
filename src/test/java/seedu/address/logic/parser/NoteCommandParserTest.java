@@ -5,9 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.NoteCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.internhub.commons.core.index.Index;
+import seedu.internhub.logic.commands.NoteCommand;
+import seedu.internhub.logic.parser.NoteCommandParser;
+import seedu.internhub.logic.parser.exceptions.ParseException;
 
 class NoteCommandParserTest {
 

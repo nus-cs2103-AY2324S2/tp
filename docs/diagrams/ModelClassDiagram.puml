@@ -23,6 +23,7 @@ Class InternDuration
 Class InterviewDate
 Class JobDescription
 Class Salary
+Class Note
 
 Class I #FFFFFF
 }
@@ -50,6 +51,7 @@ Person *--> InternDuration
 Person *--> InterviewDate
 Person *--> JobDescription
 Person *--> Salary
+Person *--> Note
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
