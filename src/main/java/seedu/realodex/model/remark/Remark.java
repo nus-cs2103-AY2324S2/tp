@@ -47,7 +47,7 @@ public class Remark {
         }
 
         Remark otherRemark = (Remark) other;
-        return remarkName.equals(otherRemark.remarkName);
+        return remarkName.trim().equals(otherRemark.remarkName.trim());
     }
 
     @Override
