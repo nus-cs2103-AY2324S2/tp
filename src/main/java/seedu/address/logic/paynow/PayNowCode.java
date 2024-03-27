@@ -61,11 +61,13 @@ public class PayNowCode extends PayNowPayload {
                                   MERCHANT_NAME,
                                   MERCHANT_CITY,
                                   new PayNowField(CRC_ID, PLACEHOLDER_CRC)};
+        
         String encodedFields = Stream.of(fields)
                 .map(PayNowField::toString)
                 .reduce("", (accumulator, encodedField) -> accumulator + encodedField);
-        //
-        encodedFields = encodedFields.substring(0, encodedFields.length() - 4);
+
+        // Remove the placeholder CRC from the string
+        encodedFields = encodedFields.substring(0, encodedFields.length() - PLACEHOLDER_CRC.length());
         fields[fields.length - 1] = new PayNowField(CRC_ID, computeCrc(encodedFields));
         return QrGenerator.generateQrCode(new PayNowCode(fields).toString());
     }
