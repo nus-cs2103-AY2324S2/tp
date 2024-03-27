@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+skinparam ParticipantPadding 0
+
+Participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+Participant ":FilterCommand" as FilterCommand LOGIC_COLOR
+Participant "mp:PersonHasModulePredicate" as modulePredicate LOGIC_COLOR
+Participant "fp:PersonHasFacultyPredicate" as facultyPredicate LOGIC_COLOR
+Participant "tp:PersonHasTagsPredicate" as tagsPredicate LOGIC_COLOR
+Participant "ap:PersonHasAvailabilitiesPredicate" as availabilitiesPredicate LOGIC_COLOR
+Participant "pp:Predicate" as personPredicate LOGIC_COLOR
+
+[-> FilterCommandParser : parse("f/Computing")
+create FilterCommandParser
+activate FilterCommandParser
+
+create modulePredicate
+FilterCommandParser -> modulePredicate
+activate modulePredicate
+modulePredicate --> FilterCommandParser
+deactivate modulePredicate
+
+create facultyPredicate
+FilterCommandParser -> facultyPredicate
+activate facultyPredicate
+facultyPredicate --> FilterCommandParser
+deactivate facultyPredicate
+
+create tagsPredicate
+FilterCommandParser -> tagsPredicate
+activate tagsPredicate
+tagsPredicate --> FilterCommandParser
+deactivate tagsPredicate
+
+create availabilitiesPredicate
+FilterCommandParser -> availabilitiesPredicate
+activate availabilitiesPredicate
+availabilitiesPredicate --> FilterCommandParser
+deactivate availabilitiesPredicate
+
+create FilterCommand
+FilterCommandParser -> FilterCommand
+activate FilterCommand
+
+FilterCommand -> FilterCommand : setPersonPredicate()
+activate FilterCommand
+
+create personPredicate
+FilterCommand -> personPredicate
+activate personPredicate
+personPredicate --> FilterCommand
+deactivate personPredicate
+
+FilterCommand --> FilterCommand
+deactivate FilterCommand
+FilterCommand --> FilterCommandParser
+deactivate FilterCommand
+
+[<-- FilterCommandParser
+@enduml
