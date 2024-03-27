@@ -73,7 +73,7 @@ public class CommandBox extends UiPart<Region> {
 
         //Performs nothing if there is no history.
         if (inputHistory.inputList.isEmpty()) {
-            return ;
+            return;
         }
         if (keyName.equals("Up")) {
             inputHistory.decrementIndex();
