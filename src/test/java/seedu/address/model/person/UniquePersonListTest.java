@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -160,6 +162,29 @@ public class UniquePersonListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
+
+    @Test
+    void sortPersons_nullPrefix_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.sortPersons(null));
+    }
+
+    @Test
+    void sortPersons_prefix_sortsUniquePersonListAccordingToPrefix() {
+        uniquePersonList.add(CARL);
+        uniquePersonList.add(BOB);
+        uniquePersonList.add(ALICE);
+        uniquePersonList.sortPersons(PREFIX_NAME.getPrefix());
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.add(ALICE);
+        expectedUniquePersonList.add(BOB);
+        expectedUniquePersonList.add(CARL);
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    void sortPersons_disallowedPrefix_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> uniquePersonList.sortPersons("t/"));
     }
 
     @Test

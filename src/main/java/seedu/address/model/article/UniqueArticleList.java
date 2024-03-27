@@ -2,7 +2,9 @@ package seedu.address.model.article;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -98,6 +100,19 @@ public class UniqueArticleList implements Iterable<Article> {
         */
 
         internalList.setAll(articles);
+    }
+
+    /**
+     * Sorts the list of articles by the attribute represented by the given prefix.
+     */
+    public void sortArticles(String prefix) {
+        requireNonNull(prefix);
+        if (PREFIX_PUBLICATION_DATE.getPrefix().equals(prefix)) {
+            // Sort by publication date and display most recent articles first.
+            internalList.sort(Comparator.comparing(Article::getPublicationDate, Comparator.reverseOrder()));
+        } else {
+            throw new IllegalArgumentException("Invalid prefix supplied.");
+        }
     }
 
     /**

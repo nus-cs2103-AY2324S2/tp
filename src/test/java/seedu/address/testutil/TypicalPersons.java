@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
@@ -65,6 +66,19 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons in reversed order.
+     */
+    public static AddressBook getTypicalReversedAddressBook() {
+        AddressBook ab = new AddressBook();
+        List<Person> reversedListOfPersons = getTypicalPersons();
+        Collections.reverse(reversedListOfPersons);
+        for (Person person : reversedListOfPersons) {
             ab.addPerson(person);
         }
         return ab;
