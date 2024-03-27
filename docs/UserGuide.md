@@ -31,8 +31,8 @@ Abbreviation/Nomenclature | Meaning
 GUI | GUI stands for Graphical User Interface and it represents the visual display of PoochPlanner that users can see when the application is run.
 GUI Component | A subsection of the GUI. For more information on specific GUI components, refer to this [section](#navigating-the-gui).
 CLI | CLI stands for Command Line Interface and it represents a text-based user interface to interact with the application.
-Command | An input from the user that tells PoochPlanner to perform an action. View PoochPlanner’s [command summary](#command-summary).
-Prefix | Prefixes are like fields in a form you are required to fill up. They are information needed to be passed together with the command so that it can be executed.
+Command | An input from the user that tells PoochPlanner to perform an action. View PoochPlanner’s [Command Summary](#command-summary).
+Prefix | Prefixes are like fields in a form you are required to fill up. They are information needed to be passed together with the command so that it can be executed. View PoochPlanner’s [Prefix Summary](#prefix-summary).
 Case-Sensitive | The casing of the alphabetic characters matters (e.g. “good” is different from “GOOD”).
 Case-Insensitive | The casing of the alphabetic characters does not matter (e.g. “good” is taken to be equal to “GOOD”).
 
@@ -363,8 +363,66 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PoochPlanner home folder.
+### Launching PoochPlanner
+
+**Q**: How can I launch PoochPlanner if clicking on the JAR file does not work?<br>
+**A**: There are two possible methods to launch PoochPlanner.
+
+**Method 1**: Using the Command Line
+1. Open the command line in your operating system's terminal software.
+2. Navigate to the directory where the JAR file is located.
+3. Enter `java -jar PoochPlanner.jar` and the PoochPlanner Application should launch.
+
+**Method 2**: Using `.bat/.sh` Scripts
+1. Create a new text file and paste the following line into the file:
+   ```
+   java -jar [JAR file location]/PoochPlanner.jar
+   ```
+2. Save the file as `PoochPlanner.bat` (Windows) or `PoochPlanner.sh` (macOS/Linux).
+3. Change the admin settings of the script to allow it to run as a program:
+   - Windows: Right-click on the script and select Properties. Under General, check the box that says `Allow this file to run as a program`.
+   - macOS/Linux: Open the Terminal and navigate to the directory where the script is located. Type `chmod +x [script name]` and press `Enter`.<br>Note: (`chmod +x` changes permissions of the script to allow it to be executed)
+4. Double-click on the script to launch PoochPlanner.
+
+### Checking Java Version
+
+**Q**: How can I check my Java version?<br>
+**A**: Open a command line and type `java -version`. If you do not have Java installed, you can insdtall Java 11 using the Oracle guide [here](https://www.oracle.com/java/technologies/downloads/#java11). Alternatively, you can install the OpenJDK version. For macOS users, you may wish to follow the instructions [here](https://nus-cs2103-ay2324s1.github.io/website/admin/programmingLanguages.html).
+
+### Loading Data from Another Computer
+
+**Q**: How can I transfer my PoochContacts to another Computer?<br>
+**A**: Install PoochPlanner in your target computer and and overwrite the empty data file it creates with the file that contains the data of your previous PoochPlanner home folder by copying the contents of the `PoochPlanner.json` file from your current computer and pasting it inside the `PoochPlanner.json` file of your target computer.
+
+### Using PoochPlanner
+
+**Q**: What are the available commands in PoochPlanner?<br>
+**A**: Please refer to the [Command Summary](#command-summary) for the list of available commands.
+
+**Q**: Do I need an internet connection to use PoochPlanner?<br>
+**A**: All of PoochPlanner’s functionality can be used offline! No internet connection is required.
+
+**Q**: How do I save my data?<br>
+**A**: Data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+**Q**: If I have a lot of PoochContacts, is there a way for me to access my most frequently used PoochContacts easily?<br>
+**A**: Yes! You may wish to make use of our `pin` feature, which keeps all of your pinned contacts at the very top of your PoochContact list, ensuring that you are always able to see them!<br><br>The syntax for the `pin` command is as follows:
+```
+/pin ; name : [name]
+```
+
+**Q**: How can I remove a PoochContact's rating?<br>
+**A**: In PoochPlanner, a `0` rating corresponds to a non-rating (no rating is provided). Therefore, to remove a PoochContact's rating, simply give the target PoochContact a rating of `0`.<br><br>The syntax for the `rate` command is as follows:
+```
+/rate ; name : [name] ; rating : [rating]
+```
+
+**Q**: Can I append a note to a PoochContact when creating it?<br>
+**A**: Yes you can! In fact, you may also rate PoochContacts at their time of creation. Simply enter their respective [prefixes](#prefix-summary) and you should be on your way!<br><br>
+Example: Adding a new contact with a note and a rating
+```
+/pooch-add ; name : Pooch ; phone : 98883888 ; address : Pooch Street 32 ; email : impooch@gmail.com ; rating : 3 ; note : Hello my name is Pooch!
+```
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,6 +431,25 @@ _Details coming soon ..._
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Prefix Summary
+
+A **prefix** is an integral construct of PoochPlanner's commands that allow PoochPlanner to uniquely identify contact fields.
+
+| Prefix                  | Field                                                      | Contact Type   |
+|-------------------------|------------------------------------------------------------|----------------|
+| `; name :`              | Specifies the name of the PoochContact                     | All            |
+| `; phone :`             | Specifies the phone number of the PoochContact             | All            |
+| `; address :`           | Specifies the addresss of the PoochContact                 | All            |
+| `; email :`             | Specifies the email address of the PoochContact            | All            |
+| `; note :`              | Specifies the note appended to the PoochContact            | All            |
+| `; rating :`            | Specifies the rating given to the PoochContact             | All            |
+| `; salary :`            | Specifies the salary of the PoochContact                   | Staff          |
+| `; employment :`        | Specifies the employment of the PoochContact               | Staff          |
+| `; product :`           | Specifies the product sold by the PoochContact             | Supplier       |
+| `; price :`             | Specifies the price charged by the PoochContact            | Supplier       |
+| `; skill :`             | Specifies the type of service offered by the PoochContact  | Maintainer     |
+| `; commission :`        | Specifies the commission charged by the PoochContact       | Maintainer     |
 
 ## Command Summary
 
