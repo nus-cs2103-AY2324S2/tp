@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -10,7 +11,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,6 +50,8 @@ public class PersonCard extends UiPart<Region> {
     private VBox classes;
     @FXML
     private Label matric;
+    @FXML
+    private VBox examScore;
 
     @FXML
     private ImageView phoneicon;
@@ -62,7 +67,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, ObservableValue<Exam> selectedExam) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -86,10 +91,28 @@ public class PersonCard extends UiPart<Region> {
             classes.getChildren().add(new Label(person.getStudio().toString()));
         }
 
+        // Update exam score whenever updated
+        Exam selectedExamValue = selectedExam.getValue();
+        if (selectedExamValue != null) {
+            Score score = person.getScores().get(selectedExamValue);
+            if (score != null) {
+                examScore.getChildren().add(new Label("Score: \n" + String.valueOf(score.getScore())));
+            }
+        }
+
+
+        // Add a listener to the selectedExam observable to swtich scores whenever the selected exam changes
+        selectedExam.addListener((observable, oldValue, newValue) -> {
+            examScore.getChildren().clear(); // Clear the old score
+            if (newValue != null) {
+                Score score = person.getScores().get(newValue);
+                if (score != null) {
+                    examScore.getChildren().add(new Label("Score: \n" + String.valueOf(score.getScore())));
+                }
+            }
+        });
         phoneicon.setImage(phoneIcon);
         emailicon.setImage(emailIcon);
         addressicon.setImage(addressIcon);
-
-
     }
 }

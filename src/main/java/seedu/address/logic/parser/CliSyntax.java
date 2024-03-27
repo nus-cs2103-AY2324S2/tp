@@ -18,4 +18,6 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_IMPORT = new Prefix("i/");
 
+    public static final Prefix PREFIX_SCORE = new Prefix("s/");
+
 }
