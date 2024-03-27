@@ -27,11 +27,12 @@ public class GroupCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_GROUP + "GROUP_NAME] "
             + "[" + PREFIX_STUDENTID + "STUDENTID] "
-            + "... (multiple IDs allowed) "
+            + "... (multiple groups, IDs allowed) "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "3 \n"
             + PREFIX_STUDENTID + "A0123456X "
-            + PREFIX_STUDENTID + "A0123456H ";
+            + PREFIX_STUDENTID + "A0123456H "
+            + ". If no group parameters found, all people with corresponding IDs have their groups set to none.";
 
     public static final String MESSAGE_GROUP_SUCCESS = "All students were added!";
     public static final String MESSAGE_CLEAR_SUCCESS = "All specified students were removed from any existing groups!";
@@ -58,8 +59,12 @@ public class GroupCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        String missingIds = "";
         requireNonNull(model);
+        String missingStudentIds = getMissingStudentIds(model);
+
+        if (missingStudentIds != null) {
+            throw new CommandException(STUDENTS_NOT_FOUND + missingStudentIds);
+        }
 
         if (group.size() == 0) {
             for (StudentId studentId : studentIds) {
@@ -72,11 +77,6 @@ public class GroupCommand extends Command {
             //get the existing groups
             Person currentPerson = model.getPerson(studentId);
 
-            if (currentPerson == null) {
-                missingIds += studentId + " ";
-                continue;
-            }
-
             Set<Group> newGroup = new HashSet<>();
             Set<Group> existingGroup = currentPerson.getGroups();
             newGroup.addAll(group);
@@ -86,11 +86,7 @@ public class GroupCommand extends Command {
 
             //there's a dependency on EditCommand, but this for loop shouldn't cause EditCommand to throw any exception.
         }
-        if (missingIds.equals("")) {
-            return new CommandResult(MESSAGE_GROUP_SUCCESS);
-        } else {
-            throw new CommandException(STUDENTS_NOT_FOUND + missingIds);
-        }
+        return new CommandResult(MESSAGE_GROUP_SUCCESS);
     }
 
     /**
@@ -115,6 +111,27 @@ public class GroupCommand extends Command {
         editPersonDescriptor.setGroups(groups);
         EditCommand editCommand = new EditCommand(studentId, editPersonDescriptor);
         editCommand.execute(model);
+    }
+
+
+    /**
+     * Get student IDs that are not in the model.
+     * This helps to check that all student IDs are present before executing the command.
+     *
+     * @return String of missing studentIds, or null if there are none.
+     */
+    private String getMissingStudentIds(Model model) {
+        String missingIds = "";
+        for (StudentId studentId : studentIds) {
+            Person currentPerson = model.getPerson(studentId);
+            if (currentPerson == null) {
+                missingIds += studentId + " ";
+            }
+        }
+        if (missingIds.equals("")) {
+            return null;
+        }
+        return missingIds;
     }
 
     @Override
