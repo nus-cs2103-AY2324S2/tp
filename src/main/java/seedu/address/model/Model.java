@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.asset.Asset;
-import seedu.address.model.exceptions.AddressBookUndoException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,7 +62,17 @@ public interface Model {
     /**
      * Undoes the latest change to address book.
      */
-    void undo() throws AddressBookUndoException;
+    void undo() throws AddressBookException;
+
+    /**
+     * Returns true if there are undo states to reverse.
+     */
+    boolean canRedo();
+
+    /**
+     * Reverses the latest undo command.
+     */
+    void redo() throws AddressBookException;
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
