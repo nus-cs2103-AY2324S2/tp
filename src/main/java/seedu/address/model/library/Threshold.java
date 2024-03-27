@@ -21,7 +21,7 @@ public class Threshold {
      * Constructs threshold with a default value of -3.
      */
     public Threshold() {
-        new Threshold(-3);
+        this.threshold = -3;
     }
 
     public int getLimit() {

@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.book.Book;
+import seedu.address.model.library.Threshold;
 import seedu.address.model.person.Person;
 
 /**
@@ -85,4 +87,36 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Replaces library data with the data in {@code library}.
+     */
+    void setLibrary(ReadOnlyLibrary library);
+
+    /** Returns the Library */
+    ReadOnlyLibrary getLibrary();
+
+    /**
+     * Adds {@code book} to the Library.
+     */
+    void addBook(Book book);
+
+    /**
+     * Deletes book at {@code index} from the Library.
+     */
+    void deleteBook(int index);
+
+    /**
+     * Returns true if {@code person} can borrow from the library.
+     */
+    boolean canLendTo(Person person);
+
+    /**
+     * Sets threshold of the library.
+     */
+    void setThreshold(Threshold threshold);
+
+    /**
+     * Returns true if threshold of library is the same as {@code threshold}.
+     */
+    boolean hasThreshold(Threshold threshold);
 }

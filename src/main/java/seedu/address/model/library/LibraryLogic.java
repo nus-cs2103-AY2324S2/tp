@@ -1,5 +1,7 @@
 package seedu.address.model.library;
 
+import static seedu.address.commons.util.StringUtil.isInteger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -8,15 +10,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.book.Book;
 
 /**
  * The LibraryLogic Class manages the loading and saving of available books to a txt file.
  */
 public class LibraryLogic {
-
+//TODO Refactor LibraryLogic to LibraryStorage and change file location to under storage package
     private String filePath;
     private ArrayList<Book> availableBooks;
+    private Threshold threshold;
 
     /**
      * Constructs a LibraryLogic object with the given file path.
@@ -26,6 +31,7 @@ public class LibraryLogic {
     public LibraryLogic(String filePath) {
         this.filePath = filePath;
         this.availableBooks = new ArrayList<>();
+        this.threshold = new Threshold();
     }
 
     /**
@@ -37,12 +43,12 @@ public class LibraryLogic {
     }
 
     /**
-     * Validates if the start date is before the end date.
+     * Validates if the book title is present.
      *
      * @param bookTitle the book title of a book
-     * @return true if the start date is before the end date, false otherwise
+     * @return true if the book title is valid, false otherwise
      */
-    private static boolean checkValidBook(String bookTitle) {
+    private static boolean isValidBook(String bookTitle) {
         if (bookTitle == null || bookTitle == "") {
             return false;
         }
@@ -69,17 +75,30 @@ public class LibraryLogic {
     }
 
     /**
-     * Loads books from the file and store it inside the availableBooks.
+     * Loads threshold books from the file and store it inside the availableBooks.
      */
-    public void loadBooksFromFile() {
+    public void loadLibraryFromFile() throws DataLoadingException {
         File file = new File(filePath);
         createFileIfNotExists();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
+
+            // load first line as threshold
+            line = reader.readLine();
+
+            if (line == null) {
+                throw new IllegalValueException("Error loading library data from file: Missing data");
+            }
+
+            if (!isInteger(line.trim())) {
+                throw new IllegalValueException("Error loading threshold from file: Bad threshold input");
+            }
+            threshold = new Threshold(Integer.parseInt(line));
+
+            // load rest as books
             while ((line = reader.readLine()) != null) {
-                if (checkValidBook(line.trim())) {
-                    // todo throw an exception here
-                    System.out.println("Error found: Bad input");
+                if (!isValidBook(line.trim())) {
+                    throw new IllegalValueException("Error loading book(s) from file: Bad book input");
                 }
                 Book currentBook = new Book(line.trim());
                 availableBooks.add(currentBook);
@@ -87,6 +106,8 @@ public class LibraryLogic {
         } catch (IOException e) {
             // todo throw an exception here
             System.err.println("Error loading book(s) from file: " + e.getMessage());
+        } catch (IllegalValueException ive) {
+            throw new DataLoadingException(ive);
         }
     }
 
@@ -95,13 +116,20 @@ public class LibraryLogic {
      *
      * @return the list of books loaded from the file
      */
-    public ArrayList<Book> getAvailableBooksFromFile() {
-        this.loadBooksFromFile();
+    public ArrayList<Book> getAvailableBooks() {
         return availableBooks;
     }
 
+    public Threshold getThreshold() {
+        return threshold;
+    }
+
+    public boolean hasBooks() {
+        return availableBooks.size() > 0;
+    }
+
     /**
-     * Saves books to the file.
+     * Saves threshold and books to the file.
      *
      * @param library the list of books to be saved
      * @throws IOException if an I/O error occurs while saving the books
@@ -109,6 +137,7 @@ public class LibraryLogic {
     public void saveBooksToFile(ArrayList<Book> library) throws IOException {
         createFileIfNotExists();
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+            writer.println(threshold);
             for (Book availableBook : library) {
                 writer.println(availableBook);
             }
@@ -116,5 +145,9 @@ public class LibraryLogic {
             // todo throw an exception here
             System.err.println("Error saving books to file: " + e.getMessage());
         }
+    }
+
+    public String getLibraryFilePath() {
+        return filePath;
     }
 }

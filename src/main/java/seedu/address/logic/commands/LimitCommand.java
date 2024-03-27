@@ -2,11 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.library.Threshold;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Sets the limit threshold for Merit Score to not allow borrowers from borrowing books from the library.
@@ -18,7 +16,8 @@ public class LimitCommand extends Command {
             + "Parameters: INTEGER (cannot include spaces or + signs)\n"
             + "Example: " + COMMAND_WORD + " -3";
 
-    public static final String MESSAGE_LIMIT_THRESHOLD_SUCCESS = "Limit set to: %d";
+    public static final String MESSAGE_LIMIT_THRESHOLD_SUCCESS = "Limit set to: %s";
+    public static final String MESSAGE_DUPLICATE_LIMIT = "Library already has the same limit set";
     //TODO finish execute to edit library threshold
     //TODO Use LimitCommandParser somewhere?
     //TODO Make error for duplicate threshold
@@ -35,7 +34,10 @@ public class LimitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
-        // return new CommandResult(String.format(MESSAGE_LIMIT_THRESHOLD_SUCCESS, threshold));
+        if (model.hasThreshold(threshold)) {
+            throw new CommandException(MESSAGE_DUPLICATE_LIMIT);
+        }
+        model.setThreshold(threshold);
+        return new CommandResult(String.format(MESSAGE_LIMIT_THRESHOLD_SUCCESS, threshold));
     }
 }
