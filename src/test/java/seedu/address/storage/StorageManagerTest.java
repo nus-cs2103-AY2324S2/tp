@@ -95,7 +95,7 @@ public class StorageManagerTest {
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage) {
             @Override
             public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-                throw new DataLoadingException(null);
+                throw new DataLoadingException("");
             }
         };
         assertThrows(DataLoadingException.class, () -> storageManager.readInitialAddressBook());

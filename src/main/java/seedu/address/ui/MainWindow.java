@@ -60,22 +60,16 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        this.personListPanel = new PersonListPanel(logic.getFilteredPersonList());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        primaryStage.show(); //This should be called before creating other UI parts
 
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        fillInnerParts();
     }
 
     public Stage getPrimaryStage() {
@@ -117,6 +111,21 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Fills up all the placeholders of this window.
+     */
+    private void fillInnerParts() {
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
@@ -138,10 +147,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
-    }
-
-    void show() {
-        primaryStage.show();
     }
 
     /**

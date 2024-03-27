@@ -44,7 +44,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
-    private boolean isStorageLoadSuccessful;
+    private String initialAddressBookStatus;
 
     @Override
     public void init() throws Exception {
@@ -61,12 +61,13 @@ public class MainApp extends Application {
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         ReadOnlyAddressBook initialAddressBook;
+
         try {
             initialAddressBook = storage.readInitialAddressBook();
-            isStorageLoadSuccessful = true;
+            initialAddressBookStatus = "Storage loaded successfully.";
         } catch (DataLoadingException e) {
             initialAddressBook = new AddressBook();
-            isStorageLoadSuccessful = false;
+            initialAddressBookStatus = e.getMessage();
         }
 
         model = new ModelManager(initialAddressBook, userPrefs);
@@ -149,22 +150,14 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
-    private void showWarningMsgIfLoadNotSuccessful() {
-        if (!isStorageLoadSuccessful) {
-            final String dataLoadingWarning =
-                    "Data file at " + storage.getAddressBookFilePath() + " could not be loaded.\n"
-                    + "Will be starting with an empty AddressBook.\n"
-                    + "Entering a command may override the old data file.";
-            logger.warning(dataLoadingWarning);
-            ui.showMessage("WARNING: " + dataLoadingWarning);
-        }
-    }
+    private void setDependencies() {
 
+    }
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
-        showWarningMsgIfLoadNotSuccessful();
+        ui.showMessage(initialAddressBookStatus);
     }
 
     @Override

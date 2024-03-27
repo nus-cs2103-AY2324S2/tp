@@ -41,7 +41,6 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

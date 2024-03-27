@@ -85,15 +85,21 @@ public class StorageManager implements Storage {
      */
     @Override
     public ReadOnlyAddressBook readInitialAddressBook() throws DataLoadingException {
-        logger.info("Using data file : " + getAddressBookFilePath());
-
-        Optional<ReadOnlyAddressBook> addressBookOptional = readAddressBook();
-        if (addressBookOptional.isEmpty()) {
-            logger.info("Creating a new data file " + getAddressBookFilePath()
-                    + " populated with a sample AddressBook.");
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        try {
+            addressBookOptional = readAddressBook();
+            if (addressBookOptional.isEmpty()) {
+                logger.info("Creating a new data file " + getAddressBookFilePath()
+                        + " populated with a sample AddressBook.");
+            }
+        } catch (DataLoadingException e) {
+            String errorMessage = "Data file at " + getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.";
+            logger.warning(errorMessage);
+            throw new DataLoadingException(errorMessage);
         }
 
-        return addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook); // initialAddressBook
+        return addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
     }
 
 }
