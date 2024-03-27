@@ -59,15 +59,15 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param name The name string to parse.
-     * @return A ParserResult containing the parsed Name or an exception message.
+     * @return A ParserUtilResult containing the parsed Name or an exception message.
      */
-    public static ParserResult<Name> parseNameReturnStored(String name) throws ParseException {
+    public static ParserUtilResult<Name> parseNameReturnStored(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            return new ParserResult<>(Name.MESSAGE_CONSTRAINTS, new Name(capitalizeWords("Ud")));
+            return new ParserUtilResult<>(Name.MESSAGE_CONSTRAINTS, new Name(capitalizeWords("Ud")));
         }
-        return new ParserResult<>("", new Name(capitalizeWords(trimmedName)));
+        return new ParserUtilResult<>("", new Name(capitalizeWords(trimmedName)));
     }
 
     /**
@@ -116,15 +116,15 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param phone The phone string to parse.
-     * @return A ParserResult containing the parsed Phone or an exception message.
+     * @return A ParserUtilResult containing the parsed Phone or an exception message.
      */
-    public static ParserResult<Phone> parsePhoneReturnStored(String phone) throws ParseException {
+    public static ParserUtilResult<Phone> parsePhoneReturnStored(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            return new ParserResult<>(Phone.MESSAGE_CONSTRAINTS, new Phone());
+            return new ParserUtilResult<>(Phone.MESSAGE_CONSTRAINTS, new Phone());
         }
-        return new ParserResult<>("", new Phone(trimmedPhone));
+        return new ParserUtilResult<>("", new Phone(trimmedPhone));
     }
 
     /**
@@ -147,15 +147,15 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param income The income string to parse.
-     * @return A ParserResult containing the parsed Income or an exception message.
+     * @return A ParserUtilResult containing the parsed Income or an exception message.
      */
-    public static ParserResult<Income> parseIncomeReturnStored(String income) throws ParseException {
+    public static ParserUtilResult<Income> parseIncomeReturnStored(String income) throws ParseException {
         requireNonNull(income);
         String trimmedIncome = income.trim();
         if (!Income.isValidIncome(trimmedIncome)) {
-            return new ParserResult<>(Income.MESSAGE_CONSTRAINTS, new Income());
+            return new ParserUtilResult<>(Income.MESSAGE_CONSTRAINTS, new Income());
         }
-        return new ParserResult<>("", new Income(trimmedIncome));
+        return new ParserUtilResult<>("", new Income(trimmedIncome));
     }
 
     /**
@@ -178,16 +178,16 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param address The address string to parse.
-     * @return A ParserResult containing the parsed Address or an exception message.
+     * @return A ParserUtilResult containing the parsed Address or an exception message.
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static ParserResult<Address> parseAddressReturnStored(String address) throws ParseException {
+    public static ParserUtilResult<Address> parseAddressReturnStored(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
-            return new ParserResult<>(Address.MESSAGE_CONSTRAINTS, new Address());
+            return new ParserUtilResult<>(Address.MESSAGE_CONSTRAINTS, new Address());
         }
-        return new ParserResult<>("", new Address(trimmedAddress));
+        return new ParserUtilResult<>("", new Address(trimmedAddress));
     }
 
     /**
@@ -211,16 +211,16 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param email The email string to parse.
-     * @return A ParserResult containing the parsed Email or an exception message.
+     * @return A ParserUtilResult containing the parsed Email or an exception message.
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static ParserResult<Email> parseEmailReturnStored(String email) throws ParseException {
+    public static ParserUtilResult<Email> parseEmailReturnStored(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            return new ParserResult<>(Email.MESSAGE_CONSTRAINTS, new Email());
+            return new ParserUtilResult<>(Email.MESSAGE_CONSTRAINTS, new Email());
         }
-        return new ParserResult<>("", new Email(trimmedEmail));
+        return new ParserUtilResult<>("", new Email(trimmedEmail));
     }
 
     /**
@@ -244,17 +244,17 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param family The family string to parse.
-     * @return A ParserResult containing the parsed Family or an exception message.
+     * @return A ParserUtilResult containing the parsed Family or an exception message.
      * @throws ParseException if the given {@code family} is invalid.
      */
-    public static ParserResult<Family> parseFamilyReturnStored(String family) throws ParseException {
+    public static ParserUtilResult<Family> parseFamilyReturnStored(String family) throws ParseException {
         requireNonNull(family);
         String trimmedFamily = family.trim();
         if (!Family.isValidFamily(trimmedFamily)) {
-            return new ParserResult<>(Family.MESSAGE_CONSTRAINTS, new Family());
+            return new ParserUtilResult<>(Family.MESSAGE_CONSTRAINTS, new Family());
         }
         assert Integer.parseInt(trimmedFamily) >= 1;
-        return new ParserResult<>("", new Family(trimmedFamily));
+        return new ParserUtilResult<>("", new Family(trimmedFamily));
     }
 
     /**

@@ -55,30 +55,30 @@ public class AddCommandParser implements Parser<AddCommand> {
                                                  PREFIX_FAMILY, PREFIX_ADDRESS, PREFIX_REMARK);
 
         StringBuilder errorMessageBuilder = new StringBuilder();
-        ParserResult<Name> nameStored =
+        ParserUtilResult<Name> nameStored =
                 ParserUtil.parseNameReturnStored(argMultimap.getValue(PREFIX_NAME).orElseThrow());
         nameStored.buildErrorMessage(errorMessageBuilder, "name");
 
-        ParserResult<Phone> phoneStored = ParserUtil.parsePhoneReturnStored(argMultimap.getValue(PREFIX_PHONE)
+        ParserUtilResult<Phone> phoneStored = ParserUtil.parsePhoneReturnStored(argMultimap.getValue(PREFIX_PHONE)
                                                                                     .orElseThrow());
 
         phoneStored.buildErrorMessage(errorMessageBuilder, "phone");
 
-        ParserResult<Income> incomeStored =
+        ParserUtilResult<Income> incomeStored =
                 ParserUtil.parseIncomeReturnStored(argMultimap.getValue(PREFIX_INCOME).orElseThrow());
 
         incomeStored.buildErrorMessage(errorMessageBuilder, "income");
 
-        ParserResult<Email> emailStored =
+        ParserUtilResult<Email> emailStored =
                 ParserUtil.parseEmailReturnStored(argMultimap.getValue(PREFIX_EMAIL).orElseThrow());
 
         emailStored.buildErrorMessage(errorMessageBuilder, "email");
 
-        ParserResult<Address> addressStored =
+        ParserUtilResult<Address> addressStored =
                 ParserUtil.parseAddressReturnStored(argMultimap.getValue(PREFIX_ADDRESS).orElseThrow());
         addressStored.buildErrorMessage(errorMessageBuilder, "address");
 
-        ParserResult<Family> familyStored =
+        ParserUtilResult<Family> familyStored =
                 ParserUtil.parseFamilyReturnStored(argMultimap.getValue(PREFIX_FAMILY).orElseThrow());
         familyStored.buildErrorMessage(errorMessageBuilder, "family");
 

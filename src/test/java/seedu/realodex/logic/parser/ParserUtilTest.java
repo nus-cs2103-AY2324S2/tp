@@ -149,6 +149,8 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nonCapitalizedInFirstNames));
     }
 
+    
+
     @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));

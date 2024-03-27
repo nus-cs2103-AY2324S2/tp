@@ -5,17 +5,17 @@ package seedu.realodex.logic.parser;
  *
  * @param <T> The type of the parsed result.
  */
-public class ParserResult<T> {
+public class ParserUtilResult<T> {
     private final String exceptionMessage;
     private final T result;
 
     /**
-     * Constructs a ParserResult with the given exception message and result.
+     * Constructs a ParserUtilResult with the given exception message and result.
      *
      * @param exceptionMessage The exception message generated during parsing.
      * @param result           The parsed result.
      */
-    public ParserResult(String exceptionMessage, T result) {
+    public ParserUtilResult(String exceptionMessage, T result) {
         this.exceptionMessage = exceptionMessage;
         this.result = result;
     }
