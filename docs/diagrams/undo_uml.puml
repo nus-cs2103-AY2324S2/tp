@@ -1,0 +1,18 @@
+@startuml
+
+class UndoCommand {
+    - COMMAND_WORD: String
+    - MESSAGE_SUCCESS: String
+    - MESSAGE_FAILURE: String
+    + execute(model: Model, history: CommandHistory): CommandResult
+}
+
+Model -- UndoCommand : model
+CommandHistory -- UndoCommand : history
+
+CommandResult -- UndoCommand
+
+UndoCommand --> Model : updates
+UndoCommand --> CommandHistory : updates
+
+@enduml

@@ -92,8 +92,36 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+        String expected = ALICE.getName() + " Phone: " + ALICE.getPhone()
+                + " Email: " + ALICE.getEmail() + " Address: " + ALICE.getAddress() + " Tags: [friends]";
         assertEquals(expected, ALICE.toString());
+    }
+
+
+
+    @Test
+    public void samePersonObject_returnsTrue() {
+        Person person = new PersonBuilder().build();
+        assertTrue(person.isSamePerson(person));
+    }
+
+    @Test
+    public void nullPerson_returnsFalse() {
+        Person person = new PersonBuilder().build();
+        assertFalse(person.isSamePerson(null));
+    }
+
+    @Test
+    public void differentPerson_returnsFalse() {
+        Person person1 = new PersonBuilder().withName("Alice").build();
+        Person person2 = new PersonBuilder().withName("Bob").build();
+        assertFalse(person1.isSamePerson(person2));
+    }
+
+    @Test
+    public void samePersonTagsDifferentOrder_returnsTrue() {
+        Person person1 = new PersonBuilder().withTags("friend", "colleague").build();
+        Person person2 = new PersonBuilder().withTags("colleague", "friend").build();
+        assertTrue(person1.equals(person2));
     }
 }

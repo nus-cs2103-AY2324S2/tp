@@ -16,11 +16,15 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.InvalidationListenerManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class AddressBookTest {
 
@@ -34,6 +38,58 @@ public class AddressBookTest {
     @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+    }
+
+    @Test
+    public void removeListener_success() {
+        AddressBook addressBook = new AddressBook();
+        InvalidationListenerManager manager = addressBook.invalidationListenerManager;
+
+        // Create a listener
+        InvalidationListener listener = new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                // Do nothing
+            }
+        };
+
+        // Remove the listener
+        addressBook.removeListener(listener);
+
+        // Ensure the listener is removed
+        assertFalse(manager.listeners.contains(listener));
+    }
+
+    @Test
+    public void addListener_success() {
+        AddressBook addressBook = new AddressBook();
+        InvalidationListenerManager manager = addressBook.invalidationListenerManager;
+
+        // Create a listener
+        TestInvalidationListener listener = new TestInvalidationListener();
+
+        // Add the listener
+        addressBook.addListener(listener);
+
+        // Trigger an invalidation event
+        addressBook.indicateModified();
+
+        // Ensure the listener is notified
+        assertTrue(listener.isInvalidated());
+    }
+
+    // Define a test InvalidationListener implementation
+    private static class TestInvalidationListener implements InvalidationListener {
+        private boolean invalidated = false;
+
+        @Override
+        public void invalidated(Observable observable) {
+            invalidated = true;
+        }
+
+        public boolean isInvalidated() {
+            return invalidated;
+        }
     }
 
     @Test
