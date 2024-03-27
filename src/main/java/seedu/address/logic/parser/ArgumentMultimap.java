@@ -61,15 +61,7 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
-
-    /**
-     * Returns the first token of the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
-     */
-    public String getFirstTokenOfPreamble() {
-        String[] tokens = getPreamble().split(" ");
-        return tokens[0];
-    }
-
+    
     /**
      * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
      * once among the arguments.
