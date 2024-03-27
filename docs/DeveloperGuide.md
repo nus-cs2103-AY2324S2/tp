@@ -288,7 +288,7 @@ Similarly, how an add task operation goes through the `Model` component is shown
 
 ![AddTaskSequence-Model](images/AddTaskSequence-Model.png)
 
-The `deletetask` command works similarly  —  it calls `Model#deleteTask` with a given `TaskId` and deletes the `Task` if it exists. 
+The `deletetask` command works similarly  —  it calls `Model#deleteTask` with a given `TaskId` and deletes the `Task` if it exists.
 
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -403,7 +403,7 @@ The following activity diagram summarizes what happens when a user executes `fin
 
 **Aspect: Whether to make both `find` and `findtasks` inherit from a common parent class:**
 
-This is because both `find` and `findtasks` are similar in terms of functionality. `find` finds employees and `findtasks` finds tasks. 
+This is because both `find` and `findtasks` are similar in terms of functionality. `find` finds employees and `findtasks` finds tasks.
 
 * **Alternative 1 (current choice):** Keep them separate.
     * Pros: Easier to understand and organise because currently all the classes related to employee
@@ -433,8 +433,8 @@ This is because both `find` and `findtasks` are similar in terms of functionalit
 **Target user profile**: Managers who
 
 * manage many employees
-* prefers command line input 
-* comfortable with manually editing save file 
+* prefers command line input
+* comfortable with manually editing save file
 
 **Value proposition**: manage employees faster than a typical mouse/GUI driven app
 
@@ -518,9 +518,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list employees
-2.  TaskMasterPro shows a list of employees with their ids 
-3.  User requests to list tasks 
-4.  TaskMasterPro shows a list of tasks with their ids 
+2.  TaskMasterPro shows a list of employees with their ids
+3.  User requests to list tasks
+4.  TaskMasterPro shows a list of tasks with their ids
 5.  User requests to assign/un-assign a specific employee in the employee list by their id to a specific task in the task list by its id
 6.  TaskMasterPro assigns/un-assigns the employee to the task
 
