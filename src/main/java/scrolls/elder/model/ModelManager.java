@@ -3,15 +3,11 @@ package scrolls.elder.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import scrolls.elder.commons.core.GuiSettings;
 import scrolls.elder.commons.core.LogsCenter;
 import scrolls.elder.commons.util.CollectionUtil;
-import scrolls.elder.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,9 +17,6 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
     private final Datastore datastore;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Person> filteredVolunteers;
-    private final FilteredList<Person> filteredBefriendees;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,13 +28,6 @@ public class ModelManager implements Model {
 
         this.datastore = new Datastore(datastore);
         this.userPrefs = new UserPrefs(userPrefs);
-
-        PersonStore personStore = this.datastore.getMutablePersonStore();
-        filteredPersons = new FilteredList<>(personStore.getPersonList());
-
-        filteredVolunteers = new FilteredList<>(personStore.getPersonList(), person -> person.isVolunteer());
-
-        filteredBefriendees = new FilteredList<>(personStore.getPersonList(), person -> !(person.isVolunteer()));
     }
 
     /**
@@ -77,13 +63,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getDatastoreFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getDatastoreFilePath();
     }
 
     @Override
     public void setDatastoreFilePath(Path datastoreFilePath) {
         requireNonNull(datastoreFilePath);
-        userPrefs.setAddressBookFilePath(datastoreFilePath);
+        userPrefs.setDatastoreFilePath(datastoreFilePath);
     }
 
     //=========== Datastore ================================================================================
@@ -102,30 +88,7 @@ public class ModelManager implements Model {
         datastore.resetData(d);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredVolunteerList() {
-        return filteredVolunteers;
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredBefriendeeList() {
-        return filteredBefriendees;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-        filteredVolunteers.setPredicate(person -> predicate.test(person) && person.isVolunteer());
-        filteredBefriendees.setPredicate(person -> predicate.test(person) && !(person.isVolunteer()));
-    }
+    //=========== Overrides =============================================================
 
     @Override
     public boolean equals(Object other) {
@@ -139,8 +102,7 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return datastore.equals(otherModelManager.datastore)
-                && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+            && userPrefs.equals(otherModelManager.userPrefs);
     }
 
 }

@@ -3,7 +3,6 @@ package scrolls.elder.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import scrolls.elder.commons.core.GuiSettings;
 import scrolls.elder.model.person.Person;
 
@@ -66,18 +65,4 @@ public interface Model {
      * Replaces Datastore with the data in {@code datastore}.
      */
     void setDatastore(ReadOnlyDatastore datastore);
-
-    // TODO: to be removed in 1.3a
-    // Replaced by corresponding methods in PersonStore
-    @Deprecated
-    ObservableList<Person> getFilteredPersonList();
-
-    @Deprecated
-    ObservableList<Person> getFilteredVolunteerList();
-
-    @Deprecated
-    ObservableList<Person> getFilteredBefriendeeList();
-
-    @Deprecated
-    void updateFilteredPersonList(Predicate<Person> predicate);
 }

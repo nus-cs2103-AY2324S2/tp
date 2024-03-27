@@ -148,7 +148,7 @@ public class EditCommand extends Command {
         }
 
         store.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL);
+        store.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 

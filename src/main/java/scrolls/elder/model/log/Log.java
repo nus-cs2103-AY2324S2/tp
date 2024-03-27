@@ -29,7 +29,7 @@ public class Log {
      * Creates a log with all given fields.
      */
     @JsonCreator
-    public Log(@JsonProperty("logId") int logId, @JsonProperty("volunteerId") int volunteerId,
+    private Log(@JsonProperty("logId") int logId, @JsonProperty("volunteerId") int volunteerId,
                @JsonProperty("befriendeeId") int befriendeeId, @JsonProperty("duration") int duration,
                @JsonProperty("startDate") Date startDate, @JsonProperty("remarks") String remarks) {
         this.logId = logId;
