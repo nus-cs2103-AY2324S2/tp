@@ -78,10 +78,12 @@ public class InterviewDate {
     public int hashCode() {
         return value.hashCode();
     }
+
     /**
-     * Checks if this InterviewDate is in the next 3 days.
+     * Checks if this InterviewDate is in the next N days.
      */
-    public boolean isWithin3Days() {
+
+    public boolean isWithinNDays(int numberOfDays) {
         if (value == null) {
             return false;
         }
@@ -91,7 +93,7 @@ public class InterviewDate {
         // Calculate the difference in days between the interview date and the current date
         long daysDifference = ChronoUnit.DAYS.between(currentDate, value);
         // Check if the difference is less than or equal to 3
-        return daysDifference > 0 && daysDifference <= 3;
+        return daysDifference > 0 && daysDifference <= numberOfDays;
     }
 
     //    public int compareTo(InterviewDate otherInterviewDate) {
