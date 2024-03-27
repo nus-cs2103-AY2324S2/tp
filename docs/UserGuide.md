@@ -2,40 +2,90 @@
 layout: page
 title: User Guide
 ---
+## About FitBook
+FitBook is a **desktop app for managing your clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse interactions, FitBook is the perfect application for you!
 
-FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still 
-having the benefits of a Graphical User Interface (GUI). If you are a personal trainer that prefers typing over mouse 
-interactions, FitBook is the perfect application for you to manage your clients!
+### Key features
+{:.no_toc}
+
+With FitBook, you can:
+
+* **Seamlessly save clients as contacts on your phone using QR codes**
+* **Store personalized notes for each client**
+* **Keep track of your clients' fitness journey** (_Work in progress_)
+
+_All in one app!_
+
+For more details on what FitBook has to offer, check out the [Features](#features) section below!
+
+## Using this guide
+The purpose of this user guide is to **walk you through installing FitBook**, as well as be a **resource you can refer to** if you require any additional help. Think of it like an instruction manual that comes with a new gadget - You can refer to it if you get stuck, but otherwise, you're free to explore on your own!
+
+You can use the [Table of contents](#table-of-contents) to navigate directly to what you're looking for.
+
+<div markdown="block" class="alert alert-info">:bulb: **Tips/Info**
+
+Be on the lookout for boxes like these, they usually contain important information and helpful tips!
+</div>
+
+<div markdown="block" class="alert alert-warning">:warning: **Warning**
+
+On the other hand, these boxes indicate when you should pay extra attention to avoid running into problems.
+</div>
+
+<div markdown="block" class="alert alert-danger">:rotating_light: **Caution**
+
+Lastly, these boxes contain warnings about potential negative outcomes. 
+
+(e.g. irreversible loss of data)
+</div>
+
+Can't wait to get started? [Click me](#setting-up-fitbook) to jump straight to the FitBook installation guide!
+
+_Disclaimer: Certain portions of this guide assume you are familiar with the command line. If you aren't, check out this informative <a href="https://www.freecodecamp.org/news/command-line-for-beginners/" target="_blank">article from freeCodeCamp</a>._
+
+<div style="page-break-after: always;"></div>
+<hr>
+
+## Table of contents
 
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 <hr>
 
-## Quick Start
+## Setting up FitBook
 
-1. Ensure you have Java `11` or above installed.
-    * Need help? Check out the [installation guide](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
+1. Ensure you have Java **11** or above installed.
+    * [What version of Java do I have?](#what-version-of-java-do-i-have)
+    * Need help installing Java? Check out the <a href="https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html" target="_blank">Java 11 installation guide</a>.
 
-1. Download the latest version of `FitBook.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-3/tp/releases).
+<div markdown="block" class="alert alert-info">
+:question: **What is Java? Is it safe to install?**
+
+Java is a versatile programming language used for developing various applications. FitBook requires it to be installed because it is written in Java and relies on the Java Virtual Machine (JVM) to run.
+
+<a href="https://www.java.com/en/download/help/whatis_java.html" target="_blank">Learn more about Java</a>.
+</div>
+
+[//]: # (Continue numbering from 2, as the block above interrupts the list and resets the number)
+
+{:start="2"}
+1. Download the latest version of `FitBook.jar` from <a href="https://github.com/AY2324S2-CS2103T-T17-3/tp/releases" target="_blank">here</a>.
 
 1. Copy the file to the folder you want to use as the **home folder** for FitBook.
+   * FitBook will save all the data it needs this folder.
 
-1. Double-click the FitBook.jar file to launch it.
-    * If that doesn't work, try the following steps:
+1. Double-click the `FitBook.jar` file to launch it.
+    * If that doesn't work, try the steps found [here](#why-doesnt-fitbook-start-when-i-double-click).
 
-        1. Open a command prompt (**cmd** for Windows, **Terminal** for Mac)
-
-        1. Use `cd` to navigate to the folder containing FitBook.jar
-            * e.g. `cd ~/Downloads/FitBook/`
-
-        1. Run `java -jar FitBook.jar` to launch FitBook.
 
 1. A GUI similar to the one depicted below should appear in a few seconds. The app contains some sample data for you to familiarize yourself with the UI.<br>
 
-![Ui](images/Ui.png)
+    ![Ui](images/Ui.png)
 
-6. Read through `help`, type any command listed into the input box and press `enter` <br>
+1. Read through `help`, type any command listed into the input box and press `enter` <br>
    These are some example commands you can try!
  
    * `add n/John p/98765432` Adds a client named
@@ -93,7 +143,7 @@ Adds a client to the FitBook.
 
 Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**
 A client can have 0 or more tags.
 </div>
 
@@ -184,7 +234,9 @@ Examples:
 
 Clears all client information from FitBook.
 
-**NOTE: This command is irreversible and should be used with caution.**
+<div markdown="span" class="alert alert-danger">
+:rotating_light: **This command is irreversible. Use with caution.**
+</div>
 
 If you are sure of your decision to clear all client information, use the `/confirm` prefix with this command to execute it.
 
@@ -211,8 +263,9 @@ There is no need to save manually.
 FitBook data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+<div markdown="block" class="alert alert-warning">:warning: **Warning:**
+If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to make a backup of the file before editing it.
+
 Furthermore, certain edits can cause FitBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 <hr>
@@ -235,8 +288,24 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+###### How do I transfer my data to another Computer?
+
 **A**: Install FitBook in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
+
+###### What version of Java do I have?
+
+**A**: Open a command prompt, and run the command `java --version`
+
+###### Why doesn't FitBook start when I double-click?
+
+**A**: If double-clicking to open FitBook doesn't work, try running it via the command line:
+
+1. Open a command prompt (**cmd** for Windows, **Terminal** for Mac)
+
+1. Use `cd` to navigate to the folder containing `FitBook.jar`
+    * e.g. `cd ~/Downloads/FitBook/`
+
+1. Run `java -jar FitBook.jar` to launch FitBook.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -248,12 +317,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nt/likes pizzas t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                                                                                    |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nt/likes pizzas t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                                                             |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                 |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                               |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                          |
+| **List**   | `list`                                                                                                                                                                                              |
+| **Help**   | `help`                                                                                                                                                                                              |
