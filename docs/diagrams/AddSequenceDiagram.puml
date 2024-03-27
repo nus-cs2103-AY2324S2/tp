@@ -69,40 +69,7 @@ deactivate ArgumentMultimap
 
 deactivate ArgumentTokenizer
 
-AddCommandParser -> ParserUtil : parseName(...)
-activate ParserUtil
-ParserUtil --> AddCommandParser
-deactivate ParserUtil
-AddCommandParser -> ParserUtil : parsePhone(...)
-activate ParserUtil
-ParserUtil --> AddCommandParser
-deactivate ParserUtil
-AddCommandParser -> ParserUtil : parseEmail(...)
-activate ParserUtil
-ParserUtil --> AddCommandParser
-deactivate ParserUtil
-AddCommandParser -> ParserUtil : parseAddress(...)
-activate ParserUtil
-ParserUtil --> AddCommandParser
-deactivate ParserUtil
-AddCommandParser -> ParserUtil : parseTags(...)
-activate ParserUtil
-ParserUtil --> AddCommandParser
-deactivate ParserUtil
-
-' Callback
-AddCommandParser -> AddCommandParser : handleOptionalMatric(...)
-activate AddCommandParser
-AddCommandParser --> AddCommandParser
-deactivate AddCommandParser
-AddCommandParser -> AddCommandParser : handleOptionalReflection(...)
-activate AddCommandParser
-AddCommandParser --> AddCommandParser
-deactivate AddCommandParser
-AddCommandParser -> AddCommandParser : handleOptionalStudio(...)
-activate AddCommandParser
-AddCommandParser --> AddCommandParser
-deactivate AddCommandParser
+ref over AddCommandParser, ParserUtil : parse fields
 
 create Person
 AddCommandParser -> Person

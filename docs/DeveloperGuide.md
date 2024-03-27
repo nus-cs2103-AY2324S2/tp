@@ -90,29 +90,12 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
-
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
-
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</box>
-
-The sequence diagram below illustrates a more in-depth view of the interactions within the 'Logic' component.
-It takes a user input into the UI, `add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1`, as an example.
-
-<puml src="diagrams/AddSequenceDiagram.puml" alt="Detailed Interactions Inside the Logic Component for the `add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1` User Input" />
-
-<box type="info" seamless>
-
-**Note:** Similar to the above sequence diagram, the lifeline for `AddCommandParser` and `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</box>
-
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command. 
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`. 
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
-   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve. 
+   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("export")` API call as an example.
@@ -140,6 +123,27 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+The sequence diagram below illustrates the interactions within the `Logic` component, taking a simple `execute("delete 1")` API call as an example.
+
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
+The sequence diagram below illustrates a more in-depth view of the interactions within the 'Logic' component.
+It takes a user input into the UI, `add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1`, as an example.
+
+<puml src="diagrams/AddSequenceDiagram.puml" alt="Detailed Interactions Inside the Logic Component for the `add n/Dohn Joe p/98765432 a/123 e/dohn@gm.com m/A1234567X s/S1 r/R1` User Input" />
+
+<box type="info" seamless>
+
+**Note:** Similar to the above sequence diagram, the lifeline for `AddCommandParser` and `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
+The parsing is detailed as follows:
+<puml src="diagrams/AddCommandParsing.puml" alt="Detailed Interactions for Parsing Fields of the Add command." />
+
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -183,6 +187,66 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### **Find feature**
+
+The `find` command lets users search for persons by substring matching. The user can select any parameter to search under: `NAME`, `EMAIL`, `TAG`, `MATRIC`, `REFLECTION`, `STUDIO`, and `TAGS` can all be used. E.g. to search for all persons under studio `S2`, the user can use `find s/s2`.
+
+#### Implementation Details
+The `find` feature makes use of the predicate class `PersonDetailContainsKeywordPredicate` and the method `updateFilteredPersonList` to update the model to show only persons that fufill the criteria that the user has keyed in.
+
+##### Parsing User Input
+
+The `FindCommandParser` class is responsible for parsing user input to extract search criteria. It uses the `ArgumentTokenizer` to tokenize the input string, extracting prefixes and their associated values. Following that, the `extractPrefixForFindCommand` method ensures that only one valid, non-empty prefix is provided in the input.
+
+##### Predicate Creation
+
+The `PersonDetailContainsKeywordPredicate` class implements the `Predicate` interface to filter contacts based on search criteria. It takes a prefix and keyword as parameters, allowing it to filter contacts based on specific details like name, phone number, etc.
+
+With the prefix and the value extracted from parsing the user input, a `PersonDetailContainsKeywordPredicate` is created.
+
+##### Executing the Command
+
+The `FindCommand` class is responsible for executing the command for filtering the list in the application. It takes in a `PersonDetailContainsKeywordPredicate` as a parameter and has a `execute` method inherited from its parent class of `Command`
+
+Using the `PersonDetailContainsKeywordPredicate` created from parsing user input, a `FindCommand` is created. the `execute` method is then called by the `LogicManager`.
+
+##### Updating Filtered Person List:
+
+The `ModelManager` class implements the `Model` interface and manages the application's data. It maintains a `filteredPersons` list, which is a FilteredList of contacts based on the applied predicate. The `updateFilteredPersonList` method implemented in `ModelManager` updates the filtered list based on the provided predicate.
+
+When the `FindCommand` is executed, the `updateFilteredPersonList` method is called with the `PersonDetailContainsKeywordPredicate` as a parameter. This updates the `filteredPersons` list to show only persons that fufill the predicate.
+
+##### User Interface Interaction
+
+After the `filteredPersons` list is updated, the user interface is updated such that the `PersonListPanel` now shows persons the fufill the predicate generated by the original user input.
+
+The following sequence diagram illustrates the `find` command with the user input `find n/Alice`
+<puml src="diagrams/FindImplementationSequenceDiagram.puml" width="550" />
+
+The following activity Diagram illustrates the user execution of the `find` command
+<puml src="diagrams/FindImplementationActivityDiagram.puml" width="550" />
+
+#### **Considerations**
+
+##### User Interface Consistency
+
+The choice of implementing the command to use prefixes to determine the filter criteria ensures consistency with other commands in the application. As this command follows a similar structure to all other commands, it is easier for users to learn and use the application.
+
+##### Flexibility in Search Criteria
+
+By allowing users to specify search criteria using different prefixes (name, phone, email, etc.), the implementation offers flexibility.
+Users can search for contacts based on various details, enhancing the usability of the feature. In the context of our potential users, we considered that users would likely have to sometimes filter students by their classes, or filter people by their roles (student, tutor, professor). So we opted to implement this feature with the flexibility of using all prefixes to account for all these potential use cases.
+
+##### Predicate-based Filtering
+
+As the `Model` class was built prior to the implementation of this feature, we did our best to re-use available methods instead of unnecessarily re-programing already exisiting logic. Hence, we decided to craft the command around the idea of a custom predicate as the `Model` class already had a `updateFilteredPersonList` method implemented that would filter persons using a predicate.
+
+##### Extensibility
+
+This design allows for easy extension to accommodate future enhancements or additional search criteria. New prefixes can be added to support additional search criteria without significant changes as we merely need to update our `Predicate` logic. This ensures that the implementation remains adaptable to evolving requirements and we can upgrade and improve the feature whenever required.
+
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -410,7 +474,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     *  1a1. AddressBook prompts the user on the proper usage of the command.
 
         Step 1a1 is repeated until the data entered is correct.
-        
+
         Use case resumes at step 2.
 
 *  1b. User tries to add a person with an existing email address.
@@ -418,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     *  1b1. AddressBook displays an error message informing the user that the email address already exists.
 
         Step 1b1 is repeated until a valid email address is entered.
-        
+
         Use case resumes at step 2.
 
 **Use case: UC04 — List all persons**
@@ -547,21 +611,21 @@ into user's clipboard.
 
 **MSS:**
 
-1.  User !!requests to filter persons (UC06)!! by desired requirements 
+1.  User !!requests to filter persons (UC06)!! by desired requirements
 2. User requests to export all listed persons and details to a CSV file.
-3. AddressBook exports the persons to a CSV file. 
+3. AddressBook exports the persons to a CSV file.
 4. AddressBook displays a message to confirm that all listed persons have been exported to a CSV file.
 
     Use case ends.
 
 **Extensions:**
 
-* 2a. No persons are listed. 
+* 2a. No persons are listed.
   * 2a2. AddressBook displays a message indicating that there is no persons to export.
-  
+
     Use case ends.
-  
-  
+
+
 
 **Use case: UC11 — Exit application**
 
