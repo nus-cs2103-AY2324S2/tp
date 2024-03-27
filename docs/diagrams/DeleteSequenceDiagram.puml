@@ -5,8 +5,8 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeletePatientCommandParser" as DeletePatientCommandParser LOGIC_COLOR
+participant "d:DeletePatientCommand" as DeletePatientCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,58 +14,58 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete T1234567A")
+[-> LogicManager : execute("deletePatient T1234567A")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete S1234567A")
+LogicManager -> AddressBookParser : parseCommand("deletePatient S1234567A")
 activate AddressBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeletePatientCommandParser
+AddressBookParser -> DeletePatientCommandParser
+activate DeletePatientCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+DeletePatientCommandParser --> AddressBookParser
+deactivate DeletePatientCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("T1234567A")
-activate DeleteCommandParser
+AddressBookParser -> DeletePatientCommandParser : parse("T1234567A")
+activate DeletePatientCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeletePatientCommand
+DeletePatientCommandParser -> DeletePatientCommand
+activate DeletePatientCommand
 
-DeleteCommand --> DeleteCommandParser :
-deactivate DeleteCommand
+DeletePatientCommand --> DeletePatientCommandParser :
+deactivate DeletePatientCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+DeletePatientCommandParser --> AddressBookParser : d
+deactivate DeletePatientCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeletePatientCommandParser -[hidden]-> AddressBookParser
+destroy DeletePatientCommandParser
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute(m)
-activate DeleteCommand
+LogicManager -> DeletePatientCommand : execute(m)
+activate DeletePatientCommand
 
-DeleteCommand -> Model : deleteAppointmentsWithNric(Nric: S1234567A)
+DeletePatientCommand -> Model : deleteAppointmentsWithNric(Nric: S1234567A)
 activate Model
 
-DeleteCommand -> Model : deletePersonWithNric(Nric: S1234567A)
+DeletePatientCommand -> Model : deletePatientWithNric(Nric: S1234567A)
 
-Model --> DeleteCommand
+Model --> DeletePatientCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeletePatientCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeletePatientCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : r
-deactivate DeleteCommand
+DeletePatientCommand --> LogicManager : r
+deactivate DeletePatientCommand
 
 [<--LogicManager
 deactivate LogicManager
