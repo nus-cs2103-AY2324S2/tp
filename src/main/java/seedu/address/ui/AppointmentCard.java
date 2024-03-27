@@ -1,19 +1,9 @@
 package seedu.address.ui;
 
-import java.time.LocalTime;
-
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.util.Duration;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 

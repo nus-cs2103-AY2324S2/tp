@@ -19,8 +19,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
-    Predicate<AppointmentView> PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW = unused -> true;
+    Predicate<AppointmentView> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -144,7 +143,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
 
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate, Predicate<AppointmentView> predicateView);
+    void updateFilteredAppointmentList(Predicate<AppointmentView> predicate);
 
     /** Returns an unmodifiable view of the appointment day-view list */
     ObservableList<AppointmentView> getFilteredAppointmentDayViewList();

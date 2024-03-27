@@ -159,7 +159,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS, PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -218,11 +218,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate,
-        Predicate<AppointmentView> predicateView) {
+    public void updateFilteredAppointmentList(Predicate<AppointmentView> predicate) {
         requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
-        filteredAppointmentsView.setPredicate(predicateView);
+        filteredAppointmentsView.setPredicate(predicate);
     }
 
     //=========== Filtered Appointment Day-View List Accessors =====================================================
