@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -59,6 +60,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INFO + "INFO] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_PROGRAMMING_LANGUAGE + "PROGRAMMING-LANGUAGE]...\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -120,10 +122,11 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<ProgrammingLanguage> updatedProgrammingLanguages = editPersonDescriptor.getProgrammingLanguages()
                 .orElse(personToEdit.getProgrammingLanguages());
-
+        int updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
         return new Person(
                 updatedCompanyName, updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedDateTime, updatedSalary, updatedInfo, updatedTags, updatedProgrammingLanguages);
+                updatedAddress, updatedDateTime, updatedSalary, updatedInfo,
+                updatedTags, updatedProgrammingLanguages, updatedPriority);
     }
 
     @Override
@@ -138,6 +141,12 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
+        System.out.println("EditCommand equals");
+        System.out.println("index: " + index + " other index: " + ((EditCommand) other).index);
+        System.out.println("editPersonDescriptor: " + editPersonDescriptor + " other editPersonDescriptor: "
+                + ((EditCommand) other).editPersonDescriptor);
+        System.out.println(index.equals(otherEditCommand.index));
+        System.out.println(editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor));
         return index.equals(otherEditCommand.index)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
@@ -165,6 +174,7 @@ public class EditCommand extends Command {
         private Info info;
         private Set<Tag> tags;
         private Set<ProgrammingLanguage> programmingLanguages;
+        private Integer priority;
 
         public EditPersonDescriptor() {}
 
@@ -183,6 +193,7 @@ public class EditCommand extends Command {
             setInfo(toCopy.info);
             setTags(toCopy.tags);
             setProgrammingLanguages(toCopy.programmingLanguages);
+            setPriority(toCopy.priority);
         }
 
         /**
@@ -190,7 +201,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, salary, info, tags,
-                    programmingLanguages);
+                    programmingLanguages, priority);
         }
         public void setCompanyName(CompanyName companyName) {
             this.companyName = companyName;
@@ -287,6 +298,15 @@ public class EditCommand extends Command {
                     .unmodifiableSet(programmingLanguages)) : Optional.empty();
         }
 
+        public void setPriority(Integer priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Integer> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -308,7 +328,8 @@ public class EditCommand extends Command {
                     && Objects.equals(salary, otherEditPersonDescriptor.salary)
                     && Objects.equals(info, otherEditPersonDescriptor.info)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
-                    && Objects.equals(programmingLanguages, otherEditPersonDescriptor.programmingLanguages);
+                    && Objects.equals(programmingLanguages, otherEditPersonDescriptor.programmingLanguages)
+                    && Objects.equals(priority, otherEditPersonDescriptor.priority);
         }
 
         @Override
@@ -324,6 +345,7 @@ public class EditCommand extends Command {
                     .add("info", info)
                     .add("tags", tags)
                     .add("programmingLanguages", programmingLanguages)
+                    .add("priority", priority)
                     .toString();
         }
 

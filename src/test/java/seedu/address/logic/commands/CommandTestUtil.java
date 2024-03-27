@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROGRAMMING_LANGUAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -49,7 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_PROGRAMMING_LANG_JAVA = "Java";
-
+    public static final String VALID_PRIORITY_AMY = "2";
+    public static final String VALID_PRIORITY_BOB = "2";
     public static final String COMPANY_NAME_DESC_AMY = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_AMY;
     public static final String COMPANY_NAME_DESC_BOB = " " + PREFIX_COMPANY_NAME + VALID_COMPANY_NAME_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -70,7 +72,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String PROGRAMMING_LANG_DESC_DEFAULT =
             " " + PREFIX_PROGRAMMING_LANGUAGE + VALID_PROGRAMMING_LANG_JAVA;
-
+    public static final String PRIORITY_DESC_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
+    public static final String PRIORITY_DESC_BOB = " " + PREFIX_PRIORITY + VALID_PRIORITY_BOB;
     public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY_NAME
             + "123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1";
     // length of company name is <= 100
@@ -82,6 +85,7 @@ public class CommandTestUtil {
                                                                 + "121320221400"; //wrong format
     public static final String INVALID_SALARY_DESC = " " + PREFIX_SALARY + "0$"; // '$' not allowed in salary
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "5"; // priority should be 0-4
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -99,7 +103,8 @@ public class CommandTestUtil {
                 .withInterviewTime(VALID_INTERVIEWTIME_AMY)
                 .withSalary(VALID_SALARY_AMY)
                 .withInfo(VALID_INFO_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND)
+                .withPriority(VALID_PRIORITY_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder()
                 .withCompanyName(VALID_COMPANY_NAME_BOB)
                 .withName(VALID_NAME_BOB)
@@ -108,7 +113,8 @@ public class CommandTestUtil {
                 .withInterviewTime(VALID_INTERVIEWTIME_BOB)
                 .withSalary(VALID_SALARY_BOB)
                 .withInfo(VALID_INFO_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withPriority(VALID_PRIORITY_BOB).build();
     }
 
     /**

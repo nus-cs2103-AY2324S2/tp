@@ -28,6 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_INTERVIEWTIME = "121220221400";
     public static final String DEFAULT_SALARY = "0";
     public static final String DEFAULT_INFO = "";
+    public static final int DEFAULT_PRIORITY = 2;
 
     private CompanyName companyName;
     private Name name;
@@ -39,7 +40,7 @@ public class PersonBuilder {
     private Info info;
     private Set<Tag> tags;
     private Set<ProgrammingLanguage> programmingLanguages;
-
+    private int priority;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -54,6 +55,7 @@ public class PersonBuilder {
         info = new Info(DEFAULT_INFO);
         tags = new HashSet<>();
         programmingLanguages = new HashSet<>();
+        priority = DEFAULT_PRIORITY;
     }
 
     /**
@@ -70,6 +72,7 @@ public class PersonBuilder {
         info = personToCopy.getInfo();
         tags = new HashSet<>(personToCopy.getTags());
         programmingLanguages = new HashSet<>(personToCopy.getProgrammingLanguages());
+        priority = personToCopy.getPriority();
     }
 
     /**
@@ -157,6 +160,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(int priority) {
+        this.priority = priority;
+        return this;
+    }
 
     /**
      * Builds and returns a {@code Person} object with the current attributes set in this {@code PersonBuilder}.
@@ -164,7 +174,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(companyName, name, phone, email, address, dateTime, salary, info, tags,
-                programmingLanguages);
+                programmingLanguages, priority);
     }
 
 }

@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_SALARY = new Prefix("s/");
     public static final Prefix PREFIX_INFO = new Prefix("i/");
     public static final Prefix PREFIX_PROGRAMMING_LANGUAGE = new Prefix("pl/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pri/");
 
 }
