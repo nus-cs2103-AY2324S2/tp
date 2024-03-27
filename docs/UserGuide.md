@@ -31,7 +31,7 @@ interactions, FitBook is the perfect application for you to manage your clients!
 
         1. Run `java -jar FitBook.jar` to launch FitBook.
 
-1. A GUI similar to the one depicted below should appear in a few seconds. The app  contains some sample data for you to familiarize yourself with the UI.<br>
+1. A GUI similar to the one depicted below should appear in a few seconds. The app contains some sample data for you to familiarize yourself with the UI.<br>
 
 ![Ui](images/Ui.png)
 
