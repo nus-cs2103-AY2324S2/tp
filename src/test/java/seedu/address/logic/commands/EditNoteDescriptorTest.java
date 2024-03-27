@@ -22,7 +22,7 @@ import seedu.address.testutil.EditNoteDescriptorBuilder;
 public class EditNoteDescriptorTest {
 
     @Nested
-    class FieldTests {
+    public class GetSetAttributesTests {
         @Test
         void setAndGetDate() {
             LocalDate testDate = LocalDate.of(2023, 10, 5);

@@ -48,6 +48,7 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         return new EditNoteCommand(patientIndex, noteIndex, editNoteDescriptor);
 
     }
+
     private EditNoteDescriptor createEditNoteDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         EditNoteDescriptor editNoteDescriptor = new EditNoteDescriptor();
 

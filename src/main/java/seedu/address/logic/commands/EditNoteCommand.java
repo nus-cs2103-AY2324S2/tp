@@ -73,10 +73,10 @@ public class EditNoteCommand extends Command {
 
         if (patientIndex.getZeroBased() >= lastShownPatientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
-        } else {
-            if (noteIndex.getZeroBased() >= lastShownPatientList.get(patientIndex.getZeroBased()).getNotes().size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
-            }
+        }
+
+        if (noteIndex.getZeroBased() >= lastShownPatientList.get(patientIndex.getZeroBased()).getNotes().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INDEX);
         }
 
         Person personToEdit = lastShownPatientList.get(patientIndex.getZeroBased());

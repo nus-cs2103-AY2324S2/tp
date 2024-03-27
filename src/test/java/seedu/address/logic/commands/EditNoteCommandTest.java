@@ -39,7 +39,7 @@ class EditNoteCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Note editedNote = new Note(LocalDateTime.now(), new Description("Updated Description"));
-        testEditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, editedNote,
+        executeCommand_success(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, editedNote,
                 String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS, Messages.format(editedNote)));
     }
 
@@ -47,7 +47,7 @@ class EditNoteCommandTest {
     public void execute_editDescriptionOnly_success() throws CommandException {
         Note originalNote = getOriginalNote(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE);
         Note editedNote = new Note(originalNote.getDateTime(), new Description("New Description Only"));
-        testEditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, editedNote,
+        executeCommand_success(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, editedNote,
                 String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS, Messages.format(editedNote)));
     }
 
@@ -55,7 +55,7 @@ class EditNoteCommandTest {
     public void execute_editDateTimeOnly_success() throws CommandException {
         Note originalNote = getOriginalNote(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE);
         Note editedNote = new Note(LocalDateTime.now(), originalNote.getDescription());
-        testEditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, editedNote,
+        executeCommand_success(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, editedNote,
                 String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS, Messages.format(editedNote)));
     }
 
@@ -131,7 +131,7 @@ class EditNoteCommandTest {
         return model.getFilteredPersonList().get(patientIndex.getZeroBased()).getNotes().get(noteIndex.getZeroBased());
     }
 
-    private void testEditNoteCommand(Index patientIndex, Index noteIndex, Note editedNote,
+    private void executeCommand_success(Index patientIndex, Index noteIndex, Note editedNote,
                                      String expectedMessage) throws CommandException {
         EditNoteCommand.EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder(editedNote).build();
         EditNoteCommand command = new EditNoteCommand(patientIndex, noteIndex, descriptor);
