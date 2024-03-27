@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
@@ -33,25 +32,25 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+        <!-- SplitPane to divide the screen into person card and CLI -->
+        <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
+          <!-- Left side for person list -->
+          <VBox styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          </VBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+          <!-- Right side for CLI -->
+          <VBox styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="5" right="10" bottom="5" left="10" />
+            </padding>
+            <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS" minHeight="100" prefHeight="100" maxHeight="500" />
+            <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER" />
+          </VBox>
+        </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

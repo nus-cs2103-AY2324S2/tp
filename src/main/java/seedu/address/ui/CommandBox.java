@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
@@ -20,6 +21,8 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML
     private TextField commandTextField;
+    @FXML
+    private TextArea resultDisplayArea;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -42,10 +45,26 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
-            commandExecutor.execute(commandText);
+            CommandResult commandResult = commandExecutor.execute(commandText);
+
+            // Update your output display area with the result of the command
+            if (resultDisplayArea != null) {
+                resultDisplayArea.appendText(commandResult.getFeedbackToUser() + "\n");
+                // Auto-scroll to the bottom
+                resultDisplayArea.setScrollTop(Double.MAX_VALUE);
+            }
+
             commandTextField.setText("");
+            setStyleToDefault();
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+
+            // You might want to display error feedback in the result display area
+            if (resultDisplayArea != null) {
+                resultDisplayArea.appendText(e.getMessage() + "\n");
+                // Auto-scroll to the bottom
+                resultDisplayArea.setScrollTop(Double.MAX_VALUE);
+            }
         }
     }
 
