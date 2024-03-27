@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,6 +24,7 @@ import seedu.address.model.person.PersonLessThanEfficiencyPredicate;
 public class FilterEfficiencyCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void execute_validPredicate_personsFound() {
@@ -30,7 +32,7 @@ public class FilterEfficiencyCommandTest {
         PersonLessThanEfficiencyPredicate predicate = preparePredicate("20");
         FilterEfficiencyCommand command = new FilterEfficiencyCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(FIONA, GEORGE), model.getFilteredPersonList());
     }
 
