@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkLoanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -97,6 +98,12 @@ public class AddressBookParserTest {
                 + " 1 " + PREFIX_LOAN_INDEX + "2");
         DeleteLoanCommand test = new DeleteLoanCommand(INDEX_FIRST_PERSON, Index.fromOneBased(2));
         assertEquals(test, ddlc);
+    }
+
+    @Test
+    public void parseCommand_markLoan() throws Exception {
+        assertTrue(parser.parseCommand(MarkLoanCommand.COMMAND_WORD) instanceof MarkLoanCommand);
+        assertTrue(parser.parseCommand(MarkLoanCommand.COMMAND_WORD + " 3") instanceof MarkLoanCommand);
     }
 
     @Test
