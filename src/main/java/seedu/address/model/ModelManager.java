@@ -26,8 +26,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final Library library;
-    //TODO add Library into ModelManager constructor and MainApp#initModelManager
-    //TODO add Library methods I need into Model and ModelManager
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -163,6 +161,11 @@ public class ModelManager implements Model {
     @Override
     public void setThreshold(Threshold threshold) {
         library.setThreshold(threshold);
+    }
+
+    @Override
+    public Threshold getThreshold() {
+        return library.getThreshold();
     }
 
     @Override

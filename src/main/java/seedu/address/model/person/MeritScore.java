@@ -60,8 +60,8 @@ public class MeritScore {
         }
 
         // Check if meritScore consists only of digits
-        if (!meritScore.matches("\\d+")) {
-            throw new IllegalArgumentException("meritScore contains non-numeric characters");
+        if (!meritScore.matches("-?\\d+")) {
+            throw new IllegalArgumentException("meritScore contains non integer or non minus sign characters");
         }
 
         try {

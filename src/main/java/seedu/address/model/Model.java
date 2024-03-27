@@ -116,6 +116,11 @@ public interface Model {
     void setThreshold(Threshold threshold);
 
     /**
+     * Returns the threshold of the library.
+     */
+    Threshold getThreshold();
+
+    /**
      * Returns true if threshold of library is the same as {@code threshold}.
      */
     boolean hasThreshold(Threshold threshold);

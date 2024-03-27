@@ -18,7 +18,7 @@ import seedu.address.model.book.Book;
  * The LibraryLogic Class manages the loading and saving of available books to a txt file.
  */
 public class LibraryLogic {
-//TODO Refactor LibraryLogic to LibraryStorage and change file location to under storage package
+    //TODO Refactor LibraryLogic to LibraryStorage and change file location to under storage package
     private String filePath;
     private ArrayList<Book> availableBooks;
     private Threshold threshold;

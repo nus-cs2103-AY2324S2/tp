@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyLibrary;
 import seedu.address.model.book.Book;
 import seedu.address.model.person.Person;
@@ -57,7 +56,7 @@ public class Library implements ReadOnlyLibrary {
      * Construct a library with the specified list of books and threshold.
      *
      * @param bookList The list of books to initialize the library with.
-     * @param i The threshold limit
+     * @param threshold The threshold limit
      */
     public Library(ArrayList<Book> bookList, Threshold threshold) {
         this.bookList = bookList;

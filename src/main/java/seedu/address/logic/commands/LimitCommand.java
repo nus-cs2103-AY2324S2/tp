@@ -18,9 +18,6 @@ public class LimitCommand extends Command {
 
     public static final String MESSAGE_LIMIT_THRESHOLD_SUCCESS = "Limit set to: %s";
     public static final String MESSAGE_DUPLICATE_LIMIT = "Library already has the same limit set";
-    //TODO finish execute to edit library threshold
-    //TODO Use LimitCommandParser somewhere?
-    //TODO Make error for duplicate threshold
     public final Threshold threshold;
 
     /**
