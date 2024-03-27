@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import seedu.address.model.person.Entry;
 import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Person;
@@ -54,8 +55,11 @@ public class PersonCard extends UiPart<Region> {
             }
         }
         id.setText(displayedIndex + ". ");
+        id.setFont(Font.loadFont("./resources/view/Pixel_font/PressStart2P-Regular.ttf", 120));
         name.setText(person.getEntry("Name").toString());
+        name.setFont(Font.loadFont("./resources/view/Pixel_font/PressStart2P-Regular.ttf", 120));
         result.setText(text);
+        result.setFont(Font.loadFont("./resources/view/Pixel_font/PressStart2P-Regular.ttf", 120));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
