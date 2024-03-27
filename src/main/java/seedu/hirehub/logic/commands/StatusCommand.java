@@ -29,7 +29,7 @@ public class StatusCommand extends Command {
     public static final String MESSAGE_STATUS_PERSON_SUCCESS = "Status of Candidate Successfully"
             + " Updated to %1$s";
 
-    public static final String MESSAGE_APPLICATION_NOT_FOUND = "Provided candidate who applied for Job %1$s not"
+    public static final String MESSAGE_APPLICATION_NOT_FOUND = "Provided candidate who applied for Job \"%1$s\" not"
             + " found in the list of available applications";
 
     public static final String MESSAGE_DUPLICATE_STATUS = "This candidate with identical recruitment status %1$s "

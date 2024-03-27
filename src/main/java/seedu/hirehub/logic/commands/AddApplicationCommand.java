@@ -19,8 +19,8 @@ import seedu.hirehub.model.status.Status;
 /**
  * Adds an job application from a candidate to the list of job applications
  */
-public class ApplicationCommand extends Command {
-    public static final String COMMAND_WORD = "app";
+public class AddApplicationCommand extends Command {
+    public static final String COMMAND_WORD = "add_app";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new job application "
             + "from a candidate to the list of applications.\n"
             + "Parameters: "
@@ -46,7 +46,7 @@ public class ApplicationCommand extends Command {
      * @param jobTitle of the job to match a candidate with the job they applied for
      * @param status of the person to show the current recruitment status of a candidate
      */
-    public ApplicationCommand(Email email, String jobTitle, Status status) {
+    public AddApplicationCommand(Email email, String jobTitle, Status status) {
         requireNonNull(email);
         requireNonNull(jobTitle);
         requireNonNull(status);
@@ -59,7 +59,7 @@ public class ApplicationCommand extends Command {
      * Overloads the constructor where the status is set as "PRESCREEN" as a default if it is not
      * provided by the recruiter
      */
-    public ApplicationCommand(Email email, String jobTitle) {
+    public AddApplicationCommand(Email email, String jobTitle) {
         requireNonNull(email);
         requireNonNull(jobTitle);
         this.email = email;
@@ -81,6 +81,11 @@ public class ApplicationCommand extends Command {
         }
 
         model.addApplication(newCandidateApplication);
+
+        // TODO: remove print statements once UI is up and running
+        for (Application app: model.getFilteredApplicationList()) {
+            System.out.println(app);
+        }
 
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, personMatchingEmail.getName(), jobTitle));
     }
@@ -129,14 +134,14 @@ public class ApplicationCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ApplicationCommand)) {
+        if (!(other instanceof AddApplicationCommand)) {
             return false;
         }
 
-        ApplicationCommand otherApplicationCommand = (ApplicationCommand) other;
-        return email.equals(otherApplicationCommand.email)
-                && jobTitle.equals(otherApplicationCommand.jobTitle)
-                && status.equals(otherApplicationCommand.status);
+        AddApplicationCommand otherAddApplicationCommand = (AddApplicationCommand) other;
+        return email.equals(otherAddApplicationCommand.email)
+                && jobTitle.equals(otherAddApplicationCommand.jobTitle)
+                && status.equals(otherAddApplicationCommand.status);
     }
 
     @Override
