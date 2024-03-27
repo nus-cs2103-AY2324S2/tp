@@ -157,9 +157,8 @@ Format: `delete INDEX1, INDEX2, INDEX3, …​`
 * Listing the same index more than once will result in an error message being displayed.
 * Each `INDEX` must still adhere to the points listed above.
 
-Examples:
+Example:
 * `delete 3, 1, 7, 8` deletes the first, third, seventh, and eighth person in the address book.
-* `delete 1, 1, 2` causes `There is a duplicate Index listed.` error message to be displayed.
 
 ### Clearing all entries : `clear`
 
