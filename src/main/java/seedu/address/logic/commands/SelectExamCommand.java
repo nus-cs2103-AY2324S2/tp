@@ -1,51 +1,48 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exam.Exam;
 
-
 /**
- * Selects an exam from the address book.
+ * Selects an exam identified using it's displayed index from the address book.
  */
 public class SelectExamCommand extends Command {
 
     public static final String COMMAND_WORD = "selectExam";
 
-    public static final String MESSAGE_USAGE = "selectExam: Selects the exam by its name. "
-        + "Parameters: " + PREFIX_NAME + " NAME\n"
-        + "Example: selectExam " + PREFIX_NAME + "Midterm";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Selects the exam identified by the index number used in the displayed exam list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Exam selected: %1$s";
-    public static final String MESSAGE_EXAM_NOT_FOUND = "Exam not found";
+    public static final String MESSAGE_SELECT_EXAM_SUCCESS = "Selected Exam: %1$s";
 
-    private final String targetExamName;
+    private final Index targetIndex;
 
-    /**
-     * Creates a SelectExamCommand to select the specified {@code Exam}
-     */
-    public SelectExamCommand(String examName) {
-        this.targetExamName = examName;
+    public SelectExamCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Exam> examList = model.getExamList();
-        if (examList == null || examList.isEmpty()) {
-            throw new CommandException(MESSAGE_EXAM_NOT_FOUND);
-        }
-        for (Exam exam : examList) {
-            if (exam.getName().equals(targetExamName)) {
-                model.selectExam(exam);
-                return new CommandResult(String.format(MESSAGE_SUCCESS, exam));
-            }
+        requireNonNull(model);
+        List<Exam> lastShownList = model.getExamList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
         }
 
-        throw new CommandException(MESSAGE_EXAM_NOT_FOUND);
+        Exam examToSelect = lastShownList.get(targetIndex.getZeroBased());
+        model.selectExam(examToSelect);
+        return new CommandResult(String.format(MESSAGE_SELECT_EXAM_SUCCESS, examToSelect));
     }
 
     @Override
@@ -59,6 +56,13 @@ public class SelectExamCommand extends Command {
         }
 
         SelectExamCommand otherSelectExamCommand = (SelectExamCommand) other;
-        return targetExamName.equals(otherSelectExamCommand.targetExamName);
+        return targetIndex.equals(otherSelectExamCommand.targetIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
     }
 }

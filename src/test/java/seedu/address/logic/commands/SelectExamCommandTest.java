@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-// import java.util.Collections;
-// import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -26,11 +25,11 @@ public class SelectExamCommandTest {
         UserPrefs userPrefs = new UserPrefs();
         Model model = new ModelManager(addressBook, userPrefs);
 
-        SelectExamCommand command = new SelectExamCommand("Midterm");
+        SelectExamCommand command = new SelectExamCommand(Index.fromOneBased(1));
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(SelectExamCommand.MESSAGE_SUCCESS, exam), result.getFeedbackToUser());
+        assertEquals(String.format(SelectExamCommand.MESSAGE_SELECT_EXAM_SUCCESS, exam), result.getFeedbackToUser());
     }
 
     @Test
@@ -41,23 +40,23 @@ public class SelectExamCommandTest {
         UserPrefs userPrefs = new UserPrefs();
         Model model = new ModelManager(addressBook, userPrefs);
 
-        SelectExamCommand command = new SelectExamCommand("Final");
+        SelectExamCommand command = new SelectExamCommand(Index.fromOneBased(2));
 
         assertThrows(CommandException.class, () -> command.execute(model));
     }
 
     @Test
     public void equals_sameValues_returnsTrue() {
-        SelectExamCommand command1 = new SelectExamCommand("Midterm");
-        SelectExamCommand command2 = new SelectExamCommand("Midterm");
+        SelectExamCommand command1 = new SelectExamCommand(Index.fromOneBased(1));
+        SelectExamCommand command2 = new SelectExamCommand(Index.fromOneBased(1));
 
         assertEquals(command1, command2);
     }
 
     @Test
     public void equals_differentValues_returnsFalse() {
-        SelectExamCommand command1 = new SelectExamCommand("Midterm");
-        SelectExamCommand command2 = new SelectExamCommand("Final");
+        SelectExamCommand command1 = new SelectExamCommand(Index.fromOneBased(1));
+        SelectExamCommand command2 = new SelectExamCommand(Index.fromOneBased(2));
 
         assertNotEquals(command1, command2);
     }
