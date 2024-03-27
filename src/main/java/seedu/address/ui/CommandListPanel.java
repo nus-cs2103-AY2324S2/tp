@@ -32,6 +32,9 @@ public class CommandListPanel extends UiPart<Region> {
         loadCommands();
     }
 
+    /**
+     * Populates the command list view with a set of predefined commands.
+     */
     private void loadCommands() {
         ObservableList<CommandInfo> commandList = FXCollections.observableArrayList(
                 new CommandInfo("list", "Lists all contact"),
@@ -53,6 +56,10 @@ public class CommandListPanel extends UiPart<Region> {
         commandListView.setCellFactory(listView -> new CommandListViewCell());
     }
 
+    /**
+     * Initializes the command list panel by loading its CSS stylesheet.
+     * If the stylesheet cannot be found, a warning is logged.
+     */
     @FXML
     public void initialize() {
 
