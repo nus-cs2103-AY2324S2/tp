@@ -165,13 +165,15 @@ class AddRelationshipCommandTest {
         String familyRelationshipDescriptor = "housemates";
 
         // Ensure model does not initially contain the relationship
-        assertEquals(model.hasRelationship(new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor)), false);
+        assertEquals(model.hasRelationship(new Relationship(person1Uuid, person2Uuid,
+                familyRelationshipDescriptor)), false);
 
         // Execute the command
         CommandResult commandResult = addRelationshipCommand.execute(model);
 
         // Ensure model now contains the relationship
-        assertEquals(model.hasRelationship(new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor)), true);
+        assertEquals(model.hasRelationship(new Relationship(person1Uuid, person2Uuid,
+                familyRelationshipDescriptor)), true);
 
         // Ensure command result contains the expected message
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);

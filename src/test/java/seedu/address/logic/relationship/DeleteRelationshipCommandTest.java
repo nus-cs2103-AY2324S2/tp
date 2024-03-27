@@ -1,6 +1,5 @@
 package seedu.address.logic.relationship;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -11,15 +10,11 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.relationship.Relationship;
-import seedu.address.model.person.relationship.SiblingRelationship;
-import seedu.address.model.person.relationship.SpousesRelationship;
 
 class DeleteRelationshipCommandTest {
     private Model model;
@@ -54,7 +49,8 @@ class DeleteRelationshipCommandTest {
         UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
         UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
         // Don't add the relationship to the model
-        String expectedMessage = String.format("Sorry %s do not exist", new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        String expectedMessage = String.format("Sorry %s do not exist", new Relationship(person1Uuid,
+                person2Uuid, relationshipDescriptor));
         DeleteRelationshipCommand deleteRelationshipCommand =
                 new DeleteRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
         assertCommandFailure(deleteRelationshipCommand, model, expectedMessage);
