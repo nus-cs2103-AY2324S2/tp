@@ -150,9 +150,6 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
-    private void setDependencies() {
-
-    }
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
