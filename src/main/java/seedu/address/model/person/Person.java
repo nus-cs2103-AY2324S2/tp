@@ -26,7 +26,7 @@ public class Person {
     private final Attendance attendance;
 
     /**
-     * Every field must be present and not null.
+     * Create a new contact with name, classGroup, email, phone, telegram, github.
      */
     public Person(Name name, ClassGroup classGroup, Email email, Optional<Phone> phone,
                   Optional<Telegram> telegram, Optional<Github> github) {
@@ -38,6 +38,21 @@ public class Person {
         this.telegram = telegram;
         this.github = github;
         this.attendance = new Attendance();
+    }
+
+    /**
+     * Create a copy of an existing contact with name, classGroup, email, phone, telegram, github, attendance.
+     */
+    public Person(Name name, ClassGroup classGroup, Email email, Optional<Phone> phone,
+                  Optional<Telegram> telegram, Optional<Github> github, Attendance attendance) {
+        requireAllNonNull(name, classGroup, email, phone);
+        this.name = name;
+        this.classGroup = classGroup;
+        this.email = email;
+        this.phone = phone;
+        this.telegram = telegram;
+        this.github = github;
+        this.attendance = attendance;
     }
 
     public Name getName() {
