@@ -26,6 +26,7 @@ import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
@@ -128,8 +129,9 @@ public class EditCommand extends Command {
         Optional<Github> updatedGithub = editPersonDescriptor.getGithub().isPresent()
                 ? editPersonDescriptor.getGithub() : personToEdit.getGithub();
         Attendance existingAttendance = personToEdit.getAttendance();
+        Notes existingNotes = personToEdit.getNotes();
         return new Person(updatedName, updatedClassGroup, updatedEmail,
-                updatedPhone, updatedTelegram, updatedGithub, existingAttendance);
+                updatedPhone, updatedTelegram, updatedGithub, existingAttendance, existingNotes);
     }
 
     @Override
