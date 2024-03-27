@@ -12,7 +12,7 @@ Participant ":Storage" as storage STORAGE_COLOR
 user -[USER_COLOR]> ui : "sort pri/"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("sort 0")
+ui -[UI_COLOR]> logic : execute("sort pri/")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : updateSortedPersonList(p)
