@@ -64,7 +64,7 @@ class AddRelationshipCommandParserTest {
     }
 
     @Test
-    void parse_upperAndLowerCaseInputs_success() {;
+    void parse_upperAndLowerCaseInputs_success() {
         String userInput = "parent 0001 child 0003 Bioparents";
         AddRelationshipCommand expected = new AddRelationshipCommand("0001", "0003",
                 "bioparents", "parent", "child");
