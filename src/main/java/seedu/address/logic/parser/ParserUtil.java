@@ -164,6 +164,7 @@ public class ParserUtil {
             return;
         }
         throw new ParseException(MESSAGE_INVALID_NO_ARGUMENTS_COMMAND);
+    }
 
     /**
      * Parses {@code String csv} into a {@code String[]}
