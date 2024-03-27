@@ -59,4 +59,8 @@ public class Messages {
         return "Booking created!";
     }
 
+    public static String formatCancel(Booking booking) {
+        return booking.getDescription().description + " cancelled!";
+    }
+
 }

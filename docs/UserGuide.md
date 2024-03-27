@@ -3,16 +3,56 @@ layout: page
 title: User Guide
 ---
 
-Introducing Dook: a **cutting-edge desktop application** engineered for the 
-seamless management of consultations and contacts, blending the power of a
-**Command Line Interface (CLI)** with the intuitive accessibility of a **Graphical User
-Interface (GUI)**. Designed specifically for the dynamic needs of the NUS 
+Welcome to Dook: a **cutting-edge desktop application** for **computing students** engineered for the seamless management of consultations and 
+contacts, blending the power of a [**Command Line Interface (CLI)**](#glossary) with the intuitive accessibility of a 
+[**Graphical User Interface (GUI)**](#glossary). 
+
+Designed specifically for the dynamic needs of the NUS 
 School of Computing community, Dook centralizes faculty information
-in an innovative manner, standing on the foundation of AddressBook Level 3
-(AB3) as an advanced brownfield project. For the quick typist, Dook elevates
-your ability to swiftly organize your academic consultations with professors
+in an innovative manner, standing on the shoulders of AddressBook Level 3
+(AB3) as an advanced brownfield project. 
+
+For the quick typist, Dook elevates your ability to swiftly organize your academic consultations with professors
 and teaching assistants, outpacing conventional GUI-based applications.
 
+We hope that you will find this guide helpful in maximising you Dook experience! :)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Using the Guide
+This user guide walks you through the essential features of *Dook*.
+
+We hope that this guide will familiarise you with the [CLI](#glossary) commands and [GUI](#glossary) and interface. If you
+are unfamiliar with some jargon here, do have a quick look at our [glossary](#glossary) below! :)
+
+* For **first-time users**, please take a look at our [Quick Start](#quick-start) section to start an end-to-end tutorial for Dook.
+* For **seasoned users** who have used _Dook_ before, do take a look at our [Command Summary](#command-summary) for a refresher!
+
+Throughout this guide, we also use coloured boxes to provide any important or extra pointers that we hope you would find useful.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Information** 
+
+Content in blue boxes provides additional information and contextual knowledge you need to better understand Dook.
+</div>
+
+<div markdown="block" class="alert alert-success">
+:bulb: **Tips** 
+
+Content in green boxes provides tips and good practices to help you use the application more efficiently.
+</div>
+
+<div markdown="block" class="alert alert-danger">
+:exclamation: **Warnings** <br>
+
+Content in red boxes draws your attention to potential pitfalls to avoid and alert you to possible errors.
+</div>
+
+Do look out for them!
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -155,8 +195,8 @@ Adds the specified booking to the address book.
 
 Format: `-n [description] -s [start_time] -e [end_time]`
 
-* Creates a booking with the specified parameters. 
-* Start and end time formats are in yyyy-mm-dd
+* Creates a booking with the specified parameters.
+* Start and end time formats are in yyyy-mm-d.
 
 Examples:
 * `book -n John's Birthday Party -s 2023-12-31 19:00 -e 2023-12-31 23:00`
@@ -188,9 +228,15 @@ Clears all contact entries from the address book.
 
 Format: `clear`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+<div markdown="block" class="alert alert-danger">
+
+**:exclamation: Destructive Command!**<br>
+
+This command is **irreversible**, and all your data will be lost. 
+Please use this command with caution!
+
+</div>
+
 
 ### Exiting the program : `exit`
 
@@ -219,8 +265,18 @@ _Details coming soon ..._
 
 ## FAQ
 
+**Q**: How do I install Java 11?
+**A**: Follow this [link](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A) for steps to download Java 11.
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Go to the application's home directory and copy the `data/addressbook.json` file containing your data into the empty 
+data folder created by Dook on the other computer. 
+
+**Q**: Oh no! I have accidentally closed Dook without using the `exit` command? Do I lose all my data?
+**A**: Not to worry! Dook automatically saves all data after every change, so no data will be lost!
+
+**Q**: Do I need Internet connection to use Dook?
+**A**: Nope! Dook works fully offline and online!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,7 +286,15 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Address Book Command summary
+## Command Summary
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:**
+
+The list of valid commands accept **only lowercase letters**. For example, `Book` will not be accepted. Please use `book` instead.
+</div>
+
+### Address Book Command summary
 
 | Action     | Format, Examples                                                                                                                                                                |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -242,7 +306,7 @@ _Details coming soon ..._
 | **List**   | `list`                                                                                                                                                                          |
 | **Help**   | `help`                                                                                                                                                                          |
 
-## Booking List Command summary
+### Booking List Command summary
 
 | Action        | Format, Examples                                                                                                                   |
 |---------------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -252,3 +316,24 @@ _Details coming soon ..._
 | **Edit**      | `edit INDEX [-n DESCRIPTION] [-s START_TIME] [-e END_TIME]`<br> e.g.,`edit 2 -n Prof Aaron's Consultation -s 2024-03-01 14:30`     |
 | **Search**    | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search Prof Lee's Consultation`                                                        |
 | **Free Time** | `check -ft -n NAME`<br> e.g., `check -ft -n Prof Damith`                                                                           |
+
+[Back To ToC](#table-of-contents)
+
+## Glossary
+
+| Term                                                 | Meaning                                                                                                                                                                                                                          |
+|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI (Command Line Interface)                         | A text based interface where users type in commands instead of interacting with the application's graphics.                                                                                                                      |
+| CSV                                                  | A text file format that uses commas to separate values. It is supported by a wide range of software, including Microsoft Excel.                                                                                                  |
+| Command                                              | A line of instructions that you input into the command box. Also see: Command box                                                                                                                                                |
+| Command Box <a name="command-box"></a>               | A box for you to input commands.                                                                                                                                                                                                 |
+| Command Output Box <a name="command-output-box"></a> | A box that displays the results of the command you keyed in. It will tell you whether the command you entered has successfully run, or if there is an error in your command that needs to be fixed. Refer to []() for a picture. |
+| Contact List <a name="contact-list"></a>             | The Contact list is the list of contacts on the left side of the application.                                                                                                                                                    |
+| Booking List <a name="booking-list"></a>             | The Booking list is the list of bookings on the right side of the application.                                                                                                                                                   |
+| GUI (Graphic User Interface)                         | A graphical based interface where users interact the the application's graphics like buttons or scrollpanes. Also see: CLI                                                                                                       |
+| Prefix                                               | A letter or phrase before an input.                                                                                                                                                                                              |
+| Tag                                                  | A text phrase used to categorise employees by. A tag must be either a Student, Professor, or Teaching Assistant (TA)                                                                                                             |
+| Index                                                | The number labelling each employee in the employee list.                                                                                                                                                                         |
+| Web browser                                          | An application to serve the web like Internet Explorer, Google Chrome or Firefox. In fact, you are probably using one to access this guide right now!                                                                            |
+
+[Back To ToC](#table-of-contents)
