@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -13,7 +12,6 @@ import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.AppointmentViewList;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -140,12 +138,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments.setAppointments(appointments);
-        List<AppointmentView> apptListView = new ArrayList<AppointmentView>();
-        for (Appointment appointment : appointments) {
-            AppointmentView apptView = createAppointmentView(appointment);
-            apptListView.add(apptView);
-        }
-        this.appointmentView.setAppointmentViews(apptListView);
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
 
@@ -164,16 +157,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addAppointment(Appointment appt) {
         appointments.add(appt);
-        AppointmentView apptView = createAppointmentView(appt);
-        appointmentView.add(apptView);
-    }
+        this.appointmentView.setAppointmentViews(persons, appointments);
 
-    /**
-     * Adds an appointmentView to the address book.
-     * The appointment must not already exist in the address book.
-     */
-    public void addAppointmentView(AppointmentView apptView) {
-        appointmentView.add(apptView);
     }
 
     /**
@@ -185,19 +170,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
         appointments.setAppointment(target, editedAppointment);
-        AppointmentView targetApptView = createAppointmentView(target);
-        AppointmentView editedApptView = createAppointmentView(editedAppointment);
-        appointmentView.setAppointmentView(targetApptView, editedApptView);
-
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
     /**
      * Cancels {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void cancelAppointment(Appointment key, AppointmentView apptViewKey) {
+    public void cancelAppointment(Appointment key) {
         appointments.remove(key);
-        appointmentView.remove(apptViewKey);
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
     //// util methods
@@ -228,14 +210,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.getMatchingAppointment(nric, date, timePeriod);
     }
 
-    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
-        return appointmentView.getMatchingAppointmentView(name, appt);
-    }
-
     /** delete appointments when person is deleted */
     public void deleteAppointmentsWithNric(Nric targetNric) {
         appointments.deleteAppointmentsWithNric(targetNric);
-        appointmentView.deleteAppointmentsWithNric(targetNric);
+        this.appointmentView.setAppointmentViews(persons, appointments);
     }
 
     /**
