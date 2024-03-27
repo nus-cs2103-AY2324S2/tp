@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane paymentPane;
 
     @FXML
     private Label subject;
@@ -63,5 +68,23 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         uniqueId.setText(String.format("#%s", person.getUniqueId()));
+        initializePaymentDisplay(person);
+    }
+
+    private void initializePaymentDisplay(Person person) {
+        double paymentAmount = person.getPayment().getAmount();
+
+        Text paymentText = new Text(String.format("Payment owed: $%.2f", paymentAmount));
+        if (paymentAmount == 0) {
+            paymentText.setFill(Color.GREEN);
+            paymentText.setText("No payment owed");
+        } else {
+            paymentText.setFill(Color.RED);
+        }
+
+        TextFlow textFlow = new TextFlow(paymentText);
+
+        paymentPane.getChildren().clear();
+        paymentPane.getChildren().add(textFlow);
     }
 }

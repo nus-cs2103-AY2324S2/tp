@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
@@ -21,9 +22,11 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
+ * Note: This class does not handle the {@link Payment} field of {@link Person},
+ * as payment modifications are intended to be managed exclusively through
+ * dedicated payment commands to ensure controlled updates.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
@@ -32,6 +35,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String subject;
     private final String uniqueId;
+    private final String payment;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -41,13 +45,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("subject") String subject,
-                             @JsonProperty("uniqueId") String uniqueId) {
+                             @JsonProperty("uniqueId") String uniqueId, @JsonProperty("payment") String payment) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.subject = subject;
         this.uniqueId = uniqueId;
+        this.payment = payment;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -66,6 +71,9 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         subject = source.getSubject().value;
         uniqueId = source.getUniqueId().id;
+        System.out.println("Payment: " + source.getPayment().value);
+        payment = source.getPayment().value;
+
     }
 
     /**
@@ -115,12 +123,20 @@ class JsonAdaptedPerson {
         if (uniqueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
-        final Id modelId = new Id(uniqueId);
+        if (!Payment.isValidPayment(payment)) {
+            throw new IllegalValueException(Payment.MESSAGE_CONSTRAINTS);
+        }
+        if (payment == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Payment.class.getSimpleName()));
+        }
 
+        final Id modelId = new Id(uniqueId);
         final Subject modelSubject = new Subject(subject);
         final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSubject, modelId);
+        final Payment modelPayment = new Payment(payment);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelSubject, modelId, modelPayment);
     }
 
 }

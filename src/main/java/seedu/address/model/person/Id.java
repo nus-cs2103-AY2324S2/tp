@@ -45,6 +45,11 @@ public class Id {
     }
 
     @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other instanceof Id) {
             Id otherId = (Id) other;

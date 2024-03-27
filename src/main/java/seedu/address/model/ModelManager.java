@@ -150,9 +150,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person getPersonByUniqueId(int uniqueId) {
+    public Person getPersonByUniqueId(String uniqueIdStr) {
         for (Person person : addressBook.getPersonList()) {
-            if (person.getUniqueId().equals(new Id(uniqueId))) {
+            Id uniqueId = new Id(uniqueIdStr);
+            if (person.getUniqueId().equals(uniqueId)) {
                 return person;
             }
         }
@@ -180,4 +181,5 @@ public class ModelManager implements Model {
     public int getTotalPersons() {
         return addressBook.getTotalPersons();
     }
+
 }

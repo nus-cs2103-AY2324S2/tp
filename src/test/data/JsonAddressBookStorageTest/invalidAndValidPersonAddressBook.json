@@ -5,13 +5,15 @@
     "email": "hans@example.com",
     "address": "4th street",
     "subject": "Math",
-    "uniqueId" : "000000"
+    "uniqueId" : "000000",
+    "payment": "0.0"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street",
     "subject": "Math",
-    "uniqueId" : "000001"
+    "uniqueId" : "000001",
+    "payment": "0.0"
   } ]
 }

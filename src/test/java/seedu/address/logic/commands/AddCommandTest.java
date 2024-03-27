@@ -172,7 +172,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Person getPersonByUniqueId(int uniqueId) {
+        public Person getPersonByUniqueId(String uniqueId) {
             throw new AssertionError("This method should not be called.");
         }
     }

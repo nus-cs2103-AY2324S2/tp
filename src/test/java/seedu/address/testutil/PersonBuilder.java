@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Subject;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_SUBJECT = "Math";
     public static final String DEAFULT_UNIQUEID = "1";
+    public static final String DEAFULT_PAYMENT = "0.0";
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Subject subject;
     private Id uniqueId;
+    private Payment payment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +47,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         subject = new Subject(DEFAULT_SUBJECT);
         uniqueId = new Id(DEAFULT_UNIQUEID);
+        payment = new Payment(0.0);
     }
 
     /**
@@ -57,6 +61,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         subject = personToCopy.getSubject();
         uniqueId = personToCopy.getUniqueId();
+        payment = personToCopy.getPayment();
     }
 
     /**
@@ -115,12 +120,28 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Payment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPayment(String payment) {
+        this.payment = new Payment(payment);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Payment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPayment(Double payment) {
+        this.payment = new Payment(payment);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, subject, uniqueId);
+        return new Person(name, phone, email, address, tags, subject, uniqueId, payment);
     }
 
     public Person buildWithoutId() {
-        return new Person(name, phone, email, address, tags, subject);
+        return new Person(name, phone, email, address, tags, subject, payment);
     }
 
 }
