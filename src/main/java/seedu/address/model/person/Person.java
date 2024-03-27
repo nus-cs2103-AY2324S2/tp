@@ -17,40 +17,34 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private EntryList entryList = new EntryList();
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+    public Person(Entry name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
+        entryList.add(name);
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
-        return name;
+    /**
+     * Adds an entry into the list, and then sorts the list
+     * @param entry entry to be added
+     */
+    public void addEntry(Entry entry) {
+        entryList.add(entry);
+        entryList.sort();
+
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Entry getEntry(String category) {
+        return entryList.get(category);
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public void deleteEntry(String category) {
+        entryList.delete(category);
     }
 
     /**
@@ -59,6 +53,10 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     /**
@@ -70,8 +68,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return false;
     }
 
     /**
@@ -89,29 +86,25 @@ public class Person {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        return false;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(getEntry("Name"), getEntry("Phone"), getEntry("Email"), getEntry("Address"), tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
                 .toString();
     }
+    public EntryList getList() {
+        return entryList;
+    }
 
+    public void setList(EntryList e) {
+        entryList = e;
+    }
 }

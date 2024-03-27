@@ -1,15 +1,15 @@
----
-layout: page
-title: Developer Guide
----
-* Table of Contents
-{:toc}
+
+
+# Rainbow Dragon Developer Guide
+
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,14 +21,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -53,7 +48,7 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -62,7 +57,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<puml src="diagrams/ComponentManagers.puml" width="300" />
 
 The sections below give more details of each component.
 
@@ -70,7 +65,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -89,14 +84,16 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
 
 How the `Logic` component works:
 
@@ -108,7 +105,7 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -117,7 +114,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
 
 The `Model` component,
@@ -127,18 +124,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<box type="info" seamless>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-</div>
+<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+
+</box>
 
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -154,6 +153,124 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add functon 
+The new add function allows user to add new contacts to the address book. <br>
+<br> 
+Users can now choose to add tags to the contact upon addition of new contacts by running the command as `add n/name t/tag`. <br>
+<br>
+Users can also add multiple tags to a person upon addition of a new contact by running `add n/name t/tag1 t/tag2`<br>
+<br> 
+Users can also assign new contact categories upon addition by running `add n/name t/tag c/cat d/description`, where `cat` is the category associated 
+with the new contact and `description` is the category information that is assigned to the new contact. <br>
+<br> 
+Users can also assign multiple categorical information to the new contact added by running `add n/name t/tag c/cat1, cat2, cat3 d/d1, d2, d3`, 
+where `cat1` corresponds to `d1` and `cat2` corresponds to `d2` and so on. Users can definitely add more than 3 categories with descriptions in one addition. 
+<br> 
+<br> 
+The sequence diagram below illustrates how the add function can be used. 
+<puml src="docs/diagrams/AddSequenceDiagram.puml" alt="Add Command Sequence Diagram" />
+
+### AddCategory function
+The new addCategory function allows user to be able to add any category to a person <br>
+he sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
+
+<puml src="diagrams/AddCategorySequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `addCategory 1 c/class d/warrior` Command" />
+
+#### 1. How the feature is implemented
+Upon specification of a string for category and description, an entry object is created , which is then added to the person
+specified by the index given by the user. If a duplicate category or invalid index is provided, an error will be thrown
+
+#### 2. Why it is implemented that way.
+Entry requiring only two Strings meant that the type of entries that can be created by the user is limitless, suitable for an application that inputs potential characteristics
+from games. However, due to deleteCategory requiring the category name, it was decided that categories be unique per person. It was required that index be specified as Name can be non unique in addressbook.
+
+#### 3. Alternatives considered.
+Given our initial vision of a customisable field option for the addressbook persons, there wasnt really much of an alternative as gaming contacts can vary quite widely. It would not make sense to have compulsory fields 
+except for name since many things like phone, address and email may be unknown to the user for online or gaming contacts otherwise. This way, things like gaming information can be captured with no restrictions.
+
+### Edit function
+The new edit function allows user to be able to edit any category based they want.<br>
+The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
+
+<puml src="diagrams/EditSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `edit 1 c/Clan d/rainbow` Command" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
+
+#### 1. How the feature is implemented
+The edit feature in the address book application is implemented through the `EditCommand` and `EditCommandParser` classes.
+The `EditCommand` class handles the logic of editing a person's details, such as category, description, and tags.
+It uses an inner class, `EditPersonDescriptor`, to hold the values to be edited, allowing partial updates to a person's information.
+The execute method in `EditCommand` performs the actual update, ensuring that the edited person does not duplicate existing entries.
+The `EditCommandParser` class parses user input into an `EditCommand` object. It validates the input and extracts the necessary information
+(like index, category, description, and tags) to create an `EditPersonDescriptor`, which is then used to instantiate an `EditCommand`.
+Below is the method used to instantiate the `EditPersonDescriptor` used to "remember" what category and description is being changed.
+```
+editPersonDescriptor.set(category, ParserUtil.parse(category, category));
+editPersonDescriptor.setCategory(category);
+```
+Additionally, in the `EditCommand` class, the method:
+```
+Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+```
+Creates this `EditPersonDescriptor` for it to edit the necessary code implemented by the user.
+
+#### 2. Why it is implemented that way.
+This implementation segregates the parsing of user input from the execution logic, adhering to the single responsibility principle
+and making the code more maintainable and testable. The `EditCommand` class focuses solely on the business logic of editing a person's details,
+while the `EditCommandParser` deals with interpreting the user's input. This separation allows for clearer structure and easier debugging,
+as each class has a distinct responsibility. The use of `EditPersonDescriptor` as a way to encapsulate the editable attributes of a person enables a
+flexible design where only specified fields can be updated, enhancing the user experience by allowing partial edits.
+
+#### 3. Alternatives considered.
+Alternatives that might have been considered include implementing the parsing logic directly within the `EditCommand class`, which would reduce the number
+of classes and potentially simplify the command's initiation process. However, this approach could lead to a more complex `EditCommand` class, making it
+harder to manage and maintain. Another alternative could be the use of reflection to dynamically update fields in the `Person` class based on input,
+which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection.
+Additionally, the `EditPersonDescriptor` could be completely remove as the implementation of the `Entry` class would allow the edit of categories directly.
+
+
+### Find function
+
+The Find Command feature within the provided address book application is structured to enable users to search for persons based on specified criteria.
+
+#### Implementation
+
+The feature is implemented through several interconnected components:
+
+1. **FindCommand Class**: This is the core of the feature, encapsulating the logic to find and list all persons whose fields match the specified criteria. It leverages a `PersonFieldsContainKeywordPredicate` to filter matching persons. Upon execution, it updates the model's filtered person list to reflect the search results.
+
+2. **PersonFieldsContainKeywordPredicate Class**: Represents the criteria used to filter persons. It checks if any of the person's fields match the specified keywords in their categories, descriptions, or tags. This flexibility allows for a more nuanced search capability.
+
+3. **FindCommandParser Class**: Parses the user input into a usable format for the `FindCommand`. It ensures the input adheres to the expected format, extracting relevant information to create a `PersonFieldsContainKeywordPredicate`.
+
+4. **Model Interface**: Defines the API that the `FindCommand` interacts with, specifically the `updateFilteredPersonList` method that updates the list of displayed persons based on the predicate.
+
+#### Rationale
+
+The design choices made in implementing the Find Command are based on several considerations:
+
+- **Modularity and Single Responsibility**: Each class has a clear and distinct role. `FindCommand` handles command execution, `PersonFieldsContainKeywordPredicate` defines the search criteria, and `FindCommandParser` processes user input. This separation of concerns makes the code more maintainable and extendable.
+
+- **Flexibility in Search Criteria**: By using a predicate that can filter based on categories, descriptions, and tags, the implementation provides a versatile search functionality. This approach caters to various user needs, allowing for more detailed queries.
+
+- **User-Friendly Command Syntax**: The command syntax is designed to be intuitive, with clear prefixes indicating the type of criteria (category, description, tag). This choice aims to enhance usability, making it easier for users to construct their search queries.
+
+- **Enables Batch Processing**: Specifying multiple `c/<category> d/<description>` allows the user to look for multiple people who satisfy the at least one of the `c/ d/`.
+
+- **Tags**: Finding with tags also allows batch processing, which enhances the users' experience in searching for people who belong to different tags.
+
+#### Alternatives Considered
+
+1. **Regular Expression Searches**: Implementing search functionality that allows for regular expression patterns could provide even more flexibility. However, this might increase the complexity of the user interface and require users to have knowledge of regular expressions.
+
+2. **Separate Commands for Different Criteria**: Creating separate commands for searching by category, description, and tag could simplify the implementation. However, this approach was likely rejected because it would complicate the user experience, requiring users to remember and choose from multiple commands based on their search needs.
+
+In conclusion, the Find Command is implemented with a focus on flexibility, usability, and maintainability, balancing advanced search capabilities with ease of use for the end user. The chosen implementation provides a solid foundation that can be easily extended or modified as the application evolves.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -171,78 +288,62 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<box type="info" seamless>
 
-</div>
+**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</box>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+
+<box type="info" seamless>
+
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
-</div>
+</box>
+=======
+### DeleteCategory function
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+The command `deleteCategory INDEX c/CATEGORY` allows users to delete the `CATEGORY` of a person at the specified `INDEX`.
+The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("deleteCategory 1 c/Clan")` API call as an example.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+<puml src="diagrams/DeleteCategorySequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `deleteCategory 1 c/Clan` Command" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<box type="info" seamless>
 
-</div>
+**Note:** The lifeline for `DeleteCategoryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 
-Similarly, how an undo operation goes through the `Model` component is shown below:
+</box>
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
+The feature of deleting category is implemented by the `DeleteCategoryCommand` and `DeleteCategoryCommandParser` classes.
+The `DeleteCategoryCommand` class handles the logic of deleting one of user's category.
+The execute class in `DeleteCategoryCommand` class checks if the input category is existing.
+The `DeleteCategoryCommandParser` class parses user input into an `DeleteCategoryCommand` object. It validates the input and extracts the necessary information to instantiate an `DeleteCategoryCommand`.
+If the format of command is correct, the `DeleteCategory` object will try to call the `deleteEntry` method from `Parser` class to delete the corresponding category.
+If the format of command is wrong or the category does not exist, the `DeleteCategoryCommand` or `DeleteCategoryCommandParser` class will throw an exception.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+<box type="info" seamless>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** There are some caveat for `deleteCategory` command:
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The category **must exist**.
 
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,6 +363,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* for clan managers or hard core gamers of the game
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -275,29 +377,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                                                                              | So that I can…​                                                             |
+|----------|---------------------|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| `* * `   | Rainbow Dragon user | create and manage multiple character profiles, including their names, classes, and progress  | keep track of my gaming experience for different games                         |
+| `* * `   | Rainbow Dragon user | add custom notes or tags to character profiles                                               | jot down important details or strategies for future reference                  |
+| `* * `   | Rainbow Dragon user | learn comprehensive help documentation and tutorials accessible within the interface         | learn its features and commands more efficiently                               |
+| `* * `   | Rainbow Dragon user | easily search for specific characters or games within the CLI tool                           | quickly access the information I need without navigating through complex menus |
+| `* * `   | Rainbow Dragon user | gain insights and analytics about my gaming habits and progress from the CLI tool            | identify areas for improvement and set goals for future gameplay               |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `RainbowDragon` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  RainbowDragon shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  RainbowDragon deletes the person
 
     Use case ends.
 
@@ -309,17 +410,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. RainbowDragon shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2.  RainbowDragon prompts user to enter person's details
+3.  User enters person's details
+4.  RainbowDragon validates the details
+5.  RainbowDragon adds the person to the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 4a. User cancels the operation.
+
+  Use case ends.
+
+* 4b. User enters invalid details.
+
+    * 4b1. RainbowDragon shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit a person's details**
+
+**MSS**
+
+1.  User requests to edit a person's details
+2.  RainbowDragon prompts user to select a person from the list
+3.  User selects a person from the list
+4.  RainbowDragon shows the person's details.
+5.  User edits the details
+6.  RainbowDragon validates the edited details
+7.  RainbowDragon updates the person's details
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The list is empty.
+
+  Use case ends.
+
+* 5a. User cancels the operation.
+
+  Use case ends.
+
+* 6a. User enters invalid details.
+
+    * 6a1. RainbowDragon shows an error message.
+
+      Use case resumes at step 5.
+
+**Use case: View all persons**
+
+**MSS**
+
+1.  User requests to view all persons
+2.  RainbowDragon shows a list of all persons.
+
+    Use case ends.
+
+**Use case: Search for a person**
+
+**MSS**
+
+1.  User requests to search for a person
+2.  RainbowDragon prompts user to enter search keyword
+3.  User enters search keyword
+4.  RainbowDragon searches for persons matching the keyword
+5.  RainbowDragon shows a list of matching persons
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User cancels the operation.
+
+  Use case ends.
+
+**Use case: View all persons**
+
+**MSS**
+
+1.  User requests to view all persons
+2.  RainbowDragon shows a list of all persons
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should work on any _mainstream OS_. 
+2.  Java `11` or above installed in the user's device.
+3.  The application should not have access to the internet.
+4.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6.  The user should be someone who plays strategy games, MOBAs (Multiplayer Online Battle Arenas), or certain RPGs (Role-Playing Games).
+7.  The application should implement robust security measures to protect user data as the user will be adding sensitive information of others.
+8.  The application will provide comprehensive documentation and tutorials for users to get the most out of the application.
+9.  The application should feature an optimized search algorithm to handle quick searches through extensive data, providing immediate feedback and results to users.
+
 
 *{More to be added}*
 
@@ -327,6 +523,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **AddressBook**: A software application used to store and manage contact information, such as names, phone numbers, and email addresses.
+* **Actor**: In the context of use cases, an actor is a user or system component that interacts with the system to achieve a specific goal.
+* **Use Case**: A description of how a system interacts with its users or other systems to achieve a particular goal.
+* **MSS**: Stands for Main Success Scenario, which outlines the basic steps that should occur when a use case is executed successfully.
+* **Extension**: Describes alternative paths or exceptional conditions that may occur during the execution of a use case.
+* **GUI**: Stands for Graphical User Interface, which is a visual way for users to interact with a software application using graphical elements such as windows, buttons, and menus.
+* **CLI**: Stands for Command Line Interface, which is a text-based way for users to interact with a software application by typing commands into a terminal or command prompt.
+* **Timestamp**: A record of the date and time when an event occurred, often used for tracking changes or actions in a system.
+* **Status Bar**: A horizontal bar typically located at the bottom of a window or application interface, providing information about the current status or state of the system.
+* **Exploratory Testing**: A testing approach where testers explore the software application freely, without predefined test cases, to discover bugs or issues.
+* **Jar file**: Stands for Java Archive file, which is a compressed file format used to package Java applications, libraries, or components.
+* **Prerequisites**: Conditions or actions that must be met or completed before a test case can be executed.
+* **Test Case**: A detailed description of steps to be followed and expected outcomes to be observed when testing a specific aspect or feature of a software application.
+* **Corrupted Data File**: A file that has been damaged or altered in such a way that it cannot be read or processed correctly by the software application.
+* **Status Message**: Information displayed to the user indicating the outcome or result of an action performed by the system.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,10 +545,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<box type="info" seamless>
+
+**Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</div>
+</box>
 
 ### Launch and shutdown
 

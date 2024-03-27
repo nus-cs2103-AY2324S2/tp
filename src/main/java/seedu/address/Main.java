@@ -3,6 +3,7 @@ package seedu.address;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -36,6 +37,7 @@ public class Main {
         // can be ignored.
 
         logger.warning("The warning about Unsupported JavaFX configuration below can be ignored.");
+        Font.loadFont(MainApp.class.getResourceAsStream("/docs/Pixel_font/PressStart2P-Regular.ttf"), 14);
         Application.launch(MainApp.class, args);
     }
 }

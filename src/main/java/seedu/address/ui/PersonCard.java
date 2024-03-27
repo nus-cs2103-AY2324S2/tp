@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
+import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
 import seedu.address.model.person.Person;
 
 /**
@@ -33,11 +36,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label result;
     @FXML
     private FlowPane tags;
 
@@ -47,13 +46,23 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        String text = "";
+        EntryList e = person.getList();
+        for (int i = 0; i < e.size(); i++) {
+            Entry entry = e.get(i);
+            if (!entry.getCategory().equals("Name")) {
+                text = text + e.get(i).toString() + "\n";
+            }
+        }
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        id.setFont(Font.loadFont("./PressStart2P-Regular.ttf", 120));
+        name.setText(person.getEntry("Name").toString());
+        name.setFont(Font.loadFont("./PressStart2P-Regular.ttf", 120));
+        result.setText(text);
+        result.setFont(Font.loadFont("./PressStart2P-Regular.ttf", 120));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
+
