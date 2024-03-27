@@ -80,17 +80,28 @@ Format: `help`
 
 ### Creating a class : `create`
 
-Creates a class in the ClassBook
+Simultaneously creates a class in the ClassBook and an empty StudentBook.
 
-Format: `create c/CLASS_NAME
+![CreateClassCommand](images/CreateClassCommand.png)
+
+Format: `create c/CLASS_NAME`
+
+Examples: 
+* `create c/CS2101`
+* `create c/CS2103T`
 
 ### Viewing the classes : `view`
+
+Shows list of classes in result display.
+
+![ViewCommand](images/ViewCommand.png)
 
 Format: `view`
 
 ### Selecting a class to view : `select`
 
 Shows a list of all students in the selected class.
+![SelectCommand](images/SelectCommand.png)
 
 Format: `select INDEX`
 
@@ -146,9 +157,10 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find andrew` returns `andrew` and `Andrew`
+  ![Find example 1](images/FindCommandCapsInsensitive.png)
+* `find nic faaheem` returns `nic`, `faaheem`<br>
+  ![result for 'find nic faaheem'](images/FindExample2.png)
 
 ### Deleting a student : `delete`
 
