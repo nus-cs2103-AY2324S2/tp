@@ -25,8 +25,8 @@ import staffconnect.model.StaffBook;
 import staffconnect.model.meeting.Description;
 import staffconnect.model.meeting.MeetDateTime;
 import staffconnect.model.meeting.Meeting;
-import staffconnect.model.person.NameContainsKeywordsPredicate;
 import staffconnect.model.person.Person;
+import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 import staffconnect.testutil.EditPersonDescriptorBuilder;
 
 /**

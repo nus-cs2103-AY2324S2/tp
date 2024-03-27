@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import staffconnect.commons.util.ToStringBuilder;
 import staffconnect.logic.Messages;
 import staffconnect.model.Model;
-import staffconnect.model.person.NameContainsKeywordsPredicate;
+import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in staff book whose name contains any of the argument keywords.

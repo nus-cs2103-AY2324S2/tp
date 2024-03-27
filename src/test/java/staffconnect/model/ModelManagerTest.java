@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import staffconnect.commons.core.GuiSettings;
-import staffconnect.model.person.NameContainsKeywordsPredicate;
+import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 import staffconnect.testutil.StaffBookBuilder;
 
 public class ModelManagerTest {

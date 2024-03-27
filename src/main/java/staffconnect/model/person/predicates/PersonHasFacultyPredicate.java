@@ -1,8 +1,10 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import java.util.function.Predicate;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.person.Faculty;
+import staffconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Faculty} matches the given faculty to filter for.
@@ -19,7 +21,7 @@ public class PersonHasFacultyPredicate implements Predicate<Person> {
         if (faculty == null) {
             return true;
         }
-        return person.getFaculty().value.getFacultyName().equalsIgnoreCase(faculty.value.getFacultyName());
+        return person.getFaculty().toString().equalsIgnoreCase(faculty.toString());
     }
 
     @Override

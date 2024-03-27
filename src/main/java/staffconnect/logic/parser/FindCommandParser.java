@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import staffconnect.logic.commands.FindCommand;
 import staffconnect.logic.parser.exceptions.ParseException;
-import staffconnect.model.person.NameContainsKeywordsPredicate;
+import staffconnect.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

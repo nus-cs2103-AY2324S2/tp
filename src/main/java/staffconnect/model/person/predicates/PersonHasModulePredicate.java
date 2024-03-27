@@ -1,8 +1,10 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import java.util.function.Predicate;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.person.Module;
+import staffconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Module} matches the given module to filter for.
@@ -19,7 +21,7 @@ public class PersonHasModulePredicate implements Predicate<Person> {
         if (module == null) {
             return true;
         }
-        return person.getModule().value.equalsIgnoreCase(module.value);
+        return person.getModule().toString().equalsIgnoreCase(module.toString());
     }
 
     @Override

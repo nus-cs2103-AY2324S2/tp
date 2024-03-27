@@ -1,4 +1,4 @@
-package staffconnect.model.person;
+package staffconnect.model.person.predicates;
 
 import java.util.List;
 import java.util.Set;
@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import staffconnect.commons.util.ToStringBuilder;
+import staffconnect.model.person.Person;
 import staffconnect.model.tag.Tag;
 
 /**
