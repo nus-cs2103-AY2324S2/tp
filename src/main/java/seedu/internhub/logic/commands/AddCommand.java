@@ -7,6 +7,7 @@ import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERN_DURATION;
 import static seedu.internhub.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static seedu.internhub.logic.parser.CliSyntax.PREFIX_JOB_DESCRIPTION;
 import static seedu.internhub.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.internhub.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.internhub.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.internhub.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.internhub.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +35,8 @@ public class AddCommand extends Command {
             + PREFIX_JOB_DESCRIPTION + "JOB DESCRIPTION "
             + "[" + PREFIX_INTERVIEW_DATE + "INTERVIEW DATE] "
             + PREFIX_INTERN_DURATION + "INTERN DURATION "
-            + PREFIX_SALARY + "SALARY\n"
+            + PREFIX_SALARY + "SALARY"
+            + PREFIX_NOTE + "NOTE\n"
 
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Happy Burger "
@@ -45,7 +47,8 @@ public class AddCommand extends Command {
             + PREFIX_JOB_DESCRIPTION + "Software Developer intern "
             + PREFIX_INTERVIEW_DATE + "03-05-2024 1200 "
             + PREFIX_INTERN_DURATION + "3 months "
-            + PREFIX_SALARY + "1000";
+            + PREFIX_SALARY + "1000 "
+            + PREFIX_NOTE + "Company CEO is John Doe\n";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

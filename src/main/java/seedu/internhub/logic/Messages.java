@@ -52,7 +52,9 @@ public class Messages {
                 .append("; Internship Duration: ")
                 .append(person.getInternDuration())
                 .append("; Salary: ")
-                .append(person.getSalary());
+                .append(person.getSalary())
+                .append("; Note: ")
+                .append(person.getNote());
         return builder.toString();
     }
 
