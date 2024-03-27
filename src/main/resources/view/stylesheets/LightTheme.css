@@ -7,8 +7,6 @@
     -fx-background-color: #f4f4f4;
 }
 
-
-
 /* ========================================================
       Menu Bar Styles
    ======================================================== */
@@ -106,12 +104,12 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #0e66dc;
+    -fx-background-color: #33bbfb;
     -fx-background-radius: 12px;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #09b5f3;
+    -fx-border-color: #eef6f8;
     -fx-border-width: 1;
     -fx-border-radius: 12px;
 }

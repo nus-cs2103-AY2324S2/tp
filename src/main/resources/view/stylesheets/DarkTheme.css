@@ -7,6 +7,210 @@
     -fx-background-color: black;
 }
 
+/* ========================================================
+      Menu Bar Styles
+   ======================================================== */
+
+.grid-pane {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 1px;
+}
+
+.grid-pane .stack-pane {
+    -fx-background-color: derive(#1d1d1d, 30%);
+}
+
+.context-menu {
+    -fx-background-color: derive(#1d1d1d, 50%);
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Avenir";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
+
+/* ========================================================
+      Menu Button Styles
+   ======================================================== */
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+/* ========================================================
+      Person Card and Panel Styles
+   ======================================================== */
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 12px;
+    -fx-padding: 2 2 2 2;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: rgba(25,27,30,255);
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: rgba(25, 27, 30, 0.8);
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #0e66dc;
+    -fx-background-radius: 12px;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #09b5f3;
+    -fx-border-width: 1;
+    -fx-border-radius: 12px;
+}
+
+.list-cell:filled:selected #tags .label {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+
+.list-cell .label {
+    -fx-text-fill: white;
+}
+
+.cell_big_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+}
+
+.stack-pane {
+    -fx-background-color: #0c0c0c;
+}
+
+.pane-with-border {
+    -fx-background-color: #151515;
+    -fx-border-color: #272727;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+}
+
+/* ========================================================
+      Result Box Styles
+   ======================================================== */
+
+.result-display {
+    -fx-background-color: #151515;
+    -fx-font-family: "Hack";
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}
+
+/* ========================================================
+      Status Bar Styles
+   ======================================================== */
+
+.status-bar {
+    -fx-background-color: #1a1a1a;
+}
+
+.status-bar .label {
+    -fx-font-family: "Avenir";
+    -fx-text-fill: white;
+    -fx-padding: 4px;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-border-width: 1px;
+}
+
+.status-bar-with-border .label {
+    -fx-text-fill: white;
+}
+
+/* ========================================================
+      Other Component Styles
+   ======================================================== */
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Lato";
@@ -91,190 +295,10 @@
     -fx-background-color: derive(#151515, 20%);
 }
 
-/* Person List Panel UI */
-.list-view {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: transparent;
-}
+/* ========================================================
+      Component Title Styles
+   ======================================================== */
 
-.list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-background-color: transparent;
-    -fx-background-radius: 12px;
-    -fx-padding: 2 2 2 2;
-}
-
-.list-cell:filled:even {
-    -fx-background-color: rgba(25,27,30,255);
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: rgba(25, 27, 30, 0.8);
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #0e66dc;
-    -fx-background-radius: 12px;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #09b5f3;
-    -fx-border-width: 1;
-    -fx-border-radius: 12px;
-}
-
-.list-cell:filled:selected #tags .label {
-    -fx-text-fill: black;
-    -fx-background-color: white;
-}
-
-.list-cell .label {
-    -fx-text-fill: white;
-}
-
-.cell_big_label {
-    -fx-font-family: "Segoe UI Bold";
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 12px;
-}
-
-.stack-pane {
-    -fx-background-color: #0c0c0c;
-}
-
-.pane-with-border {
-    -fx-background-color: #151515;
-    -fx-border-color: #272727;
-    -fx-border-width: 2px;
-    -fx-border-radius: 12px;
-    -fx-background-radius: 12px;
-}
-
-/* Result Box Display */
-.result-display {
-    -fx-background-color: #151515;
-    -fx-font-family: "Hack";
-    -fx-font-size: 12pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-
-/* Status Bar UI */
-.status-bar {
-    -fx-background-color: #1a1a1a;
-}
-
-.status-bar .label {
-    -fx-font-family: "Avenir";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
-}
-
-.status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
-}
-
-.grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
-    -fx-border-width: 1px;
-}
-
-.grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Avenir";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: black;
-}
-
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
-.button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}
-
-.button:hover {
-    -fx-background-color: #3a3a3a;
-}
-
-.button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
-}
-
-/* Title Bar */
 .title-bar {
     -fx-background-color: transparent;
     -fx-padding: 5 5 20 20;
@@ -287,7 +311,10 @@
     -fx-font-weight: bold;
 }
 
-/* Scroll Bar UI */
+/* ========================================================
+      Scroll Bar Styles
+   ======================================================== */
+
 .scroll-bar {
     -fx-background-color: transparent;
     -fx-background-insets: 0, 0, 0, 2;
@@ -318,6 +345,10 @@
     -fx-padding: 0;
 }
 
+/* ========================================================
+      Command isSuccess Styles
+   ======================================================== */
+
 .success {
     -fx-text-fill: rgba(105, 239, 50, 0.92) !important; /* Text color for successful commands */
 }
@@ -336,6 +367,10 @@
     -fx-font-size: 11px;
     -fx-text-fill: #ff1723;
 }
+
+/* ========================================================
+      Command Box Text Styles
+   ======================================================== */
 
 #commandTextField {
     -fx-background-color: #151515;
@@ -358,7 +393,10 @@
     -fx-background-radius: 0;
 }
 
-/* Tags UI */
+/* ========================================================
+      Tags Styles
+   ======================================================== */
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
