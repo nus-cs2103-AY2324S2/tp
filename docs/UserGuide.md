@@ -3,6 +3,7 @@ layout: page
 title: User Guide
 pageNav: 3
 ---
+
 # CareerSync User Guide
 Welcome to <span style="color: #f66a0a;">CareerSync</span>'s  User Guide! <span style="color: #f66a0a;">CareerSync</span> 
 is an **internship application manager designed to simplify the management of internship applications**. It is designed to help you **keep track of all your
@@ -52,6 +53,47 @@ does so via the following features:
    a. For more information on what information you can store, refer to the [Fields Summary](#fields-summary) section.
 2. **Search and Filter**: Search and filter your internship applications by keywords, making it easy to find the information you need.
 3. **Task Management**: Add tasks to your individual internship applications and keep track of their individual deadlines.
+=======
+
+<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** ([CLI](#Glossary)).
+
+<span style="color: #f66a0a;">CareerSync</span> is an **internship application tracker** that helps you keep track of all your internship applications in one place.
+<br>Record all the relevant information, such as contact details, application status, and tasks to-do for **all your internships** in one place.
+
+If you are:
+1. someone who is applying for many internships
+2. someone who is looking for a way to keep track of all your internship applications
+3. a Computer Science student
+4. a fast typist
+
+Then <span style="color: #f66a0a;">CareerSync</span> is perfect just for you!
+
+
+It lets you effortlessly manage, search, and sift through your various internship applications!
+
+Primary features include:
+- Add your internship applications in this app to keep track of them easily!
+- See all the important details of your internship applications at a glance!
+- Edit your application details to keep them up-to-date!
+- Search for your internship applications by keywords easily!
+- Keep track of your status for each individual internship application!
+- Add remarks to your internship applications to remember important details!
+- Add tasks to your internship applications to keep track of your progress! (to be added in v1.3)
+
+![Ui](images/Ui.png)
+
+If you are interested in using CareerSync, head over to the [Quick Start](#quick-start) section to get started!
+
+### Table Of Contents
+
+| Section                             | When Should I Use This?                                                 |
+|-------------------------------------|-------------------------------------------------------------------------|
+| [Quick Start](#quick-start)         | If you are using the application for the first time or need a refresher |
+| [Features](#features)               | If you would like to know the capabilities of the application           |
+| [FAQ](#faq)                         | If you have any questions about the application                         |
+| [Known Issues](#known-issues)       | If you have a technical problem. We may have the solution!              |
+| [Command Summary](#command-summary) | If you would like to find more information about a specific command     |
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
@@ -63,7 +105,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer if you are using Windows.
     - If you are using MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
 2. Download the latest `CareerSync.jar` file [here](https://github.com/AY2324S2-CS2103T-W11-1/tp/releases/tag/v1.2).
-3. Make sure your jar file is located in an empty folder.
+3. Make sure your [jar](#glossary) file is located in an empty folder.
 4. Start <span style="color: #f66a0a;">CareerSync</span>.
     - For MacOS:
         - Open up your Terminal by typing <kbd>Command</kbd> + <kbd>Space</kbd>, then type <kbd>Enter</kbd>.<br>
@@ -325,7 +367,7 @@ Click the back button to return to the previous view of internship entries.
 
 Shows the full details of an internship entry. This replaces the current view of internship entries.
 
-CLI input will be implemented in a future release.
+[CLI](#glossary)input will be implemented in a future release.
 
 ### Editing an internship: `edit`
 
@@ -437,7 +479,7 @@ Users are **NOT** recommended to modify their data file directly, since wrong fo
 Only do so if you are an experienced user! <br>
 </div>
 
-CareerSync data is saved in the hard disk, as a JSON file at the path `[JAR file location]/data/internship.json`.
+CareerSync data is saved in the hard disk, as a [JSON](#glossary) file at the path `[JAR file location]/data/internship.json`.
 After every command that changes the data, CareerSync performs a save automatically. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -445,7 +487,7 @@ After every command that changes the data, CareerSync performs a save automatica
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CareerSync home folder.
+**A**: Do the following steps: <br> 1. Navigate to the folder where CareerSync.jar is stored. <br> 2. Copy your data file from data/internshipdata.json. <br> 3. Install the app in the other computer and overwrite the empty data file (data/internshipdata.json) it creates with the file that contains the data (JSON file) of your previous CareerSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -456,15 +498,36 @@ After every command that changes the data, CareerSync performs a save automatica
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-| Action                                        | Description                              |
-|-----------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                   | Adds an Internship.                      |
-| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    |
-| [list](#listing-all-internships-list)         | Removes a Internship.                    |
-| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         |
-| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. |
-| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   |
-| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |
-| [exit](#exiting-the-program-exit)             | Exits and closes the application.        |
+| Action                                        | Description                              | Format |
+|-----------------------------------------------|------------------------------------------|------------------------------------------|
+| [add](#adding-an-entry-add)                   | Adds an Internship.                      | `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE` |
+| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    | `delete INDEX` |
+| [list](#listing-all-internships-list)         | Removes a Internship.                    | `list` |
+| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         | `edit INDEX [/com COMPANY_NAME] [/poc CONTACT_NAME] [/email CONTACT_EMAIL] [/phone CONTACT_NUMBER] [/loc LOCATION_ENUM] [/status STATUS] [/desc DESCRIPTION] [/role ROLE` |
+| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
+| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
+| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
+| [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
+
+## Field Summary
+| Prefix  | Description                        | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|---------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| /com    | Company Name                       | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| /desc   | Description of Internship          | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| /status | Status of Application              | to_apply, ongoing, rejected, accepted                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| /poc    | Name of Person of Contact          | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| /email  | Email of Person of Contact         | Valid-Format: local-part@domain <br> Domain has: <br> 1. The local-part should only contain alphanumeric characters and these special characters: "!#$%&'*+-/=?^_`{ \|}~". It may start or end with any special characters. <br> 2. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| /phone  | Contact Number of Person of Contact| At least 3 numbers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| /loc    | Location of Internship             | remote, local, overseas                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| /role   | Role for the Internship            | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+
+## Glossary
+| Term      | Meaning                                                                                                                   |
+|-----------|---------------------------------------------------------------------------------------------------------------------------|
+| CLI       | [Command Line Interface](#https://en.wikipedia.org/wiki/Command-line_interface)                                           |
+| GUI       | [Graphical User Interface](#https://en.wikipedia.org/wiki/Graphical_user_interface)                                       |
+| JSON      | [JavaScript Object Notation](#https://www.json.org/json-en.html)                                                          |
+| JAR       | [Java Archive: A file format to store and distribute Java Applications](#https://en.wikipedia.org/wiki/JAR_(file_format)) |
+| File Path | [The location of a file in the computer's file system](#https://www.w3schools.com/html/html_filepaths.asp)                |
