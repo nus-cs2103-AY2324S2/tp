@@ -11,11 +11,23 @@ import seedu.edulink.commons.core.LogsCenter;
 import seedu.edulink.model.student.Student;
 import seedu.edulink.model.tag.Tag;
 
-
+/**
+ * Writes the student's data in a .csv File
+ */
 public class CsvUtil {
 
+    public static final String FILE_FORMAT = ".csv";
+    public static final String FOLDER_PATH = "exports/";
     private static final Logger logger = LogsCenter.getLogger(CsvUtil.class);
-    private static final String FOLDER_PATH = "exports/";
+
+
+
+    /**
+     * Writes the Student Data in a .csv file specified by the filename
+     * @param students List of Students to be written in the file.
+     * @param fileName name of the csv file to be created
+     * @throws IOException if unable to create the file or Write data
+     */
     public static void convertToCsv(List<Student> students, String fileName) throws IOException {
         StringBuilder csvContent = new StringBuilder();
         csvContent.append("id,name,phone,email,address,major,intake,tags\n");

@@ -17,6 +17,7 @@ import seedu.edulink.logic.commands.DeleteCommand;
 import seedu.edulink.logic.commands.EditCommand;
 import seedu.edulink.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edulink.logic.commands.ExitCommand;
+import seedu.edulink.logic.commands.ExportCommand;
 import seedu.edulink.logic.commands.FindCommand;
 import seedu.edulink.logic.commands.HelpCommand;
 import seedu.edulink.logic.commands.ListCommand;
@@ -67,6 +68,11 @@ public class AddressBookParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_export() throws Exception {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " f/test") instanceof ExportCommand);
     }
 
     @Test
