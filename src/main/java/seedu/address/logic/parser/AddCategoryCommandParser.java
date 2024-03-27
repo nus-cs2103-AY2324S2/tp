@@ -5,12 +5,13 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCategoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Entry;
+import seedu.address.model.person.EntryList;
 
 /**
  * Parser class for addcategorycommand
@@ -35,20 +36,19 @@ public class AddCategoryCommandParser implements Parser<AddCategoryCommand> {
             throw new ParseException(String
                     .format(MESSAGE_INVALID_COMMAND_FORMAT, AddCategoryCommand.MESSAGE_USAGE), pe);
         }
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CATEGORY, PREFIX_DESCRIPTION);
-        String category = "";
-        String description = "";
-        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            category = argMultimap.getValue(PREFIX_CATEGORY).get().trim();
-        }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
-        }
-        if (category.equals("") || description.equals("")) {
+
+        List<String> categories = argMultimap.getAllValues(PREFIX_CATEGORY);
+        List<String> descriptions = argMultimap.getAllValues(PREFIX_DESCRIPTION);
+        if (categories.size() == 0 || descriptions.size() == 0) {
             throw new ParseException(AddCategoryCommand.ENTRY_NOT_ADDED);
         }
-        Entry entry = new Entry(category, description);
-        return new AddCategoryCommand(index, entry);
+
+        if (categories.size() != descriptions.size()) {
+            throw new ParseException(AddCategoryCommand.DIFFERENT_NUMBER_CATEGORIES_DESCRIPTIONS);
+        }
+
+        EntryList entrylist = ParserUtil.parseEntries(categories, descriptions);
+        return new AddCategoryCommand(index, entrylist);
 
     }
 
