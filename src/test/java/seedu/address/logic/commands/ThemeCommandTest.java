@@ -14,6 +14,6 @@ class ThemeCommandTest {
     @Test
     void execute_themeCommand() {
         ThemeCommand command = new ThemeCommand();
-        assertFalse(command.execute(model)== command.execute(model));
+        assertFalse(command.execute(model) == command.execute(model));
     }
 }
