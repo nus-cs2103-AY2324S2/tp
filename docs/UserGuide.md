@@ -217,6 +217,9 @@ Format: `cancel INDEX`
 * The index refers to the index number shown in the displayed booking list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Examples:
+* `cancel 2` cancels the 2nd booking in the booking list.
+
 ### Searching for a booking : `search`
 
 Searches for the specified booking from the address book.
