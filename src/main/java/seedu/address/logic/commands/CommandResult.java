@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.ui.ViewMode;
 
 /**
  * Represents the result of a command execution.
@@ -14,18 +15,31 @@ public class CommandResult {
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean isShowHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean isExit;
+
+    /** Specifies the viewing mode that the application should be in after command execution. */
+    private final ViewMode viewMode;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean isShowHelp,
+                         boolean isExit, ViewMode viewMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.isShowHelp = isShowHelp;
+        this.isExit = isExit;
+        this.viewMode = viewMode;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code isOverallCommand},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ViewMode viewMode) {
+        this(feedbackToUser, false, false, viewMode);
     }
 
     /**
@@ -33,7 +47,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, ViewMode.ANY);
     }
 
     public String getFeedbackToUser() {
@@ -41,11 +55,15 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return isShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
+    }
+
+    public ViewMode getViewMode() {
+        return viewMode;
     }
 
     @Override
@@ -61,21 +79,23 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && isShowHelp == otherCommandResult.isShowHelp
+                && isExit == otherCommandResult.isExit
+                && viewMode == otherCommandResult.viewMode;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, isShowHelp, isExit, viewMode);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("feedbackToUser", feedbackToUser)
-                .add("showHelp", showHelp)
-                .add("exit", exit)
+                .add("isShowHelp", isShowHelp)
+                .add("isExit", isExit)
+                .add("viewMode", viewMode)
                 .toString();
     }
 
