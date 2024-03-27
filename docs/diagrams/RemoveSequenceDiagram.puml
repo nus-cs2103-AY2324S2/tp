@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
+participant "rc:RemoveCommand" as RemoveCommand LOGIC_COLOR
+participant "rs:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remove 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remove 1")
+activate AddressBookParser
+
+create RemoveCommandParser
+AddressBookParser -> RemoveCommandParser
+activate RemoveCommandParser
+
+RemoveCommandParser --> AddressBookParser
+deactivate RemoveCommandParser
+
+AddressBookParser -> RemoveCommandParser : parse("1")
+activate RemoveCommandParser
+
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand
+activate RemoveCommand
+
+RemoveCommand --> RemoveCommandParser :
+deactivate RemoveCommand
+
+RemoveCommandParser --> AddressBookParser : rc
+deactivate RemoveCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveCommandParser -[hidden]-> AddressBookParser
+destroy RemoveCommandParser
+
+AddressBookParser --> LogicManager : rc
+deactivate AddressBookParser
+
+LogicManager -> RemoveCommand : execute(m)
+activate RemoveCommand
+
+RemoveCommand -> Model : deletePerson(1)
+activate Model
+
+Model --> RemoveCommand
+deactivate Model
+
+create CommandResult
+RemoveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveCommand
+deactivate CommandResult
+
+RemoveCommand --> LogicManager : rs
+deactivate RemoveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

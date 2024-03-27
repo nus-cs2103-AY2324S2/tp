@@ -33,6 +33,12 @@
 
 !define USER_COLOR #000000
 
+!define ADDCOMMANDHELPER_COLOR #00FFFF
+!define ADDCOMMANDHELPER_COLOR_T1 #00BFBF
+
+!define SORTCOMMAND_COLOR #0048ba
+!define SORTCOMMAND_COLOR_T1 #71a6d2
+
 skinparam Package {
     BackgroundColor #FFFFFF
     BorderThickness 1

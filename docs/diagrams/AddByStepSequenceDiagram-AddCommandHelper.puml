@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+skinparam SequenceGroupBodyBackgroundColor #FFFFFF90
+skinparam maxMessageSize 20
+
+
+box AddCommandHelper ADDCOMMANDHELPER_COLOR_T1
+participant ":AddCommandHelper" as AddCommandHelper ADDCOMMANDHELPER_COLOR
+end box
+
+[-> AddCommandHelper : getResponse(text)
+activate AddCommandHelper
+
+
+alt status = complete
+    AddCommandHelper --> AddCommandHelper:formattedCommand()
+
+
+else
+    AddCommandHelper --> AddCommandHelper:processInput(text)
+end
+
+
+[<-- AddCommandHelper : response
+deactivate AddCommandHelper
+
+@enduml

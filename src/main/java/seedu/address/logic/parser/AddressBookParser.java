@@ -8,16 +8,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.AddByStepCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DuplicateCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OverwriteCommand;
+import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.sortfunctions.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.fuzzy.FuzzyCommandParser;
 
 /**
  * Parses user input.
@@ -43,7 +50,10 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
+        /*
         final String commandWord = matcher.group("commandWord");
+         */
+        final String commandWord = FuzzyCommandParser.parseCommand(matcher.group("commandWord"));
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
@@ -62,6 +72,9 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -76,6 +89,21 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand(arguments);
+
+        case AddByStepCommand.COMMAND_WORD:
+            return new AddByStepCommand();
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
+        case DuplicateCommand.COMMAND_WORD:
+            return new DuplicateCommandParser().parse(arguments);
+
+        case OverwriteCommand.COMMAND_WORD:
+            return new OverwriteCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

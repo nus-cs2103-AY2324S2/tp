@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+skinparam SequenceGroupBodyBackgroundColor #FFFFFF90
+
+
+
+box Logic SORTCOMMAND_COLOR_T1
+participant ":LogicManager" as LogicManager SORTCOMMAND_COLOR
+participant ":AddressBookParser" as AddressBookParser SORTCOMMAND_COLOR
+participant "s:SortCommand" as SortCommand SORTCOMMAND_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(sort name)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(sort name)
+activate AddressBookParser
+
+create SortCommand
+AddressBookParser -> SortCommand
+activate SortCommand
+SortCommand --> AddressBookParser
+deactivate SortCommand
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SortCommand : execute(model)
+activate SortCommand
+
+SortCommand -> Model
+activate Model
+
+Model -> AddressBook : getAddressBook()
+activate AddressBook
+
+AddressBook -> UniquePersonList : getPersons()
+activate UniquePersonList
+
+UniquePersonList -> UniquePersonList : sortListByName()
+UniquePersonList --> AddressBook
+deactivate UniquePersonList
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand --> LogicManager
+deactivate SortCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

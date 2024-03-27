@@ -50,7 +50,7 @@ public interface Model {
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    AddressBook getAddressBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -70,11 +70,29 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given person with a name that already exists in the address book.
+     * {@code person}'s name already exists in the address book.
+     */
+    void addDuplicatePerson(Person person);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must be the same as another existing person in the address book.
+     */
+    void setDuplicatePerson(Person target, Person editedPerson);
+
+    /**
+     * Returns {@code person}'s name that already exists in the address book.
+     */
+    Person getPerson(int indexOfTarget);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
