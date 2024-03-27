@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -16,9 +18,9 @@ public class AddExamCommand extends Command {
     public static final String COMMAND_WORD = "addExam";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to the address book. "
-            + "Parameters: EXAM_NAME EXAM_DETAILS\n"
+            + "Parameters: EXAM_NAME n/EXAM_DETAILS s/MAXIMUM_SCORE\n"
             + "Example: " + COMMAND_WORD + " "
-            + "Math Final Important exam";
+            + PREFIX_NAME + "Midterm " + PREFIX_SCORE + "100";
 
     public static final String MESSAGE_SUCCESS = "New exam added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the address book";

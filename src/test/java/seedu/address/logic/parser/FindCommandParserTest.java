@@ -28,7 +28,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidPrefix_throwsParseException() {
         // no leading and trailing whitespaces
-        assertParseFailure(parser, " m/Alice",
+        assertParseFailure(parser, " z/Alice",
                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 

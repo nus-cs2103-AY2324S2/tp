@@ -39,6 +39,7 @@ class JsonAdaptedPerson {
     private final String matric;
     private final String reflection;
     private final String studio;
+    private final List<JsonAdaptedExamScore> examScores = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -48,7 +49,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("matric") String matric,
             @JsonProperty("reflection") String reflection,
-            @JsonProperty("studio") String studio) {
+            @JsonProperty("studio") String studio,
+            @JsonProperty("examScores") List<JsonAdaptedExamScore> examScores) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -59,6 +61,9 @@ class JsonAdaptedPerson {
         this.matric = matric;
         this.reflection = reflection;
         this.studio = studio;
+        if (examScores != null) {
+            this.examScores.addAll(examScores);
+        }
     }
 
     /**
@@ -75,6 +80,11 @@ class JsonAdaptedPerson {
         matric = source.getMatric().matricNumber;
         reflection = source.getReflection().reflection;
         studio = source.getStudio().studio;
+        examScores.addAll(source.getScores().entrySet().stream()
+                .map(entry -> new JsonAdaptedExamScore(entry.getKey().getName(),
+                                                       entry.getKey().getMaxScore().getScore(),
+                                                       entry.getValue().getScore()))
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -86,6 +96,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final Map<Exam, Score> personExamScores = new HashMap<>();
+        for (JsonAdaptedExamScore examScore : examScores) {
+            personExamScores.put(examScore.toModelTypeExam(), examScore.toModelTypeScore());
         }
 
         if (name == null) {
@@ -138,7 +153,7 @@ class JsonAdaptedPerson {
 
         final Studio modelStudio = new Studio(studio);
 
-        final Map<Exam, Score> scores = new HashMap<>();
+        final Map<Exam, Score> scores = new HashMap<>(personExamScores);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress,
                           modelTags, modelMatric, modelReflection, modelStudio, scores);

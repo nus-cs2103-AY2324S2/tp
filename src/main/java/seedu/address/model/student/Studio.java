@@ -39,7 +39,7 @@ public class Studio {
      * @param test String to be tested
      * @return true if the string is an empty studio
      */
-    private static boolean isEmptyStudio(String test) {
+    public static boolean isEmptyStudio(String test) {
         return test.isBlank();
     }
 

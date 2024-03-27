@@ -12,7 +12,8 @@ import seedu.address.model.person.Score;
 public class Exam {
 
     public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces, "
-                                                      + "and it should not be blank";
+                                                      + "and it should not be blank. "
+                                                      + "Exam Score must be greater than zero";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -64,8 +65,8 @@ public class Exam {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public static boolean isValidScore(int test) {
-        return test >= 0;
+    public static boolean isValidExamScore(int test) {
+        return test > 0;
     }
 
     @Override
@@ -90,6 +91,6 @@ public class Exam {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return name.hashCode() + maxScore.hashCode();
     }
 }

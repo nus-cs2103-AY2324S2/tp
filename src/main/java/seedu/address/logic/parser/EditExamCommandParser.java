@@ -39,7 +39,7 @@ public class EditExamCommandParser implements Parser<EditExamCommand> {
             editExamDescriptor.setName(ParserUtil.parseExamName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_SCORE).isPresent()) {
-            editExamDescriptor.setMaxScore(ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get()));
+            editExamDescriptor.setMaxScore(ParserUtil.parseExamScore(argMultimap.getValue(PREFIX_SCORE).get()));
         }
 
         if (!editExamDescriptor.isAnyFieldEdited()) {

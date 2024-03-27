@@ -27,7 +27,9 @@ public class SelectExamCommandParser implements Parser<SelectExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectExamCommand.MESSAGE_USAGE));
         }
 
-        String examName = argMultimap.getValue(PREFIX_NAME).get();
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+
+        String examName = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_NAME).get());
 
         return new SelectExamCommand(examName);
     }
