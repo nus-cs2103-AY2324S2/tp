@@ -32,9 +32,16 @@ public class TaskList {
             this.taskList = new ArrayList<>();
         } else {
             ArrayList<Task> taskList = new ArrayList<>();
-            String[] tasksArray = tasksString.split(", ");
-            for (String taskDescription : tasksArray) {
-                taskList.add(new Task(taskDescription.trim()));
+            String[] tasksArray = tasksString.split("; ");
+            for (String desc : tasksArray) {
+                // Check for a deadline pattern
+                if (desc.contains("(") && desc.contains(")")) {
+                    String description = desc.substring(0, desc.indexOf("(")).trim();
+                    String deadlineStr = desc.substring(desc.indexOf("(") + 1, desc.indexOf(")")).trim();
+                    taskList.add(new Task(description, deadlineStr));
+                } else {
+                    taskList.add(new Task(desc.trim()));
+                }
             }
             this.taskList = taskList;
         }
@@ -52,7 +59,6 @@ public class TaskList {
     }
 
     public Task getTask(int index) {
-        // Index is 1-based
         return taskList.get(index);
     }
 
