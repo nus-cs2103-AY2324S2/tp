@@ -58,6 +58,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setArchivedPersons(List<Person> archivedPersons) {
         this.archivedPersons.setPersons(archivedPersons);
+    }
       
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -217,7 +218,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons)
-                && archivedPersons.equals(otherAddressBook.archivedPersons);
+                && archivedPersons.equals(otherAddressBook.archivedPersons)
                 && reservations.equals(otherAddressBook.reservations);
     }
 

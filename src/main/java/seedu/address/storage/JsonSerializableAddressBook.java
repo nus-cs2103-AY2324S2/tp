@@ -78,6 +78,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
         for (JsonAdaptedPerson jsonAdaptedArchivedPerson : archivedPersons) {
             Person archivedPerson = jsonAdaptedArchivedPerson.toModelType();
             if (addressBook.hasPerson(archivedPerson)) {
@@ -85,6 +86,8 @@ class JsonSerializableAddressBook {
             }
             archivedPerson.setArchived(true);
             addressBook.addArchivedPerson(archivedPerson);
+        }
+
         for (JsonAdaptedReservation jsonAdaptedReservation : reservations) {
             Reservation reservation = jsonAdaptedReservation.toModelType();
             if (addressBook.hasReservation(reservation)) {
@@ -92,6 +95,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addReservation(reservation);
         }
+
         return addressBook;
     }
 
