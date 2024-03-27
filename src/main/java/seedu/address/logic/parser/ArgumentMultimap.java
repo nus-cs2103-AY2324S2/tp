@@ -61,7 +61,7 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
-    
+
     /**
      * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
      * once among the arguments.
@@ -84,7 +84,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Checks if all the prefixes exists in the map
+     * Checks if every single one of the prefixes exists in the map
      * @param prefixes
      * @return true if aall of the prefixes exists in the map
      */
