@@ -68,8 +68,6 @@ public class GroupCommandTest {
 
     /**
      * Checks that trying to modify the student ID of someone not in the list fails.
-     * Currently, GroupCommand will add found IDs to the specified group, while
-     * throwing an exception if there are any unfound IDs at all.
      */
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
