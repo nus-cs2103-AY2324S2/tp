@@ -1,6 +1,6 @@
 ---
 layout: page
-title: CareerSync User Guide
+title: User Guide
 pageNav: 3
 ---
 Welcome to <span style="color: #f66a0a;">CareerSync</span>'s  User Guide! <span style="color: #f66a0a;">CareerSync</span> 
@@ -32,7 +32,7 @@ We recommend that you navigate our User Guide in this order:
 5. Read through the [Fields Summary](#fields-summary) section to understand all the fields and their restrictions.
 
 [FAQ](#faq), [Known Issues](#known-issues) and [Glossary](#glossary) sections provide additional information that you may find useful.
-[Command Summary](#command-summary) provides a quick reference to all the commands available in CareerSync.
+[Command Summary](#command-summary) provides a quick reference to all the commands available and their formats in CareerSync.
 
 After that, you would be ready to use CareerSync to manage your internship applications!
 
@@ -54,13 +54,17 @@ does so via the following features:
 
 ### Table Of Contents
 
-| Section                             | When Should I Use This?                                                 |
-|-------------------------------------|-------------------------------------------------------------------------|
-| [Quick Start](#quick-start)         | If you are using the application for the first time or need a refresher |
-| [Features](#features)               | If you would like to know the capabilities of the application           |
-| [FAQ](#faq)                         | If you have any questions about the application                         |
-| [Known Issues](#known-issues)       | If you have a technical problem. We may have the solution!              |
-| [Command Summary](#command-summary) | If you would like to find more information about a specific command     |
+| Section                                   | When Should I Use This?                                                                 |
+|-------------------------------------------|-----------------------------------------------------------------------------------------|
+| [Quick Start](#quick-start)               | If you are using the application for the first time or need a refresher                 |
+| [Interface Overview](#interface-overview) | If you would like to know more about the interface of the application                   |
+| [Tutorial](#tutorial)                     | If you would like to learn how to use the application                                   |
+| [Commands](#commands)                     | If you would like to know the capabilities of the application                           |
+| [FAQ](#faq)                               | If you have any questions about the application                                         |
+| [Known Issues](#known-issues)             | If you have a technical problem. We may have the solution!                              |
+| [Command Summary](#command-summary)       | If you would like to find more information about a specific command                     |
+| [Fields Summary](#fields-summary)         | If you would like to know more about the fields and its restrictions in the application |
+| [Glossary](#glossary)                     | If you would like to know more about the terms used in the application                  |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -97,7 +101,6 @@ When you first start CareerSync, you will see this window. This is the main wind
 
 ![Ui](images/Ui.png)
 
-
    * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
       /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
      #f66a0a;">CareerSync</span> application.
@@ -127,6 +130,7 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 7. `CONTACT_NAME` - The name of the contact person.
 8. `CONTACT_EMAIL` - The email of the contact person.
 9. `CONTACT_NUMBER` - The phone number of the contact person.
+
 --------------------------------------------------------------------------------------------------------------------
 ## Tutorial
 This section would guide you through the basic commands of CareerSync, and how to use them.
