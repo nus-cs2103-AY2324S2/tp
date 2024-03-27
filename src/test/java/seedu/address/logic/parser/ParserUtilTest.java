@@ -182,6 +182,7 @@ public class ParserUtilTest {
     public void parseIndices_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("a b"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1, b"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1 2 3"));
     }
 
     @Test
