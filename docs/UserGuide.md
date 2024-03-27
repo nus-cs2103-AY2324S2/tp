@@ -208,9 +208,9 @@ Examples:
 
 ### Adding a remark: `addremark`
 
-Adds a remark or modifies the existing one, of an to an existing internship at the specified `INDEX`.
+Adds a remark or modifies the existing one, of an existing internship at the specified `INDEX`.
 
-<span style="color: #f66a0a;">Format:</span> `addremark INDEX [/remark REMARK]`
+<span style="color: #f66a0a;">Format:</span> `addremark INDEX /remark REMARK`
 
 * The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …
 * The remark cannot be blank.
