@@ -20,6 +20,8 @@ import seedu.address.logic.commands.FindApptCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.SwitchViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -89,10 +91,15 @@ public class AddressBookParser {
         case CancelAppCommand.COMMAND_WORD:
             return new CancelAppCommandParser().parse(arguments);
 
+        case SwitchViewCommand.COMMAND_WORD:
+            return new SwitchViewCommand();
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
