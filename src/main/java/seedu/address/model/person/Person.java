@@ -72,8 +72,16 @@ public class Person {
         return upcoming;
     }
 
+    public boolean hasUpcoming() {
+        return upcoming.hasUpcoming();
+    }
+
     public LastContact getLastcontact() {
         return lastcontact;
+    }
+
+    public boolean hasLastcontact() {
+        return lastcontact.hasLastContacted();
     }
 
     /**
