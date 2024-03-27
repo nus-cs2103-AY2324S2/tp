@@ -13,16 +13,19 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";
 
+    private static final String OUTPUT_MESSAGE = "Output:\n";
+
     @FXML
     private TextArea resultDisplay;
 
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setText(OUTPUT_MESSAGE);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
-        resultDisplay.setText(feedbackToUser);
+        resultDisplay.setText(OUTPUT_MESSAGE + feedbackToUser);
     }
 
 }

@@ -185,7 +185,7 @@
 }
 
 .grid-pane {
-    -fx-background-color: rgba(29, 29, 29, 80%);
+    -fx-background-color: rgba(92, 64, 51, 0.6);
 }
 
 .grid-pane .stack-pane {
@@ -329,7 +329,7 @@
     -fx-background-color: rgba(92, 64, 51, 0.6);
     -fx-background-insets: 0;
     -fx-border-color: transparent;
-    -fx-border-insets: 0;
+    -fx-border-insets: 2;
     -fx-border-width: 1;
     -fx-font-family: "Roboto";
     -fx-font-size: 13pt;
@@ -342,11 +342,11 @@
 
 #resultDisplay {
     -fx-border-color: transparent;
-    -fx-border-width: 0;
+    -fx-background-color: transparent;
 }
 
 #resultDisplay .content {
-    -fx-background-color: rgba(92, 64, 51, 0.6);
+    -fx-background-color: rgba(92, 64, 51, 0.84);
     -fx-background-radius: 0;
 }
 
@@ -362,4 +362,15 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-font-size: 13;
+}
+
+.title {
+    -fx-background-color: rgba(92, 64, 51, 0.6);
+}
+
+.title-label {
+    -fx-font-family: 'Roboto';
+    -fx-font-size: 28pt;
+    -fx-text-fill: white;
+    -fx-font-style: italic;
 }
