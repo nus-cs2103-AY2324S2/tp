@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RsvCommand;
+import seedu.address.logic.commands.RsvListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,6 +76,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case RsvListCommand.COMMAND_WORD:
+            return new RsvListCommand();
 
         case RsvCommand.COMMAND_WORD:
             return new RsvCommandParser().parse(arguments);
