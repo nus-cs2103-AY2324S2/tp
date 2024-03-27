@@ -1,4 +1,5 @@
 package seedu.address.model;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
@@ -7,6 +8,12 @@ import seedu.address.model.person.Person;
  * Unmodifiable view of an event book
  */
 public interface ReadOnlyEventBook {
+
+    /**
+     * Returns an unmodifiable view of the selected event
+     * This will contain a null if no event is selected
+     */
+    ObservableValue<Event> getSelectedEvent();
 
     /**
      * Returns an unmodifiable view of the events list.

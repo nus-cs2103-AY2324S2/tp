@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -226,6 +227,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Event List and Person List of Selected Event Accessors ====================================
+
+    @Override
+    public ObservableValue<Event> getSelectedEvent() {
+        return eventBook.getSelectedEvent();
+    }
+
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;

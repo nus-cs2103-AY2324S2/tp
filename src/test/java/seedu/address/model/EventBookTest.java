@@ -2,18 +2,19 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.getBingoEvent;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
@@ -101,6 +102,21 @@ public class EventBookTest {
         assertEquals(expected, eventBook.toString());
     }
 
+    @Test
+    public void getSelectedEvent_nullSelectedEvent_returnsNull() {
+        ReadOnlyEventBook eventBook = new EventBook();
+        assertNull(eventBook.getSelectedEvent().getValue());
+    }
+
+    @Test
+    public void getSelectedEvent_nonNullSelectedEvent_returnsSelectedEvent() {
+        Event event = getBingoEvent();
+        EventBook eventbook = new EventBook();
+        eventbook.addEvent(event);
+        eventBook.selectEvent(event);
+        assertEquals(event, eventBook.getSelectedEvent().getValue());
+    }
+
     /**
      * A stub ReadOnlyEventBook whose events list can violate interface constraints.
      */
@@ -108,8 +124,13 @@ public class EventBookTest {
         private final ObservableList<Event> events = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        EventBookStub(Collection<Event> events) {
+        EventBookStub(List<Event> events) {
             this.events.setAll(events);
+        }
+
+        @Override
+        public ObservableValue<Event> getSelectedEvent() {
+            return null;
         }
 
         @Override
