@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import seedu.address.model.book.Book;
+import seedu.address.model.library.LibraryLogic;
 
 /**
  * Represents a collection of books in a library.
