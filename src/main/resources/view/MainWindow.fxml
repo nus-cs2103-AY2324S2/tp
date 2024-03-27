@@ -56,8 +56,13 @@
           <!-- Add your content for the blank box here -->
           <!-- For example, add another StackPane -->
           <StackPane opacity="0.7" style="-fx-background-color: #ffffd6;" VBox.vgrow="ALWAYS">
-            <!-- Content for the blank box -->
-          </StackPane>
+                  <children>
+                     <ImageView fx:id="RD_Watermark" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../../../RG_8Bit_Logo.png" />
+                        </image>
+                     </ImageView>
+                  </children></StackPane>
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
       </SplitPane>
