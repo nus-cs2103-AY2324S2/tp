@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -44,7 +45,7 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.startsWith("> ")) {
                 commandTextField.setText("> " + newValue.replaceAll("^> ?", ""));
-                commandTextField.positionCaret(commandTextField.getText().length()); // Move the caret to the end
+                commandTextField.positionCaret(commandTextField.getText().length());
             }
             setStyleToDefault();
         });
@@ -67,8 +68,9 @@ public class CommandBox extends UiPart<Region> {
             }
         } catch (CommandException | ParseException e) {
             // If there's an error, indicate command failure without clearing the text
-            setStyleToIndicateCommandFailure();
+            System.out.println("some ui error detected");
             commandTextField.positionCaret(commandTextField.getText().length());
+            setStyleToIndicateCommandFailure();
         } finally {
             commandTextField.positionCaret(commandTextField.getText().length());
         }
@@ -92,6 +94,7 @@ public class CommandBox extends UiPart<Region> {
         // Just add the error style class, do not clear the text
         if (!styleClass.contains(ERROR_STYLE_CLASS)) {
             styleClass.add(ERROR_STYLE_CLASS);
+            System.out.println("Error style class added.");
         }
 
         // Keep the caret at the end of the text

@@ -9,7 +9,7 @@ import java.nio.file.Paths;
  */
 public class ImagePath {
 
-    private static final Path DEFAULT_IMAGE_PATH = Paths.get("/images/default_image.png");
+    private static final Path DEFAULT_IMAGE_PATH = Paths.get("/images/default_image_2.png");
     private Path filePath = DEFAULT_IMAGE_PATH;
     /**
      * Constructs an ImagePath object with the default file path.

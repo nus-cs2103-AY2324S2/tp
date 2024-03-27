@@ -27,6 +27,9 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+
+
     }
 
     /**
@@ -44,6 +47,10 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    public ListView<Person> getPersonListView() {
+        return personListView;
     }
 
 }
