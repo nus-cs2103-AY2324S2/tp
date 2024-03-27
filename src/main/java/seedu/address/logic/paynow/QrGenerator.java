@@ -22,6 +22,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
  */
 public class QrGenerator {
     private static final int QR_SIZE = 400;
+    private static final int LOGO_HEIGHT = QR_SIZE / 6;
     private static final Color PAYNOW_COLOR = Color.decode("#7a1b78");
     private static final String LOGO_PATH = Paths.get(
             "src", "main", "resources", "images", "paynowlogo.png").toString();
@@ -35,7 +36,7 @@ public class QrGenerator {
 
     private static Image getLogo() throws IOException {
         BufferedImage originalLogo = ImageIO.read(new File(LOGO_PATH));
-        float scale = (float) QR_SIZE / 6 / originalLogo.getHeight();
+        float scale = (float) LOGO_HEIGHT / originalLogo.getHeight();
         return originalLogo.getScaledInstance(
                 (int) (originalLogo.getWidth() * scale),
                 (int) (originalLogo.getHeight() * scale),
