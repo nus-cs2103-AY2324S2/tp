@@ -65,6 +65,11 @@ public class AddScoreCommand extends Command {
         if (selectedExam.getMaxScore().getScore() < score.getScore()) {
             throw new CommandException(MESSAGE_SCORE_GREATER_THAN_MAX);
         }
+
+        if (updatedScores.containsKey(selectedExam)) {
+            throw new CommandException(MESSAGE_SCORE_EXISTS);
+        }
+
         updatedScores.put(selectedExam , score);
 
         Person editedPerson = createEditedPerson(personToEdit, updatedScores);

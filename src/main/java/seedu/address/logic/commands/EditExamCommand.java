@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +28,12 @@ public class EditExamCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[EXAM DETAILS]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_NAME + "Midterm";
 
     public static final String MESSAGE_EDIT_EXAM_SUCCESS = "Edited Exam: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam book.";
+    public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam list";
 
     private final Index index;
     private final EditExamDescriptor editExamDescriptor;
@@ -161,6 +163,14 @@ public class EditExamCommand extends Command {
 
             return getName().equals(e.getName())
                     && getMaxScore().equals(e.getMaxScore());
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .add("name", name)
+                    .add("maxScore", maxScore)
+                    .toString();
         }
     }
 
