@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,19 +48,31 @@ public class SelectExamCommandTest {
     }
 
     @Test
-    public void equals_sameValues_returnsTrue() {
-        SelectExamCommand command1 = new SelectExamCommand(Index.fromOneBased(1));
-        SelectExamCommand command2 = new SelectExamCommand(Index.fromOneBased(1));
+    void equals() {
+        SelectExamCommand selectExamCommand1 = new SelectExamCommand(Index.fromZeroBased(1));
+        SelectExamCommand selectExamCommand2 = new SelectExamCommand(Index.fromZeroBased(1));
+        SelectExamCommand selectExamCommand3 = new SelectExamCommand(Index.fromZeroBased(2));
 
-        assertEquals(command1, command2);
+        // same object -> returns true
+        assertTrue(selectExamCommand1.equals(selectExamCommand1));
+
+        // same values -> returns true
+        assertTrue(selectExamCommand1.equals(selectExamCommand2));
+
+        // different types -> returns false
+        assertFalse(selectExamCommand1.equals(1));
+
+        // null -> returns false
+        assertFalse(selectExamCommand1.equals(null));
+
+        // different index -> returns false
+        assertFalse(selectExamCommand1.equals(selectExamCommand3));
     }
 
     @Test
-    public void equals_differentValues_returnsFalse() {
-        SelectExamCommand command1 = new SelectExamCommand(Index.fromOneBased(1));
-        SelectExamCommand command2 = new SelectExamCommand(Index.fromOneBased(2));
-
-        assertNotEquals(command1, command2);
+    void toStringTest() {
+        SelectExamCommand selectExamCommand = new SelectExamCommand(Index.fromZeroBased(1));
+        assertEquals("SelectExamCommand{targetIndex=1}", selectExamCommand.toString());
     }
 
 }
