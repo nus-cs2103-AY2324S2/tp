@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_TELEGRAM_HANDLE_AMY = "amy_bee";
+    public static final String VALID_TELEGRAM_HANDLE_BOB = "bob_choo";
     public static final String VALID_SKILL_CPP = "C++";
     public static final String VALID_SKILL_JAVA = "Java";
     public static final String VALID_SKILL_CSHARP = "C#";
@@ -43,6 +46,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_AMPERSAND = "James&";
     public static final String INVALID_PHONE_ALPHABET = "911a";
     public static final String INVALID_EMAIL_MISSING_AT = "bob!yahoo";
+    public static final String INVALID_TELEGRAM_HANDLE = "abc";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + " " + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + " " + VALID_NAME_BOB;
@@ -50,6 +54,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + " " + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + " " + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + " " + VALID_EMAIL_BOB;
+    public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + " " + VALID_TELEGRAM_HANDLE_AMY;
+    public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + " " + VALID_TELEGRAM_HANDLE_BOB;
     public static final String SKILL_DESC_CPP = " " + PREFIX_SKILL + " " + VALID_SKILL_CPP;
     public static final String SKILL_DESC_CSHARP = " " + PREFIX_SKILL + " " + VALID_SKILL_CSHARP;
     public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + " " + VALID_SKILL_JAVA;
@@ -57,6 +63,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_NAME_AMPERSAND;
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + " " + INVALID_PHONE_ALPHABET;
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + " " + INVALID_EMAIL_MISSING_AT;
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + " " + INVALID_TELEGRAM_HANDLE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

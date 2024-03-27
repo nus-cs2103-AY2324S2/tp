@@ -90,8 +90,8 @@ public class CourseMateTest {
     public void toStringMethod() {
         String expected = CourseMate.class.getCanonicalName()
                 + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", rating=" + ALICE.getRating()
-                + ", skills=" + ALICE.getSkills() + "}";
+                + ", email=" + ALICE.getEmail() + ", telegramHandle=" + ALICE.getTelegramHandle()
+                + ", rating=" + ALICE.getRating() + ", skills=" + ALICE.getSkills() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }
