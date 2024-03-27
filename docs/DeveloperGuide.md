@@ -158,6 +158,58 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Completed\] Add Appointment for a Patient
+
+#### Implementation
+
+The implementation of `AddApptCommand` is supported by creation of the `Appointment` class and its related classes.
+Details captured in an `Appointment` class include: 
+* NRIC
+* Date
+* TimePeriod (composed of start and end time)
+* Appointment Type
+* [Optional] Note
+
+The management of all appointments is achieved through the `AppointmentList` class stored in the `AddressBook`, 
+similar to the `UniquePatientList`. `AppointmentList` supports adding, editing and deleting of appointments to the list. 
+The operation `AppointmentList#add(Appointment)` checks if the incoming appointment already exists in the list, preventing 
+duplicates from occurring. Since an `Appointment` can only exist in the `AppointmentList` if a `Patient` with the
+corresponding NRIC exists in the `AddressBook`, this will be checked in the execution of the `AddApptCommand`.
+
+Given below is an example usage scenario and how the add appointment mechanism works.
+
+1. The user executes `addAppt i/ S9922758A d/ 2024-03-27 from/ 00:00 to/ 00:30 t/ Medical Check-up note/`, 
+attempting to create an appointment for a patient with NRIC: S9922758A on 27 Mar 2024 from 12am to 1230am. 
+2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` to check if the given NRIC belongs to an individual
+    in the system. If yes, continue. Else throw a `CommandException`.
+3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists
+    in the system. If no, continue. Else throw a `CommandException`.
+4. `AddApptCommand` calls `Model#addAppointment(Appointment) to add the appointment to the `AddressBook`.
+5. We are done.
+
+The following sequence diagram shows how an addAppt operation goes through the `Logic` component:
+
+<puml src="diagrams/AddApptSequenceDiagram.puml" alt="AddApptSequenceDiagram" />
+
+The following activity diagram summarises what happens when a user executes addApptCommand.
+
+<puml src="diagrams/AddApptActivityDiagram.puml" alt="AddApptActivityDiagram" />
+
+
+#### Design considerations:
+
+**Aspect: How to match an `Appointment` to a `Patient`:**
+
+* **Alternative 1 (current choice):** Store only the NRIC of the `Patient` in `Appointment`.
+    * Pros: Data integrity since NRIC is the "primary key" of `Patient` and will not change, Space efficient
+    * Cons: May have performance issues as we need to search the whole list to get other details of the `Person`
+
+* **Alternative 2:** Store `Patient` in `Appointment`
+    * Pros: Time efficient as we have access to all details of the `Patient` from `Appointment`
+    * Cons: Space inefficient, we double store `Patient`. We need to ensure `Patient` in `UniquePatientList` and `Patient` in
+        each `Appointment` is always consistent which can be tricky.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -254,7 +306,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
