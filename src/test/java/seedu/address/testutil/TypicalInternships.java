@@ -34,7 +34,7 @@ public class TypicalInternships {
             .withApplicationStatus("ongoing").withLocation("remote")
             .withDescription("Use Figma to design User-friendly web interfaces").withRole("Frontend Engineer")
             .withRemark("Has a behavioural interview!")
-            .withTaskList("Submit Documents, Submit Resume").build();
+            .withTaskList("Submit Documents (11/01/2011); Submit Resume").build();
 
     public static final Internship BENSON_GOOGLE = new InternshipBuilder().withCompanyName("Google")
             .withContactName("Benson Meier").withContactEmail("benson@example.com").withContactNumber("98765432")
@@ -46,7 +46,7 @@ public class TypicalInternships {
             .withContactName("Carl Kurz").withContactEmail("carl@google.com").withContactNumber("95352563")
             .withLocation("overseas").withApplicationStatus("rejected").withDescription("Enter prompts into ChatGPT")
             .withRole("Prompt Engineer").withRemark("System design questions asked")
-            .withTaskList("Submit Resume").build();
+            .withTaskList("Submit Resume (13/03/2033)").build();
 
     // Manually added
     public static final Internship HOON_APPLE = new InternshipBuilder().withCompanyName("Apple")

@@ -10,7 +10,18 @@
     "description" : "Use Figma to design User-friendly web interfaces",
     "role" : "Frontend Engineer",
     "remark" : "",
-    "taskList": []
+    "taskList" : [ {
+      "task" : "Submit Documents",
+      "deadline" : {
+        "deadline" : "11/01/2011"
+      },
+      "isDeadlineSet" : true
+    }, {
+      "task" : "Submit Resume",
+      "deadline" : null,
+      "isDeadlineSet" : false
+    } ],
+    "applicationStatus": "ONGOING"
   }, {
     "companyName" : "Google",
     "contactName" : "Benson Meier",
@@ -21,7 +32,12 @@
     "description" : "Write REST APIs for services",
     "role" : "Backend Engineer",
     "remark" : "",
-    "taskList": []
+    "taskList" : [{
+      "task" : "Submit documents",
+      "deadline" : null,
+      "isDeadlineSet" : false
+    } ],
+    "applicationStatus": "PENDING"
   }, {
     "companyName" : "OpenAI",
     "contactName" : "Carl Kurz",
@@ -32,6 +48,13 @@
     "description" : "Enter prompts into ChatGPT",
     "role" : "Prompt Engineer",
     "remark" : "",
-    "taskList": []
+    "taskList" : [{
+      "task" : "Submit Resume",
+      "deadline" : {
+        "deadline": "13/03/2033"
+      },
+      "isDeadlineSet" : true
+    } ],
+    "applicationStatus": "REJECTED"
   } ]
 }
