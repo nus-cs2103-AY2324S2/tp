@@ -41,31 +41,37 @@ public class AddCommandParser implements Parser<AddCommand> {
         // (add)
         if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_NO_PARAMETERS, AddCommand.MESSAGE_USAGE));
+        }
+
         // (add John)
-        } else if (!argMultimap.containsAll(PREFIX_NAME, PREFIX_PHONE)
+        if (!argMultimap.containsAll(PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.MESSAGE_USAGE));
-        // (add p/99898888)
-        } else if (!argMultimap.contains(PREFIX_NAME)) {
-            throw new ParseException(String.format(MESSAGE_NAME_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
-        // (add n/John)
-        } else if (!argMultimap.contains(PREFIX_PHONE)) {
-            throw new ParseException(String.format(MESSAGE_PHONE_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
-        // (add n/John p/98988898...)
-        } else {
-            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NOTE,
-                    PREFIX_ADDRESS);
-
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL));
-            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS));
-            Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE));
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-            Person person = new Person(name, phone, email, address, note, tagList);
-
-            return new AddCommand(person);
         }
+
+        // (add p/99898888)
+        if (!argMultimap.contains(PREFIX_NAME)) {
+            throw new ParseException(String.format(MESSAGE_NAME_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
+        }
+
+        // (add n/John)
+        if (!argMultimap.contains(PREFIX_PHONE)) {
+            throw new ParseException(String.format(MESSAGE_PHONE_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
+        }
+
+        // (add n/John p/98988898...)
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NOTE,
+                PREFIX_ADDRESS);
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS));
+        Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        Person person = new Person(name, phone, email, address, note, tagList);
+
+        return new AddCommand(person);
     }
 }

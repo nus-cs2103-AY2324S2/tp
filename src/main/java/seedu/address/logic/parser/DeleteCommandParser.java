@@ -21,16 +21,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         if (args.isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_NO_INDEX, DeleteCommand.MESSAGE_USAGE));
-        } else {
-            try {
-                Index index = parseIndex(args);
-                return new DeleteCommand(index);
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
-                                DeleteCommand.MESSAGE_USAGE), pe);
-            }
         }
+
+        try {
+            Index index = parseIndex(args);
+            return new DeleteCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                            DeleteCommand.MESSAGE_USAGE), pe);
+        }
+
     }
 
 }

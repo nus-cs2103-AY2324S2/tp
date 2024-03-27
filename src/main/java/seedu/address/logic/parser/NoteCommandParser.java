@@ -30,6 +30,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
                     String.format(Messages.MESSAGE_NO_INDEX, NoteCommand.MESSAGE_USAGE));
         }
 
+        // (note 1 2)
         if (argMultimap.getPreamble().split(" ").length != 1) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
