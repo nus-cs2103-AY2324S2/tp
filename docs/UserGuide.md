@@ -130,12 +130,35 @@ Here's a quick look at the different parts of our GUI and some tips on how to us
 
 Adds a **person/ staff / supplier / maintainer** contact to the Pooch Planner.
 
-| Adds a ...        | Format & Examples                                                                                                                                                                                                                                                                                                                  |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Person**        | Format :<br>`/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email]` <br> Example: <br>`/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`                                                                                 |
-| **Staff**      | Format : <br>`/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full]` <br> Example: <br>`/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
-| **Supplier**   | Format : <br>`/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price/(quantity)]` <br> Example: <br>`/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`      |
-| **Maintainer** | Format : <br>`/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr]` <br> Example: <br>`/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |                                                                                   
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/add-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/add-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
+
+#### Adds a person
+Format: `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ;`
+
+#### Adds a staff
+Format: `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full] ;`
+
+#### Adds a supplier
+Format: `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price/(quantity)] ;`
+
+#### Adds a maintainer
+Format: `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr] ;`
+
+Examples:
+* `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`
+* `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`
+* `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
+* `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
+
+| Adds a ...       | Format & Examples                                                                                                                                                                                                                                                                                                                  |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Person**       | Format :<br>`/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email]` <br> Example: <br>`/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`                                                                                 |
+| **Staff**        | Format : <br>`/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full]` <br> Example: <br>`/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
+| **Supplier**     | Format : <br>`/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price/(quantity)]` <br> Example: <br>`/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`      |
+| **Maintainer**   | Format : <br>`/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr]` <br> Example: <br>`/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Constraints:**<br>
 
@@ -159,6 +182,10 @@ Adds a **person/ staff / supplier / maintainer** contact to the Pooch Planner.
 
 Edit a **person / staff / supplier / maintainer** contact in the Pooch Planner.
 
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/edit-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/edit-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 | Edits a ...    | Format & Examples                                                                                                                                                                                                                                                           |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -192,7 +219,12 @@ Edit a **person / staff / supplier / maintainer** contact in the Pooch Planner.
 
 ### Searching a contact : `search`
 
-Search for a **person / staff / supplier / maintainer** contact in the Pooch Planner.
+Searches for a **person / staff / supplier / maintainer** contact in the Pooch Planner.
+
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/search-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/search-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 Format: `/search ; [field] : [full/partial query]`
 
@@ -236,8 +268,12 @@ Examples:
 
 ### Deleting a contact : `delete`
 
-Delete a **person / staff / supplier / maintainer** contact from the Pooch Planner.
+Deletes a **person / staff / supplier / maintainer** contact from the Pooch Planner.
 
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/delete-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/delete-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 Format: `/delete ; name : [name]`
 
@@ -255,7 +291,12 @@ Examples:
 
 ### Rating a Contact : `rate`
 
-Give a **person / staff / supplier / maintainer** contact from the Pooch Planner a performance rating.
+Gives a **person / staff / supplier / maintainer** contact from the Pooch Planner a performance rating.
+
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/rate-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/rate-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 Format: `/rate ; name : [name] ; rating : [rating value from 1-5]`
 
@@ -287,6 +328,11 @@ Examples:
 
 Pins the specified contact on Pooch Planner so that the contact will consistently appear at the top on the contact list.
 
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/pin-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/pin-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
+
 Format: `/pin ; name : [name]`
 
 Examples:
@@ -313,6 +359,11 @@ Examples:
 
 Unpins the specified contact on Pooch Planner so that the contact will consistently appear at the top on the contact list.
 
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/unpin-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/unpin-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
+
 Format: `/unpin ; name : [name]`
 
 Examples:
@@ -332,6 +383,11 @@ Examples:
 ### Adding a note : `note`
 
 Adds a note to a specified person from the Pooch Planner.
+
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/note-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/note-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 Format: `/note ; name : [name] ; note : [note message]`
 
@@ -361,6 +417,11 @@ Examples:
 
 Undo a previous command which made a change to Pooch Planner history.
 
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/undo-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/undo-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
+
 Format: `/undo`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Constraints:**<br>
@@ -381,6 +442,11 @@ Format: `/undo`
 ### Redoing a command : `redo`
 
 Retrieve next state of Pooch Planner
+
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/redo-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/redo-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 Format: `/redo`
 
@@ -403,6 +469,11 @@ Format: `/redo`
 ### Viewing help : `help`
 
 Shows a message of how to write commands for all commands or a specfic command.
+
+<div style="display: flex;">
+    <img src="images/ug-images/command-images/help-before.png" style="flex: 1; margin-right: 5px; width: 50%; height: 50%;">
+    <img src="images/ug-images/command-images/help-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
+</div>
 
 Format: `/help ; command : [command type]`
 
@@ -447,6 +518,34 @@ Furthermore, certain edits can cause the PoochPlanner to behave in unexpected wa
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Common Errors
+
+### Unknown Command
+
+![Unknown Command](images/ug-images/error-images/unknown-command.png)
+
+Key in only valid commands as mentioned in this User Guide (eg. `/add`, `/edit`, etc.)
+
+### Invalid Field
+
+![img.png](images/ug-images/error-images/invalid-field.png)
+
+Key in only valid field parameters within the command (e.g. `name`, `phone`, `email` etc.)
+
+### Incorrect formatting
+
+![img.png](images/ug-images/error-images/incorrect-phone-format.png)
+
+![img.png](images/ug-images/error-images/incorrect-salary-format.png)
+
+To fix the formatting errors, key in the appropiate syntax based on the error message
+
+Examples:
+- `Phone` field accepts only numbers that are at least 3 digits long
+- `Salary` field must follow the format `$___/hr`
 
 --------------------------------------------------------------------------------------------------------------------
 

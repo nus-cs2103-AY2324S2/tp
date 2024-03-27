@@ -26,6 +26,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final String TITLE = "Pooch Planner";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -39,6 +41,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpEditWindow helpEditWindow;
     private HelpSearchWindow helpSearchWindow;
     private HelpAddWindow helpAddWindow;
+
+    @FXML
+    private StackPane titlePlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
