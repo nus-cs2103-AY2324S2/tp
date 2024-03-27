@@ -26,6 +26,10 @@ public class Phone {
         value = phone;
     }
 
+    public Phone() {
+        value = "1";
+    }
+
     /**
      * Returns true if a given string is a valid phone number.
      */

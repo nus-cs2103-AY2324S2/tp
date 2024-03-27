@@ -64,7 +64,7 @@ public class ArgumentMultimap {
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
-        return getValue(new Prefix("")).orElse("");
+        return getValue(new Prefix("", "")).orElse("");
     }
 
     /**
@@ -79,5 +79,27 @@ public class ArgumentMultimap {
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    /**
+     * Returns a message listing the missing prefixes from the given list of compulsory prefixes.
+     *
+     * @param listOfCompulsoryPrefix An array of Prefix objects representing compulsory prefixes.
+     * @return A string message listing the missing prefixes.
+     */
+    public String returnMessageOfMissingPrefixes(Prefix[] listOfCompulsoryPrefix) {
+        return Prefix.returnMessageOfMissingPrefixes(argMultimap, listOfCompulsoryPrefix);
+    }
+
+    /**
+     * Returns an array of unique Prefix objects from the provided list of prefixes.
+     *
+     * @param prefixes Variable number of Prefix objects to be filtered for uniqueness.
+     * @return An array of unique Prefix objects.
+     */
+    public Prefix[] returnListOfCompulsoryTags(Prefix... prefixes) {
+        return Stream.of(prefixes)
+                .distinct()
+                .toArray(Prefix[]::new);
     }
 }

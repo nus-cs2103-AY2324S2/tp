@@ -7,7 +7,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB_FIRST_LETTER_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
@@ -49,15 +49,15 @@ public class PersonTest {
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB_FIRST_LETTER_CAPS).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB_FIRST_LETTER_CAPS.toLowerCase()).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = VALID_NAME_BOB_FIRST_LETTER_CAPS + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
@@ -81,7 +81,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB_FIRST_LETTER_CAPS).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

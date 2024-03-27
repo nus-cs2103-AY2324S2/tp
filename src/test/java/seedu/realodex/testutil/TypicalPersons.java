@@ -8,8 +8,8 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY_FIRST_LETTER_CAPS;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_BOB_FIRST_LETTER_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
@@ -74,13 +74,14 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").withTags("buyer").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
+    public static final Person AMY_NAME_CAPS = new PersonBuilder().withName(VALID_NAME_AMY_FIRST_LETTER_CAPS)
             .withPhone(VALID_PHONE_AMY)
             .withIncome(VALID_INCOME_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withFamily(VALID_FAMILY_AMY)
             .withTags(VALID_TAG_AMY).build();
-    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+
+    public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB_FIRST_LETTER_CAPS)
             .withPhone(VALID_PHONE_BOB)
             .withIncome(VALID_INCOME_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)

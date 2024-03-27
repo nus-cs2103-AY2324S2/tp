@@ -20,6 +20,8 @@ public class Name {
 
     public final String fullName;
 
+    private final String defaultValidName = "Denzel";
+
     /**
      * Constructs a {@code Name}.
      *
@@ -29,6 +31,10 @@ public class Name {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
+    }
+
+    public Name() {
+        fullName = defaultValidName;
     }
 
     /**

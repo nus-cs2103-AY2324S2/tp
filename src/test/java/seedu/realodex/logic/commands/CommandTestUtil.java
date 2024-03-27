@@ -3,13 +3,21 @@ package seedu.realodex.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_ADDRESS_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_EMAIL_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_FAMILY;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_FAMILY_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_INCOME;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_INCOME_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_NAME_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_PHONE_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_REMARK_CAPS;
 import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.realodex.logic.parser.CliSyntax.PREFIX_TAG_CAPS;
 import static seedu.realodex.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,8 +36,11 @@ import seedu.realodex.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_AMY_FIRST_LETTER_CAPS = "Amy Bee";
+
+    public static final String VALID_NAME_AMY_NON_CAPS = "amy bee";
+    public static final String VALID_NAME_AMY_VARYING_CAPS = "aMY bEe";
+    public static final String VALID_NAME_BOB_FIRST_LETTER_CAPS = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_INCOME_AMY = "20000";
@@ -45,22 +56,32 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_AMY = "This is a remark";
     public static final String VALID_REMARK_BOB = "Testing remark";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_AMY_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_FIRST_LETTER_CAPS;
+    public static final String NAME_DESC_AMY_NON_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_NON_CAPS;
+    public static final String NAME_DESC_AMY_VARYING_CAPS = " " + PREFIX_NAME + VALID_NAME_AMY_VARYING_CAPS;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB_FIRST_LETTER_CAPS;
+    public static final String NAME_DESC_BOB_PREFIX_CAPS = " " + PREFIX_NAME_CAPS + VALID_NAME_BOB_FIRST_LETTER_CAPS;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_BOB_PREFIX_CAPS = " " + PREFIX_PHONE_CAPS + VALID_PHONE_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
+    public static final String INCOME_DESC_BOB_PREFIX_CAPS = " " + PREFIX_INCOME_CAPS + VALID_INCOME_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String EMAIL_DESC_BOB_PREFIX_CAPS = " " + PREFIX_EMAIL_CAPS + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ADDRESS_DESC_BOB_PREFIX_CAPS = " " + PREFIX_ADDRESS_CAPS + VALID_ADDRESS_BOB;
     public static final String FAMILY_DESC_AMY = " " + PREFIX_FAMILY + VALID_FAMILY_AMY;
     public static final String FAMILY_DESC_BOB = " " + PREFIX_FAMILY + VALID_FAMILY_BOB;
+    public static final String FAMILY_DESC_BOB_PREFIX_CAPS = " " + PREFIX_FAMILY_CAPS + VALID_FAMILY_BOB;
     public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
+    public static final String TAG_DESC_BOB_PREFIX_CAPS = " " + PREFIX_TAG_CAPS + VALID_TAG_BOB;
     public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_AMY;
     public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
+    public static final String REMARK_DESC_BOB_PREFIX_CAPS = " " + PREFIX_REMARK_CAPS + VALID_REMARK_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "-1"; // Income must be positive, >= 0
@@ -74,7 +95,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY_FIRST_LETTER_CAPS)
                 .withPhone(VALID_PHONE_AMY)
                 .withIncome(VALID_INCOME_AMY)
                 .withEmail(VALID_EMAIL_AMY)
@@ -84,7 +105,7 @@ public class CommandTestUtil {
                 .withRemark(VALID_REMARK_AMY)
                 .build();
         DESC_BOB = new EditPersonDescriptorBuilder()
-                .withName(VALID_NAME_BOB)
+                .withName(VALID_NAME_BOB_FIRST_LETTER_CAPS)
                 .withPhone(VALID_PHONE_BOB)
                 .withIncome(VALID_INCOME_BOB)
                 .withEmail(VALID_EMAIL_BOB)

@@ -15,7 +15,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_INCOME_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
@@ -27,7 +27,7 @@ import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
-import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.realodex.logic.commands.CommandTestUtil.VALID_NAME_AMY_FIRST_LETTER_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
@@ -76,7 +76,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY_FIRST_LETTER_CAPS, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -88,10 +88,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY_CAPS, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY_CAPS, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -133,13 +133,13 @@ public class EditCommandParserTest {
                 + INCOME_DESC_AMY
                 + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY
-                + NAME_DESC_AMY
+                + NAME_DESC_AMY_CAPS
                 + FAMILY_DESC_BOB
                 + TAG_DESC_BOB
                 + REMARK_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(VALID_NAME_AMY)
+                .withName(VALID_NAME_AMY_FIRST_LETTER_CAPS)
                 .withPhone(VALID_PHONE_BOB)
                 .withIncome(VALID_INCOME_AMY)
                 .withEmail(VALID_EMAIL_AMY)
@@ -169,8 +169,9 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY_CAPS;
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(
+                VALID_NAME_AMY_FIRST_LETTER_CAPS).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

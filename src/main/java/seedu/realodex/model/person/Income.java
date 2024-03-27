@@ -27,6 +27,10 @@ public class Income {
         this.incomeValue = incomeValue;
     }
 
+    public Income() {
+        this.incomeValue = "1";
+    }
+
     /**
      * Checks if the given income value is a valid value.
      *

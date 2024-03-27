@@ -44,6 +44,10 @@ public class Email {
         value = email;
     }
 
+    public Email() {
+        value = "denzel@gmail.com";
+    }
+
     /**
      * Returns if a given string is a valid email.
      */

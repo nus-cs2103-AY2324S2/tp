@@ -3,6 +3,12 @@ package seedu.realodex.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.realodex.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.realodex.logic.parser.ParserUtil.parseAddressReturnStored;
+import static seedu.realodex.logic.parser.ParserUtil.parseEmailReturnStored;
+import static seedu.realodex.logic.parser.ParserUtil.parseFamilyReturnStored;
+import static seedu.realodex.logic.parser.ParserUtil.parseIncomeReturnStored;
+import static seedu.realodex.logic.parser.ParserUtil.parseNameReturnStored;
+import static seedu.realodex.logic.parser.ParserUtil.parsePhoneReturnStored;
 import static seedu.realodex.testutil.Assert.assertThrows;
 import static seedu.realodex.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -24,7 +30,8 @@ import seedu.realodex.model.remark.Remark;
 import seedu.realodex.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME_CAPS = "D@nzel Washington Al Pacino";
+    private static final String INVALID_NAME_NON_CAPS = "d@nzel washington Al Pacino";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_INCOME = "-1";
     private static final String INVALID_ADDRESS = " ";
@@ -33,7 +40,10 @@ public class ParserUtilTest {
     private static final String INVALID_TAG_1 = "#buyer";
     private static final String INVALID_TAG_2 = "friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME_CAPS = "Denzel Washington Al Pacino";
+    private static final String VALID_NAME_NON_CAPS_ALL = "denzel washington al pacino";
+    private static final String VALID_NAME_NON_CAPS_FIRST_NAME = "denzel Washington Al Pacino";
+    private static final String VALID_NAME_VARYING_CAPS = "dEnzeL waSHINgToN aL PaCINo";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_INCOME = "10000";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -74,26 +84,90 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void capitalizeWords_nonCapitalizedFirstName_returnsNameCapitalizedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_NON_CAPS_FIRST_NAME);
+        assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_FIRST_NAME));
+    }
+
+    @Test
+    public void capitalizeWords_nonCapitalizedAllName_returnsNameCapitalizedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_NON_CAPS_ALL);
+        assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_ALL));
+    }
+
+    @Test
+    public void capitalizeWords_varyingCapitalizedName_returnsNameCapitalizedName() throws Exception {
+        Name expectedName = new Name(VALID_NAME_VARYING_CAPS);
+        assertEquals(VALID_NAME_CAPS, ParserUtil.capitalizeWords(VALID_NAME_NON_CAPS_ALL));
+    }
+
+    @Test
+    public void capitalizeWords_nullName_returnsCapitalizedAllName() throws Exception {
+        assertThrows(NullPointerException.class, ()
+                -> ParserUtil.capitalizeWords(null));
+    }
+
+    @Test
+    public void capitalizeWords_emptyName_returnsCapitalizedAllName() throws Exception {
+        assertEquals("", ParserUtil.capitalizeWords(""));
+    }
+
+
+    @Test
     public void parseName_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parseName_invalidValueOfCapitalizedName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME_CAPS));
+    }
+
+    @Test
+    public void parseName_invalidValueOfNonCapitalizedName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME_NON_CAPS));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Name expectedName = new Name(VALID_NAME_CAPS);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_CAPS));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
+        String nameWithWhitespace = WHITESPACE + VALID_NAME_CAPS + WHITESPACE;
+        Name expectedName = new Name(VALID_NAME_CAPS);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseName_nonCapitalizedInAllPartsOfName_returnsCapitalizedName() throws Exception {
+        String nonCapitalizedInBothNames = VALID_NAME_NON_CAPS_ALL;
+        Name expectedName = new Name(ParserUtil.capitalizeWords(nonCapitalizedInBothNames));
+        assertEquals(expectedName, ParserUtil.parseName(nonCapitalizedInBothNames));
+    }
+
+    @Test
+    public void parseName_nonCapitalizedInFirstPartOfName_returnsCapitalizedName() throws Exception {
+        String nonCapitalizedInFirstNames = VALID_NAME_NON_CAPS_FIRST_NAME;
+        Name expectedName = new Name(ParserUtil.capitalizeWords(nonCapitalizedInFirstNames));
+        assertEquals(expectedName, ParserUtil.parseName(nonCapitalizedInFirstNames));
+    }
+
+    @Test
+    public void parseName_validName_returnsParserUtilName() {
+        String validName = VALID_NAME_CAPS;
+        ParserUtilResult<Name> nameStored = parseNameReturnStored(validName);
+        assertEquals(nameStored.returnStoredResult(), new Name(validName));
+        assertEquals(nameStored.returnExceptionMessage(), "");
+    }
+
+    @Test
+    public void parseName_invalidName_returnsParserUtilName() {
+        ParserUtilResult<Name> nameStored = parseNameReturnStored(INVALID_NAME_CAPS);
+        assertEquals(nameStored.returnStoredResult(), new Name());
+        assertEquals(nameStored.returnExceptionMessage(), Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -118,6 +192,21 @@ public class ParserUtilTest {
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
+    @Test
+    public void parsePhone_validPhone_returnsParserUtilPhone() {
+        String validPhone = VALID_INCOME;
+        ParserUtilResult<Phone> phoneStored = parsePhoneReturnStored(validPhone);
+        assertEquals(phoneStored.returnStoredResult(), new Phone(validPhone));
+        assertEquals(phoneStored.returnExceptionMessage(), "");
+    }
+
+    @Test
+    public void parsePhone_invalidPhone_returnsParserUtilPhone() {
+        ParserUtilResult<Phone> phoneStored = parsePhoneReturnStored(INVALID_PHONE);
+        assertEquals(phoneStored.returnStoredResult(), new Phone());
+        assertEquals(phoneStored.returnExceptionMessage(), Phone.MESSAGE_CONSTRAINTS);
+    }
+
 
     @Test
     public void parseIncome_null_throwsNullPointerException() {
@@ -142,6 +231,20 @@ public class ParserUtilTest {
         assertEquals(expectedIncome, ParserUtil.parseIncome(incomeWithWhitespace));
     }
     @Test
+    public void parseIncome_validIncome_returnsParserUtilIncome() {
+        String validIncome = VALID_INCOME;
+        ParserUtilResult<Income> incomeStored = parseIncomeReturnStored(validIncome);
+        assertEquals(incomeStored.returnStoredResult(), new Income(validIncome));
+        assertEquals(incomeStored.returnExceptionMessage(), "");
+    }
+
+    @Test
+    public void parseIncome_invalidIncome_returnsParserUtilIncome() {
+        ParserUtilResult<Income> incomeStored = parseIncomeReturnStored(INVALID_INCOME);
+        assertEquals(incomeStored.returnStoredResult(), new Income());
+        assertEquals(incomeStored.returnExceptionMessage(), Income.MESSAGE_CONSTRAINTS);
+    }
+    @Test
     public void parseAddress_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
     }
@@ -163,6 +266,23 @@ public class ParserUtilTest {
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
+
+    @Test
+    public void parseAddress_validPhone_returnsParserUtilPhone() {
+        String validAddress = VALID_ADDRESS;
+        ParserUtilResult<Address> addressStored = parseAddressReturnStored(validAddress);
+        assertEquals(addressStored.returnStoredResult(), new Address(validAddress));
+        assertEquals(addressStored.returnExceptionMessage(), "");
+    }
+
+    @Test
+    public void parseAddress_invalidPhone_returnsParserUtilPhone() {
+        ParserUtilResult<Address> addressStored = parseAddressReturnStored(INVALID_ADDRESS);
+        assertEquals(addressStored.returnStoredResult(), new Address());
+        assertEquals(addressStored.returnExceptionMessage(), Address.MESSAGE_CONSTRAINTS);
+    }
+
+
     @Test
     public void parseFamily_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseFamily((String) null));
@@ -187,6 +307,21 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseFamily_validFamily_returnsParserUtilFamily() {
+        String validFamily = VALID_FAMILY;
+        ParserUtilResult<Family> familyStored = parseFamilyReturnStored(validFamily);
+        assertEquals(familyStored.returnStoredResult(), new Family(validFamily));
+        assertEquals(familyStored.returnExceptionMessage(), "");
+    }
+
+    @Test
+    public void parseFamily_invalidFamily_returnsParserUtilFamily() {
+        ParserUtilResult<Family> familyStored = parseFamilyReturnStored(INVALID_FAMILY);
+        assertEquals(familyStored.returnStoredResult(), new Family());
+        assertEquals(familyStored.returnExceptionMessage(), Family.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -207,6 +342,21 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseEmail_validEmail_returnsParserUtilEmail() {
+        String validEmail = VALID_EMAIL;
+        ParserUtilResult<Email> emailStored = parseEmailReturnStored(validEmail);
+        assertEquals(emailStored.returnStoredResult(), new Email(validEmail));
+        assertEquals(emailStored.returnExceptionMessage(), "");
+    }
+
+    @Test
+    public void parseEmail_invalidEmail_returnsParserUtilEmail() {
+        ParserUtilResult<Email> emailStored = parseEmailReturnStored(INVALID_EMAIL);
+        assertEquals(emailStored.returnStoredResult(), new Email());
+        assertEquals(emailStored.returnExceptionMessage(), Email.MESSAGE_CONSTRAINTS);
     }
 
     @Test
