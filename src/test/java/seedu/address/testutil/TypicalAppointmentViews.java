@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
 import static seedu.address.testutil.TypicalAppointments.AMY_APPT;
 import static seedu.address.testutil.TypicalAppointments.BENSON_APPT;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAddressBookWithAppointments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,11 +46,8 @@ public class TypicalAppointmentViews {
      * Returns an {@code AddressBook} with all the typical
      * persons and appointments
      */
-    public static AddressBook getTypicalAddressBookWithAppointments() {
-        AddressBook ab = getTypicalAddressBook();
-        for (AppointmentView appointment : getTypicalAppointmentViews()) {
-            ab.addAppointmentView(appointment);
-        }
+    public static AddressBook getTypicalAddressBookWithAppointmentViews() {
+        AddressBook ab = getTypicalAddressBookWithAppointments();
         return ab;
     }
 

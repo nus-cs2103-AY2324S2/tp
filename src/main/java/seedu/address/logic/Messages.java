@@ -18,6 +18,7 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "The appointment provided is not found in the system";
     public static final String MESSAGE_PERSON_NRIC_NOT_FOUND = "The NRIC provided is not found in the system";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 

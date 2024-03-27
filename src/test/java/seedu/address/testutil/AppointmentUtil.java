@@ -29,8 +29,8 @@ public class AppointmentUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NRIC + appointment.getNric().value + " ");
         sb.append(PREFIX_DATE + appointment.getDate().toString() + " ");
-        sb.append(PREFIX_START_TIME + appointment.getTimePeriod().getStartTime().toString() + " ");
-        sb.append(PREFIX_END_TIME + appointment.getTimePeriod().getEndTime().toString() + " ");
+        sb.append(PREFIX_START_TIME + appointment.getStartTime().toString() + " ");
+        sb.append(PREFIX_END_TIME + appointment.getEndTime().toString() + " ");
         sb.append(PREFIX_TAG + appointment.getAppointmentType().typeName + " ");
         sb.append(PREFIX_NOTE + appointment.getNote().note + " ");
         return sb.toString();

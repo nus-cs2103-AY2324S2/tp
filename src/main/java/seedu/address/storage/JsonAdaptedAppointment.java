@@ -51,8 +51,8 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         nric = source.getNric().value;
         date = source.getDate().toString();
-        startTime = source.getTimePeriod().getStartTime().toString();
-        endTime = source.getTimePeriod().getEndTime().toString();
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
         appointmentType = source.getAppointmentType().typeName;
         note = source.getNote().note;
         isMarked = source.getMark().isMarked;
