@@ -9,7 +9,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.hirehub.commons.core.GuiSettings;
@@ -18,7 +17,6 @@ import seedu.hirehub.logic.Logic;
 import seedu.hirehub.logic.commands.CommandResult;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
-import seedu.hirehub.model.job.Job;
 
 /**
  * The Main Window. Provides the basic application layout containing
