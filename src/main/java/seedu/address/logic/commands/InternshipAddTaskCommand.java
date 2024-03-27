@@ -32,7 +32,6 @@ public class InternshipAddTaskCommand extends InternshipCommand {
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Task Added: %1$s";
 
     public static final String MESSAGE_EMPTY_TASK = "Task cannot be blank!";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This entry already exists in the internship data.";
 
     private final Index index;
     private final Task task;
@@ -54,7 +53,7 @@ public class InternshipAddTaskCommand extends InternshipCommand {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(InternshipMessages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
@@ -62,7 +61,6 @@ public class InternshipAddTaskCommand extends InternshipCommand {
         Internship internshipWithTask = createInternshipWithTask(internshipToAddTask, task);
 
         model.setInternship(internshipToAddTask, internshipWithTask);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
                 this.task));
