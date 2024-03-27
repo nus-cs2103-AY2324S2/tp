@@ -67,6 +67,7 @@ public class Task {
 
     public void setDone() {
         this.isDone = true;
+        this.personInCharge.setTask(null);
     }
 
     /**
