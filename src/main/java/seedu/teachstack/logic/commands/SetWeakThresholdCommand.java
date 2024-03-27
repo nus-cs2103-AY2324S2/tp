@@ -36,4 +36,16 @@ public class SetWeakThresholdCommand extends Command {
     public Grade retrieveGrade() {
         return newThreshold;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof SetWeakThresholdCommand)) {
+            return false;
+        }
+        SetWeakThresholdCommand other = (SetWeakThresholdCommand) obj;
+        return this.newThreshold.equals(other.newThreshold);
+    }
 }
