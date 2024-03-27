@@ -47,8 +47,6 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Country: ")
                 .append(person.getCountry())
-                .append("; Status: ")
-                .append(person.getStatus())
                 .append("; Comment: ")
                 .append(person.getComment())
                 .append("; Tags: ");

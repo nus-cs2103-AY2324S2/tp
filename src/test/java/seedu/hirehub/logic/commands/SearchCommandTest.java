@@ -7,7 +7,6 @@ import static seedu.hirehub.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.hirehub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hirehub.testutil.TypicalPersons.ALICE;
 import static seedu.hirehub.testutil.TypicalPersons.BENSON;
-import static seedu.hirehub.testutil.TypicalPersons.CARL;
 import static seedu.hirehub.testutil.TypicalPersons.DANIEL;
 import static seedu.hirehub.testutil.TypicalPersons.ELLE;
 import static seedu.hirehub.testutil.TypicalPersons.getTypicalAddressBook;
@@ -75,7 +74,7 @@ public class SearchCommandTest {
         Person alex = new PersonBuilder().withName("Alex Meyer").withPhone("659482224")
                 .withEmail("alex@example.com").withCountry("US").withComment("Good job").build();
         Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
+                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work")
                 .build();
         expectedModel.addPerson(alex);
         expectedModel.addPerson(belle);
@@ -105,7 +104,7 @@ public class SearchCommandTest {
     @Test
     public void execute_matchExact() {
         Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
+                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work")
                 .build();
         expectedModel.addPerson(belle);
         model = expectedModel;
@@ -130,19 +129,12 @@ public class SearchCommandTest {
         expectedModel.updateFilteredPersonList(descriptor.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, DANIEL), model.getFilteredPersonList());
-
-        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        descriptor = new SearchPersonDescriptorBuilder().withStatus("PRESCREEN").build();
-        command = new SearchCommand(descriptor);
-        expectedModel.updateFilteredPersonList(descriptor.getPredicate());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL, ELLE), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleFields() {
         Person belle = new PersonBuilder().withName("Belle Meyer").withPhone("659482224")
-                .withEmail("bellewerner@example.com").withCountry("US").withStatus("ACCEPTED").withComment("Good work")
+                .withEmail("bellewerner@example.com").withCountry("US").withComment("Good work")
                 .build();
         expectedModel.addPerson(belle);
         model = expectedModel;

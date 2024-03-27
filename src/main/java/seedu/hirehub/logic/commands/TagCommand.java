@@ -62,8 +62,7 @@ public class TagCommand extends Command {
         newTagList.addAll(tags);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getCountry(), personToEdit.getStatus(),
-                personToEdit.getComment(), newTagList);
+                personToEdit.getCountry(), personToEdit.getComment(), newTagList);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
