@@ -71,6 +71,7 @@
     "parentPhoneNumberOne" : "98765432",
     "parentPhoneNumberTwo" : "91233322",
     "classroom": "6 Innovation"
+
   }, {
     "name" : "John Doe",
     "email" : "johnd@example.com",
