@@ -16,6 +16,7 @@ import seedu.address.ui.util.SyntaxHighlighter;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";
+    private static final SyntaxHighlighter resultSyntax = new SyntaxHighlighter("result-display");
 
     @FXML
     private VBox resultDisplay;
@@ -30,7 +31,7 @@ public class ResultDisplay extends UiPart<Region> {
         resultDisplay.getChildren().setAll(Arrays
                 .stream(feedbackToUser.split("\\n"))
                 .map(String::strip)
-                .map(line -> SyntaxHighlighter.generateLine(line, "result-display"))
+                .map(resultSyntax::generateLine)
                 .collect(Collectors.toList())
         );
     }

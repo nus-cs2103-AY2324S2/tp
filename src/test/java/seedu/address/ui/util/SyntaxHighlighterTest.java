@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.util.CommandWordUtil.isCommandWord;
 import static seedu.address.ui.util.SyntaxHighlighter.BOLD_STYLE_CLASS;
 import static seedu.address.ui.util.SyntaxHighlighter.ERROR_STYLE_CLASS;
 import static seedu.address.ui.util.SyntaxHighlighter.SUCCESS_STYLE_CLASS;
-import static seedu.address.ui.util.SyntaxHighlighter.generateLine;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,12 +23,15 @@ class SyntaxHighlighterTest {
     private TextFlow errorTextFlow;
     private TextFlow successTextFlow;
     private TextFlow genericTextFlow;
+
     @BeforeEach
     void setUp() {
-        errorTextFlow = generateLine(Messages.MESSAGE_UNKNOWN_COMMAND);
-        successTextFlow = generateLine(Messages.MESSAGE_MARKED_ATTENDANCE_SUCCESS);
-        genericTextFlow = generateLine(MarkAttendanceCommand.MESSAGE_USAGE);
+        SyntaxHighlighter s = new SyntaxHighlighter();
+        errorTextFlow = s.generateLine(Messages.MESSAGE_UNKNOWN_COMMAND);
+        successTextFlow = s.generateLine(Messages.MESSAGE_MARKED_ATTENDANCE_SUCCESS);
+        genericTextFlow = s.generateLine(MarkAttendanceCommand.MESSAGE_USAGE);
     }
+
     @Test
     void generateLine_errorLine_singleText() {
         ObservableList<Node> nodes = errorTextFlow.getChildren();
