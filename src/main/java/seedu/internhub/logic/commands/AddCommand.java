@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "I "
             + PREFIX_JOB_DESCRIPTION + "Software Developer intern "
-            + PREFIX_INTERVIEW_DATE + "03-03-2024 1200 "
+            + PREFIX_INTERVIEW_DATE + "03-05-2024 1200 "
             + PREFIX_INTERN_DURATION + "3 months "
             + PREFIX_SALARY + "1000";
 
