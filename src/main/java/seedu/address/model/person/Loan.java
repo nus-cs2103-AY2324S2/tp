@@ -112,6 +112,13 @@ public class Loan {
         isReturned = true;
     }
 
+    /**
+     * Marks the loan as not returned.
+     */
+    public void markAsNotReturned() {
+        isReturned = false;
+    }
+
     @Override
     public String toString() {
         if (isReturned) {
