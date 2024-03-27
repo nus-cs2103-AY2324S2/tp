@@ -16,6 +16,8 @@ _This page is for ConnectCare users. If you're a developer, see also the
 <!-- * Table of Contents -->
 <page-nav-print />
 
+___
+
 ## Introduction
 Welcome to *ConnectCare User Guide*, a guide to use the *ConnectCare* application.
 *ConnectCare* helps you manage your client contacts faster and more reliably.
@@ -51,9 +53,13 @@ We understand that social workers handle sensitive client information. Since Con
 
 By streamlining workflows and offering social work-specific features, ConnectCare empowers you to focus on what matters most: your clients. You can spend more time building rapport with clients, respond to inquiries and needs more promptly and ultimately focus on delivering high-quality care.
 
+___
+
 ## Who This Guide Is For
 
 This guide does not assume any technical knowledge from users. We just require users to be able to type on a keyboard. As ConnectCare uses a [Command Line Interface (CLI)](#cli), users who are familiar with a CLI would find it easy to transition to this software. However, if you have not used a CLI application before, there would be a step-by-step introduction in this guide for each command.
+
+___
 
 ## How to Use This Guide
 
@@ -89,6 +95,8 @@ Important warnings that you should keep in mind while using this User Guide.
 **Warning:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+___
+
 ## Quick start
 <IMPROVE BY ADDING SCREENSHOTS AND LINKS>
 
@@ -121,44 +129,79 @@ ___
 
 _This command adds a new client to your client list._
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXT_OF_KIN d/DESCRIPTION [t/TAG]…`
+**Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS k/NEXT_OF_KIN d/DESCRIPTION [t/TAG]…`
 
-Parameters:
+<panel header="Parameter Descriptions and Remarks" alt="Parameters" minimized>
+<markdown>
 
-| Parameter    | Description                                        | Remarks                               |
-|--------------|----------------------------------------------------|---------------------------------------|
-| NAME         | Name of client that you want to add                | Name must be unique and is compulsory |
-| PHONE_NUMBER | Phone Number of client that you want to add        | Compulsory                            |
-| EMAIL        | Email of client that you want to add               | Compulsory                            |
-| ADDRESS      | Address of client that you want to add             | Compulsory                            |
-| NEXT_OF_KIN  | Next of Kin details of client that you want to add | Compulsory                            |
-| DESCRIPTION  | Description of client that you want to add         | Compulsory                            |
+| Parameter      | Description                                        | Remarks                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|----------------|----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME         | Name of client that you want to add                | Name must be unique, alphanumeric and is compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| p/PHONE_NUMBER | Phone Number of client that you want to add        | Phone number should only contain numbers and is compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| e/EMAIL        | Email of client that you want to add               | Emails is compulsory and should be of the format local-part@domain and adhere to the following constraints:<br/>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br/>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br/>The domain name must:<br/>  - end with a domain label at least 2 characters long<br/>  - have each domain label start and end with alphanumeric characters<br/>  - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| a/ADDRESS      | Address of client that you want to add             | Compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| k/NEXT_OF_KIN  | Next of Kin details of client that you want to add | Name must be alphanumeric and is compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| d/DESCRIPTION  | Description of client that you want to add         | Description should not be blank and is compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| t/TAG          | Tag to identify the client                         | A person can have any number of tags (or even 0)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 <box type="tip">
 
-**Tip:** A person can have any number of tags (or even 0)
+**Tip:** If you have difficulty adding clients, check if you have added the correct prefixes
 
 </box>
+</markdown>
+</panel>
 
-Examples:
+&nbsp;
 
--   `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Suffers from depression k/Jasmin Doe`
--   `add n/Betsy Crowe t/friend d/Takes anxiety medication k/Bethany Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
--   `add n/Aaron James p/01232228943 e/billj@example.com a/12 College Avenue West t/highPriority k/John Doe d/Is an army veteran`
+**Examples:**
+-   `add n/John Doe p/98765432 e/johnd@example.com a/57 Ubi Avenue 1 #04-13 Ubi Centre d/Suffers from depression k/Jasmin Doe`
+-   `add n/Betsy Crowe t/friend d/Takes anxiety medication k/Bethany Crowe e/betsycrowe@example.com a/Blk 684A Jurong West Central 1 #10-124 p/92748321 t/lowPriority`
+-   `add n/Aaron James p/84362143 e/billj@example.com a/400 Balestier Road #02-27 Balestier Plaza t/highPriority k/John Doe d/Has low blood pressure`
 
-Usage of Add command
+**Walkthrough:**
 
-<img src="images/add-command-images/add-command.png" alt="Add command example"/>
+The screenshots below are what you would expect when using the `add` command. In this example, after using the [`list`](https://ay2324s2-cs2103t-w12-4.github.io/tp/UserGuide.html#listing-all-persons-list) command,
+the full clients list is displayed. Thereafter, the `add` command was used, using the parameters `n/Aaron James p/84362143 e/billj@example.com a/400 Balestier Road #02-27 Balestier Plaza t/highPriority k/John Doe d/Has low blood pressure`.
+After execution, the client `Aaron James` is added successfully with the corresponding parameters!
 
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/user-guide/add_command/add_command_before.png" alt="add">
+        <markdown> Figure 1.2: Before the `add` command is executed </markdown>
+    </pic>
+    <pic src="images/user-guide/add_command/add_command_after.png" alt="add">
+        <markdown> Figure 1.2: After the `add` command is executed </markdown>
+    </pic>
+</div>
+
+&nbsp;
+
+What if the command was used with invalid parameters? In the example on the left, the command `add n/Robert Lee p/92374832` was used, which does not contain all the compulsory parameters.
+Here the error message shown tells us that our command format is invalid and shows an example command, which lets you know the correct parameters to use for the command.
+In the example on the right, the command `add n/Robert Lee p/abc123 e/rlee@connectmail.com a/65 SIMS AVENUE #06-03 k/Regina Lee d/Short of hearing` is used, which again is invalid. Here the error message shown is `Phone numbers should only contain numbers, and it should be at least 3 digits long` which lets you know specifically that the phone number given was invalid.
+As the commands given were invalid, there would be no changes to the client list.
+
+&nbsp;
+
+<div class="image-container" align="middle" style="display: flex;">
+    <pic src="images/user-guide/add_command/add_command_after_without_all_parameters.png" alt="add"> 
+        <markdown> Figure 1.2: After the invalid `add` command without all parameters is executed </markdown>
+    </pic>
+    <pic src="images/user-guide/add_command/add_command_after_with_incorrect_parameters.png" alt="add">
+        <markdown> Figure 1.3: After the invalid  `add` command with incorrect parameters is executed </markdown> 
+    </pic>
+</div>
+
+&nbsp;
 
 ### Listing all persons : `list`
-_Shows a list of all persons._
+_This command shows a list of all persons._
 
-Format: `list`
+**Format:** `list`
 
-Examples:
+**Examples:**
 
-The screenshots below are what you would expect when using the `list` command. In this example, after using the `find` command,
+The screenshots below are what you would expect when using the [`list`](https://ay2324s2-cs2103t-w12-4.github.io/tp/UserGuide.html#listing-all-persons-list) command. In this example, after using the [`find`](https://ay2324s2-cs2103t-w12-4.github.io/tp/UserGuide.html#locating-clients-by-name-find) command,
 only `Bernice Yeo` was shown in the list. Thereafter, the `list` command was used, displaying the entire list of client contacts.
 &nbsp;  
 
@@ -170,44 +213,106 @@ only `Bernice Yeo` was shown in the list. Thereafter, the `list` command was use
         Figure 1.2: After the list command is executed
     </pic>
 </div>
-&nbsp;  
+&nbsp;
 
 ### Updating a client : `update`
 
 _This command helps update existing client's information in the client list in the event that something changes._
 
-Format: `update u/existing user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [k/NEXTOFKIN] [t/TAG]…`
+**Format:** `update u/EXISTING_USER [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [k/NEXTOFKIN] [t/TAG]…`
 
-- Edits the person with the specified NAME. The NAME provided must be the full name of the person. The NAME must be free of typos.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
-Examples:
+<panel header="Parameter Descriptions and Remarks" alt="Parameters" minimized>
+<markdown>
 
+| Parameter       | Description                                        | Remarks                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------------|----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| u/EXISTING_USER | Name of client that you want to update             | Name must be unique, alphanumeric and is compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| n/NAME          | New name of client that you want to add            | Name must be unique, alphanumeric                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| p/PHONE_NUMBER  | Phone Number of client that you want to add        | Phone number should only contain numbers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| e/EMAIL         | Email of client that you want to add               | Emails should be of the format local-part@domain and adhere to the following constraints:<br/>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.<br/>. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br/>The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| a/ADDRESS       | Address of client that you want to add             | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| k/NEXT_OF_KIN   | Next of Kin details of client that you want to add | Name must be alphanumeric                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| d/DESCRIPTION   | Description of client that you want to add         | Description should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| t/TAG           | Tag to identify the client                         | Multiple tags can be specified, but they must each be prefixed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+</markdown>
+</panel>
+
+&nbsp;
+
+**Example:**
 -   `update u/Jane Doe n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-011` updates the information of Jane Doe's information to be
     name: John Doe  
     phone no: 98765432
     email: [johnd@example.com](mailto:johnd@example.com)  
     address: John street, block 123, #01-011
 
-Usage of update command
+**Walkthrough:**
 
-<img src="images/update-command-images/update-command.png" alt="Update command example" />
+The screenshots below are what you would expect when using the `update` command. In this example, after using the `list` command,
+the full clients list is displayed. Thereafter, the `update` command was used, using the parameters `u/Alex Yeoh n/Alex Yeo p/92472563`.
+After execution, the client `Alex Yeoh` is updated successfully with the corresponding parameters!
 
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/user-guide/update_command/update_command_before.png" alt="update">
+        <markdown> Figure 1.2: Before the `update command is executed </markdown>
+    </pic>
+    <pic src="images/user-guide/update_command/update_command_after.png" alt="update">
+        <markdown> Figure 1.2: After the `update` command is executed </markdown>
+    </pic>
+</div>
+
+&nbsp;
+
+What if the command was used with invalid parameters? In the example on the left, the command `update u/Unknown Person p/92374832` was used, which specifies a name not in the name list.
+Here the error message shown is `The person name provided is invalid` which lets you know that you are trying to update a client that does not exist.
+In the example on the right, the command `update u/Alex Yeo p/abc123` is used, which again is invalid. Here the error message shown is `Phone numbers should only contain numbers, and it should be at least 3 digits long` which lets you know specifically that the phone number given was invalid.
+As the commands given were invalid, there would be no changes to the client list.
+
+&nbsp;
+
+<div class="image-container" align="middle" style="display: flex;">
+    <pic src="images/user-guide/update_command/update_command_after_with_invalid_client.png" alt="update"> 
+        <markdown> Figure 1.2: After the invalid `update` command with an invalid client is executed </markdown>
+    </pic>
+    <pic src="images/user-guide/update_command/update_command_after_with_incorrect_parameters.png" alt="update">
+        <markdown> Figure 1.3: After the invalid  `update` command with invalid parameters is executed </markdown> 
+    </pic>
+</div>
+
+&nbsp;
 
 ### Locating clients by name: `find`
 
-_This command allows you to find a specific client in your client list by their **name**, and optionally by other fields too_
+_This command allows you to find a specific client in your client list by their `NAME`, and optionally by other fields too._
 
-Format: `find n/NAME… [a/KEYWORD]… [e/KEYWORD]… [t/KEYWORD]… [k/KEYWORD]… [d/KEYWORD]… [p/KEYWORD]…`
+**Format:** `find n/NAME… [a/KEYWORD]… [e/KEYWORD]… [t/KEYWORD]… [k/KEYWORD]… [d/KEYWORD]… [p/KEYWORD]…`
 
-Parameter:
+<panel header="Parameter Descriptions and Remarks" alt="Parameters" minimized>
+<markdown>
 
-__INSERT TABLE HERE__
+| Parameter       | Description                                          | Remarks                                                                         |
+|-----------------|------------------------------------------------------|---------------------------------------------------------------------------------|
+| n/NAME          | Name or part of name of client that you want to find | Only the letters used in a name needs to match. Lower case letters can be used. |
+| p/PHONE_NUMBER  | Phone Number of client that you want to add          | -                                                                               |
+| e/EMAIL         | Email of client that you want to add                 | -                                                                               |
+| a/ADDRESS       | Address of client that you want to add               | -                                                                               |
+| k/NEXT_OF_KIN   | Next of Kin details of client that you want to add   | -                                                                               |
+| d/DESCRIPTION   | Description of client that you want to add           | -                                                                               |
+| t/TAG           | Tag to identify the client                           | -                                                                               |
+</markdown>
+</panel>
 
-Examples: Lets say your client list contains the following clients:
+&nbsp;
+
+**Example:**
+- `find n/alex p/99824412`
+- `find n/xavier k/polly`
+- `find n/bobby`
+
+**Walkthrough:**
+
+Let's say your client list contains the following clients:
 <img src="images/ExampleClientList.png" /> <USE IMAGE LIKE LIST COMMAND HERE>
 
 -   `find n/alex` would return `Alex Lee` as well as `Alex Chan`
@@ -216,6 +321,8 @@ Examples: Lets say your client list contains the following clients:
 -   `find n/a t/important` would return `Alex Lee` as well as `Xavier`
 
 <box type="info">
+
+&nbsp;
 
 **Note:** you can search for multiple keywords, for example `find n/name1 n/name2` would search for all clients with names that contain name1 OR name2
 This also applies to the optional keywords, for example `find n/name1 a/address1 a/address2 would search for all clients with names that contain name1 AND
@@ -298,10 +405,10 @@ The screenshots below are what you would expect when using the `delete` command.
 the full clients list is displayed. Thereafter, the `delete 1` command was used, removing `David Li`, the first person in the list, from the list of client contacts.
 
 <div class="image-container" align="middle" style="display:flex">
-    <pic src="images/user-guide/delete_command_before.png" alt="list">
+    <pic src="images/user-guide/delete_command_before.png" alt="delete">
         <markdown> Figure 1.2: Before the `delete 1` command is executed </markdown>
     </pic>
-    <pic src="images/user-guide/delete_command_after.png" alt="list">
+    <pic src="images/user-guide/delete_command_after.png" alt="delete">
         <markdown> Figure 1.2: After the `delete 1` command is executed </markdown>
     </pic>
 </div>
@@ -375,6 +482,7 @@ Your locally saved client list will be updated after any change is made, so no f
 
 **Note**: If it is your first time running the program, and there is no existing client list, a new file will automatically be generated to store your new client list!
 </box>
+
 ___
 
 ## FAQ
@@ -382,6 +490,7 @@ ___
 **Q:** How do I transfer my data to another Computer? \
 **A:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+___
 
 ## Command summary
 

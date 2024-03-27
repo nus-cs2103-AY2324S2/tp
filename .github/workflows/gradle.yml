@@ -38,6 +38,10 @@ jobs:
       - name: Build and check with Gradle
         run: ./gradlew check coverage
 
+      - name: Validate codecov.yml
+        if: runner.os == 'Linux'
+        run: curl --data-binary @codecov.yml https://codecov.io/validate
+
       - name: Upload coverage reports to Codecov
         env:
           slug: AY2324S2-CS2103T-W12-4/tp
