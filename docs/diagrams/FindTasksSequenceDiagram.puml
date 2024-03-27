@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskMasterProParser" as TaskMasterProParser LOGIC_COLOR
+participant ":FindTasksCommandParser" as FindTasksCommandParser LOGIC_COLOR
+participant "p:TaskNameContainsKeywordsPredicate" as TaskNameContainsKeywordsPredicate LOGIC_COLOR
+participant "f:FindTasksCommand" as FindTasksCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findtasks \nproject meeting")
+activate LogicManager
+
+LogicManager -> TaskMasterProParser : parseCommand("findtasks \nproject meeting")
+activate TaskMasterProParser
+
+create FindTasksCommandParser
+TaskMasterProParser -> FindTasksCommandParser
+activate FindTasksCommandParser
+
+FindTasksCommandParser --> TaskMasterProParser
+deactivate FindTasksCommandParser
+
+TaskMasterProParser -> FindTasksCommandParser : parse("project meeting")
+activate FindTasksCommandParser
+
+create TaskNameContainsKeywordsPredicate
+FindTasksCommandParser -> TaskNameContainsKeywordsPredicate
+activate TaskNameContainsKeywordsPredicate
+
+TaskNameContainsKeywordsPredicate --> FindTasksCommandParser
+deactivate TaskNameContainsKeywordsPredicate
+
+create FindTasksCommand
+FindTasksCommandParser -> FindTasksCommand : FindTasksCommand(p)
+activate FindTasksCommand
+
+FindTasksCommand --> FindTasksCommandParser :
+deactivate FindTasksCommand
+
+FindTasksCommandParser --> TaskMasterProParser : f
+deactivate FindTasksCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTasksCommandParser -[hidden]-> TaskMasterProParser
+destroy FindTasksCommandParser
+
+TaskMasterProParser --> LogicManager : f
+deactivate TaskMasterProParser
+
+LogicManager -> FindTasksCommand : execute(m)
+activate FindTasksCommand
+
+FindTasksCommand -> Model : updateFilteredTaskList(p)
+activate Model
+
+Model --> FindTasksCommand
+deactivate Model
+
+create CommandResult
+FindTasksCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTasksCommand
+deactivate CommandResult
+
+FindTasksCommand --> LogicManager : r
+deactivate FindTasksCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

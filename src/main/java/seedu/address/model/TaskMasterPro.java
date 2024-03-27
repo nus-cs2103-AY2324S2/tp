@@ -12,7 +12,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the TaskMasterPro level
  * Duplicates are not allowed (by .isSameEmployee comparison)
  */
 public class TaskMasterPro implements ReadOnlyTaskMasterPro {
@@ -72,7 +72,7 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
     //// Employee-level operations
 
     /**
-     * Returns true if a Employee with the same identity as {@code employee} exists in the address book.
+     * Returns true if an Employee with the same identity as {@code employee} exists in TaskMasterPro.
      */
     public boolean hasEmployee(Employee employee) {
         requireNonNull(employee);
@@ -80,8 +80,8 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
     }
 
     /**
-     * Adds a Employee to the address book.
-     * The Employee must not already exist in the address book.
+     * Adds an Employee to TaskMasterPro.
+     * The Employee must not already exist in TaskMasterPro.
      */
     public void addEmployee(Employee p) {
         employees.add(p);
@@ -89,9 +89,9 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
 
     /**
      * Replaces the given Employee {@code target} in the list with {@code editedEmployee}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in TaskMasterPro.
      * The Employee identity of {@code editedEmployee} must not be the same as
-     * another existing Employee in the address book.
+     * another existing Employee in TaskMasterPro.
      */
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
@@ -101,15 +101,15 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
 
     /**
      * Removes {@code key} from this {@code TaskMasterPro}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in TaskMasterPro.
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
     }
 
     /**
-     * Adds a Employee to the address book.
-     * The Employee must not already exist in the address book.
+     * Adds an Employee to TaskMasterPro.
+     * The Employee must not already exist in TaskMasterPro.
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -117,7 +117,7 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
 
     /**
      * Removes {@code key} from this {@code TaskMasterPro}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in TaskMasterPro.
      */
     public void removeTask(Task task) {
         tasks.remove(task);
@@ -125,6 +125,18 @@ public class TaskMasterPro implements ReadOnlyTaskMasterPro {
 
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Replaces the given Task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in TaskMasterPro.
+     * The Task identity of {@code editedTask} must not be the same as
+     * another existing Task in TaskMasterPro.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
     }
 
 

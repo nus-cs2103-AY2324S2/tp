@@ -10,6 +10,8 @@ import java.util.Set;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskId;
 
 /**
  * Represents an Employee in the address book.
@@ -100,13 +102,14 @@ public class Employee {
     /**
      * Assigns a task to the employee by updating the employee's task list with the given task ID.
      *
-     * @param taskID The ID of the task to be assigned to the employee.
+     * @param task The task to be assigned to the employee.
      * @return The updated Employee object with the assigned task.
      * @throws CommandException If the task ID is already present in the employee's task list.
      */
-    public Employee assignTask(int taskID) throws CommandException {
+    public Employee assignTask(Task task) throws CommandException {
+        AssignedTasks updatedTasks = tasks.assignTask(task);
         return new Employee(
-                employeeId, name, phone, email, address, tasks.updateTask(taskID), tags);
+                employeeId, name, phone, email, address, updatedTasks, tags);
     }
 
     /**
@@ -116,9 +119,28 @@ public class Employee {
      * @return a new Employee object with the specified task removed from its assigned tasks
      * @throws CommandException if the specified task ID is invalid or the task cannot be removed
      */
-    public Employee removeTask(int taskID) throws CommandException {
+    public Employee removeTask(TaskId taskID) throws CommandException {
+        AssignedTasks updatedTasks = tasks.unassignTask(taskID);
         return new Employee(
-                employeeId, name, phone, email, address, tasks.deleteTask(taskID), tags);
+                employeeId, name, phone, email, address, updatedTasks, tags);
+    }
+
+    /**
+     * Removes this employee from all assigned tasks.
+     * This command will be run before this employee is deleted.
+     */
+    public void removeAssignments() {
+        for (TaskId taskId : tasks.getAssignedTasks().keySet()) {
+            // Retrieve the Task using the key
+            Task task = tasks.getAssignedTasks().get(taskId);
+
+            // Remove this employee from the Task
+            try {
+                task.removeEmployee(employeeId);
+            } catch (CommandException e) {
+                //Ignore this exception as this error is not important since the Employee is being deleted
+            }
+        }
     }
 
     /**

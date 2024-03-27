@@ -103,6 +103,14 @@ public interface Model {
     void deleteTask(Task target);
 
     /**
+     * Replaces the given employee {@code target} with {@code editedEmployee}.
+     * {@code target} must exist in the address book.
+     * The employee identity of {@code editedEmployee} must not be the same as
+     * another existing employee in the address book.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
