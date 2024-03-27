@@ -34,8 +34,10 @@ public class GroupCommand extends Command {
             + PREFIX_STUDENTID + "A0123456H ";
 
     public static final String MESSAGE_GROUP_SUCCESS = "All students were added!";
+    public static final String MESSAGE_CLEAR_SUCCESS = "All specified students were removed from any existing groups!";
     public static final String STUDENTS_NOT_FOUND = "The following IDs were not found (and not added to the group): ";
-    private final Set<Group> group; //set with one group. for compatibility with edit command.
+    private final Set<Group> group;
+    private final Set<Group> noGroup = new HashSet<>();
     private final Set<StudentId> studentIds;
 
     /**
@@ -58,25 +60,25 @@ public class GroupCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         String missingIds = "";
         requireNonNull(model);
+
+        if (studentIds.size() == 0) {
+            for (StudentId studentId : studentIds) {
+                clearGroups(model, studentId);
+            }
+            return new CommandResult(MESSAGE_CLEAR_SUCCESS);
+        }
+
         for (StudentId studentId : studentIds) {
             //get the existing groups
             Person currentPerson = model.getPerson(studentId);
             Set<Group> newGroup = new HashSet<>();
             Set<Group> existingGroup = currentPerson.getGroups();
 
-            for (Group group : group) {
-                newGroup.add(group);
-            }
+            newGroup.addAll(group);
+            newGroup.addAll(existingGroup);
 
-            for (Group group : existingGroup) {
-                newGroup.add(group);
-            }
-
-            EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-            editPersonDescriptor.setGroups(newGroup);
-            EditCommand editCommand = new EditCommand(studentId, editPersonDescriptor);
             try {
-                editCommand.execute(model);
+                addGroups(newGroup, model, studentId);
             } catch (CommandException e) {
                 missingIds += studentId + " ";
             }
@@ -87,6 +89,30 @@ public class GroupCommand extends Command {
         } else {
             throw new CommandException(STUDENTS_NOT_FOUND + missingIds);
         }
+    }
+
+    /**
+     * Clears all groups of a student with a particular studentId.
+     *
+     * @param model Provided model
+     * @param studentId StudentId of student
+     * @throws CommandException
+     */
+    private void clearGroups(Model model, StudentId studentId) throws CommandException {
+        addGroups(noGroup, model, studentId);
+    }
+
+    /**
+     * @param groups Set of Groups to student to (on top of existing groups)
+     * @param model Provided model
+     * @param studentId StudentId of student
+     * @throws CommandException
+     */
+    private void addGroups(Set<Group> groups, Model model, StudentId studentId) throws CommandException {
+        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        editPersonDescriptor.setGroups(groups);
+        EditCommand editCommand = new EditCommand(studentId, editPersonDescriptor);
+        editCommand.execute(model);
     }
 
     @Override

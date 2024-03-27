@@ -2,6 +2,7 @@ package seedu.teachstack.logic.commands;
 
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.teachstack.model.util.SampleDataUtil.getGroupSet;
 import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.teachstack.logic.Messages;
+import seedu.teachstack.logic.commands.exceptions.CommandException;
 import seedu.teachstack.model.AddressBook;
 import seedu.teachstack.model.Model;
 import seedu.teachstack.model.ModelManager;
@@ -56,5 +58,29 @@ public class GroupCommandTest {
         GroupCommand groupCommand = new GroupCommand(editedPerson.getGroups(), studentIds);
 
         assertCommandFailure(groupCommand, model, GroupCommand.STUDENTS_NOT_FOUND + "A9999999Z ");
+    }
+
+    /**
+     * Adds a student to a group. Then, adds that student to another group.
+     * The student should be in both groups in the end.
+     */
+    @Test
+    public void execute_rememberPreviousGroups_success() throws CommandException {
+        //change alice to group 99 and 100
+        Person editedPerson = new PersonBuilder(TypicalPersons.ALICE).withGroups("Group 99", "Group 100").build();
+
+        HashSet<StudentId> studentIds = new HashSet<>();
+        studentIds.add(editedPerson.getStudentId());
+        GroupCommand addToGroup99 = new GroupCommand(getGroupSet("Group 99"), studentIds);
+        GroupCommand addToGroup100 = new GroupCommand(getGroupSet("Group 100"), studentIds);
+
+        String expectedMessage = String.format(GroupCommand.MESSAGE_GROUP_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getPerson(editedPerson.getStudentId()), editedPerson); // Alice in group 99, 100
+
+        addToGroup99.execute(model);
+
+        assertCommandSuccess(addToGroup100, model, expectedMessage, expectedModel);
     }
 }
