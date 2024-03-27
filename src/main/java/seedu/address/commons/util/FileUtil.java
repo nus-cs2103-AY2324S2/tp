@@ -32,7 +32,7 @@ public class FileUtil {
     }
 
     /**
-     * Creates a file if it does not exist along with its missing parent directories.
+     * Creates a file with specified filePath if it does not exist along with its missing parent directories.
      * @throws IOException if the file or directory cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
@@ -41,6 +41,15 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Creates a file with specified fileName if it does not exist along with its missing parent directories.
+     * @throws IOException if the file or directory cannot be created.
+     */
+    public static void createIfMissing(String file) throws IOException {
+        if (!isFileExists(Paths.get(file))) {
+            createFile(Paths.get(file));
+        }
+    }
     /**
      * Creates a file if it does not exist along with its missing parent directories.
      */

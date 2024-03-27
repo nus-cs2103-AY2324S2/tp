@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+class Person {
+  - name: String
+  - phone: String
+  - email: String
+  - studentId: String
+  - description: String
+  + setDescription(description: String): void
+}
+
+class AddressBook {
+  - persons: UniquePersonList
+  + addPerson(person: Person): void
+  + removePerson(person: Person): void
+  + getPersonList(): ObservableList<Person>
+}
+
+class ClassBook {
+  - classes: UniqueClassList
+  - addressBook: AddressBook
+  + createClass(classes: Classes): void
+  + removeClass(classes: Classes): void
+  + setAddressBook(addressBook: AddressBook): void
+  + getAddressBook(): AddressBook
+}
+
+class AddCommand {
+  - toAdd: Person
+  + execute(model: Model): CommandResult
+}
+
+class Model {
+  + addPerson(person: Person): void
+  + setAddressBook(addressBook: AddressBook): void
+  + setClassBook(classBook: ClassBook): void
+}
+
+Person "1" --> "*" AddressBook: contains
+ClassBook "1" --> "1" AddressBook: contains
+AddCommand ..> Person: adds
+AddCommand ..> Model: uses
+Model ..> ClassBook: manages
+Model ..> AddressBook: manages
+@enduml
