@@ -39,7 +39,7 @@ public class Matric {
      * @param matricNumber String to be tested
      * @return true if the string is an empty matriculation number
      */
-    private static boolean isEmptyMatric(String matricNumber) {
+    public static boolean isEmptyMatric(String matricNumber) {
         return matricNumber.isBlank();
     }
 

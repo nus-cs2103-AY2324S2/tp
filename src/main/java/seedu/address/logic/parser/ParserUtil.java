@@ -11,10 +11,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Score;
 import seedu.address.model.student.Matric;
 import seedu.address.model.student.Reflection;
 import seedu.address.model.student.Studio;
@@ -55,6 +57,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code matric} in the context of an Edit command where blank Matrics are accepted.
+     * @param matric the matric number to be parsed
+     * @return the parsed matric number
+     * @throws ParseException if the specified matric number is invalid
+     */
+    public static Matric parseMatricForEdit(String matric) throws ParseException {
+        String trimmedMatric = matric.trim();
+        if (!Matric.isValidConstructorParam(trimmedMatric)) {
+            throw new ParseException(Matric.MESSAGE_CONSTRAINTS);
+        }
+        return new Matric(trimmedMatric);
+    }
+
+    /**
      * Parses {@code reflection} into a {@code Reflection} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @param reflection the reflection to be parsed
@@ -71,6 +87,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code reflection} in the context of an Edit command where blank Reflections are accepted.
+     * @param reflection the reflection to be parsed
+     * @return the parsed reflection
+     * @throws ParseException if the specified reflection is invalid
+     */
+    public static Reflection parseReflectionForEdit(String reflection) throws ParseException {
+        requireNonNull(reflection);
+        String trimmedReflection = reflection.trim();
+        if (!Reflection.isValidConstructorParam(trimmedReflection)) {
+            throw new ParseException(Reflection.MESSAGE_CONSTRAINTS);
+        }
+        return new Reflection(trimmedReflection);
+    }
+
+    /**
      * Parses {@code studio} into a {@code Studio} and returns it. Leading and trailing whitespaces will be trimmed.
      * @param studio the studio to be parsed
      * @return the parsed studio
@@ -80,6 +111,21 @@ public class ParserUtil {
         requireNonNull(studio);
         String trimmedStudio = studio.trim();
         if (!Studio.isValidStudio(trimmedStudio)) {
+            throw new ParseException(Studio.MESSAGE_CONSTRAINTS);
+        }
+        return new Studio(trimmedStudio);
+    }
+
+    /**
+     * Parses {@code studio} in the context of an Edit command where blank Studios are accepted.
+     * @param studio the studio to be parsed
+     * @return the parsed studio
+     * @throws ParseException if the specified studio is invalid
+     */
+    public static Studio parseStudioForEdit(String studio) throws ParseException {
+        requireNonNull(studio);
+        String trimmedStudio = studio.trim();
+        if (!Studio.isValidConstructorParam(trimmedStudio)) {
             throw new ParseException(Studio.MESSAGE_CONSTRAINTS);
         }
         return new Studio(trimmedStudio);
@@ -183,5 +229,41 @@ public class ParserUtil {
         String trimmedTag = filePath.trim();
         // add error handling for what to do when invalid input is passed
         return Paths.get(filePath);
+    }
+
+    /**
+     * Parses a {@code String score} into an {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code score} is invalid.
+     */
+    public static Score parseScore(String score) throws ParseException {
+        requireNonNull(score);
+        String trimmedScore = score.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedScore)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        int parsedScore = Integer.parseInt(trimmedScore);
+        if (!Exam.isValidScore(parsedScore)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Score(parsedScore);
+    }
+
+    /**
+     * Parses a {@code String examName} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code examName} is invalid.
+     */
+    public static String parseExamName(String examName) throws ParseException {
+        requireNonNull(examName);
+        String trimmedExamName = examName.trim();
+        if (!Exam.isValidName(trimmedExamName)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedExamName;
     }
 }

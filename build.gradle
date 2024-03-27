@@ -76,4 +76,8 @@ shadowJar {
     archiveFileName = 'avengersassemble.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'

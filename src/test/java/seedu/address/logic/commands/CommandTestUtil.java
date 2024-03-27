@@ -28,6 +28,12 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_TAG_STUDENT = "student";
+    public static final String VALID_TAG_TA = "TA";
+    public static final String VALID_TAG_INSTRUCTOR = "instructor";
+    public static final String VALID_DESC_STUDENT = " " + PREFIX_TAG + VALID_TAG_STUDENT;
+    public static final String VALID_DESC_TA = " " + PREFIX_TAG + VALID_TAG_TA;
+    public static final String VALID_DESC_INSTRUCTOR = " " + PREFIX_TAG + VALID_TAG_INSTRUCTOR;
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
