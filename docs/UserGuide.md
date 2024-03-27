@@ -101,6 +101,7 @@ Format: `view`
 ### Selecting a class to view : `select`
 
 Shows a list of all students in the selected class.
+
 ![SelectCommand](images/SelectCommand.png)
 
 Format: `select INDEX`
