@@ -41,8 +41,10 @@ public class Maintainer extends Person {
      */
     @Override
     public Maintainer updateNote(Note note) {
-        return new Maintainer(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), note,
-                this.getTags(), this.skill, this.commission, this.getRating());
+        Maintainer maintainerToReturn = new Maintainer(this.getName(), this.getPhone(), this.getEmail(),
+                this.getAddress(), note, this.getTags(), this.skill, this.commission, this.getRating());
+        maintainerToReturn.setPinIfPinned(this);
+        return maintainerToReturn;
     }
 
     /**
@@ -51,8 +53,10 @@ public class Maintainer extends Person {
      */
     @Override
     public Maintainer updateRating(Rating rating) {
-        return new Maintainer(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getNote(),
-                this.getTags(), this.skill, this.commission, rating);
+        Maintainer maintainerToReturn = new Maintainer(this.getName(), this.getPhone(), this.getEmail(),
+                this.getAddress(), this.getNote(), this.getTags(), this.skill, this.commission, rating);
+        maintainerToReturn.setPinIfPinned(this);
+        return maintainerToReturn;
     }
 
     /**

@@ -42,8 +42,10 @@ public class Staff extends Person {
      */
     @Override
     public Staff updateNote(Note note) {
-        return new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), note,
+        Staff staffToReturn = new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), note,
                 this.getTags(), this.salary, this.employment, this.getRating());
+        staffToReturn.setPinIfPinned(this);
+        return staffToReturn;
     }
 
     /**
@@ -52,8 +54,10 @@ public class Staff extends Person {
      */
     @Override
     public Staff updateRating(Rating rating) {
-        return new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getNote(),
-                this.getTags(), this.salary, this.employment, rating);
+        Staff staffToReturn = new Staff(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
+                this.getNote(), this.getTags(), this.salary, this.employment, rating);
+        staffToReturn.setPinIfPinned(this);
+        return staffToReturn;
     }
 
     /**
