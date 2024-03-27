@@ -30,7 +30,7 @@ class AutoCompleteNusNetIdTest {
         assertEquals("222222", ac.getAutoComplete("nn/e2"));
         assertEquals("333333", ac.getAutoComplete("nn/e3"));
 
-        AutoCompleteNusNetId.update();
+        AutoCompleteNusNetId.update(); // Clear all NUSNET IDs
 
         assertEquals("", ac.getAutoComplete("nn/e1"));
     }

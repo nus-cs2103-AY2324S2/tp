@@ -151,14 +151,14 @@ public class AddressBookParserTest {
         assertEquals(ac.getAutoComplete("arbitrary_input"), "");
 
         // Test for input that contains only command word and no arguments
-        assert (parser.parseAutoComplete("arbitrary_command") instanceof AutoCompleteCommand);
+        assert(parser.parseAutoComplete("arbitrary_command") instanceof AutoCompleteCommand);
 
         // Test for input that contains command word and arguments
         ac = parser.parseAutoComplete("arbitrary_command arbitrary_arguments");
         assertEquals(ac.getAutoComplete("arbitrary_input"), "");
 
         // Test for input that contains NUSNET ID
-        ac = parser.parseAutoComplete("arbitrary_command nn/arbitrary_arguments");
+        ac = parser.parseAutoComplete("arbitrary_command nn/arbitrary_nusnet_id");
         assert (ac instanceof AutoCompleteNusNetId);
     }
 }
