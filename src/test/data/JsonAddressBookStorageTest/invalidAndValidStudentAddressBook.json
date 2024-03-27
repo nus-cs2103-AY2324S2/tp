@@ -1,0 +1,19 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "subject": "Math",
+    "remark": "Good",
+    "lessons": ["Maths|10-05-2004|12:29|1"]
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "subject": "Math",
+    "remark": "Good",
+    "lessons": ["Maths|10-05-2004|12:29|0"]
+  } ]
+}
