@@ -9,7 +9,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * A predicate for evaluating if a {@link Person}'s email contains (case-insensitive) a given keyword.
  * This is used to filter for persons based on their email attribute.
  */
-public class EmailContainsKeywordPredicate implements Predicate<Person> {
+public class PersonEmailPredicate implements Predicate<Person> {
     private final String keyword;
 
     /**
@@ -17,7 +17,7 @@ public class EmailContainsKeywordPredicate implements Predicate<Person> {
      *
      * @param keyword The keyword to be matched against the person's email. The match is case-insensitive.
      */
-    public EmailContainsKeywordPredicate(String keyword) {
+    public PersonEmailPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -33,11 +33,11 @@ public class EmailContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EmailContainsKeywordPredicate)) {
+        if (!(other instanceof PersonEmailPredicate)) {
             return false;
         }
 
-        EmailContainsKeywordPredicate otherEmailContainsKeywordsPredicate = (EmailContainsKeywordPredicate) other;
+        PersonEmailPredicate otherEmailContainsKeywordsPredicate = (PersonEmailPredicate) other;
         return keyword.equals(otherEmailContainsKeywordsPredicate.keyword);
     }
 

@@ -11,7 +11,7 @@ import seedu.findvisor.model.person.Person;
  * A predicate for evaluating if a {@link Person}'s name contains (case-insensitive) any of the given keywords.
  * This is used to filter for persons based on their tags attribute.
  */
-public class TagsContainsKeywordsPredicate implements Predicate<Person> {
+public class PersonTagsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     /**
@@ -19,7 +19,7 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
      *
      * @param keywords The keywords to be used to lookup against the person's tags.
      */
-    public TagsContainsKeywordsPredicate(List<String> keywords) {
+    public PersonTagsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -36,11 +36,11 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagsContainsKeywordsPredicate)) {
+        if (!(other instanceof PersonTagsPredicate)) {
             return false;
         }
 
-        TagsContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (TagsContainsKeywordsPredicate) other;
+        PersonTagsPredicate otherNameContainsKeywordsPredicate = (PersonTagsPredicate) other;
         return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
     }
 

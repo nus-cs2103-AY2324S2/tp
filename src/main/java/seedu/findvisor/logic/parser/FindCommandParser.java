@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.findvisor.logic.commands.FindCommand;
 import seedu.findvisor.logic.parser.exceptions.ParseException;
-import seedu.findvisor.model.person.AddressContainsKeywordPredicate;
-import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
-import seedu.findvisor.model.person.NameContainsKeywordPredicate;
-import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
-import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
+import seedu.findvisor.model.person.PersonAddressPredicate;
+import seedu.findvisor.model.person.PersonEmailPredicate;
+import seedu.findvisor.model.person.PersonNamePredicate;
+import seedu.findvisor.model.person.PersonPhonePredicate;
+import seedu.findvisor.model.tag.PersonTagsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -41,27 +41,27 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             argMultimap.verifyNoBlankPrefixValueFor(PREFIX_NAME);
             String nameKeyword = argMultimap.getValue(PREFIX_NAME).get();
-            return new FindCommand(new NameContainsKeywordPredicate(nameKeyword));
+            return new FindCommand(new PersonNamePredicate(nameKeyword));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             argMultimap.verifyNoBlankPrefixValueFor(PREFIX_EMAIL);
             String emailKeyword = argMultimap.getValue(PREFIX_EMAIL).get();
-            return new FindCommand(new EmailContainsKeywordPredicate(emailKeyword));
+            return new FindCommand(new PersonEmailPredicate(emailKeyword));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             argMultimap.verifyNoBlankPrefixValueFor(PREFIX_PHONE);
             String phoneKeyword = argMultimap.getValue(PREFIX_PHONE).get();
-            return new FindCommand(new PhoneContainsKeywordPredicate(phoneKeyword));
+            return new FindCommand(new PersonPhonePredicate(phoneKeyword));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             argMultimap.verifyNoBlankPrefixValueFor(PREFIX_ADDRESS);
             String addressKeyword = argMultimap.getValue(PREFIX_ADDRESS).get();
-            return new FindCommand(new AddressContainsKeywordPredicate(addressKeyword));
+            return new FindCommand(new PersonAddressPredicate(addressKeyword));
         }
 
         argMultimap.verifyNoBlankPrefixValueFor(PREFIX_TAG);
         List<String> tagsKeywords = argMultimap.getAllValues(PREFIX_TAG);
-        return new FindCommand(new TagsContainsKeywordsPredicate(tagsKeywords));
+        return new FindCommand(new PersonTagsPredicate(tagsKeywords));
     }
 
     /**

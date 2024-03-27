@@ -9,7 +9,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * A predicate for evaluating if a {@link Person}'s name contains (case-insensitive) a given keyword.
  * This is used to filter for persons based on their name attribute.
  */
-public class NameContainsKeywordPredicate implements Predicate<Person> {
+public class PersonNamePredicate implements Predicate<Person> {
     private final String keyword;
 
     /**
@@ -17,7 +17,7 @@ public class NameContainsKeywordPredicate implements Predicate<Person> {
      *
      * @param keyword The keyword to be used to lookup against the person's name. The match is case-insensitive.
      */
-    public NameContainsKeywordPredicate(String keyword) {
+    public PersonNamePredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -33,11 +33,11 @@ public class NameContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordPredicate)) {
+        if (!(other instanceof PersonNamePredicate)) {
             return false;
         }
 
-        NameContainsKeywordPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordPredicate) other;
+        PersonNamePredicate otherNameContainsKeywordsPredicate = (PersonNamePredicate) other;
         return keyword.equals(otherNameContainsKeywordsPredicate.keyword);
     }
 

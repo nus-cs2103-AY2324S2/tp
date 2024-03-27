@@ -8,7 +8,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * A predicate for evaluating if a {@link Person}'s phone contains a given keyword.
  * This is used to filter for persons based on their phone attribute.
  */
-public class PhoneContainsKeywordPredicate implements Predicate<Person> {
+public class PersonPhonePredicate implements Predicate<Person> {
     private final String keyword;
 
     /**
@@ -16,7 +16,7 @@ public class PhoneContainsKeywordPredicate implements Predicate<Person> {
      *
      * @param keyword The keyword to be used to lookup against the person's phone.
      */
-    public PhoneContainsKeywordPredicate(String keyword) {
+    public PersonPhonePredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -33,11 +33,11 @@ public class PhoneContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PhoneContainsKeywordPredicate)) {
+        if (!(other instanceof PersonPhonePredicate)) {
             return false;
         }
 
-        PhoneContainsKeywordPredicate otherPhoneEqualsKeywordsPredicate = (PhoneContainsKeywordPredicate) other;
+        PersonPhonePredicate otherPhoneEqualsKeywordsPredicate = (PersonPhonePredicate) other;
         return keyword.equals(otherPhoneEqualsKeywordsPredicate.keyword);
     }
 
