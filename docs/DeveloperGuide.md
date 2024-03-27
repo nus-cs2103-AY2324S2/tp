@@ -188,6 +188,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Addition of fields: Matriculation Number (Matric)
+
+The optional `Matric` field enables the user to store the matriculation number of a person. The field is stored as a `Matric` in the `Person` object.
+The `Studio` and `Reflection` fields are similarly implemented.
+
+#### Implementation Details
+The `Matric` class is a simple wrapper class that ensures it is valid according to NUS matriculation number format and is not empty.
+The `Matric` field is used by the `add` and `edit` commands.
+
+#### Parsing User Input: `add`
+For the `add` command, as opposed to the `name` and other fields, the parser does not check if a prefix for `Matric` is present. This is because we define the `Matric` field to be optional as contacts (e.g. professors) do not need to have a matriculation number.
+
+Then, the parser verifies that there are no duplicate prefixes for `Matric` in a single `add` command.
+A new Person is then created with the `Matric` field set to the parsed `Matric` object.
+
+#### Parsing User Input: `edit`
+For the `edit` command, the parser will add or update the `Matric` field of the person being edited.
+
+
+### Automatic Tagging of Persons
+
+Tags are automatically added during the parsing of the `add` command. The tags are based on the `Matric`, `Studio` and `Reflection` fields of the person being added.
+
+#### Implementation Details
+During the parsing of the `add` command, the parser will check if the `Matric`, `Studio` or `Reflection` fields match a pattern that corresponds to them being a student, teaching assistant (TA), or course instructor.
+The parser also generates `Tag` objects based on the user input. The existing tags are updated with the new automatically generated tag.
+
+The activity diagram is as follows:
+<puml src="diagrams/AutomaticTaggingActivityDiagram.puml" alt="Activity Diagram for Auto Tagging Feature" />
+
 ### Import contacts from CSV file
 
 #### Implementation
