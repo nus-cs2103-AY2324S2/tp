@@ -16,13 +16,13 @@ import seedu.address.model.person.Nric;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new MarkCommand object
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the MarkCommand
+     * and returns an MarkCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public MarkCommand parse(String args) throws ParseException {
