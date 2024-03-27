@@ -212,7 +212,9 @@ Format: `select INDEX`
 
 Examples:
 * `list` followed by `select 2` shows the detailed profile of the 2nd client in FAPro.
-* `find Betsy` followed by `select 1` shows the detailed profile of the 1st client in the results of the `find` command.
+* `find bernice` followed by `select 1` shows the detailed profile of the 1st client in the results of the `find` command.
+  ![result for 'select 2'](images/select1Result.png)
+
 
 
 ### View contacts of all upcoming appointments : `upcoming`
