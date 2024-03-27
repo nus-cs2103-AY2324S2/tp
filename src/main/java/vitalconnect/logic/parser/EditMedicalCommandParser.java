@@ -25,7 +25,7 @@ public class EditMedicalCommandParser implements Parser<EditMedicalCommand> {
     @Override
     public EditMedicalCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NRIC, PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_WEIGHT,
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NRIC, PREFIX_HEIGHT, PREFIX_WEIGHT,
                         PREFIX_OVERWRITETAG, PREFIX_APPENDTAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)
