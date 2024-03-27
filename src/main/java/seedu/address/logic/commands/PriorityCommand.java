@@ -29,9 +29,9 @@ public class PriorityCommand extends Command {
     public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist.";
     public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";
     public static final String MESSAGE_ADD_PRIORITY_SUCCESS = "Added this contact with %1$s priority:\n"
-            + "%2$s\tName: %3$s | Phone: %4$s | Email: %5$s";
+            + "%2$s\tName: %3$s | Phone: %4$s";
     public static final String MESSAGE_DELETE_PRIORITY_SUCCESS = "Removed priority from this contact: \n"
-            + "\tName: %1$s | Phone: %2$s | Email: %3$s";
+            + "\tName: %1$s | Phone: %2$s";
 
     private final String name;
     private final Priority priority;
@@ -90,14 +90,14 @@ public class PriorityCommand extends Command {
     private String generateSuccessMessage(Person personToEdit) {
         if (priority.value.isEmpty()) {
             return String.format(MESSAGE_DELETE_PRIORITY_SUCCESS,
-                    personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail());
+                    personToEdit.getName(), personToEdit.getPhone());
         }
 
         String priorityMessage = priority.value.equals("high") ? "high" : "medium";
         String formattingCharacter = priority.value.equals("high") ? "**" : "*";
 
         return String.format(MESSAGE_ADD_PRIORITY_SUCCESS, priorityMessage, formattingCharacter,
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail());
+                personToEdit.getName(), personToEdit.getPhone());
     }
 
     @Override

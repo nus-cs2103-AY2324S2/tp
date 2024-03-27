@@ -41,7 +41,7 @@ public class PriorityCommandTest {
                 new Priority(editedPerson.getPriority().value));
 
         String expectedMessage = String.format(PriorityCommand.MESSAGE_ADD_PRIORITY_SUCCESS,
-                "high", "**", editedPerson.getName().fullName, editedPerson.getPhone(), editedPerson.getEmail());
+                "high", "**", editedPerson.getName().fullName, editedPerson.getPhone());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -60,7 +60,7 @@ public class PriorityCommandTest {
                 new Priority(editedPerson.getPriority().value));
 
         String expectedMessage = String.format(PriorityCommand.MESSAGE_ADD_PRIORITY_SUCCESS,
-                "medium", "*", editedPerson.getName().fullName, editedPerson.getPhone(), editedPerson.getEmail());
+                "medium", "*", editedPerson.getName().fullName, editedPerson.getPhone());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -76,7 +76,7 @@ public class PriorityCommandTest {
         PriorityCommand priorityCommand = new PriorityCommand(firstPerson.getName().fullName,
                 new Priority(""));
         String expectedMessage = String.format(PriorityCommand.MESSAGE_DELETE_PRIORITY_SUCCESS,
-                firstPerson.getName().fullName, firstPerson.getPhone(), firstPerson.getEmail());
+                firstPerson.getName().fullName, firstPerson.getPhone());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
         assertCommandSuccess(priorityCommand, model, expectedMessage, expectedModel);
