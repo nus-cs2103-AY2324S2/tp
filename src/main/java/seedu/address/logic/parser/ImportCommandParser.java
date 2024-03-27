@@ -28,8 +28,8 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
 
-        Path path = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_IMPORT).orElse(""));
-        return new ImportCommand(path);
+        Path filePath = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_IMPORT).orElse(""));
+        return new ImportCommand(filePath);
     }
 
     /**
