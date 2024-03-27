@@ -26,9 +26,9 @@ import seedu.address.model.appointment.ReadOnlyAppointmentList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AppointmentListStorage;
 import seedu.address.storage.JsonAppointmentListStorage;
-import seedu.address.storage.PatientListStorage;
 import seedu.address.storage.JsonPatientListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PatientListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -62,7 +62,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PatientListStorage patientListStorage = new JsonPatientListStorage(userPrefs.getPatientListFilePath());
-        AppointmentListStorage appointmentListStorage = new JsonAppointmentListStorage(userPrefs.getAppointmentListFilePath());
+        AppointmentListStorage appointmentListStorage =
+                new JsonAppointmentListStorage(userPrefs.getAppointmentListFilePath());
         storage = new StorageManager(patientListStorage, appointmentListStorage, userPrefsStorage);
 
         // TODO: Probably can inject the tracking of ID here

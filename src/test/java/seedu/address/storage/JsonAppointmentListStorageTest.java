@@ -81,7 +81,8 @@ public class JsonAppointmentListStorageTest {
 
         // Save in new file and read back
         jsonAppointmentListStorage.saveAppointmentList(original, appointmentListfilePath);
-        ReadOnlyAppointmentList readBack = jsonAppointmentListStorage.readAppointmentList(appointmentListfilePath).get();
+        ReadOnlyAppointmentList readBack = jsonAppointmentListStorage
+                .readAppointmentList(appointmentListfilePath).get();
         assertEquals(original, new AppointmentList(readBack));
 
         // Modify data, overwrite exiting file, and read back

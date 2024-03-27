@@ -5,10 +5,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
- * Represents a storage for {@link }.
+ * Represents a storage for {@link AppointmentList}.
  */
 public interface AppointmentListStorage {
 

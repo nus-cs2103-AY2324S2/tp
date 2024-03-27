@@ -7,7 +7,6 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.PatientList;
 import seedu.address.model.ReadOnlyPatientList;
-import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
  * Represents a storage for {@link PatientList}.
