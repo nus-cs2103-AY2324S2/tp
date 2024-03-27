@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ],
     "subject": "English",
-    "uniqueId" : "000000",
+    "uniqueId" : "000001",
     "payment": "0.0"
   }, {
     "name" : "Benson Meier",
@@ -16,7 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ],
     "subject": "Math",
-    "uniqueId" : "000001",
+    "uniqueId" : "000003",
     "payment": "0.0"
   }, {
     "name" : "Carl Kurz",
@@ -25,7 +25,7 @@
     "address" : "wall street",
     "tags" : [ ],
     "subject": "Science",
-    "uniqueId" : "000002",
+    "uniqueId" : "000004",
     "payment": "0.0"
   }, {
     "name" : "Daniel Meier",
@@ -34,7 +34,7 @@
     "address" : "10th street",
     "tags" : [ "friends" ],
     "subject": "History",
-    "uniqueId" : "000003",
+    "uniqueId" : "000005",
     "payment": "0.0"
   }, {
     "name" : "Elle Meyer",
@@ -43,7 +43,7 @@
     "address" : "michegan ave",
     "tags" : [ ],
     "subject": "Geography",
-    "uniqueId" : "000004",
+    "uniqueId" : "000006",
     "payment": "0.0"
   }, {
     "name" : "Fiona Kunz",
@@ -52,7 +52,7 @@
     "address" : "little tokyo",
     "tags" : [ ],
     "subject": "Art",
-    "uniqueId" : "000005",
+    "uniqueId" : "000007",
     "payment": "0.0"
   }, {
     "name" : "George Best",
@@ -61,7 +61,7 @@
     "address" : "4th street",
     "tags" : [ ],
     "subject": "Physics",
-    "uniqueId" : "000006",
+    "uniqueId" : "000008",
     "payment": "0.0"
   } ]
 }
