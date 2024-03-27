@@ -12,14 +12,18 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.PersonCompanyNameComparator;
+import seedu.address.model.person.PersonInterviewTimeComparator;
+import seedu.address.model.person.PersonNameComparator;
 import seedu.address.model.person.PersonPriorityComparator;
+import seedu.address.model.person.PersonSalaryComparator;
 
 public class SortCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validCliUnsortedList_success() {
+    public void execute_validPriorityCliUnsortedList_success() {
         Integer prefixToSort = 0; //sort by priority
         SortCommand sortCommand = new SortCommand(prefixToSort);
 
@@ -30,6 +34,58 @@ public class SortCommandTest {
 
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
+    @Test
+    public void execute_validCompanyNameCliUnsortedList_success() {
+        Integer prefixToSort = 1; //sort by Company Name
+        SortCommand sortCommand = new SortCommand(prefixToSort);
+
+        String expectedMessage = SortCommand.MESSAGE_LIST_SORTED_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateSortedPersonList(new PersonCompanyNameComparator());
+
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validNameCliUnsortedList_success() {
+        Integer prefixToSort = 2; //sort by Name
+        SortCommand sortCommand = new SortCommand(prefixToSort);
+
+        String expectedMessage = SortCommand.MESSAGE_LIST_SORTED_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateSortedPersonList(new PersonNameComparator());
+
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validInterviewTimeCliUnsortedList_success() {
+        Integer prefixToSort = 3; //sort by InterviewTime
+        SortCommand sortCommand = new SortCommand(prefixToSort);
+
+        String expectedMessage = SortCommand.MESSAGE_LIST_SORTED_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateSortedPersonList(new PersonInterviewTimeComparator());
+
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validSalaryCliUnsortedList_success() {
+        Integer prefixToSort = 4; //sort by InterviewTime
+        SortCommand sortCommand = new SortCommand(prefixToSort);
+
+        String expectedMessage = SortCommand.MESSAGE_LIST_SORTED_SUCCESS;
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateSortedPersonList(new PersonSalaryComparator());
+
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
     @Test
     public void execute_invalidCliUnsortedList_throwsCommandException() {
         Integer prefixToSort = 5; //outside [0-4]

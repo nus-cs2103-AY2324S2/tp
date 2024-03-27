@@ -16,9 +16,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
-    private static final String MESSAGE_INVALID_COMMAND_LENGTH = "Invalid command length for sort command"
+    public static final String MESSAGE_INVALID_COMMAND_LENGTH = "Invalid command length for sort command"
             + "sort command only accepts 1 arguments";
-    private static final String MESSAGE_INVALID_COMMAND_KEYWORD = "Invalid command keyword for sort command";
+    public static final String MESSAGE_INVALID_COMMAND_KEYWORD = "Invalid command keyword for sort command";
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns a SortCommand object for execution.
