@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+
 
 /**
  * Represents a Person's address in the address book.
@@ -10,6 +12,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Address {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_PROFESSOR =
+            "Please input the professor's office address. Use " + PREFIX_ADDRESS + "ADDRESS'.";
 
     /*
      * The first character of the address must not be a whitespace,

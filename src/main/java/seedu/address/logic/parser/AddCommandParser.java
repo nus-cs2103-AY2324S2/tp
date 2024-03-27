@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE,
                     PREFIX_ADDRESS, PREFIX_COURSE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_ROLE, PREFIX_ADDRESS, PREFIX_COURSE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_ROLE, PREFIX_COURSE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -58,7 +58,24 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+
+        Optional<String> addressString = argMultimap.getValue(PREFIX_ADDRESS);
+        Optional<Address> address;
+        if (role.equals(Role.PROFESSOR)) {
+            if (addressString.isPresent()) {
+                address = Optional.of(ParserUtil.parseAddress(addressString.get()));
+            } else {
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS_PROFESSOR);
+            }
+        } else {
+            // address is optional for other RoleTypes
+            if (addressString.isPresent()) {
+                address = Optional.of(ParserUtil.parseAddress(addressString.get()));
+            } else {
+                address = Optional.empty();
+            }
+        }
+
         Course course = ParserUtil.parseCourse(argMultimap.getValue(PREFIX_COURSE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
