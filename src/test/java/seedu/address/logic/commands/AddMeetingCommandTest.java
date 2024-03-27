@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -21,16 +19,13 @@ import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
 public class AddMeetingCommandTest {
 
-    private static final String  MEETING_STUB = "Interview: 23 March 2024 (1400 - 1600)";
+    private static final String MEETING_STUB = "Interview: 23 March 2024 (1400 - 1600)";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -103,7 +98,8 @@ public class AddMeetingCommandTest {
     public void execute_invalidPerson_throwsCommandException() {
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand("ABC",
                 new Meeting("Networking Event", "11-04-2024", "1400", "1600"));
-        assertCommandFailure(addMeetingCommand, model, String.format(AddMeetingCommand.MESSAGE_PERSON_NOT_FOUND, "ABC"));
+        assertCommandFailure(addMeetingCommand, model, String.format(AddMeetingCommand.MESSAGE_PERSON_NOT_FOUND,
+                "ABC"));
     }
 
     @Test

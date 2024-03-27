@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddMeetingCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Meeting;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
+import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Meeting;
 
 /**
  * Parses input arguments and creates a new {@code AddMeetingCommand} object
@@ -42,7 +42,11 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         return new AddMeetingCommand(contactName, new Meeting(desc, date, start, end));
     }
-
+    /**
+     * Parses the given {@code meeting} string of the Meeting.toString() output format
+     * and returns a string array of the parsed details to create a Meeting object.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public static String[] parseDetails(String meeting) {
         if (meeting.isEmpty()) {
             String[] details = {"", "", "", ""};

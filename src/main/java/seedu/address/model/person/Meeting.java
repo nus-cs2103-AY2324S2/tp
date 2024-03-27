@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.parser.ParserUtil;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.parser.ParserUtil;
 
 /**
  * Represents a Person's company name in the address book.
