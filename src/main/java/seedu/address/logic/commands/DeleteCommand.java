@@ -175,7 +175,11 @@ public class DeleteCommand extends Command {
                 && otherDeleteCommand.uid != null
                 && uid.equals(otherDeleteCommand.uid);
 
-        return isIndexEqual || isUidEqual;
+        boolean isNameEqual = targetName != null
+                && otherDeleteCommand.targetName != null
+                && targetName.equals(otherDeleteCommand.targetName);
+
+        return isIndexEqual || isUidEqual || isNameEqual;
     }
 
     @Override

@@ -64,7 +64,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     private DeleteCommand parseDeleteByName(String name) throws ParseException {
-        if (name.isEmpty()) {
+        if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
         return new DeleteCommand(name);
