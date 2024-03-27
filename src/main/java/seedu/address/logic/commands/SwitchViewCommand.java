@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 import seedu.address.model.Model;
+import seedu.address.ui.ViewMode;
 
 /**
  * Allows the user to switch between the Overall View and Day View.
@@ -12,6 +13,6 @@ public class SwitchViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false, false, false, true);
+        return new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false, false, ViewMode.SWITCH);
     }
 }

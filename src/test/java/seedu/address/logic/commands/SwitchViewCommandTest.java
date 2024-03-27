@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.ui.ViewMode;
 
 public class SwitchViewCommandTest {
     private Model model = new ModelManager();
@@ -14,7 +15,8 @@ public class SwitchViewCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false,
+                false, ViewMode.SWITCH);
         assertCommandSuccess(new SwitchViewCommand(), model, expectedCommandResult, expectedModel);
     }
 }

@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private ToggleGroup toggleGroup;
-    private String currentView;
+    private ViewMode currentView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -77,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
         helpWindow = new HelpWindow();
         setNavbar();
-        this.currentView = "Overall";
+        this.currentView = ViewMode.OVERALL;
     }
 
     public Stage getPrimaryStage() {
@@ -175,7 +175,8 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowDayView() {
         personListPanelPlaceholder.getChildren().remove(0);
         personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
-        currentView = "Day";
+        currentView = ViewMode.DAY;
+        dayViewButton.setSelected(true);
     }
 
     /**
@@ -185,23 +186,39 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowOverallView() {
         personListPanelPlaceholder.getChildren().remove(0);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        currentView = "Overall";
+        currentView = ViewMode.OVERALL;
+        overallViewButton.setSelected(true);
     }
 
     /**
      * Switches between displaying the overall view and day-view
      */
     @FXML
-    public void switchView() {
-        personListPanelPlaceholder.getChildren().remove(0);
-        if (currentView.equals("Overall")) {
-            personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
-            currentView = "Day";
-            dayViewButton.setSelected(true);
-        } else if (currentView.equals("Day")) {
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-            currentView = "Overall";
-            overallViewButton.setSelected(true);
+    public void setView(ViewMode viewMode) {
+        if (viewMode == null) {
+            return;
+        }
+
+        switch (viewMode) {
+        case DAY:
+            handleShowDayView();
+            break;
+        case OVERALL:
+            handleShowOverallView();
+            break;
+        case SWITCH:
+            switchView();
+            break;
+        default:
+            break;
+        }
+    }
+
+    private void switchView() {
+        if (currentView == ViewMode.DAY) {
+            handleShowOverallView();
+        } else {
+            handleShowDayView();
         }
     }
 
@@ -240,13 +257,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isSwitchView()) {
-                switchView();
-            }
-
-            if (currentView.equals("Day") && commandResult.isOverallCommand()) {
-                switchView();
-            }
+            setView(commandResult.getViewMode());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

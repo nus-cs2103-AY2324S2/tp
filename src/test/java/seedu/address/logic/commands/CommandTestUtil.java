@@ -27,6 +27,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.ui.ViewMode;
 
 /**
  * Contains helper methods for testing commands.
@@ -156,7 +157,7 @@ public class CommandTestUtil {
      */
     public static void assertOverallCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, true);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, ViewMode.OVERALL);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

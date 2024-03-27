@@ -10,6 +10,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.ui.ViewMode;
 
 /**
  * Finds and lists all appointments in address book whose details fit any of the argument keywords.
@@ -41,7 +42,7 @@ public class FindApptCommand extends Command {
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
-                        model.getFilteredAppointmentViewList().size()), true);
+                        model.getFilteredAppointmentViewList().size()), ViewMode.OVERALL);
     }
 
     @Override
