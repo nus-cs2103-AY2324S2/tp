@@ -223,6 +223,17 @@ Format: `mark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
 Examples:
 * `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
+### Unmarking an Appointment: `unmark`
+
+Unmarks an appointment from the address book.
+
+Format: `unmark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
+
+* Unmarks an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Appointment with the following details **must exist within database**.
+
+Examples:
+* `unmark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
 ### Clearing all entries : `clear`
 
@@ -295,7 +306,8 @@ _Details coming soon ..._
 | **AddAppt**       | `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in` |
 | **DeleteAppt**    | `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                  |
 | **FindAppt**      | `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findAppt i/ T0123456A d/ 2024-02-20 from/ 11:00`                                                                                      |
-| **Mark**      | `mark [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                                      |
+| **Mark**      | `mark i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                                      |
+| **Unmark**      | `unmark i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `unmark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                                      |
 | **Clear**         | `clear`                                                                                                                                                                                          |
 | **Exit**          | `exit`                                                                                                                                                                                           |
 | **Help**          | `help`                                                                                                                                                                                           |
