@@ -139,7 +139,7 @@ public class ModelManager implements Model {
     @Override
     public void addReservation(Reservation reservation) {
         addressBook.addReservation(reservation);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredReservationList(PREDICATE_SHOW_ALL_RESERVATIONS);
     }
 
     //=========== Filtered Person and Reservation List Accessors =============================================
