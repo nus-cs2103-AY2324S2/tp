@@ -1,59 +1,62 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Rahul
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rahhulleee.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/rahhulleee)]
+[[portfolio](team/rahul.md)]
 
-* Role: Project Advisor
+* Role: Developer
+  Responsibilities: Testing
 
-### Jane Doe
+### Greg Tan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/greg-tan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Greg-Tan)]
+[[portfolio](team/greg.md)]
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Loh Yu Tong
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/youdonnnn.png" width="200px">
+
+[[github](https://github.com/youdonnnn)]
+[[portfolio](team/udon.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Jim Seah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jimseah-0116.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jimseah-0116)]
+[[portfolio](team/jim.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
+
+### Irwyn Liong
+
+<img src="images/irwynliong.png" width="200px">
+
+[[github](http://github.com/irwynliong)]
+[[portfolio](team/irwyn.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables & Integration

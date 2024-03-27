@@ -7,9 +7,11 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,8 +38,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setMeeting(person.getMeeting());
         descriptor.setTags(person.getTags());
+        descriptor.setPolicies(person.getPolicies());
     }
+
 
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
@@ -72,12 +77,30 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Meeting} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMeeting(String meeting) {
+        descriptor.setMeeting(new Meeting(meeting));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code policies} into a {@code Set<Policies>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPolicies(String... policies) {
+        Set<Policy> policySet = Stream.of(policies).map(Policy::new).collect(Collectors.toSet());
+        descriptor.setPolicies(policySet);
         return this;
     }
 

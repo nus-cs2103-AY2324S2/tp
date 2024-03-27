@@ -23,19 +23,32 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Meeting meeting;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Policy> policies = new HashSet<>();
 
     /**
      * Every field must be present and not null.
+     * @param name The name of the person.
+     * @param phone The phone number of the person.
+     * @param email The email address of the person.
+     * @param address The address of the person.
+     * @param meeting The meeting details of the person.
+     * @param tags The set of tags associated with the person.
+     * @param policies The set of policies associated with the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Meeting meeting, Set<Tag> tags, Set<Policy> policies) {
+        requireAllNonNull(name, phone, email, address, meeting, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.meeting = meeting;
         this.tags.addAll(tags);
+        this.policies.addAll(policies); // Initialize with provided policies
     }
+
 
     public Name getName() {
         return name;
@@ -51,6 +64,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public Set<Policy> getPolicies() {
+        return Collections.unmodifiableSet(policies);
     }
 
     /**
@@ -94,15 +115,23 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && meeting.equals(otherPerson.meeting)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, meeting, tags);
     }
 
+    /**
+     * Returns a string representation of the person.
+     * The string representation contains the person's name, phone, email, address, tags, and policies.
+     * Example:
+     *     Alice Pauline Phone: 12345678 Email: alice@example.com Address: 123, Jurong West Ave 6,
+     *     #08-111 Tags: friends family Policies: [SuperSaver] [HealthGuard]
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -110,8 +139,9 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("meeting", meeting)
                 .add("tags", tags)
+                .add("policies", policies)
                 .toString();
     }
-
 }

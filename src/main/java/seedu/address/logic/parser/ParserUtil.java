@@ -11,8 +11,10 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +98,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String meeting} into an {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        String trimmedMeeting = meeting.trim();
+        if (!Meeting.isValidMeeting(trimmedMeeting)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Meeting(trimmedMeeting);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +137,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String policies} into a {@code Policies}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code policies} is invalid.
+     */
+    public static Policy parsePolicies(String policies) throws ParseException {
+        requireNonNull(policies);
+        String trimmedPolicy = policies.trim();
+        if (!Policy.isValidPolicy(trimmedPolicy)) {
+            throw new ParseException(Policy.MESSAGE_CONSTRAINTS);
+        }
+        return new Policy(policies);
+    }
+
+    /**
+     * Parses {@code Collection<String> policies} into a {@code Set<Policies>}.
+     */
+    public static Set<Policy> parsePolicies(Collection<String> policies) throws ParseException {
+        requireNonNull(policies);
+        final Set<Policy> policiesSet = new HashSet<>();
+        for (String policyName : policies) {
+            policiesSet.add(parsePolicies(policyName));
+        }
+        return policiesSet;
     }
 }

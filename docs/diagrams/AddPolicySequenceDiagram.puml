@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Parser" as parser PARSER_COLOR
+Participant ":Command" as command COMMAND_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
+
+'enter command through UI
+user -[USER_COLOR]> ui : "addPolicy 2 pn/SaversScheme"
+activate ui UI_COLOR
+
+'command gets passed to logic object
+ui -[UI_COLOR]> logic : execute("addPolicy 2 pn/SaversScheme")
+activate logic LOGIC_COLOR
+
+'command gets parsed
+logic -[LOGIC_COLOR]> parser : parseCommand("addPolicy 2 pn/SaversScheme")
+activate parser PARSER_COLOR_T1
+
+parser -[PARSER_COLOR]> parser : parse("2 pn/SaversScheme")
+activate parser PARSER_COLOR_T2
+parser --[PARSER_COLOR]> parser : AddPolicyCommand(2, "SaversScheme")
+deactivate parser PARSER_COLOR_T2
+
+parser --[PARSER_COLOR]> logic
+deactivate parser PARSER_COLOR_T1
+
+'execute the command and change the model
+logic -[LOGIC_COLOR]> command : AddPolicyCommand.execute(Model)
+activate command COMMAND_COLOR_T1
+command --[COMMAND_COLOR]> logic : CommandResult(generateSuccessMessage(editedPerson))
+deactivate command
+
+
+' Optional: Only if the view operation needs to interact with storage, e.g., for caching or refreshing data
+logic -[LOGIC_COLOR]> storage : saveAddressBook(ModelManager.getAddressBook())
+activate storage STORAGE_COLOR
+
+storage -[STORAGE_COLOR]> storage : JsonAddressBookStorage.saveAddressBook(addressBook, filePath)
+activate storage STORAGE_COLOR_T1
+storage --[STORAGE_COLOR]> storage
+deactivate storage
+
+storage --[STORAGE_COLOR]> logic
+deactivate storage
+' End of optional storage interaction
+
+logic --[LOGIC_COLOR]> ui : CommandResult(generateSuccessMessage(editedPerson))
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
