@@ -49,7 +49,7 @@ public class ListOrderCommand extends Command {
         }
 
         Person personTargeted = lastShownList.get(targetIndex.getZeroBased());
-        List<Order> orderList = personTargeted.getOrders();
+        List<Order> orderList = model.getOrders(personTargeted);
 
         return new CommandResult(createOrderListString(orderList));
     }
@@ -62,7 +62,7 @@ public class ListOrderCommand extends Command {
      */
     private String createOrderListString(List<Order> orders) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Orders for the selected person:\n");
+        sb.append("Order(s) for the selected person:\n");
 
         // Sort orders by date
         List<Order> sortedOrders = orders.stream()

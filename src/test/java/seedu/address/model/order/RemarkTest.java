@@ -31,7 +31,7 @@ public class RemarkTest {
         assertFalse(Remark.isValidRemark("chick*n wings")); // contains non-alphanumeric characters
 
         // valid remark
-        assertTrue(Remark.isValidRemark("chicken wings")); // alphabets only
+        assertTrue(Remark.isValidRemark("chicken wings")); // alphabetical characters only
         assertTrue(Remark.isValidRemark("12345")); // numbers only
         assertTrue(Remark.isValidRemark("100 chicken wings")); // alphanumeric characters
         assertTrue(Remark.isValidRemark("Chicken Wings")); // with capital letters

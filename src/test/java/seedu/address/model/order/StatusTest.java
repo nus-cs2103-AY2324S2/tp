@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 public class StatusTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Status.valueOf(null));
+        assertThrows(NullPointerException.class, () -> new Status(null));
     }
 
     @Test
     public void constructor_invalidStatus_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> Status.valueOf("Invalid"));
+        assertThrows(IllegalArgumentException.class, () -> new Status("invalid"));
     }
 
     @Test
@@ -31,13 +31,13 @@ public class StatusTest {
 
     @Test
     public void equals() {
-        assertFalse(Status.PENDING.equals(null));
-        assertFalse(Status.PENDING.toString().equals("Arrived"));
-        assertFalse(Status.ARRIVED.toString().equals("Late"));
-        assertFalse(Status.LATE.toString().equals("Pending"));
+        assertFalse(Status.StatusEnum.PENDING.equals(null));
+        assertFalse(Status.StatusEnum.PENDING.toString().equals("Arrived"));
+        assertFalse(Status.StatusEnum.ARRIVED.toString().equals("Late"));
+        assertFalse(Status.StatusEnum.LATE.toString().equals("Pending"));
 
-        assertTrue(Status.PENDING.toString().equals("Pending"));
-        assertTrue(Status.ARRIVED.toString().equals("Arrived"));
-        assertTrue(Status.LATE.toString().equals("Late"));
+        assertTrue(Status.StatusEnum.PENDING.toString().equals("Pending"));
+        assertTrue(Status.StatusEnum.ARRIVED.toString().equals("Arrived"));
+        assertTrue(Status.StatusEnum.LATE.toString().equals("Late"));
     }
 }

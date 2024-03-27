@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -222,5 +223,19 @@ public class ParserUtilTest {
     @Test
     public void parseRemark_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseRemark(""));
+    }
+    
+    public void parseCsv_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCsv(null));
+    }
+
+    @Test
+    public void parseCsv_validValueWithWhitespace_returnsArray() {
+        assertArrayEquals(ParserUtil.parseCsv("1,2"), new String[]{"1", "2"});
+    }
+
+    @Test
+    public void parseCsv_invalidValueWithRepeatedCommas_returnsArray() {
+        assertArrayEquals(ParserUtil.parseCsv("1,,,,2"), new String[]{"1,,,", "2"});
     }
 }

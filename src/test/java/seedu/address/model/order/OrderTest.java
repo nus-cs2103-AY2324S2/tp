@@ -50,7 +50,7 @@ public class OrderTest {
         assertFalse(order.equals(differentOrder));
 
         // different status -> returns false
-        differentOrder = new Order(order.getDate(), order.getRemark(), Status.ARRIVED);
+        differentOrder = new Order(order.getDate(), order.getRemark(), new Status("Arrived"));
         assertFalse(order.equals(differentOrder));
     }
 

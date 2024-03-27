@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_NO_ARGUMENTS_COMMAND;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -165,5 +166,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String args} and checks that it is empty or blank.
+     *
+     * @throws ParseException if the given {@code args} contains non-space text.
+     */
+    public static void parseNoArgs(String args) throws ParseException {
+        if (args.isEmpty() || args.isBlank()) {
+            return;
+        }
+        throw new ParseException(MESSAGE_INVALID_NO_ARGUMENTS_COMMAND);
+    }
+
+    /**
+     * Parses {@code String csv} into a {@code String[]}
+     */
+    public static String[] parseCsv(String csv) {
+        requireNonNull(csv);
+        // The regex ,(?=\\d|\\s) uses the lookahead operator to only split by commas that are followed by
+        // numbers or whitespace to handle invalid indices like ,,,,, and 1,,,,,,
+        return csv.split(",(?=\\d|\\s)");
     }
 }

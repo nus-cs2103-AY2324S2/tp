@@ -61,7 +61,7 @@ class JsonAdaptedOrder {
 
         final Date modelDate = new Date(arrivalDate);
         final Remark modelRemark = new Remark(remark);
-        final Status modelStatus = Status.valueOf(status.toUpperCase());
+        final Status modelStatus = new Status(status);
 
         return new Order(modelDate, modelRemark, modelStatus);
     }
