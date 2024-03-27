@@ -19,7 +19,11 @@ In this user guide, we'll walk you through the essential steps to harness the fu
  
 This user guide does not assume any prior experience with administrative tools or command interfaces and is accessible for beginners and self-contained. However, if you've used command interfaces such as those from Telegram, you might find this guide easier to follow. If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
 
-This user guide is split into 4 parts: An introduction to what CCA Manager offers, a section to set up our app, a beginner-friendly tutorial that introduces CCA Manager through a practical use case, and a comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
+This user guide is split into 4 parts: 
+1. An introduction to what CCA Manager offers,
+2. A section to set up our app, 
+3. Beginner-friendly tutorials that introduce CCA Manager through a practical use case, and 
+4. A comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
 
 
 <!-- * Table of Contents -->
@@ -27,7 +31,7 @@ This user guide is split into 4 parts: An introduction to what CCA Manager offer
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## Product Introduction
 
 <!--
 1. Introduction
@@ -47,82 +51,113 @@ CCA Manager endeavors to equip CCAs with tools that streamline administration, f
 2. **Efficient Group Actions**: Perform actions on groups of CCA members, such as searching for multiple CCAs at once, and streamlining administrative tasks.
 3. **Role Assignment**: Assign roles to CCA members, enhancing organization and clarity within the group.
 
-To get started with CCA Manager and explore its features further, check out our [Quick Start](#quick-start) and our [Tutorials](#TODO), where we'll go through some concrete use cases for our app.
+To get started with CCA Manager and explore its features further, check out our [Installation Guide](#installation-guide) and our [Tutorials](#tutorials), where we'll go through some concrete use cases for our app.
 
-## Introduction to the GUI elements
+## Installation Guide
 
-![CommandLine](images/CommandLine.png)
+**This Installation guide targets an audience who has knowledge of how to install programs and how to use a command line/terminal.**
 
-## Quick start
-
-**This quickstart guide targets an audience who has knowledge of how to install programs and how to use a command line/terminal.**
-
-### Glossary of Terms
-- Java - A programming language. Check out [this page](https://www.java.com/en/).
-- Command line/Terminal - A text-based interface used to execute commands.
-- `cd` - Terminal command to change directory. 
+<!-- TODO: Make the above disclaimer redundant -->
 
 ### Steps
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `ccamanager.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CCA Manager.
 
-1. On Linux and macOS:
-   1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ccamanager.jar` command to run the application.<br>
-   1. On Windows, double click the `ccamanager.jar` file to run it.
+1. On **Linux** and **macOS**:
+   1. Open a command terminal.
+   1. Type `cd <folder>` into the terminal and press `enter`, where you replace `<folder>` with the path to the folder where you've placed `ccamanager.jar`. This navigates the terminal to the correct folder.
+   1. Type `java -jar ccamanager.jar` into the terminal and press `enter` to run the application. <br>
 
-   ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
-   **A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
+1. On **Windows**:
+    1. Double click the `ccamanager.jar` file to run it.
+
+<!--TODO-->
+**A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
    
-   ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * [`add` : Adds a contact/CCA group to the CCA Manager](#feature-add)
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-   * [`clear` : Deletes all contacts](#feature-clear)
- 
-   * [`filter` : Filter by tags](#feature-filter)
- 
-   * [`assign` : Assign roles to contact](#feature-assign)
-
-   * [`exit` : Exits the app](#feature-exit)
-     
-   * $${\color{green}More \space features \space will \space be \space coming \space in \space future \space update}$$
-
-## General Format of the Commands
-To execute the command correctly, you should follow below general format of the command.
-You should ensure that your command follow the correct order shown below:
-
-For example:
-
-`<action> <primary-argument> /<argument-name> <argument-value>`
-
-* `add n/Brian p/87601212 e/test@gmail.com`
-* `find Jason`
-* `delete 2`
-
-### Further Help
- Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️⬇️
+For more details on the commands, visit our [Tutorials](#tutorials) or refer to our [Reference](#reference) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Basics
+## Tutorials
 
 Confused on where to get started? Don’t fret, in this section we’ll outline how to use CCA Manager to its maximum effect with a few use case scenarios.
 
+First off, CCA Manager's interface consists of the following main components:
+
+<!-- TODO regen this image -->
+![CommandLine](images/CommandLine.png)
+
+1. **Command Box**: A small text box where you type the commands.
+3. **Output Box**: Displays any errors that might have occurred, or other information about the most recent command executed.
+2. **Results Box**: Displays the results of the command.
+
+
+All of CCA Manager's functionality is accessed via commands. This includes both adding and editing contacts, as well as accessing existing contacts.
+
+### Upon Booting Up
+
+When you first boot up the app, the app will contain some example contacts for you to get a feel of using CCA Manager's functionalities.
+
+To run a command, type the command in the **Command Box** and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
+
+Here are some other example commands you can try:
+   * `list`: [Lists all contacts.](#listing-all-persons--list)
+   * `delete 3`: [Deletes the 3rd contact shown in the currently displayed list.](#deleting-a-person--delete)
+   * `exit`: [Exits the app.](#exiting-the-program--exit)
+   * `filter NUS Cycling`: [Filter contacts by CCA.](#filter-by-cca)
+   <!--* `add`: [Adds a contact/CCA group to the CCA Manager](#add-contacts-with-cca-labels)-->
+   <!--* `edit`: [Edit details of the contacts.](#edit-the-details-of-your-contacts)-->
+
+Now you can proceed to the tutorials for more information on the actual commands.
+
+### General Format of the Commands
+
+Before we start on the tutorials for each command, you should understand the command format of CCA Manager.
+
+All commands in CCA Manager follow the following format:
+
+```
+ACTION PRIMARY_VALUE ARGUMENT_NAME/ARGUMENT_VALUE
+```
+
+`ACTION`: The name of the action you want to perform
+<box type="info" seamless>
+
+- E.g., For the command `find jason`, `find` is the `ACTION`.
+</box>
+
+`PRIMARY_VALUE`: The value related to the action. 
+<box type="info" seamless>
+
+- This aids in specifying exactly what you want from the action.
+- E.g., For the command `find jason`, `jason` is the `PRIMARY_VALUE`.
+- Some commands might not have this field.
+</box>
+
+`ARGUMENT_NAME/ARGUMENT_VALUE`: The name and its associated value that's related to the command.
+<box type="info" seamless>
+
+- Some commands require the user to specify additional values. Each of these additional values has an `ARGUMENT_NAME` associated to it.
+- `ARGUMENT_NAME` is usually one character long.
+  - E.g., For the command `add n/Brian p/87601212 e/test@gmail.com`:
+    - `n` is the `ARGUMENT_NAME` of the `ARGUMENT_VALUE` `Brian`.
+    - `p` is the `ARGUMENT_NAME` of the `ARGUMENT_VALUE` `87601212`.
+    - `e` is the `ARGUMENT_NAME` of the `ARGUMENT_VALUE` `test@gmail.com`.
+- Some commands allow multiple `ARGUMENT_VALUE`s associated with the same `ARGUMENT_NAME`
+  - E.g., For the command `edit 2 t/Treasurer t/EXCO Member`
+      - The values `Treasurer` and `EXCO Member` are associated with the `ARGUMENT_NAME` `t`.
+</box>
+
+Now we can move on to some command commands. For a full list of commands available for CCA Manager, refer to our [Reference](#reference).
+
 ### Clear Contacts
-The first thing you’d probably want to do is to clear the sample data, as it is likely of no relevance to you.
+
+The first thing you'd probably want to do is to clear the sample data, as it is likely of no relevance to you.
 
 You can do so using the clear command as follows:
 
@@ -133,6 +168,7 @@ And just like that, the address book will be cleared:
   ![clear output](images/UG-Basics/clear-output.png)
 
 ### Add Contacts with CCA Labels
+
 Now that you have a clean address book in CCA Manager, you can start adding your own contacts. An example of the command can be seen below:
 
   ![add-command-1](images/UG-Basics/add-command-1.png)
@@ -192,7 +228,7 @@ Output:
 
   ![edit-output](images/UG-Basics/edit-output.png)
 
-### Delete
+### Delete a Contact
 Has a member quit the CCA completely. Don’t need to waste space in your address book and clutter it up. You can simply delete them from the address book with this simple command. 
 
 Let’s say Mary Jane at index 2 has quit NUS Origami. To remove her simply use the following command:
@@ -205,7 +241,7 @@ Output:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Reference
 
 <box type="info" seamless>
 
@@ -268,7 +304,7 @@ Format: `list`
 
 Edits an existing person in the CCA Manager.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [c/CCA]...`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
