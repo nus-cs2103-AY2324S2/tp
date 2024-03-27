@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String studentId;
+    private final String classroom;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -43,13 +45,15 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("studentId") String studentId,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("class") String classroom) {
         this.name = name;
         this.parentPhoneNumberOne = parentPhoneNumberOne;
         this.parentPhoneNumberTwo = parentPhoneNumberTwo;
         this.email = email;
         this.address = address;
         this.studentId = studentId;
+        this.classroom = classroom;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -68,6 +72,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        classroom = source.getClassroom().value;
     }
 
     /**
@@ -123,9 +128,17 @@ class JsonAdaptedPerson {
         }
         final StudentId modelStudentId = new StudentId(studentId);
 
+        if (classroom == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    FormClass.class.getSimpleName()));
+        }
+        if (!FormClass.isValidClassName(classroom)) {
+            throw new IllegalValueException(FormClass.MESSAGE_CONSTRAINTS);
+        }
+        final FormClass modelFormClass = new FormClass(classroom);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelFirstParentPhone, modelSecondParentPhone, modelEmail, modelAddress,
-                modelStudentId, modelTags);
+                modelStudentId, modelTags, modelFormClass);
     }
 
 }

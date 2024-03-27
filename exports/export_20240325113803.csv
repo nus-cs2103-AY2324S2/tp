@@ -1,2 +1,2 @@
-StudentId,Name,ParentPhoneOne,ParentPhoneTwo,Email,Address,Tags
-10001,Amy Bee,85355255,91234544,amy@gmail.com,123 Jurong West Ave 6 #08-111,
+StudentId,Name,ParentPhoneOne,ParentPhoneTwo,Email,Address,Tags,Class
+10001,Amy Bee,85355255,91234544,amy@gmail.com,123 Jurong West Ave 6 #08-111,,6 A

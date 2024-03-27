@@ -26,8 +26,8 @@ public class ExportManagerTest {
         exportManager.exportStudentList(studentList);
         Path tempFilePath = exportManager.getPathToExportTo();
 
-        String expectedContent = "StudentId,Name,ParentPhoneOne,ParentPhoneTwo,Email,Address,Tags\n"
-                + "10001,Amy Bee,85355255,91234544,amy@gmail.com,123 Jurong West Ave 6 #08-111,";
+        String expectedContent = "StudentId,Name,ParentPhoneOne,ParentPhoneTwo,Email,Address,Tags,Class\n"
+                + "10001,Amy Bee,85355255,91234544,amy@gmail.com,123 Jurong West Ave 6 #08-111,,6 A";
         String actualContent = new String(Files.readAllBytes(tempFilePath));
         assertEquals(expectedContent.trim(), actualContent.trim());
 

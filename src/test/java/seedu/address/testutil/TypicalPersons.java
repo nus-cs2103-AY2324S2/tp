@@ -32,45 +32,45 @@ public class TypicalPersons {
             .withFirstParentPhone("94351253")
             .withSecondParentPhone("88312868")
             .withStudentId("00001")
-            .withTags("Friends").build();
+            .withTags("Friends").withClass("6 A").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com")
             .withFirstParentPhone("98765432")
             .withSecondParentPhone("83789072")
             .withStudentId("00002")
-            .withTags("OwesMoney", "Friends").build();
+            .withTags("OwesMoney", "Friends").withClass("6 A").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withFirstParentPhone("95352563")
             .withSecondParentPhone("86070439")
             .withEmail("heinz@example.com")
             .withAddress("Wall Street")
-            .withStudentId("00003").build();
+            .withStudentId("00003").withClass("6 A").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withFirstParentPhone("87652533")
             .withSecondParentPhone("93690682")
             .withEmail("cornelia@example.com")
             .withStudentId("00004")
             .withAddress("10th street")
-            .withTags("Friends").build();
+            .withTags("Friends").withClass("6 A").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withFirstParentPhone("94822224")
             .withSecondParentPhone("93846702")
             .withStudentId("00005")
             .withEmail("werner@example.com")
-            .withAddress("Michegan Ave").build();
+            .withAddress("Michegan Ave").withClass("6 A").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withFirstParentPhone("94821427")
             .withSecondParentPhone("85777773")
             .withStudentId("00006")
             .withEmail("lydia@example.com")
-            .withAddress("Little Tokyo").build();
+            .withAddress("Little Tokyo").withClass("6 A").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withFirstParentPhone("94822442")
             .withSecondParentPhone("92136499")
             .withStudentId("00007")
             .withEmail("anna@example.com")
-            .withAddress("4th Street").build();
+            .withAddress("4th Street").withClass("6 A").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
@@ -78,13 +78,13 @@ public class TypicalPersons {
             .withSecondParentPhone("89058882")
             .withStudentId("00008")
             .withEmail("stefan@example.com")
-            .withAddress("Little India").build();
+            .withAddress("Little India").withClass("6 A").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withFirstParentPhone("84821531")
             .withSecondParentPhone("90434552")
             .withStudentId("00009")
             .withEmail("hans@example.com")
-            .withAddress("Chicago Ave").build();
+            .withAddress("Chicago Ave").withClass("6 A").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
@@ -93,7 +93,9 @@ public class TypicalPersons {
             .withStudentId(VALID_STUDENT_ID_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_FRIEND)
+            .withClass("6 A")
+            .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withFirstParentPhone(VALID_PHONE_ONE_BOB)
             .withSecondParentPhone(VALID_PHONE_TWO_BOB)
@@ -101,6 +103,7 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withClass("6 A")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

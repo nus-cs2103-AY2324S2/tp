@@ -27,7 +27,7 @@ public class ExportManager implements Export {
         setExportPath();
 
         StringBuilder csvContent = new StringBuilder();
-        csvContent.append("StudentId,Name,ParentPhoneOne,ParentPhoneTwo,Email,Address,Tags\n");
+        csvContent.append("StudentId,Name,ParentPhoneOne,ParentPhoneTwo,Email,Address,Tags,Class\n");
 
         // Iterating over the student list
         for (Person person : studentList) {
@@ -42,7 +42,9 @@ public class ExportManager implements Export {
             String tagsString = person.getTags().stream()
                     .map(tag -> tag.toString().replaceAll("\\[|\\]", ""))
                     .collect(Collectors.joining(";"));
-            csvContent.append(tagsString).append("\n");
+            csvContent.append(tagsString).append(",");
+            csvContent.append(person.getClassroom().toString());
+            csvContent.append("\n");
         }
 
         // Writing to the file
