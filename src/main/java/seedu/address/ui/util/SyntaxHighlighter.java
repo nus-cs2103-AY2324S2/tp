@@ -1,0 +1,101 @@
+package seedu.address.ui.util;
+
+import static seedu.address.logic.Messages.isErrorMessage;
+import static seedu.address.logic.Messages.isSuccessMessage;
+import static seedu.address.logic.commands.util.CommandMessageUsageUtil.isUtilLabel;
+import static seedu.address.logic.commands.util.CommandWordUtil.isCommandWord;
+
+import javafx.scene.Node;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+
+/**
+ * Container for methods regarding the highlighting of syntax.
+ */
+public class SyntaxHighlighter {
+    public static final String BOLD_STYLE_CLASS = "bold";
+    public static final String ERROR_STYLE_CLASS = "error";
+    public static final String SUCCESS_STYLE_CLASS = "success";
+
+    /**
+     * Generates a rich-text line with basic syntax highlighting applied to it.
+     * <p>
+     * The formatting applied includes:
+     * <li><b>Bolding of keywords</b>
+     * <li><font color="#d06651">Error message highlighting</font>
+     * <li><font color="#8AB68D">Success message highlighting</font>
+     *
+     * @param line The line of text to generate from.
+     * @param styleClasses The style classes to add into the rich-text.
+     * @return The generated rich-text with formatting applied.
+     */
+    public static TextFlow generateLine(String line, String... styleClasses) {
+        if (isErrorMessage(line)) {
+            return generateErrorLine(line, styleClasses);
+        }
+
+        if (isSuccessMessage(line)) {
+            return generateSuccessLine(line, styleClasses);
+        }
+
+        return generateGenericLine(line, styleClasses);
+    }
+
+    /**
+     * Generates a rich-text line with error formatting applied.
+     */
+    private static TextFlow generateErrorLine(String errorMessage, String... styleClasses) {
+        Text errorText = new Text(errorMessage);
+        errorText.getStyleClass().addAll(styleClasses);
+        errorText.getStyleClass().addAll(ERROR_STYLE_CLASS, BOLD_STYLE_CLASS);
+
+        return new TextFlow(errorText);
+    }
+
+    /**
+     * Generates a rich-text line with success formatting applied.
+     */
+    private static TextFlow generateSuccessLine(String successMessage, String... styleClasses) {
+        Text successText = new Text(successMessage);
+        successText.getStyleClass().addAll(styleClasses);
+        successText.getStyleClass().addAll(SUCCESS_STYLE_CLASS, BOLD_STYLE_CLASS);
+
+        return new TextFlow(successText);
+    }
+
+    /**
+     * Generates a rich-text line with formatting applied.
+     */
+    private static TextFlow generateGenericLine(String genericMessage, String... styleClasses) {
+        String[] messageWords = genericMessage.split(" ");
+        Node[] generatedNodes = new Node[messageWords.length * 2 - 1];
+
+        for (int j = 0, i = 0; i < messageWords.length && j < generatedNodes.length; i++) {
+            generatedNodes[j++] = generateGenericWord(messageWords[i], styleClasses);
+            if (j < generatedNodes.length) {
+                generatedNodes[j++] = generateSingleSpace();
+            }
+        }
+
+        return new TextFlow(generatedNodes);
+    }
+
+    /**
+     * Generates a rich-text word with formatting applied.
+     */
+    private static Text generateGenericWord(String word, String... styleClasses) {
+        Text wordText = new Text(word);
+        wordText.getStyleClass().addAll(styleClasses);
+
+        // Bold keywords
+        if (isUtilLabel(word) || isCommandWord(word)) {
+            wordText.getStyleClass().add(BOLD_STYLE_CLASS);
+        }
+
+        return wordText;
+    }
+
+    private static Text generateSingleSpace() {
+        return new Text(" ");
+    }
+}
