@@ -14,15 +14,16 @@ import seedu.address.model.house.Street;
 import seedu.address.model.house.UnitNumber;
 
 /**
- * Jackson-friendly version of {@link House}
+ * Jackson-friendly version of {@link House}.
  */
 public class JsonAdaptedHouse {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "House's %s field is missing!";
+    private final String type;
     private final String block;
     private final String level;
     private final String postalCode;
     private final String street;
     private final String unitNumber;
-    private final String type; // "NonLanded" or "Landed": This is different from housingType.
 
     /**
      * Constructs a {@code JsonAdaptedHouse} with the given house details.
@@ -67,9 +68,31 @@ public class JsonAdaptedHouse {
      * @throws IllegalValueException if there were any data constraints violated in the adapted house.
      */
     public House toModelType() throws IllegalValueException {
-        PostalCode modelPostalCode = new PostalCode(postalCode);
-        Street modelStreet = new Street(street);
-        UnitNumber modelUnitNumber = new UnitNumber(unitNumber);
+        if (postalCode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PostalCode.class.getSimpleName()));
+        }
+        if (!PostalCode.isValidPostalCode(postalCode)) {
+            throw new IllegalValueException(PostalCode.MESSAGE_CONSTRAINTS);
+        }
+        final PostalCode modelPostalCode = new PostalCode(postalCode);
+
+        if (street == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Street.class.getSimpleName()));
+        }
+        if (!Street.isValidStreet(street)) {
+            throw new IllegalValueException(Street.MESSAGE_CONSTRAINTS);
+        }
+        final Street modelStreet = new Street(street);
+
+        if (unitNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    UnitNumber.class.getSimpleName()));
+        }
+        if (!UnitNumber.isValidUnitNumber(unitNumber)) {
+            throw new IllegalValueException(UnitNumber.MESSAGE_CONSTRAINTS);
+        }
+        final UnitNumber modelUnitNumber = new UnitNumber(unitNumber);
 
         if ("NonLanded".equals(type)) {
             Block modelBlock = block != null ? new Block(block) : null;
@@ -84,7 +107,7 @@ public class JsonAdaptedHouse {
         } else if ("Landed".equals(type)) {
             return new Landed(modelUnitNumber, modelPostalCode, modelStreet);
         } else {
-            throw new IllegalValueException("Unknown house type");
+            throw new IllegalValueException("Unknown House Type");
         }
     }
 }

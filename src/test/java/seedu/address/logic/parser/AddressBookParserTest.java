@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.BuyerBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.SellerBuilder;
@@ -31,6 +33,22 @@ import seedu.address.testutil.SellerBuilder;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_addBuyer() throws Exception {
+        Person buyer = new BuyerBuilder().build();
+        AddBuyerCommand command = (AddBuyerCommand) parser.parseCommand(PersonUtil.getAddBuyerCommand(buyer));
+        assertEquals(new AddBuyerCommand(buyer), command);
+    }
+
+    //    This test case needed to be modified based on the Condo, HDB, Landed criteria (since some of the fields
+    //    can be empty
+    //    @Test
+    //    public void parseCommand_addSeller() throws Exception {
+    //        Seller seller = new SellerBuilder().build();
+    //        AddSellerCommand command = (AddSellerCommand) parser.parseCommand(PersonUtil.getAddSellerCommand(seller));
+    //        assertEquals(new AddSellerCommand(seller), command);
+    //    }
 
     @Test
     public void parseCommand_clear() throws Exception {

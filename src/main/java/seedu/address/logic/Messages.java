@@ -32,7 +32,7 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code person} for display to the user, differentiating between Buyer and Seller.
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
@@ -47,5 +47,4 @@ public class Messages {
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

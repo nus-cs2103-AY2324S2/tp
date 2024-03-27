@@ -1,5 +1,7 @@
 package seedu.address.model.house;
 
+import seedu.address.commons.util.ToStringBuilder;
+
 /**
  * Represents a non-landed house.
  */
@@ -70,8 +72,13 @@ public class NonLanded extends House {
      */
     @Override
     public String toString() {
-        String blockLevelInfo = (block != null ? "Block: " + block.value + ", " : "")
-                + (level != null ? "Level: " + level.value + ", " : "");
-        return "Non-Landed House: " + blockLevelInfo + super.toString();
+        ToStringBuilder builder = new ToStringBuilder(this);
+        if (block != null) {
+            builder.add("Block", block);
+        }
+        if (level != null) {
+            builder.add("Level", level);
+        }
+        return "Non-Landed House: " + builder.toString() + ", " + super.toString();
     }
 }

@@ -36,7 +36,7 @@ public class AddBuyerCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in EstateEase";
+    public static final String MESSAGE_DUPLICATE_BUYER = "This person already exists in EstateEase";
 
     private final Person buyerToAdd;
 

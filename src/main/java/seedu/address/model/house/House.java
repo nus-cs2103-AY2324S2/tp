@@ -1,5 +1,7 @@
 package seedu.address.model.house;
 
+import seedu.address.commons.util.ToStringBuilder;
+
 /**
  * Represents a House.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -141,6 +143,10 @@ public class House {
      */
     @Override
     public String toString() {
-        return "House Address: " + this.unitNumber + ", " + this.street + ", S" + this.postalCode;
+        return new ToStringBuilder(this)
+                .add("Unit Number", unitNumber)
+                .add("Street", street)
+                .add("Postal Code", postalCode)
+                .toString();
     }
 }
