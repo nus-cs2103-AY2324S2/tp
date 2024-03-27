@@ -5,7 +5,7 @@
 ---
 
 # ClientCare User Guide
-This user guide is meant for ClientCare Version `v1.2`.
+This user guide is meant for ClientCare Version `v1.3`.
 
 Too many clients to keep track off? Not sure when is your next appointment?
 Fret not! ClientCare is a **desktop application for assisting insurance agents in managing their client relationships and follow-ups effectively.**
@@ -173,7 +173,7 @@ If you have faced issues opening the app, you can find the alternative solution 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Getting familiar with ClientCare's display
+## Getting familiar with ClientCare
 Now that we got ClientCare up and running, let's get you familiar with its display.
 You will learn how the different parts of ClientCare look and work in this section.
 
@@ -242,27 +242,36 @@ Let’s run you through some simple commands to get you warmed up before you div
 
 Let's boot up ClientCare and get started!
 
-Suppose we just met a new client! Let's add James Wee to our client list and his following details:
-* Phone Number: 98765432
-* Email: james@hotmail.com
-* Address: East Coast Blk 112
-* Birthday: 25 May 1998
-* Priority: VIP
+1. Suppose we just met a new client! Let's add James Wee to our client list and his following details:
+  * Phone Number: 98765432
+  * Email: james@hotmail.com
+  * Address: East Coast Blk 112
+  * Birthday: 25 May 1998
+  * Priority: VIP
 
 Type the following into the Command Input:
 
 `add n/James Wee c/98765432 e/james@hotmail.com a/East Coat Blk 112 d/1998-05-25 p/vip`
->Image showing typing
 
-We have now added James Wee to our Client List!
->Image showing james wee
+![addclient](images/ug/addclient.png =600x)
 
-Now let's schedule an appointment with James Wee 7 days from now.
-Since today is 27 March 2024, the appointment will be on 3 April 2024 2pm.
+
+2. We have now added James Wee to our Client List! ClientCare shows a success message in the Feedback Display too. 
+
+
+
+![success_add](images/ug/success_add.png =600x)
+
+
+
+3. Now let's schedule an appointment with James Wee 7 days from now. From the Client List, James has an index of `7`.
+When this guide was released, today was 27 March 2024. Hence, let's set the appointment at 3 April 2024 2pm.
 Let's type the following command into the Command Input:
 
-`schedule (INDEX PENDING) d/2024-04-03 14:00`
->Image typing
+
+`schedule 7 d/2024-04-03 14:00`
+
+![schedule](images/ug/schedule.png =600x)
 
 <box type="info">
 
@@ -270,8 +279,19 @@ Let's type the following command into the Command Input:
 
 </box>
 
-You should see the following changes.
->Image changing
+4. Our schedule with James has been updated in both Client Details and Schedule Display!
+
+
+
+![success_schedule](images/ug/success_add.png =600x)
+
+
+5. Now let's get interesting. What happens if we encounter an error?
+
+ClientCare will show us the error along with the correct command format in the Feedback Display.
+
+
+![error](images/ug/error.png =600x)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -459,6 +479,7 @@ You can update the last met date you had with your client with `met`.
 Format: `met INDEX d/DATE`
 
 * Updates the client at the specified `INDEX`.
+* Using `mark` on a schedule **will not** update the last met date.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The DATE format must be in **YYYY-MM-DD**. 7 May 2023 should be entered as 2023-05-07.
@@ -466,6 +487,16 @@ Format: `met INDEX d/DATE`
 Examples:
 * `met 2 d/2023-05-07` updates the last met date of the 2nd client in the client list to 7 May 2023.
 * `met 7 d/2024-07-08` updates the last met date of the 7th client in the client list to 8 July 2024.
+
+
+<box type="info">
+
+**Note:** Clients will only show up in the Last Met Display if the number of days since the last meeting exceeds the period specified.
+By default, the period is **90 days**.
+
+If there is currently a schedule with the client, he will not show up in the Last Met Display.
+Rather, you will see him under the Schedule Display.
+</box>
 
 <box type="info">
 
@@ -496,16 +527,13 @@ Examples:
 <box type="info">
 
 **Note:** ClientCare will not allow you to schedule with someone from a past date.
-
 </box>
-<br/>
-<br/>
 
 <div style="page-break-after: always;"></div>
 
 ### Marking appointments : `mark`
 
-Done with an appointment?
+Done with or need to cancel an appointment?
 You can mark an appointment as completed with `mark`.
 
 Format: `mark INDEX`
@@ -517,6 +545,11 @@ Format: `mark INDEX`
 Examples:
 * `mark 1` marks the appointment with the
   1st client in the client list as completed.
+
+<box type="tip">
+
+**Tip:** If you have successfully met up with your client, do remember to update the last met date with `met`!
+</box>
 
 <br/>
 <br/>
