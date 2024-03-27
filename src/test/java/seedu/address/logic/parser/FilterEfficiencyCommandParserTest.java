@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterEfficiencyCommand;
+import seedu.address.model.person.Efficiency;
 import seedu.address.model.person.PersonLessThanEfficiencyPredicate;
 
 public class FilterEfficiencyCommandParserTest {
@@ -17,6 +18,17 @@ public class FilterEfficiencyCommandParserTest {
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterEfficiencyCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_nonIntegerArgs_throwsParseException() {
+        assertParseFailure(parser, "abc", "The input efficiency should be an integer.");
+    }
+
+    @Test
+    public void parse_outOfRangeArgs_throwsParseException() {
+        assertParseFailure(parser, "150", Efficiency.MESSAGE_CONSTRAINTS);
+    }
+
 
     @Test
     public void parse_validArgs_returnsFilterEfficiencyCommand() {
