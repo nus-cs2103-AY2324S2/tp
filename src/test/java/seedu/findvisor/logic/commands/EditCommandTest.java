@@ -168,6 +168,27 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Ensure that the remarks are copied over when a person is edited.
+     */
+    @Test
+    public void execute_copyRemarks_success() {
+        // The person at the second index of the unfiltered list has a non-empty meeting object
+        Person personWithRemark = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        PersonBuilder personInList = new PersonBuilder(personWithRemark);
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(personWithRemark, editedPerson);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
     @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);

@@ -26,6 +26,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Optional<Meeting> meeting;
+    private final Optional<Remark> remark;
 
     /**
      * Every field must be present and not null.
@@ -38,19 +39,22 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.meeting = Optional.empty();
+        this.remark = Optional.empty();
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Optional<Meeting> meeting) {
-        requireAllNonNull(name, phone, email, address, tags, meeting);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Optional<Meeting> meeting, Optional<Remark> remark) {
+        requireAllNonNull(name, phone, email, address, tags, meeting, remark);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.meeting = meeting;
+        this.remark = remark;
     }
 
     public Name getName() {
@@ -79,6 +83,10 @@ public class Person {
 
     public Optional<Meeting> getMeeting() {
         return meeting;
+    }
+
+    public Optional<Remark> getRemark() {
+        return remark;
     }
 
     /**
@@ -115,13 +123,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && meeting.equals(otherPerson.meeting)
+                && remark.equals(otherPerson.remark)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, meeting);
+        return Objects.hash(name, phone, email, address, tags, meeting, remark);
     }
 
     @Override
@@ -132,6 +141,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("meeting", meeting)
+                .add("remark", remark)
                 .add("tags", tags)
                 .toString();
     }

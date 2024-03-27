@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="626px" preserveAspectRatio="none" style="width:1154px;height:626px;background:#FFFFFF;" version="1.1" viewBox="0 0 1154 626" width="1154px" zoomAndPan="magnify"><defs/><g><rect fill="#C8C8FA" height="607.8574" style="stroke:#181818;stroke-width:0.5;" width="873" x="35" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="36" x="451.5" y="18.5684">Logic</text><rect fill="#F97181" height="607.8574" style="stroke:#181818;stroke-width:0.5;" width="238" x="910" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="41" x="1006.5" y="18.5684">Model</text><rect fill="#FFFFFF" height="513.748" style="stroke:#181818;stroke-width:1.0;" width="10" x="101" y="88.1094"/><rect fill="#FFFFFF" height="283.707" style="stroke:#181818;stroke-width:1.0;" width="10" x="263.5" y="117.4199"/><rect fill="#FFFFFF" height="31.4883" style="stroke:#181818;stroke-width:1.0;" width="10" x="450" y="141.4199"/><rect fill="#FFFFFF" height="140.2871" style="stroke:#181818;stroke-width:1.0;" width="10" x="450" y="202.2188"/><rect fill="#FFFFFF" height="16.1777" style="stroke:#181818;stroke-width:1.0;" width="10" x="659" y="297.0176"/><rect fill="#FFFFFF" height="128.1094" style="stroke:#181818;stroke-width:1.0;" width="10" x="659" y="430.4375"/><rect fill="#FFFFFF" height="31.4883" style="stroke:#181818;stroke-width:1.0;" width="10" x="820.5" y="497.748"/><rect fill="#FFFFFF" height="16.1777" style="stroke:#181818;stroke-width:1.0;" width="10" x="977" y="241.5293"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="459.748"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="106" x2="106" y1="56.7988" y2="619.8574"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="268" x2="268" y1="56.7988" y2="619.8574"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="455" x2="455" y1="156.1641" y2="619.8574"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="664" x2="664" y1="296.4512" y2="619.8574"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="825" x2="825" y1="512.4922" y2="619.8574"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="982" x2="982" y1="240.9629" y2="619.8574"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1102" x2="1102" y1="56.7988" y2="619.8574"/><rect fill="#3333C4" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="114" x="49" y="25.3105"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="100" x="56" y="45.8457">:LogicManager</text><rect fill="#3333C4" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="193" y="25.3105"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="200" y="45.8457">:AddressBookParser</text><rect fill="#9D0012" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="1070" y="25.3105"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46" x="1079" y="45.8457">:Model</text><rect fill="#FFFFFF" height="513.748" style="stroke:#181818;stroke-width:1.0;" width="10" x="101" y="88.1094"/><rect fill="#FFFFFF" height="283.707" style="stroke:#181818;stroke-width:1.0;" width="10" x="263.5" y="117.4199"/><rect fill="#FFFFFF" height="31.4883" style="stroke:#181818;stroke-width:1.0;" width="10" x="450" y="141.4199"/><rect fill="#FFFFFF" height="140.2871" style="stroke:#181818;stroke-width:1.0;" width="10" x="450" y="202.2188"/><rect fill="#FFFFFF" height="16.1777" style="stroke:#181818;stroke-width:1.0;" width="10" x="659" y="297.0176"/><rect fill="#FFFFFF" height="128.1094" style="stroke:#181818;stroke-width:1.0;" width="10" x="659" y="430.4375"/><rect fill="#FFFFFF" height="31.4883" style="stroke:#181818;stroke-width:1.0;" width="10" x="820.5" y="497.748"/><rect fill="#FFFFFF" height="16.1777" style="stroke:#181818;stroke-width:1.0;" width="10" x="977" y="241.5293"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="459.748"/><polygon fill="#181818" points="89,84.1094,99,88.1094,89,92.1094,93,88.1094" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="0" x2="95" y1="88.1094" y2="88.1094"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="9.5" y="83.3672">execute(find)</text><polygon fill="#181818" points="251.5,113.4199,261.5,117.4199,251.5,121.4199,255.5,117.4199" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="111" x2="257.5" y1="117.4199" y2="117.4199"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="131" x="121.75" y="112.6777">parseCommand(find)</text><polygon fill="#181818" points="362,127.4199,372,131.4199,362,135.4199,366,131.4199" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="273.5" x2="368" y1="131.4199" y2="131.4199"/><rect fill="#3333C4" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="162" x="374" y="125.4199"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="148" x="381" y="145.9551">:FindCommandParser</text><polygon fill="#181818" points="284.5,168.9082,274.5,172.9082,284.5,176.9082,280.5,172.9082" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="278.5" x2="454" y1="172.9082" y2="172.9082"/><polygon fill="#181818" points="438,198.2188,448,202.2188,438,206.2188,442,202.2188" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="273.5" x2="444" y1="202.2188" y2="202.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="102" x="310.75" y="197.4766">parse(argument)</text><polygon fill="#181818" points="912,227.5293,922,231.5293,912,235.5293,916,231.5293" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="460" x2="918" y1="231.5293" y2="231.5293"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="122" x="631" y="226.7871">XYZPredicate(value)</text><rect fill="#9D0012" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="116" x="924" y="210.2188"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="102" x="931" y="230.7539">p:XYZPredicate</text><polygon fill="#181818" points="471,253.707,461,257.707,471,261.707,467,257.707" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="465" x2="981" y1="257.707" y2="257.707"/><polygon fill="#181818" points="589,283.0176,599,287.0176,589,291.0176,593,287.0176" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="460" x2="595" y1="287.0176" y2="287.0176"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107" x="477" y="282.2754">FindCommand(p)</text><rect fill="#3333C4" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="126" x="601" y="265.707"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="608" y="286.2422">c:FindCommand</text><polygon fill="#181818" points="471,309.1953,461,313.1953,471,317.1953,467,313.1953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="465" x2="663" y1="313.1953" y2="313.1953"/><polygon fill="#181818" points="284.5,338.5059,274.5,342.5059,284.5,346.5059,280.5,342.5059" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="278.5" x2="454" y1="342.5059" y2="342.5059"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="360.75" y="337.7637">c</text><line style="stroke:#A80036;stroke-width:2.0;" x1="446" x2="464" y1="362.8164" y2="380.8164"/><line style="stroke:#A80036;stroke-width:2.0;" x1="446" x2="464" y1="380.8164" y2="362.8164"/><polygon fill="#181818" points="122,397.127,112,401.127,122,405.127,118,401.127" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="116" x2="267.5" y1="401.127" y2="401.127"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="186.25" y="396.3848">c</text><polygon fill="#181818" points="647,426.4375,657,430.4375,647,434.4375,651,430.4375" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="111" x2="653" y1="430.4375" y2="430.4375"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57" x="356.5" y="425.6953">execute()</text><polygon fill="#181818" points="1085,455.748,1095,459.748,1085,463.748,1089,459.748" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="669" x2="1091" y1="459.748" y2="459.748"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="171" x="797.5" y="455.0059">updateFilteredPersonList(p)</text><polygon fill="#181818" points="680,469.748,670,473.748,680,477.748,676,473.748" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="674" x2="1101" y1="473.748" y2="473.748"/><polygon fill="#181818" points="745,483.748,755,487.748,745,491.748,749,487.748" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="669" x2="751" y1="487.748" y2="487.748"/><rect fill="#3333C4" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="137" x="757" y="481.748"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="123" x="764" y="502.2832">r:CommandResult</text><polygon fill="#181818" points="680,525.2363,670,529.2363,680,533.2363,676,529.2363" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="674" x2="824.5" y1="529.2363" y2="529.2363"/><polygon fill="#181818" points="122,554.5469,112,558.5469,122,562.5469,118,558.5469" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="116" x2="663" y1="558.5469" y2="558.5469"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="385" y="553.8047">r</text><line style="stroke:#A80036;stroke-width:2.0;" x1="655" x2="673" y1="578.8574" y2="596.8574"/><line style="stroke:#A80036;stroke-width:2.0;" x1="655" x2="673" y1="596.8574" y2="578.8574"/><polygon fill="#181818" points="11,597.8574,1,601.8574,11,605.8574,7,601.8574" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="5" x2="105" y1="601.8574" y2="601.8574"/><!--MD5=[00ab5eebfaa09ce120ff4faf86b3b383]
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "c:FindCommand" as FindCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "p:XYZPredicate" as XYZPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(find)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(find)
+activate AddressBookParser
+
+create FindCommandParser
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser -> AddressBookParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse(argument)
+activate FindCommandParser
+
+create XYZPredicate
+FindCommandParser -> XYZPredicate : XYZPredicate(value)
+activate XYZPredicate
+
+XYZPredicate - -> FindCommandParser
+deactivate XYZPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(p)
+activate FindCommand
+
+FindCommand - -> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser - -> AddressBookParser : c
+deactivate FindCommandParser
+FindCommandParser -[hidden]-> AddressBookParser : c
+destroy FindCommandParser
+
+AddressBookParser - -> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredPersonList(p)
+activate Model
+
+Model - -> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult - -> FindCommand
+deactivate CommandResult
+
+FindCommand - -> LogicManager : r
+deactivate FindCommand
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+    FontSize 16
+}
+
+skinparam Class {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam ArrowFontStyle bold
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam ArrowFontStyle plain
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager #3333C4
+participant ":AddressBookParser" as AddressBookParser #3333C4
+participant ":FindCommandParser" as FindCommandParser #3333C4
+participant "c:FindCommand" as FindCommand #3333C4
+participant "r:CommandResult" as CommandResult #3333C4
+end box
+
+box Model #F97181
+participant "p:XYZPredicate" as XYZPredicate #9D0012
+participant ":Model" as Model #9D0012
+end box
+[-> LogicManager : execute(find)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(find)
+activate AddressBookParser
+
+create FindCommandParser
+AddressBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser -> AddressBookParser
+deactivate FindCommandParser
+
+AddressBookParser -> FindCommandParser : parse(argument)
+activate FindCommandParser
+
+create XYZPredicate
+FindCommandParser -> XYZPredicate : XYZPredicate(value)
+activate XYZPredicate
+
+XYZPredicate - -> FindCommandParser
+deactivate XYZPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(p)
+activate FindCommand
+
+FindCommand - -> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser - -> AddressBookParser : c
+deactivate FindCommandParser
+FindCommandParser -[hidden]-> AddressBookParser : c
+destroy FindCommandParser
+
+AddressBookParser - -> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredPersonList(p)
+activate Model
+
+Model - -> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult - -> FindCommand
+deactivate CommandResult
+
+FindCommand - -> LogicManager : r
+deactivate FindCommand
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: SG
+--></g></svg>

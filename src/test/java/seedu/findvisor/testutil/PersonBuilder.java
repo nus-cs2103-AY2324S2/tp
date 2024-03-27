@@ -10,6 +10,7 @@ import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 import seedu.findvisor.model.util.SampleDataUtil;
 
@@ -28,6 +29,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Optional<Meeting> meeting;
+    private Optional<Remark> remark;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +41,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         meeting = Optional.empty();
+        remark = Optional.empty();
         tags = new HashSet<>();
     }
 
@@ -51,6 +54,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         meeting = personToCopy.getMeeting();
+        remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -70,6 +74,18 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and add it to the {@code Person} that we are building.
+     */
+    public PersonBuilder addTags(String ... tags) {
+        Set<Tag> tagsToAdd = SampleDataUtil.getTagSet(tags);
+        Set<Tag> allTags = new HashSet<Tag>();
+        allTags.addAll(this.tags);
+        allTags.addAll(tagsToAdd);
+
+        this.tags = allTags;
+        return this;
+    }
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
@@ -102,8 +118,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(Optional<Remark> remark) {
+        this.remark = remark;
+        return this;
+    }
+
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, meeting);
+        return new Person(name, phone, email, address, tags, meeting, remark);
     }
 
 }
