@@ -4,6 +4,9 @@ import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Meeting;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 
@@ -38,6 +41,26 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         String end = startEnd[1].trim();
 
         return new AddMeetingCommand(contactName, new Meeting(desc, date, start, end));
+    }
+
+    public static String[] parseDetails(String meeting) {
+        if (meeting.isEmpty()) {
+            String[] details = {"", "", "", ""};
+            return details;
+        }
+        String[] parts = meeting.toString().split(": ");
+        String desc = parts[0];
+        int index = parts[1].indexOf("(");
+        String dateString = parts[1].substring(0, index).trim();
+        LocalDate conviDate = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d MMMM yyyy"));
+        String date = conviDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        String timeString = parts[1].substring(index).trim();
+        String[] startEnd = timeString.substring(1, timeString.length() - 1).split(" - ");
+        String start = startEnd[0].trim();
+        String end = startEnd[1].trim();
+
+        String[] details = {desc, date, start, end};
+        return details;
     }
 
 }

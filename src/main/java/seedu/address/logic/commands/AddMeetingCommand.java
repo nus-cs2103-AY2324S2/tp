@@ -28,8 +28,7 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added the meeting with %1$s. The meeting details "
             + "are as follows:\n" + "%2$s\n";
     public static final String MESSAGE_DELETE_MEETING_SUCCESS = "Removed the meeting with %1$s.";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "AddMeeting command not implemented yet";
+
     public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist. Unable to add "
             + "meeting.";
     public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";

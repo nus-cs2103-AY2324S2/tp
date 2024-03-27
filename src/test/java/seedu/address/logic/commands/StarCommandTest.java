@@ -49,7 +49,7 @@ public class StarCommandTest {
         String expectedMessage = "Nice! I have starred this contact:\n" + contactToStar.getName() + " ★";
         Person expectedStarredContact = new Person(contactToStar.getName(), contactToStar.getPhone(),
                 contactToStar.getEmail(), contactToStar.getAddress(), contactToStar.getCompany(),
-                contactToStar.getPriority(), true, contactToStar.getTags());
+                contactToStar.getMeeting(), contactToStar.getPriority(), true, contactToStar.getTags());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(contactToStar, expectedStarredContact);

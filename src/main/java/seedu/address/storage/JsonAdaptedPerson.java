@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.AddMeetingCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -129,15 +130,8 @@ class JsonAdaptedPerson {
         if (meeting == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Meeting.class.getSimpleName()));
         }
-        String[] parts = meeting.toString().split(": ");
-        String desc = parts[0];
-        String[] dateTime = parts[1].split(" \\(");
-        LocalDate conviDate = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("d MMMM yyyy"));
-        String date = conviDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        String[] startEnd = dateTime[1].substring(1, dateTime[1].length() - 1).split(" - ");
-        String start = startEnd[0].trim();
-        String end = startEnd[1].trim();
-        final Meeting modelMeeting = new Meeting(desc, date, start, end);
+        String[] details = AddMeetingCommandParser.parseDetails(meeting);
+        final Meeting modelMeeting = new Meeting(details[0], details[1], details[2], details[3]);
 
         if (priority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
