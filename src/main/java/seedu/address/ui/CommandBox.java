@@ -70,6 +70,15 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Disables the command input field to prevent user input.
+     */
+    public void freezeCommandBox() {
+        commandTextField.setDisable(true);
+        commandTextField.clear();
+        commandTextField.setPromptText("Exiting...");
+    }
+
+    /**
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
