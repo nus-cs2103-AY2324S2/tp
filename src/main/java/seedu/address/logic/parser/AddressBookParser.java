@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +33,20 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
+     * Used to match incomplete commands with full commands.
+     */
+    private static final String[] COMMANDS = {
+        AddCommand.COMMAND_WORD,
+        EditCommand.COMMAND_WORD,
+        DeleteCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD,
+        FindCommand.COMMAND_WORD,
+        ListCommand.COMMAND_WORD,
+        ExitCommand.COMMAND_WORD,
+        HelpCommand.COMMAND_WORD,
+    };
+
+    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -50,7 +66,19 @@ public class AddressBookParser {
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
-        switch (commandWord) {
+
+        // Get a list of commands that matches the input command.
+        List<String> matchedCommands = ParserUtil.filterByPrefix(commandWord, COMMANDS);
+
+        String command = commandWord;
+        if (matchedCommands.size() == 1) {
+            command = matchedCommands.get(0);
+        } else if (matchedCommands.size() > 1) {
+            // Input matches multiple commands.
+            throw new ParseException(MESSAGE_UNCLEAR_COMMAND);
+        }
+
+        switch (command) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -81,5 +109,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

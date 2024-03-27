@@ -54,6 +54,9 @@ NUSContacts is a **desktop app for managing contacts, optimized for use via a Co
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+* If the command you have typed is a prefix of only one existing command, it will be interpreted as that existing command.<br>
+  e.g. if the command is `ad ...`, then it will be interpreted as an `add ...` command.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 

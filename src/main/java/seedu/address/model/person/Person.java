@@ -25,7 +25,7 @@ public class Person {
     private final Role role;
 
     // Data fields
-    private final Address address;
+    private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,7 +33,7 @@ public class Person {
      */
     public Person(
             Name name, Optional<Phone> phone, Email email, Role role,
-            Address address, Course course, Set<Tag> tags) {
+            Optional<Address> address, Course course, Set<Tag> tags) {
 
         requireAllNonNull(name, phone, email, role, address, course, tags);
         this.name = name;
@@ -61,7 +61,7 @@ public class Person {
         return role;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 

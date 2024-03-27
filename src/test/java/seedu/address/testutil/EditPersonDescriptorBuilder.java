@@ -72,15 +72,15 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Course} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withRole(String role) {
-        descriptor.setRole(new Role(role));
+        descriptor.setRole(Role.valueOf(role));
         return this;
     }
 
     /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withAddress(Optional<String> address) {
+        descriptor.setAddress(address.map(Address::new));
         return this;
     }
 
