@@ -249,6 +249,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       * Unlikely to have bugs.
     * Cons:
       * May have performance issues in terms of memory usage.
+</li>
 
 * **Alternative 2:** Save the entire address book into storage as JSON files.
     * Pros:
@@ -256,7 +257,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons:
       * May have performance issues with many storage accesses.
       * Increases coupling as `Model` will now need a reference to `Storage`.
-
+</li>
 
 * **Alternative 3:** Save the entire address book as a JSON `String`.
     * Pros:
@@ -264,7 +265,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       * Faster than JSON files as there are no accesses to storage.
     * Cons:
       * May have performance issues as it has to be deserialized each time.
-
+</li>
 
 * **Alternative 4:** Individual command knows how to undo/redo by itself.
     * Pros:
@@ -273,6 +274,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons:
       * We must ensure that the implementation of each individual `undo` command is correct.
         This would be especially difficult for commands that modify multiple people at once (e.g. `asset` editing commands)
+</li>
 
 **Aspect: Data structure used to store undo & redo states:**
 
@@ -283,7 +285,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       * Easy to clear all redo states.
     * Cons:
       * May have performance issues if many redo states are cleared at once.
-
+</li>
 
 * **Alternative 2:** ArrayList, using pointers for current state and redo limit.
     * Pros:
@@ -292,7 +294,7 @@ The following activity diagram summarizes what happens when a user executes a ne
       * Harder to implement.
       * `add()` and `set()` have to be used appropriately to prevent synchronization issues.
       * Pointers have to be carefully implemented.
-
+</li>
 
 * **Alternative 3:** LinkedList.
     * Pros:
@@ -301,7 +303,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons:
       * Time-consuming to implement: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index,
         and hence a custom data structure would have to be used.
-
+</li>
 
 ### \[Proposed\] Data archiving
 
