@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -135,6 +136,14 @@ public class ModelManager implements Model {
     @Override
     public void updatePersonComparator(Comparator<Person> personComparator) {
         sortedPersons.setComparator(personComparator);
+    }
+
+    @Override
+    public Optional<Person> findPerson(Predicate<Person> predicate) {
+        return addressBook.getPersonList()
+                .stream()
+                .filter(predicate)
+                .findAny();
     }
 
     @Override

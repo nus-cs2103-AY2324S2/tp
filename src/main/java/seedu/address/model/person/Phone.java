@@ -33,6 +33,14 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if the phone number is a valid Singaporean number, i.e. 8 digits starting
+     * with an 8 or a 9.
+     */
+    public boolean isSingaporeanNumber() {
+        return (this.value.startsWith("8") || this.value.startsWith("9")) && this.value.length() == 8;
+    }
+
     @Override
     public String toString() {
         return value;

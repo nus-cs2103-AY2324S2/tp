@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -94,4 +95,6 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updatePersonComparator(Comparator<Person> personComparator);
+
+    Optional<Person> findPerson(Predicate<Person> predicate);
 }
