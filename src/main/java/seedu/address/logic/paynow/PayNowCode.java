@@ -61,7 +61,7 @@ public class PayNowCode extends PayNowPayload {
                                   MERCHANT_NAME,
                                   MERCHANT_CITY,
                                   new PayNowField(CRC_ID, PLACEHOLDER_CRC)};
-        
+
         String encodedFields = Stream.of(fields)
                 .map(PayNowField::toString)
                 .reduce("", (accumulator, encodedField) -> accumulator + encodedField);
