@@ -6,6 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +14,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -24,7 +27,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SplitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.MoneyOwed;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonHasTagPredicate;
@@ -98,6 +103,18 @@ public class AddressBookParserTest {
         FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD + " "
                 + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterCommand(new PersonHasTagPredicate(TestUtil.stringsToTags(keywords))), command);
+    }
+
+    @Test
+    public void parseCommand_split() throws Exception {
+        List<Index> indexList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        MoneyOwed totalOwed = new MoneyOwed(CommandTestUtil.VALID_MONEY_OWED_FOR_SPLIT_COMMAND);
+        SplitCommand command = (SplitCommand) parser.parseCommand(SplitCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                + INDEX_SECOND_PERSON.getOneBased() + " "
+                + CliSyntax.PREFIX_MONEY_OWED
+                + CommandTestUtil.VALID_MONEY_OWED_FOR_SPLIT_COMMAND);
+        assertEquals(new SplitCommand(indexList, totalOwed), command);
     }
 
     @Test
