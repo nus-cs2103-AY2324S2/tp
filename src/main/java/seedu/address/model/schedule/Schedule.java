@@ -3,7 +3,6 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -185,16 +184,14 @@ public class Schedule {
     }
 
     /**
-     *
-     * @return custom date time format used
+     * Returns ustom date time format used
      */
     public static DateTimeFormatter getScheduleDateTimeFormatter() {
         return CUSTOM_DATETIME;
     }
 
     /**
-     *
-     * @return custom date time format used
+     * Returns custom date time format used in string
      */
     public static String getDateTimeStringFormat() {
         return DATETIME_STRING;
