@@ -13,11 +13,11 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters the application list by the specified job "
             + "or candidate.\n"
-            + "Parameters: [" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_EMAIL + "EMAIL]\n"
+            + "Parameters: [" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TITLE + "TITLE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Software Engineer "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_TITLE + "Software Engineer ";
 
     public static final String MESSAGE_NO_FIELD_PROVIDED = "Title or email to filter by must be provided.";
 
