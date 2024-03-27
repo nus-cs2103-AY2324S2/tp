@@ -196,8 +196,6 @@ This is to prevent `FilterCommand` from taking on more responsibilities (Separat
 `FilterCommand` having `setPersonPredicate()` method:
 This is so that `FilterCommand` has the required argument of type `Predicate<Person>` to be used in the `updateFilteredPersonList()` method. Since the `Predicate<Person>` object is created by chaining the multiple predicates, no parsing is involved to create this `Predicate`.
 
-#### 
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
