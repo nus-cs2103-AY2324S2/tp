@@ -131,10 +131,8 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 8. `CONTACT_EMAIL` - The email of the contact person.
 9. `CONTACT_NUMBER` - The phone number of the contact person.
 
-<<<<<<< HEAD
-=======
 --------------------------------------------------------------------------------------------------------------------
->>>>>>> master
+
 ## Tutorial
 This section would guide you through the basic commands of CareerSync, and how to use them.
 
@@ -274,6 +272,7 @@ ________________________________________________________________________________
 | [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
 | [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
 | [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
+| [sort](#sorting-internships-by-fields-sort)   | Sorts the Internships by fields.         | `sort FIELD ORDER` |
 | [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
 
 --------------------------------------------------------------------------------------------------------------------
