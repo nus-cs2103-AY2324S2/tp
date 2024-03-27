@@ -20,6 +20,8 @@ Class Email
 Class Phone
 Class Telegram
 Class Github
+Class Attendance
+Class Notes
 
 Class I #FFFFFF
 }
@@ -41,9 +43,11 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> ClassGroup
 Person *--> Email
-Person *--> Phone
+Person |o--> Phone
 Person |o--> Telegram
 Person |o--> Github
+Person *--> Attendance
+Person *--> Notes
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -53,6 +57,8 @@ ClassGroup -[hidden]right-> Email
 Email -[hidden]right-> Phone
 Phone -[hidden]right-> Telegram
 Telegram -[hidden]right-> Github
+Github -[hidden]right-> Attendance
+Attendance -[hidden]right-> Notes
 
 ModelManager --> "~* filtered" Person
 @enduml
