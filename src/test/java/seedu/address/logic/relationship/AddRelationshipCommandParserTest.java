@@ -64,21 +64,31 @@ class AddRelationshipCommandParserTest {
     }
 
     @Test
-    void parse_upperAndLowerCaseInputs_success() {
+    void parse_upperAndLowerCaseInputs_success() {;
         String userInput = "parent 0001 child 0003 Bioparents";
-        assertParseFailure(parser, userInput, "Add success");
+        AddRelationshipCommand expected = new AddRelationshipCommand("0001", "0003",
+                "bioparents", "parent", "child");
+        assertParseSuccess(parser, userInput, expected);
 
         String userInput2 = "0001 0003 Siblings";
-        assertParseFailure(parser, userInput2, "Add success");
+        AddRelationshipCommand expected2 = new AddRelationshipCommand("0001", "0003",
+                "siblings");
+        assertParseSuccess(parser, userInput2, expected2);
 
         String userInput3 = "0001 0003 Spouses";
-        assertParseFailure(parser, userInput3, "Add success");
+        AddRelationshipCommand expected3 = new AddRelationshipCommand("0001", "0003",
+                "spouses");
+        assertParseSuccess(parser, userInput3, expected3);
 
-        String userInput4 = "Parent 0001 child 0004 Bioparents";
-        assertParseFailure(parser, userInput4, "Add success");
+        String userInput4 = "Parent 0001 child 0005 Bioparents";
+        AddRelationshipCommand expected4 = new AddRelationshipCommand("0001", "0005",
+                "bioparents", "parent", "child");
+        assertParseSuccess(parser, userInput4, expected4);
 
-        String userInput5 = "parent 0001 Child 0004 Bioparents";
-        assertParseFailure(parser, userInput5, "Add success");
+        String userInput5 = "parent 0001 Child 0006 Bioparents";
+        AddRelationshipCommand expected5 = new AddRelationshipCommand("0001", "0006",
+                "bioparents", "parent", "child");
+        assertParseSuccess(parser, userInput5, expected5);
     }
 
     @Test
@@ -146,7 +156,8 @@ class AddRelationshipCommandParserTest {
     @Test
     void parse_validInput_success() {
         String userInput = "0001 0003 siblings";
-        AddRelationshipCommand expected = new AddRelationshipCommand("0001", "0003", "siblings");
+        AddRelationshipCommand expected = new AddRelationshipCommand("0001",
+                "0003", "siblings");
         assertParseSuccess(parser, userInput, expected);
     }
 
