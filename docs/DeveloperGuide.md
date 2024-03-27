@@ -274,22 +274,23 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                 | So that I can…​                                                   |
-|----------| ------------------------------------------ |----------------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App            |
-| `* * *`  | user                                       | add a new employee                             | keep a employee on record                                           |
-| `* * *`  | user                                       | delete a employee                              | remove entries that I no longer need                              |
-| `* * *`  | user                                       | list all recorded employees                    | locate details of all employees in a list                           |
-| `* * *`  | user                                       | add a new task                               | keep upcoming tasks on record                                     |
-| `* * *`  | user                                       | delete a task                                | remove entries that I no longer need                              |
-| `* * *`  | user                                       | list all recorded tasks                      | locate details of all tasks in a list                             |
-| `* * *`  | user                                       | assign a employee to a tasks                   | keep track of who is supposed to contribute to a task             |
-| `* * *`  | user                                       | unassign a employee from a task                | update changes in manpower allocation                             |
-| `* * *`  | user                                       | list all tasks with their assigned employees | locate details of all tasks while seeing who are assigned to them |
-| `* * *`  | user                                       | mark a task as done                          | keep track of task completion                                     |
-| `* * *`  | user                                       | unmark a marked task                         | undo wrongly marked tasks                                         |
-| `* * *`  | user                                       | save current data                            | keep track of all data even after exiting                         |
-| `* * *`  | user                                       | load saved data                              | use the data that was saved previously                            |
-| `*`      | user with many employees in the address book | sort employees by name                         | locate a employee easily                                            |
+|---------| ------------------------------------------ |----------------------------------------------|-------------------------------------------------------------------|
+| `* * *` | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App            |
+| `* * *` | user                                       | add a new employee                           | keep a employee on record                                         |
+| `* * *` | user                                       | delete a employee                            | remove entries that I no longer need                              |
+| `* * *` | user                                       | list all recorded employees                  | locate details of all employees in a list                         |
+| `* * *` | user                                       | add a new task                               | keep upcoming tasks on record                                     |
+| `* * *` | user                                       | delete a task                                | remove entries that I no longer need                              |
+| `* * *` | user                                       | list all recorded tasks                      | locate details of all tasks in a list                             |
+| `* * *` | user                                       | assign a employee to a tasks                 | keep track of who is supposed to contribute to a task             |
+| `* * *` | user                                       | unassign a employee from a task              | update changes in manpower allocation                             |
+| `* * *` | user                                       | list all tasks with their assigned employees | locate details of all tasks while seeing who are assigned to them |
+| `* * *` | user                                       | mark a task as done                          | keep track of task completion                                     |
+| `* * *` | user                                       | unmark a marked task                         | undo wrongly marked tasks                                         |
+| `* * *` | user                                       | save current data                            | keep track of all data even after exiting                         |
+| `* * *` | user                                       | load saved data                              | use the data that was saved previously                            |
+| `* * `  | user                                       | find tasks by name                           | quickly locate specific tasks that I remember                     |
+| `*`     | user with many employees in the address book | sort employees by name                       | locate a employee easily                                          |
 
 *{More to be added for v1.3}*
 
@@ -297,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TaskMasterPro` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a employee**
+**Use case: Delete an employee**
 
 **MSS**
 
@@ -343,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Assign/unassign a employee to a task**
+**Use case: Assign/unassign an employee to a task**
 
 **MSS**
 

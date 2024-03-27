@@ -136,6 +136,21 @@ Format: `deletetask TASK_ID`
 Examples:
 * `listtasks` followed by `deletetask 2` deletes the task with id 2 in TaskMasterPro.
 
+### Locating tasks by task names : `findtasks`
+
+Format: `findtasks KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `report` will match `Report`.
+* The order of the keywords does not matter. e.g. `report meeting` will match `meeting report`.
+* Only full words will be matched. e.g. `report` will not match `reports`.
+* Tasks matching at least 1 keyword will be returned. e.g. `report meeting` will return tasks with
+`report` or `meeting` in their names.
+
+Examples:
+* `findtasks report` returns tasks with `report` in their names.
+
+Finds tasks whose names contain any of the given keyword.
+
 ### Assign a task to employee : `assigntask`
 
 Assigns a task object to employee.
@@ -212,6 +227,7 @@ Action | Format, Examples
 **Add task** | `task TASK_DESCRIPTION` <br> e.g., `task Weekly meeting`
 **List tasks** | `listtasks`
 **Delete task** | `deletetask TASK_ID`<br> e.g., `deletetask 3`
+**Find tasks** | `findtasks KEYWORD [MORE_KEYWORDS]`<br> e.g., `findtasks report`
 **Mark task** | `mark TASK_ID`<br> e.g., `mark 1` 
 **Unmark task** | `unmark TASK_ID`<br> e.g., `unmark 1` 
 **Assign task to an employee** | `assigntask t/TASK_ID  e/EMPLOYEE_ID` <br> e.g., `assigntask t/1 e/2`
