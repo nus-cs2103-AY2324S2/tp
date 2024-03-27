@@ -23,6 +23,8 @@ public class AddAppCommand extends Command {
 
     public static final String COMMAND_WORD = "addApp";
 
+    public static final String COMMAND_WORD_ALT = "aa";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient identified by the NRIC given. \n"
             + "Parameters: "

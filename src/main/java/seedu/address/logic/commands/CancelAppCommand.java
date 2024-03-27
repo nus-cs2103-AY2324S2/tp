@@ -24,6 +24,8 @@ public class CancelAppCommand extends Command {
 
     public static final String COMMAND_WORD = "cancelApp";
 
+    public static final String COMMAND_WORD_ALT = "ca";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Cancels the appointment identified by the NRIC, date, start time and end time given.\n"
             + "Parameters: "

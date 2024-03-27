@@ -19,6 +19,8 @@ public class FindPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "findPerson";
 
+    public static final String COMMAND_WORD_ALT = "fp";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all persons whose names OR nric start with "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

@@ -18,6 +18,8 @@ public class FindApptCommand extends Command {
 
     public static final String COMMAND_WORD = "findAppt";
 
+    public static final String COMMAND_WORD_ALT = "fa";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds the details of the appointment identified either by patient's NRIC, Date, or Start time.\n"
             + "Parameters: "
