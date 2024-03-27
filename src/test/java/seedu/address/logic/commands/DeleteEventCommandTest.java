@@ -21,7 +21,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -82,9 +81,8 @@ public class DeleteEventCommandTest {
         List<Event> currEventList = new ArrayList<>(editedPatient.getEvents());
         Event eventToDelete = currEventList.get(INDEX_FIRST_EVENT.getZeroBased());
         CommandResult result = deleteEventCommand.execute(model);
-        String expected = String.format(MESSAGE_DELETE_EVENT_SUCCESS,
-                Messages.format(editedPatient),
-                eventToDelete);
+        String expected = String.format(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.name,
+                editedPatient.getName(), INDEX_FIRST_EVENT.getOneBased(), eventToDelete.date));
         assertEquals(expected, result.getFeedbackToUser());
 
         Set<Event> expectedEvents = new HashSet<>(editedPatient.getEvents());
