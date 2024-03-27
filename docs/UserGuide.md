@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# User Guide
+# EffiTrack User Guide
 
 ## Introduction
 
@@ -23,7 +23,6 @@ outdated systems, EffiTrack offers a centralized platform for easy and accurate 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
 
 1. Download the latest `EffiTrack.jar` from [here](https://github.com/AY2324S2-CS2103T-T14-1/tp/releases/tag/v1.2).
 
@@ -52,6 +51,12 @@ outdated systems, EffiTrack offers a centralized platform for easy and accurate 
    * `mark task/Complete Proposal o/1` : Mark the task `Complete Proposal` assigned to the 1st employee as done.
 
    * `clear` : Deletes all employees.
+   
+   * `undo`: Undo the previous command.
+
+   * `redo`: Reverses the previous undo command.
+
+   * `history`: Displays the commands executed from most recent to earliest, inclusive of invalid commands.
     
    * `exit` : Exits the app.
 
@@ -220,6 +225,24 @@ Exits the program.
 
 Format: `exit`
 
+### Undoing the previous command : `undo`
+
+Undo the previous command.
+
+Format: `undo`
+
+### Redoing the previous command : `redo`
+
+Reverts the latest undo command.
+
+Format: `redo`
+
+### Displaying the command history : `history`
+
+Displays the commands executed from most recent to earliest, inclusive of invalid commands.
+
+Format: `history`
+
 ### Saving the data
 
 EffiTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -263,9 +286,10 @@ Action     | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Assign Task** | `assign task/TASK TITLE by/dd-MM-yyyy to/INDEX`<br> e.g., `assign task/Complete Project Proposal by/22-05-2023 2359 to/1`
+**Mark Task**   | `mark task/TASK o/INDEX` <br> e.g. `mark task/Complete Project Proposal o/1`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
-**Mark Task**   | `mark task/TASK o/INDEX` <br> e.g. `mark task/Complete Project Proposal o/1`
-
-
+**Undo**   | `undo`
+**Redo**   | `redo`
+**History**   | `history`
