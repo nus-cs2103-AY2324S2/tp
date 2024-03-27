@@ -28,13 +28,6 @@ public class Group extends UniqueCourseMateList {
     }
 
     /**
-     * A basic constructor for a group.
-     */
-    public Group(Name name) {
-        this(name, new HashSet<>(), new HashSet<>(), null);
-    }
-
-    /**
      * A constructor for a {@code Group} that takes members and a list of skills.
      */
     public Group(Name name, Iterable<CourseMate> members, Iterable<Skill> skills) {
