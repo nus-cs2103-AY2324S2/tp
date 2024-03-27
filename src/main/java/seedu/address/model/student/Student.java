@@ -35,13 +35,15 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<ModuleCode> modules) {
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<ModuleCode> modules,
+                   List<ModuleTiming> moduleTimings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.modules.addAll(modules);
+        this.moduleTimings.addAll(moduleTimings);
         this.tags.addAll(tags);
     }
 
@@ -74,6 +76,13 @@ public class Student {
      */
     public List<ModuleCode> getModules() {
         return modules;
+    }
+
+    /**
+     * Returns list of module timings for the student
+     */
+    public List<ModuleTiming> getModuleTimings() {
+        return moduleTimings;
     }
 
     /**
@@ -137,13 +146,14 @@ public class Student {
                 && email.equals(otherStudent.email)
                 && address.equals(otherStudent.address)
                 && tags.equals(otherStudent.tags)
-                && modules.equals(otherStudent.modules);
+                && modules.equals(otherStudent.modules)
+                && moduleTimings.equals(otherStudent.moduleTimings);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, modules);
+        return Objects.hash(name, phone, email, address, tags, modules, moduleTimings);
     }
 
     /**
@@ -157,7 +167,8 @@ public class Student {
                 this.email,
                 this.address,
                 this.tags,
-                this.modules
+                this.modules,
+                this.moduleTimings
         );
     }
 
@@ -170,6 +181,7 @@ public class Student {
                 .add("address", address)
                 .add("tags", tags)
                 .add("modules", modules)
+                .add("moduleTimings", moduleTimings)
                 .toString();
     }
 

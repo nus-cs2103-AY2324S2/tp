@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleTiming;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -30,6 +31,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String address;
     private final List<JsonAdaptedModuleCode> moduleCodes = new ArrayList<>();
+    private final List<JsonAdaptedModuleTiming> moduleTimings = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -39,13 +41,18 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("modules") List<JsonAdaptedModuleCode> moduleCodes) {
+            @JsonProperty("modules") List<JsonAdaptedModuleCode> moduleCodes,
+            @JsonProperty("moduleTimings") List<JsonAdaptedModuleTiming> moduleTimings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (moduleCodes != null) {
             this.moduleCodes.addAll(moduleCodes);
+        }
+
+        if (moduleTimings != null) {
+            this.moduleTimings.addAll(moduleTimings);
         }
 
         if (tags != null) {
@@ -69,6 +76,11 @@ class JsonAdaptedStudent {
                 .getModules()
                 .stream()
                 .map(JsonAdaptedModuleCode::new)
+                .collect(Collectors.toList()));
+        moduleTimings.addAll(source
+                .getModuleTimings()
+                .stream()
+                .map(JsonAdaptedModuleTiming::new)
                 .collect(Collectors.toList()));
     }
 
@@ -122,7 +134,13 @@ class JsonAdaptedStudent {
             modelModuleCodes.add(moduleCode.toModelType());
         }
 
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModuleCodes);
+        final List<ModuleTiming> modelModuleTimings = new ArrayList<>();
+        for (JsonAdaptedModuleTiming moduleTiming : moduleTimings) {
+            modelModuleTimings.add(moduleTiming.toModelType());
+        }
+
+        return new Student(
+                modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModuleCodes, modelModuleTimings);
     }
 
 }
