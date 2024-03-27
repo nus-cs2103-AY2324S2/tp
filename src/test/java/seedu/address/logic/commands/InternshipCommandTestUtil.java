@@ -49,7 +49,7 @@ public class InternshipCommandTestUtil {
     public static final String VALID_REMARK_AMY = "3 Leetcode questions";
     public static final String VALID_REMARK_BOB = "Has a behavioural interview";
     public static final String VALID_TASK_AMY = "Sample task";
-    public static final String VALID_DEADLINE_AMY = "24/22/2222";
+    public static final String VALID_DEADLINE_AMY = "24/02/2222";
 
     public static final String COMPANY_NAME_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_NAME_AMY;
     public static final String COMPANY_NAME_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_NAME_BOB;
