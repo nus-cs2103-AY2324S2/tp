@@ -169,21 +169,6 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 8. `CONTACT_EMAIL` - The email of the contact person.
 9. `CONTACT_NUMBER` - The phone number of the contact person.
 --------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action                                        | Description                              |
-|-----------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                   | Adds an Internship.                      |
-| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    |
-| [list](#listing-all-internships-list)         | Removes a Internship.                    |
-| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         |
-| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. |
-| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   |
-| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |
-| [exit](#exiting-the-program-exit)             | Exits and closes the application.        |
-
---------------------------------------------------------------------------------------------------------------------
 =======
 ## Tutorial
 This section would guide you through the basic commands of CareerSync, and how to use them.
