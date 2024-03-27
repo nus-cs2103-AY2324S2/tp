@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
@@ -14,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -140,6 +143,14 @@ public class DeleteCommandTest {
 
         // different employee -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    }
+
+    @Test
+    public void execute_invalidUidUnfilteredList_throwsParseException() {
+        String invalidUid = "uid/non_existent";
+        DeleteCommandParser parser = new DeleteCommandParser();
+
+        assertThrows(ParseException.class, () -> parser.parse(invalidUid));
     }
 
     @Test

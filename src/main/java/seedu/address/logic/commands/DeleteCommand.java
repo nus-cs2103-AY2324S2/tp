@@ -136,7 +136,6 @@ public class DeleteCommand extends Command {
 
     /**
      * Deletes an employee by unique id
-     * TODO: Implement the functionality to delete by ID using this function
      *
      * @param model the model to execute the command
      * @return the result of the command
@@ -156,17 +155,27 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
+        if (this == other) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof DeleteCommand)) {
             return false;
         }
 
         DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+
+        // Check if both commands have the same index
+        boolean isIndexEqual = targetIndex != null
+                && otherDeleteCommand.targetIndex != null
+                && targetIndex.equals(otherDeleteCommand.targetIndex);
+
+        // Check if both commands have the same UID
+        boolean isUidEqual = uid != null
+                && otherDeleteCommand.uid != null
+                && uid.equals(otherDeleteCommand.uid);
+
+        return isIndexEqual || isUidEqual;
     }
 
     @Override
