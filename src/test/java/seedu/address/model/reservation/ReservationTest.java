@@ -21,11 +21,6 @@ import seedu.address.testutil.ReservationBuilder;
 class ReservationTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Reservation reservation = new ReservationBuilder().build();
-    }
-
-    @Test
     void isSameReservation() {
         // same object -> returns true
         assertTrue(ALICE_RSV.isSameReservation(ALICE_RSV));
