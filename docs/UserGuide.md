@@ -9,15 +9,17 @@
 Avengers Assemble (AA) is a **desktop app for managing contacts, meant for use with a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). 
 
-The application is designed for Head Tutors of the CS1101S Programming Methodology course, 
-but its use cases can be extended to Head Tutors of other courses.
+The application is designed for Head Tutors of the NUS CS1101S Programming Methodology course, who intend to simplify their administrative tasks relating to contact management between students, other teaching assistants, and course instructors.
+However, its use cases can be extended to Head Tutors of other courses outside CS1101S. 
+
+Our user guide aims to aid users in understanding how to get started with the application.
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have `Java 11` or above installed in your computer.
 
@@ -33,27 +35,21 @@ but its use cases can be extended to Head Tutors of other courses.
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
 
-   * `list` : Lists all persons.
-
-   * ```
-     add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z
-     ``` 
-     Adds a person named `John Doe` to our app.
-
-   * `delete 3` : Deletes the 3rd person shown in the current list.
-
-   * `clear` : Deletes all persons.
-
-   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+### Getting Help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 <box type="info" seamless>
 
@@ -78,19 +74,11 @@ but its use cases can be extended to Head Tutors of other courses.
 
 </box>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a person: `add`
+### Adding a Person: `add`
 
 Adds a person.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​`
 
 <box type="info" seamless>
 
@@ -103,24 +91,35 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NU
 **Tip:** A person can have any number of tags (including 0)
 </box>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal m/A1234567Z`
+Example:
+`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/A1234567Z s/S1 r/R2`
+
+>A success message for the above command will be shown as followed, with the new person in the contact list:
+>
+>
+>![add success message](images/success_images/add_success.png)
+
+
 
 For more details on each parameter, [click here](#command-format-summary).
 
-### Listing all persons : `list`
+### Listing All Persons : `list`
 
 Shows a list of all persons.
 
 Format: `list`
 
-### Editing a person : `edit`
+>A success message for the above command will be shown as followed, showing all existing persons in the contact list:
+>
+>
+>![list success message](images/success_images/list_success.png)
+
+### Editing a Person : `edit`
 
 Edits an existing person.
 
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -131,40 +130,54 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICUL
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+
+>A success message for the above command will be shown as followed, indicating the updated details of the person:
+>
+>![edit_success_message](images/success_images/edit_success.png)
+
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 For more details on each parameter, [click here](#command-format-summary).
 
-### Filtering persons: `find`
+### Filtering Persons: `find`
 
 Filter persons based on specific criteria within their records.
 
 Format: `find PREFIX/KEYWORD`
 
 * This command searches for persons using a specific aspect of their details, as specified by the prefix.
-* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/hans` will find any person that contains `hans` in their email.
+* The search will return any result that contains the keyword as a substring under the indicated prefix. e.g. `find e/john` will find any person that contains `john` in their email.
 * The search is case-insensitive. e.g. `hans` will match `Hans`.
 * Only one prefix can be used for filtering at a time.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`.
+
+>A success message for the above command will be shown as followed, showing all persons that match the search criteria:
+>
+>![find success message](images/success_images/find_success.png)
+
 * `find n/alex` returns `Alex Yeoh`, `Davis Alex`.
 * `find t/student` returns all persons tagged with `student` or any persons with tags that has `student` as a substring.
 * `find p/1423` returns all persons with phone number containing `1423`.
 
 For more details on each parameter, [click here](#command-format-summary).
 
-### Copy email addresses: `copy`
+### Copy Email Addresses: `copy`
 
 Copies the emails of currently displayed persons into your clipboard.
 
 Format: `copy`
 
+>A success message for the above command will be shown as followed, indicating that the details have been copied to the clipboard:
+>
+>![copy success message](images/success_images/copy_success.png)
+
 * Use `list` or `find` to get the list of people you would like to email.
 * The emails are copied into your clipboard such that you may easily broadcast emails
   to specific groups of people.
 
-### Deleting a person : `delete`
+### Deleting a Person : `delete`
 
 Deletes the specified person.
 
@@ -178,45 +191,66 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in AA.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+>A success message for the above command will be shown as followed, indicating the details of the deleted person:
+>
+>![delete success message](images/success_images/delete_success.png)
 
-Clears all entries.
+### Clearing All Entries : `clear`
+
+Deletes all entries.
 
 Format: `clear`
 
-### Exporting Data to a CSV file : `export`
+>A success message for the above command will be shown as followed, indicating all entries have been cleared:
+>
+>![clear success message](images/success_images/clear_success.png)
 
-Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
+### Exporting Data to a CSV File : `export`
+
+Exports currently listed persons and their details to a CSV file, `avengersassemble.csv`, which can be found in `addressbookdata`.
 
 **Steps:**
 1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or
 [`list`](#listing-all-persons--list) command.
 2. Type `export` to export the currently listed persons and their details to a CSV file.
-3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
+3. Upon export, a folder named `addressbookdata` will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named `avengersassemble.csv`, containing the exported data.
 
 Format: `export`
 
+> A success message for the above command will be shown as followed, indicating that the data has been exported:
+>
+> ![export success message](images/success_images/export_success.png)
+
 <box type="info" seamless>
 
-**Important:** When performing an export, the current information will overwrite the existing CSV file named avengersassemble.csv located within the addressbookdata folder.
+**Important:** When performing an export, the current information will overwrite the existing CSV file named `avengersassemble.csv` located within the `addressbookdata` folder.
 A new CSV file will not be created with each export.
 
-Users have the option to manually move the current CSV file out of the addressbookdata folder if they do not want the information to be overwritten in the next export.
+Users have the option to manually move the current CSV file out of the `addressbookdata` folder if they do not want the information to be overwritten in the next export.
 A new CSV file of the same name in the same location will again be created when performing the next export.
 
 </box>
 
-### Importing Data from a CSV file : `import`
+### Importing Data from a CSV File : `import`
 
 Imports all persons and their details from a CSV file from a specified file path. This filepath should be an
 absolute filePath.
 
 Format: `import i/FILEPATH`
-- imports the persons saved in `FILEPATH` to `avengersassemble.json`
+
+Example:
+
+`import i/C:/Users/alk/Downloads/avengersassemble.csv`
+
+> A success message for the above command will be shown as followed, indicating the filepath that has been imported and showing all imported contacts:
+> 
+> ![import success message](images/success_images/import_success.png)
+
+imports the persons saved in `FILEPATH` to `avengersassemble.json`
 
 For more details on the input parameter, [click here](#command-format-summary).
 
-### Exiting the program : `exit`
+### Exiting the Program : `exit`
 
 Exits the program.
 
@@ -226,11 +260,11 @@ Format: `exit`
 
 ## Additional Information
 
-### Saving the data
+### Saving the Data
 
 All data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the Data File
 
 All data are saved automatically as a JSON file, `[JAR file location]/data/avengersassemble.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -241,31 +275,6 @@ If your changes to the data file makes its format invalid, Avengers Assemble wil
 Furthermore, certain edits can cause the Avengers Assemble application to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Command Format Summary
-
-Some commands require you to include parameters. These parameters are identified by prefixes. Here are a list of valid prefixes and what they each refer to.
-
-<box type="info" seamless>
-
-**Note:** </br>
-* Prefixes encased with '[ ]' are optional. 
-* Prefixes with '…' after them can be used multiple times.
-
-</box>
-
-
-| Prefix  | What it refers to          | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|---------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/      | Name                       | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| p/      | Phone Number               | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| e/      | Email                      | **Format:** local-part@domain<br/> **Constraints for local part:**<br/> • Should only contain alphanumeric characters, and the characters `+`, `_`, `.` and `-`<br/> • Should not start with special characters<br/> **Constraints for domain:**<br/> • Made up of domain labels followed by periods<br/> • Must end with a domain label of at least 2 characters long<br/> • Should start and end with alphanumeric characters<br/> • Domain label should consists of alphanumeric characters separated only by hyphens, if any |         
-| a/      | Address                    | Can take any values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| i/      | Path of CSV file to import | Should be the absolute file path of the CSV file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| [m/]    | Matriculation ID           | The first letter must be an uppercase 'A', followed by 7 numbers, and end with an uppercase letter.                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [r/]    | Recitation Group           | The first letter must be an uppercase 'R', followed by any number.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| [s/]    | Studio Group               | The first letter must be an uppercase 'S', followed by any number.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| [t/]... | Tags                       | Should be alphanumeric, and should not contain spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -275,24 +284,51 @@ Some commands require you to include parameters. These parameters are identified
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-| Action | Format, Examples
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
-| **Clear**  | `clear`                                                                                                                                                                                        |
-| **Delete** | `delete INDEX` e.g., `delete 3`                                                                                                                                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [m/MATRICULATION_NUMBER]…​` e.g.,`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                              |
-| **Find**   | `find PARAMETER KEYWORD` e.g., `find James`                                                                                                                                                    |
-| **Copy**   | `copy`                                                                                                                                                                                         |
-| **List**   | `list`                                                                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                                                                         |
-| **Export to CSV** | `export`                                                                                                                                                                                       |
-| **Import** | `import FILEPATH`                                                                                                                                                                              |
+Below is a summary of the commands available in Avengers Assemble. Some examples are included for your convenience.
 
+| Action            | Format, Examples                                                                                                                                                                                                                         |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` <br><br>• e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague m/A1234567X` |
+| **Clear**         | `clear`                                                                                                                                                                                                                                  |
+| **Delete**        | `delete INDEX` <br><br>• e.g. `delete 3`                                                                                                                                                                                                 |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRICULATION_NUMBER] [s/STUDIO] [r/REFLECTION]​` <br><br>• e.g.`edit 2 n/James Lee e/jameslee@example.com m/A1234567X`                                          |
+| **Find**          | `find PREFIX/KEYWORD` <br><br>• e.g. `find n/James`                                                                                                                                                                                      |
+| **Copy**          | `copy`                                                                                                                                                                                                                                   |
+| **List**          | `list`                                                                                                                                                                                                                                   |
+| **Help**          | `help`                                                                                                                                                                                                                                   |
+| **Export to CSV** | `export`                                                                                                                                                                                                                                 |
+| **Import**        | `import i/FILEPATH` <br><br>• e.g. `import i/C:/Users/alk/Downloads/avengersassemble.csv`                                                                                                                                                |
+
+
+## Command Format Summary
+
+Some commands require you to include parameters. These parameters are identified by prefixes. Here are a list of valid prefixes and what they each refer to.
+
+<box type="info" seamless>
+
+**Note:** </br>
+* Prefixes encased with '[ ]' are optional.
+* Prefixes with '…' after them can be used multiple times.
+
+</box>
+
+
+| Prefix | What it refers to          | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|--------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/     | Name                       | Should only contain alphanumeric characters and spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| p/     | Phone Number               | Should only contain numbers, and it should be at least 3 digits long.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| e/     | Email                      | **Format:** local-part@domain<br/> **Constraints for local part:**<br/> • Should only contain alphanumeric characters, and the characters `+`, `_`, `.` and `-`<br/> • Should not start with special characters<br/> **Constraints for domain:**<br/> • Made up of domain labels followed by periods<br/> • Must end with a domain label of at least 2 characters long<br/> • Should start and end with alphanumeric characters<br/> • Domain label should consists of alphanumeric characters separated only by hyphens, if any |         
+| a/     | Address                    | Can take any values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| i/     | Path of CSV file to import | Should be the absolute file path of the CSV file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| [m/]   | Matriculation ID           | The first letter must be an uppercase 'A', followed by 7 numbers, and end with an uppercase letter.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| [r/]   | Recitation Group           | The first letter must be an uppercase 'R', followed by any number.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| [s/]   | Studio Group               | The first letter must be an uppercase 'S', followed by any number.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| [t/]…  | Tags                       | Should be alphanumeric, and should not contain spaces.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
