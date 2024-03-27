@@ -32,7 +32,7 @@ public class MarkCommand extends Command {
             + PREFIX_INDICES + "INDEX [MORE_INDICES]...\n"
             + "Example: " + COMMAND_WORD + " w/1 i/1, 2, 3";
 
-    public static final String MESSAGE_SUCCESS = "Attendance successfully marked for %1$s";
+    public static final String MESSAGE_SUCCESS = "Marked the following students as absent for %1$s: %2$s";
 
     private static final Logger logger = LogsCenter.getLogger(MarkCommand.class);
     private final Week week;
@@ -70,9 +70,12 @@ public class MarkCommand extends Command {
             student.markAbsent(week);
         }
 
-        model.getLastViewedPerson().ifPresent(model::updateLastViewedPerson);
+        String absenteeNames = absentStudents.stream()
+                .map(Person::getName)
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, week));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, week, absenteeNames));
     }
 
     @Override
