@@ -129,6 +129,13 @@ Examples:
 * `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
 * `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
 
+| Adds a ...        | Format & Examples                                                                                                                                                                                                                                                                                                                  |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Person**        | Format : `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email]` <br> Example: `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`                                                                                                       |
+| **Staff**      | Format : `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full]` <br> Example: `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
+| **Supplier**   | Format : `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price/(quantity)]` <br> Example: `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`      |
+| **Maintainer** | Format : `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr]` <br> Example: `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |
+
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
 
 * Adding duplicate name will not be allowed.<br>
@@ -149,35 +156,12 @@ Edit a **person / staff / supplier / maintainer** contact in the Pooch Planner.
     <img src="images/ug-images/command-images/edit-after.png" style="flex: 1; margin-left: 5px; width: 50%; height: 50%;">
 </div>
 
-#### Edits a person
-Format: `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
-
-
-#### Edits a staff
-Format: `/edit-staff ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] }`
-
-
-#### Edits a supplier
-Format: `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price] }`
-
-
-#### Edits a maintainer
-Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }`
-
-Examples:
-* `/edit ; name : Mochie ; field : { address : Pooch Street 31}`
-
-  The above command edits the **address** field of **_Mochie_** to **_Pooch Street 31_**.
-
-* `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
-
-  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively.
-
-* `/edit-supplier ; name : Supplier1 ; field : { product : kibble ; price : $75/bag}`
-
-  The above command edits the **product and price** field of **_Supplier1_** to **_kibble_** and **_$75/bag_** respectively. 
-
-* `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`
+| Edits a ...    | Format & Examples                                                                                                                                                                                                                                                           |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Person**     | Format : `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }` <br> Example: `/edit ; name : Mochie ; field : { address : Pooch Street 31}`                                                                                  |
+| **Staff**      | Format : `/edit-staff ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] }` <br> Example: `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }` |
+| **Supplier**   | Format : `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price] }` <br> Example: `/edit-supplier ; name : Supplier1 ; field : { product : kibble ; price : $75/bag}`                   |
+| **Maintainer** | Format : `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }` <br> Example: `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`                      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
 
@@ -501,21 +485,21 @@ Examples:
 
 ## Command Summary
 
-| Action                | Format                                                                                                                                      | Examples                                                                                                                                                        |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Staff**         | `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]`    | `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
-| **Add Supplier**      | `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]`         | `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`         |
-| **Add Maintainer**    | `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` | `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |
-| **Add Other Contact** | `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]`        | `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`                                                      |
-| **Delete**            | `/delete name : [name] `                                                                                                                    | `/delete ; name : Poochie`                                                                                                                                      |
-| **Edit**              | `/edit-person ; name : [name] ; field : { field : data ; field : data }`                                                                    | `/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`                                                              |
-| **Search**            | `/search ; parameter : [value]`                                                                                                             | `/search ; name : Poochie`                                                                                                                                      |
-| **List**              | `/list`                                                                                                                                     | `/list`                                                                                                                                                         |
-| **Help**              | `/help ; command : [command type]`                                                                                                          | `/help ; command : delete`                                                                                                                                      |
-| **Rate**              | `/rate ; name : [name] ; rating : [rating]`                                                                                                 | `/rate ; name : Poochie ; rating : 5`                                                                                                                           |
-| **Undo Command**      | `/undo`                                                                                                                                     | `/undo`                                                                                                                                                         |        
-| **Redo Command**      | `/redo`                                                                                                                                     | `/redo`                                                                                                                                                         |
-| **Pin**               | `/pin ; name : [name]`                                                                                                                      | `/pin ; name : Poochie`                                                                                                                                         |
-| **Unpin**             | `/unpin ; name : [name]`                                                                                                                    | `/unpin ; name : Poochie`                                                                                                                                       |
-| **Sort**              | `/sort ; [field]`                                                                                                                           | `/sort ; name`                                                                                                                                                  |
-| **Exit**              | `exit`                                                                                                                                      | `exit`                                                                                                                                                          |
+| Action                | Format + Example                                                                                                                                                                                                                                                                                                                                   |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Staff**         | Format : </br>`/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full]`    </br><hr> Example : </br> `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`   |
+| **Add Supplier**      | Format : </br> `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price]`        </br><hr> Example : </br> `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`        |
+| **Add Maintainer**    | Format : </br>`/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]` </br><hr> Example : </br> `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`|
+| **Add Other Contact** | Format : </br>`/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission]`        </br><hr> Example : </br> `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : iamjanna@gmail.com`                                                     |
+| **Delete**            | Format : </br>`/delete name : [name] `                                                                                                                    </br><hr> Example : </br> `/delete ; name : Poochie`                                                                                                                                     |
+| **Edit**              | Format : </br>`/edit-person ; name : [name] ; field : { field : data ; field : data }`                                                                    </br><hr> Example : </br> `/edit-person ; name : Poochie ; field : { address : Poochie Street 25 ; employment : full-time }`                                                             |
+| **Search**            | Format : </br>`/search ; parameter : [value]`                                                                                                             </br><hr> Example : </br> `/search ; name : Poochie`                                                                                                                                     |
+| **List**              | Format : </br>`/list`                                                                                                                                     </br><hr> Example : </br> `/list`                                                                                                                                                        |
+| **Help**              | Format : </br>`/help ; command : [command type]`                                                                                                          </br><hr> Example : </br> `/help ; command : delete`                                                                                                                                     |
+| **Rate**              | Format : </br>`/rate ; name : [name] ; rating : [rating]`                                                                                                 </br><hr> Example : </br> `/rate ; name : Poochie ; rating : 5`                                                                                                                          |
+| **Undo Command**      | Format : </br>`/undo`                                                                                                                                     </br><hr> Example : </br> `/undo`                                                                                                                                                        |
+| **Redo Command**      | Format : </br>`/redo`                                                                                                                                     </br><hr> Example : </br> `/redo`                                                                                                                                                        |
+| **Pin**               | Format : </br>`/pin ; name : [name]`                                                                                                                      </br><hr> Example : </br> `/pin ; name : Poochie`                                                                                                                                        |
+| **Unpin**             | Format : </br>`/unpin ; name : [name]`                                                                                                                    </br><hr> Example : </br> `/unpin ; name : Poochie`                                                                                                                                      |
+| **Sort**              | Format : </br>`/sort ; [field]`                                                                                                                           </br><hr> Example : </br> `/sort ; name`                                                                                                                                                 |
+| **Exit**              | Format : </br>`exit`                                                                                                                                      </br><hr> Example : </br> `exit`                                                                                                                                                         |
