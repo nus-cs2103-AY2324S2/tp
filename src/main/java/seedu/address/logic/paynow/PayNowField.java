@@ -20,6 +20,8 @@ public final class PayNowField {
         String valueString = value.toString();
         if (value instanceof Float) {
             valueString = String.format("%.2f", value);
+        } else if (value instanceof Double) {
+            valueString = String.format("%.2f", value);
         }
         return String.format("%02d", id)
                 + String.format("%02d", valueString.length())
