@@ -23,13 +23,13 @@ of all the necessary tools, even if you have never used a CLI before.
 
 ### How to use this User Guide?
 This user guide is split into these primary sections: [Quick Start](#quick-start), [Interface Overview](#interface-overview), [Tutorial](#tutorial), 
-[Commands](#commands), [FAQ](#faq), [Known Issues](#known-issues), [Command Summary](#command-summary), [Fields Summary](#fields-summary) and [Glossary](#glossary). 
+[Commands](#commands), [FAQ](#faq), [Known Issues](#known-issues), [Command Summary](#command-summary), [Field Summary](#field-summary) and [Glossary](#glossary). 
 We recommend that you navigate our User Guide in this order:
 1. Go through the [Quick Start](#quick-start) section to get started with the installation of CareerSync.
 2. Take a look at [Interface Overview](#interface-overview) to understand the elements of our GUI.
 3. Follow the instructions in [Tutorial](#tutorial) to understand the basic commands and how to use them.
 4. Read through the [Commands](#commands) section to understand all the commands and how to use them.
-5. Read through the [Fields Summary](#fields-summary) section to understand all the fields and their restrictions.
+5. Read through the [Field Summary](#field-summary) section to understand all the fields and their restrictions.
 
 [FAQ](#faq), [Known Issues](#known-issues) and [Glossary](#glossary) sections provide additional information that you may find useful.
 [Command Summary](#command-summary) provides a quick reference to all the commands available and their formats in CareerSync.
@@ -54,17 +54,17 @@ does so via the following features:
 
 ### Table Of Contents
 
-| Section                                   | When Should I Use This?                                                                 |
-|-------------------------------------------|-----------------------------------------------------------------------------------------|
-| [Quick Start](#quick-start)               | If you are using the application for the first time or need a refresher                 |
+| Section                                 | When Should I Use This?                                                                 |
+|-----------------------------------------|-----------------------------------------------------------------------------------------|
+| [Quick Start](#quick-start)             | If you are using the application for the first time or need a refresher                 |
 | [Interface Overview](#interface-overview) | If you would like to know more about the interface of the application                   |
-| [Tutorial](#tutorial)                     | If you would like to learn how to use the application                                   |
-| [Commands](#commands)                     | If you would like to know the capabilities of the application                           |
-| [FAQ](#faq)                               | If you have any questions about the application                                         |
-| [Known Issues](#known-issues)             | If you have a technical problem. We may have the solution!                              |
-| [Command Summary](#command-summary)       | If you would like to find more information about a specific command                     |
-| [Fields Summary](#fields-summary)         | If you would like to know more about the fields and its restrictions in the application |
-| [Glossary](#glossary)                     | If you would like to know more about the terms used in the application                  |
+| [Tutorial](#tutorial)                   | If you would like to learn how to use the application                                   |
+| [Commands](#commands)                   | If you would like to know the capabilities of the application                           |
+| [FAQ](#faq)                             | If you have any questions about the application                                         |
+| [Known Issues](#known-issues)           | If you have a technical problem. We may have the solution!                              |
+| [Command Summary](#command-summary)     | If you would like to find more information about a specific command                     |
+| [Field Summary](#field-summary)         | If you would like to know more about the fields and its restrictions in the application |
+| [Glossary](#glossary)                   | If you would like to know more about the terms used in the application                  |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ The main window of CareerSync is divided into four main areas: the **Tab Area**,
 3. **Message Box**: The Message Box displays messages to provide feedback to you.
 4. **Internship List Display**: The Internship List Display displays the details of all your internship applications.
 
-### Fields Summary
+### Internship Fields
 The names of the fields for each internship application is as stated below. When you edit these fields, you will see the changes reflected in the display.
 For the restrictions on what is accepted for each field, kindly refer to [Fields Summary](#fields-summary).
 
@@ -260,6 +260,20 @@ applications now.
 Only **simple and common use cases** are covered in this tutorial. Please refer to the [Commands](#commands) section so that
 you fully understand each command and their usage.
 
+____________________________________________________________________________________________________________________
+## Command Summary
+
+| Action                                        | Description                              | Format |
+|-----------------------------------------------|------------------------------------------|------------------------------------------|
+| [add](#adding-an-entry-add)                   | Adds an Internship.                      | `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE` |
+| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    | `delete INDEX` |
+| [list](#listing-all-internships-list)         | Removes a Internship.                    | `list` |
+| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         | `edit INDEX [/com COMPANY_NAME] [/poc CONTACT_NAME] [/email CONTACT_EMAIL] [/phone CONTACT_NUMBER] [/loc LOCATION_ENUM] [/status STATUS] [/desc DESCRIPTION] [/role ROLE` |
+| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
+| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
+| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
+| [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
+
 --------------------------------------------------------------------------------------------------------------------
 ## Commands
 
@@ -291,15 +305,36 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding an entry: `add`
+### Adding an internship: `add`
 
 Adds an internship entry and all the relevant fields
 
 Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​`
 
-Examples:
-* `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
+* The fields `COMPANY_NAME`, `DESCRIPTION`, `CONTACT_NAME` and `ROLE` allow the use of any text, number and/or spaces
+* The field `STATUS` accepts only the following inputs: `to_apply`, `ongoing`, `rejected`, `accepted`
+* The field `CONTACT_EMAIL` accepts only the format of `<email> @ domain.com`
+* The field `CONTACT_NUMBER` accepts only positive integers and it must be minimally 3 **positive integers** and above
+  * A **positive integer** refers to 1, 2, 3, …​
+* The field `LOCATION_ENUM` accepts only the following inputs: `remote`, `local`, `overseas`
+
+Now, let us try to add an internship entry.
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+Key in the following command in the CLI: `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
 /phone 90890301 /loc remote /role Software Intern`
+
+Successful output after adding the entry:<br>
+![After successfully adding](./images/tutorial/add.png)
+You can now see your new internship with the details you entered in the **Internship List Display!**
+</div>
+
+**Common errors:**
+1. If no field prefixes are specified or if there are errors, the command will be rejected with error message:<br>
+   `Invalid Command Prefix!` followed by the format to use and an example for you to refer to or try out
 
 ### Deleting an internship: `delete`
 
@@ -311,9 +346,16 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list of internship entries at point of deletion.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 7` deletes the 7th entry in the internship entries list.
-* `find withall /com Google` followed by `delete 1` deletes the 1st entry in the results of the `find` command.
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+Key in the following command in the CLI: `delete 2`
+
+Successful output after deleting the entry:<br>
+![After successfully deleting](./images/tutorial/delete.png)
+The Facebook internship entry has been removed, and is no longer present in your database.
+</div>
 
 ### Listing all internships: `list`
 
@@ -347,7 +389,7 @@ Click the back button to return to the previous view of internship entries.
 
 Shows the full details of an internship entry. This replaces the current view of internship entries.
 
-[CLI](#glossary)input will be implemented in a future release.
+[CLI](#glossary) input will be implemented in a future release.
 
 ### Editing an internship: `edit`
 
@@ -489,19 +531,6 @@ After every command that changes the data, CareerSync performs a save automatica
 **The solution** is to delete the `preferences.json` file from the folder where you installed the application. Then, run the application again.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Command Summary
-
-| Action                                        | Description                              | Format |
-|-----------------------------------------------|------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                   | Adds an Internship.                      | `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE` |
-| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    | `delete INDEX` |
-| [list](#listing-all-internships-list)         | Removes a Internship.                    | `list` |
-| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         | `edit INDEX [/com COMPANY_NAME] [/poc CONTACT_NAME] [/email CONTACT_EMAIL] [/phone CONTACT_NUMBER] [/loc LOCATION_ENUM] [/status STATUS] [/desc DESCRIPTION] [/role ROLE` |
-| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
-| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
-| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
-| [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
 
 ## Field Summary
 | Prefix  | Description                        | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
