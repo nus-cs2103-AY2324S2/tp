@@ -25,15 +25,15 @@ Pedagogue Pages is a **desktop app for teachers of young children to manage clas
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
    * `list` : Lists all students.
-   
+
    * `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00007 t/Friends t/Owes Money` : Adds a student named `John Doe` with `Student ID` 00007 to Pedagogue Pages.
-   
+
    * `delete 00003` : Deletes the student with `Student ID` 00003 from the list.
-   
+
    * `clear` : Deletes all contacts.
-   
+
    * `exit` : Exits the app.
-   
+
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -195,17 +195,18 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete STUDENT ID`<br> e.g., `delete 00003` 
 **Edit** | `edit STUDENT_ID [n/NAME] [p/PARENT_PHONE_NUMBER, WHICH_TO_EDIT] [e/EMAIL] [a/ADDRESS] [id/STUDENT ID] [t/TAG]…`<br> e.g.,`edit 00002 n/James Lee e/jameslee@example.com` 
-**Find** | `find MODE KEYWORD [MORE_KEYWORDS]`<br> e.g., `find 1 James Jake`, `find 2 00005`, `find 3 Class 3B` 
+**Find** | `find MODE KEYWORD [MORE_KEYWORDS]`<br> e.g., `find 1 James Jake`, `find 2 00005`, `find 3 Class 3B`
 **List** | `list`
 **Help** | `help`
 
 ## Input restrictions
+
 Field | Restrictions
 --------|------------------
-**Name** | Type: Alphanumeric String, Other restrictions: - 
-**Parent phone number** | Type: 8 digit positive integer, Other restrictions: Must not begin with `0`. 
+**Name** | Type: Alphanumeric String, Other restrictions: -
+**Parent phone number** | Type: 8 digit positive integer, Other restrictions: Must not begin with `0`.
 **Email** | Type: Alphanumeric username followed by an "@", then an alphanumeric domain
 **Address** | Type: Alphanumeric String, Other restrictions: -
-**Student ID** | Type: 5 digit positive integer, Other restrictions: - 
-**Tags** | Type: Alphanumeric String, Other restrictions: Maximum length of `2` words 
+**Student ID** | Type: 5 digit positive integer, Other restrictions: -
+**Tags** | Type: Alphanumeric String, Other restrictions: Maximum length of `2` words
 
