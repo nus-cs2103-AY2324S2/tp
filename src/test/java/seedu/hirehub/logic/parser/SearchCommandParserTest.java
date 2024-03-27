@@ -11,12 +11,10 @@ import static seedu.hirehub.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
 import static seedu.hirehub.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.hirehub.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.hirehub.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.hirehub.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.hirehub.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.hirehub.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.hirehub.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.hirehub.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_COMMENT_AMY;
@@ -25,7 +23,6 @@ import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.hirehub.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COUNTRY;
@@ -43,7 +40,6 @@ import seedu.hirehub.model.person.Country;
 import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
 import seedu.hirehub.model.person.Phone;
-import seedu.hirehub.model.person.Status;
 import seedu.hirehub.model.tag.Tag;
 import seedu.hirehub.testutil.SearchPersonDescriptorBuilder;
 
@@ -78,7 +74,6 @@ public class SearchCommandParserTest {
         assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
-        assertParseFailure(parser, INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS); // invalid status
         assertParseFailure(parser, INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -141,12 +136,6 @@ public class SearchCommandParserTest {
         // country
         userInput = COUNTRY_DESC_AMY;
         descriptor = new SearchPersonDescriptorBuilder().withCountry(VALID_COUNTRY_AMY).build();
-        expectedCommand = new SearchCommand(descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // status
-        userInput = STATUS_DESC_AMY;
-        descriptor = new SearchPersonDescriptorBuilder().withStatus(VALID_STATUS_AMY).build();
         expectedCommand = new SearchCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

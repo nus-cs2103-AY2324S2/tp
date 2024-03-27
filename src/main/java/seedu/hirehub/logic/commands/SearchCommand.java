@@ -6,7 +6,6 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
 import seedu.hirehub.model.person.Phone;
 import seedu.hirehub.model.person.SearchPredicate;
-import seedu.hirehub.model.person.Status;
 import seedu.hirehub.model.tag.Tag;
 
 /**
@@ -96,7 +94,6 @@ public class SearchCommand extends Command {
         private Phone phone;
         private Email email;
         private Country country;
-        private Status status;
         private Comment comment;
         private Set<Tag> tags;
 
@@ -132,14 +129,6 @@ public class SearchCommand extends Command {
 
         public Optional<Country> getCountry() {
             return Optional.ofNullable(country);
-        }
-
-        public void setStatus(Status status) {
-            this.status = status;
-        }
-
-        public Optional<Status> getStatus() {
-            return Optional.ofNullable(status);
         }
 
         public void setComment(Comment comment) {
@@ -181,9 +170,6 @@ public class SearchCommand extends Command {
             ContainsKeywordsPredicate<Country> countrySearch =
                     new ContainsKeywordsPredicate<>(PREFIX_COUNTRY, this.getCountry());
             predicateList.add(countrySearch);
-            ContainsKeywordsPredicate<Status> statusSearch =
-                    new ContainsKeywordsPredicate<>(PREFIX_STATUS, this.getStatus());
-            predicateList.add(statusSearch);
             ContainsKeywordsPredicate<Comment> commentSearch =
                     new ContainsKeywordsPredicate<>(PREFIX_COMMENT, this.getComment());
             predicateList.add(commentSearch);
@@ -210,7 +196,6 @@ public class SearchCommand extends Command {
                     && Objects.equals(phone, otherSearchPersonDescriptor.phone)
                     && Objects.equals(email, otherSearchPersonDescriptor.email)
                     && Objects.equals(country, otherSearchPersonDescriptor.country)
-                    && Objects.equals(status, otherSearchPersonDescriptor.status)
                     && Objects.equals(comment, otherSearchPersonDescriptor.comment)
                     && Objects.equals(tags, otherSearchPersonDescriptor.tags);
         }
@@ -222,7 +207,6 @@ public class SearchCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("country", country)
-                    .add("status", status)
                     .add("comment", comment)
                     .add("tags", tags)
                     .toString();

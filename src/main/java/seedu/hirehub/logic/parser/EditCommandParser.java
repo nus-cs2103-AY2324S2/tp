@@ -2,6 +2,7 @@ package seedu.hirehub.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.hirehub.commons.core.index.Index;
+import seedu.hirehub.logic.commands.CommentCommand;
 import seedu.hirehub.logic.commands.EditCommand;
 import seedu.hirehub.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.hirehub.logic.commands.StatusCommand;
@@ -34,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_COUNTRY, PREFIX_STATUS, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_COUNTRY, PREFIX_STATUS, PREFIX_COMMENT, PREFIX_TAG);
 
         Index index;
 
@@ -48,6 +50,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             throw new ParseException(StatusCommand.STATUS_CANNOT_BE_EDITED);
+        }
+
+        if (argMultimap.getValue(PREFIX_COMMENT).isPresent()) {
+            throw new ParseException(CommentCommand.COMMENT_CANNOT_BE_EDITED);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();

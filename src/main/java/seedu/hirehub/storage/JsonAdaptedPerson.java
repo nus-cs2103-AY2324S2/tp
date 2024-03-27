@@ -16,7 +16,6 @@ import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.person.Phone;
-import seedu.hirehub.model.person.Status;
 import seedu.hirehub.model.tag.Tag;
 
 /**
@@ -30,7 +29,6 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String country;
-    private final String status;
     private final String comment;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -40,13 +38,11 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("country") String country,
-            @JsonProperty("status") String status, @JsonProperty("comment") String comment,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("comment") String comment, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.country = country;
-        this.status = status;
         this.comment = comment;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -61,7 +57,6 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         country = source.getCountry().value;
-        status = source.getStatus().value;
         comment = source.getComment().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -117,17 +112,8 @@ class JsonAdaptedPerson {
         }
         final Comment modelComment = new Comment(comment);
 
-        if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
-        }
-        if (!Status.isValidStatus(status)) {
-            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
-        }
-
-        final Status modelStatus = new Status(status);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelCountry, modelStatus,
+        return new Person(modelName, modelPhone, modelEmail, modelCountry,
                 modelComment, modelTags);
     }
 }

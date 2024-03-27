@@ -5,7 +5,6 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "country" : "SG",
-    "status" : "PRESCREEN",
     "comment": "",
     "tags" : [ "friends" ]
   }, {
@@ -13,7 +12,6 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "country" : "GB",
-    "status" : "REJECTED",
     "comment": "",
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -21,7 +19,6 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "country" : "DE",
-    "status" : "PRESCREEN",
     "comment": "",
     "tags" : [ ]
   }, {
@@ -29,7 +26,6 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "country" : "SG",
-    "status" : "IN_PROGRESS",
     "comment": "",
     "tags" : [ "friends" ]
   }, {
@@ -37,7 +33,6 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "country" : "US",
-    "status" : "PRESCREEN",
     "comment": "",
     "tags" : [ ]
   }, {
@@ -45,7 +40,6 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "country" : "JP",
-    "status" : "ACCEPTED",
     "comment": "",
     "tags" : [ ]
   }, {
@@ -53,7 +47,6 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "country" : "US",
-    "status" : "WAITLIST",
     "comment": "",
     "tags" : [ ]
   } ]

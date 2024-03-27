@@ -5,7 +5,6 @@ import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.hirehub.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
@@ -47,9 +46,6 @@ public class ContainsKeywordsPredicate<T> implements Predicate<Person> {
         } else if (prefix.equals(PREFIX_COUNTRY)) {
             Optional<Country> country = (Optional<Country>) keywords;
             return person.getCountry().value.equals(country.orElse(person.getCountry()).value);
-        } else if (prefix.equals(PREFIX_STATUS)) {
-            Optional<Status> status = (Optional<Status>) keywords;
-            return person.getStatus().value.equals(status.orElse(person.getStatus()).value);
         } else if (prefix.equals(PREFIX_COMMENT)) {
             Optional<Comment> comment = (Optional<Comment>) keywords;
             return person.getComment().value.contains(comment.orElse(person.getComment()).value);
