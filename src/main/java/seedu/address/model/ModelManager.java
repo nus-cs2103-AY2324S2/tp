@@ -22,7 +22,7 @@ import seedu.address.model.patient.Patient;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final PatientList patientList;
 
     private final AppointmentList appointmentList;
     private final UserPrefs userPrefs;
@@ -31,39 +31,39 @@ public class ModelManager implements Model {
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given patientList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPatientList patientList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(patientList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + patientList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.patientList = new PatientList(patientList);
         this.appointmentList = new AppointmentList();
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPatients = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatients = new FilteredList<>(this.patientList.getPersonList());
         filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     /**
-     * Initializes a ModelManager with the given addressBook, appointmentList and userPrefs.
+     * Initializes a ModelManager with the given patientList, appointmentList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook,
+    public ModelManager(ReadOnlyPatientList patientList,
                         ReadOnlyAppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, appointmentList, userPrefs);
+        requireAllNonNull(patientList, appointmentList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook
+        logger.fine("Initializing with address book: " + patientList
                 + ", appointment list: " + appointmentList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.patientList = new PatientList(patientList);
         this.appointmentList = new AppointmentList(appointmentList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPatients = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatients = new FilteredList<>(this.patientList.getPersonList());
         filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new AppointmentList(), new UserPrefs());
+        this(new PatientList(), new AppointmentList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -91,42 +91,42 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPatientListFilePath() {
+        return userPrefs.getPatientListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPatientListFilePath(Path patientListFilePath) {
+        requireNonNull(patientListFilePath);
+        userPrefs.setPatientListFilePath(patientListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PatientList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPatientList(ReadOnlyPatientList patientList) {
+        this.patientList.resetData(patientList);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyPatientList getPatientList() {
+        return patientList;
     }
 
     @Override
     public boolean hasPerson(Patient patient) {
         requireNonNull(patient);
-        return addressBook.hasPerson(patient);
+        return patientList.hasPerson(patient);
     }
 
     @Override
     public void deletePerson(Patient target) {
-        addressBook.removePerson(target);
+        patientList.removePerson(target);
     }
 
     @Override
     public void addPerson(Patient patient) {
-        addressBook.addPerson(patient);
+        patientList.addPerson(patient);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -134,7 +134,7 @@ public class ModelManager implements Model {
     public void setPerson(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
 
-        addressBook.setPerson(target, editedPatient);
+        patientList.setPerson(target, editedPatient);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -174,7 +174,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return patientList.equals(otherModelManager.patientList)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPatients.equals(otherModelManager.filteredPatients);
     }

@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentLi
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPatientList;
 
 import java.util.Collections;
 
@@ -24,8 +24,8 @@ import seedu.address.model.appointment.FindAppointmentPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindAppointmentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(),
+    private Model model = new ModelManager(getTypicalPatientList(), getTypicalAppointmentList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPatientList(),
             getTypicalAppointmentList(), new UserPrefs());
 
     @Test

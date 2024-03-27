@@ -6,7 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPatientList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,17 +34,17 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class PatientListParserTest {
 
-    private AddressBookParser parser;
+    private PatientListParser parser;
 
     private Model model;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        parser = new AddressBookParser(
-                model.getAddressBook().getPersonList(),
+        model = new ModelManager(getTypicalPatientList(), new UserPrefs());
+        parser = new PatientListParser(
+                model.getPatientList().getPersonList(),
                 model.getAppointmentList().getAppointmentList());
     }
 

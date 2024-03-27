@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPatientList;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ import seedu.address.model.appointment.AppointmentIdContainsIndexPredicate;
  */
 public class DeleteAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientList(), getTypicalAppointmentList(), new UserPrefs());
 
     @Test
     public void execute_invalidAppointmentIndex_throwsCommandException() {
@@ -46,7 +46,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.formatAppointment(appointmentToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAppointmentList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPatientList(), model.getAppointmentList(), new UserPrefs());
         expectedModel.deleteAppointment(appointmentToDelete);
         showNoAppointment(expectedModel);
 
@@ -55,7 +55,7 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_invalidAppointmentIndex_success() {
-        Index invalidIndex = Index.fromOneBased(model.getAddressBook().getPersonList().size() + 1);
+        Index invalidIndex = Index.fromOneBased(model.getPatientList().getPersonList().size() + 1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(invalidIndex);
 
         assertCommandFailure(deleteAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);

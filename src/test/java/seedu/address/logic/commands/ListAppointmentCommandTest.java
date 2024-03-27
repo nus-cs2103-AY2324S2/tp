@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtInde
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalPatientList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class ListAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getAppointmentList(), new UserPrefs());
+        model = new ModelManager(getTypicalPatientList(), getTypicalAppointmentList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPatientList(), model.getAppointmentList(), new UserPrefs());
         System.out.println(1);
     }
 

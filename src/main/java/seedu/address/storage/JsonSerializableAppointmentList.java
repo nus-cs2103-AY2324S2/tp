@@ -14,7 +14,7 @@ import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable PatientList that is serializable to JSON format.
  */
 @JsonRootName(value = "appointmentList")
 class JsonSerializableAppointmentList {
@@ -24,7 +24,7 @@ class JsonSerializableAppointmentList {
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializablePatientList} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAppointmentList(@JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
@@ -32,9 +32,9 @@ class JsonSerializableAppointmentList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPatientList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePatientList}.
      */
     public JsonSerializableAppointmentList(ReadOnlyAppointmentList source) {
         appointments.addAll(source.getAppointmentList().stream()
@@ -42,7 +42,7 @@ class JsonSerializableAppointmentList {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code PatientList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

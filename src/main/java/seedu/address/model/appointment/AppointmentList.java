@@ -94,7 +94,7 @@ public class AppointmentList implements ReadOnlyAppointmentList {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code PatientList}.
      * {@code key} must exist in the address book.
      */
     public void removeAppointment(Appointment key) {
