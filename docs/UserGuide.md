@@ -137,12 +137,18 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [m/MATRICULATION
 * Adds a contact John Doe with the respective phone number, email and physical addresses, matriculation number, studio group and recitation group.
 
 
+>Note: The following tags will be automatically added to the person if the following conditions are met:
+> 1. `student`: If matriculation number, studio, and reflection fields are present;
+> 2. `TA`: If matriculation number and one of either studio or reflection fields are present;
+> 3. `instructor`: If none of the three fields are present.
+> 
+> You are free to edit or remove the tags after the person is added.
+
+
 >You will see this message once you successfully add a person, indicating their details:
 >
 >
 >![add success message](images/success_images/add_success.png)
-
-
 
 For more details on each parameter, [click here](#command-format-summary).
 
@@ -188,7 +194,15 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [m/MATRI
 >![edit_success_message](images/success_images/edit_success.png)
 
 
+<box type="info" seamless>
+  
+**Important:**
+
+Updating a matriculation number, studio, or reflection field will not automatically update the tags of the person. You will need to manually update the tags if necessary.
+
+</box>
 For more details on each parameter, [click here](#command-format-summary).
+
 
 ### Filtering Persons: `find`
 
