@@ -106,7 +106,7 @@ public class Grade implements Comparable<Grade> {
      * Returns whether grade constitutes weak or not
      */
     public boolean isWeak() {
-        if (this.gradeToInt() - thresholdGrade.gradeToInt() <= 0) {
+        if (this.compareTo(thresholdGrade) <= 0) {
             return true;
         } else {
             return false;
