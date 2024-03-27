@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PARAMETER_FORMAT;
-import static seedu.address.logic.Messages.MESSAGE_NO_PARAMETERS;
 import static seedu.address.logic.Messages.MESSAGE_NAME_PARAMETER_MISSING;
+import static seedu.address.logic.Messages.MESSAGE_NO_PARAMETERS;
 import static seedu.address.logic.Messages.MESSAGE_PHONE_PARAMETER_MISSING;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
