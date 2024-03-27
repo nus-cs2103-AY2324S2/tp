@@ -151,12 +151,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo/redo feature
+### Undo/Redo feature
 
 The undo/redo mechanism is implemented within `AddressBook.java` by saving the entire `persons` list. It uses an undo and a redo stack to maintain the history. Additionally, it implements the following operations:
 
-* `AddressBook#save()` — Copies the current `persons` list into `undoStack`.
-* `AddressBook#undo()` — Restores the previous `persons` list state from `undoStack`.
+* `AddressBook#save()` — Copies the current `persons` list into the `undoStack`.
+* `AddressBook#undo()` — Restores the previous `persons` list state from the `undoStack`.
 * `AddressBook#redo()` — Restores a previously undone `persons` list state from the `redoStack`.
 
 `save()` is used within the `AddressBook` class methods, saving only when the persons list is about to be modified. `save()` is set to private to prevent potential misuse from other classes, and Law of Demeter violations.
@@ -165,30 +165,30 @@ The undo/redo mechanism is implemented within `AddressBook.java` by saving the e
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `persons` list will be initialized with the initial address book state, with `undoStack` and `redoStack` empty.
+Step 1. The user launches the application for the first time. The `persons` list will be initialized with the initial address book state, with the `undoStack` and `redoStack` empty.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls several other functions until it calls `AddressBook#removePerson()` which in turn calls `save()`. This causes the state of the address book **before** the `delete 5` command is executed to be saved in the `undoStack`. The 5th person is then removed from `persons` list.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls several other functions until it calls `save()`. This causes the state of the `persons` list **before** the `delete 5` command is executed to be saved into the `undoStack`. The 5th person is then removed from the `persons` list.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also eventually calls `save()`, causing another address book state to be saved into the `undoStack`, before adding the person.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also eventually calls `save()`, causing another `persons` list state to be saved into the `undoStack`, before adding the person.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, or if the command does not modify `persons` list, it will not call `save()`, so the address book state will not be saved into the `undoStack`.
+**Note:** If a command fails its execution, or if the command does not modify `persons` list, it will not call `save()`, so the `persons` list state will not be saved into the `undoStack`.
 
 </box>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will:
-1. Copy `persons` list into `redoStack`.
-2. Pop the latest `persons` list state from `undoStack`.
-3. Copy this popped state into `persons` list.
+1. Copy the `persons` list into the `redoStack`.
+2. Pop the latest `persons` list state from the `undoStack`.
+3. Copy this popped state into the `persons` list.
 
-Notice that the states are copied into the `persons` list instead of replacing it, resulting in the exact same object being used. This is to prevent synchronization issues and reduce coupling with the GUI, which uses this same list object throughout the program's life.
+Notice that the states are copied into the `persons` list instead of replacing it, resulting in the exact same object being used. This is to prevent synchronization issues and to reduce coupling with the GUI, as the GUI can now use this same list object throughout the program's life.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
@@ -213,25 +213,25 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redo()`, which:
-1. Copy `persons` list into `undoStack`.
-2. Pop the latest `persons` list state from `redoStack`.
-3. Copy this popped state into `persons` list.
+The `redo` command does the opposite — it calls `Model#redo()`, which will:
+1. Copy the `persons` list into the `undoStack`.
+2. Pop the latest `persons` list state from the `redoStack`.
+3. Copy this popped state into the `persons` list.
 
 <box type="info" seamless>
 
-**Note:** If the `redoStack` is empty, then there are no undone `persons` list states to restore. The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `redoStack` is empty, then there are no previously undone `persons` list states to restore. The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `AddressBook#save()`, `Model#undo()` or `Model#redo()`. Thus, the `persons` list remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the `persons` list, such as `list`, will usually not call `AddressBook#save()`, `Model#undo()` or `Model#redo()`. Thus, the `undoStack` and `redoStack` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
 Step 6. The user executes `clear`, which calls `AddressBook#save()`.
-Since there are still states in the `redoStack`, all states in `redoStack` will be purged.
+Since there are still states in the `redoStack`, all states in the `redoStack` will be removed.
 
-Reason: It no longer makes sense to redo the `add n/David …​` command and forego the `clear` command. This is the behavior that most modern desktop applications follow.
+Reason: It no longer makes sense to redo the `add n/David …​` command and ignore the `clear` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
@@ -247,17 +247,20 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
+
 * **Alternative 2:** Save the entire address book into storage as JSON files.
   * Pros: Easy to implement.
           Saves history between different program launches.
   * Cons: May have performance issues with many storage accesses.
           Increases coupling as `Model` will now need a reference to `Storage`.
 
-* **Alternative 3:** Save the entire address book as JSON `String`s.
+
+* **Alternative 3:** Save the entire address book as a JSON `String`.
   * Pros: Reduces memory footprint as compared to objects.
           Faster than JSON files as there are no accesses to storage.
   * Cons: May have performance issues as they have to be deserialized each time.
   
+
 * **Alternative 4:** Individual command knows how to undo/redo by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
           Best performance.
@@ -268,18 +271,20 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 1 (selected choice):** 2 Stacks.
   * Pros: Easy to implement. Simple data structure. Easy to clear all redo states.
-  * Cons: May have performance issues if many redo states are cleared at once.
+  * Cons: May have performance issues if many redo states are cleared at once (but is still amortized O(1)).
+
 
 * **Alternative 2:** ArrayList, using pointers for current state and redo limit.
-  * Pros: Redo states no longer have to be cleared, as they are tracked by pointers.
-  * Cons: Harder to implement. add() and set() have to be used appropriately to prevent synchronization issues.
+  * Pros: Redo states no longer have to be cleared, as they are tracked by pointers and can be replaced at indexes as needed.
+  * Cons: Harder to implement. `add()` and `set()` have to be used appropriately to prevent synchronization issues.
           Pointers have to be carefully implemented.
+
 
 * **Alternative 3:** LinkedList.
   * Pros: Fast in dropping many nodes after an index. Simple data structure.
   * Cons: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index.
-          Custom data structure would have to be used, and is hence time-consuming to implement.
-          Does not take into account garbage collection time, which would still make it O(n).
+          A custom data structure would have to be used, and is hence time-consuming to implement.
+          Does not take into account garbage collection time.
 
 ### \[Proposed\] Data archiving
 
