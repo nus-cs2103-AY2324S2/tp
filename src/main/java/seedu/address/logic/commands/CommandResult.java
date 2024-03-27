@@ -29,12 +29,12 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean isOverallCommand, boolean showHelp,
-                         boolean exit, boolean showDayView) {
+                         boolean exit, boolean isSwitchView) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isOverallCommand = isOverallCommand;
         this.isShowHelp = showHelp;
         this.isExit = exit;
-        this.isSwitchView = showDayView;
+        this.isSwitchView = isSwitchView;
     }
 
     /**
