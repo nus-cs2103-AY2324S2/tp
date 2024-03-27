@@ -77,6 +77,10 @@ public class Person {
         this.starred = true;
     }
 
+    public void unstarContact() {
+        this.starred = false;
+    }
+
     public boolean isStarred() {
         return starred;
     }

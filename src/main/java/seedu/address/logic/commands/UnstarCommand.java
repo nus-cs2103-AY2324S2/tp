@@ -10,22 +10,22 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Command to star a contact in Connectify.
+ * Unstars a contact in the address book.
  */
-public class StarCommand extends Command {
-    public static final String COMMAND_WORD = "star";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Stars the contact in Connectify.\n"
+public class UnstarCommand extends Command {
+    public static final String COMMAND_WORD = "unstar";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unstars the contact in Connectify.\n"
             + "Parameters: <contact_name>\n"
             + "Example: " + COMMAND_WORD + " Alex Tan";
 
     private final String contactName;
 
     /**
-     * Constructs a {@code StarCommand} to star the specified contact.
+     * Constructs a {@code UnstarCommand} to unstar the specified contact.
      *
-     * @param contactName The name of the contact to be starred.
+     * @param contactName The name of the contact to be unstarred.
      */
-    public StarCommand(String contactName) {
+    public UnstarCommand(String contactName) {
         this.contactName = contactName;
     }
 
@@ -35,29 +35,32 @@ public class StarCommand extends Command {
 
         // Find the person by name
         List<Person> personsFound = model.getFilteredPersonList();
-        Person contactToStar = null;
+        Person contactToUnstar = null;
         for (Person person : personsFound) {
             if (person.getName().fullName.equalsIgnoreCase(contactName)) {
-                contactToStar = person;
+                contactToUnstar = person;
                 break;
             }
         }
 
-        if (contactToStar == null) {
+        if (contactToUnstar == null) {
             throw new CommandException("Error! Contact not found: " + contactName);
         }
 
-        // Star the contact
-        contactToStar.starContact();
+        if (!contactToUnstar.isStarred()) {
+            throw new CommandException("Error! Contact is not starred: " + contactName);
+        }
 
-        Person starredContact = new Person(contactToStar.getName(), contactToStar.getPhone(), contactToStar.getEmail(),
-                contactToStar.getAddress(), contactToStar.getCompany(), contactToStar.getMeeting(),
-                contactToStar.getPriority(), contactToStar.isStarred(), contactToStar.getTags());
+        // Unstar the contact
+        contactToUnstar.unstarContact();
+        Person unstarredContact = new Person(contactToUnstar.getName(), contactToUnstar.getPhone(),
+                contactToUnstar.getEmail(), contactToUnstar.getAddress(), contactToUnstar.getCompany(),
+                contactToUnstar.getPriority(), contactToUnstar.isStarred(), contactToUnstar.getTags());
 
-        model.setPerson(contactToStar, starredContact);
+        model.setPerson(contactToUnstar, unstarredContact);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult("Nice! You have starred this contact:\n"
-                + contactToStar.getName() + " ★");
+        return new CommandResult(String.format("Nice! You have unstarred this contact:\n"
+                + contactToUnstar.getName()));
     }
 
     @Override
@@ -66,12 +69,11 @@ public class StarCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof StarCommand)) {
+        if (!(other instanceof UnstarCommand)) {
             return false;
         }
 
-        StarCommand e = (StarCommand) other;
+        UnstarCommand e = (UnstarCommand) other;
         return contactName.equals(e.contactName);
     }
 
