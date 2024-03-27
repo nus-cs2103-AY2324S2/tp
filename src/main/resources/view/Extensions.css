@@ -1,6 +1,6 @@
 
 .error {
-    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+    -fx-text-fill: #e14620 !important; /* The error class should always override the default text-fill style */
 }
 
 .list-cell:empty {
@@ -10,11 +10,11 @@
 
 .tag-selector {
     -fx-border-width: 1;
-    -fx-border-color: white;
+    -fx-border-color: rgb(255, 255, 255);
     -fx-border-radius: 3;
     -fx-background-radius: 3;
 }
 
 .tooltip-text {
-    -fx-text-fill: white;
+    -fx-text-fill: rgb(255, 255, 255);
 }
