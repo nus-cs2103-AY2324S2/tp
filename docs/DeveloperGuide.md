@@ -255,6 +255,169 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Fuzzy Input
+
+#### Implementation
+
+The BK-Tree data structure was employed by the implementation of the fuzzy input to effectively find words that are
+close to the target word in terms of their Levenshtein distance. Each node in the tree-like data structure represents a
+word and its children represent words that are one edit distance away. 
+
+The fuzzy input implementation consists of several components:
+1. `BkTreeCommandMatcher`: The main BK-Tree data structure for sorting and efficiently search for similar elements
+2. `BkTreeNode`: Internal node structure used by the Bk-Tree
+3. `FuzzyCommandParser`: A class demonstrating the usage of BK-tree for command parsing
+4. `LevenshteinDistance`: An implementation of the DistanceFunction interface using the Levenshtein distance algorithm
+
+Our implementation follows the SOLID principle closely. We have designed interfaces to promote flexibility, especially
+complying with the Open-Close Principle. This design decision makes it easy to extend various `CommandMatchers` or
+`DistanceFunctions` in the future, making it easier to incorporate alternative algorithms if need be.
+
+Given below is an example usage scenario and how the fuzzy input mechanism behaves:
+
+* Step 1 : User misspelled listing command `lust` instead of `list`. 
+  * The `lust` command calls `FuzzyCommandParser#parseCommand())`, causing `BkTreeCommandMatcher#findClosestMatch()` to
+  get called in response.
+  * The `BkTree` would be already initialised with the list of commands before the call.
+    * During the initialisation, `BkTree` calculates the distances between items and constructs the tree accordingly.
+  * When `findCLosestMatch()` is called, it initiates a search within the `BkTree` constructed.
+    * Starting from root node, Bk-Tree traverses through nodes based on the distance between the target item `lust` 
+    and items stored in each `BkTreeNode`.
+    * The closest match found based on the specified distance metric (1 misspell) will be returned, in this case `list`
+    and `AddressBookParser#parseCommand()` will proceed on to the `list command`.
+  * When calculating the distance between 2 items, `BkTree` calls `DistanceFunction#calculateDistance()` method.
+    * In this case, LevenshteinDistance class will calculate the distance.
+
+<puml src="diagrams/FuzzyInputClassDiagram.puml" alt="FuzzyInputClassDiagram" />
+<puml src="diagrams/FuzzyInputObjectDiagram.puml" alt="FuzzyInputObjectDiagram" />
+
+
+* Step 2 : User entered unsupported command `peek`
+    * The `peek` command calls `FuzzyCommandParser#parseCommand())`, causing `BkTreeCommandMatcher#findClosestMatch()` to
+      get called in response.
+    * Initialisation works the same as Step 1
+    * `findClosestMatch()` does the same operation as Step 1
+      * However, based on the LevenshteinDistance algorithm, the distance between `peek` and any items stored in
+      `BkTreeNode` will be greater than 1 which is greater than the specified distance metric
+      * `FuzzyCommandParser#parseCommand())` will return `null` string to `AddressBookParser#parseCommand()`
+      * Since `null` is not a recognised command, `ParseException` will be thrown.
+
+* <insert UML diagrams>
+    
+#### Design considerations:
+
+[Common fuzzy search algorithm for approximate string matching](https://www.baeldung.com/cs/fuzzy-search-algorithm) 
+were compared to determine the optimal algorithm for our AddressBook. 
+
+* **Alternative 1 (current choice)** Bk-Tree with Levenshtein Distance Algorithm 
+* Pros: Tree-like data structure
+  * The hierarchical structure of BK-Tree allows search operations to run in logarithmic time,
+  making them scalable for large datasets
+  * BK-Tree can work with different types of data, not limited to strings
+* Cons: Require more memory, a concern for memory-constrained environment
+
+* **Alternative 2** Hamming Distance
+  * Pros: Straightforward to calculate and understand
+  * Cons: Only designed for comparing strings of equal length
+
+* **Alternative 3** Bitap Algorithm
+  * Pros: Efficient for finding approximate matches of given pattern within a text
+  * Cons: Primarily designed for substring matching within texts
+
+* **Alternative 4** Brute Force Method
+  * Pros: Easily to implement, no pre-processing required, takes no extra space
+  * Cons: Horrible run-time
+
+For our AddressBook implementation, the `BK-Tree with Levenshtein Distance Algorithm` proved to be the optimal choice.
+Its memory usage and complexity of implementation outweighs its potential to extend code and efficiently handle
+misspelled or similar commands. This algorithm guarantees fast runtime performance and robustness in command parsing.
+
+### \[Future Development\] Fuzzy Input with varying distance metric
+
+Currently, the MAX_DISTANCE for the distance metric is set to 1. To enhance user-experience and accommodate longer
+commands with potentially more misspellings, it would be advantageous to dynamically adjust the MAX_DISTANCE according
+to the length of the correct command string. This approach allows a more flexible and adaptable matching process,
+guaranteeing that the misspelling tolerance varies proportionately with command length. By dynamically adjusting the
+MAX_DISTANCE, longer and more complex input command like `addbystep` can be accurately identified. 
+
+### Sort feature
+
+#### Implementation
+
+The sorting mechanism is facilitated by `SortCommand`. It implements the following operations:
+* `SortCommand#`: Constructor class which is instantiated and stores the necessary `SortStrategy` based on user input.
+* `SortCommand#Executes`: Executes the necessary `SortStrategy` and update the model. 
+
+The sorting mechanism consists of several components:
+1. `SortStrategy`: An interface that requires implementations to define methods for sorting the address book and getting
+the category associated with the sorting strategy.
+2. `SortByTag` and `SortByName`: These classes implement `SortStrategy` interface to provide the specific strategies
+of the AddressBook based on tags and names respectively. 
+3. `SortCommand`: Initiates the sorting by parsing user input to determine the sorting criteria and calls the appropriate
+sorting class based on the input. After sorting, it then updates the list of persons in the model. 
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+* Step 1: The user launches the application for the first time, no contacts will be present in the `AddressBook`.
+When user `add` contacts in the `AddressBook`, contacts will be sorted based on their timestamp.
+
+* Step 2: The user executes `sort name` command.
+  * The `sortCommand#` constructor will initialise with the `sortByName` strategy stored as `SortStrategy`.
+  * `sortCommand#execute` will pass the current model's `AddressBook` to `sortStrategy#sort`, where `UniquePersonsList` 
+  will be obtained and sorted lexicographically by name 
+  * After sorting, the model will be updated to reflect the newly sorted contacts list, alongside a return statement
+  to provide confirmation to the user.
+
+    <puml src="diagrams/SortCommandSequenceDiagram.puml" alt="SortCommandSequenceDiagram" />
+    
+* Step 3: The user executes `sort tag` command.
+    * The `sortCommand#` constructor will initialise with the `sortByTag` strategy stored as `SortStrategy`.
+    * `sortCommand#execute` will pass the current model's `AddressBook` to `sortStrategy#sort`, where `UniquePersonsList`
+      will be obtained and sorted lexicographically by tags
+    * After sorting, the model will be updated to reflect the newly sorted contacts list, alongside a return statement
+      to provide confirmation to the user.
+
+* Step 4: The user executes `sort` command.
+  * The `sortCommand#` constructor will first verify the presence of `condition input` before proceeding with 
+  initialisation.
+  * Since there is no condition stated, a `ParseException` will be thrown and a statement will be displayed to provide 
+  the correct input and conditions to be stated.
+
+    <puml src="diagrams/SortCommandActivityDiagram.puml" alt="SortCommandActivityDiagram" />
+
+### Design consideration:
+`SolidStrategy` interface was implemented for sorting functionality to adhere to SOLID principles, particularly the
+Single Responsibility Principle, Interface Segregation Principle and Open/Close Principle.
+* Single Responsibility Principle
+  * The interface maintains single responsibility by defining methods for sorting strategies without burdening
+  implementations with unrelated methods
+* Open/Closed Principle
+  * The interface provides an abstraction that allows for extension. New sorting strategies can be introduced by
+  implementing `SortStrategy` interface without altering existing code.
+* Interface Segregation Principle
+  * Segregates behavior for sorting into distinct methods `sort` and `getCategory`, thus, allowing different sorting
+  strategies to implement only the methods they need, rather than being forced to implement monolithic interface with
+  unnecessary methods.
+
+* **Alternative 1 (current choice)** `sort` method of the `SortStrategy` to take in `AddressBook` as its parameter.
+  * Pros: Straightforward design and easy to implement.
+    * Sorting logic interacts directly with data structure being sorted.
+  * Cons: May be challenging to apply sorting strategies to different data structures without modification.
+
+* **Alternative 2** `sort` method of the `SortStrategy` to take in `model` as its parameter.
+  * Pros: Sorting strategies can be applied to different data structures without modification
+    * Promoting code reuse and scalability.
+  * Cons: Requires access to `AddressBook` eventually, introducing unnecessary complexity.
+
+Alternative 1 is chosen for the following reasons:
+* Simplicity: keeps sorting logic simple and focused by directly interacting with the data structure being sorted.
+* Clear Responsibility: Sorting logic is closely tied to the data structure it operates on, adhering to the Single
+Responsibility Principle.
+* Ease of implementation: No need to pass unnecessary parameters to the sorting method.
+  * Reduce complexity and potential dependencies.
+  * Clear outline has been established that the only data structure present is the `AddressBook` containing
+  `UniquePersonList`.
+    * There is not a need to apply sorting strategies to another different data structure.
 
 --------------------------------------------------------------------------------------------------------------------
 
