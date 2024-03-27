@@ -242,15 +242,17 @@ Format: `undo`
 The screenshots below are what you would expect when using the `undo` command.
 
 In this example, after using the `add` command to add a new client `bertrand`, I wish to undo this addition as bertrand will not be assigned to me.
-&nbsp;
-
-<img src="images/user-guide/undo_command_before1.png" alt="Update command example" />
-&nbsp;
-
 As seen in the second image, after using the `undo` command, betrand is no longer present in the client list as his addition has been undone.
 &nbsp;
 
-<img src="images/user-guide/undo_command_after1.png" alt="Update command example" />
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/user-guide/undo_command_before1.png" alt="list">
+        Figure 1.1: Before the undo command is executed
+    </pic>
+    <pic src="images/user-guide/undo_command_after1.png" alt="list">
+        Figure 1.2: After the undo command is executed
+    </pic>
+</div>
 &nbsp;
 
 <box type="tip">
@@ -272,15 +274,17 @@ Format: `redo`
 The screenshots below are what you would expect when using the `redo` command.
 
 In this example, after undoing an update of my client's name from `Alex Yeoh` to `alex yee`, we can see that the current client list has his name as `Alex Yeoh`
-&nbsp;
-
-<img src="images/user-guide/redo_command_before.png" alt="Redo command example" />
-&nbsp;
-
 As seen in the second image, after using the `redo` command, the change is redone, and the client list shows the client's name as `alex yee`
 &nbsp;
 
-<img src="images/user-guide/redo_command_after.png" alt="Redo command example" />
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/user-guide/redo_command_before.png" alt="list">
+        Figure 1.1: Before the redo command is executed
+    </pic>
+    <pic src="images/user-guide/redo_command_after.png" alt="list">
+        Figure 1.2: After the redo command is executed
+    </pic>
+</div>
 &nbsp;
 
 <box type="tip">
@@ -331,7 +335,7 @@ _This command allows you to delete a client at a specified `INDEX` from your cli
 - `delete 1` would delete the first client in your client list.
 - `delete 2` would delete the second client in your client list.
 
-Walkthrough:
+**Walkthrough**:
 
 The screenshots below are what you would expect when using the `delete` command. In this example, after using the `list` command,
 the full clients list is displayed. Thereafter, the `delete 1` command was used, removing `David Li`, the first person in the list, from the list of client contacts.
