@@ -41,6 +41,7 @@ public class CommandBox extends UiPart<Region> {
                     commandHistory.saveDraftCommand(commandTextField.getText());
                 }
                 commandTextField.setText(commandHistory.getPreviousCommand());
+                commandTextField.positionCaret(commandTextField.getText().length());
                 key.consume();
                 break;
             case DOWN:
@@ -48,6 +49,7 @@ public class CommandBox extends UiPart<Region> {
                     commandHistory.saveDraftCommand(commandTextField.getText());
                 }
                 commandTextField.setText(commandHistory.getNextCommand());
+                commandTextField.positionCaret(commandTextField.getText().length());
                 key.consume();
                 break;
             default:
