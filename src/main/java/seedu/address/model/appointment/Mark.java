@@ -1,8 +1,8 @@
 package seedu.address.model.appointment;
 
 /**
- * Represents a Note in the appointment
- * Guarantees: immutable; note is valid as declared in {@link #isValidNote(String)}
+ * Represents a Mark in the appointment
+ * Guarantees: immutable; isMarked is valid as a declared boolean value
  */
 public class Mark {
     public static final String MESSAGE_CONSTRAINTS =
@@ -11,9 +11,9 @@ public class Mark {
     public final boolean isMarked;
 
     /**
-     * Constructs a {@code Note}.
+     * Constructs a {@code Mark}.
      *
-     * @param note A valid note.
+     * @param isMarked A valid Mark.
      */
     public Mark(boolean isMarked) {
         this.isMarked = isMarked;
