@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELECT_TASK;
+import static seedu.address.logic.parser.InternshipParserUtil.MESSAGE_INVALID_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.InternshipAddDeadlineCommand;
@@ -26,42 +27,34 @@ public class InternshipAddDeadlineCommandParser implements InternshipParser<Inte
 
         Index internshipIndex;
         Index taskIndex;
+        Deadline deadline;
 
-        try {
-            internshipIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddDeadlineCommand.MESSAGE_USAGE), pe);
-        }
-
-        if (argMultimap.getPreamble().isEmpty()) {
+        if (argMultimap.getPreamble().isEmpty() || argMultimap.getValue(PREFIX_SELECT_TASK).isEmpty()
+                || argMultimap.getValue(PREFIX_DEADLINE).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     InternshipAddDeadlineCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_DEADLINE).isEmpty() || argMultimap.getValue(PREFIX_DEADLINE).get().isBlank()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddDeadlineCommand.MESSAGE_EMPTY_DEADLINE));
-        }
-
-        if (argMultimap.getValue(PREFIX_SELECT_TASK).isEmpty()
-                || argMultimap.getValue(PREFIX_SELECT_TASK).get().isBlank()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddDeadlineCommand.MESSAGE_INVALID_TASK_INDEX));
+        try {
+            internshipIndex = InternshipParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_INDEX, pe);
         }
 
         try {
-            taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SELECT_TASK).get());
+            taskIndex = InternshipParserUtil.parseIndex(argMultimap.getValue(PREFIX_SELECT_TASK).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddDeadlineCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_INDEX, pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DEADLINE);
+        try {
+            deadline = InternshipParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    Deadline.MESSAGE_CONSTRAINTS), pe);
+        }
 
-        taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SELECT_TASK).get());
-
-        Deadline deadline = InternshipParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_SELECT_TASK, PREFIX_DEADLINE);
 
         return new InternshipAddDeadlineCommand(internshipIndex, taskIndex, deadline);
     }

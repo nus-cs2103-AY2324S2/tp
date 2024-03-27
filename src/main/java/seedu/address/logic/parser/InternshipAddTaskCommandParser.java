@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.InternshipMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.InternshipParserUtil.MESSAGE_INVALID_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.InternshipAddTaskCommand;
@@ -24,24 +25,27 @@ public class InternshipAddTaskCommandParser implements InternshipParser<Internsh
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK);
 
         Index index;
+        Task task;
 
+        if (argMultimap.getPreamble().isEmpty() || argMultimap.getValue(PREFIX_TASK).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    InternshipAddTaskCommand.MESSAGE_USAGE));
+        }
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = InternshipParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_INDEX, pe);
+        }
+
+        try {
+            task = InternshipParserUtil.parseTask(argMultimap.getValue(PREFIX_TASK).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddTaskCommand.MESSAGE_USAGE), pe);
+                    InternshipAddTaskCommand.MESSAGE_EMPTY_TASK), pe);
         }
-
-        if (argMultimap.getValue(PREFIX_TASK).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    InternshipAddTaskCommand.MESSAGE_EMPTY_TASK));
-        }
-
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TASK);
-
-        Task task = InternshipParserUtil.parseTask(argMultimap.getValue(PREFIX_TASK).get());
 
         return new InternshipAddTaskCommand(index, task);
     }
