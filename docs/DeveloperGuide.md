@@ -184,6 +184,66 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Copy feature**
+
+The `copy` command enables users to quickly copy the email addresses of the persons currently displayed to them in the
+`PersonListPanel`. The copied emails are stored in the users' clipboard and can be pasted into an email client.
+This feature is useful when users need to send emails to a group of persons.
+
+#### Implementation Details
+
+The copy command is a child of the `command` class and relies on the `filteredPersons` list in the `Model` component, 
+as well as the `java.awt` package to copy the emails of all currently displayed persons to the users' clipboard.
+
+#### Parsing User Input
+
+The `CopyCommand` class is instantiated directly by the `AddressBookParser` class when the user inputs the `copy` command.
+This is because the `copy` command does not require any additional arguments from the user.
+
+#### Executing the Command
+
+The `CopyCommand` class is created by the `AddressBookParser` class and passed to the `Logic` component for execution.
+The `Logic` component then executes the command by calling the `execute` method in the `CopyCommand` class.
+
+#### Copying Emails:
+
+The `CopyCommand` class is responsible for executing the command for obtaining the emails of the filtered persons and copying them to the clipboard.
+It iterates through the `filteredPersons` list in the `Model` component and extracts the email addresses of each person.
+The email addresses are then concatenated into a single string, separated by commas, and copied to the clipboard using the `java.awt` package.
+
+#### User Interface Interaction
+
+After the `CopyCommand` is executed, the `UI` component updates the `ResultDisplay` to show a message indicating that the emails have been copied to the clipboard.
+
+The following activity diagram summarizes the steps involved in executing the `copy` command:
+<puml src="diagrams/CopyImplementationActivityDiagram.puml" width="1000" />
+
+#### **Considerations**
+
+##### Reliance on `find` Command
+
+The `copy` command is designed to be used with the find command, which filters the persons displayed in the `PersonListPanel`.
+Consequently, the flexibility of the `copy` command relies heavily on the implementation of the `find` command.
+Due to this dependency, any changes to the `find` command may affect the functionality of the `copy` command.
+
+##### Extensibility
+
+Due to the simplicity of the `copy` command, there are limited opportunities for extending its functionality. 
+However, future enhancements could include the ability to copy other details of persons, such as phone numbers or addresses.
+
+##### Alternative Implementations
+
+**Alternative 1: Copying emails of all persons**
+Copies the emails of all persons in the address book, regardless of whether they are currently displayed in the `PersonListPanel`.
+However, this approach may lead to users copying a large number of emails unintentionally, which could be overwhelming.
+Furthermore, it may not be clear to users which emails are being copied.
+
+**Alternative 2: Copying emails into a file**
+Instead of copying the emails to the clipboard, the emails could be saved into a file.
+This approach would allow users to access the emails at a later time and would prevent the loss of copied emails if the clipboard is cleared.
+However, it may be less convenient for users who want to paste the emails directly into an email client.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

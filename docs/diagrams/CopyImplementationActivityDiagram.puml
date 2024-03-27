@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes copy command;
+if () then ([persons are displayed])
+    :Get emails of the displayed persons;
+    if ()
+    :Copy emails to clipboard;
+    else ([no clipboard available])
+    endif
+else ([no persons displayed])
+    :throw new CommandException("No person currently displayed");
+endif
+
+stop
+
+@enduml
