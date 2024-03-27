@@ -42,21 +42,21 @@ public class WardTest {
 
     @Test
     public void equals() {
-        Ward Ward = new Ward("A1234X");
+        Ward ward = new Ward("A1234X");
 
         // same values -> returns true
-        assertTrue(Ward.equals(new Ward("A1234X")));
+        assertTrue(ward.equals(new Ward("A1234X")));
 
         // same object -> returns true
-        assertTrue(Ward.equals(Ward));
+        assertTrue(ward.equals(ward));
 
         // null -> returns false
-        assertFalse(Ward.equals(null));
+        assertFalse(ward.equals(null));
 
         // different types -> returns false
-        assertFalse(Ward.equals(5.0f));
+        assertFalse(ward.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(Ward.equals(new Ward("B5678D")));
+        assertFalse(ward.equals(new Ward("B5678D")));
     }
 }

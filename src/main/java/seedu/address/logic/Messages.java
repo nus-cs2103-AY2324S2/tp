@@ -32,7 +32,7 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code persgeton} for display to the user.
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
@@ -41,12 +41,11 @@ public class Messages {
                 .append(person.getIc())
                 .append("\n DOB: ")
                 .append(person.getDob())
-                .append("\n Admitted: ")
-                .append(person.getAdmissionDate())
                 .append("\n Ward: ")
                 .append(person.getWard())
-                .append("\n Tags: ")
-                .append(person.getTags());
+                .append("\n Admitted: ")
+                .append(person.getAdmissionDate())
+                .append("\n Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

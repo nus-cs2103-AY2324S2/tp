@@ -2,29 +2,20 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "serious" ],
+    "tags" : [ "Diabetes" ],
     "dob": "20/02/2000",
     "ic": "A1234567B",
     "admissionDate": "01/03/2024",
     "ward":"A1"
   }, {
     "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "serious", "old" ],
+    "tags" : [ "Dementia", "FallRisk" ],
     "dob": "20/02/2001",
     "ic": "A2345678B",
     "admissionDate": "01/02/2024",
     "ward": "B1"
   }, {
     "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
     "tags" : [ ],
     "dob": "20/02/2002",
     "ic": "A3456789B",
@@ -32,19 +23,13 @@
     "ward": "C1"
   }, {
     "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tags" : [ "mild" ],
+    "tags" : [ "HearingImpaired" ],
     "dob": "20/02/2003",
     "ic": "A5678901B",
     "admissionDate": "10/03/2024",
     "ward": "D1"
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
     "tags" : [ ],
     "dob": "20/02/2004",
     "ic": "A4756976B",
@@ -52,9 +37,6 @@
     "ward": "E1"
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
     "tags" : [ ],
     "dob": "20/02/2006",
     "ic": "A5739485B",
@@ -62,9 +44,6 @@
     "ward": "F1"
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
     "tags" : [ ],
     "dob": "20/05/2000",
     "ic": "A0987654B",

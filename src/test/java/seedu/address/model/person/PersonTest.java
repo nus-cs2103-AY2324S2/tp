@@ -3,11 +3,12 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADMISSION_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FALL_RISK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -33,8 +34,8 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns true
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Person editedAlice = new PersonBuilder(ALICE).withIc(VALID_IC_BOB).withAdmissionDate(VALID_ADMISSION_DATE_BOB)
+                .withWard(VALID_WARD_BOB).withDob(VALID_DOB_BOB).withTags(VALID_TAG_FALL_RISK).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -73,30 +74,32 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different IC -> returns false
+        editedAlice = new PersonBuilder(ALICE).withIc(VALID_IC_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different DOB -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDob(VALID_DOB_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        // different Admission Date -> returns false
+        editedAlice = new PersonBuilder(ALICE).withAdmissionDate(VALID_ADMISSION_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_FALL_RISK).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName()
-            + ", phone=" + ALICE.getPhone() + ", email=" + ALICE.getEmail()
-            + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
-            + ", dob=" + ALICE.getDob() + ", ic=" + ALICE.getIc()
-            + ", admissionDate=" + ALICE.getAdmissionDate() + ", ward=" + ALICE.getWard() + "}";
+        String expected = Person.class.getCanonicalName()
+                + "{name=" + ALICE.getName()
+                + ", tags=" + ALICE.getTags()
+                + ", dob=" + ALICE.getDob()
+                + ", ic=" + ALICE.getIc()
+                + ", admissionDate=" + ALICE.getAdmissionDate()
+                + ", ward=" + ALICE.getWard() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

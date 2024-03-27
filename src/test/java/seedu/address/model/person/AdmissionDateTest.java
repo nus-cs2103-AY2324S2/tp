@@ -55,21 +55,21 @@ public class AdmissionDateTest {
 
     @Test
     public void equals() {
-        AdmissionDate AdmissionDate = new AdmissionDate("17/03/2024");
+        AdmissionDate admissionDate = new AdmissionDate("17/03/2024");
 
         // same values -> returns true
-        assertTrue(AdmissionDate.equals(new AdmissionDate("17/03/2024")));
+        assertTrue(admissionDate.equals(new AdmissionDate("17/03/2024")));
 
         // same object -> returns true
-        assertTrue(AdmissionDate.equals(AdmissionDate));
+        assertTrue(admissionDate.equals(admissionDate));
 
         // null -> returns false
-        assertFalse(AdmissionDate.equals(null));
+        assertFalse(admissionDate.equals(null));
 
         // different types -> returns false
-        assertFalse(AdmissionDate.equals(17));
+        assertFalse(admissionDate.equals(17));
 
         // different values -> returns false
-        assertFalse(AdmissionDate.equals(new AdmissionDate("16/03/2024")));
+        assertFalse(admissionDate.equals(new AdmissionDate("16/03/2024")));
     }
 }
