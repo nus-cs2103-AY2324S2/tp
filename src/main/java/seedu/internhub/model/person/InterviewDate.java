@@ -82,10 +82,7 @@ public class InterviewDate {
     /**
      * Checks if this InterviewDate is in the next N days.
      */
-<<<<<<< HEAD:src/main/java/seedu/address/model/person/InterviewDate.java
 
-=======
->>>>>>> ashleygoh1-v1.3-dg:src/main/java/seedu/internhub/model/person/InterviewDate.java
     public boolean isWithinNDays(int numberOfDays) {
         if (value == null) {
             return false;
