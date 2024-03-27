@@ -27,29 +27,35 @@ public class NoteCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, NOTE_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        // no index specified (note John)
+        assertParseFailure(parser, NOTE_DESC_AMY, String.format(Messages.MESSAGE_NO_INDEX,
+                NoteCommand.MESSAGE_USAGE));
 
-        // index but no prefix specified
-        assertParseFailure(parser, VALID_NOTE_AMY, MESSAGE_INVALID_FORMAT);
-
-        // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        // no index and no field specified (note)
+        assertParseFailure(parser, "", String.format(Messages.MESSAGE_NO_INDEX, NoteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        // negative index (note -5 n/John)
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
 
-        // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        // zero index (note 0 n/John)
+        assertParseFailure(parser, "0" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
 
-        // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        // invalid arguments being parsed as preamble (note 1 hey)
+        assertParseFailure(parser, "1 some random string",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+
+        // invalid index (note -5)
+        assertParseFailure(parser, "-5",
+                String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, NoteCommand.MESSAGE_USAGE));
     }
 
     @Test

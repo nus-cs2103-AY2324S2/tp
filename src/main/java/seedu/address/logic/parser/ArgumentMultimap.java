@@ -82,4 +82,13 @@ public class ArgumentMultimap {
     public boolean contains(Prefix prefix) {
         return argMultimap.containsKey(prefix);
     }
+
+    /**
+     * Checks if every single one of the prefixes exists in the map
+     * @param prefixes
+     * @return true if aall of the prefixes exists in the map
+     */
+    public boolean containsAll(Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> contains(prefix));
+    }
 }
