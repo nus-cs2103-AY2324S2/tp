@@ -14,10 +14,11 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
+Class Dob
+Class AdmissionDate
 Class Name
-Class Phone
+Class Ic
+Class Ward
 Class Tag
 
 Class I #FFFFFF
@@ -38,17 +39,18 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> Ic
+Person *--> AdmissionDate
+Person *--> Dob
+Person *--> Ward
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Ic
+Ic -[hidden]right-> Dob
+Dob -[hidden]right-> AdmissionDate
 
 ModelManager --> "~* filtered" Person
 @enduml

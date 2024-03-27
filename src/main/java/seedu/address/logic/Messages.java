@@ -32,18 +32,20 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code persgeton} for display to the user.
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
+                .append("\n IC: ")
+                .append(person.getIc())
+                .append("\n DOB: ")
+                .append(person.getDob())
+                .append("\n Ward: ")
+                .append(person.getWard())
+                .append("\n Admitted: ")
+                .append(person.getAdmissionDate())
+                .append("\n Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }

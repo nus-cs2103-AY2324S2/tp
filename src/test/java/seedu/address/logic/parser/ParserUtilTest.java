@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,25 +16,29 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Dob;
+import seedu.address.model.person.Ic;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Ward;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_IC = "T11222222222222Y";
+    private static final String INVALID_WARD = "+";
+    private static final String INVALID_ADMISSION_DATE = "123/12/20300";
+    private static final String INVALID_TAG = "#Diabetes";
+    private static final String INVALID_DOB_FUTURE = LocalDate.now().plusDays(1)
+            .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")); // A future date
+    private static final String INVALID_DOB_FORMAT = "12-31-2000"; // Wrong format
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_IC = "T1234567Y";
+    private static final String VALID_WARD = "A1";
+    private static final String VALID_ADMISSION_DATE = "12/12/2023";
+    private static final String VALID_DOB = "12/12/1999";
+    private static final String VALID_TAG_1 = "Diabetes";
+    private static final String VALID_TAG_2 = "FallRisk";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -80,74 +86,79 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseWard_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseWard((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseWard_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseWard(INVALID_WARD));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseWard_validValueWithoutWhitespace_returnsWard() throws Exception {
+        Ward expectedWard = new Ward(VALID_WARD);
+        assertEquals(expectedWard, ParserUtil.parseWard(VALID_WARD));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseWard_validValueWithWhitespace_returnsTrimmedWard() throws Exception {
+        String wardWithWhitespace = WHITESPACE + VALID_WARD + WHITESPACE;
+        Ward expectedWard = new Ward(VALID_WARD);
+        assertEquals(expectedWard, ParserUtil.parseWard(wardWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseIc_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIc((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseIc_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIc(INVALID_IC));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseIc_validValueWithoutWhitespace_returnsIc() throws Exception {
+        Ic expectedIc = new Ic(VALID_IC);
+        assertEquals(expectedIc, ParserUtil.parseIc(VALID_IC));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseIc_validValueWithWhitespace_returnsTrimmedIc() throws Exception {
+        String icWithWhitespace = WHITESPACE + VALID_IC + WHITESPACE;
+        Ic expectedIc = new Ic(VALID_IC);
+        assertEquals(expectedIc, ParserUtil.parseIc(icWithWhitespace));
+    }
+
+
+    @Test
+    public void parseDob_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDob((String) null));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseDob_invalidValueFuture_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDob(INVALID_DOB_FUTURE));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseDob_invalidValueFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDob(INVALID_DOB_FORMAT));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseDob_validValueWithoutWhitespace_returnsDob() throws Exception {
+        Dob expectedDob = new Dob(VALID_DOB);
+        assertEquals(expectedDob, ParserUtil.parseDob(VALID_DOB));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseDob_validValueWithWhitespace_returnsTrimmedDob() throws Exception {
+        String dobWithWhitespace = WHITESPACE + VALID_DOB + WHITESPACE;
+        Dob expectedDob = new Dob(VALID_DOB.trim());
+        assertEquals(expectedDob, ParserUtil.parseDob(dobWithWhitespace));
     }
-
     @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
