@@ -42,7 +42,7 @@ public class SortArticleCommand extends ArticleCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_SORTING_PREFIX);
         }
 
-        // model.sortArticleBook(prefix);
+        model.sortArticleBook(prefix);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

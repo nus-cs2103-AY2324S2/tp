@@ -174,6 +174,11 @@ public class ModelManager implements Model {
         articleBook.setArticle(target, editedArticle);
     }
 
+    @Override
+    public void sortArticleBook(String prefix) {
+        articleBook.sortArticleBook(prefix);
+    }
+
     //=========== Filtered Article List Accessors =============================================================
 
     /**

@@ -204,6 +204,11 @@ public class AddCommandTest {
         public void setArticle(Article target, Article editedArticle) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortArticleBook(String prefix) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
