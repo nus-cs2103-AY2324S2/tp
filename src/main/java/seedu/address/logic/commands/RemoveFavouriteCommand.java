@@ -51,7 +51,7 @@ public class RemoveFavouriteCommand extends Command {
         }
 
         boolean anyNotFavourite = this.indices.stream().anyMatch(index ->
-                !people.get(index.getZeroBased()).getFavourite());
+                !people.get(index.getZeroBased()).getIsFavourite());
         if (anyNotFavourite) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
