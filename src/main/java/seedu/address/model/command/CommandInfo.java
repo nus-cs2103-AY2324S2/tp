@@ -19,10 +19,10 @@ public class CommandInfo {
     private final String description;
 
     /**
-     * Constructs a new CommandInfo instance with specified command and description.
+     * Constructs an {@code CommandInfo}.
      *
-     * @param command The command keyword.
-     * @param description A brief description of the command's purpose or action.
+     * @param command a valid String
+     * @param description a valid String
      */
     public CommandInfo(String command, String description) {
         this.command = command;

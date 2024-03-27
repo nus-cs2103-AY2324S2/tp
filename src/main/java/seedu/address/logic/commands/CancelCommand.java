@@ -42,7 +42,7 @@ public class CancelCommand extends Command {
         Booking bookingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.cancelBooking(bookingToDelete);
         return new CommandResult(String.format(MESSAGE_CANCEL_BOOKING_SUCCESS,
-                Messages.formatBooking(bookingToDelete)));
+                Messages.formatCancel(bookingToDelete)));
     }
 
     @Override
