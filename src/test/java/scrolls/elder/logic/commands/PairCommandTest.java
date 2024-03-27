@@ -6,74 +6,86 @@ import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
-import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.Datastore;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.UserPrefs;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.Assert;
 import scrolls.elder.testutil.PersonBuilder;
+import scrolls.elder.testutil.TypicalDatastore;
 import scrolls.elder.testutil.TypicalIndexes;
-import scrolls.elder.testutil.TypicalPersons;
 
 class PairCommandTest {
 
+    private Model model;
+    private PersonStore personStore;
+    private Model expectedModel;
+    private PersonStore expectedPersonStore;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
+        personStore = model.getMutableDatastore().getMutablePersonStore();
+        expectedModel = new ModelManager(new Datastore(model.getDatastore()), new UserPrefs());
+        expectedPersonStore = expectedModel.getMutableDatastore().getMutablePersonStore();
+    }
+
     @Test
     void execute_pairFilteredPersonList_pairSuccessful() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
         Person befriendeeToPair =
-                model.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+            personStore.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
         Person volunteerToPair =
-                model.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
+            personStore.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
         PairCommand pairCommand =
-                new PairCommand(TypicalIndexes.INDEX_SECOND_PERSON, TypicalIndexes.INDEX_SECOND_PERSON);
+            new PairCommand(TypicalIndexes.INDEX_SECOND_PERSON, TypicalIndexes.INDEX_SECOND_PERSON);
 
         String expectedMessage = String.format(PairCommand.MESSAGE_PAIR_SUCCESS,
-                Messages.format(befriendeeToPair), Messages.format(volunteerToPair));
+            Messages.format(befriendeeToPair), Messages.format(volunteerToPair));
         Person afterPairingPerson1 = new PersonBuilder(befriendeeToPair)
-                .withPairedWithName(Optional.of(volunteerToPair.getName()))
-                .withPairedWithID(Optional.of(volunteerToPair.getId())).build();
+            .withPairedWithName(Optional.of(volunteerToPair.getName()))
+            .withPairedWithID(Optional.of(volunteerToPair.getPersonId())).build();
         Person afterPairingPerson2 = new PersonBuilder(volunteerToPair)
-                .withPairedWithName(Optional.of(befriendeeToPair.getName()))
-                .withPairedWithID(Optional.of(befriendeeToPair.getId())).build();
+            .withPairedWithName(Optional.of(befriendeeToPair.getName()))
+            .withPairedWithID(Optional.of(befriendeeToPair.getPersonId())).build();
 
-        ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(
-                expectedModel.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()),
-                afterPairingPerson1);
-        expectedModel.setPerson(
-                expectedModel.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()),
-                afterPairingPerson2);
+        expectedPersonStore.setPerson(
+            expectedPersonStore.getFilteredBefriendeeList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()),
+            afterPairingPerson1);
+        expectedPersonStore.setPerson(
+            expectedPersonStore.getFilteredVolunteerList().get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased()),
+            afterPairingPerson2);
 
         assertCommandSuccess(pairCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     void execute_alreadyPaired_throwsCommandException() {
-        Model model = new ModelManager(new AddressBook(TypicalPersons.getTypicalAddressBook()), new UserPrefs());
         PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_FIRST_PERSON);
+            TypicalIndexes.INDEX_FIRST_PERSON);
         Assert.assertThrows(
-                CommandException.class, PairCommand.MESSAGE_ALREADY_PAIRED, () -> pairCommand.execute(model));
+            CommandException.class, PairCommand.MESSAGE_ALREADY_PAIRED, () -> pairCommand.execute(model));
     }
 
     @Test
     public void equals() {
         PairCommand pairCommand1 = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_FIFTH_PERSON);
+            TypicalIndexes.INDEX_FIFTH_PERSON);
         PairCommand pairCommand2 = new PairCommand(TypicalIndexes.INDEX_SECOND_PERSON,
-                TypicalIndexes.INDEX_FOURTH_PERSON);
+            TypicalIndexes.INDEX_FOURTH_PERSON);
 
         // same object -> returns true
         assertEquals(pairCommand1, pairCommand1);
 
         // same values -> returns true
         PairCommand pairCommand1Copy = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_FIFTH_PERSON);
+            TypicalIndexes.INDEX_FIFTH_PERSON);
         assertEquals(pairCommand1, pairCommand1Copy);
 
         // different types -> returns false
@@ -90,8 +102,8 @@ class PairCommandTest {
     public void toStringMethod() {
         PairCommand pairCommand = new PairCommand(TypicalIndexes.INDEX_FIRST_PERSON, TypicalIndexes.INDEX_FIFTH_PERSON);
         String expected = PairCommand.class.getCanonicalName()
-                + "{index1=" + TypicalIndexes.INDEX_FIRST_PERSON
-                + ", index2=" + TypicalIndexes.INDEX_FIFTH_PERSON + "}";
+            + "{index1=" + TypicalIndexes.INDEX_FIRST_PERSON
+            + ", index2=" + TypicalIndexes.INDEX_FIFTH_PERSON + "}";
         assertEquals(expected, pairCommand.toString());
     }
 }

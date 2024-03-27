@@ -5,6 +5,8 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.logging.Level;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import scrolls.elder.commons.util.ToStringBuilder;
 
 /**
@@ -28,6 +30,11 @@ public class Config {
 
     public Path getUserPrefsFilePath() {
         return userPrefsFilePath;
+    }
+
+    @JsonProperty("userPrefsFilePath")
+    public String getUserPrefsFilePathString() {
+        return userPrefsFilePath.toString();
     }
 
     public void setUserPrefsFilePath(Path userPrefsFilePath) {

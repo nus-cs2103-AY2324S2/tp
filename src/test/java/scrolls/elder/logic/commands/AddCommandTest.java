@@ -8,17 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
 import scrolls.elder.commons.core.GuiSettings;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
-import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.Datastore;
 import scrolls.elder.model.Model;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.ReadOnlyDatastore;
 import scrolls.elder.model.ReadOnlyUserPrefs;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.Assert;
@@ -40,7 +38,7 @@ public class AddCommandTest {
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
+            commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
@@ -51,7 +49,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         Assert.assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, ()
-                -> addCommand.execute(modelStub));
+            -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -89,89 +87,51 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        private final Error unimplementedError = new AssertionError("This method should not be called.");
+
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
+            throw unimplementedError;
         }
 
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
+            throw unimplementedError;
         }
 
         @Override
         public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
+            throw unimplementedError;
         }
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
+            throw unimplementedError;
         }
 
         @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
+        public Path getDatastoreFilePath() {
+            throw unimplementedError;
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
+        public void setDatastoreFilePath(Path datastoreFilePath) {
+            throw unimplementedError;
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
+        public ReadOnlyDatastore getDatastore() {
+            throw unimplementedError;
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook(0);
+        public Datastore getMutableDatastore() {
+            throw unimplementedError;
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredVolunteerList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredBefriendeeList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Person getPersonFromID(int i) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
+        public void setDatastore(ReadOnlyDatastore d) {
+            throw unimplementedError;
         }
     }
 
@@ -185,12 +145,6 @@ public class AddCommandTest {
             requireNonNull(person);
             this.person = person;
         }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
     }
 
     /**
@@ -198,23 +152,6 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook(0);
-        }
     }
 
 }
