@@ -173,7 +173,7 @@ Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
 
 Step 3. The `AddressBookParser` calls `StarCommandParser.parse()`, which returns a `StarCommand`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the number of stars is negative (i.e. < 0), then it will raise a parse error.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the number of stars is negative (i.e. < 1), then it will raise a parse error.
 
 </div>
 
