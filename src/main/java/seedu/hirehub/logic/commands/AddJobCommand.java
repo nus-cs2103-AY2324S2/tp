@@ -14,8 +14,8 @@ import seedu.hirehub.model.job.Job;
 /**
  * Adds a job to the list of open jobs
  */
-public class JobCommand extends Command {
-    public static final String COMMAND_WORD = "job";
+public class AddJobCommand extends Command {
+    public static final String COMMAND_WORD = "add_job";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new job to list of open jobs. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
@@ -30,7 +30,7 @@ public class JobCommand extends Command {
 
     private final Job job;
 
-    public JobCommand(Job job) {
+    public AddJobCommand(Job job) {
         this.job = job;
     }
 
@@ -56,11 +56,11 @@ public class JobCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof JobCommand)) {
+        if (!(other instanceof AddJobCommand)) {
             return false;
         }
 
-        JobCommand otherJobCommand = (JobCommand) other;
+        AddJobCommand otherJobCommand = (AddJobCommand) other;
         return job.equals(otherJobCommand.job);
     }
 
