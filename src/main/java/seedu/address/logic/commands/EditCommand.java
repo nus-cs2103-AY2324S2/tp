@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TAG;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -37,42 +37,69 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a single detail of the person identified "
+            + "by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]"
-            + "[" + PREFIX_GRADE + "TEST_NAME: GRADE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com "
-            + PREFIX_GRADE + "EoY: 80";
+            + "[" + OPTION_PRINT_NAME + "] or "
+            + "[" + OPTION_PRINT_PHONE + "] or "
+            + "[" + OPTION_PRINT_EMAIL + "] or "
+            + "[" + OPTION_PRINT_TAG + "] or "
+            + "[" + OPTION_PRINT_GRADE + "] or "
+            + "[" + OPTION_PRINT_ADDRESS + "]\n"
+            + "Example: " + COMMAND_WORD + " 1 " + OPTION_PRINT_EMAIL;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE = "Please ensure that only one field is edited at most.";
+
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
+    private final boolean isPrintNameRequested;
+    private final boolean isPrintPhoneRequested;
+    private final boolean isPrintEmailRequested;
+    private final boolean isPrintAddressRequested;
+    private final boolean isPrintTagRequested;
+    private final boolean isPrintGradeRequested;
+
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, boolean isPrintNameRequested,
+            boolean isPrintPhoneRequested, boolean isPrintEmailRequested, boolean isPrintAddressRequested,
+                       boolean isPrintTagRequested, boolean isPrintGradeRequested) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.isPrintNameRequested = isPrintNameRequested;
+        this.isPrintPhoneRequested = isPrintPhoneRequested;
+        this.isPrintEmailRequested = isPrintEmailRequested;
+        this.isPrintAddressRequested = isPrintAddressRequested;
+        this.isPrintTagRequested = isPrintTagRequested;
+        this.isPrintGradeRequested = isPrintGradeRequested;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (isPrintNameRequested) {
+            return new CommandResult(getPersonName(model, index));
+        } else if (isPrintPhoneRequested) {
+            return new CommandResult(getPersonPhone(model, index));
+        } else if (isPrintEmailRequested) {
+            return new CommandResult(getPersonEmail(model, index));
+        } else if (isPrintAddressRequested) {
+            return new CommandResult(getPersonAddress(model, index));
+        } else if (isPrintTagRequested) {
+            return new CommandResult(getPersonTag(model, index));
+        } else if (isPrintGradeRequested) {
+            return new CommandResult(getPersonGrade(model, index));
+        }
+
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -90,6 +117,67 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private String getPersonName(Model model, Index index) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+        return person.getName().fullName;
+    }
+    private String getPersonPhone(Model model, Index index) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+        return person.getPhone().value;
+    }
+    private String getPersonEmail(Model model, Index index) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+        return person.getEmail().value;
+    }
+    private String getPersonAddress(Model model, Index index) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+        return person.getAddress().value;
+    }
+    private String getPersonTag(Model model, Index index) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+        return person.getTags().toString();
+    }
+    private String getPersonGrade(Model model, Index index) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+        return person.getGrades().toString();
     }
 
     /**
@@ -165,6 +253,34 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grades);
+        }
+
+        /**
+         * Returns true if only one field is edited and false if more than one field is edited.
+         */
+        public boolean isSingleFieldEdited() {
+            int editedFieldCount = 0;
+
+            if (name != null) {
+                editedFieldCount++;
+            }
+            if (phone != null) {
+                editedFieldCount++;
+            }
+            if (email != null) {
+                editedFieldCount++;
+            }
+            if (address != null) {
+                editedFieldCount++;
+            }
+            if (tags != null) {
+                editedFieldCount++;
+            }
+            if (grades != null) {
+                editedFieldCount++;
+            }
+
+            return editedFieldCount == 1;
         }
 
         public void setName(Name name) {

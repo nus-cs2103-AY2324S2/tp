@@ -2,12 +2,19 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_EDIT;
+
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TAG;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,8 +41,30 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GRADE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
+                        PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT,
+                        OPTION_PRINT_NAME, OPTION_PRINT_PHONE, OPTION_PRINT_EMAIL,
+                        OPTION_PRINT_ADDRESS, OPTION_PRINT_TAG, OPTION_PRINT_GRADE);
+
+        if (argMultimap.getValue(OPTION_PRINT_NAME).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            return new EditCommand(index, new EditCommand.EditPersonDescriptor(), true, false, false, false, false, false);
+        } else if (argMultimap.getValue(OPTION_PRINT_PHONE).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            return new EditCommand(index, new EditCommand.EditPersonDescriptor(), false, true, false, false, false, false);
+        } else if (argMultimap.getValue(OPTION_PRINT_EMAIL).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            return new EditCommand(index, new EditCommand.EditPersonDescriptor(), false, false, true, false, false, false);
+        } else if (argMultimap.getValue(OPTION_PRINT_ADDRESS).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            return new EditCommand(index, new EditCommand.EditPersonDescriptor(), false, false, false, true, false, false);
+        } else if (argMultimap.getValue(OPTION_PRINT_TAG).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            return new EditCommand(index, new EditCommand.EditPersonDescriptor(), false, false, false, false, true, false);
+        } else if (argMultimap.getValue(OPTION_PRINT_GRADE).isPresent()) {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            return new EditCommand(index, new EditCommand.EditPersonDescriptor(), false, false, false, false, false, true);
+        }
 
         Index index;
 
@@ -45,30 +74,39 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT, PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        if (argMultimap.getValue(PREFIX_NAME_EDIT).isPresent()) {
+            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME_EDIT).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        if (argMultimap.getValue(PREFIX_PHONE_EDIT).isPresent()) {
+            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE_EDIT).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(PREFIX_EMAIL_EDIT).isPresent()) {
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL_EDIT).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        if (argMultimap.getValue(PREFIX_ADDRESS_EDIT).isPresent()) {
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        parseGradesForEdit(argMultimap.getAllValues(PREFIX_GRADE)).ifPresent(editPersonDescriptor::setGrades);
+//        if (argMultimap.getValue(PREFIX_TAG_EDIT).isPresent()) {
+//            editPersonDescriptor.setTags(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
+//        }
+//        if (argMultimap.getValue(PREFIX_GRADE_EDIT).isPresent()) {
+//            editPersonDescriptor.setGrades(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
+//        }
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_EDIT)).ifPresent(editPersonDescriptor::setTags);
+        parseGradesForEdit(argMultimap.getAllValues(PREFIX_GRADE_EDIT)).ifPresent(editPersonDescriptor::setGrades);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
+        if(!editPersonDescriptor.isSingleFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_EDITED_BUT_MORE_THAN_ONE);
+        }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(index, editPersonDescriptor, false, false, false, false, false, false);
     }
 
     /**

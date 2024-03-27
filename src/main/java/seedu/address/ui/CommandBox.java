@@ -42,10 +42,60 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("");
+            int index = extractIndex(commandText);
+
+            CommandResult result = commandExecutor.execute(commandText);
+            if (commandText.contains("!")) {
+                int exclamationIndex = commandText.indexOf('!');
+                char letterAfterExclamation = commandText.charAt(exclamationIndex + 1);
+
+                String prefix;
+                switch (letterAfterExclamation) {
+                case 'n':
+                    prefix = "name";
+                    break;
+                case 'p':
+                    prefix = "phone";
+                    break;
+                case 'e':
+                    prefix = "email";
+                    break;
+                case 'a':
+                    prefix = "address";
+                    break;
+                case 't':
+                    prefix = "tag";
+                    break;
+                case 'g':
+                    prefix = "grade";
+                    break;
+                default:
+                    prefix = "";
+                    break;
+                }
+
+                commandTextField.setText("edit " + index + " " + prefix + ": " + result.getFeedbackToUser());
+            } else {
+                commandTextField.setText("");
+            }
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        } finally {
+            // Move the cursor to the rightmost position
+            commandTextField.end();
+        }
+    }
+
+    private int extractIndex(String commandText) throws ParseException {
+        String[] parts = commandText.split("\\s+"); // Split by whitespace
+        if (parts.length < 2) {
+            throw new ParseException("Invalid command format. Expected 'edit <index> !<type>'.");
+        }
+
+        try {
+            return Integer.parseInt(parts[1]); // Assuming index is the second element
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid index format. Expected a number.");
         }
     }
 
