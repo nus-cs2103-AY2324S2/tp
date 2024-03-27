@@ -239,6 +239,36 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Sorting contact list
+
+This feature allows users to sort their addressbook based on various information, namely, name, company
+name, interview time, salary and priority. This feature leverages on the built-in `ObservableList` provided by JavaFX.
+The sorting is done by creating classes that implements the Comparator<T> interface.
+* `PersonCompanyNameComparator.java`
+* `PersonInterviewTimeComparator.java`
+* `PersonNameComparator.java`
+* `PersonPriorityComparator.java`
+* `PersonSalaryComparator.java`
+
+These comparators are referenced in the `SortCommandParser`. In the `SortCommandParser` each comparator will be assigned
+a static integer based on the CLI Syntax from the userInput. The string is that parsed and assigned an integer from 
+**1 - 4** which are pre-assigned to a comparator.
+
+#### Overview of SortCommand
+![sort_overview_2.png](images%2Fsort_overview_2.png)<br>
+Based on the image above:
+* Step 1: User inputs `sort pri/` which calls the `execute()` function in the `LogicManager` object.
+  * `pri/` is an added CLI Syntax to refer to priority which is an added attribute to `Person` class.
+* Step 2: `LogicManager` calls the `parseCommand()` function in `AddressBookParser` object which interprets the `sort`
+<br> command word and creates a `SortCommandParser` object.
+* Step 3: The `SortCommandParser` object then parses `pri/` and create the `SortCommand` object.
+  * `SortCommand` constructor takes in an **Integer**  and `SortCommandParser` already pre-assigns `pri/` to 0.
+* Step 4: `LogicManager` then executes the command.
+* Step 5: `SortCommand` will call `updateSortedPersonList()` from the `Model` object which has a reference to the
+`AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
+comparator.
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
