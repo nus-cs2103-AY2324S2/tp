@@ -24,7 +24,7 @@ interactions, FitBook is the perfect application for you to manage your clients!
 1. Double-click the FitBook.jar file to launch it.
     * If that doesn't work, try the following steps:
 
-        1. Open a command prompt (cmd for Windows, Terminal for Mac)
+        1. Open a command prompt (**cmd** for Windows, **Terminal** for Mac)
 
         1. Use `cd` to navigate to the folder containing FitBook.jar
             * e.g. `cd ~/Downloads/FitBook/`
