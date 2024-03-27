@@ -179,4 +179,20 @@ class AddRelationshipCommandParserTest {
         String userInput2 = originUuid + "siblings";
         assertParseFailure(parser, userInput2, "Invalid command format! \n%1$s");
     }
+
+    @Test
+    void parse_invalidInputFamilyWithRoles_throwsParseException() {
+        String userInput = "parent 0001 child 0003 family";
+        assertParseFailure(parser, userInput, "Please specify the type of familial relationship "
+                + "instead of 'Family'.\n"
+                + " Valid familial relations are: [bioParents, siblings, spouses]");
+    }
+
+    @Test
+    void parse_invalidInputFamily_throwsParseException() {
+        String userInput = "0001 0003 family";
+        assertParseFailure(parser, userInput, "Please specify the type of "
+                + "familial relationship instead of 'Family'.\n"
+                + " Valid familial relations are: [bioParents, siblings, spouses]");
+    }
 }

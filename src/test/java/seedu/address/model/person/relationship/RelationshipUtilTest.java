@@ -66,25 +66,35 @@ public class RelationshipUtilTest {
 
     @Test
     public void hasRelationshipWithDescriptor_existingRelationshipWithDescriptor_returnsTrue() {
-        Attribute name1 = new NameAttribute("Name", "John Doe");
-        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-        Attribute[] attributes1 = new Attribute[]{name1};
-        Attribute[] attributes2 = new Attribute[]{name2};
-
-        // Adding dummy people for testing
-        Person person1 = new Person(attributes1);
-        Person person2 = new Person(attributes2);
-        UUID uuid11 = person1.getUuid();
-        UUID uuid22 = person2.getUuid();
-        // Create a test relationship
-        Relationship testRelationship = new Relationship(uuid11, uuid22, "family");
-
-        // Create RelationshipUtil instance and add the test relationship
+        // Create RelationshipUtil instance
         RelationshipUtil relationshipUtil = new RelationshipUtil();
-        relationshipUtil.addRelationship(testRelationship);
+        Relationship relationship = new Relationship(UUID.randomUUID(), UUID.randomUUID(), "housemates");
+        relationshipUtil.addRelationship(relationship);
+        assertTrue(relationshipUtil.descriptorExists("housemates"));
+    }
 
-        // Check if the relationship with the specified descriptor exists
-        assertTrue(relationshipUtil.hasRelationshipWithDescriptor(testRelationship));
+    @Test
+    public void descriptorExists_nonExistingDescriptor_returnsFalse() {
+        // Create RelationshipUtil instance
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+
+        // Create a relationship with a different descriptor
+        Relationship relationship = new Relationship(UUID.randomUUID(), UUID.randomUUID(), "friend");
+
+        // Add the relationship to the RelationshipUtil
+        relationshipUtil.addRelationship(relationship);
+
+        // Check if the descriptor exists
+        assertFalse(relationshipUtil.descriptorExists("family"));
+    }
+
+    @Test
+    public void descriptorExists_noRelationships_returnsFalse() {
+        // Create an empty RelationshipUtil instance
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+
+        // Check if the descriptor exists when there are no relationships
+        assertFalse(relationshipUtil.descriptorExists("family"));
     }
 
     @Test

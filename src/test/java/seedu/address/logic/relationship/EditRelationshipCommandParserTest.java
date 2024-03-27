@@ -13,13 +13,13 @@ public class EditRelationshipCommandParserTest {
 
     @Test
     public void parse_invalidInputMissingParts_throwsParseException() {
-        String userInput = "uuid1 uuid2 family";
+        String userInput = "uuid1 uuid2 siblings";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
     @Test
     public void parse_invalidInputInvalidUuid_throwsParseException() {
-        String userInput = "invalidUuid uuid2 family friend";
+        String userInput = "invalidUuid uuid2 siblings friend";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
@@ -31,7 +31,7 @@ public class EditRelationshipCommandParserTest {
 
     @Test
     public void parse_invalidInputSameDescriptors_throwsParseException() {
-        String userInput = "uuid1 uuid2 family family";
+        String userInput = "uuid1 uuid2 siblings siblings";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
@@ -41,7 +41,7 @@ public class EditRelationshipCommandParserTest {
         // Valid input with UUIDs and relationship descriptors
         String userInput = "1234 "
                 + "5432 "
-                + "family friend";
+                + "siblings friend";
 
         EditRelationshipCommandParser parser = new EditRelationshipCommandParser();
 
@@ -58,7 +58,7 @@ public class EditRelationshipCommandParserTest {
         // Valid input with UUIDs and relationship descriptors
         String userInput = "Boss 1234 "
                 + "subordinate 5432 "
-                + "family workbuddies";
+                + "siblings workbuddies";
 
         EditRelationshipCommandParser parser = new EditRelationshipCommandParser();
 
@@ -72,7 +72,7 @@ public class EditRelationshipCommandParserTest {
 
     @Test
     public void parse_validInputWithRoleInvalidNewRelationshipDescriptor_throwsParseException() {
-        String userInput = "Role1 uuid1 Role2 uuid2 oldDescriptor family";
+        String userInput = "Role1 1234 Role2 1245 oldDescriptor family";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
@@ -96,8 +96,7 @@ public class EditRelationshipCommandParserTest {
 
     @Test
     public void parse_invalidInputWithFamilyDescriptor_throwsParseException() {
-        String userInput = "role1 uuid1 role2 uuid2 oldDescriptor family";
-
+        String userInput = "role1 1234 role2 1256 family newDescriptor";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 

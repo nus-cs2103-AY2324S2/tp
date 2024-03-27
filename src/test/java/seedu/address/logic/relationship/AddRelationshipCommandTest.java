@@ -30,6 +30,17 @@ class AddRelationshipCommandTest {
     }
 
     @Test
+    void testExecute_duplicateInputThrowsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0001";
+        String relationshipDescriptor = "housemates";
+        AddRelationshipCommand addRelationshipCommand =
+                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertCommandFailure(addRelationshipCommand, model,
+                "Relationships must be between 2 different people");
+    }
+
+    @Test
     void execute_validInput_success() {
         String testOriginUuid = "0001";
         String testTargetUuid = "0002";
@@ -43,17 +54,6 @@ class AddRelationshipCommandTest {
         expectedModel.addRelationship(
                 new Relationship(person1Uuid, person2Uuid, familyRelationshipDescriptor));
         assertCommandSuccess(addRelationshipCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    void testExecute_duplicateInputThrowsException() {
-        String testOriginUuid = "0001";
-        String testTargetUuid = "0001";
-        String relationshipDescriptor = "housemates";
-        AddRelationshipCommand addRelationshipCommand =
-                new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
-        assertCommandFailure(addRelationshipCommand, model,
-                "Relationships must be between 2 different people");
     }
 
     @Test
