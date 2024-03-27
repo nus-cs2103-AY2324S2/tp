@@ -27,7 +27,7 @@ public class MarkPaymentCommandParser implements Parser<MarkPaymentCommand> {
         }
 
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        Payment paymentAmount = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT).get());
+        Payment paymentAmount = ParserUtil.parsePayment(argMultimap.getValue(PREFIX_PAYMENT));
 
         return new MarkPaymentCommand(id, paymentAmount.getAmount());
     }
