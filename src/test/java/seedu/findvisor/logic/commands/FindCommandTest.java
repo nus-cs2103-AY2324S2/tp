@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.findvisor.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -28,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.ModelManager;
 import seedu.findvisor.model.UserPrefs;
+import seedu.findvisor.model.person.AddressContainsKeywordPredicate;
 import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
 import seedu.findvisor.model.person.NameContainsKeywordPredicate;
 import seedu.findvisor.model.person.Person;
@@ -122,6 +124,16 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_nonExistentAddress_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        AddressContainsKeywordPredicate predicate = new AddressContainsKeywordPredicate(VALID_ADDRESS_AMY);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_nonExistentTag_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         TagsContainsKeywordsPredicate tagsPredicate = new TagsContainsKeywordsPredicate(
@@ -161,6 +173,16 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_existingAddress_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        AddressContainsKeywordPredicate predicate = new AddressContainsKeywordPredicate(BENSON.getAddress().value);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
     }
 
     @Test

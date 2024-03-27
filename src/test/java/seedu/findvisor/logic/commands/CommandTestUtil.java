@@ -63,6 +63,13 @@ public class CommandTestUtil {
             + PREFIX_TAG + VALID_TAG_FINANCIAL_PLAN;
     public static final String REMARK_DESC = " " + PREFIX_REMARK + REMARK;
 
+    public static final String EMPTY_NAME_DESC = " " + PREFIX_NAME;
+    public static final String EMPTY_PHONE_DESC = " " + PREFIX_PHONE;
+    public static final String EMPTY_EMAIL_DESC = " " + PREFIX_EMAIL;
+    public static final String EMPTY_ADDRESS_DESC = " " + PREFIX_ADDRESS;
+    public static final String EMPTY_TAG_DESC = " " + PREFIX_TAG;
+    public static final String INCOMPLETE_TAG_DESC = " " + PREFIX_TAG + " " + PREFIX_TAG + "friends";
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
