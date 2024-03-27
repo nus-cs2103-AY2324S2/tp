@@ -160,7 +160,12 @@ public class ParserUtil {
     public static Week parseWeek(String week) throws ParseException {
         requireNonNull(week);
         String trimmedWeek = week.trim();
-        Index weekIndex = parseIndex(trimmedWeek);
+        Index weekIndex;
+        try {
+            weekIndex = parseIndex(trimmedWeek);
+        } catch (ParseException e) {
+            throw new ParseException(Week.MESSAGE_CONSTRAINTS);
+        }
         if (!Week.isValidWeek(weekIndex)) {
             throw new ParseException(Week.MESSAGE_CONSTRAINTS);
         }
