@@ -1,0 +1,14 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+Comparator <|-- PersonCompanyNameComparator
+Comparator <|-- NameContainsKeywordsPredicate
+Comparator <|-- PersonInterviewTimeComparator
+Comparator <|-up- PersonNameComparator
+Comparator <|-up- PersonPriorityComparator
+Comparator <|-up- PersonSalaryComparator
+
+@enduml
