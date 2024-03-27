@@ -35,7 +35,7 @@ public class AddApplicationCommand extends Command {
     public static final String MESSAGE_DUPLICATE_APPLICATION = "This candidate already applied for this job "
             + "and application has been processed already into the list";
     public static final String MESSAGE_NO_PERSON_IN_LIST = "This candidate is not in the current list of candidates! ";
-    public static final String MESSAGE_NO_JOB_IN_LIST = "This job is not yet created! ";
+    public static final String MESSAGE_NO_JOB_IN_LIST = "This job has not been created";
 
     private final Email email;
     private final String jobTitle;
@@ -60,11 +60,7 @@ public class AddApplicationCommand extends Command {
      * provided by the recruiter
      */
     public AddApplicationCommand(Email email, String jobTitle) {
-        requireNonNull(email);
-        requireNonNull(jobTitle);
-        this.email = email;
-        this.jobTitle = jobTitle;
-        this.status = new Status("PRESCREEN");
+        this(email, jobTitle, new Status("PRESCREEN"));
     }
 
     @Override

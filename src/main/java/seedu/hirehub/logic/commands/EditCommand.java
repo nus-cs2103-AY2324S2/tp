@@ -52,6 +52,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String STATUS_CANNOT_BE_EDITED = "Status of candidates cannot be edited via edit method.\n"
+            + "Please use status command instead in order to update recruitment status for candidates.";
+    public static final String COMMENT_CANNOT_BE_EDITED = "Comment on candidates cannot be edited via edit method.\n"
+            + "Please use comment command instead in order to update comment on individual candidates.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

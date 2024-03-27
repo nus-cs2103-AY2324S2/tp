@@ -7,5 +7,6 @@ package seedu.hirehub.logic;
 public enum CommandBoxState {
     NORMAL,
     CLEARCONFIRM,
-    DELETECONFIRM
+    DELETECONFIRM,
+    DELETEAPPLICATIONCONFIRM
 }

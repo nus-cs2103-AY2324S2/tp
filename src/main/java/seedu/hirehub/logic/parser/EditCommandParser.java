@@ -16,10 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.hirehub.commons.core.index.Index;
-import seedu.hirehub.logic.commands.CommentCommand;
 import seedu.hirehub.logic.commands.EditCommand;
 import seedu.hirehub.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.hirehub.logic.commands.StatusCommand;
 import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.tag.Tag;
 
@@ -49,11 +47,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COUNTRY);
 
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            throw new ParseException(StatusCommand.STATUS_CANNOT_BE_EDITED);
+            throw new ParseException(EditCommand.STATUS_CANNOT_BE_EDITED);
         }
 
         if (argMultimap.getValue(PREFIX_COMMENT).isPresent()) {
-            throw new ParseException(CommentCommand.COMMENT_CANNOT_BE_EDITED);
+            throw new ParseException(EditCommand.COMMENT_CANNOT_BE_EDITED);
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();

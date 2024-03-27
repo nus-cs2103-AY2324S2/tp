@@ -31,6 +31,7 @@ public class ModelManager implements Model {
     private Optional<Person> lastMentionedPerson;
     private final UniqueJobList jobList;
     private final FilteredList<Job> filteredJobs;
+    private Optional<Application> lastMentionedApplication;
 
     private final UniqueApplicationList applicationList;
     private final FilteredList<Application> filteredApplications;
@@ -50,6 +51,7 @@ public class ModelManager implements Model {
         jobList = new UniqueJobList();
         filteredJobs = new FilteredList<>(jobList.asUnmodifiableObservableList());
         applicationList = new UniqueApplicationList();
+        lastMentionedApplication = Optional.<Application>empty();
         filteredApplications = new FilteredList<>(applicationList.asUnmodifiableObservableList());
     }
 
@@ -219,7 +221,7 @@ public class ModelManager implements Model {
     @Override
     public void setApplication(Application target, Application editedApplication) {
         requireAllNonNull(target, editedApplication);
-        applicationList.setJob(target, editedApplication);
+        applicationList.setApplication(target, editedApplication);
     }
 
     //=========== Filtered Application List Accessors ======================================================
@@ -231,6 +233,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
         return filteredApplications;
+    }
+
+    @Override
+    public void setLastMentionedApplication(Application p) {
+        lastMentionedApplication = Optional.of(p);
+    }
+
+    @Override
+    public Optional<Application> getLastMentionedApplication() {
+        return lastMentionedApplication;
     }
 
     @Override

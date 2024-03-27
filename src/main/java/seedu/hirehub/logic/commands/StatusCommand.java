@@ -20,8 +20,8 @@ public class StatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates recruitment status of a candidate"
-            + " existing in the list of applications to one of the five status:\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update status for an application within "
+            + "the application list to one of the following 5 statuses:\n"
             + "PRESCREEN, IN_PROGRESS, WAITLIST, ACCEPTED, REJECTED\n"
             + "Parameters: e/EMAIL ti/jobTitle s/Status \n"
             + "Example: " + COMMAND_WORD + " e/acekhoon@gmail.com ti/Quantitative Trader s/ACCEPTED";
@@ -34,9 +34,6 @@ public class StatusCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_STATUS = "This candidate with identical recruitment status %1$s "
             + "already exists in the application list";
-
-    public static final String STATUS_CANNOT_BE_EDITED = "Status of candidates cannot be edited via edit method.\n"
-            + "Please use status command instead in order to update recruitment status for candidates.";
     private final Email email;
     private final String jobTitle;
     private final Status status;
@@ -79,10 +76,9 @@ public class StatusCommand extends Command {
         List<Application> lastShownApplicationList = model.getFilteredApplicationList();
         Job jobToFind = new Job(jobTitle, "", 10);
 
-        for (int i = 0; i < lastShownApplicationList.size(); i++) {
-            if (email.equals(lastShownApplicationList.get(i).getPerson().getEmail())
-                    && jobToFind.isSameJob(lastShownApplicationList.get(i).getJob())) {
-                return lastShownApplicationList.get(i);
+        for (Application app : lastShownApplicationList) {
+            if (email.equals(app.getPerson().getEmail()) && jobToFind.isSameJob(app.getJob())) {
+                return app;
             }
         }
 

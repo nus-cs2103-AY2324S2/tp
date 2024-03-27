@@ -54,7 +54,7 @@ public class UniqueApplicationList implements Iterable<Application> {
      * {@code target} must exist in the list.
      * The job identity of {@code editedApplication} must not be the same as another existing job in the list.
      */
-    public void setJob(Application target, Application editedApplication) {
+    public void setApplication(Application target, Application editedApplication) {
         requireAllNonNull(target, editedApplication);
 
         int index = internalList.indexOf(target);

@@ -31,9 +31,6 @@ public class CommentCommand extends Command {
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Person: %1$s";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Removed comment from Person: %1$s";
 
-    public static final String COMMENT_CANNOT_BE_EDITED = "Comment on candidates cannot be edited via edit method.\n"
-            + "Please use comment command instead in order to update comment on individual candidates.";
-
     private final Index index;
     private final Comment comment;
 

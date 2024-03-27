@@ -120,6 +120,10 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
 
+    public void setLastMentionedApplication(Application app);
+
+    public Optional<Application> getLastMentionedApplication();
+
     /**
      * Returns true if a job with the same identity as {@code job} exists in the address book.
      */

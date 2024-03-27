@@ -10,6 +10,7 @@ import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.application.Application;
+import seedu.hirehub.model.person.Person;
 
 /**
  * Adds an job application from a candidate to the list of job applications
@@ -21,31 +22,16 @@ public class DeleteApplicationCommand extends Command {
             + "the list of job applications \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
-    public static final String DELETE_APPLICATION_SUCCESS = "Job application at entry number %1$d"
-            + " successfully deleted!";
-
-    private final Index index;
-
-    /**
-     * @param index of the job application in the filtered application list to delete the application
-     */
-    public DeleteApplicationCommand(Index index) {
-        requireNonNull(index);
-        this.index = index;
-    }
+    public static final String DELETE_APPLICATION_SUCCESS = "Job application for candidate \"%1$s\" "
+            + "applying for job \"%2$s\" successfully deleted!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Application> lastShownApplicationList = model.getFilteredApplicationList();
-
-        if (index.getZeroBased() >= lastShownApplicationList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        model.deleteApplication(lastShownApplicationList.get(index.getZeroBased()));
-
-        return new CommandResult(String.format(DELETE_APPLICATION_SUCCESS, index.getOneBased()));
+        Application applicationToDelete = model.getLastMentionedApplication().get();
+        model.deleteApplication(applicationToDelete);
+        return new CommandResult(String.format(DELETE_APPLICATION_SUCCESS,
+                applicationToDelete.getPerson().getName(), applicationToDelete.getJob().title));
     }
 
     @Override
@@ -58,15 +44,12 @@ public class DeleteApplicationCommand extends Command {
         if (!(other instanceof AddApplicationCommand)) {
             return false;
         }
-
-        DeleteApplicationCommand otherDeleteApplicationCommand = (DeleteApplicationCommand) other;
-        return index.equals(otherDeleteApplicationCommand.index);
+        return true;
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
                 .toString();
     }
 }
