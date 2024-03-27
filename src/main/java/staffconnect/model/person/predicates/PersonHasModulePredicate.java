@@ -21,7 +21,7 @@ public class PersonHasModulePredicate implements Predicate<Person> {
         if (module == null) {
             return true;
         }
-        return person.getModule().toString().equalsIgnoreCase(module.value);
+        return person.getModule().toString().equalsIgnoreCase(module.toString());
     }
 
     @Override
