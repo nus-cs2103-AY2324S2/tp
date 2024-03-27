@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,6 +44,25 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     * Parses the input string containing one or more whitespace-separated indices into {@code Index} object array.
+     * Leading and trailing whitespaces in the input string and around individual indices will be trimmed.
+     *
+     * @param indicesString the string containing one or more one-based indices separated by whitespace.
+     * @return an array of {@code Index} objects corresponding to the input indices.
+     * @throws ParseException if any of the specified indices are invalid (not non-zero unsigned integers).
+     */
+    public static Index[] parseIndices(String indicesString) throws ParseException {
+        String[] parts = indicesString.trim().split("\\s+");
+        Index[] indices = new Index[parts.length];
+
+        for (int i = 0; i < parts.length; i++) {
+            indices[i] = parseIndex(parts[i]);
+        }
+        return indices;
+    }
+
 
     /**
      * Parses a {@code String Nric} into a {@code Nric}.
@@ -203,6 +224,46 @@ public class ParserUtil {
 
         try {
             return LocalDateTime.parse(trimmedDate + " " + trimmedTime, formatter);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME);
+        }
+    }
+
+    /**
+     * Parses {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireAllNonNull(date);
+
+        String trimmedDate = date.trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        try {
+            return LocalDate.parse(trimmedDate, formatter);
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME);
+        }
+    }
+
+    /**
+     * Parses {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static LocalTime parseLocalTime(String time) throws ParseException {
+        requireAllNonNull(time);
+
+        String trimmedTime = time.trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+
+        try {
+            return LocalTime.parse(trimmedTime, formatter);
         } catch (Exception e) {
             throw new ParseException(MESSAGE_INVALID_DATE_TIME);
         }

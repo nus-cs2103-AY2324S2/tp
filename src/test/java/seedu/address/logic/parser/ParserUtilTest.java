@@ -1,12 +1,16 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,6 +20,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.BirthDate;
 import seedu.address.model.person.Email;
@@ -71,6 +76,37 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+    @Test
+    public void parseIndices_multipleValidInput_success() throws Exception {
+        Index[] expected = new Index[]{INDEX_FIRST_PERSON, INDEX_FIRST_NOTE};
+        assertArrayEquals(expected, ParserUtil.parseIndices("1 1"));
+    }
+
+    @Test
+    public void parseIndices_validInputWithWhitespaces_success() throws Exception {
+        Index[] expected = new Index[]{INDEX_FIRST_PERSON, INDEX_FIRST_NOTE};
+        assertArrayEquals(expected, ParserUtil.parseIndices("  1   1  "));
+    }
+
+    @Test
+    public void parseIndices_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1 a 3"));
+    }
+
+    @Test
+    public void parseIndices_emptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(""));
+    }
+
+    @Test
+    public void parseIndices_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(Long.toString((long) Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseIndices_onlyWhitespaces_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("    "));
     }
 
     @Test
@@ -287,6 +323,45 @@ public class ParserUtilTest {
         @Test
         public void parseLocalDateTime_null_throwsNullPointerException() {
             assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDateTime(null, null));
+        }
+    }
+
+    @Nested
+    public class ParseLocalDateTests {
+        @Test
+        public void parseLocalDate_success() throws Exception {
+            LocalDate expectedDate =
+                    LocalDate.parse(VALID_DATE, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            assertEquals(expectedDate, ParserUtil.parseLocalDate(VALID_DATE));
+        }
+
+        @Test
+        public void parseLocalDate_invalidDate_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalDate(INVALID_DATE));
+        }
+
+        @Test
+        public void parseLocalDate_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDate(null));
+        }
+    }
+    @Nested
+    public class ParseLocalTimeTests {
+        @Test
+        public void parseLocalTime_success() throws Exception {
+            LocalTime expectedTime =
+                    LocalTime.parse(VALID_TIME, DateTimeFormatter.ofPattern("HHmm"));
+            assertEquals(expectedTime, ParserUtil.parseLocalTime(VALID_TIME));
+        }
+
+        @Test
+        public void parseLocalTime_invalidDate_throwsParseException() {
+            assertThrows(ParseException.class, () -> ParserUtil.parseLocalTime(INVALID_TIME));
+        }
+
+        @Test
+        public void parseLocalTime_null_throwsNullPointerException() {
+            assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalTime(null));
         }
     }
 
