@@ -15,15 +15,15 @@ import scrolls.elder.commons.util.ConfigUtil;
 import scrolls.elder.commons.util.StringUtil;
 import scrolls.elder.logic.Logic;
 import scrolls.elder.logic.LogicManager;
-import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.Datastore;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.ReadOnlyDatastore;
 import scrolls.elder.model.ReadOnlyUserPrefs;
 import scrolls.elder.model.UserPrefs;
 import scrolls.elder.model.util.SampleDataUtil;
-import scrolls.elder.storage.AddressBookStorage;
-import scrolls.elder.storage.JsonAddressBookStorage;
+import scrolls.elder.storage.DatastoreStorage;
+import scrolls.elder.storage.JsonDatastoreStorage;
 import scrolls.elder.storage.JsonUserPrefsStorage;
 import scrolls.elder.storage.Storage;
 import scrolls.elder.storage.StorageManager;
@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DatastoreStorage datastoreStorage = new JsonDatastoreStorage(userPrefs.getDatastoreFilePath());
+        storage = new StorageManager(datastoreStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -68,26 +68,26 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s datastore and {@code userPrefs}. <br>
+     * The data from the sample datastore will be used instead if {@code storage}'s datastore is not found,
+     * or an empty datastore will be used instead if errors occur when reading {@code storage}'s datastore.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getDatastoreFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyDatastore> datastoreOptional;
+        ReadOnlyDatastore initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+            datastoreOptional = storage.readDatastore();
+            if (datastoreOptional.isEmpty()) {
+                logger.info("Creating a new data file " + storage.getDatastoreFilePath()
+                        + " populated with sample data.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = datastoreOptional.orElseGet(SampleDataUtil::getSampleDatastore);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook(0);
+            logger.warning("Data file at " + storage.getDatastoreFilePath() + " could not be loaded."
+                    + " Will be starting no data.");
+            initialData = new Datastore();
         }
 
         return new ModelManager(initialData, userPrefs);

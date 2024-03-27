@@ -24,7 +24,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_ROLE = "friend";
 
-    private static final String VALID_ID = String.valueOf(TypicalPersons.BENSON.getId());
+    private static final String VALID_ID = String.valueOf(TypicalPersons.BENSON.getPersonId());
     private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
     private static final String VALID_PHONE = TypicalPersons.BENSON.getPhone().toString();
     private static final String VALID_EMAIL = TypicalPersons.BENSON.getEmail().toString();

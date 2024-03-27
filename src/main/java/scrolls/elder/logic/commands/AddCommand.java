@@ -12,6 +12,7 @@ import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.Person;
 
 /**
@@ -41,6 +42,10 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
+    /**
+     * Contains data for the person to be added.
+     * Does not contain the final person ID.
+     */
     private final Person toAdd;
 
     /**
@@ -54,14 +59,13 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        PersonStore store = model.getMutableDatastore().getMutablePersonStore();
 
-        int gid = model.getAddressBook().getGlobalId();
-        toAdd.setId(gid);
-        if (model.hasPerson(toAdd)) {
+        if (store.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        store.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

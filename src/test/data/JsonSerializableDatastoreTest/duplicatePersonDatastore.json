@@ -1,5 +1,4 @@
 {
-  "globalId": 2,
   "persons": [ {
     "id" : "0",
     "name": "Alice Pauline",
@@ -15,5 +14,6 @@
     "email": "pauline@example.com",
     "role" : "befriendee",
     "address": "4th street"
-  } ]
+  } ],
+  "logs" : [ ]
 }

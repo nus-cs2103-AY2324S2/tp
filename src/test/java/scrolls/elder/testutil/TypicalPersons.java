@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
 
@@ -78,13 +78,12 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook(0);
+    public static PersonStore getTypicalPersonStore() {
+        PersonStore store = new PersonStore();
         for (Person person : getTypicalPersons()) {
-            person.setId(ab.getGlobalId());
-            ab.addPerson(person);
+            store.addPersonWithId(person);
         }
-        return ab;
+        return store;
     }
 
     public static List<Person> getTypicalPersons() {

@@ -7,8 +7,6 @@ import scrolls.elder.commons.core.GuiSettings;
 import scrolls.elder.logic.commands.CommandResult;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.logic.parser.exceptions.ParseException;
-import scrolls.elder.model.Model;
-import scrolls.elder.model.ReadOnlyAddressBook;
 import scrolls.elder.model.person.Person;
 
 /**
@@ -24,13 +22,6 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /**
-     * Returns the AddressBook.
-     *
-     * @see Model#getAddressBook()
-     */
-    ReadOnlyAddressBook getAddressBook();
-
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
@@ -43,7 +34,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatastoreFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

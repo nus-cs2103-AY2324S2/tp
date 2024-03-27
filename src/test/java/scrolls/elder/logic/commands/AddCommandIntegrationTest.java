@@ -12,7 +12,7 @@ import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.UserPrefs;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.testutil.PersonBuilder;
-import scrolls.elder.testutil.TypicalPersons;
+import scrolls.elder.testutil.TypicalDatastore;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -23,16 +23,15 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        validPerson.setId(expectedModel.getAddressBook().getGlobalId());
-        expectedModel.addPerson(validPerson);
+        Model expectedModel = new ModelManager(model.getDatastore(), new UserPrefs());
+        expectedModel.getMutableDatastore().getMutablePersonStore().addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
@@ -41,7 +40,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
+        Person personInList = model.getDatastore().getPersonStore().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model,
                 AddCommand.MESSAGE_DUPLICATE_PERSON);
     }

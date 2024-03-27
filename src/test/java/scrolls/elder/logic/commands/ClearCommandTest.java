@@ -4,11 +4,11 @@ import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import scrolls.elder.model.AddressBook;
+import scrolls.elder.model.Datastore;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.UserPrefs;
-import scrolls.elder.testutil.TypicalPersons;
+import scrolls.elder.testutil.TypicalDatastore;
 
 public class ClearCommandTest {
 
@@ -22,9 +22,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook(0));
+        Model model = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
+        expectedModel.setDatastore(new Datastore());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

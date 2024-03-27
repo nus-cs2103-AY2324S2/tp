@@ -19,10 +19,10 @@ import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.logic.parser.exceptions.ParseException;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.ReadOnlyDatastore;
 import scrolls.elder.model.UserPrefs;
 import scrolls.elder.model.person.Person;
-import scrolls.elder.storage.JsonAddressBookStorage;
+import scrolls.elder.storage.JsonDatastoreStorage;
 import scrolls.elder.storage.JsonUserPrefsStorage;
 import scrolls.elder.storage.StorageManager;
 import scrolls.elder.testutil.Assert;
@@ -41,8 +41,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonDatastoreStorage addressBookStorage =
+                new JsonDatastoreStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -121,7 +121,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDatastore(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -148,9 +148,9 @@ public class LogicManagerTest {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
         // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
+        JsonDatastoreStorage addressBookStorage = new JsonDatastoreStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+            public void saveDatastore(ReadOnlyDatastore datastore, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -168,7 +168,7 @@ public class LogicManagerTest {
                 + CommandTestUtil.ROLE_DESC_VOLUNTEER;
         Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.getMutableDatastore().getMutablePersonStore().addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

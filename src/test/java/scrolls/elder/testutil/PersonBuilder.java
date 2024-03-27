@@ -5,13 +5,12 @@ import java.util.Optional;
 import java.util.Set;
 
 import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.PersonFactory;
 import scrolls.elder.model.person.Phone;
 import scrolls.elder.model.person.Role;
-import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 import scrolls.elder.model.util.SampleDataUtil;
 
@@ -41,7 +40,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        id = 0;
+        id = -1;
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -56,7 +55,7 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
-        id = personToCopy.getId();
+        id = personToCopy.getPersonId();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -86,7 +85,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -143,14 +142,8 @@ public class PersonBuilder {
      * Builds a Person based on the fields in the person builder
      */
     public Person build() {
-        Person person;
-        if (role.isVolunteer()) {
-            person = new Volunteer(name, phone, email, address, tags, pairedWithName, pairedWithId);
-        } else {
-            person = new Befriendee(name, phone, email, address, tags, pairedWithName, pairedWithId);
-        }
-        person.setId(id);
-        return person;
+        return PersonFactory.withIdFromParams(id, name, phone, email, address, role, tags, pairedWithName,
+                pairedWithId);
     }
 
 }

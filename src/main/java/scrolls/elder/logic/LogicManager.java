@@ -14,7 +14,6 @@ import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.logic.parser.AddressBookParser;
 import scrolls.elder.logic.parser.exceptions.ParseException;
 import scrolls.elder.model.Model;
-import scrolls.elder.model.ReadOnlyAddressBook;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.storage.Storage;
 
@@ -51,7 +50,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveDatastore(model.getDatastore());
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -62,28 +61,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+        return model.getDatastore().getPersonStore().getFilteredPersonList();
     }
 
     @Override
     public ObservableList<Person> getFilteredVolunteerList() {
-        return model.getFilteredVolunteerList();
+        return model.getDatastore().getPersonStore().getFilteredVolunteerList();
     }
 
     @Override
     public ObservableList<Person> getFilteredBefriendeeList() {
-        return model.getFilteredBefriendeeList();
+        return model.getDatastore().getPersonStore().getFilteredBefriendeeList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getDatastoreFilePath() {
+        return model.getDatastoreFilePath();
     }
 
     @Override

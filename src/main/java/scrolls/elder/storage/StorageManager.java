@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import scrolls.elder.commons.core.LogsCenter;
 import scrolls.elder.commons.exceptions.DataLoadingException;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.ReadOnlyDatastore;
 import scrolls.elder.model.ReadOnlyUserPrefs;
 import scrolls.elder.model.UserPrefs;
 
@@ -17,14 +17,14 @@ import scrolls.elder.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final DatastoreStorage datastoreStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code DatatstoreStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(DatastoreStorage datastoreStorage, UserPrefsStorage userPrefsStorage) {
+        this.datastoreStorage = datastoreStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getDatastoreFilePath() {
+        return datastoreStorage.getDatastoreFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyDatastore> readDatastore() throws DataLoadingException {
+        return readDatastore(datastoreStorage.getDatastoreFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
+    public Optional<ReadOnlyDatastore> readDatastore(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return datastoreStorage.readDatastore(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveDatastore(ReadOnlyDatastore datastore) throws IOException {
+        saveDatastore(datastore, datastoreStorage.getDatastoreFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveDatastore(ReadOnlyDatastore datastore, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        datastoreStorage.saveDatastore(datastore, filePath);
     }
 
 }
