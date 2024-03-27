@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 
 /**
  * Deletes 1 or more people identified using it's displayed index from the address book.
+ * If more than 1 person are to be deleted, the index of each person should be separated by a comma.
  */
 public class DeleteCommand extends Command {
 
