@@ -7,6 +7,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
@@ -25,6 +26,7 @@ public class JsonAdaptedAppointment {
     private final String endTime;
     private final String appointmentType;
     private final String note;
+    private final boolean isMarked;
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
      */
@@ -33,13 +35,14 @@ public class JsonAdaptedAppointment {
                              @JsonProperty("date") String date,
                              @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
                              @JsonProperty("appointmentType") String appointmentType,
-                                  @JsonProperty("note") String note) {
+                                  @JsonProperty("note") String note, @JsonProperty("mark") boolean isMarked) {
         this.nric = nric;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.appointmentType = appointmentType;
         this.note = note;
+        this.isMarked = isMarked;
     }
 
     /**
@@ -48,10 +51,11 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         nric = source.getNric().value;
         date = source.getDate().toString();
-        startTime = source.getTimePeriod().getStartTime().toString();
-        endTime = source.getTimePeriod().getEndTime().toString();
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
         appointmentType = source.getAppointmentType().typeName;
         note = source.getNote().note;
+        isMarked = source.getMark().isMarked;
     }
 
     /**
@@ -111,7 +115,11 @@ public class JsonAdaptedAppointment {
         }
         final Note modelNote = new Note(note);
 
-        return new Appointment(modelNric, modelDate, modelTimePeriod,
-                modelAppointmentType, modelNote);
+        final Mark modelMarked = new Mark(isMarked);
+
+        Appointment newAppt = new Appointment(modelNric, modelDate, modelTimePeriod,
+            modelAppointmentType, modelNote, modelMarked);
+
+        return newAppt;
     }
 }

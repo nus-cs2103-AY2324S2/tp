@@ -9,6 +9,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
@@ -116,7 +117,7 @@ public interface Model {
      * Cancels the given appointment.
      * The appointment must exist in the address book.
      */
-    void cancelAppointment(Appointment appointment);
+    void cancelAppointment(Appointment key, AppointmentView apptViewKey);
 
     /**
      * Adds the given appointment.
@@ -142,8 +143,23 @@ public interface Model {
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
+
     void updateFilteredAppointmentList(Predicate<AppointmentView> predicate);
+
+    /** Returns an unmodifiable view of the appointment day-view list */
+    ObservableList<AppointmentView> getFilteredAppointmentDayViewList();
+
+    /**
+     * Updates the appointment day-view list, filtering by today's date
+     */
+    void updateFilteredAppointmentDayViewList();
 
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);
+
+    /** Returns an AppointmentView that matches based on Name, Appointment given **/
+    AppointmentView getMatchingAppointmentView(Name name, Appointment appt);
+
+    /** Deletes all appointments of a targetNric **/
+    void deleteAppointmentsWithNric(Nric targetNric);
 }

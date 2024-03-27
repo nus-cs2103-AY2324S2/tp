@@ -13,6 +13,7 @@ import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.AppointmentViewList;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
@@ -196,9 +197,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Cancels {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void cancelAppointment(Appointment key) {
+    public void cancelAppointment(Appointment key, AppointmentView apptViewKey) {
         appointments.remove(key);
-        appointmentView.remove(new AppointmentView(getPatientWithNric(key.getNric()).getName(), key));
+        appointmentView.remove(apptViewKey);
     }
 
     //// util methods
@@ -227,6 +228,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
         return appointments.getMatchingAppointment(nric, date, timePeriod);
+    }
+
+    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
+        return appointmentView.getMatchingAppointmentView(name, appt);
+    }
+
+    /** delete appointments when patient is deleted */
+    public void deleteAppointmentsWithNric(Nric targetNric) {
+        appointments.deleteAppointmentsWithNric(targetNric);
+        appointmentView.deleteAppointmentsWithNric(targetNric);
     }
 
     /**

@@ -6,7 +6,7 @@
 
 # CLInic User Guide
 
-CLInic is a **desktop app for managing patients and appointments, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CLInic can get your patient management tasks done faster than traditional GUI apps.
+Welcome to **CLInic**, your digital assistant for managing patients and appointments! CLInic is a desktop app designed for clinic assistants, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). <br/> <br/>If you're familiar with digitalized software or have used a CLI before, you'll find CLInic intuitive. Don't worry if you're new to CLI; we'll guide you through every step.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,24 +15,34 @@ CLInic is a **desktop app for managing patients and appointments, optimized for 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. System Requirements: Ensure you have [**Java 11**](https://www.oracle.com/java/technologies/downloads/#java11) or above installed on your computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `CLInic.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Save the file to a location on your computer that will serve as your home folder for CLInic.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Open a command terminal on your computer. If you're unsure how to do this, we'll walk you through it.
+   * **Windows**: Press `Win + R`, type `cmd`, and press `Enter`.
+   * **MacOS**: Press `Cmd + Space`, type `Terminal`, and press `Enter`.
+   * **Linux**: Press `Ctrl + Alt + T`.
+
+1. Navigate to the folder where you saved the `CLInic.jar` file. If you saved it in your `Downloads` folder, you can use the following commands:
+   * **Windows**: `cd Downloads`
+   * **MacOS**: `cd ~/Downloads`
+   * **Linux**: `cd ~/Downloads`
+
+1. Type `java -jar CLInic.jar` command into terminal to run the application.<br>
+      A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+      ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list` : Lists all patients.
 
-   * `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addPatient n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to CLInic.
 
-   * `delete T0123456A` : Deletes patient with NRIC T0123456A and corresponding appointments.
+   * `deletePatient T0123456A` : Deletes patient with NRIC T0123456A and corresponding appointments.
 
    * `clear` : Deletes all contacts.
 
@@ -49,7 +59,7 @@ CLInic is a **desktop app for managing patients and appointments, optimized for 
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addPatient n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -77,83 +87,82 @@ Format: `help`
 
 ### Adding a patient: `addPatient`
 
-Adds a patient to the address book.
+Adds a patient to CLInic.
+>>>>>>> master
 
 Format: `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A patient can have any number of tags (including 0)
+**Tip:** A patient must have a unique NRIC in CLInic.
+>>>>>>> master
 </box>
 
 Examples:
 * `addPatient n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addPatient n/Betsy Crowe i/S1234567A b/2001-02-03 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all patients : `list`
+### Deleting a patient : `deletePatient`
 
-Shows a list of all patients in the address book.
+Deletes the specified patient (identified by NRIC) from CLInic.
+Corresponding appointments for the specified patient will be deleted too.
 
-Format: `list`
+Format: `deletePatient NRIC`
+* Deletes the patient with specified `NRIC`.
+* The NRIC **must exist within database**.
+
+Examples:
+* `deletePatient S1234567A` deletes the patient with NRIC S1234567A in CLInic.
 
 ### Editing a patient : `editPatient`
 
-Edits an existing patient in the address book.
+Edits an existing patient in CLInic.
 
 Format: `editPatient NRIC [b/DOB] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the patient with the specified `NRIC`. The NRIC must be valid and must exist in the system.
-* At least one of the optional fields must be provided.
+* Edits the patient with the specified NRIC.
+* Ensure the NRIC is valid and exists in the system.
+* Provide at least one optional field for editing.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, existing tags of the patient will be removed, i.e., adding tags is not cumulative. Use t/ to remove all tags.
 
 Examples:
 *  `editPatient T0123456A p/91234567 e/johndoe@example.com` Edits the phone number and email address of the patient with NRIC:`T0123456A` to be `91234567` and `johndoe@example.com` respectively.
 *  `editPatient S8765432Z n/Betsy Crower t/` Edits the name of the patient with NRIC:`S8765432Z` to be `Betsy Crower` and clears all existing tags.
 
-### Locating patients by name or nric: `findPatient`
+### Locating patients: `findPatient`
 
-Finds patients whose names contain any of the given keywords OR nric contain the given keyword.
+Finds patients whose name OR NRIC fit the given keywords.
 
 Format: `findPatient n/ KEYWORD [MORE_KEYWORDS]` OR `findPatient i/ KEYWORD`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name OR nric is searched at once. e.g. `n/ Bob i/ T0123456A` is illegal
+* Only the name OR NRIC is searched at once. e.g. `n/ Bob i/ T0123456A` is illegal
 * Partial words will be matched only if the start of the word is the same e.g. `Han` will match `Hans`
 * For name search: patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `n/ Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* For nric search: patients matching the given keyword will be returned.
+* For NRIC search: patients matching the given keyword will be returned.
   e.g. `n/ T0` will return `T0123456A`, `T0234567B`
   e.g. `n/ T01 T012` will NOT return `T0123456A` as the given keyword is `T01 T012`
 
 Examples:
-* `findPatient i/ S9` returns patients with Nrics `S9876543A` and `S9765432A`
+* `findPatient i/ S9` returns patients with NRICs `S9876543A` and `S9765432A`
 * `findPatient n/ John` returns patients with names `john` and `John Doe`
 * `findPatient n/ alex david` returns patients with names `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a patient : `deletePatient`
+### Listing all patients : `list`
 
-Deletes the specified patient (identified by NRIC) from the address book.
-Corresponding appointments for the specified patient will be deleted too.
+Shows a list of all patients in CLInic.
 
-Format: `deletePatient NRIC`
-
-* Deletes the patient with specified `NRIC`.
-* The NRIC **must exist within database**.
-
-Examples:
-* `delete S1234567A` deletes the patient with NRIC S1234567A in CLInic.
+Format: `list`
 
 ### Adding an Appointment: `addAppt`
 
-Adds an appointment to the address book.
+Adds an appointment to the CLInic.
 
 Format: `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE [note/NOTE]`
-
 * Adds an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
 * Patient with this NRIC **must exist within database**.
 * Details of `APPOINTMENT_TYPE` and `NOTE` will be captured for reference
@@ -165,7 +174,7 @@ Examples:
 
 ### Deleting an Appointment: `deleteAppt`
 
-Cancels an appointment from the address book.
+Deleting an appointment from CLInic.
 
 Format: `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME`
 
@@ -181,10 +190,26 @@ Finds appointments based on the given parameters.
 
 Format: `findAppt [i/NRIC] [d/DATE] [from/START_TIME]`
 
-* Filters an appointment with specific `NRIC`, `DATE` or `START_TIME`
+* Filters an appointment with specific `NRIC`, `DATE` or `START_TIME` (any combination of the 3)
 * If invalid parameters, error detailing what went wrong will be displayed.
 * For argument concerning TIME, all appointments that start at the given time and later than that are returned.
-* Fetching for TIME without DATE will return all appointments whose start time >= that time on any date.
+* Fetching for TIME without DATE will return all appointments whose start from that time or later than that on any date.
+
+Examples:
+* `findAppt d/ 2024-02-20 from/ 11:00`
+*  returns you all appointments on `2024-02-20` starting from `11:00` and later. 
+
+### Marking an Appointment: `mark`
+
+Marks an appointment from the address book.
+
+Format: `mark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
+
+* Marks an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Appointment with the following details **must exist within database**.
+
+Examples:
+* `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
 ### Clearing all entries : `clear`
 
@@ -200,17 +225,17 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+CLInic data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+CLInic data are saved automatically as a JSON file `[JAR file location]/data/CLInic.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
 **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, CLInic will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the CLInic to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ### Archiving data files `[coming in v2.0]`
@@ -222,7 +247,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CLInic home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -232,17 +257,31 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Glossary
+| Term                 | Explanation                                                                                                                                    |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**              | Command Line Interface, a text-based interface for interacting with software by typing commands.                                               |
+| **GUI**              | Graphical User Interface, a visual interface that allows users to interact with software using graphical elements such as windows and buttons. |
+| **JSON**             | JavaScript Object Notation, a lightweight data-interchange format.                                                                             |
+| **NRIC**             | National Registration Identity Card, a unique identifier for individuals in Singapore.                                                         |
+| **TAG**              | A keyword or term assigned to a piece of information, making it easier to search for and organize.                                             |
+| **APPOINTMENT_TYPE** | The type of appointment, e.g., Medical Check-up, Blood Test, etc.                                                                              |
+| **NOTE**             | Additional information or comments about an appointment.                                                                                       |
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**AddPatient**    | `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**Clear**  | `clear`
-**DeletePatient** | `deletePatient NRIC`<br> e.g., `deletePatient T0123456A`
-**AddAppt** | `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in`
-**DeleteAppt** | `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`
-**EditPatient**   | `editPatient NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPatient T0123456A n/James Lee e/jameslee@example.com`
-**FindAppt**| `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findAppt i/ T0123456A d/ 2024-02-20 from/ 11:00`
-**FindPatient**   | `findPatient n/ KEYWORD [MORE_KEYWORDS]` OR `findPatient i/ KEYWORD`<br> e.g., `findPatient n/ James Jake`
-**List**   | `list`
-**Help**   | `help`
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+| Action            | Format, Examples                                                                                                                                                                                 |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **AddPatient**    | `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **DeletePatient** | `deletePatient NRIC`<br> e.g., `delete T0123456A`                                                                                                                                                |                                                                 |
+| **EditPatient**   | `editPatient NRIC [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPatient T0123456A n/James Lee e/jameslee@example.com`                                                 |
+| **FindPatient**   | `findPatient n/ KEYWORD [MORE_KEYWORDS]` OR `findPatient i/ KEYWORD`<br> e.g., `findPatient n/ James Jake`                                                                                       |
+| **List**          | `list`                                                                                                                                                                                           |
+| **AddAppt**       | `addAppt i/NRIC d/DATE from/START_TIME to/END_TIME t/APPOINTMENT_TYPE note/NOTE`<br> e.g., `addAppt i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30 t/ Medical Check-up note/ Routine check-in` |
+| **DeleteAppt**    | `deleteAppt i/NRIC d/DATE from/START_TIME to/END_TIME` <br> e.g., `deleteAppt i/ S8743880A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                  |
+| **FindAppt**      | `findAppt [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `findAppt i/ T0123456A d/ 2024-02-20 from/ 11:00`                                                                                      |
+| **Mark**      | `mark [i/NRIC] [d/DATE] [from/START_TIME]` <br> e.g., `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`                                                                                      |
+| **Clear**         | `clear`                                                                                                                                                                                          |
+| **Exit**          | `exit`                                                                                                                                                                                           |
+| **Help**          | `help`                                                                                                                                                                                           |

@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
 
 
 /**
@@ -124,7 +125,7 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
      * {@code Nric, Date, TimePeriod} given.
      * Throws an {@code AppointmentNotFoundException} if no matching appointmentView is found.
      */
-    public AppointmentView getMatchingAppointment(Name name, Appointment appointment) {
+    public AppointmentView getMatchingAppointmentView(Name name, Appointment appointment) {
         requireNonNull(name);
         requireNonNull(appointment);
 
@@ -184,5 +185,11 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
         internalList.sort(
             Comparator.comparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getDate())
                 .thenComparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getTimePeriod()));
+    }
+
+    /** Delete all appointments with given Nric if such appointments exist without exceptions **/
+    public void deleteAppointmentsWithNric(Nric nric) {
+        requireNonNull(nric);
+        internalList.removeIf(appointmentView -> appointmentView.getAppointment().getNric().equals(nric));
     }
 }

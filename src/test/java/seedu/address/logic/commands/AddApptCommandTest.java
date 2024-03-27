@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
@@ -203,7 +204,7 @@ public class AddApptCommandTest {
         }
 
         @Override
-        public void cancelAppointment(Appointment appointment) {
+        public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -227,7 +228,26 @@ public class AddApptCommandTest {
         }
 
         @Override
+        public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredAppointmentDayViewList() {
+        }
+
+        @Override
         public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointmentsWithNric(Nric targetNric) {
             throw new AssertionError("This method should not be called.");
         }
 

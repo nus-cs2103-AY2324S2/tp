@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,8 +15,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
@@ -29,6 +33,7 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<AppointmentView> filteredAppointmentsView;
+    private final FilteredList<AppointmentView> filteredAppointmentsDayView;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,9 +45,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
-        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
-        filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        this.filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        this.filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.filteredAppointmentsDayView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.updateFilteredAppointmentDayViewList();
     }
 
     public ModelManager() {
@@ -145,8 +152,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void cancelAppointment(Appointment appointment) {
-        addressBook.cancelAppointment(appointment);
+    public void cancelAppointment(Appointment appointment, AppointmentView apptView) {
+        addressBook.cancelAppointment(appointment, apptView);
     }
 
     @Override
@@ -166,7 +173,18 @@ public class ModelManager implements Model {
         return addressBook.getMatchingAppointment(nric, date, timePeriod);
     }
 
-    //=========== Filtered Patient List Accessors =============================================================
+    @Override
+    public AppointmentView getMatchingAppointmentView(Name name, Appointment appt) {
+        return addressBook.getMatchingAppointmentView(name, appt);
+    }
+
+    @Override
+    public void deleteAppointmentsWithNric(Nric targetNric) {
+        requireNonNull(targetNric);
+        addressBook.deleteAppointmentsWithNric(targetNric);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
@@ -203,6 +221,22 @@ public class ModelManager implements Model {
     public void updateFilteredAppointmentList(Predicate<AppointmentView> predicate) {
         requireNonNull(predicate);
         filteredAppointmentsView.setPredicate(predicate);
+    }
+
+    //=========== Filtered Appointment Day-View List Accessors =====================================================
+
+    @Override
+    public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+        return filteredAppointmentsDayView;
+    }
+
+    @Override
+    public void updateFilteredAppointmentDayViewList() {
+        Predicate<AppointmentView> predicate = new AppointmentContainsKeywordsPredicate(
+            Optional.empty(),
+            Optional.of(new Date(LocalDate.now().toString())),
+            Optional.empty());
+        filteredAppointmentsDayView.setPredicate(predicate);
     }
 
     @Override

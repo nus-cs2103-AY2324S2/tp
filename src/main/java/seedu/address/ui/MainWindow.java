@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -32,8 +34,11 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PatientListPanel patientListPanel;
+    private DayViewListPanel dayViewListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private ToggleGroup toggleGroup;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +54,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private ToggleButton overallViewButton;
+
+    @FXML
+    private ToggleButton dayViewButton;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +77,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        setNavbar();
     }
 
     public Stage getPrimaryStage() {
@@ -113,6 +126,8 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList(), logic.getFilteredAppointmentViewList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
+        dayViewListPanel = new DayViewListPanel(logic.getFilteredAppointmentDayViewList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -146,6 +161,32 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    private void setNavbar() {
+        toggleGroup = new ToggleGroup();
+        overallViewButton.setToggleGroup(toggleGroup);
+        dayViewButton.setToggleGroup(toggleGroup);
+        overallViewButton.setSelected(true);
+    }
+
+    /**
+     * Displays the day-view and hides the overall-view
+     */
+    @FXML
+    public void handleShowDayView() {
+        patientListPanelPlaceholder.getChildren().remove(0);
+        patientListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
+    }
+
+    /**
+     * Displays the overall-view and hides the day-view
+     */
+    @FXML
+    public void handleShowOverallView() {
+        patientListPanelPlaceholder.getChildren().remove(0);
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+    }
+
 
     void show() {
         primaryStage.show();

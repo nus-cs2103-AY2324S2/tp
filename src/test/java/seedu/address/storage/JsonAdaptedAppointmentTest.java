@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -28,11 +29,11 @@ public class JsonAdaptedAppointmentTest {
 
     private static final String VALID_NRIC = ALICE_APPT.getNric().toString();
     private static final String VALID_DATE = ALICE_APPT.getDate().toString();
-    private static final String VALID_START_TIME = ALICE_APPT.getTimePeriod().getStartTime().toString();
-    private static final String VALID_END_TIME = ALICE_APPT.getTimePeriod().getEndTime().toString();
+    private static final String VALID_START_TIME = ALICE_APPT.getStartTime().toString();
+    private static final String VALID_END_TIME = ALICE_APPT.getEndTime().toString();
     private static final String VALID_TYPE = ALICE_APPT.getAppointmentType().typeName;
     private static final String VALID_NOTE = ALICE_APPT.getNote().note;
-
+    private static final boolean VALID_MARK = ALICE_APPT.getMark().isMarked;
     @Test
     public void toModelType_validAppointmentDetails_returnsAppointment() throws Exception {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(ALICE_APPT);
@@ -42,7 +43,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidNric_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(INVALID_NRIC, VALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE);
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
@@ -50,7 +51,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_nullNric_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(null, VALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE);
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = String.format(JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT,
                 Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
@@ -59,7 +60,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, INVALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE);
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = seedu.address.commons.core.date.Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
@@ -67,7 +68,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, null,
-                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE);
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = String.format(JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT,
                 Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
@@ -76,7 +77,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidStartTime_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                INVALID_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE);
+                INVALID_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
@@ -84,7 +85,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_nullStartTime_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                null, VALID_END_TIME, VALID_TYPE, VALID_NOTE);
+                null, VALID_END_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = String.format(JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT,
                 Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
@@ -93,7 +94,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidEndTime_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                VALID_START_TIME, INVALID_TIME, VALID_TYPE, VALID_NOTE);
+                VALID_START_TIME, INVALID_TIME, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
@@ -101,7 +102,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidTimePeriod_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                INVALID_TIME_PERIOD_START, INVALID_TIME_PERIOD_END, VALID_TYPE, VALID_NOTE);
+                INVALID_TIME_PERIOD_START, INVALID_TIME_PERIOD_END, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = TimePeriod.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
@@ -109,7 +110,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_nullEndTime_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                VALID_END_TIME, null, VALID_TYPE, VALID_NOTE);
+                VALID_END_TIME, null, VALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = String.format(JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT,
                 Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
@@ -118,7 +119,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_invalidType_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, INVALID_TYPE, VALID_NOTE);
+                VALID_START_TIME, VALID_END_TIME, INVALID_TYPE, VALID_NOTE, VALID_MARK);
         String expectedMessage = AppointmentType.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
     }
@@ -126,7 +127,7 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_nullType_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, null, VALID_NOTE);
+                VALID_START_TIME, VALID_END_TIME, null, VALID_NOTE, VALID_MARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 AppointmentType.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
@@ -135,9 +136,23 @@ public class JsonAdaptedAppointmentTest {
     @Test
     public void toModelType_nullNote_throwsIllegalValueException() {
         JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
-                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, null);
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, null, VALID_MARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Note.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, appointment::toModelType);
+    }
+
+    @Test
+    public void toModelType_convertTrueMark_succeeds() {
+        JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, true);
+        assertDoesNotThrow(appointment::toModelType); //does not throw any exceptions
+    }
+
+    @Test
+    public void toModelType_convertFalseMark_succeeds() {
+        JsonAdaptedAppointment appointment = new JsonAdaptedAppointment(VALID_NRIC, VALID_DATE,
+                VALID_START_TIME, VALID_END_TIME, VALID_TYPE, VALID_NOTE, false);
+        assertDoesNotThrow(appointment::toModelType); //does not throw any exceptions
     }
 }

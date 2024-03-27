@@ -105,6 +105,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredAppointmentDayViewList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () ->
+            modelManager.getFilteredAppointmentDayViewList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPatient(ALICE).withPatient(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

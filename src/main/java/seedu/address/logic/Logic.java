@@ -41,6 +41,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of appointments for viewing */
     ObservableList<AppointmentView> getFilteredAppointmentViewList();
 
+    /** Returns an unmodifiable view of the list of appointments filtered by the current date for viewing */
+    ObservableList<AppointmentView> getFilteredAppointmentDayViewList();
+
     /**
      * Returns the user prefs' address book file path.
      */

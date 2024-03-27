@@ -48,8 +48,8 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
 
         if (timeFilter.isPresent()) {
             Time filterTime = timeFilter.get();
-            matchesTimePeriod = appointment.getAppointment().getTimePeriod().getStartTime().compareTo(filterTime) == 1
-                    || appointment.getAppointment().getTimePeriod().getStartTime().equals(filterTime);
+            matchesTimePeriod = appointment.getAppointment().getStartTime().compareTo(filterTime) == 1
+                    || appointment.getAppointment().getStartTime().equals(filterTime);
         }
 
         return matchesNric && matchesDate && matchesTimePeriod;

@@ -107,15 +107,6 @@
     -fx-background-color: #515658;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
-
 .list-cell .label {
     -fx-text-fill: white;
 }
@@ -328,7 +319,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #patientListPanel, #patientWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -359,3 +350,21 @@
     -fx-background-radius: 2;
 }
 
+.navbar {
+    -fx-background-color: #383838; /* Set background color */
+}
+
+.navbar .toggle-button {
+    -fx-background-color: #383838;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-padding: 8px 8px;
+}
+
+.navbar .toggle-button:hover {
+    -fx-background-color: #3e7b91; /* Set background color for hover state */
+}
+
+.navbar .toggle-button:selected {
+    -fx-background-color: #3e7b91; /* Set background color for focused state */
+}
