@@ -154,18 +154,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Star feature
+### Awarding Stars to a Student
 
-#### Proposed Implementation
+#### Overview
 
-The proposed star mechanism is facilitated by `StarCommand`, which is called by its `execute` method to add stars to a `Student`.
+The star mechanism is facilitated by `StarCommand`, which is called by its `execute` method to add stars to a `Student`.
 
 * `StarCommandParser#parse()` — Parses the parameters of the star command from its command-line String input.
 * `StarCommand#execute()` — Updates the `AddressBook` with the added stars.
 
-Given below is an example usage scenario and how the star mechanism behaves at each step.
+#### Feature Details
 
-### INSERT ACTIVITY DIAGRAM
+Here is the activity diagram showing the process of the `star` command:
+
+![StarActivityDiagram](images/StarActivityDiagram.png)
+
+Here is the sequence diagram showing how a star operation goes through the `Logic`, `Model` and `Storage` components.
+
+![StarSequenceDiagram](images/StarCommandSequenceDiagram.png)
 
 Step 1. The user launches the application for the first time and enters in command: `star 1 s/2`.
 
@@ -179,9 +185,6 @@ Step 3. The `AddressBookParser` calls `StarCommandParser.parse()`, which returns
 
 Step 4. `LogicManager` calls on `StarCommand.execute()`, which updates the addressbook with the new number of stars.
 
-The following sequence diagram shows how an star operation goes through the `Logic`, `Model` and `Storage` components.
-![StarSequenceDiagram](images/StarCommandSequenceDiagram.png)
-
 #### Design considerations:
 
 **Aspect: How star executes:**
@@ -190,7 +193,7 @@ The following sequence diagram shows how an star operation goes through the `Log
     * Pros: Easy to implement, easy to use.
     * Cons: Does not allow user to edit the number of stars.
 
-* **Method 2** Updates the number of stars using `Edit` command.
+* **Method 2:** Updates the number of stars using `Edit` command.
     * Pros: Able to edit the number of stars however one desires.
     * Cons: Command is not modularised, user have to calculate the number of stars themselves when updating.
 
