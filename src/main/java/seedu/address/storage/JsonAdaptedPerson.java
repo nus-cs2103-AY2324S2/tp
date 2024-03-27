@@ -11,12 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthday;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +26,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String birthday;
+    private final String instrument;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
 
@@ -39,8 +35,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("birthday") String birthday,
+                             @JsonProperty("instrument") String instrument,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
         this.name = name;
@@ -48,6 +45,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.instrument = instrument;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -65,6 +63,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().value;
+        instrument = source.getInstrument().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -127,9 +126,21 @@ class JsonAdaptedPerson {
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
+        if (instrument == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Instrument.class.getSimpleName()));
+        }
+        if (!Instrument.isValidInstrument(instrument)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Instrument modelInstrument = new Instrument(instrument);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelAttendances);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelInstrument,
+                modelTags, modelAttendances);
     }
 
 }

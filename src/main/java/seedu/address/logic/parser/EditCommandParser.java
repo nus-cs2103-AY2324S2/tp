@@ -68,7 +68,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .getValue(PREFIX_BIRTHDAY_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_INSTRUMENT).isPresent()) {
-            editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap
+            editPersonDescriptor.setInstrument(ParserUtil.parseInstrument(argMultimap
                     .getValue(PREFIX_INSTRUMENT).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
