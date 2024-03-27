@@ -36,9 +36,9 @@ public class GroupCommand extends Command {
 
     public static final String MESSAGE_GROUP_SUCCESS = "All students were added!";
     public static final String MESSAGE_CLEAR_SUCCESS = "All specified students were removed from any existing groups!";
-    public static final String STUDENTS_NOT_FOUND = "The following IDs were not found (and not added to the group): ";
+    public static final String STUDENTS_NOT_FOUND = "The command was not successful as these students were not found: ";
     private final Set<Group> group;
-    private final Set<Group> noGroup = new HashSet<>();
+    private final Set<Group> noGroup = new HashSet<>(); //Empty group
     private final Set<StudentId> studentIds;
 
     /**
