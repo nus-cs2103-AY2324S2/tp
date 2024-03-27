@@ -184,6 +184,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1, b"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1 2 3"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("   "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(" ,,  "));
     }
 
     @Test
