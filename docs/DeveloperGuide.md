@@ -1,6 +1,6 @@
 
 
-# AB-3 Developer Guide
+# Rainbow Dragon Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -154,6 +154,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add functon 
+The new add function allows user to add new contacts to the address book. <br>
+<br> 
+Users can now choose to add tags to the contact upon addition of new contacts by running the command as `add n/name t/tag`. <br>
+<br>
+Users can also add multiple tags to a person upon addition of a new contact by running `add n/name t/tag1 t/tag2`<br>
+<br> 
+Users can also assign new contact categories upon addition by running `add n/name t/tag c/cat d/description`, where `cat` is the category associated 
+with the new contact and `description` is the category information that is assigned to the new contact. <br>
+<br> 
+Users can also assign multiple categorical information to the new contact added by running `add n/name t/tag c/cat1, cat2, cat3 d/d1, d2, d3`, 
+where `cat1` corresponds to `d1` and `cat2` corresponds to `d2` and so on. Users can definitely add more than 3 categories with descriptions in one addition. 
+<br> 
+<br> 
+The sequence diagram below illustrates how the add function can be used. 
+<puml src="docs/diagrams/AddSequenceDiagram.puml" alt="Add Command Sequence Diagram" />
+
+### Edit function
 ### Edit function
 The new edit function allows user to be able to edit any category based they want.<br>
 The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("edit 1 c/Clan d/rainbow")` API call as an example.
@@ -166,11 +184,11 @@ The sequence diagram below illustrates the interaction within the `Logic` compon
 </box>
 
 #### 1. How the feature is implemented
-The edit feature in the address book application is implemented through the `EditCommand` and `EditCommandParser` classes. 
-The `EditCommand` class handles the logic of editing a person's details, such as category, description, and tags. 
-It uses an inner class, `EditPersonDescriptor`, to hold the values to be edited, allowing partial updates to a person's information. 
-The execute method in `EditCommand` performs the actual update, ensuring that the edited person does not duplicate existing entries. 
-The `EditCommandParser` class parses user input into an `EditCommand` object. It validates the input and extracts the necessary information 
+The edit feature in the address book application is implemented through the `EditCommand` and `EditCommandParser` classes.
+The `EditCommand` class handles the logic of editing a person's details, such as category, description, and tags.
+It uses an inner class, `EditPersonDescriptor`, to hold the values to be edited, allowing partial updates to a person's information.
+The execute method in `EditCommand` performs the actual update, ensuring that the edited person does not duplicate existing entries.
+The `EditCommandParser` class parses user input into an `EditCommand` object. It validates the input and extracts the necessary information
 (like index, category, description, and tags) to create an `EditPersonDescriptor`, which is then used to instantiate an `EditCommand`.
 Below is the method used to instantiate the `EditPersonDescriptor` used to "remember" what category and description is being changed.
 ```
@@ -181,21 +199,22 @@ Additionally, in the `EditCommand` class, the method:
 ```
 Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 ```
-Creates this `EditPersonDescriptor` for it to edit the necessary code implemented by the user. 
+Creates this `EditPersonDescriptor` for it to edit the necessary code implemented by the user.
 
 #### 2. Why it is implemented that way.
-This implementation segregates the parsing of user input from the execution logic, adhering to the single responsibility principle 
-and making the code more maintainable and testable. The `EditCommand` class focuses solely on the business logic of editing a person's details, 
-while the `EditCommandParser` deals with interpreting the user's input. This separation allows for clearer structure and easier debugging, 
-as each class has a distinct responsibility. The use of `EditPersonDescriptor` as a way to encapsulate the editable attributes of a person enables a 
+This implementation segregates the parsing of user input from the execution logic, adhering to the single responsibility principle
+and making the code more maintainable and testable. The `EditCommand` class focuses solely on the business logic of editing a person's details,
+while the `EditCommandParser` deals with interpreting the user's input. This separation allows for clearer structure and easier debugging,
+as each class has a distinct responsibility. The use of `EditPersonDescriptor` as a way to encapsulate the editable attributes of a person enables a
 flexible design where only specified fields can be updated, enhancing the user experience by allowing partial edits.
 
 #### 3. Alternatives considered.
-Alternatives that might have been considered include implementing the parsing logic directly within the `EditCommand class`, which would reduce the number 
-of classes and potentially simplify the command's initiation process. However, this approach could lead to a more complex `EditCommand` class, making it 
-harder to manage and maintain. Another alternative could be the use of reflection to dynamically update fields in the `Person` class based on input, 
-which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection. 
+Alternatives that might have been considered include implementing the parsing logic directly within the `EditCommand class`, which would reduce the number
+of classes and potentially simplify the command's initiation process. However, this approach could lead to a more complex `EditCommand` class, making it
+harder to manage and maintain. Another alternative could be the use of reflection to dynamically update fields in the `Person` class based on input,
+which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection.
 Additionally, the `EditPersonDescriptor` could be completely remove as the implementation of the `Entry` class would allow the edit of categories directly.
+
 
 ### Find function
 
@@ -279,60 +298,35 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 than attempting to perform the undo.
 
 </box>
+=======
+### DeleteCategory function
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+The command `deleteCategory INDEX c/CATEGORY` allows users to delete the `CATEGORY` of a person at the specified `INDEX`.
+The sequence diagram below illustrates the interaction within the `Logic` component, taking `execute("deleteCategory 1 c/Clan")` API call as an example.
 
-<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+<puml src="diagrams/DeleteCategorySequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `deleteCategory 1 c/Clan` Command" />
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** The lifeline for `DeleteCategoryCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The feature of deleting category is implemented by the `DeleteCategoryCommand` and `DeleteCategoryCommandParser` classes.
+The `DeleteCategoryCommand` class handles the logic of deleting one of user's category.
+The execute class in `DeleteCategoryCommand` class checks if the input category is existing.
+The `DeleteCategoryCommandParser` class parses user input into an `DeleteCategoryCommand` object. It validates the input and extracts the necessary information to instantiate an `DeleteCategoryCommand`.
+If the format of command is correct, the `DeleteCategory` object will try to call the `deleteEntry` method from `Parser` class to delete the corresponding category.
+If the format of command is wrong or the category does not exist, the `DeleteCategoryCommand` or `DeleteCategoryCommandParser` class will throw an exception.
 
-<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
+<box type="info" seamless>
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Note:** There are some caveat for `deleteCategory` command:
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The category **must exist**.
 
-<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -343,7 +337,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-* [Cedric's design details](Cedric.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -536,8 +529,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Given below are instructions to test the app manually.
 
 <box type="info" seamless>
+
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
+
 </box>
 
 ### Launch and shutdown
@@ -550,7 +545,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum sCize. Move the window to a different location. Close the window.
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
