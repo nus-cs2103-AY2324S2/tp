@@ -35,15 +35,24 @@ outdated systems, EffiTrack offers a centralized platform for easy and accurate 
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
-   * `list` : Lists all employees.
+   * `list` :  Lists all employees.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Finance eff/80` : Adds an employee named `John Doe` to EffiTrack.
+   
+   * `edit 1 n/Colby Bryan` : Edits the name of the 1st employee shown in the current list to `Colby Bryan`.
 
    * `delete 3` : Deletes the 3rd employee shown in the current list.
+   
+   * `find john` : Finds all employees whose name contains `john`.
+   
+   * `filter finance` : Filters the list to display employees who belong to `finance` department.
+   
+   * `assign task/Complete Proposal by/20-05-2024 2359 to/1` :Assigns the task `Complete Proposal` with specific deadline to the 1st employee shown in the current list.
+   
+   * `mark task/Complete Proposal o/1` : Mark the task `Complete Proposal` assigned to the 1st employee as done.
 
    * `clear` : Deletes all employees.
-
+    
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -235,8 +244,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: 
-1. Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -254,12 +262,10 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Assign** | `assign task/TASK TITLE by/dd-MM-yyyy to/INDEX`<br> e.g., `assign task/Complete Project Proposal by/22-05-2023 2359 to/1`
+**Assign Task** | `assign task/TASK TITLE by/dd-MM-yyyy to/INDEX`<br> e.g., `assign task/Complete Project Proposal by/22-05-2023 2359 to/1`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Mark Task** | `mark task/TASK TITLE o/INDEX`<br> e.g., `mark task/Complete Project Proposal o/1`
 **List**   | `list`
 **Help**   | `help`
-**Assign Task**   | `assign task/TASK by/dd-MM-yyyy HHmm to/INDEX` <br> e.g. `assign task/Complete Project Proposal by/22-04-2024 2359 to/1`
 **Mark Task**   | `mark task/TASK o/INDEX` <br> e.g. `mark task/Complete Project Proposal o/1`
 
 
