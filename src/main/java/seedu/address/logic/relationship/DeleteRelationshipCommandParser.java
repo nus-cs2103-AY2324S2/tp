@@ -30,7 +30,8 @@ public class DeleteRelationshipCommandParser implements Parser<DeleteRelationshi
                 throw new ParseException("Please specify the type of familial relationship instead of 'Family'.\n"
                         + " Valid familial relations are: [bioParents, siblings, spouses]");
             }
-            if (relationshipDescriptor.equals("friend") || relationshipDescriptor.equals("family")) {
+            if (relationshipDescriptor.equals("friend") || relationshipDescriptor.equals("bioparents")
+                    || relationshipDescriptor.equals("siblings") || relationshipDescriptor.equals("spouses")) {
                 throw new ParseException(Messages.MESSAGE_INVALID_PREDEFINED_RELATIONSHIP_DESCRIPTOR);
             }
             return new DeleteRelationshipCommand("test", "test", relationshipDescriptor);

@@ -106,7 +106,6 @@ public class EditRelationshipCommandParserTest {
         String userInput = "parent 0001 123 0002 friends bioparents";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
 
-        String userInput2 = "123 0001 child 0002 friends bioparents";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
