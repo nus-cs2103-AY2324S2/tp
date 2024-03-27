@@ -23,9 +23,7 @@ Welcome to *ConnectCare User Guide*, a guide to use the *ConnectCare* applicatio
 *ConnectCare* helps you manage your client contacts faster and more reliably.
 If you are experiencing issues or are new to this application, this is a good place to start!
 
-___
-
-## Who ConnectCare Is For
+## Who ConnectCare is For
 
 ConnectCare is a powerful application designed to make social workers' lives easier, especially those juggling high caseloads. It prioritizes keyboard shortcuts, eliminating the need to constantly switch between keyboard and mouse. This focus on keyboard navigation translates to:
 
