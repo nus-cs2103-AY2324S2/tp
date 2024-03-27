@@ -99,13 +99,13 @@ Examples:
 
 Updates an existing person in the TA Toolkit.
 
-Format: `uc INDEX [n/NAME] [c/CLASS_GROUP] [e/EMAIL] [p/PHONE] [t/TELEGRAM] [g/GITHUB]…​`
+Format: `uc INDEX [n/NAME] [c/CLASS_GROUP] [e/EMAIL] [p/PHONE_NUMBER] [t/TELEGRAM] [g/GITHUB]…​`
 
 * Updates the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * The updated person must have a different field compared to the original person.
-* When editing any field, EMAIL, PHONE, TELEGRAM, GITHUB must be unique compared to every other person.
+* When editing any field, EMAIL, PHONE_NUMBER, TELEGRAM, GITHUB must be unique compared to every other person.
 
 Examples:
 *  `uc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -209,7 +209,7 @@ Action     | Format, Examples
 **Add**    | `ac n/NAME c/CLASS_GROUP e/EMAIL p/PHONE_NUMBER [t/TELEGRAM] [g/GITHUB]` <br> e.g., `ac c/T10-2 n/James Ho p/22224444 e/jamesho@example.com t/@jamesho g/jameshoGithub`
 **Clear**  | `clear`
 **Delete** | `dc INDEX`<br> e.g., `dc 3`
-**Edit**   | `uc INDEX [n/NAME] [c/CLASS_GROUP] [e/EMAIL] [p/PHONE] [t/TELEGRAM] [g/GITHUB]…​`<br> e.g.,`uc 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `uc INDEX [n/NAME] [c/CLASS_GROUP] [e/EMAIL] [p/PHONE_NUMBER] [t/TELEGRAM] [g/GITHUB]…​`<br> e.g.,`uc 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `ls [CLASS_GROUP]` <br> e.g., `ls F14`
 **Help**   | `help`

@@ -128,14 +128,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<box type="info" seamless>
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
-
 
 ### Storage component
 
@@ -165,14 +157,14 @@ The commands are implemented in the `EditCommand` class which extend the `Comman
 
 * Step 1. The `EditCommand` object's `execute()` method is called.
 * Step 2. The `INDEX` is checked to be within the valid range of the displayed person list. If the `INDEX` given is invalid (i.e., out of range), a `CommandException` is thrown.
-* Step 3. The `Person` at the given `INDEX` is referenced and removed from person list.
+* Step 3. The `Person` at the given `INDEX` is referenced and `deletePerson()` is called to remove `originalPerson` from person list.
 * Step 4. The field(s) to be edited are checked.
   * If there are no fields to be edited, a `CommandException` is thrown.
   * If any of the edited fields are invalid, a `CommandException` is thrown.
   * If the edited person is the same as the original person, a `CommandException` is thrown`.
   * If any of `Email`, `Phone`, `Telegram`, `Github` fields are duplicates with any existing person in person list, a `CommandException` is thrown.
 * Step 5. The model object's `addPerson()` method is called. The input parameter is the `editedPerson` with the edited details.
-* Step 5. The `Person` field(s) are edited.
+* Step 6. The `Person` field(s) are edited.
 
 The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to edit a person.
 
@@ -181,6 +173,18 @@ The diagram below describes this behaviour concisely. It shows how a user’s co
 The sequence diagram below also shows the interaction between the various components during the execution of the `EditCommand`.
 
 <puml src="diagrams/EditCommandSequenceDiagram.puml" />
+
+#### Design considerations:
+
+**Aspect: How editing a Person works:**
+
+* **Alternative 1 (current choice):** Removes the `originalPerson` and adds the `editedPerson`.
+    * Pros: Retains the sorted order of Persons by `Name` in the person list.
+    * Cons: May have performance issues in terms of time complexity since it requires 2 operations (`deletePerson()` and `addPerson`).
+
+* **Alternative 2:** Directly update the fields in the `originalPerson`
+    * Pros: Better performance, since this only requires searching through the person list once.
+    * Cons: The order of person list will be lost, since `Name` of a `Person` may be edited.
 
 ### View a `Person`
 
