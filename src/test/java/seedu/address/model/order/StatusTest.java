@@ -31,13 +31,22 @@ public class StatusTest {
 
     @Test
     public void equals() {
-        assertFalse(Status.StatusEnum.PENDING.equals(null));
-        assertFalse(Status.StatusEnum.PENDING.toString().equals("Arrived"));
-        assertFalse(Status.StatusEnum.ARRIVED.toString().equals("Late"));
-        assertFalse(Status.StatusEnum.LATE.toString().equals("Pending"));
+        Status status = new Status("Pending");
 
-        assertTrue(Status.StatusEnum.PENDING.toString().equals("Pending"));
-        assertTrue(Status.StatusEnum.ARRIVED.toString().equals("Arrived"));
-        assertTrue(Status.StatusEnum.LATE.toString().equals("Late"));
+        // same values -> returns true
+        assertTrue(status.equals(new Status("Pending")));
+
+        // same object -> returns true
+        assertTrue(status.equals(status));
+
+        // null -> returns false
+        assertFalse(status.equals(null));
+
+        // different types -> returns false
+        assertFalse(status.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(status.equals(new Status("Late")));
+        
     }
 }

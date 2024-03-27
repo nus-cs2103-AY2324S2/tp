@@ -16,6 +16,7 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_DATE = "2020-01-01";
     private static final String VALID_REMARK = "100 chicken wings";
     private static final String VALID_STATUS = "Pending";
+    private static final String INVALID_STATUS = "Test";
 
     @Test
     public void toModelType_validOrderDetails_returnsOrder() throws IllegalValueException {
@@ -39,6 +40,12 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullStatus_throwsIllegalValueException() {
         JsonAdaptedOrder jsonAdaptedOrder = new JsonAdaptedOrder(VALID_DATE, VALID_REMARK, null);
+        assertThrows(IllegalValueException.class, jsonAdaptedOrder::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidStatus_throwsIllegalValueException() {
+        JsonAdaptedOrder jsonAdaptedOrder = new JsonAdaptedOrder(VALID_DATE, VALID_REMARK, INVALID_STATUS);
         assertThrows(IllegalValueException.class, jsonAdaptedOrder::toModelType);
     }
 }
