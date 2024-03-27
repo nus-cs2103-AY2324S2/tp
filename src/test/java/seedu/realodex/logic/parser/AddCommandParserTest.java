@@ -3,12 +3,16 @@ package seedu.realodex.logic.parser;
 import static seedu.realodex.logic.Messages.MESSAGE_MISSING_PREFIXES;
 import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.EMAIL_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.FAMILY_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.FAMILY_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.FAMILY_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.INCOME_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.INCOME_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.realodex.logic.commands.CommandTestUtil.INVALID_FAMILY_DESC;
@@ -20,13 +24,17 @@ import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_NON_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_AMY_VARYING_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.NAME_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.PHONE_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.REMARK_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_AMY;
 import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_BOB;
+import static seedu.realodex.logic.commands.CommandTestUtil.TAG_DESC_BOB_PREFIX_CAPS;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.realodex.logic.commands.CommandTestUtil.VALID_FAMILY_BOB;
@@ -99,6 +107,68 @@ public class AddCommandParserTest {
                                    + REMARK_DESC_BOB,
                            new AddCommand(expectedPersonMultipleTags));
     }
+
+    @Test
+    public void parse_prefixesCapitalized_success() {
+        Person expectedPerson = new PersonBuilder(BOB).build();
+
+        // name prefix caps
+        assertParseSuccess(parser,
+                           PREAMBLE_WHITESPACE + NAME_DESC_BOB_PREFIX_CAPS + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // phone prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB_PREFIX_CAPS + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // income prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB_PREFIX_CAPS + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // email prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB_PREFIX_CAPS
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // address prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB_PREFIX_CAPS + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // family prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB_PREFIX_CAPS + TAG_DESC_BOB + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // tag prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB_PREFIX_CAPS + REMARK_DESC_BOB,
+                           new AddCommand(expectedPerson));
+
+        // remark prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                                   + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB_PREFIX_CAPS,
+                           new AddCommand(expectedPerson));
+
+        // all fields prefix caps
+        assertParseSuccess(parser,
+                           NAME_DESC_BOB_PREFIX_CAPS + PHONE_DESC_BOB_PREFIX_CAPS
+                                   + INCOME_DESC_BOB_PREFIX_CAPS + EMAIL_DESC_BOB_PREFIX_CAPS
+                                   + ADDRESS_DESC_BOB_PREFIX_CAPS + FAMILY_DESC_BOB_PREFIX_CAPS + TAG_DESC_BOB_PREFIX_CAPS + REMARK_DESC_BOB_PREFIX_CAPS,
+                           new AddCommand(expectedPerson));
+    }
+
+
 
     @Test
     public void parse_repeatedNonTagValue_failure() {

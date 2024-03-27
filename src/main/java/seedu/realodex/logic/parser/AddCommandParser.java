@@ -40,15 +40,9 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_INCOME,
                                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_FAMILY, PREFIX_TAG, PREFIX_REMARK);
 
-        Prefix[] listOfCompulsoryPrefixTags = argMultimap.returnListOfCompulsoryTags(PREFIX_NAME,
-                                                                                     PREFIX_ADDRESS,
-                                                                                     PREFIX_INCOME,
-                                                                                     PREFIX_PHONE,
-                                                                                     PREFIX_FAMILY,
-                                                                                     PREFIX_EMAIL,
-                                                                                     PREFIX_TAG);
-
-
+        Prefix[] listOfCompulsoryPrefixTags = argMultimap.returnListOfCompulsoryTags(PREFIX_NAME, PREFIX_ADDRESS,
+                                                                                     PREFIX_INCOME, PREFIX_PHONE,
+                                                                                     PREFIX_FAMILY, PREFIX_EMAIL, PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap,
                                 listOfCompulsoryPrefixTags)) {
             String exceptionMessageForMissingPrefixes =
@@ -111,8 +105,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = addressStored.returnStoredResult();
         Family family = familyStored.returnStoredResult();
         Person person = new Person(name, phone, income, email, address, family, tagList, remark);
-
-
         return new AddCommand(person);
     }
 
