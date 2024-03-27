@@ -82,7 +82,8 @@ public class DeleteEventCommandTest {
         Event eventToDelete = currEventList.get(INDEX_FIRST_EVENT.getZeroBased());
         CommandResult result = deleteEventCommand.execute(model);
         String expected = String.format(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete.name,
-                editedPatient.getName(), INDEX_FIRST_EVENT.getOneBased(), eventToDelete.date));
+                INDEX_FIRST_EVENT.getOneBased(), eventToDelete.date, editedPatient.getName(),
+                validIndex.getOneBased()));
         assertEquals(expected, result.getFeedbackToUser());
 
         Set<Event> expectedEvents = new HashSet<>(editedPatient.getEvents());
