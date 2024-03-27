@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.AssignedTasks;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +34,19 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code arg} into an {@code int} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static int parseInt(String arg) throws ParseException {
+        String trimmedIndex = arg.replaceAll("\\s", ""); // Strip whitespaces
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedIndex);
     }
 
     /**
@@ -93,6 +107,22 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a string representing assigned tasks and returns an AssignedTasks object.
+     *
+     * @param tasks The string representing assigned tasks.
+     * @return An AssignedTasks object representing the parsed tasks.
+     * @throws ParseException If the given {@code tasks} is invalid.
+     */
+    public static AssignedTasks parseTasks(String tasks) throws ParseException {
+        requireNonNull(tasks);
+        String trimmedTasks = tasks.trim();
+        if (!AssignedTasks.isValidTask(trimmedTasks)) {
+            throw new ParseException(AssignedTasks.MESSAGE_CONSTRAINTS);
+        }
+        return new AssignedTasks(trimmedTasks);
     }
 
     /**
