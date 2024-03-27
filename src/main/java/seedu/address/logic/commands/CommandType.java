@@ -64,6 +64,12 @@ public enum CommandType {
         public Command createCommand(String arguments) {
             return new UndoCommand();
         }
+    },
+    REDO {
+        @Override
+        public Command createCommand(String arguments) {
+            return new RedoCommand();
+        }
     };
 
     public abstract Command createCommand(String arguments) throws IllegalArgumentException;
