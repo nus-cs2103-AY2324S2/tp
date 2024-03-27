@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CsvUtil.readCsvFile;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMPORT;
@@ -11,17 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REFLECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDIO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvException;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -83,16 +76,8 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            List<Map<String, String>> data = readCsvFile();
-            for (Map<String, String> personData : data) {
-                try {
-                    String addCommandInput = convertToAddCommandInput(personData);
-                    AddCommand addCommand = parseAddCommand(addCommandInput);
-                    addCommand.execute(model);
-                } catch (ParseException e) {
-                    throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
-                }
-            }
+            List<Map<String, String>> personsData = readCsvFile(filePath);
+            addToModel(model, personsData);
         } catch (DataLoadingException e) {
             throw new CommandException(String.format(MESSAGE_DATA_LOAD_ERROR, filePath));
         }
@@ -101,27 +86,20 @@ public class ImportCommand extends Command {
     }
 
     /**
-     * Reads the csv file and returns a list of maps,
-     * where each map represents a row of person's data in the csv file.
-     * @throws DataLoadingException
+     * Adds the persons data to the model using a series of addCommands.
+     * @param model
+     * @param personsData
+     * @throws CommandException
      */
-    public List<Map<String, String>> readCsvFile() throws DataLoadingException {
-        try {
-            CSVReader reader = new CSVReaderBuilder(new FileReader(filePath.toString())).build();
-            List<String[]> rows = reader.readAll();
-            List<Map<String, String>> data = new ArrayList<>();
-            String[] header = rows.get(0);
-            for (int i = 1; i < rows.size(); i++) {
-                String[] row = rows.get(i);
-                Map<String, String> map = new HashMap<>();
-                for (int j = 0; j < header.length; j++) {
-                    map.put(header[j], row[j]);
-                }
-                data.add(map);
+    public void addToModel(Model model, List<Map<String, String>> personsData) throws CommandException {
+        for (Map<String, String> personData : personsData) {
+            try {
+                String addCommandInput = convertToAddCommandInput(personData);
+                AddCommand addCommand = parseAddCommandInput(addCommandInput);
+                addCommand.execute(model);
+            } catch (ParseException e) {
+                throw new CommandException(String.format(MESSAGE_PARSE_ERROR, personData));
             }
-            return data;
-        } catch (IOException | CsvException e) {
-            throw new DataLoadingException(e);
         }
     }
 
@@ -135,7 +113,6 @@ public class ImportCommand extends Command {
         sb.append(" ");
         for (String key : header) {
             // Maybe in the future, I can add a check to see if the value is empty
-            // Maybe in the future, I make CliSyntax an enum class?
             if (personData.get(key).isEmpty()) {
                 // skip empty values
                 continue;
@@ -158,7 +135,7 @@ public class ImportCommand extends Command {
         return sb.toString();
     }
 
-    public AddCommand parseAddCommand(String input) throws ParseException {
+    public AddCommand parseAddCommandInput(String input) throws ParseException {
         return addCommandParser.parse(input);
     }
 

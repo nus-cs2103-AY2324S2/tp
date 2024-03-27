@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -58,15 +59,55 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Matric matric = handleOptionalMatric(argMultimap);
         Reflection reflection = handleOptionalReflection(argMultimap);
         Studio studio = handleOptionalStudio(argMultimap);
         Map<Exam, Score> scores = new HashMap<>();
 
+        // Update the tagList automatically
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        tagList = autoTag(tagList, matric, reflection, studio);
+
         Person person = new Person(name, phone, email, address, tagList, matric, reflection, studio, scores);
 
         return new AddCommand(person);
+    }
+
+    /**
+     * Automatically adds a tag to the tagList based on the presence of matric, reflection and studio.
+     * @param tagList the list of tags to be updated
+     * @param matric the matric number of the person
+     * @param reflection the reflection of the person
+     * @param studio the studio of the person
+     * @return
+     */
+    private Set<Tag> autoTag(Set<Tag> tagList, Matric matric, Reflection reflection, Studio studio) {
+        boolean isMatricPresent = !Matric.isEmptyMatric(matric.matricNumber);
+        boolean isReflectionPresent = !Reflection.isEmptyReflection(reflection.reflection);
+        boolean isStudioPresent = !Studio.isEmptyStudio(studio.studio);
+
+        Optional<Tag> autoTag = createTag(isMatricPresent, isReflectionPresent, isStudioPresent);
+        autoTag.ifPresent(tagList::add);
+
+        return tagList;
+    }
+
+    /**
+     * Creates a tag based on the presence of matric, reflection and studio.
+     * @param isMatricPresent boolean whether a Matric number is present.
+     * @param isReflectionPresent boolean whether a Reflection is present.
+     * @param isStudioPresent boolean whether a Studio is present.
+     * @return an Optional Tag based on the presence of matric, reflection and studio.
+     */
+    private Optional<Tag> createTag(boolean isMatricPresent, boolean isReflectionPresent, boolean isStudioPresent) {
+        if (isMatricPresent && isReflectionPresent && isStudioPresent) {
+            return Optional.of(new Tag("student"));
+        } else if (isMatricPresent && (isReflectionPresent ^ isStudioPresent)) {
+            return Optional.of(new Tag("TA"));
+        } else if (!isMatricPresent && !isReflectionPresent && !isStudioPresent) {
+            return Optional.of(new Tag("instructor"));
+        }
+        return Optional.empty();
     }
 
     private static Matric handleOptionalMatric(ArgumentMultimap argMultimap) throws ParseException {

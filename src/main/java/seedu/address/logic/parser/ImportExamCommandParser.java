@@ -24,6 +24,7 @@ public class ImportExamCommandParser implements Parser<ImportExamCommand> {
     public ImportExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_IMPORT);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_IMPORT);
         if (!isPrefixPresent(
                 argMultimap)
                 || !argMultimap.getPreamble().isEmpty()) {
