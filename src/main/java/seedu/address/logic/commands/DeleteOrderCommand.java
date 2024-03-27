@@ -47,7 +47,7 @@ public class DeleteOrderCommand extends Command {
         }
 
         Person personToDeleteOrderFrom = lastShownList.get(personIndex.getZeroBased());
-        Person originalPerson = new Person(personToDeleteOrderFrom);
+        String oP = Messages.format(personToDeleteOrderFrom);
 
         List<Order> sortedOrders = model.getSortedOrders(personToDeleteOrderFrom);
 
@@ -58,7 +58,7 @@ public class DeleteOrderCommand extends Command {
         Order orderToDelete = sortedOrders.get(orderIndex.getZeroBased());
         model.deleteOrder(personToDeleteOrderFrom, orderToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete, originalPerson));
+        return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete, oP));
     }
 
 

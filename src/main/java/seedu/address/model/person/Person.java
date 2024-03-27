@@ -63,27 +63,6 @@ public class Person {
         this.orders = orders;
     }
 
-    /**
-     * Copy constructor for creating a copy of an existing Person.
-     * @param person The person to copy.
-     */
-    public Person(Person person) {
-        this.name = person.name;
-        this.phone = person.phone;
-        this.email = person.email;
-        this.address = person.address;
-        this.company = person.company;
-        this.isFavourite = person.isFavourite;
-
-        // Deep copy of tags
-        this.tags.addAll(person.tags);
-
-        // Deep copy of orders
-        this.orders = new ArrayList<>();
-        for (Order order : person.orders) {
-            this.orders.add(new Order(order));
-        }
-    }
 
     public Name getName() {
         return name;
