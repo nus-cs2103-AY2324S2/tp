@@ -200,4 +200,8 @@ public class ModelManager implements Model {
         return userPrefs.getAliases();
     }
 
+    public void addAlias(String alias, String toReplace) {
+        userPrefs.addAlias(alias, toReplace);
+    }
+
 }

@@ -20,6 +20,10 @@ public class Alias {
         return this.mappings.get(string);
     }
 
+    public void addAlias(String alias, String toReplace) {
+        this.mappings.put(alias, toReplace);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) {

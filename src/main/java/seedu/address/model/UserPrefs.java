@@ -76,6 +76,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.aliases = aliases;
     }
 
+    public void addAlias(String alias, String toReplace) {
+        this.aliases.addAlias(alias, toReplace);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

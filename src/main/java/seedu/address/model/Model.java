@@ -117,4 +117,6 @@ public interface Model {
 
 
     Alias getAlias();
+
+    void addAlias(String alias, String toReplace);
 }
