@@ -59,7 +59,7 @@
                   <children>
                      <ImageView fx:id="RD_Watermark" opacity="0.53" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../../../../../RG_8Bit_Logo.png" />
+                           <Image url="@../images/RD_Logo.png" />
                         </image>
                      </ImageView>
                   </children></StackPane>
