@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDICES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -32,6 +34,8 @@ public class AddNoteCommand extends Command {
             + PREFIX_NOTE + "Asked a question regarding test cases";
 
     public static final String MESSAGE_SUCCESS = "New note added to %1$s.\nNote: %2$s";
+    private static final Logger logger = Logger.getLogger(AddNoteCommand.class.getName());
+
 
     private final Index index;
 
@@ -62,6 +66,8 @@ public class AddNoteCommand extends Command {
         personToAddNote.addNote(note);
 
         String message = String.format(MESSAGE_SUCCESS, Messages.format(personToAddNote), note);
+
+        logger.log(Level.INFO, "Note added: " + note + " to person: " + personToAddNote.getName());
         return new CommandResult(message);
     }
 
