@@ -13,9 +13,12 @@ UniqueTagList -right-> "*" Tag
 UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
+Person <|-right- Housekeeper
+Person <|-right- Client
 
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Type
 @enduml

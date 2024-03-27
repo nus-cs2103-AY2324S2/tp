@@ -1,35 +1,74 @@
 ---
 layout: page
-title: User Guide
+title: Housekeeping Hub User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+Welcome to HouseKeeping Hub, the premier **desktop solution for managing client and housekeeper contacts**. Combining the **efficiency of a Command Line Interface ([CLI](#cli)) with the convenience of a Graphical User Interface ([GUI](#gui))**, HouseKeeping Hub offers unparalleled speed and ease of use. Whether you're a typist or a clicker, HouseKeeping Hub ensures swift completion of all your contact management tasks. Bid farewell to the sluggishness of traditional GUI apps - with HouseKeeping Hub, managing your contacts has never been faster or simpler.
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Purpose of this guide
+This guide has been created to help you understand and utilize the features and functionalities of our software
+ effectively. Whether you're a new user who is not familiar with command line interface or an expert looking to enhance 
+your skills, this guide aims to provide you with the information you need to make the most of our product. In this guide 
+you will find a quick start (guide to install and start using our product), a list of features and how to use them, and 
+a glossary to help you understand some jargon. This guide is designed to provide you with clear and concise instructions 
+and a reader-friendly format to enhance your experience in using our product.
 
-## Quick start
+## How to use this guide
+
+Let's get started! Here's a rundown of every section in this guide:
+
+If you have yet to install Housekeeping Hub, you can refer to the [installation instructions](#installation).
+
+After installing the application, you can start off by following our [tutorial](#tutorial) to familiarise yourself
+with the basic features of the app.
+
+The [features](#features) section provides the detailed overview of each command, command formats and examples.
+
+If you'd like a quick reference of all available commands, check out the [command summary](#command-summary).
+
+You can head over to the [Frequently Asked Questions](#faq) section to view answers to common queries regarding the app.
+
+Finally, we have the [glossary](#glossary) section to clarify any technical jargon used.
+
+Now you have successfully mastered how to use this guide! One last thing: learn how to **navigate the guide**
+in the section below.
+
+## Navigating our guide
+
+Words highlighted in blue in our guide can direct you to a specific section in our guide ([FAQ](#faq)), 
+an external link ([download link](https://github.com/AY2324S2-CS2103T-W09-1/tp/releases)), or to an explanation of
+a term in the glossary ([CLI](#cli)).
+
+## Installation
+<a id="installation"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `HousekeepingHub-v1.2.0.jar` from [here](https://github.com/AY2324S2-CS2103T-W09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your HouseKeeping Hub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a [command terminal](#terminal), and type in `cd` to navigate into the folder you placed the [jar](#jar) file in.
+
+1. Type in `java -jar HousekeepingHub-v1.2.0.jar` to run the application.<br>
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](./images/Ui.png)
+
+## Tutorial
+<a id="tutorial"></a>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `list client` : Lists all client contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add housekeeper n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a housekeeper named `John Doe`.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd contact shown in the last shown list.
 
    * `clear` : Deletes all contacts.
 
@@ -40,6 +79,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+<a id="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -67,79 +107,57 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](./images/helpMessage.png)
 
 Format: `help`
 
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a client or housekeeper to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add TYPE n/NAME e/EMAIL p/PHONE_NUMBER a/ADDRESS [t/TAG]…​`
+
+Notes: `TYPE` can be either 'client' or 'housekeeper'
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add client n/Elon e/elon@gmail.com p/+6088888888 a/Elon Street, Block 123, 101010 Singapore`
+* `add housekeeper n/Betsy Crowe p/+441234567 e/betsycrowe@example.com a/Newgate Prison t/criminal t/famous`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons with the given type in the address book.
 
-Format: `list`
+Format: `list TYPE`
 
-### Editing a person : `edit`
+Notes: `TYPE` can only be either 'client' or 'housekeeper'
 
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Example:
+* `list client`
+* `list housekeeper`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified client or housekeeper from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+
+* Deletes the client or housekeeper at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index to delete will work for any displayed list. i.e. Client list, Housekeeper list, original combined list at start up and filtered lists
+</div>
+
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list client` followed by `delete client 2` deletes the 2nd person in the client list.
+* `list housekeeper` followed by `delete housekeeper 1` deletes the 1st person in the housekeeper list.
 
 ### Clearing all entries : `clear`
 
@@ -155,44 +173,64 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HouseKeeping Hub data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HouseKeeping Hub data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HouseKeeping Hub will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HouseKeeping Hub to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+<a id="faq"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Known issues
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HouseKeeping Hub home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+<a id="command-summary"></a>
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add TYPE n/NAME e/EMAIL p/PHONE_NUMBER a/ADDRESS …​` <br> e.g., `add client n/Elon e/elon@gmail.com p/88888888 a/Elon Street, Block 123, 101010 Singapore`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**List** | `list [type]`
+**Help** | `help`                                                                                                                                                                                                                                 |
+
+----------------------------------------------------------------------------------------------------------------------
+## Glossary
+<a id="glossary"></a>
+
+**JAR**
+<a id="jar"></a>
+: JAR stands for Java Archive. It is based on the ZIP file format that is commonly used to store java programs.
+
+**CLI**
+<a id="cli"></a>
+: CLI stands for Command Line Interface. It refers to programs that are primarily **text-based** where users interact with the program by typing **commands**. 
+As such, users will use their keyboards more, in contrast to a Graphical User Interface (GUI) where users will use their mouse to interact with the graphical elements.
+
+**GUI**
+<a id="gui"></a>
+: GUI stands for Graphical User Interface. It refers to programs that are primarily **graphical** where users interact with the program by clicking on **buttons** and **menus**.
+
+**Terminal**
+<a id="terminal"></a>
+: A terminal is a Command Line Interface (CLI) that allows users to interact with computers by executing commands and viewing the results. 
+Popular terminals in mainstream operating systems include command prompt (CMD) for windows and Terminal in macOS and Linux.<br>
+
+**CMD**<br>
+<img src="https://www.auslogics.com/en/articles/wp-content/uploads/2023/07/Command-Prompt-PING.png" alt="drawing" width="500"/>
+<br> **Terminal (macOS)** <br>
+<img src="https://forums.macrumors.com/attachments/screen-shot-2020-12-09-at-4-50-12-pm-png.1690397/" alt="drawing" width="500"/>
+<br> **Terminal (Linux)** <br>
+<img src="https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2013/03/linux-terminal-on-ubuntu.png" alt="drawing" width="500"/>

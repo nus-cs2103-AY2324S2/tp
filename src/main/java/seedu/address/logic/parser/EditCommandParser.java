@@ -14,9 +14,12 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditHousekeeperCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,10 +37,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
+        Type type;
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            String[] splitArgs = argMultimap.getPreamble().trim().split(" ");
+            type = ParserUtil.parseType(splitArgs[0]);
+            index = ParserUtil.parseIndex(splitArgs[1]);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -64,7 +70,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        if (type.equals(new Type("client"))) {
+            return new EditClientCommand(index, editPersonDescriptor);
+        } else if (type.equals(new Type("housekeeper"))) {
+            return new EditHousekeeperCommand(index, editPersonDescriptor);
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
     }
 
     /**

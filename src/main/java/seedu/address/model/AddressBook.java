@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Housekeeper;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,7 +17,8 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniquePersonList<Client> clients;
+    private final UniquePersonList<Housekeeper> housekeepers;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,7 +28,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        clients = new UniquePersonList<Client>();
+        housekeepers = new UniquePersonList<Housekeeper>();
     }
 
     public AddressBook() {}
@@ -44,8 +48,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    /*public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+    }*/
+
+    /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setPersons(clients);
+    }
+
+    /**
+     * Replaces the contents of the housekeeper list with {@code housekeepers}.
+     * {@code housekeepers} must not contain duplicate housekeepers.
+     */
+    public void setHousekeepers(List<Housekeeper> housekeepers) {
+        this.housekeepers.setPersons(housekeepers);
     }
 
     /**
@@ -54,7 +74,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setClients(newData.getClientList());
+        setHousekeepers(newData.getHousekeeperList());
+        //setPersons(newData.getPersonList());
     }
 
     //// person-level operations
@@ -64,7 +86,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return persons.contains(person);
+        if (person.isClient()) {
+            return clients.contains((Client) person);
+        }
+        return housekeepers.contains((Housekeeper) person);
     }
 
     /**
@@ -72,7 +97,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        if (p.isClient()) {
+            clients.add((Client) p);
+        } else {
+            housekeepers.add((Housekeeper) p);
+        }
     }
 
     /**
@@ -83,7 +112,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        if (editedPerson.isClient() && target.isClient()) {
+            clients.setPerson((Client) target, (Client) editedPerson);
+        } else if (!(editedPerson.isClient()) && !(target.isClient())) {
+            housekeepers.setPerson((Housekeeper) target, (Housekeeper) editedPerson);
+        } else {
+            throw new IllegalArgumentException("Cannot replace a client with a housekeeper or vice versa.");
+        }
     }
 
     /**
@@ -91,7 +126,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
-        persons.remove(key);
+        if (key.isClient()) {
+            clients.remove((Client) key);
+        } else {
+            housekeepers.remove((Housekeeper) key);
+        }
     }
 
     //// util methods
@@ -99,13 +138,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
+                .add("clients", clients)
+                .add("housekeepers", housekeepers)
+                //.add("persons", persons)
                 .toString();
     }
 
-    @Override
+    /*@Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }*/
+
+    @Override
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Housekeeper> getHousekeeperList() {
+        return housekeepers.asUnmodifiableObservableList();
     }
 
     @Override
@@ -120,11 +171,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return clients.equals(otherAddressBook.clients)
+                && housekeepers.equals(otherAddressBook.housekeepers);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        int result = 17;
+        result = 31 * result + clients.hashCode();
+        result = 31 * result + housekeepers.hashCode();
+        return result;
     }
 }

@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
     private final Name name;
@@ -24,17 +24,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Type type;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Type type) {
+        requireAllNonNull(name, phone, email, address, tags, type);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.type = type;
     }
 
     public Name getName() {
@@ -51,6 +53,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     /**
@@ -74,29 +80,6 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof Person)) {
-            return false;
-        }
-
-        Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
-    }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -111,7 +94,12 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("type", type)
                 .toString();
     }
 
+    /**
+     * Returns true if it is a Client, false if it is a Housekeeper.
+     */
+    public abstract boolean isClient();
 }
