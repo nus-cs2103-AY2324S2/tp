@@ -581,7 +581,7 @@ After every command that changes the data, CareerSync performs a save automatica
 | [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear`                                                                                                                                                                     |
 | [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         | `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]` |
 | [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit`                                                                                                                                                                      |
-=======
+
 
 
 ## Field Summary
