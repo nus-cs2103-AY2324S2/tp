@@ -123,11 +123,11 @@ public class StaffConnectParserTest {
                 singleTagFilterCommand);
 
         // multiple tags
-        String tag2 = "hello2";
-        Set<Tag> multipleTags = new HashSet<Tag>(Arrays.asList(new Tag(tag), new Tag(tag2)));
+        String secondTag = "hello2";
+        Set<Tag> multipleTags = new HashSet<Tag>(Arrays.asList(new Tag(tag), new Tag(secondTag)));
         PersonHasTagsPredicate multipleTagsPredicate = new PersonHasTagsPredicate(multipleTags);
         FilterCommand multipleTagsFilterCommand = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
-                + " t/" + tag + " t/" + tag2);
+                + " t/" + tag + " t/" + secondTag);
         assertEquals(
                 new FilterCommand(emptyModulePredicate, emptyFacultyPredicate, multipleTagsPredicate,
                         emptyAvailabilitiesPredicate),
@@ -146,14 +146,14 @@ public class StaffConnectParserTest {
                 singleAvailabilityFilterCommand);
 
         // multiple availabilities
-        String availability2 = "tues 14:00 16:00";
+        String secondAvailability = "tues 14:00 16:00";
         Set<Availability> multipleAvailabilities = new HashSet<Availability>(
-                Arrays.asList(new Availability(availability), new Availability(availability2)));
+                Arrays.asList(new Availability(availability), new Availability(secondAvailability)));
         PersonHasAvailabilitiesPredicate multipleAvailabilitiesPredicate = new PersonHasAvailabilitiesPredicate(
                 multipleAvailabilities);
         FilterCommand multipleAvailabilitiesFilterCommand = (FilterCommand) parser
                 .parseCommand(FilterCommand.COMMAND_WORD
-                        + " a/" + availability + " a/" + availability2);
+                        + " a/" + availability + " a/" + secondAvailability);
         assertEquals(
                 new FilterCommand(emptyModulePredicate, emptyFacultyPredicate, emptyTagsPredicate,
                         multipleAvailabilitiesPredicate),
