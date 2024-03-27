@@ -38,6 +38,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
@@ -57,29 +58,35 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        // no index specified (edit one name)
+        assertParseFailure(parser, VALID_NAME_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
-        // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        // no field specified (edit 1)
+        assertParseFailure(parser, "1", String.format(EditCommand.MESSAGE_NOT_EDITED,
+                EditCommand.MESSAGE_USAGE));
 
-        // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        // no index and no field specified (edit)
+        assertParseFailure(parser, "", String.format(Messages.MESSAGE_NO_INDEX, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY,
+                String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, EditCommand.MESSAGE_USAGE));
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY,
+                String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, EditCommand.MESSAGE_USAGE));
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 random",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
     }
 
     @Test

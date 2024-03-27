@@ -63,6 +63,14 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the first token of the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
+     */
+    public String getFirstTokenOfPreamble() {
+        String[] tokens = getPreamble().split(" ");
+        return tokens[0];
+    }
+
+    /**
      * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
      * once among the arguments.
      */
@@ -81,5 +89,14 @@ public class ArgumentMultimap {
      */
     public boolean contains(Prefix prefix) {
         return argMultimap.containsKey(prefix);
+    }
+
+    /**
+     * Checks if all the prefixes exists in the map
+     * @param prefixes
+     * @return true if aall of the prefixes exists in the map
+     */
+    public boolean containsAll(Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> contains(prefix));
     }
 }

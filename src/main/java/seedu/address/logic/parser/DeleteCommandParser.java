@@ -21,7 +21,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         if (args.isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_NO_INDEX, FindCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_NO_INDEX, DeleteCommand.MESSAGE_USAGE));
         } else {
             try {
                 Index index = parseIndex(args);

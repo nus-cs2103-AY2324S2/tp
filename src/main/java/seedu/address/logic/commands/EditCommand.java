@@ -52,7 +52,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS =
             "Successfully edited client!\n--------------------------\n%1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n%1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
@@ -92,7 +92,8 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+                    EditCommand.MESSAGE_USAGE));
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());

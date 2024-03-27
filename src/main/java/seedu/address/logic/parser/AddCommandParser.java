@@ -43,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (args.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_NO_PARAMETERS, AddCommand.MESSAGE_USAGE));
         // (add John)
-        } else if (!argMultimap.contains(PREFIX_NAME) && !argMultimap.contains(PREFIX_PHONE)
+        } else if (!argMultimap.containsAll(PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.MESSAGE_USAGE));
         // (add p/99898888)
