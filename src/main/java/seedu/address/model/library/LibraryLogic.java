@@ -10,25 +10,30 @@ import java.util.ArrayList;
 
 import seedu.address.model.book.Book;
 
+/**
+ * The LibraryLogic Class manages the loading and saving of available books to a txt file.
+ */
 public class LibraryLogic {
 
-    public final String FILE_PATH = "./library.txt";
-    String filePath;
-    ArrayList<Book> loadedBooks;
+    private String filePath;
+    private ArrayList<Book> availableBooks;
 
     /**
-     * Constructs a Storage object with the given file path.
+     * Constructs a LibraryLogic object with the given file path.
      *
      * @param filePath the file path where books are stored
      */
     public LibraryLogic(String filePath) {
         this.filePath = filePath;
-        this.loadedBooks = new ArrayList<>();
+        this.availableBooks = new ArrayList<>();
     }
 
+    /**
+     * Constructs a LibraryLogic object with default file path
+     */
     public LibraryLogic() {
-        this.loadedBooks = new ArrayList<>();
         this.filePath = "./library.txt";
+        this.availableBooks = new ArrayList<>();
     }
 
     /**
@@ -45,7 +50,7 @@ public class LibraryLogic {
     }
 
     private void createFileIfNotExists() {
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         if (!file.exists()) {
             try {
                 if (file.createNewFile()) {
@@ -63,10 +68,13 @@ public class LibraryLogic {
         }
     }
 
+    /**
+     * Loads books from the file and store it inside the availableBooks.
+     */
     public void loadBooksFromFile() {
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         createFileIfNotExists();
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (checkValidBook(line.trim())) {
@@ -74,7 +82,7 @@ public class LibraryLogic {
                     System.out.println("Error found: Bad input");
                 }
                 Book currentBook = new Book(line.trim());
-                loadedBooks.add(currentBook);
+                availableBooks.add(currentBook);
             }
         } catch (IOException e) {
             // todo throw an exception here
@@ -83,13 +91,13 @@ public class LibraryLogic {
     }
 
     /**
-     * Loads books from the file.
+     * Get the loaded available books.
      *
      * @return the list of books loaded from the file
      */
-    public ArrayList<Book> getAvailableBooksArrayList() {
+    public ArrayList<Book> getAvailableBooksFromFile() {
         this.loadBooksFromFile();
-        return loadedBooks;
+        return availableBooks;
     }
 
     /**
@@ -100,7 +108,7 @@ public class LibraryLogic {
      */
     public void saveBooksToFile(ArrayList<Book> library) throws IOException {
         createFileIfNotExists();
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (Book availableBook : library) {
                 writer.println(availableBook);
             }
