@@ -103,7 +103,7 @@ public class MainApp extends Application {
                 logger.info("Creating a new data file " + storage.getGroupListFilePath()
                         + " starting with an empty GroupList.");
             }
-            initialGroupList = groupListOptional.orElseGet(GroupList::new);
+            initialGroupList = groupListOptional.orElseGet(SampleDataUtil::getSampleGroupList);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getGroupListFilePath() + " could not be loaded."
                     + " Will be starting with an empty GroupList.");

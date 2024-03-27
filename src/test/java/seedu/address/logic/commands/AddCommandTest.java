@@ -6,11 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.ALICE;
+import static seedu.address.testutil.TypicalCourseMates.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -28,6 +31,7 @@ import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupNotFoundException;
+import seedu.address.model.skill.Skill;
 import seedu.address.testutil.CourseMateBuilder;
 
 public class AddCommandTest {
@@ -56,6 +60,21 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_COURSE_MATE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_courseMateNewSkillWarning_addSuccessful() throws Exception {
+        ModelStubAcceptingCourseMateAdded modelStub = new ModelStubAcceptingCourseMateAdded();
+
+        CommandResult commandResult = new AddCommand(BOB).execute(modelStub);
+
+        Set<Skill> newSkills = new HashSet<>();
+        newSkills.add(new Skill("Java"));
+        newSkills.add(new Skill("C++"));
+
+        assertEquals(AddCommand.messageNewSkill(newSkills) + AddCommand.MESSAGE_SUCCESS,
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(BOB), modelStub.courseMatesAdded);
     }
 
     @Test
@@ -266,6 +285,15 @@ public class AddCommandTest {
         public boolean hasCourseMate(CourseMate courseMate) {
             requireNonNull(courseMate);
             return this.courseMate.isSameCourseMate(courseMate);
+        }
+
+        @Override
+        public ReadOnlyContactList getContactList() {
+            List<CourseMate> courseMateList = new ArrayList<>();
+            courseMateList.add(courseMate);
+            ContactList returnContactList = new ContactList();
+            returnContactList.setCourseMates(courseMateList);
+            return returnContactList;
         }
     }
 
