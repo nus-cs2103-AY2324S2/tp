@@ -75,7 +75,7 @@ class UniqueReservationListTest {
     }
 
     @Test
-    public void setPersons_nullUniqueReservationList_throwsNullPointerException() {
+    public void setReservations_nullUniqueReservationList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, ()
                 -> uniqueReservationList.setReservations((UniqueReservationList) null));
     }
