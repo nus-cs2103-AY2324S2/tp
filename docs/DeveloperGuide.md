@@ -199,7 +199,7 @@ The following sequence diagram below shows how `Model` and `LogicManger` compone
 Include `Person` meetings as a search field. A user can supply a given date and will return all `Person` that have a meeting starting or ending on the specified date.
 
 ### AddTag Feature
-This feature allows users to add `tags` to a `person` within the contact list, without the need to use the `edit` command. 
+This feature allows users to add `tags` to a `person` within the contact list, without the need to use the `edit` command.
 
 This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively. The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`.
 
