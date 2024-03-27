@@ -15,7 +15,7 @@ import seedu.address.model.attendance.Week;
 /**
  * Parses input arguments and creates a new MarkCommand object
  */
-public class AttendanceCommandParser implements Parser<MarkCommand> {
+public class MarkCommandParser implements Parser<MarkCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the MarkCommand
