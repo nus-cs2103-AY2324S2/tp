@@ -1,29 +1,19 @@
 package seedu.address.logic.relationship;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.attribute.Attribute;
-import seedu.address.model.person.attribute.NameAttribute;
-import seedu.address.model.person.relationship.BioParentsRelationship;
 import seedu.address.model.person.relationship.Relationship;
-import seedu.address.model.person.relationship.RelationshipUtil;
 
 class DeleteRelationshipCommandParserTest {
     private AddRelationshipCommandParser parser = new AddRelationshipCommandParser();
