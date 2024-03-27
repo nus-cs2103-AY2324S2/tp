@@ -16,6 +16,8 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
+import seedu.address.model.appointment.AppointmentView;
+import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
