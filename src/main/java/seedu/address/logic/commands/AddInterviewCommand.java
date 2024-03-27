@@ -143,6 +143,7 @@ public class AddInterviewCommand extends Command {
 
 
         model.addInterview(interview);
+        model.sortInterview();
         applicantSearch.updateCurrentStatusToReflectInterview(model);
         interviewerSearch.updateCurrentStatusToReflectInterview(model, applicantSearch);
 

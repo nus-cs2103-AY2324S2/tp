@@ -95,6 +95,8 @@ public interface Model {
 
     void addInterview(Interview interview);
 
+    void sortInterview();
+
     boolean hasInterview(Interview interview);
 
     void deleteInterview(Interview interview);

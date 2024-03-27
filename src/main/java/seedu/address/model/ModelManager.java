@@ -133,7 +133,10 @@ public class ModelManager implements Model {
         updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
     }
 
-
+    @Override
+    public void sortInterview() {
+        addressBook.sortInterviews();
+    }
 
     @Override
     public void deleteInterview(Interview interview) {

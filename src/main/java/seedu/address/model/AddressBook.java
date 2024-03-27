@@ -139,6 +139,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.interviews.setInterviews(interviews);
     }
 
+    public void sortInterviews() {
+        interviews.sortInterviewsByDate();
+    }
     //// util methods
 
     @Override

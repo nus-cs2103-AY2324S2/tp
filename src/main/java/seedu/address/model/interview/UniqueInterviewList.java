@@ -3,6 +3,7 @@ package seedu.address.model.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -68,6 +69,31 @@ public class UniqueInterviewList implements Iterable<Interview> {
         }
 
         internalList.set(index, editedInterview);
+    }
+
+    public void sortInterviewsByDate() {
+        Comparator<Interview> dateSorter = (interview1, interview2) -> {
+            if(interview1.getDate().isBefore(interview2.getDate())) {
+                return -1;
+            } else if (interview1.getDate().isEqual(interview2.getDate())) {
+                if (interview1.getStartTime().isBefore(interview2.getStartTime())) {
+                    return -1;
+                } else if (interview1.getStartTime().isAfter(interview2.getStartTime())) {
+                    return 1;
+                } else if (interview1.getStartTime().equals(interview2.getStartTime())) {
+                    if (interview1.getEndTime().isAfter(interview2.getEndTime())) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    return 0;
+                }
+            } else {
+                return 1;
+            }
+        };
+        internalList.sort(dateSorter);
     }
 
     /**
