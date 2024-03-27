@@ -53,7 +53,7 @@ does so via the following features:
    a. For more information on what information you can store, refer to the [Fields Summary](#fields-summary) section.
 2. **Search and Filter**: Search and filter your internship applications by keywords, making it easy to find the information you need.
 3. **Task Management**: Add tasks to your individual internship applications and keep track of their individual deadlines.
-=======
+
 
 <span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** ([CLI](#Glossary)).
 
@@ -106,7 +106,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 1. Ensure that you have **Java 11 or above** installed on your computer.
     - For MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html).
     - For Windows or Linux, follow the instructions [here](https://www.java.com/en/download/). 
-=======
+
 1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer if you are using Windows.
     - If you are using MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
 
@@ -139,9 +139,9 @@ When you first start CareerSync, you will see this window. This is the main wind
 
 
    * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
-      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
-     #f66a0a;">CareerSync</span> application.
-=======
+      /phone 90890301 /loc remote /role Software Intern` : <br> Adds this internship entry to the 
+      <span style="color: #f66a0a;">CareerSync</span> application.
+
 ### Areas
 The main window of CareerSync is divided into four main areas: the **Tab Area**, the **CLI**, the **Message Box** and the **Internship List Display**.
 
@@ -168,21 +168,6 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 7. `CONTACT_NAME` - The name of the contact person.
 8. `CONTACT_EMAIL` - The email of the contact person.
 9. `CONTACT_NUMBER` - The phone number of the contact person.
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action                                        | Description                              |
-|-----------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                   | Adds an Internship.                      |
-| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    |
-| [list](#listing-all-internships-list)         | Removes a Internship.                    |
-| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         |
-| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. |
-| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   |
-| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |
-| [exit](#exiting-the-program-exit)             | Exits and closes the application.        |
-
 --------------------------------------------------------------------------------------------------------------------
 =======
 ## Tutorial
@@ -316,6 +301,20 @@ you fully understand each command and their usage.
 --------------------------------------------------------------------------------------------------------------------
 ## Commands
 
+### Command Summary
+
+| Action                                        | Description                              | Format |
+|-----------------------------------------------|------------------------------------------|------------------------------------------|
+| [add](#adding-an-entry-add)                   | Adds an Internship.                      | `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE` |
+| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    | `delete INDEX` |
+| [list](#listing-all-internships-list)         | Removes a Internship.                    | `list` |
+| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         | `edit INDEX [/com COMPANY_NAME] [/poc CONTACT_NAME] [/email CONTACT_EMAIL] [/phone CONTACT_NUMBER] [/loc LOCATION_ENUM] [/status STATUS] [/desc DESCRIPTION] [/role ROLE` |
+| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
+| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
+| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
+| [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
+
+
 <div markdown="block" class="alert alert-info">
 
 **Notes about the command format**<br>
@@ -344,15 +343,36 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding an entry: `add`
+### Adding an internship: `add`
 
 Adds an internship entry and all the relevant fields
 
 Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​`
 
-Examples:
-* `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
+* The fields `COMPANY_NAME`, `DESCRIPTION`, `CONTACT_NAME` and `ROLE` allow the use of any text, number and/or spaces
+* The field `STATUS` accepts only the following inputs: `to_apply`, `ongoing`, `rejected`, `accepted`
+* The field `CONTACT_EMAIL` accepts only the format of `<email> @ domain.com`
+* The field `CONTACT_NUMBER` accepts only positive integers and it must be minimally 3 **positive integers** and above
+  * A **positive integer** refers to 1, 2, 3, …​
+* The field `LOCATION_ENUM` accepts only the following inputs: `remote`, `local`, `overseas`
+
+Now, let us try to add an internship entry.
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+Key in the following command in the CLI: `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
 /phone 90890301 /loc remote /role Software Intern`
+
+Successful output after adding the entry:<br>
+![After successfully adding](./images/tutorial/add.png)
+You can now see your new internship with the details you entered in the **Internship List Display!**
+</div>
+
+**Common errors:**
+1. If no field prefixes are specified or if there are errors, the command will be rejected with error message:<br>
+   `Invalid Command Prefix!` followed by the format to use and an example for you to refer to or try out
 
 ### Deleting an internship: `delete`
 
@@ -364,9 +384,16 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list of internship entries at point of deletion.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 7` deletes the 7th entry in the internship entries list.
-* `find withall /com Google` followed by `delete 1` deletes the 1st entry in the results of the `find` command.
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+Key in the following command in the CLI: `delete 2`
+
+Successful output after deleting the entry:<br>
+![After successfully deleting](./images/tutorial/delete.png)
+The Facebook internship entry has been removed, and is no longer present in your database.
+</div>
 
 ### Listing all internships: `list`
 
@@ -400,7 +427,7 @@ Click the back button to return to the previous view of internship entries.
 
 Shows the full details of an internship entry. This replaces the current view of internship entries.
 
-[CLI](#glossary)input will be implemented in a future release.
+[CLI](#glossary) input will be implemented in a future release.
 
 ### Editing an internship: `edit`
 
@@ -542,19 +569,6 @@ After every command that changes the data, CareerSync performs a save automatica
 **The solution** is to delete the `preferences.json` file from the folder where you installed the application. Then, run the application again.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Command Summary
-
-| Action                                        | Description                              | Format |
-|-----------------------------------------------|------------------------------------------|------------------------------------------|
-| [add](#adding-an-entry-add)                   | Adds an Internship.                      | `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE` |
-| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    | `delete INDEX` |
-| [list](#listing-all-internships-list)         | Removes a Internship.                    | `list` |
-| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         | `edit INDEX [/com COMPANY_NAME] [/poc CONTACT_NAME] [/email CONTACT_EMAIL] [/phone CONTACT_NUMBER] [/loc LOCATION_ENUM] [/status STATUS] [/desc DESCRIPTION] [/role ROLE` |
-| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
-| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
-| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
-| [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
 
 ## Field Summary
 | Prefix  | Description                        | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
