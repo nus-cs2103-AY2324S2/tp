@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.library.Library;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,7 +23,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
+    private final Library library;
+    //TODO add Library into ModelManager constructor and MainApp#initModelManager
+    //TODO add Library methods I need into Model and ModelManager
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */

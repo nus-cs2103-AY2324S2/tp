@@ -102,8 +102,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        // create getMeritScore within edit person desciptor class shall be fine, and then uncomment below
-        MeritScore updatedMeritScore = personToEdit.getMeritScore();
+        MeritScore updatedMeritScore = editPersonDescriptor.getMeritScore().orElse(personToEdit.getMeritScore());
 
         ArrayList<Book> updatedBookList = personToEdit.getBookList();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());

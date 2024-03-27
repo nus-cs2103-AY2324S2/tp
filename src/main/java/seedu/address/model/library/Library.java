@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import seedu.address.model.book.Book;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a collection of books in a library.
@@ -21,12 +22,22 @@ public class Library {
     };
 
     private ArrayList<Book> library;
+    private Threshold threshold;
 
     /**
      * Construct an empty library.
      */
     public Library() {
-        this.library = new ArrayList<>();
+        library = new ArrayList<>();
+        threshold = new Threshold();
+    }
+
+    /**
+     * Construct an empty library with preset threshold.
+     */
+    public Library(int i) {
+        library = new ArrayList<>();
+        threshold = new Threshold(i);
     }
 
     /**
@@ -61,6 +72,18 @@ public class Library {
     public ArrayList<Book> list() {
         this.sortAlphabetically();
         return this.library;
+    }
+
+    //TODO use this in BorrowCommand
+
+    /**
+     * Checks if person is able to borrow a book from the library.
+     *
+     * @param person Person attempting to borrow a book.
+     * @return if the person can borrow the book or not.
+     */
+    public boolean canLendTo(Person person) {
+        return threshold.isLessThanOrEqualTo(person.getMeritScore());
     }
 
     @Override
