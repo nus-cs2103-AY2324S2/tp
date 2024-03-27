@@ -144,7 +144,7 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Internship} that we are building.
+     * Sets the {@code taskList} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withTaskList(String taskList) {
         this.taskList = new TaskList(taskList);
