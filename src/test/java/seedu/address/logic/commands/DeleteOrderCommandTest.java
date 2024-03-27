@@ -41,8 +41,8 @@ public class DeleteOrderCommandTest {
         Index orderIndexToDelete = Index.fromZeroBased(0);
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_PERSON, orderIndexToDelete);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, ORDER_STUB,
-                editedPerson);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
+                ORDER_STUB, Messages.format(editedPerson));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person personAfterDeletion = new PersonBuilder(editedPerson).withoutOrder(
