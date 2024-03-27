@@ -19,7 +19,7 @@ public class InternshipDeleteCommandParser implements InternshipParser<Internshi
 
     public InternshipDeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = InternshipParserUtil.parseIndex(args);
             return new InternshipDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
