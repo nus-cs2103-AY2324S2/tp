@@ -11,13 +11,32 @@ title: User Guide
 
 By seamlessly combining the efficiency of a Command Line Interface (CLI) with the intuitive interface of a Graphical User Interface (GUI), **PoochPlanner** empowers you to effortlessly complete your contact management tasks **_three_** times faster than traditional GUI applications.
 
-Experience the ***difference*** today with **PoochPlanner**—the ***ultimate*** solution tailored to your needs.
-
+Get started by following the steps in this user guide! Experience the ***difference*** today with **PoochPlanner**—the ***ultimate*** solution tailored to your needs. 
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introducing PoochPlanner
+PoochPlanner is your go-to address book, ***tailor-made*** for Dog Cafe Owners like you. With four main contact types—**person, staff, supplier, maintainer**—each equipped with its own set of attributes and functions, managing your contacts has never been easier. 
+
+Contact | Definition and Examples
+--------|------------------
+Person | Any persons that do not hold a special relationship<br> E.g. Neighbours, Work Friends.
+Staff | Any full-time or part-time employees that do not do any specialised work.<br> E.g. Waiters, Waitresses, Dishwashers.
+Supplier | Add logistics partner that supplies stocks for your Dog Cafe.<br> E.g. Kibbles Supplier, Coffee Beans Supplier.
+Maintainer | Any externally hired specialised persons who take care of the Dogs.<br> E.g. Dog Groomers, Vet.
+
+
+But our commitment to improving your contact management experience doesn't end there. In addition to the essential functionalities like adding, searching, editing, deleting, undoing, and redoing, **PoochPlanner** comes loaded with extra features. You can now pin important contacts, jot down notes, set reminders, and even rate your contacts - all to ensure a ***seamless*** and ***efficient*** workflow tailored to your needs.
+
+
+Feature | Purpose
+--------|------------------
+Pin | Pin all your important contacts at the top.
+Note | Add additional information you have to a contact.
+Remind | Add any reminders you have to do for a contact.
+Rating | Rate any of the contacts so you can easily track their performance.
 
 ## Useful Notations and Glossary
 
