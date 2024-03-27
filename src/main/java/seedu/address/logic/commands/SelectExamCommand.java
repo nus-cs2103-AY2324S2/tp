@@ -35,7 +35,9 @@ public class SelectExamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Exam> examList = model.getExamList();
-
+        if (examList == null || examList.isEmpty()) {
+            throw new CommandException(MESSAGE_EXAM_NOT_FOUND);
+        }
         for (Exam exam : examList) {
             if (exam.getName().equals(targetExamName)) {
                 model.selectExam(exam);
