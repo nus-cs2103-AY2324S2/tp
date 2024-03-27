@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday" : "2000-01-01",
-    "instrument": "Flute",
+    "instrument" : "Flute",
     "tags" : [ "friends" ],
     "attendances": ["2024-01-01", "2024-01-10"]
   }, {
@@ -15,7 +15,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "birthday" : "2001-02-02",
-    "instrument": "Clarinet",
+    "instrument" : "Flute",
     "tags" : [ "owesMoney", "friends" ],
     "attendances": ["2024-01-01", "2024-01-10"]
   }, {
@@ -24,7 +24,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "birthday" : "2000-03-03",
-    "instrument": "Saxophone",
+    "instrument" : "Flute",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -32,7 +32,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "birthday" : "2000-04-04",
-    "instrument": "Flute",
+    "instrument" : "Flute",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -40,7 +40,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "birthday" : "2000-05-05",
-    "instrument": "Clarinet",
+    "instrument" : "Flute",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -48,7 +48,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "birthday" : "2000-06-06",
-    "instrument": "Saxophone",
+    "instrument" : "Flute",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -56,7 +56,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "birthday" : "2000-07-07",
-    "instrument": "Flute",
+    "instrument" : "Flute",
     "tags" : [ ]
   } ]
 }

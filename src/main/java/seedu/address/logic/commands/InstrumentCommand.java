@@ -28,7 +28,7 @@ import seedu.address.model.tag.Tag;
 public class InstrumentCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Indexes: %1$d, Instrument: %2$s";
 
-    public static final String COMMAND_WORD = "instrument";
+    public static final String COMMAND_WORD = "assign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns an instrument to the persons identified "

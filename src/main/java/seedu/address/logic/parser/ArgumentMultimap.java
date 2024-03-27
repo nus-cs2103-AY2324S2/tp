@@ -56,7 +56,7 @@ public class ArgumentMultimap {
      */
     public Optional<String> getOptionalInstrument(Prefix prefix) {
         List<String> values = getAllValues(prefix);
-        return values.isEmpty() ? Optional.of("No instrument") : Optional.of(values.get(values.size() - 1));
+        return values.isEmpty() ? Optional.of("None") : Optional.of(values.get(values.size() - 1));
     }
 
     /**

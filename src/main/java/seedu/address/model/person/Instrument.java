@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -58,6 +56,6 @@ public class Instrument {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + value + ']';
+        return value;
     }
 }
