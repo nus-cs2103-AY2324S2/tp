@@ -78,8 +78,9 @@ public class InterviewDate {
     public int hashCode() {
         return value.hashCode();
     }
+
     /**
-     * Checks if this InterviewDate is in the next 3 days.
+     * Checks if this InterviewDate is in the next N days.
      */
     public boolean isWithinNDays(int numberOfDays) {
         if (value == null) {
