@@ -302,10 +302,12 @@ _{more aspects and alternatives to be added}
 ### Loan Analytics - Joseph
 
 #### Implementation
+
 The `Analytics` class handles the analysis of a `LoanRecords` object. This class can only be instantiated by calling the
 static method `getAnalytics(LoanRecords loanRecords)`.
 
 It contains the following fields that can prove to be useful for the user:
+
 * `propOverdueLoans`: proportion of loans that are overdue over active loans
 * `propActiveLoans`: proportion of loans that are active over total loans
 * `averageLoanValue`: average loan value of all loans
@@ -319,7 +321,9 @@ It contains the following fields that can prove to be useful for the user:
 ![AnalyticsSequenceDiagram](images/AnalyticsSequenceDiagram.png)
 
 #### Design considerations:
+
 ##### Aspect: Initialization of the Analytics object:
+
 * **Alternative 1 (current choice):** Initialize the Analytics class using a factory method.
     * Pros: Hide the constructor from the user, ensure that fields are initialized correctly, more defensive.
     * Cons: Slightly more complex than a public constructor.
@@ -329,6 +333,7 @@ It contains the following fields that can prove to be useful for the user:
     * Cons: User may not initialize the fields correctly, less defensive.
 
 ##### Aspect: What fields to include in the analytics:
+
 * **Alternative 1 (current choice):** Include all fields.
     * Pros: Satisfy 'ask, don't tell' principle.
     * Cons: Possibly result in redundant information for the GUI developer.
@@ -336,7 +341,6 @@ It contains the following fields that can prove to be useful for the user:
 * **Alternative 2:** Include only raw data (e.g. total number of loans, total value of all loans).
     * Pros: No redundant information.
     * Cons: GUI developer has to calculate the analytics themselves, violating 'ask, don't tell' principle.
-
 
 ### Delete Loan - Xiaorui
 
@@ -347,13 +351,14 @@ parsed and transformed into an appropriate format.
 The parsing of the command is done by the `DeleteLoanCommandParser` class, which is responsible for parsing the user
 input.
 
-The `DeleteLoanCommand` class is instantiated in the `DeleteLoanCommandParser` class, while the 
+The `DeleteLoanCommand` class is instantiated in the `DeleteLoanCommandParser` class, while the
 `DeleteLoanCommandParser` is instantiated in the `AddressBookParser` class. Both classes are instantiated when the user
 enters a `deleteloan` command, which needs to be of the format `deleteloan INDEX l/LOAN_INDEX`
 where INDEX is the index of the person and LOAN_INDEX is the index of the loan to be deleted, both of
 which are positive whole numbers.
 
 The `DeleteLoanCommand` class contains the following fields which can prove to be useful for the user:
+
 * `personIndex`: the index of the person whose loan is to be deleted
 * `loanIndex`: the index of the loan to be deleted
 * Several string fields that are displayed to the user under different scenarios.
@@ -365,23 +370,60 @@ Sequence diagram for the deletion of a loan:
 ![DeleteLoanSequenceDiagram](images/DeleteLoanSequenceDiagram.png)
 
 #### Design considerations:
+
 ##### Aspect: How the command is executed:
+
 * **Alternative 1 (current choice):** The `DeleteLoanCommand` class is responsible for executing the command only.
     * Pros: Follows the Single Responsibility Principle. Simpler to debug.
     * Cons: May result in more classes.
 * **Alternative 2:** The `LogicManager` class is responsible for executing the command.
     * Pros: More centralized command execution.
     * Cons: May result in the `LogicManager` class becoming too large. This also goes against various SWE principles,
-  and makes the code harder to maintain.
+      and makes the code harder to maintain.
 
 ##### Aspect: How the command is parsed:
+
 * **Alternative 1 (current choice):** The `DeleteLoanCommandParser` class is responsible for parsing the command.
     * Pros: Follows the Single Responsibility Principle. Simpler to debug.
     * Cons: May result in more classes.
 * **Alternative 2:** The `AddressBookParser` class is responsible for parsing the command.
     * Pros: More centralized command parsing.
-    * Cons: May result in the `AddressBookParser` class becoming too large. This also goes against various SWE principles
-  ,and makes the code harder to maintain.
+    * Cons: May result in the `AddressBookParser` class becoming too large. This also goes against various SWE
+      principles
+      ,and makes the code harder to maintain.
+
+### Loan view GUI - Kyal Sin Min Thet
+
+#### Implementation
+
+The GUI component to display loans attached to a contact is implemented in tandem with the `viewloan` command.
+
+The update behaviour is achieved through the use of `ObservableList` objects in the `Model` component. The `MainWindow`
+component listens for changes in the `ObservableList` objects and updates the GUI accordingly.
+
+The `LoanListPanel` (similar to `PersonListPanel`) is responsible for displaying the list of loans attached to a
+contact. It generates new `LoanCard` objects according to the `loanList` in the `Model` class.
+To accommodate the new GUI component, the `MainWindow.java` file is updated to include the new `LoanListPanel`.
+
+To ensure that only either the loan list or the person list is displayed, an additional `BooleanProperty` is added to
+the `Model`
+component to act as a flag to indicate which list is currently being displayed. This flag is updated by corresponding
+commands.
+For instance, commands such as `list` will toggle the flag to false, while `viewloan` will toggle the flag to true.
+This update switches the display between the two lists inside `MainWindow`.
+
+#### Design Considerations
+
+##### Aspect: How the GUI is updated
+
+* **Alternative 1 (current choice):** The GUI updates are done by the `Model` component's observable properties.
+    * Pros: Follows the observer design pattern, reducing coupling between the `Model` and `MainWindow` components.
+    * Cons: The GUI updates are restricted to the observable properties of the `Model` component.
+
+* **Alternative 2:** The GUI updates are done by the `MainWindow` component.
+    * Pros: More explicit control over the GUI updates.
+    * Cons: `Model` needs a reference to `MainWindow` to update the GUI directly. This increases coupling between the
+      components.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -402,6 +444,7 @@ Sequence diagram for the deletion of a loan:
 **Target user profile**:
 
 The target user is businessman who satisfies the following criteria
+
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
@@ -410,11 +453,11 @@ The target user is businessman who satisfies the following criteria
 
 and wants to manage contacts faster than a typical mouse/GUI driven app. Typically,
 they want to answer the following questions quickly:
+
 * How much cash was loaned?
 * To whom it was loaned to?
 * When the person is due to return the loan?
 * When did the person last loan?
-
 
 **Value proposition**: Manage contacts faster than a typical mouse/GUI driven app
 
@@ -428,7 +471,6 @@ Our software streamlines loanee management, preventing profit loss and enhancing
 It simplifies loan categorization and tracks product quality post-return, ensuring efficient
 decision-making. Some boundaries include no detailed client reviews or personal loan management,
 as we focus solely on business loans and contact management for a select client group.
-
 
 ### User stories
 
@@ -463,8 +505,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Collaborative user                                | Share loan entries with another user of the application | we can co-manage loans or items owned jointly                           |
 | `*`      | User with international contacts                  | Store and view currency information for cash loans      | I can accurately track and manage international loans                   |
 | `*`      | User who appreciates personalization              | Customize the notification settings for loan reminders  | I can receive them through my preferred communication channel           |
-
-
 
 ### Use cases
 
@@ -604,34 +644,35 @@ Use case ends.
 ### Glossary
 
 Order is roughly according to the order in which they first appear in the guide.
+
 * **Architecture Diagram**: A diagram that shows how the different components interact with each
-other at a high level.
-* **Sequence Diagram**: A diagram that shows how the different components interact with each other 
-when a particular command is executed.
-* **API**: Application Programming Interface, a set of rules that allows different software applications 
-to communicate with each other to form an entire system.
+  other at a high level.
+* **Sequence Diagram**: A diagram that shows how the different components interact with each other
+  when a particular command is executed.
+* **API**: Application Programming Interface, a set of rules that allows different software applications
+  to communicate with each other to form an entire system.
 * **UI**: User Interface
-* **OOP**: Object-Oriented Programming, a programming paradigm based on the concept of "objects", 
-which can contain data and code: data in the form of fields, and code in the form of procedures.
-The objects interact with each other. 
+* **OOP**: Object-Oriented Programming, a programming paradigm based on the concept of "objects",
+  which can contain data and code: data in the form of fields, and code in the form of procedures.
+  The objects interact with each other.
 * **Class**: Classes are used to create and define objects. A feature of OOP.
-* **JSON**: JavaScript Object Notation, a lightweight data-interchange format. Files of this format 
-are used to store loan data on the hard disk.
+* **JSON**: JavaScript Object Notation, a lightweight data-interchange format. Files of this format
+  are used to store loan data on the hard disk.
 * **Data archiving**: The process of moving data that is no longer actively used to a separate storage
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
-* **User stories**: A user story is an informal, general explanation of a software feature written from the 
-perspective of the end user.
-* **Cash**: Money in the form of coins or notes, as opposed to cheques or credit. *All loans in this project 
-are in cash, rather than items*. For consistency, we will avoid using the term "money" in this guide.
-* **Currency**: Money of a certain country(e.g. USD, SGD, EUR for United States Dollars, SinGapore Dollars, 
-and EURos respectively).
+* **User stories**: A user story is an informal, general explanation of a software feature written from the
+  perspective of the end user.
+* **Cash**: Money in the form of coins or notes, as opposed to cheques or credit. *All loans in this project
+  are in cash, rather than items*. For consistency, we will avoid using the term "money" in this guide.
+* **Currency**: Money of a certain country(e.g. USD, SGD, EUR for United States Dollars, SinGapore Dollars,
+  and EURos respectively).
 * **Use cases**: A specific situation in which a product or service could potentially be used.
 * **Actor**: A person or thing that performs an action.
 * **MSS**: Main Success Scenario, the most common path through a use case.
 * **Extensions**: The alternative paths through a use case.
-* **Non-Functional Requirements**: A requirement that specifies criteria that can be used to judge the operation of 
-a system, rather than specific behaviours.
+* **Non-Functional Requirements**: A requirement that specifies criteria that can be used to judge the operation of
+  a system, rather than specific behaviours.
 * **Mainstream OS**: Windows, Linux, Unix, or MacOS
 
 --------------------------------------------------------------------------------------------------------------------
