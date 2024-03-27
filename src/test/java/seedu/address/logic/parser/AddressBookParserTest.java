@@ -132,6 +132,14 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_priorityNone() throws Exception {
+        String testName = ALICE.getName().toString();
+        String userInput = PriorityCommand.COMMAND_WORD_NONE + " Alice Pauline";
+        PriorityCommand command = (PriorityCommand) parser.parseCommand(userInput);
+        assertEquals(new PriorityCommand(testName, new Priority("")), command);
+    }
+
+    @Test
     public void parseCommand_filterHighPriority() throws Exception {
         assertTrue(parser.parseCommand(FilterHighPriorityCommand.COMMAND_WORD) instanceof FilterHighPriorityCommand);
     }
