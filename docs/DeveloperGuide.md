@@ -215,6 +215,90 @@ harder to manage and maintain. Another alternative could be the use of reflectio
 which would make adding new fields easier. However, this could increase complexity and decrease code readability and security due to the dynamic nature of reflection.
 Additionally, the `EditPersonDescriptor` could be completely remove as the implementation of the `Entry` class would allow the edit of categories directly.
 
+
+### Find function
+
+The Find Command feature within the provided address book application is structured to enable users to search for persons based on specified criteria.
+
+#### Implementation
+
+The feature is implemented through several interconnected components:
+
+1. **FindCommand Class**: This is the core of the feature, encapsulating the logic to find and list all persons whose fields match the specified criteria. It leverages a `PersonFieldsContainKeywordPredicate` to filter matching persons. Upon execution, it updates the model's filtered person list to reflect the search results.
+
+2. **PersonFieldsContainKeywordPredicate Class**: Represents the criteria used to filter persons. It checks if any of the person's fields match the specified keywords in their categories, descriptions, or tags. This flexibility allows for a more nuanced search capability.
+
+3. **FindCommandParser Class**: Parses the user input into a usable format for the `FindCommand`. It ensures the input adheres to the expected format, extracting relevant information to create a `PersonFieldsContainKeywordPredicate`.
+
+4. **Model Interface**: Defines the API that the `FindCommand` interacts with, specifically the `updateFilteredPersonList` method that updates the list of displayed persons based on the predicate.
+
+#### Rationale
+
+The design choices made in implementing the Find Command are based on several considerations:
+
+- **Modularity and Single Responsibility**: Each class has a clear and distinct role. `FindCommand` handles command execution, `PersonFieldsContainKeywordPredicate` defines the search criteria, and `FindCommandParser` processes user input. This separation of concerns makes the code more maintainable and extendable.
+
+- **Flexibility in Search Criteria**: By using a predicate that can filter based on categories, descriptions, and tags, the implementation provides a versatile search functionality. This approach caters to various user needs, allowing for more detailed queries.
+
+- **User-Friendly Command Syntax**: The command syntax is designed to be intuitive, with clear prefixes indicating the type of criteria (category, description, tag). This choice aims to enhance usability, making it easier for users to construct their search queries.
+
+- **Enables Batch Processing**: Specifying multiple `c/<category> d/<description>` allows the user to look for multiple people who satisfy the at least one of the `c/ d/`.
+
+- **Tags**: Finding with tags also allows batch processing, which enhances the users' experience in searching for people who belong to different tags.
+
+#### Alternatives Considered
+
+1. **Regular Expression Searches**: Implementing search functionality that allows for regular expression patterns could provide even more flexibility. However, this might increase the complexity of the user interface and require users to have knowledge of regular expressions.
+
+2. **Separate Commands for Different Criteria**: Creating separate commands for searching by category, description, and tag could simplify the implementation. However, this approach was likely rejected because it would complicate the user experience, requiring users to remember and choose from multiple commands based on their search needs.
+
+In conclusion, the Find Command is implemented with a focus on flexibility, usability, and maintainability, balancing advanced search capabilities with ease of use for the end user. The chosen implementation provides a solid foundation that can be easily extended or modified as the application evolves.
+
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+
+<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</box>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+
+
+<box type="info" seamless>
+
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</box>
+=======
 ### DeleteCategory function
 
 The command `deleteCategory INDEX c/CATEGORY` allows users to delete the `CATEGORY` of a person at the specified `INDEX`.
