@@ -419,6 +419,76 @@ Responsibility Principle.
   `UniquePersonList`.
     * There is not a need to apply sorting strategies to another different data structure.
 
+### Duplicate feature
+
+#### Implementation
+
+The feature to be able to add persons with duplicate names in the address book are facilitated by the use of the
+`DuplicateCommand`. It implements the following operations:
+* `DuplicateCommand#`: Constructor class which is instantiated and stores the necessary `toAdd` person object
+    based on user input.
+* `DuplicateCommand#Executes`: Executes the necessary `addDuplicatePerson` method and updates the model.
+
+The sorting mechanism consists of several components:
+1. `addDuplicatePerson`: A method bound by the `Person`, `ModelManager`, `AddressBook` classes that each contain
+    similar logic to support a SLAP form of implementation for the end execution point i.e. `execute` in 
+    `DuplicateCommand`.
+2. `DuplicateCommand`: Initiates the duplication by parsing user input to determine the identity of the person to add. 
+    After duplicating, it then updates the list of persons in the model.
+
+Given below is an example usage scenario and how the feature mechanism behaves at each step.
+
+* Step 1: The user launches the application for the first time, no contacts will be present in the `AddressBook`.
+  When user `add` contacts in the `AddressBook`, contacts will be sorted based on their timestamp.
+
+* Step 2: The user reaches a point where they encounter the need to have to add a separate contact, that has the exact
+  same name as another person in their `AddressBook`.
+
+* Step 3: To continue, the user executes `add /n... /e ...` to attempt to add this new person.
+
+* Step 4: The user then receives an error in their `AddressBook` which alerts them that they already have such a person
+  in their `AddressBook`, and they have the option of overwriting the existing contact, or duplicating it.
+
+* Step 5: The user picks their choice and edits the command in their current `CommandBox`, replacing `add` with either
+  `duplicate` or `overwrite INDEX`, leaving the rest of the arguments untouched.
+
+* Step 6: (1st case) The user executes `duplicate /n... /e...` command.
+    * The `duplicateCommand#` constructor will initialize with the `toAdd` variable based on the created `Person` 
+        object in `DuplicateCommandParser`.
+    * `duplicateCommand#execute` will pass the `toAdd` to the `model#addDuplicatePerson`, where `UniquePersonsList`
+        is updated with the duplicated person.
+    * After duplicating, the model will be updated to reflect the newly sorted contacts list, 
+        alongside a return statement to provide confirmation to the user.
+  
+* Step 6.1: (2nd case) The user executes `overwrite INDEX /n... /e...` command.
+    * The `overwriteCommand#` constructor will initialize with the `toAdd` variable based on the created `Person`
+      object in `OverwriteCommandParser`, as well as the user's inputted index of person to be edited in the 
+      `AddressBook`.
+    * `overwriteCommand#execute` will pass the `indexOfTarget` to the `model#getPerson`, and will also pass the `toAdd`
+       to the `model#setDuplicatePerson`, where `UniquePersonsList` is updated with the duplicated person.
+  
+### Design consideration:
+`SolidStrategy` interface was implemented for sorting functionality to adhere to SOLID principles, particularly the
+Single Responsibility Principle and Interface Segregation Principle.
+* Single Responsibility Principle
+    * The class maintains single responsibility by defining methods for duplicating person strategies without burdening
+      implementations with unrelated methods
+* Interface Segregation Principle
+    * Segregates behavior for sorting into distinct methods `addDuplicatePerson`, `setDuplicatePerson`, `getPerson`, 
+      thus, allowing different sorting strategies to implement only the methods they need, rather than being forced to 
+      implement monolithic interface with unnecessary methods.
+
+* **Alternative 1** `DuplicateCommand` constructor of the `DuplicateCommand` to take in `toAdd` as its parameter.
+    * Pros: Straightforward design and easy to implement.
+        * Duplication logic interacts directly with data structure being sorted.
+
+Alternative 1 is chosen for the following reasons:
+* Simplicity: keeps duplicating logic simple and focused by directly interacting with the data structure being sorted.
+* Clear Responsibility: Duplication logic is closely tied to the data structure it operates on, adhering to the Single
+  Responsibility Principle.
+* Ease of implementation: No need to pass unnecessary parameters to the DuplicateCommandParser method.
+    * Reduce complexity and potential dependencies.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
