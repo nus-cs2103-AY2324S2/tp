@@ -83,15 +83,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a client : `add`
 
-Adds a person to FAPro.
+Adds a client to FAPro.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [lc/DATETIME]`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A client can have any number of tags (including 0)
 </box>
 
 **Note:** t/ and lc/ : tag and last contacted field is optional.
@@ -101,33 +101,33 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 lc/16-03-2024 0800`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all people : `list`
+### Listing all clients : `list`
 
-Shows a list of all people in FAPro.
+Shows a list of all clients in FAPro.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a client : `edit`
 
-Edits an existing person in FAPro.
+Edits an existing client in FAPro.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]... [lc/DATETIME]`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 * Last contacted `lc/` should not have future `DATETIME` and must be valid. 
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating people by name: `find`
+### Locating clients by name : `find`
 
-Finds people whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -135,7 +135,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -143,47 +143,76 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating people by tag : `tagfind`
+### Locating clients by tag : `findtagsor`
 
-Finds people who are associated with the specified tag.
+Finds clients who contain one of the specified tags.
 
-Format: `tagfind TAG`
+Format: `findtagsor TAG [MORE_TAGS]`
 
 * The search is case-insensitive. e.g. `CaR` will match `car`.
-* As long as the person has 1 tag that matches, the person will be listed.
+* As long as the client has 1 tag that matches, the client will be listed.
 * Only full words will be matched e.g. `cars` will not match `car`.
 
 Examples:
-* `tagfind car` returns all people with a `car` tag.
-* `tagfind HOUSING` returns all people with a `housing` tag.
+* `findtagsor car` returns all clients with a `car` tag.
+* `findtagsor HOUSING` returns all clients with a `housing` tag.
 
-### Deleting a person : `delete`
+### Locating clients by tag : `findtagsand`
 
-Deletes the specified person from FAPro.
+Finds clients who contain all the specified tags.
+
+Format: `findtagsand TAG [MORE_TAGS]`
+
+* The search is case-insensitive. e.g. `CaR` will match `car`.
+* Client must contain all tags to be listed.
+* Only full words will be matched e.g. `cars` will not match `car`.
+
+Examples:
+* `findtagsand car covid` returns all clients with `car` and `covid` tags.
+* `findtagsand HOUSING` returns all clients with a `housing` tag.
+
+### Add tags to a client : `addtags`
+
+Add tags to specified client.
+
+Format: `addtags INDEX t/TAG [t/MORE_TAGS]`
+
+* Add tags to the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one tag must be provided.
+* Duplicate tags will be ignored.
+* Tags are case-insensitive. e.g. `cAr` and `car` are the same tags.
+
+Examples:
+* `addtags 1 t/car t/covid` adds `car` and `covid` tags to the 1st client. 
+* `addtags 2 t/HOUSING` adds `housing` tag to the 2nd client.
+
+### Deleting a client : `delete`
+
+Deletes the specified client from FAPro.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in FAPro.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in FAPro.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Viewing the detailed profile a person : `select`
+### Viewing the detailed profile a client : `select`
 
-View a more detailed profile of the specified person from FAPro.
+View a more detailed profile of the specified client from FAPro.
 
 Format: `select INDEX`
 
 * Displays the profile of the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `select 2` shows the detailed profile of the 2nd person in FAPro.
-* `find Betsy` followed by `select 1` shows the detailed profile of the 1st person in the results of the `find` command.
+* `list` followed by `select 2` shows the detailed profile of the 2nd client in FAPro.
+* `find Betsy` followed by `select 1` shows the detailed profile of the 1st client in the results of the `find` command.
 
 
 ### View contacts of all upcoming appointments : `upcoming`
