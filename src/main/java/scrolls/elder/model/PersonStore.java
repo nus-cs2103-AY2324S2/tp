@@ -18,6 +18,7 @@ import scrolls.elder.model.person.UniquePersonList;
  */
 public class PersonStore implements ReadOnlyPersonStore {
 
+    private static final Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     private final UniquePersonList persons;
     private int personIdSequence;
     private final FilteredList<Person> filteredPersons;
@@ -96,6 +97,7 @@ public class PersonStore implements ReadOnlyPersonStore {
                 .map(max -> max + 1)
                 .orElse(0);
         setPersonList(newData.getPersonList());
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //// Person-level CRUD operations
@@ -143,8 +145,8 @@ public class PersonStore implements ReadOnlyPersonStore {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
+        Person withId = PersonFactory.withIdFromPerson(target.getPersonId(), editedPerson);
+        persons.setPerson(target, withId);
     }
 
     /**
@@ -175,8 +177,8 @@ public class PersonStore implements ReadOnlyPersonStore {
             return false;
         }
 
-        PersonStore otherAddressBook = (PersonStore) other;
-        return persons.equals(otherAddressBook.persons);
+        PersonStore otherPersonStore = (PersonStore) other;
+        return persons.equals(otherPersonStore.persons);
     }
 
     @Override

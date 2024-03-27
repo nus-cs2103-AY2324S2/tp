@@ -8,10 +8,12 @@ import static scrolls.elder.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static scrolls.elder.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static scrolls.elder.logic.commands.CommandTestUtil.showVolunteerAtIndex;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import scrolls.elder.commons.core.index.Index;
 import scrolls.elder.logic.Messages;
+import scrolls.elder.model.Datastore;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
 import scrolls.elder.model.PersonStore;
@@ -32,8 +34,18 @@ public class DeleteCommandTest {
     private static final String ROLE_STRING_BEFRIENDEE = "befriendee";
     private static final Role ROLE_VOLUNTEER = new Role(ROLE_STRING_VOLUNTEER);
     private static final Role ROLE_BEFRIENDEE = new Role(ROLE_STRING_BEFRIENDEE);
-    private final Model model = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
-    private final PersonStore personStore = model.getMutableDatastore().getMutablePersonStore();
+    private Model model;
+    private PersonStore personStore;
+    private Model expectedModel;
+    private PersonStore expectedPersonStore;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
+        personStore = model.getMutableDatastore().getMutablePersonStore();
+        expectedModel = new ModelManager(new Datastore(model.getDatastore()), new UserPrefs());
+        expectedPersonStore = expectedModel.getMutableDatastore().getMutablePersonStore();
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -44,8 +56,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
             Messages.format(personToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getDatastore(), new UserPrefs());
-        expectedModel.getMutableDatastore().getMutablePersonStore().removePerson(personToDelete);
+        expectedPersonStore.removePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -70,9 +81,8 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
             Messages.format(personToDelete));
 
-        Model expectedModel = new ModelManager(model.getDatastore(), new UserPrefs());
-        expectedModel.getMutableDatastore().getMutablePersonStore().removePerson(personToDelete);
-        showNoPerson(expectedModel);
+        expectedPersonStore.removePerson(personToDelete);
+        showNoPerson(expectedPersonStore);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -152,9 +162,9 @@ public class DeleteCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
-        personStore.updateFilteredPersonList(p -> false);
+    private void showNoPerson(PersonStore ps) {
+        ps.updateFilteredPersonList(p -> false);
 
-        assertTrue(personStore.getFilteredPersonList().isEmpty());
+        assert ps.getFilteredPersonList().isEmpty();
     }
 }

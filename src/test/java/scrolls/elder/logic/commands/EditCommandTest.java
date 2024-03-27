@@ -59,7 +59,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
-        expectedPersonStore.setPerson(expectedPersonStore.getFilteredVolunteerList().get(0), editedPerson);
+        expectedPersonStore.setPerson(expectedPersonStore.getFilteredBefriendeeList().get(0), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -140,7 +140,7 @@ public class EditCommandTest {
                 .build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
-        expectedPersonStore.setPerson(expectedPersonStore.getFilteredVolunteerList().get(1), editedPerson);
+        expectedPersonStore.setPerson(expectedPersonStore.getFilteredBefriendeeList().get(1), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
