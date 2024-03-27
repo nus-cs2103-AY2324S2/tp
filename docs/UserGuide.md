@@ -191,10 +191,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PARENT_PHONE_NUMBER_1, PARENT_PHONE_NUMBER_2 e/STUDENT_EMAIL a/ADDRESS id/STUDENT_ID [t/TAG]…` <br> e.g., `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00007 t/Friends t/Owes Money` 
+**Add** | `add n/NAME p/PARENT_PHONE_NUMBER_1, PARENT_PHONE_NUMBER_2 e/STUDENT_EMAIL a/ADDRESS id/STUDENT_ID [t/TAG]…` <br> e.g., `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00007 t/Friends t/Owes Money`
 **Clear** | `clear`
-**Delete** | `delete STUDENT ID`<br> e.g., `delete 00003` 
-**Edit** | `edit STUDENT_ID [n/NAME] [p/PARENT_PHONE_NUMBER, WHICH_TO_EDIT] [e/EMAIL] [a/ADDRESS] [id/STUDENT ID] [t/TAG]…`<br> e.g.,`edit 00002 n/James Lee e/jameslee@example.com` 
+**Delete** | `delete STUDENT ID`<br> e.g., `delete 00003`
+**Edit** | `edit STUDENT_ID [n/NAME] [p/PARENT_PHONE_NUMBER, WHICH_TO_EDIT] [e/EMAIL] [a/ADDRESS] [id/STUDENT ID] [t/TAG]…`<br> e.g.,`edit 00002 n/James Lee e/jameslee@example.com`
 **Find** | `find MODE KEYWORD [MORE_KEYWORDS]`<br> e.g., `find 1 James Jake`, `find 2 00005`, `find 3 Class 3B`
 **List** | `list`
 **Help** | `help`

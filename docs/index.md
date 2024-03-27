@@ -8,7 +8,7 @@ title: Pedagogue Pages
 
 ![Ui](images/Ui.png)
 
-**Pedagogue Pages is a desktop application for managing your contact details.** While it has a GUI, most of the user 
+**Pedagogue Pages is a desktop application for managing your contact details.** While it has a GUI, most of the user
 interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using Pedagogue Pages, head over to the [_Quick Start_ section of the **User Guide**](https://ay2324s2-cs2103t-w10-3.github.io/tp/UserGuide.html#quick-start).
