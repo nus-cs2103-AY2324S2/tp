@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,13 +41,27 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_MATRIC = "A1234567M";
     private static final String VALID_REFLECTION = "R1";
     private static final String VALID_STUDIO = "S1";
-    // scores cannot be tested as exams need to be present for scores to be present
+
+    private static final String VALID_EXAM_NAME = "Midterm";
+    private static final int VALID_EXAM_MAX_SCORE = 100;
+    private static final int VALID_EXAM_SCORE = 70;
+
     private static final List<JsonAdaptedExamScore> EMPTY_SCORES = new ArrayList<>();
+    private static final List<JsonAdaptedExamScore> VALID_SCORES = new ArrayList<>(List.of(
+            new JsonAdaptedExamScore(VALID_EXAM_NAME, VALID_EXAM_MAX_SCORE, VALID_EXAM_SCORE)
+    ));
+
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_validPersonDetailsWithScores_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(GEORGE);
+        assertEquals(GEORGE, person.toModelType());
     }
 
     @Test
@@ -157,5 +172,14 @@ public class JsonAdaptedPersonTest {
                                       VALID_TAGS, VALID_MATRIC, VALID_REFLECTION, INVALID_STUDIO, EMPTY_SCORES);
         String expectedMessage = Studio.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidScores_throwsIllegalValueException() {
+        List<JsonAdaptedExamScore> invalidScores = new ArrayList<>(VALID_SCORES);
+        invalidScores.add(new JsonAdaptedExamScore(VALID_EXAM_NAME, VALID_EXAM_MAX_SCORE, -1));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_TAGS, VALID_MATRIC, VALID_REFLECTION, VALID_STUDIO, invalidScores);
+        assertThrows(IllegalValueException.class, person::toModelType);
     }
 }
