@@ -1,19 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPLACED;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.alias.Alias;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
 
-import java.util.Collections;
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Parses input arguments and creates a new AddAliasCommand object.
+ */
 public class AddAliasCommandParser implements Parser<AddAliasCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

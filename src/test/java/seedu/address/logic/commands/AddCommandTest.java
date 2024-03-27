@@ -23,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -188,6 +189,15 @@ public class AddCommandTest {
         @Override
         public void updateFilteredBookingList(Predicate<Booking> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(String string, String string2) {
+        }
+
+        @Override
+        public Alias getAlias() {
+            return new Alias();
         }
     }
 

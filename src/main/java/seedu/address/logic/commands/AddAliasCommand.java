@@ -1,17 +1,20 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Represents a command to add an alias for a specified term.
+ * An alias is a shorthand representation for a longer term.
+ */
 public class AddAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
 
     public static final String MESSAGE_SUCCESS = "New Alias added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This Alias already exists";
 
     private final String alias;
     private final String toReplace;
