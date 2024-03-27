@@ -27,6 +27,7 @@ public class SortCommand extends Command {
             + "[" + PREFIX_SALARY + "SALARY] "
             + "Example: " + COMMAND_WORD + PREFIX_INTERVIEWTIME;
 
+    public static final String MESSAGE_LIST_SORTED_SUCCESS = "List Sorted";
     private final Integer info;
 
     //sort | tt/ |
@@ -54,6 +55,6 @@ public class SortCommand extends Command {
             model.updateSortedPersonList(new PersonSalaryComparator());
             break;
         }
-        return new CommandResult("List Sorted");
+        return new CommandResult(MESSAGE_LIST_SORTED_SUCCESS);
     }
 }
