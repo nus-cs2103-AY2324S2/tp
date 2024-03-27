@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Theme;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 
@@ -193,6 +194,10 @@ public class ModelManager implements Model {
 
     public void setTheme(Theme theme) {
         userPrefs.setTheme(theme);
+    }
+
+    public Alias getAlias() {
+        return userPrefs.getAliases();
     }
 
 }

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Theme;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 
@@ -113,4 +114,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
+
+
+    Alias getAlias();
 }

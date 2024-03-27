@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
+import seedu.address.model.alias.Alias;
 
 /**
  * API of the Logic component
@@ -51,4 +52,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    Alias getAlias();
 }
