@@ -151,6 +151,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+The following sequence diagram shows how a `find David` command is executed.
+
+<puml src="diagrams/FindSequenceDiagram.puml" alt="Interactions between components for the `find David` Command" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
