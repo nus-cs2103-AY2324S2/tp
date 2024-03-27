@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.reservation.Reservation;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -85,7 +86,9 @@ public class AddressBookTest {
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
+        String expected =
+                AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
+                        + ", archivedPersons=" + addressBook.getArchivedPersonList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
@@ -94,14 +97,28 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Person> archivedPersons = FXCollections.observableArrayList();
+        private final ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
+        // TODO: AddressBookStub needs to take in reservation list for testing
+
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Person> getArchivedPersonList() {
+            return archivedPersons;
+        }
+      
+        @Override
+        public ObservableList<Reservation> getReservationList() {
+            return reservations;
         }
     }
 

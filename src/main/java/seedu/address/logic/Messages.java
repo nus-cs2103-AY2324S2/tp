@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
+import seedu.address.model.reservation.Reservation;
 
 /**
  * Container for user visible messages.
@@ -48,4 +49,19 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code reservation} for display to the user.
+     */
+    public static String format(Reservation reservation) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Person: ")
+                .append(reservation.getPerson().getName())
+                .append("; Date: ")
+                .append(reservation.getDate())
+                .append("; Time: ")
+                .append(reservation.getTime())
+                .append("; Pax: ")
+                .append(reservation.getPax());
+        return builder.toString();
+    }
 }

@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.reservation.Reservation;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +21,25 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_RESERVATION = "Reservations list contains "
+            + "duplicate reservation(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedReservation> reservations = new ArrayList<>();
+
+    private final List<JsonAdaptedPerson> archivedPersons = new ArrayList<>();
+
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and reservations.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("archivedPersons") List<JsonAdaptedPerson> archivedPersons,
+                                       @JsonProperty("reservations")List<JsonAdaptedReservation> reservations) {
         this.persons.addAll(persons);
+        this.archivedPersons.addAll(archivedPersons);
+        this.reservations.addAll(reservations);
     }
 
     /**
@@ -37,7 +48,20 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        archivedPersons.addAll(source.getArchivedPersonList()
+                .stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
+      
+        persons.addAll(source.getPersonList()
+                .stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
+      
+        reservations.addAll(source.getReservationList()
+                .stream()
+                .map(JsonAdaptedReservation::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +77,20 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+        for (JsonAdaptedPerson jsonAdaptedArchivedPerson : archivedPersons) {
+            Person archivedPerson = jsonAdaptedArchivedPerson.toModelType();
+            if (addressBook.hasPerson(archivedPerson)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            archivedPerson.setArchived(true);
+            addressBook.addArchivedPerson(archivedPerson);
+        for (JsonAdaptedReservation jsonAdaptedReservation : reservations) {
+            Reservation reservation = jsonAdaptedReservation.toModelType();
+            if (addressBook.hasReservation(reservation)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RESERVATION);
+            }
+            addressBook.addReservation(reservation);
         }
         return addressBook;
     }
