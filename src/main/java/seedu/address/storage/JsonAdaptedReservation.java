@@ -10,6 +10,9 @@ import seedu.address.model.reservation.Reservation;
 import seedu.address.model.reservation.RsvDate;
 import seedu.address.model.reservation.RsvTime;
 
+/**
+ * Jackson-friendly version of {@link Reservation}.
+ */
 public class JsonAdaptedReservation {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Reservation's %s field is missing!";
 
@@ -43,9 +46,9 @@ public class JsonAdaptedReservation {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted reservation object into the model's {@code Reservation} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted reservation.
      */
     public Reservation toModelType() throws IllegalValueException {
 
