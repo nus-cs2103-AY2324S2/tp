@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -198,6 +198,23 @@ The following sequence diagram below shows how `Model` and `LogicManger` compone
 #### Proposed Changes
 Include `Person` meetings as a search field. A user can supply a given date and will return all `Person` that have a meeting starting or ending on the specified date.
 
+### AddTag Feature
+This feature allows users to add `tags` to a `person` within the contact list, without the need to use the `edit` command. 
+
+This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively. The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This feature can be used in conjuncture with the find feature, where it can be called on a list filtered by find.
+</div>
+
+The current allowed formats for required fields are as follows:
+- `Index` : an `Integer` within the range greater than 0, smaller than the size of the currently displayed contact list.
+- `Tags` : one or more alphanumeric characters with no spaces between them.
+
+The following sequence diagram shows how the `AddTag` interacts with `Logic` and `Model`.
+
+1. The user keys in `addtags 1 t/validTag1 t/validTag2` to add 2 valid tags to the `person` at the first `index`
+2. The `AddTagCommandParser` checks that the `index` and `tags` are valid, then returns a new `AddTagCommand` with the corresponding index and set of tags
+3. sgesg
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
