@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELECT_TASK;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.InternshipCommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.InternshipParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.InternshipTypicalIndexes.INDEX_SECOND_INTERNSHIP;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,6 @@ import seedu.address.logic.commands.InternshipAddDeadlineCommand;
 import seedu.address.model.internship.Deadline;
 
 public class InternshipAddDeadlineCommandParserTest {
-    private static final String SAMPLE_DEADLINE = "Sample deadline";
     private static final Index INDEX_SECOND_TASK = Index.fromOneBased(2);
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, InternshipAddDeadlineCommand.MESSAGE_USAGE);
@@ -46,16 +46,15 @@ public class InternshipAddDeadlineCommandParserTest {
         assertParseFailure(parser, userInputWithoutPrefixSelectTask, MESSAGE_INVALID_FORMAT);
 
         // no task index specified
-        assertParseFailure(parser, userInputWithoutTaskIndex, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                InternshipAddDeadlineCommand.MESSAGE_INVALID_TASK_INDEX));
+        assertParseFailure(parser, userInputWithoutTaskIndex, MESSAGE_INVALID_INDEX);
 
         // no prefix deadline
         assertParseFailure(parser, userInputWithoutPrefixDeadline, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                InternshipAddDeadlineCommand.MESSAGE_EMPTY_DEADLINE));
+                InternshipAddDeadlineCommand.MESSAGE_USAGE));
 
         // no deadline text
         assertParseFailure(parser, userInputWithoutDeadlineText, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                InternshipAddDeadlineCommand.MESSAGE_EMPTY_DEADLINE));
+                Deadline.MESSAGE_CONSTRAINTS));
     }
 
     @Test
@@ -71,21 +70,22 @@ public class InternshipAddDeadlineCommandParserTest {
         String userInputZeroTaskIndex = String.format("%d %s %d %s", internshipIndex.getOneBased(), PREFIX_SELECT_TASK,
                 0, DEADLINE_DESC_AMY);
         String userInputWithInvalidDeadline = String.format("%d %s %d %s", internshipIndex.getOneBased(),
-                PREFIX_SELECT_TASK, 0, INVALID_DEADLINE_DESC);
+                PREFIX_SELECT_TASK, 1, INVALID_DEADLINE_DESC);
         // negative index
-        assertParseFailure(parser, userInputNegativeInternshipIndex, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, userInputNegativeInternshipIndex, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, userInputZeroInternshipIndex, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, userInputZeroInternshipIndex, MESSAGE_INVALID_INDEX);
 
         // negative index
-        assertParseFailure(parser, userInputNegativeTaskIndex, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, userInputNegativeTaskIndex, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, userInputZeroTaskIndex, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, userInputZeroTaskIndex, MESSAGE_INVALID_INDEX);
 
         // invalid deadline
-        assertParseFailure(parser, userInputWithInvalidDeadline, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, userInputWithInvalidDeadline, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Deadline.MESSAGE_CONSTRAINTS));
     }
 
     @Test
