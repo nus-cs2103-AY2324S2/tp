@@ -112,8 +112,8 @@ public class AddTagCommand extends Command {
             return false;
         }
 
-        AddTagCommand otherAddtagCommand = (AddTagCommand) other;
-        return newTags.equals(otherAddtagCommand.newTags) && index.equals(otherAddtagCommand.index);
+        AddTagCommand otherAddTagCommand = (AddTagCommand) other;
+        return newTags.equals(otherAddTagCommand.newTags) && index.equals(otherAddTagCommand.index);
     }
 
     @Override

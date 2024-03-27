@@ -162,7 +162,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTag() throws Exception {
         AddTagCommand command = (AddTagCommand) parser.parseCommand(AddTagCommand.COMMAND_WORD + " "
-                +INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_TAG + VALID_TAG_FINANCIAL_PLAN);
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_TAG + VALID_TAG_FINANCIAL_PLAN);
         assertEquals(new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG), command);
     }
     @Test
