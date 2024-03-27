@@ -183,6 +183,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("a b"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1, b"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1 2 3"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("   "));
     }
 
     @Test
@@ -196,9 +197,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndices_validInput_success() throws Exception {
-        // No indices
-        assertEquals(new ArrayList<Index>(), ParserUtil.parseIndices(""));
-
         // No whitespaces
         assertEquals(INDEX_LIST, ParserUtil.parseIndices("1,2,3"));
 
