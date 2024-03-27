@@ -25,14 +25,11 @@ public class SplitCommandParser implements Parser<SplitCommand> {
      */
     public SplitCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MONEY_OWED);
-
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MONEY_OWED);
         List<Index> indexList = new ArrayList<>();
-        MoneyOwed totalOwed = new MoneyOwed("0");
+        MoneyOwed totalOwed;
         try {
-            String indexString = argMultimap.getPreamble();
-            String[] indexArray = indexString.split(" ");
+            String[] indexArray = argMultimap.getPreamble().split(" ");
             for (String s : indexArray) {
                 indexList.add(ParserUtil.parseIndex(s));
             }
@@ -42,6 +39,9 @@ public class SplitCommandParser implements Parser<SplitCommand> {
 
         if (argMultimap.getValue(PREFIX_MONEY_OWED).isPresent()) {
             totalOwed = ParserUtil.parseMoneyOwed(argMultimap.getValue(PREFIX_MONEY_OWED).get());
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SplitCommand.MESSAGE_MISSING_AMOUNT));
         }
         return new SplitCommand(indexList, totalOwed);
     }
