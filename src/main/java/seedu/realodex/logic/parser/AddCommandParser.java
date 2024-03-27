@@ -42,7 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Prefix[] listOfCompulsoryPrefixTags = argMultimap.returnListOfCompulsoryTags(PREFIX_NAME, PREFIX_ADDRESS,
                                                                                      PREFIX_INCOME, PREFIX_PHONE,
-                                                                                     PREFIX_FAMILY, PREFIX_EMAIL, PREFIX_TAG);
+                                                                                     PREFIX_FAMILY, PREFIX_EMAIL,
+                                                                                     PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap,
                                 listOfCompulsoryPrefixTags)) {
             String exceptionMessageForMissingPrefixes =

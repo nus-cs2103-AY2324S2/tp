@@ -423,7 +423,7 @@ public class ParserUtilTest {
 
         assertEquals(tagSetWithMultipleDuplicates, expectedTagSet);
     }
-    
+
     @Test
     public void parseRemark_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark((String) null));

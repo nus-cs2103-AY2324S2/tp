@@ -114,7 +114,8 @@ public class AddCommandParserTest {
 
         // name prefix caps
         assertParseSuccess(parser,
-                           PREAMBLE_WHITESPACE + NAME_DESC_BOB_PREFIX_CAPS + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
+                           PREAMBLE_WHITESPACE + NAME_DESC_BOB_PREFIX_CAPS
+                                   + PHONE_DESC_BOB + INCOME_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + FAMILY_DESC_BOB + TAG_DESC_BOB + REMARK_DESC_BOB,
                            new AddCommand(expectedPerson));
 
@@ -164,7 +165,8 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                            NAME_DESC_BOB_PREFIX_CAPS + PHONE_DESC_BOB_PREFIX_CAPS
                                    + INCOME_DESC_BOB_PREFIX_CAPS + EMAIL_DESC_BOB_PREFIX_CAPS
-                                   + ADDRESS_DESC_BOB_PREFIX_CAPS + FAMILY_DESC_BOB_PREFIX_CAPS + TAG_DESC_BOB_PREFIX_CAPS + REMARK_DESC_BOB_PREFIX_CAPS,
+                                   + ADDRESS_DESC_BOB_PREFIX_CAPS + FAMILY_DESC_BOB_PREFIX_CAPS
+                                   + TAG_DESC_BOB_PREFIX_CAPS + REMARK_DESC_BOB_PREFIX_CAPS,
                            new AddCommand(expectedPerson));
     }
 
