@@ -178,6 +178,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void deleteModule(ModuleCode target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addModule(ModuleCode module) {
             throw new AssertionError("This method should not be called.");
         }

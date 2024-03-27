@@ -95,6 +95,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given module.
+     * The module must exist in the address book.
+     */
+    void deleteModule(ModuleCode target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */

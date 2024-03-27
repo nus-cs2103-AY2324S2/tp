@@ -25,6 +25,7 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -131,6 +132,16 @@ public class AddressBookParserTest {
         assertEquals(new DeleteClassCommand(new ModuleCode(moduleCode),
                 new TutorialClass(tutorialClass)), command);
     }
+
+    @Test
+    public void parseCommand_deleteModule() throws Exception {
+        final String moduleCode = "CS2103T";
+        DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(DeleteModuleCommand.COMMAND_WORD + " "
+                + PREFIX_MODULECODE + moduleCode);
+        assertEquals(new DeleteModuleCommand(new ModuleCode(moduleCode)), command);
+    }
+
+
 
     @Test
     public void parseCommand_listClasses() throws Exception {
