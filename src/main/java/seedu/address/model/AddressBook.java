@@ -43,15 +43,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// undo & redo operations
 
     /**
-     * Empties the redoList.
-     */
-    private void clearRedoList() {
-        while (!redoStack.empty()) {
-            redoStack.pop();
-        }
-    }
-
-    /**
      * Makes a copy of persons, and stores it into {@code stack}.
      */
     private void savePersonsTo(Stack<UniquePersonList> stack) {
@@ -64,7 +55,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Makes a copy of persons, and stores it in personsList.
      */
     private void save() {
-        clearRedoList();
+        redoStack.clear();
         savePersonsTo(undoStack);
     }
 
