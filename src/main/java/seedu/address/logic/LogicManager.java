@@ -85,4 +85,9 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public int getTotalPersons() {
+        return model.getTotalPersons();
+    }
 }

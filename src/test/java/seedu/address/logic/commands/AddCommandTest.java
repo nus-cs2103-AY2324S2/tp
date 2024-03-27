@@ -50,6 +50,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
+        // Currently failing because valid person has uniqueID of 1 but the modelStub
+        // has a person with uniqueID of 2 after add command execute
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
@@ -155,6 +157,22 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getTotalPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        // Function needs to be called in order to generate new person model
+        @Override
+        public String getNextUniqueId() {
+            return String.format("%06d", 1);
+        }
+
+        @Override
+        public Person getPersonByUniqueId(String uniqueId) {
             throw new AssertionError("This method should not be called.");
         }
     }

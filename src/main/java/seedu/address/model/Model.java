@@ -84,4 +84,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the total number of persons in the address book.
+     */
+    int getTotalPersons();
+
+    /*
+     * Returns the next unique ID for a person.
+     */
+    String getNextUniqueId();
+
+    /**
+     * Returns the person with the given unique ID.
+     * Returns null if the person does not exist.
+     */
+    Person getPersonByUniqueId(String uniqueId);
 }

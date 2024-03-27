@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
@@ -104,6 +106,7 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -129,6 +132,35 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getNextUniqueId() {
+        int uniqueId = 0;
+        // get max unique id with int parse
+
+        List listToProcess = addressBook.getPersonList();
+        if (!listToProcess.isEmpty()) {
+            for (Person person : addressBook.getPersonList()) {
+                int currentId = person.getUniqueId().getInt();
+                if (currentId > uniqueId) {
+                    uniqueId = currentId;
+                }
+            }
+        }
+        // return 6 digit and append leading 0 if necessary
+        return String.format("%06d", uniqueId + 1);
+    }
+
+    @Override
+    public Person getPersonByUniqueId(String uniqueIdStr) {
+        for (Person person : addressBook.getPersonList()) {
+            Id uniqueId = new Id(uniqueIdStr);
+            if (person.getUniqueId().equals(uniqueId)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -143,6 +175,11 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    @Override
+    public int getTotalPersons() {
+        return addressBook.getTotalPersons();
     }
 
 }

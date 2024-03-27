@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -11,8 +12,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -111,6 +115,35 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String subject} into a {@code Subject}.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses id input to check if id is valid to instantiate a new Id object.
+     * @param id Id to check for validity;
+     * @return New Id object with the input id.
+     * @throws ParseException If input id is invalid.
+     */
+    public static Id parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!Id.isValidId(trimmedId)) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
+        return new Id(id);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -120,5 +153,46 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code uniqueId} into an int and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified uniqueId is not an integer.
+     */
+    public static int parseUniqueId(String uniqueId) throws ParseException {
+        String trimmedUniqueId = uniqueId.trim();
+        try {
+            return Integer.parseInt(trimmedUniqueId);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Unique ID must be an integer.");
+        }
+    }
+
+    /**
+     * Parses a {@code String payment} into a {@code double}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code payment} is invalid.
+     */
+    public static Payment parsePayment(Optional<String> payment) throws ParseException {
+        requireNonNull(payment);
+        if (payment.isEmpty()) {
+            return new Payment(0.0);
+        } else {
+            String trimmedPayment = payment.get().trim();
+            double paymentAmount;
+            try {
+                paymentAmount = Double.parseDouble(trimmedPayment);
+            } catch (NumberFormatException e) {
+                throw new ParseException("Payment amount must be a valid number.");
+            }
+
+            if (paymentAmount < 0) {
+                throw new ParseException("Payment amount must not be negative.");
+            }
+            return new Payment(paymentAmount);
+        }
+
     }
 }
