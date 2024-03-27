@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import seedu.findvisor.testutil.PersonBuilder;
 
 public class PersonTagsPredicateTest {
+
+    @Test
     public void equals() {
         List<String> firstPredicateKeywords = Arrays.asList(new String[]{"tag1"});
         List<String> secondPredicateKeywords = Arrays.asList(new String[]{"tag2", "tag3"});
