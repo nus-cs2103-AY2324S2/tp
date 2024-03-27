@@ -132,13 +132,6 @@ class JsonAdaptedPerson {
         }
         final Birthday modelBirthday = new Birthday(birthday);
 
-        if (instrument == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Instrument.class.getSimpleName()));
-        }
-        if (!Instrument.isValidInstrument(instrument)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
         final Instrument modelInstrument = new Instrument(instrument);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);

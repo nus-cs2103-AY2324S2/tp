@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.model.tag.Tag;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -8,8 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is always valid
  */
 public class Instrument {
+
     public static final String MESSAGE_CONSTRAINTS = "Instrument name should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+
     public final String value;
 
     /**
@@ -31,19 +35,29 @@ public class Instrument {
     }
 
     @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Instrument // instanceof handles nulls
-                && value.equals(((Instrument) other).value)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Instrument)) {
+            return false;
+        }
+
+        Instrument otherInstrument = (Instrument) other;
+        return value.equals(otherInstrument.value);
     }
 
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return '[' + value + ']';
     }
 }
