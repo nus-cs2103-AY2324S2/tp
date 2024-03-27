@@ -158,7 +158,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addAppointment(Appointment appt) {
         appointments.add(appt);
         this.appointmentView.setAppointmentViews(persons, appointments);
-
     }
 
     /**

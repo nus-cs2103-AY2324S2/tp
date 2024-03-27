@@ -39,6 +39,11 @@ public class AppointmentViewListTest {
 
         appointmentListView.setAppointmentViews(personList, appointmentList);
 
+        assertEquals(personList.asUnmodifiableObservableList().size(),
+            appointmentListView.asUnmodifiableObservableList().size());
+        assertEquals(appointmentList.asUnmodifiableObservableList().size(),
+            appointmentListView.asUnmodifiableObservableList().size());
+        //view list should not be empty
         assertFalse(appointmentListView.asUnmodifiableObservableList().isEmpty());
     }
 

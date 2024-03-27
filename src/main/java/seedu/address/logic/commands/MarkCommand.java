@@ -20,7 +20,7 @@ import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 
 /**
- * Marks an existing appointment in the CLInic as completed.
+ * Edits the details of an existing person in the CLInic.
  */
 public class MarkCommand extends Command {
 
@@ -41,9 +41,8 @@ public class MarkCommand extends Command {
     private final TimePeriod timePeriod;
 
     /**
-     * @param nric nric of the Appointment to be identified
-     * @param date date of the existing Appointment to be specified
-     * @param timePeriod timePeriod of the existing Appointment to be marked
+     * @param index of the person in the filtered person list to edit
+     * @param editPersonDescriptor details to edit the person with
      */
     public MarkCommand(Nric nric, Date date, TimePeriod timePeriod) {
         requireNonNull(nric);
