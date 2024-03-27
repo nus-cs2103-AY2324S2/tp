@@ -125,6 +125,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String address} into a {@code Optional<Address>}, allowing empty input.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Optional<Address> parseOptionalAddress(String address) throws ParseException {
+        requireNonNull(address);
+        if (address.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(parseAddress(address));
+    }
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -166,7 +179,7 @@ public class ParserUtil {
         if (!Role.isValidRole(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
-        return new Role(trimmedRole);
+        return Role.valueOf(trimmedRole);
     }
 
     /**
@@ -194,5 +207,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns a new list containing strings from an input array that start with the given prefix.
+     * The strings are case and space sensitive (i.e. "hello" will not match " hello" or "HELLO").
+     * Note that if the given prefix is an empty string, the returned list will contain all the strings
+     * in the input array.
+     *
+     * @param prefix Input prefix string.
+     * @param strings An array of strings to match with the given prefix.
+     * @return List of strings that start with the given prefix.
+     */
+    public static List<String> filterByPrefix(String prefix, String[] strings) {
+        final List<String> matchedStrings = new ArrayList<>();
+
+        for (String string : strings) {
+            if (string.startsWith(prefix)) {
+                matchedStrings.add(string);
+            }
+        }
+
+        return matchedStrings;
     }
 }
