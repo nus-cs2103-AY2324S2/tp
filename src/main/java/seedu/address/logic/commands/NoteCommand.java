@@ -26,7 +26,7 @@ public class NoteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NOTE + "NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "note/ Likes to swim.";
+            + "nt/ Likes to swim.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS =
             "Successfully added note to client!\n---------------------------------\n%1$s";

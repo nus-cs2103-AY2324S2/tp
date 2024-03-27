@@ -86,15 +86,15 @@ Format: `help`
 
 Adds a client to the FitBook.
 
-Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can 0 or more tags.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01 note/john from school`
-* `add n/Betsy Crowe t/friend e/betsycrowe@hotmail.com a/Newgate Prison p/1234567 note/likes donuts t/criminal`
+* `add n/John Doe p/98765432 e/johnd@gmail.com a/John street, block 123, #01-01 nt/john from school`
+* `add n/Betsy Crowe t/friend e/betsycrowe@hotmail.com a/Newgate Prison p/1234567 nt/likes donuts t/criminal`
 <hr>
 
 ### Listing all clients : `list`
@@ -108,7 +108,7 @@ Format: `list`
 
 Edits information tagged to an existing client
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`
 
 * Edits the clients at the specified `INDEX`. The index refers to the index number shown in the displayed client list. 
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -125,7 +125,7 @@ Examples:
 
 ### Adding a note to clients : `note`
 
-Format: `note INDEX note/NOTE`
+Format: `note INDEX nt/NOTE`
 
 * Edits the note of the client specified by `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing note will be updated to the input note.
@@ -133,15 +133,15 @@ Format: `note INDEX note/NOTE`
 > While this can also be done using the `edit` command, this `note` command serves as a faster way for users to directly modify a note.
 
 Examples:
-*  `note 1 note/History of asthma` - Edits the note of the 1st client to `History of asthma`.
-*  `note 2 note/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
+*  `note 1 nt/History of asthma` - Edits the note of the 1st client to `History of asthma`.
+*  `note 2 nt/Previously sprained both ankles` - Edits the note of the 2nd client to `Previously sprained both ankles`.
 <hr>
 
 ### Locating clients by name: `find`
 
 Finds all clients whose specified attribute contains the specified keyword.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Any fields can be searched.
@@ -245,10 +245,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 note/likes pizzas t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nt/likes pizzas t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [note/NOTE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
