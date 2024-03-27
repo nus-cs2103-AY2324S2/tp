@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Employee" as Employee MODEL_COLOR
+participant ":Task" as Task MODEL_COLOR
+end box
+
+[-> Model : getFilteredTaskList()
+activate Model
+[<-- Model : :TaskList
+deactivate Model
+
+[-> Model : getFilteredEmployeeList()
+activate Model
+[<-- Model : :EmployeeList
+deactivate Model
+
+[-> Employee : assignEmployee(e1)
+[<-- Employee : e2:Employee
+
+[-> Model : setEmployee(e1, e2)
+activate Model
+[<-- Model
+deactivate Model
+
+[-> Task : assignTask(t1)
+[<-- Task : t2:Task
+
+[-> Model : setTask(t1, t2)
+activate Model
+[<-- Model
+deactivate Model
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskMasterProParser" as TaskMasterProParser LOGIC_COLOR
+participant ":AssignTaskParser" as AssignTaskParser LOGIC_COLOR
+participant "a:AssignTaskCommand" as AssignTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(assigntask)
+activate LogicManager
+
+LogicManager -> TaskMasterProParser : parseCommand("assigntask 2 1")
+activate TaskMasterProParser
+
+create AssignTaskParser
+TaskMasterProParser -> AssignTaskParser
+
+create AssignTaskCommand
+AssignTaskParser -> AssignTaskCommand
+AssignTaskCommand --> AssignTaskParser : a
+AssignTaskParser --> TaskMasterProParser : a
+TaskMasterProParser --> LogicManager : a
+deactivate TaskMasterProParser
+
+LogicManager -> AssignTaskCommand : a.execute(m)
+activate AssignTaskCommand
+AssignTaskCommand -> Model : e.assignTask(t)
+AssignTaskCommand -> Model : t.assignEmployee(e)
+
+AssignTaskCommand --> LogicManager
+deactivate AssignTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
