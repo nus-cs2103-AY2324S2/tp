@@ -58,7 +58,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         company = personToCopy.getCompany();
-        isFavourite = personToCopy.getFavourite();
+        isFavourite = personToCopy.getIsFavourite();
         tags = new HashSet<>(personToCopy.getTags());
         orders = new ArrayList<>(personToCopy.getOrders());
     }

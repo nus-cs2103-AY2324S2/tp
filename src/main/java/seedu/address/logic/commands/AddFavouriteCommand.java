@@ -49,7 +49,7 @@ public class AddFavouriteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         boolean anyFavourite = this.indices.stream().anyMatch(index ->
-                people.get(index.getZeroBased()).getFavourite());
+                people.get(index.getZeroBased()).getIsFavourite());
         if (anyFavourite) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }

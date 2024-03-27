@@ -112,9 +112,10 @@ public class Person {
         this.isFavourite = false;
     }
 
-    public boolean getFavourite() {
+    public boolean getIsFavourite() {
         return this.isFavourite;
     }
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
