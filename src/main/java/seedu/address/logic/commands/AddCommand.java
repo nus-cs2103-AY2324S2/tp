@@ -26,17 +26,17 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: "
-            + PREFIX_COMPANY_NAME + "COMPANY NAME "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_INTERVIEWTIME + "INTERVIEW-TIME "
-            + "[" + PREFIX_SALARY + "SALARY] "
-            + PREFIX_INFO + "INFO "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Parameters: \n"
+            + PREFIX_COMPANY_NAME + "COMPANY NAME \n"
+            + PREFIX_NAME + "NAME \n"
+            + PREFIX_PHONE + "PHONE \n"
+            + PREFIX_EMAIL + "EMAIL \n"
+            + PREFIX_ADDRESS + "ADDRESS \n"
+            + PREFIX_INTERVIEWTIME + "INTERVIEW-TIME \n"
+            + PREFIX_INFO + "INFO \n"
+            + "[" + PREFIX_SALARY + "SALARY] \n"
             + "[" + PREFIX_PROGRAMMING_LANGUAGE + "PROGRAMMING-LANGUAGE]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY_NAME + "Google "
             + PREFIX_NAME + "John Doe "
@@ -44,11 +44,11 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_INTERVIEWTIME + "121220221400 "
-            + PREFIX_SALARY + "5000 "
             + PREFIX_INFO + "Birthday: 12 May 2001 "
+            + PREFIX_SALARY + "5000 "
+            + PREFIX_PROGRAMMING_LANGUAGE + "Java"
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney "
-            + PREFIX_PROGRAMMING_LANGUAGE + "Java";
+            + PREFIX_TAG + "owesMoney ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

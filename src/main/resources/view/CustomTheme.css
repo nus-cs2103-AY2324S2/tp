@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #362929; /* Used in the default.html file */
 }
 
 .label {
@@ -100,24 +100,24 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #54707f;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #4c6d7b;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #2f3e54;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #040404;
     -fx-border-width: 1;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: rgb(255, 255, 255);
 }
 
 .cell_big_label {
@@ -148,13 +148,13 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 20pt;
-    -fx-text-fill: rgb(81, 255, 0);
+    -fx-font-family: "DejaVu Sans Mono";
+    -fx-font-size: 13pt;
+    -fx-text-fill: rgb(188, 188, 188);
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: rgb(0, 0, 0) !important;
 }
 
 .status-bar .label {
@@ -344,7 +344,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #20b038;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
