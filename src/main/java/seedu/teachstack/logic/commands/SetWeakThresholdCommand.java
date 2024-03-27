@@ -1,6 +1,7 @@
 package seedu.teachstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.teachstack.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.teachstack.logic.commands.exceptions.CommandException;
 import seedu.teachstack.model.Model;
@@ -28,6 +29,7 @@ public class SetWeakThresholdCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Grade.modifyThreshold(newThreshold);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SET_THRESHOLD_SUCCESS));
     }
 
