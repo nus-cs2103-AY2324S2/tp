@@ -158,6 +158,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add policy feature
+The add policy feature allows users to add a policy to a client. The policy is stored in the `Policy` class, which contains the policy details such as policy name, policy id. The `Policy` class is then added to the `PolicyList` object stored within the `Person` object in the `Model` component.
+
+#### Implementation
+
+The add policy command mechanism is facilitated by the `AddPolicyCommandParser` class which is created by the `AddressBookParser` .
+
+The `AddPolicyCommandParser` class is responsible for parsing the user input and creating an `AddPolicyCommand` object. 
+
+The `AddPolicyCommandParser#parse()` overrides `Parser#parse()` in the `Parser` interface.
+- `AddPolicyCommandParser#parse()` - Parses the input arguments by storing the prefixes of it respective values in a `ArgumentMultimap` object, and creates a new `AddPolicyCommand` object with the parsed policy name and policy ID.
+
+The `AddPolicyCommand` object is then executed by the `Logic` component.
+
+The `AddPolicyCommand` object then communicates with the `Model` component to add the policy to the client. The `Model` component then updates the `Person` object with the new policy.
+- `Model#setPerson(Person, Person)` - Sets the client in the existing client list to the new `Person` object which has been edited by the `AddPolicyCommand#execute()` which contains the new policy.
+- `Model#setDisplayClient(Person)` - Updates the displayed client in the UI to the client that has been edited with the new policy.
+
+The method `AddPolicyCommand#execute()` returns a CommandResult object which contains the success message to be displayed to the user.
+
+The following object diagram illustrates the above:
+<puml src="diagrams/AddPolicyObjectDiagram.puml" width="600" />
+
+The following sequence diagram shows the addpolicy operation:
+<puml src="diagrams/AddPolicySequenceDiagram.puml" width="900" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
