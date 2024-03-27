@@ -62,12 +62,12 @@ You might encounter these call-outs while reading through the guide, which conta
 
 <box type="tip">
 
-**Tip:** Tip call-outs like this contain helpful pointers for using ClientCare! 
+**Tip:** Tip call-outs like this contain helpful pointers for using ClientCare!
 </box>
 
 <box type="info">
 
-**Note:** Information call-outs like this contain information about ClientCare you should take note of! 
+**Note:** Information call-outs like this contain information about ClientCare you should take note of!
 </box>
 
 <box type="warning" theme="danger" icon=":warning:">
@@ -80,7 +80,7 @@ You might encounter these call-outs while reading through the guide, which conta
 
 
 ## Introduction
-Made for insurance agents and clients, by insurance agents and clients. 
+Made for insurance agents and clients, by insurance agents and clients.
 ClientCare is the easiest way to manage your clients and schedules, all in one place.
 Powerful features and intuitive design, all packaged into one neat desktop app. ClientCare is supported on all
 major platforms (Windows, macOS).
@@ -88,16 +88,16 @@ major platforms (Windows, macOS).
 
 #### Let ClientCare assist you in...
 
-1. [**Managing your clients**](#client-related-commands)  
+1. [**Managing your clients**](#client-related-commands)
    ClientCare lets you store, edit and delete your client's information. Keep all your clients' details in one place and save time!
 
 
-2. [**Planning your schedule**](#schedule-related-commands)  
+2. [**Planning your schedule**](#schedule-related-commands)
    Meeting clients are part of the job. Not sure when to meet your next client? ClientCare reminds you of clients that you may have
 missed out!
 
 
-3. [**Keeping track of policies**](#policy-related-commands)  
+3. [**Keeping track of policies**](#policy-related-commands)
    Too many policies from different companies? Why not track all of them in one place! ClientCare allows you to attach policies
 to all your clients, regardless of companies and product type.
 
@@ -238,7 +238,7 @@ Alternatively, [Command Summary](#command-summary) has all of them under one pag
 <div style="page-break-after: always;"></div>
 
 ## Quick Tutorial
-Excited to play around with ClientCare? 
+Excited to play around with ClientCare?
 Let’s run you through some simple commands to get you warmed up before you dive right into ClientCare’s full feature list!
 
 <box type="info">
@@ -263,7 +263,7 @@ Type the following into the Command Input:
 ![addclient](images/ug/addclient.png =600x)
 
 
-2. We have now added James Wee to our Client List! ClientCare shows a success message in the Feedback Display too. 
+2. We have now added James Wee to our Client List! ClientCare shows a success message in the Feedback Display too.
 
 
 
@@ -450,7 +450,7 @@ Examples:
 
 <box type="tip">
 
-**Tip:** You can use `find` to more easily find the client you want for commands that require a client `INDEX`! 
+**Tip:** You can use `find` to more easily find the client you want for commands that require a client `INDEX`!
 </box>
 
 <br/>
@@ -476,7 +476,7 @@ ClientCare offers the following commands to help you manage your schedule:
 * [Updating last met: `met`](#updating-last-met-met)
 * [Scheduling an appointment: `schedule`](#scheduling-appointments-schedule)
 * [Marking an appointment: `mark`](#marking-appointments-mark)
-  
+
 <br>
 <br>
 
