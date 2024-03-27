@@ -79,36 +79,42 @@ public class AddTimeCommand extends Command {
         FreeTimeTag freeTimeTag = editPersonDescriptor.getTags().toArray(new FreeTimeTag[1])[0];
 
         Set<FreeTimeTag> freeTimeTags = personToEdit.getTags();
-        String trimmedFreeTimeTag = freeTimeTags.toString().substring(2, freeTimeTags.toString().length() - 2);
-        String day = trimmedFreeTimeTag.substring(0, 3);
-        Integer newStart = Integer.parseInt(trimmedFreeTimeTag.substring(4, 8));
-        Integer newEnd = Integer.parseInt(trimmedFreeTimeTag.substring(9, 13));
 
         Set<FreeTimeTag> updatedTags = new HashSet<>();
 
         boolean added = false;
 
-        for (FreeTimeTag tag : freeTimeTags) {
-            String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
-            if (!trimmedTag.substring(0, 3).equals(day)) {
-                updatedTags.add(tag);
-            } else {
-                Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
-                Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
+        if (freeTimeTags.size() == 0) {
+            updatedTags.add(freeTimeTag);
+            added = true;
+        } else {
+            String trimmedFreeTimeTag = freeTimeTags.toString().substring(2, freeTimeTags.toString().length() - 2);
+            String day = trimmedFreeTimeTag.substring(0, 3);
+            Integer newStart = Integer.parseInt(trimmedFreeTimeTag.substring(4, 8));
+            Integer newEnd = Integer.parseInt(trimmedFreeTimeTag.substring(9, 13));
 
-                if (currentStart > newStart) {
+            for (FreeTimeTag tag : freeTimeTags) {
+                String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
+                if (!trimmedTag.substring(0, 3).equals(day)) {
                     updatedTags.add(tag);
-                } else if (currentStart.equals(newStart)) {
-                    updatedTags.add(tag);
-                    if (!added) {
-                        updatedTags.add(freeTimeTag);
-                        added = true;
-                    }
                 } else {
-                    updatedTags.add(tag);
-                    if (!added) {
-                        updatedTags.add(freeTimeTag);
-                        added = true;
+                    Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
+                    Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
+
+                    if (currentStart > newStart) {
+                        updatedTags.add(tag);
+                    } else if (currentStart.equals(newStart)) {
+                        updatedTags.add(tag);
+                        if (!added) {
+                            updatedTags.add(freeTimeTag);
+                            added = true;
+                        }
+                    } else {
+                        updatedTags.add(tag);
+                        if (!added) {
+                            updatedTags.add(freeTimeTag);
+                            added = true;
+                        }
                     }
                 }
             }
