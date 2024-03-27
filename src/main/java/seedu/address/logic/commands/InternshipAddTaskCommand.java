@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
-import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
