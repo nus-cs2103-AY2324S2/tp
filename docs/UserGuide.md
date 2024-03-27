@@ -60,15 +60,16 @@ Do look out for them!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java](#faq) `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `dook.jar` from [here](https://github.com/AY2324S2-CS2103T-W11-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dook.jar` command to run the application.<br>
+   If you are unfamiliar with the command terminal, follow [this](https://tutorials.codebar.io/command-line/introduction/tutorial.html)
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/NewUI.png)
+   ![Ui](docs/images/NewUi.png)
 
 1. Type a command in the command box and press Enter to execute it. <br>
    Some example commands you can try:
@@ -80,6 +81,10 @@ Do look out for them!
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
+
+   * `book -n John's Birthday Party -s 2023-12-31 19:00 -e 2023-12-31 23:00` : Adds a new booking for `John's Birthday Party` from `2023-12-31 19:00` to `2023-12-31 23:00`.
+
+   * `cancel 3` : Deletes the 3rd booking shown in the current list.
 
    * `exit` : Exits the app.
 
@@ -173,6 +178,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
@@ -193,10 +199,10 @@ Examples:
 
 Adds the specified booking to the address book.
 
-Format: `-n [description] -s [start_time] -e [end_time]`
+Format: `-n DESCRIPTION -s START_TIME -e END_TIME`
 
 * Creates a booking with the specified parameters.
-* Start and end time formats are in yyyy-mm-d.
+* Start and end time formats are in yyyy-mm-d hh:mm.
 
 Examples:
 * `book -n John's Birthday Party -s 2023-12-31 19:00 -e 2023-12-31 23:00`
@@ -207,9 +213,12 @@ Cancels the specified booking from the address book.
 
 Format: `cancel INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the booking at the specified `INDEX`.
 * The index refers to the index number shown in the displayed booking list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `cancel 2` cancels the 2nd booking in the booking list.
 
 ### Searching for a booking : `search`
 
