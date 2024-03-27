@@ -7,7 +7,7 @@ Welcome to <span style="color: #f66a0a;">CareerSync</span>'s  User Guide! <span 
 is an **internship application manager designed to simplify the management of internship applications**. It is designed to help you **keep track of all your
 internship applications in one place**, so that you can focus on preparing for your interviews and securing your dream internship.
 
-CareerSync features a sleek and user-friendly interface primarily driven by command inputs through **Command Line Interface (CLI)**. 
+CareerSync features a sleek and user-friendly interface primarily driven by command inputs through **[Command Line Interface (CLI)](#glossary)**. 
 For those who are **proficient typists**, CareerSync facilitates quicker completion of internship applications 
 compared to conventional GUI-based applications. If you are a NUS Computer Science student who is looking to apply for
 many internships, CareerSync is practically made just for you!
@@ -19,7 +19,7 @@ internship applications, our guide will ensure that you can use CareerSync to it
 ### What do I need to know for this User Guide?
 This user guide is designed to be approachable for beginners, requiring no previous familiarity with administrative tools
 or command interfaces, and is self-sufficient. Our [Quick Start](#quick-start) section will guide you through the installation
-of all the necessary tools, even if you have never used a CLI before.
+of all the necessary tools, even if you have never used a [CLI](#glossary) before.
 
 ### How to use this User Guide?
 This user guide is split into these primary sections: [Quick Start](#quick-start), [Interface Overview](#interface-overview), [Tutorial](#tutorial), 
