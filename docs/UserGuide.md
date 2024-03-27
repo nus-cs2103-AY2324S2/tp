@@ -88,14 +88,13 @@ Format: `help`
 ### Adding a patient: `addPatient`
 
 Adds a patient to CLInic.
->>>>>>> master
 
 Format: `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <box type="tip" seamless>
 
 **Tip:** A patient must have a unique NRIC in CLInic.
->>>>>>> master
+
 </box>
 
 Examples:
