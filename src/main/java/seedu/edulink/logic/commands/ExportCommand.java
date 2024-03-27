@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import seedu.edulink.commons.util.CsvUtil;
+import seedu.edulink.commons.util.ToStringBuilder;
 import seedu.edulink.logic.commands.exceptions.CommandException;
 import seedu.edulink.model.Model;
 import seedu.edulink.model.student.Student;
@@ -34,5 +35,26 @@ public class ExportCommand extends Command{
             throw new CommandException(e.toString());
         }
         return new CommandResult(MESSAGE_EXPORT_SUCCESS + fileName + ".csv");
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ExportCommand)) {
+            return false;
+        }
+
+        ExportCommand otherExportCommand = (ExportCommand) other;
+        return this.fileName.equalsIgnoreCase(otherExportCommand.fileName);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).
+            add("filename", fileName).
+            toString();
     }
 }
