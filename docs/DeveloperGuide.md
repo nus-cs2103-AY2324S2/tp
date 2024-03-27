@@ -789,9 +789,31 @@ into user's clipboard.
 
     Use case ends.
 
+**Use case: UC11 - Delete shown persons**
+
+**MSS:**
+
+1. User !!requests to filter persons (UC06)!! by desired requirements
+2. User requests to delete all listed persons.
+3. AddressBook deletes all listed persons.
+4. AddressBook displays a message to confirm that all listed persons have been deleted.
+
+    Use case ends.
+
+**Extensions:**
+
+* 2a. No persons are listed.
+    * 2a1. AddressBook displays a message indicating that there is no persons to delete.
+  
+        Use case ends.
+
+* 2b. User has a filtered view that contains all existing persons.
+     * 2b1. AddressBook displays a message indicating that all persons cannot be deleted at once.
+    
+        Use case ends.
 
 
-**Use case: UC11 — Exit application**
+**Use case: UC12 — Exit application**
 
 **MSS:**
 

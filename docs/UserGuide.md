@@ -82,6 +82,7 @@ Shows you a link to guide you on how to use the application. Click on the link t
 ![help message](images/helpMessage.png)
 
 Format: `help`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 Before we proceed with the commands, here are some important points to note on their formatting. These points will also be repeated in the [command format summary](#command-format-summary) for you to refer to easily at any point in time.
 
@@ -157,6 +158,7 @@ For more details on each parameter, [click here](#command-format-summary).
 Displays all the persons in your contact list.
 
 Format: `list`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 >You will see this message once you successfully list all contacts, with the app showing all existing persons in the contact list:
 >
@@ -237,6 +239,7 @@ For more details on each parameter, [click here](#command-format-summary).
 Copies the emails of currently displayed persons into your clipboard.
 
 Format: `copy`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 >You will see this message once you successfully copy the contact details shown to you, indicating that they have been copied to the clipboard:
 >
@@ -257,6 +260,45 @@ Format: `copy`
 Deletes the specified person from your contact list.
 
 Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in AA.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Deleting filtered persons : `deleteshown`
+
+Deletes the current filtered list of persons. Requires a `find` command to be run first.
+
+Format: `deleteshown`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
+
+* Deletes all persons in the current filtered list of persons.
+* The list of persons is filtered using the most recent `find` command.
+* The remaining list of persons is shown after the `find` command is executed.
+
+### Clearing all entries : `clear`
+
+Clears all entries from AA.
+
+Format: `clear`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
+
+### Exporting Data to a CSV file : `export`
+
+Exports currently listed persons and their details to a CSV file, avengersassemble.csv, which can be found in addressbookdata.
+
+**Steps:**
+1. Filter out the persons you want to export using the [`find`](#filtering-persons--find) or 
+[`list`](#listing-all-persons--list) command.
+2. Type `export` to export the currently listed persons and their details to a CSV file.
+3. Upon export, a folder named addressbookdata will be created in the same directory where Avengers Assemble is located. Within this folder, you'll find the CSV file named avengersassemble.csv, containing the exported data.
+
+Format: `export`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 <box type="info" seamless>
 
@@ -342,6 +384,7 @@ For more details on the input parameter, [click here](#command-format-summary).
 Exits the program. The app will close automatically.
 
 Format: `exit`
+>Note: The application ignores any extraneous parameters as we assume they are typos.
 
 --------------------------------------------------------------------------------------------------------------------
 
