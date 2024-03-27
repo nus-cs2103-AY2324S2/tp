@@ -2,15 +2,10 @@ package seedu.hirehub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import seedu.hirehub.commons.core.index.Index;
 import seedu.hirehub.commons.util.ToStringBuilder;
-import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
 import seedu.hirehub.model.Model;
 import seedu.hirehub.model.application.Application;
-import seedu.hirehub.model.person.Person;
 
 /**
  * Adds an job application from a candidate to the list of job applications

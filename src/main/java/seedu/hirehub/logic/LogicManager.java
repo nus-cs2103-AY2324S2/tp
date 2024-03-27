@@ -71,6 +71,7 @@ public class LogicManager implements Logic {
             break;
         case DELETEAPPLICATIONCONFIRM:
             command = deleteApplicationConfirmationStageParser.parseCommand(commandText);
+            break;
         default:
             break;
         }

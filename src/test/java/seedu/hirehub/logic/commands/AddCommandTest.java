@@ -226,6 +226,14 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void setLastMentionedApplication(Application app) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        public Optional<Application> getLastMentionedApplication() {
+            throw new AssertionError("This method should not be called.");
+        };
+
         @Override
         public void updateFilteredApplicationList(Predicate<Application> predicate) {
             throw new AssertionError("This method should not be called.");

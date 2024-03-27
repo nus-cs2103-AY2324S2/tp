@@ -46,13 +46,13 @@ public class DeleteApplicationConfirmationStageParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
-            case "Y":
-                return new DeleteApplicationCommand();
-            case "N":
-                return new AbortDeleteApplicationCommand();
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION);
+        case "Y":
+            return new DeleteApplicationCommand();
+        case "N":
+            return new AbortDeleteApplicationCommand();
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND_DELETE_CONFIRMATION);
         }
     }
 }

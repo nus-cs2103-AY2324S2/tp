@@ -9,8 +9,8 @@ import seedu.hirehub.commons.util.ToStringBuilder;
 import seedu.hirehub.logic.CommandBoxState;
 import seedu.hirehub.logic.Messages;
 import seedu.hirehub.logic.commands.exceptions.CommandException;
-import seedu.hirehub.model.application.Application;
 import seedu.hirehub.model.Model;
+import seedu.hirehub.model.application.Application;
 
 /**
  * Pushes the program into the state to delete the person at targetIndex.
