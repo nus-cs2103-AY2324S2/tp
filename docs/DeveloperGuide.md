@@ -234,11 +234,13 @@ However, future enhancements could include the ability to copy other details of 
 ##### Alternative Implementations
 
 **Alternative 1: Copying emails of all persons**
+
 Copies the emails of all persons in the address book, regardless of whether they are currently displayed in the `PersonListPanel`.
 However, this approach may lead to users copying a large number of emails unintentionally, which could be overwhelming.
 Furthermore, it may not be clear to users which emails are being copied.
 
 **Alternative 2: Copying emails into a file**
+
 Instead of copying the emails to the clipboard, the emails could be saved into a file.
 This approach would allow users to access the emails at a later time and would prevent the loss of copied emails if the clipboard is cleared.
 However, it may be less convenient for users who want to paste the emails directly into an email client.
