@@ -4,9 +4,16 @@
   pageNav: 3
 ---
 
-# EffiTrack User Guide
+# User Guide
 
-HR departments often struggle to accurately measure employee efficiency, leading to reduced productivity. Traditional methods of tracking employee performance, such as manual documentation or outdated systems, are time-consuming and prone to errors. EffiTrack solves these challenges by providing a centralized platform to **effortlessly monitor employee efficiency**.
+## Introduction
+
+EffiTrack is a **desktop app for managing employees, tracking the efficiency of employees, 
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, EffiTrack can get your contact management tasks done faster than traditional GUI apps.
+
+EffiTrack simplifies the task of measuring and monitoring employee efficiency for
+HR departments. </br> Instead of using time-consuming and error-prone methods like manual documentation or
+outdated systems, EffiTrack offers a centralized platform for easy and accurate monitoring of employee performance.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -16,6 +23,7 @@ HR departments often struggle to accurately measure employee efficiency, leading
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+
 
 1. Download the latest `EffiTrack.jar` from [here](https://github.com/AY2324S2-CS2103T-T14-1/tp/releases/tag/v1.2).
 
@@ -27,15 +35,24 @@ HR departments often struggle to accurately measure employee efficiency, leading
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
-
-   * `list` : Lists all employees.
+   * `list` :  Lists all employees.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Finance eff/80` : Adds an employee named `John Doe` to EffiTrack.
+   
+   * `edit 1 n/Colby Bryan` : Edits the name of the 1st employee shown in the current list to `Colby Bryan`.
 
    * `delete 3` : Deletes the 3rd employee shown in the current list.
+   
+   * `find john` : Finds all employees whose name contains `john`.
+   
+   * `filter finance` : Filters the list to display employees who belong to `finance` department.
+   
+   * `assign task/Complete Proposal by/20-05-2024 2359 to/1` :Assigns the task `Complete Proposal` with specific deadline to the 1st employee shown in the current list.
+   
+   * `mark task/Complete Proposal o/1` : Mark the task `Complete Proposal` assigned to the 1st employee as done.
 
    * `clear` : Deletes all employees.
-
+    
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -78,6 +95,7 @@ Format: `help`
 ### Adding an employee: `add`
 
 Adds an employee to EffiTrack.
+
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DEPARTMENT eff/EFFICIENCY [t/TAG]…​`
 
@@ -131,7 +149,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating employees by name: `filter`
+### Locating employees by department: `filter`
 
 Filter employees by their department or tags
 
@@ -147,7 +165,7 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `filter Finance` returns `Finance` and `Quantitative Finance`
 * `filter resource` returns `Human Resource`, `Resource Management`<br>
-  ![result for 'filter finance'](images/findAlexDavidResult.png)
+  ![result for 'filter finance'](images/filterFinanceResult.png)
 
 ### Deleting a n employee : `delete`
 
@@ -162,6 +180,20 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd employee in EffiTrack.
 * `find Betsy` followed by `delete 1` deletes the 1st employee in the results of the `find` command.
+
+### Assign a task: `assign`
+
+Assign a task to a specific person.
+
+Format: `assign task/task title by/dd-MM-yyyy HHmm to/INDEX`
+
+* Assigns the task to the person at the specified `INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The deadline **must be in the correct format**
+
+Examples:
+* `assign task/Complete Project Proposal by/20-04-2024 2359 to/1` Assign the 'Complete Project Proposal' task to the first person in the address book.
 
 ### Marking a task : `mark`
 
@@ -212,7 +244,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EffiTrack home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -230,10 +262,10 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Assign Task** | `assign task/TASK TITLE by/dd-MM-yyyy to/INDEX`<br> e.g., `assign task/Complete Project Proposal by/22-05-2023 2359 to/1`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
-**Assign Task**   | `assign task/TASK by/dd-MM-yyyy HHmm to/INDEX` <br> e.g. `assign task/Complete Project Proposal by/22-04-2024 2359 to/1`
 **Mark Task**   | `mark task/TASK o/INDEX` <br> e.g. `mark task/Complete Project Proposal o/1`
 
 
