@@ -373,6 +373,42 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Extremely easy to understand.
     * Cons: Each time we want to access any task or employee we have to iterate through the split string and then iterate through every task/employee to compare the ids.
 
+### \[Proposed\] Find task by name
+
+#### Current Implementation
+
+The current find task by name feature is designed such that it accepts a string as a parameter.
+
+The string will be split using whitespaces to form keywords and the tasks will be filtered based on whether their names contain at least 1 of the keywords.
+
+The search is case-insensitive and the order of the keywords does not matter.
+
+Only full words are matched, so if the task name is "meeting with client" and the user searches for "meet", the task will not be found.
+
+Given below is an example usage scenario and how the find task by name feature behaves at each step.
+
+Step 1. The user launches the TaskMasterPro. Assume that there are existing tasks with names "Project 1 Meeting", "Client Meeting" and "Complete Project 2".
+
+Step 2. The user enters the command `findtasks meeting`. This returns "Project 1 Meeting" and "Client Meeting".
+
+[//]: # (![AssignTaskSequence-Model]&#40;images/AssignTaskSequence-Model.png&#41;)
+
+
+#### Design considerations:
+
+**Aspect: Whether to make both `find` and `findtasks` inherit from a common parent class:**
+
+This is because both `find` and `findtasks` are similar in terms of functionality. `find` finds employees and `findtasks` finds tasks. 
+
+* **Alternative 1 (current choice):** Keep them separate.
+    * Pros: Easier to understand and organise because currently all the classes related to employee
+    are in the `model.employee` package and all the classes related to task are in the `model.task` package.
+    * Cons: There will be code duplication because their implementations are similar.
+
+* **Alternative 2 :** Make both `find` and `findtasks` inherit from a parent class.
+    * Pros: Reduces code duplication.
+    * Cons: May be harder to understand and organise.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
