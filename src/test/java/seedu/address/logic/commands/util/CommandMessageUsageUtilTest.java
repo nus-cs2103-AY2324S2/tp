@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,5 +67,17 @@ class CommandMessageUsageUtilTest {
                 p2.asOptional(true)
         );
         assertEquals("TEM hic/741", example);
+    }
+
+    @Test
+    void isUtilLabel_true() {
+        assertTrue(CommandMessageUsageUtil.isUtilLabel(CommandMessageUsageUtil.EXAMPLE_LABEL));
+        assertTrue(CommandMessageUsageUtil.isUtilLabel(CommandMessageUsageUtil.PARAMETER_LABEL));
+    }
+
+    @Test
+    void isUtilLabel_false() {
+        assertFalse(CommandMessageUsageUtil.isUtilLabel(""));
+        assertFalse(CommandMessageUsageUtil.isUtilLabel("abc"));
     }
 }

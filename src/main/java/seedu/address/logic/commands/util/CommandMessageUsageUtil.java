@@ -86,7 +86,7 @@ public class CommandMessageUsageUtil {
      */
     public static boolean isUtilLabel(String text) {
         requireNonNull(text);
-        return EXAMPLE_LABEL.trim().equals(text.trim())
-                || PARAMETER_LABEL.trim().equals(text.trim());
+        return EXAMPLE_LABEL.strip().equals(text.strip())
+                || PARAMETER_LABEL.strip().equals(text.strip());
     }
 }
