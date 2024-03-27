@@ -56,16 +56,20 @@ public class PersonCard extends UiPart<Region> {
 
         if (person.hasUpcoming()) {
             upcoming.setVisible(true);
+            upcoming.setManaged(true);
             upcoming.setText("Upcoming: " + person.getUpcoming().toString());
         } else {
             upcoming.setVisible(false);
+            upcoming.setManaged(false);
         }
 
         if (person.hasLastcontact()) {
             lastcontact.setVisible(true);
+            lastcontact.setManaged(true);
             lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
         } else {
             lastcontact.setVisible(false);
+            lastcontact.setManaged(false);
         }
     }
 }
