@@ -156,4 +156,48 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_validPriority_success() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, "1");
+        assertEquals(1, person.toModelType().getPriority());
+
+        person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, "2");
+        assertEquals(2, person.toModelType().getPriority());
+
+        person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, "3");
+        assertEquals(3, person.toModelType().getPriority());
+    }
+
+    @Test
+    public void toModelType_invalidPriority_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, "-1");
+        assertThrows(IllegalValueException.class, person::toModelType);
+
+        person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, "5");
+        assertThrows(IllegalValueException.class, person::toModelType);
+
+        person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, "abc");
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPriority_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_COMPANY_NAME, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_INTERVIEWTIME,
+                VALID_SALARY, VALID_INFO, VALID_TAGS, VALID_PROGRAMMING_LANG, null);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
 }

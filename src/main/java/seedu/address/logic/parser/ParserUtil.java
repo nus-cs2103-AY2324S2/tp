@@ -226,9 +226,6 @@ public class ParserUtil {
     public static int parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        if (!isValidPriority(trimmedPriority)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
         return Integer.parseInt(trimmedPriority);
     }
 
