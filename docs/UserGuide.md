@@ -106,23 +106,12 @@ Here's a quick look at the different parts of our GUI and some tips on how to us
 
 Adds a **person/ staff / supplier / maintainer** contact to the Pooch Planner.
 
-#### Adds a person
-Format: `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ;`
-
-#### Adds a staff
-Format: `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full] ;`
-
-#### Adds a supplier
-Format: `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price/(quantity)] ;`
-
-#### Adds a maintainer
-Format: `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr] ;`
-
-Examples:
-* `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`
-* `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`
-* `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`
-* `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr`
+| Adds a ...        | Format & Examples                                                                                                                                                                                                                                                                                                                  |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Person**        | Format : `/pooch-add ; name : [name] ; phone : [phone] ; address : [address] ; email : [email]` <br> Example: `/pooch-add ; name : Janna  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com`                                                                                                       |
+| **Staff**      | Format : `/pooch-staff ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; salary : [salary/hr]  ; employment : [part/full]` <br> Example: `/pooch-staff ; name : Poochie ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time`    |
+| **Supplier**   | Format : `/pooch-supplier ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price/(quantity)]` <br> Example: `/pooch-supplier ; name : PetCo ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag`      |
+| **Maintainer** | Format : `/pooch-maintainer ; name : [name] ; phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission/hr]` <br> Example: `/pooch-maintainer ; name : Tom Tan  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr` |                                                                                   
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
 
@@ -140,35 +129,12 @@ Examples:
 Edit a **person / staff / supplier / maintainer** contact in the Pooch Planner.
 
 
-#### Edits a person
-Format: `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }`
-
-
-#### Edits a staff
-Format: `/edit-staff ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] }`
-
-
-#### Edits a supplier
-Format: `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price] }`
-
-
-#### Edits a maintainer
-Format: `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }`
-
-Examples:
-* `/edit ; name : Mochie ; field : { address : Pooch Street 31}`
-
-  The above command edits the **address** field of **_Mochie_** to **_Pooch Street 31_**.
-
-* `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }`
-
-  The above command edits the **address and employment** field of **_Thomas_** to **_Poochie Street 25_** and **_full-time_** respectively.
-
-* `/edit-supplier ; name : Supplier1 ; field : { product : kibble ; price : $75/bag}`
-
-  The above command edits the **product and price** field of **_Supplier1_** to **_kibble_** and **_$75/bag_** respectively. 
-
-* `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`
+| Edits a ...    | Format & Examples                                                                                                                                                                                                                                                           |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Person**     | Format : `/edit-person ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] }` <br> Example: `/edit ; name : Mochie ; field : { address : Pooch Street 31}`                                                                                  |
+| **Staff**      | Format : `/edit-staff ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; salary : [salary]  ; employment : [part/full] }` <br> Example: `/edit-staff ; name : Thomas ; field : { address : Poochie Street 25 ; employment : full-time }` |
+| **Supplier**   | Format : `/edit-supplier ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; product : [product] ; price : [price] }` <br> Example: `/edit-supplier ; name : Supplier1 ; field : { product : kibble ; price : $75/bag}`                   |
+| **Maintainer** | Format : `/edit-maintainer ; name : [name] ; field : { phone : [phone] ; address : [address] ; email : [email] ; skill : [skill] ; commission : [commission] }` <br> Example: `/edit-maintainer ; name : Maintainer1 ; field : { commission : $10/hr}`                      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Constraints:**<br>
 
