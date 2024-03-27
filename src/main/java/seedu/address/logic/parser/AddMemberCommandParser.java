@@ -16,9 +16,9 @@ import seedu.address.model.coursemate.QueryableCourseMate;
  */
 public class AddMemberCommandParser implements Parser<AddMemberCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddMemberCommand
-     * and returns a AddMemberCommand object to execute.
-     * @throws ParseException if the user input does not conform the expected format or the group name is used
+     * Parses the given {@code String} of arguments in the context of the {@code AddMemberCommand}
+     * and returns a {@code AddMemberCommand} object to execute.
+     * @throws ParseException if the user input does not conform the expected format
      */
     public AddMemberCommand parse(String args) throws ParseException {
         requireNonNull(args);
