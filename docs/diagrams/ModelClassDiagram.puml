@@ -48,6 +48,7 @@ Person *--> "*" Company
 Person *--> "*" Priority
 Person *--> "*" Tag
 Person *--> "*" Note
+Person : starred: Boolean
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

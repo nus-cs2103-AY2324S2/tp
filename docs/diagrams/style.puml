@@ -40,6 +40,10 @@ skinparam Package {
 }
 
 skinparam Class {
+    AttributeFontSize 15
+    AttributeFontColor #FFFFFF
+    AttributeFontName Arial
+    AttributeFontStyle Normal
     FontColor #FFFFFF
     FontSize 15
     BorderThickness 1
