@@ -20,4 +20,5 @@
     <Label fx:id="phoneLabel" visible="false" styleClass="cell_small_label"/>
     <Label fx:id="telegramLabel" visible="false" styleClass="cell_small_label"/>
     <Label fx:id="githubLabel" visible="false" styleClass="cell_small_label"/>
+    <Label fx:id="attendanceLabel" visible="false" styleClass="cell_small_label"/>
 </VBox>

@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.attendance.Week;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -62,6 +64,18 @@ public class PersonTest {
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different attendance -> returns false
+        editedAlice = new PersonBuilder(ALICE).build();
+        editedAlice.markAbsent(new Week(Index.fromOneBased(1)));
+        assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void markAbsent() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        aliceCopy.markAbsent(new Week(Index.fromOneBased(1)));
+        assertTrue(aliceCopy.isAbsent(new Week(Index.fromOneBased(1))));
     }
 
     @Test
@@ -71,7 +85,8 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", phone="
                 + (ALICE.getPhone().isPresent() ? ALICE.getPhone().get().value : "") + ", telegram="
                 + (ALICE.getTelegram().isPresent() ? ALICE.getTelegram().get().telegramId : "") + ", github="
-                + (ALICE.getGithub().isPresent() ? ALICE.getGithub().get().githubId : "") + "}";
+                + (ALICE.getGithub().isPresent() ? ALICE.getGithub().get().githubId : "") + ", attendance="
+                + (ALICE.getAttendance().toString()) + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -32,6 +32,8 @@ public class SidePanel extends UiPart<Region> {
     private Label telegramLabel;
     @FXML
     private Label githubLabel;
+    @FXML
+    private Label attendanceLabel;
 
     /**
      * Creates a {@code SidePanel}.
@@ -52,6 +54,7 @@ public class SidePanel extends UiPart<Region> {
         phoneLabel.setVisible(false);
         telegramLabel.setVisible(false);
         githubLabel.setVisible(false);
+        attendanceLabel.setVisible(false);
     }
 
     /**
@@ -76,6 +79,8 @@ public class SidePanel extends UiPart<Region> {
             githubLabel.setVisible(true);
             githubLabel.setText("GitHub: "
                 + person.getGithub().map(Github::toString).orElse("N/A"));
+            attendanceLabel.setVisible(true);
+            attendanceLabel.setText(person.getAttendance().toString());
 
             defaultMessageLabel.setVisible(false);
         } else {
@@ -93,6 +98,7 @@ public class SidePanel extends UiPart<Region> {
         phoneLabel.setText("");
         telegramLabel.setText("");
         githubLabel.setText("");
+        attendanceLabel.setText("");
 
         nameLabel.setVisible(false);
         classGroupLabel.setVisible(false);
