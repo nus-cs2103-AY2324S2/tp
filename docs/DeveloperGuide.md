@@ -170,6 +170,34 @@ sequence diagram shows the interactions within `Model` when editing a person.
 
 ![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
 
+### Find Persons by field feature
+This feature allows users to search for a specific `Person` field based on the user-supplied string, all `Person` that contains the specified search string in the specified field will be displayed to the user. The find mechanism is facilitated by `FindCommand` and `FindCommandParser` that extends `Command` and `Parser` respectively. Note that `FindCommandParser` implements `FindCommand#parse(String)` which checks if there is only one parameter supplied by the user which corresponds to the `Person` field to be searched.
+
+The current supported `Person` fields that can be searched are:
+- Name
+- Address
+- Phone
+- Email
+- Tags
+
+The following sequence diagram below shows how `Model` and `LogicManger` components interact with the find feature. Below are the definitions used in the sequence diagram:
+- `find`: `find n/John`
+- `argument`: `n/John`
+- `value`: `John`
+
+![FindSequenceDiagram-Model](images/FindSequenceDiagram.svg)
+
+1. The user executes `find n/John` to find all `Person` with `Name` containing `John`.
+2. The `FindCommandParser` checks that only one parameter is present in the user input. This parameter is used to indicate which `Person` field to search for.
+3. When called upon to parse the value of the parameter specified by the user, the `FindCommandParser` creates an `XYZPredicate` that encapsulates the user search string e.g. `John` (`XYZ` is a placeholder for the specific `Person` field e.g. `NameContainsKeywordPredicate`).
+4. All `XYZPredicate` classes (e.g.`NameContainsKeywordPredicate`, `EmailContainsKeywordPredicate`) inherit from `Predicate<Person>` interface so that they can be treated similarly where possible e.g, during testing.
+5. A new `FindCommand` instance is created by `FindCommandParser` and is executed by `LogicManger`.
+6. `FindCommand` will call `Model#updateFilteredPersonList(XYZPredicate)` to update the `UI` and display all `Person` that has `Name` containing `John`.
+7. The result of the command execution is encapsulated as a `CommandResult` object which is returned back to `LogicManager`.
+
+#### Proposed Changes
+Include `Person` meetings as a search field. A user can supply a given date and will return all `Person` that have a meeting starting or ending on the specified date.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
