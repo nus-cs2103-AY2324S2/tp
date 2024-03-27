@@ -203,14 +203,11 @@ This feature allows users to add `tags` to a `person` within the contact list, w
 
 This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively. The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** This feature can be used in conjuncture with the find feature, where it can be called on a list filtered by find.
-</div>
-
 The current allowed formats for required fields are as follows:
 - `Index` : an `Integer` within the range greater than 0, smaller than the size of the currently displayed contact list.
 - `Tags` : one or more alphanumeric characters with no spaces between them.
 
-The following sequence diagram shows how the `AddTag` interacts with `Logic` and `Model`.
+The following sequence diagram shows how `AddTag` interacts with `Logic`.
 
 ![AddTagSequenceDiagram](images/AddTagSequenceDiagram.svg)
 
@@ -222,7 +219,7 @@ The following sequence diagram shows how the `AddTag` interacts with `Logic` and
 6. `AddTagCommand` then calls `updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` to update `UI` to display the person with the newly added `Tags`.
 7. `CommandResult` is then returned to `LogicManager`.
 
-#### Proposed Changes
+#### Proposed future improvement
 Allow users to add tags to multiple people at once.
 
 ### \[Proposed\] Undo/redo feature
