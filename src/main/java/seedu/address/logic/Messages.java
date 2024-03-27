@@ -23,6 +23,9 @@ public class Messages {
     public static final String MESSAGE_MISSING_ATTRIBUTES = "Missing attributes to delete.";
     public static final String MESSAGE_SPACES_IN_UUID = "Spaces found in UUID: ";
 
+    public static final String MESSAGE_INVALID_PREDEFINED_RELATIONSHIP_DESCRIPTOR = "You cannot delete this "
+            + "relationship type.";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

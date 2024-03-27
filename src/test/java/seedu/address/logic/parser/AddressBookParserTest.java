@@ -25,8 +25,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.relationship.AddRelationshipCommand;
 import seedu.address.logic.relationship.DeleteRelationshipCommand;
 import seedu.address.logic.relationship.EditRelationshipCommand;
+import seedu.address.logic.relationship.ListRelationshipTypesCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
@@ -124,8 +126,21 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deleteRelationship() throws Exception {
-        String userInput = "deleteRelation 1234 5678 family";
+        String userInput = "deleteRelation 1234 5678 siblings";
         Command command = parser.parseCommand(userInput);
         assertTrue(command instanceof DeleteRelationshipCommand);
+    }
+
+    @Test
+    public void parseCommand_listRelationshipTypes() throws Exception {
+        Command command = parser.parseCommand(ListRelationshipTypesCommand.COMMAND_WORD);
+        assertTrue(command instanceof ListRelationshipTypesCommand);
+    }
+
+    @Test
+    public void parseCommand_addRelationship() throws Exception {
+        String userInput = "addRelation 1234 5678 housemates";
+        Command command = parser.parseCommand(userInput);
+        assertTrue(command instanceof AddRelationshipCommand);
     }
 }

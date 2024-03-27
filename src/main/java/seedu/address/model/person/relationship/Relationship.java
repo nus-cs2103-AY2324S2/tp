@@ -8,11 +8,12 @@ import java.util.UUID;
  * Represents a relationship between two people.
  */
 public class Relationship {
-    protected static ArrayList<String> validDescriptors = new ArrayList<String>(
-            Arrays.asList("family",
-                    "friend"));
+    protected static ArrayList<String> validDescriptors = new ArrayList<>(
+            Arrays.asList("friend", "siblings", "spouses", "bioparents"));
     protected UUID person1;
     protected UUID person2;
+
+    protected boolean isFamilyRelationship;
     protected String relationshipDescriptor;
     protected String type;
 
@@ -27,10 +28,16 @@ public class Relationship {
         this.person2 = person2;
 
         if (!validDescriptors.contains(relationshipDescriptor)) {
-            throw new IllegalArgumentException("Invalid Relationship type");
+            if (!relationshipDescriptor.matches("[a-zA-Z]+")) {
+                throw new IllegalArgumentException("Invalid Relationship type");
+            } else {
+                validDescriptors.add(relationshipDescriptor);
+            }
         }
+        isFamilyRelationship = relationshipDescriptor.equalsIgnoreCase("family");
         this.relationshipDescriptor = relationshipDescriptor;
     }
+
     // Getters for person UUIDs
     public UUID getPerson1() {
         return person1;
@@ -64,5 +71,31 @@ public class Relationship {
     public String toString() {
         return String.format("%s and %s are %s", person1.toString(),
                 person2.toString(), this.relationshipDescriptor);
+    }
+
+    /**
+     * Adds a new relationship type to the list of valid relationship types.
+     */
+    public static String showRelationshipTypes() {
+        return String.format("Valid relationship types are: %s", validDescriptors.toString());
+    }
+
+    /**
+     * Adds a new relationship type to the list of valid relationship types.
+     */
+    public static void deleteRelationType(String relationType) {
+        if (!validDescriptors.contains(relationType)) {
+            throw new IllegalArgumentException("Relationship type does not exist yet");
+        }
+        if (relationType.equals("siblings") || relationType.equals("friend")
+                || relationType.equals("spouses") || relationType.equals("bioparents")) {
+            throw new IllegalArgumentException("Cannot delete default relationship type");
+        }
+        RelationshipUtil relationshipUtil = new RelationshipUtil();
+        if (relationshipUtil.descriptorExists(relationType)) {
+            throw new IllegalArgumentException("There are relationships under this relation type. "
+                    + "\nPlease delete them first.");
+        }
+        validDescriptors.remove(relationType);
     }
 }

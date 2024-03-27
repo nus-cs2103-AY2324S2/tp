@@ -16,9 +16,9 @@ public class JsonAdaptedRelationshipTest {
     private static final UUID VALID_UUID1 = UUID.randomUUID();
     private static final UUID VALID_UUID2 = UUID.randomUUID();
     private static final String VALID_DESCRIPTOR1 = "friend";
-    private static final String VALID_DESCRIPTOR2 = "family";
-    private static final String VALID_ROLE1 = "husband";
-    private static final String VALID_ROLE2 = "wife";
+    private static final String VALID_DESCRIPTOR2 = "siblings";
+    private static final String VALID_ROLE1 = "parent";
+    private static final String VALID_ROLE2 = "child";
 
     @Test
     public void toModelType_validRelationshipDetails_returnsRelationship() throws Exception {

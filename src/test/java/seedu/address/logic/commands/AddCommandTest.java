@@ -207,6 +207,17 @@ public class AddCommandTest {
         public boolean hasAttribute(String uuidString, String attributeName) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String showRelationshipTypes() {
+            return null;
+        }
+
+        @Override
+        public void deleteRelationType(String relationType) {
+
+        }
+
         @Override
         public UUID getFullUuid(String digits) {
             throw new AssertionError("This method should not be called");

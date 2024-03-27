@@ -1,67 +1,103 @@
-//package seedu.address.logic.relationship;
-//
-//import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-//import static org.junit.jupiter.api.Assertions.assertThrows;
-//
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.attribute.Attribute;
-//import seedu.address.model.person.attribute.NameAttribute;
-//import seedu.address.model.person.relationship.BioParentsRelationship;
-//import seedu.address.model.person.relationship.RelationshipUtil;
-//
-//class DeleteRelationshipCommandParserTest {
-//
-//    private Map<String, Person> personMap;
-//    private RelationshipUtil relationshipManager;
-//    private DeleteRelationshipCommandParser parser;
-//
-//    @BeforeEach
-//    void setUp() {
-//        personMap = new HashMap<>();
-//        relationshipManager = new RelationshipUtil();
-//        parser = new DeleteRelationshipCommandParser();
-//    }
-//
-//    @Test
-//    void parse_validInput_success() {
-//        // Add some dummy persons and relationships to test parsing
-//        Attribute name1 = new NameAttribute("Name", "John Doe");
-//        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-//        Attribute[] attributes1 = new Attribute[]{name1};
-//        Attribute[] attributes2 = new Attribute[]{name2};
-//
-//        // Adding dummy people for testing
-//        Person person1 = new Person(attributes1);
-//        Person person2 = new Person(attributes2);
-//        personMap.put(person1.getUuidString(), person1);
-//        personMap.put(person2.getUuidString(), person2);
-//        relationshipManager.addRelationship(
-//                new BioParentsRelationship(person1.getUuid(), person2.getUuid()));
-//
-//        // Parse a valid delete relationship command
-//        assertDoesNotThrow(() -> parser.parse("deleterelation /TestRelationship "
-//                + person1.getUuidString() + "," + person2.getUuidString()));
-//    }
-//
-//    @Test
-//    void parse_invalidMissingParts_throwsIllegalArgumentException() {
-//        assertThrows(IllegalArgumentException.class, () -> parser.parse("deleterelation /TestRelationship 1234"));
-//    }
-//
-//    @Test
-//    void parse_invalidIncorrectUuids_throwsIllegalArgumentException() {
-//        assertThrows(IllegalArgumentException.class, () ->
-//                parser.parse("deleterelation /TestRelationship invalid,invalid"));
-//    }
-//
-//    @Test
-//    void parse_invalidRelationshipType_throwsIllegalArgumentException() {
-//        assertThrows(IllegalArgumentException.class, () -> parser.parse("deleterelation /InvalidType 1234,5678"));
-//    }
-//}
+package seedu.address.logic.relationship;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
+
+import java.util.UUID;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.relationship.Relationship;
+
+class DeleteRelationshipCommandParserTest {
+    private AddRelationshipCommandParser parser = new AddRelationshipCommandParser();
+    private Model model;
+    private Model expectedModel;
+    @BeforeEach
+    void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
+
+    @Test
+    void parse_invalidInputLength_throwsParseException() {
+        String userInput = ("1234 workmates");
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    void parse_validInput_success() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0005";
+        String relationshipDescriptor = "housemates";
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000005");
+        model.addRelationship(new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        expectedModel.addRelationship(new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        expectedModel.deleteRelationship(new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        String expectedMessage = "Delete successful";
+        DeleteRelationshipCommand deleteRelationshipCommand =
+                new DeleteRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertCommandSuccess(deleteRelationshipCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void parse_validInputDeleteRelationType_success() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0005";
+        String relationshipDescriptor = "housemates";
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000005");
+        model.addRelationship(new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        expectedModel.addRelationship(new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        expectedModel.deleteRelationship(new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        String expectedMessage = "Delete successful";
+        DeleteRelationshipCommand deleteRelationshipCommand =
+                new DeleteRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        expectedModel.deleteRelationType(relationshipDescriptor);
+        assertCommandSuccess(deleteRelationshipCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void parse_invalidFamilialRelationshipDescriptor_throwsParseException() {
+        DeleteRelationshipCommandParser parser = new DeleteRelationshipCommandParser();
+        String userInput = "family";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                "Expected parse method to throw ParseException for 'family' relationship descriptor");
+    }
+
+    @Test
+    void parse_invalidFamilialRelationshipDescriptorCaseInsensitive_throwsParseException() {
+        DeleteRelationshipCommandParser parser = new DeleteRelationshipCommandParser();
+        String userInput = "Family";
+        assertThrows(ParseException.class, () -> parser.parse(userInput),
+                "Expected parse method to throw ParseException for 'Family' relationship descriptor");
+    }
+
+    @Test
+    void parse_invalidPredefinedRelationshipDescriptor_throwsParseException() {
+        String userInput = "friend";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+
+        String userInput2 = "siblings";
+        assertThrows(ParseException.class, () -> parser.parse(userInput2));
+
+        String userInput3 = "bioparents";
+        assertThrows(ParseException.class, () -> parser.parse(userInput3));
+
+        String userInput4 = "spouses";
+        assertThrows(ParseException.class, () -> parser.parse(userInput4));
+    }
+
+    @Test
+    void parse_invalidUuid_throwsParseException() {
+        String userInput = "invalid_uuid 1234 relationshipDescriptor";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+}

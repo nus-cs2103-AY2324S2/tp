@@ -63,13 +63,13 @@ public class TypicalPersonsUuid {
     public static final Relationship ELLE_FIONA =
             new Relationship(UUID.fromString(ELLE_UUID), UUID.fromString(FIONA_UUID), "friend");
 
-    public static final RoleBasedRelationship ALICE_DANIEL_ROLE =
-            new RoleBasedRelationship(UUID.fromString(ALICE_UUID), UUID.fromString(DANIEL_UUID),
-                    "family", "wife", "husband");
+    public static final Relationship ALICE_DANIEL_ROLE =
+            new Relationship(UUID.fromString(ALICE_UUID), UUID.fromString(DANIEL_UUID),
+                    "siblings");
 
     public static final RoleBasedRelationship CARL_ELLE_ROLE =
             new RoleBasedRelationship(UUID.fromString(CARL_UUID), UUID.fromString(ELLE_UUID),
-                    "family", "husband", "wife");
+                    "bioparents", "parent", "child");
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").buildWithUuid(HOON_UUID);

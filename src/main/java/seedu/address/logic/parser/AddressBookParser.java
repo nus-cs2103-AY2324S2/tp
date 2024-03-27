@@ -26,6 +26,7 @@ import seedu.address.logic.relationship.DeleteRelationshipCommand;
 import seedu.address.logic.relationship.DeleteRelationshipCommandParser;
 import seedu.address.logic.relationship.EditRelationshipCommand;
 import seedu.address.logic.relationship.EditRelationshipCommandParser;
+import seedu.address.logic.relationship.ListRelationshipTypesCommand;
 import seedu.address.model.person.Person;
 
 /**
@@ -92,7 +93,8 @@ public class AddressBookParser {
 
         case EditRelationshipCommand.COMMAND_WORD:
             return new EditRelationshipCommandParser().parse(arguments.trim());
-
+        case ListRelationshipTypesCommand.COMMAND_WORD:
+            return new ListRelationshipTypesCommand();
         case DeleteAttributeCommand.COMMAND_WORD:
             return new DeleteAttributeCommandParser().parse(arguments);
 

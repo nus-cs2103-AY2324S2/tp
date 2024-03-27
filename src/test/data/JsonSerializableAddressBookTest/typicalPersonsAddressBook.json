@@ -76,16 +76,14 @@
     {
       "person1": "00000000-0000-0000-0000-000000000001",
       "person2": "00000000-0000-0000-0000-000000000004",
-      "relationshipDescriptor": "family",
-      "rolePerson1": "wife",
-      "rolePerson2": "husband"
+      "relationshipDescriptor": "siblings"
     },
     {
       "person1": "00000000-0000-0000-0000-000000000003",
       "person2": "00000000-0000-0000-0000-000000000005",
-      "relationshipDescriptor": "family",
-      "rolePerson1": "husband",
-      "rolePerson2": "wife"
+      "relationshipDescriptor": "bioparents",
+      "rolePerson1": "parent",
+      "rolePerson2": "child"
     }
   ]
 }

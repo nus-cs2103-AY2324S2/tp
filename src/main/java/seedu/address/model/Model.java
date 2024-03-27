@@ -109,5 +109,9 @@ public interface Model {
 
     boolean hasAttribute(String uuidString, String attributeName);
 
+    String showRelationshipTypes();
+
+    void deleteRelationType(String relationType);
+
     void deleteRelationshipsOfPerson(UUID personUuid);
 }

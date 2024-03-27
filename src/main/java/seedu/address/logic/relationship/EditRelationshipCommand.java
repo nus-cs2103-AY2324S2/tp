@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.relationship.Relationship;
+import seedu.address.model.person.relationship.RoleBasedRelationship;
 
 /**
  * This class is responsible for parsing and executing commands to add relationships between persons.
@@ -21,6 +22,9 @@ public class EditRelationshipCommand extends Command {
     private String oldRelationshipDescriptor;
     private String newRelationshipDescriptor;
 
+    private String role1;
+    private String role2;
+
     /**
      * Constructor takes in the string arguments needed to be passed into the relationship constructor and performs
      * the addition of the relationship
@@ -33,8 +37,29 @@ public class EditRelationshipCommand extends Command {
                                    String oldRelationshipDescriptor, String newRelationshipDescriptor) {
         this.originUuid = originUuid;
         this.targetUuid = targetUuid;
-        this.oldRelationshipDescriptor = oldRelationshipDescriptor;
-        this.newRelationshipDescriptor = newRelationshipDescriptor;
+        this.oldRelationshipDescriptor = oldRelationshipDescriptor.toLowerCase();
+        this.newRelationshipDescriptor = newRelationshipDescriptor.toLowerCase();
+    }
+
+    /**
+     * Constructor takes in the string arguments needed to be passed into the relationship constructor and performs
+     * the addition of the relationship
+     * @param originUuid
+     * @param targetUuid
+     * @param oldRelationshipDescriptor
+     * @param newRelationshipDescriptor
+     * @param role1
+     * @param role2
+     */
+    public EditRelationshipCommand(String originUuid, String targetUuid,
+                                   String oldRelationshipDescriptor, String newRelationshipDescriptor,
+                                   String role1, String role2) {
+        this.originUuid = originUuid;
+        this.targetUuid = targetUuid;
+        this.oldRelationshipDescriptor = oldRelationshipDescriptor.toLowerCase();
+        this.newRelationshipDescriptor = newRelationshipDescriptor.toLowerCase();
+        this.role1 = role1.toLowerCase();
+        this.role2 = role2.toLowerCase();
     }
 
     /**
@@ -66,7 +91,13 @@ public class EditRelationshipCommand extends Command {
                 throw new CommandException(String.format("%s already exists", toEditIn));
             }
             model.deleteRelationship(toEditOff);
-            model.addRelationship(toEditIn);
+            if (role1 != null && role2 != null) {
+                RoleBasedRelationship newRelationship = new RoleBasedRelationship(fullOriginUuid, fullTargetUuid,
+                        newRelationshipDescriptor, role1, role2);
+                model.addRelationship(newRelationship);
+            } else {
+                model.addRelationship(toEditIn);
+            }
             return new CommandResult(MESSAGE_EDIT_RELATIONSHIP_SUCCESS);
         } catch (IllegalArgumentException e) {
             throw new CommandException(String.format(e.getMessage()));

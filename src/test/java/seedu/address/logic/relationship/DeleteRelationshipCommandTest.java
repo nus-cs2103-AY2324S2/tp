@@ -1,170 +1,106 @@
-//package seedu.address.logic.relationship;
-//
-//import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-//import static org.junit.jupiter.api.Assertions.assertThrows;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.model.person.Person;
-//import seedu.address.model.person.attribute.Attribute;
-//import seedu.address.model.person.attribute.NameAttribute;
-//import seedu.address.model.person.relationship.Relationship;
-//import seedu.address.model.person.relationship.RelationshipUtil;
-//import seedu.address.model.person.relationship.RoleBasedRelationship;
-//
-//class DeleteRelationshipCommandTest {
-//
-//    private Map<String, Person> personMap;
-//    private RelationshipUtil relationshipManager;
-//    private DeleteRelationshipCommand command;
-//
-//    @BeforeEach
-//    void setUp() {
-//        personMap = new HashMap<>();
-//        relationshipManager = new RelationshipUtil();
-//
-//        // Assume NameAttribute is a subclass of Attribute suitable for testing
-//        Attribute name1 = new NameAttribute("Name", "John Doe");
-//        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-//        Attribute[] attributes1 = new Attribute[]{name1};
-//        Attribute[] attributes2 = new Attribute[]{name2};
-//
-//        // Adding dummy people for testing
-//        Person person1 = new Person(attributes1);
-//        Person person2 = new Person(attributes2);
-//        String uuid1 = person1.getUuidString();
-//        String uuid2 = person2.getUuidString();
-//        personMap.put(uuid1, person1);
-//        personMap.put(uuid2, person2);
-//
-//        command = new DeleteRelationshipCommand(uuid1, uuid2, "family");
-//    }
-//
-//    @Test
-//    void parseCommand_validInput_relationshipRemoved() {
-//        // Create a relationship between two persons
-//        Attribute name1 = new NameAttribute("Name", "John Doe");
-//        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-//        Attribute[] attributes1 = new Attribute[]{name1};
-//        Attribute[] attributes2 = new Attribute[]{name2};
-//
-//        // Adding dummy people for testing
-//        Person person1 = new Person(attributes1);
-//        Person person2 = new Person(attributes2);
-//        String uuid1 = person1.getUuidString();
-//        String uuid2 = person2.getUuidString();
-//        personMap.put(uuid1, person1);
-//        personMap.put(uuid2, person2);
-//    }
-//
-//
-//
-//    @Test
-//    void parseCommand_invalidInput_relationshipRemoved() {
-//        String uuid1 = personMap.keySet().iterator().next();
-//        String uuid2 = personMap.keySet().iterator().next();
-//        assertThrows(IllegalArgumentException.class, () ->
-//                command.parseCommand("deleterelation /friends " + uuid1 + " " + uuid2));
-//    }
-//
-//    @Test
-//    void parseCommand_invalidRelationshipType_throwsIllegalArgumentException() {
-//        assertThrows(IllegalArgumentException.class, () ->
-//                command.parseCommand("deleterelation /InvalidType 1234,5678"));
-//    }
-//
-//    @Test
-//    void parseCommand_invalidMissingParts_throwsIllegalArgumentException() {
-//        assertThrows(IllegalArgumentException.class, () ->
-//                command.parseCommand("deleterelation /TestRelationship 1234"));
-//    }
-//
-//    @Test
-//    void parseCommand_invalidIncorrectUuids_throwsIllegalArgumentException() {
-//        assertThrows(IllegalArgumentException.class, () ->
-//                command.parseCommand("deleterelation /TestRelationship invalid,invalid"));
-//    }
-//
-//    @Test
-//    void parseCommand_validRelationshipCheck_relationshipRemoved() {
-//        // Create a relationship between two persons
-//        Attribute name1 = new NameAttribute("Name", "John Doe");
-//        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-//        Attribute[] attributes1 = new Attribute[]{name1};
-//        Attribute[] attributes2 = new Attribute[]{name2};
-//
-//        // Adding dummy people for testing
-//        Person person1 = new Person(attributes1);
-//        Person person2 = new Person(attributes2);
-//        String uuid1 = person1.getUuidString();
-//        String uuid2 = person2.getUuidString();
-//        personMap.put(uuid1, person1);
-//        personMap.put(uuid2, person2);
-//
-//        Relationship relationship = new RoleBasedRelationship(person1.getUuid(), person2.getUuid());
-//
-//        // Add the relationship to the RelationshipManager
-//        relationshipManager.addRelationship("TestRelationship", relationship);
-//
-//        // Parse the command to delete the relationship
-//        assertDoesNotThrow(() -> command.parseCommand("deleterelation /TestRelationship "
-//                + person1.getUuid() + "," + person2.getUuid()));
-//
-//        // Check if the relationship is removed
-//        assertTrue(relationshipManager.getRelationships("TestRelationship").isEmpty());
-//    }
-//
-//    @Test
-//    void parseCommand_invalidNoMatchingRelationship_throwsIllegalArgumentException() {
-//        // Create a relationship between two persons
-//        Attribute name1 = new NameAttribute("Name", "John Doe");
-//        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-//        Attribute[] attributes1 = new Attribute[]{name1};
-//        Attribute[] attributes2 = new Attribute[]{name2};
-//
-//        // Adding dummy people for testing
-//        Person person1 = new Person(attributes1);
-//        Person person2 = new Person(attributes2);
-//        String uuid1 = person1.getUuidString();
-//        String uuid2 = person2.getUuidString();
-//        personMap.put(uuid1, person1);
-//        personMap.put(uuid2, person2);
-//
-//        Relationship relationship = new RoleBasedRelationship(person1.getUuid(), person2.getUuid());
-//
-//        // Add the relationship to the RelationshipManager
-//        relationshipManager.addRelationship("TestRelationship", relationship);
-//
-//        // Try to delete a relationship that doesn't exist
-//        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship "
-//                + "invalid,invalid"));
-//    }
-//
-//    @Test
-//    void parseCommand_relationshipNotFound_throwsIllegalArgumentException() {
-//        // Create a relationship between two persons
-//        Attribute name1 = new NameAttribute("Name", "John Doe");
-//        Attribute name2 = new NameAttribute("Name", "Jane Doe");
-//        Attribute[] attributes1 = new Attribute[]{name1};
-//        Attribute[] attributes2 = new Attribute[]{name2};
-//
-//        // Adding dummy people for testing
-//        Person person1 = new Person(attributes1);
-//        Person person2 = new Person(attributes2);
-//        String uuid1 = person1.getUuidString();
-//        String uuid2 = person2.getUuidString();
-//        personMap.put(uuid1, person1);
-//        personMap.put(uuid2, person2);
-//
-//        // No relationship added to RelationshipManager
-//
-//        // Try to delete a relationship that doesn't exist
-//        assertThrows(IllegalArgumentException.class, () -> command.parseCommand("deleterelation /TestRelationship "
-//                + person1.getUuid() + "," + person2.getUuid()));
-//    }
-//}
+package seedu.address.logic.relationship;
+
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
+
+import java.util.UUID;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.relationship.Relationship;
+
+class DeleteRelationshipCommandTest {
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
+
+    @Test
+    void testExecute_validUuidInputThrowsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "friend";
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        String expectedMessage = "Delete successful";
+        DeleteRelationshipCommand addRelationshipCommand =
+                new DeleteRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        expectedModel.deleteRelationship(
+                new Relationship(person1Uuid, person2Uuid, relationshipDescriptor));
+        assertCommandSuccess(addRelationshipCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void testExecute_relationshipDoesNotExist_throwsException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "housemates";
+        UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        // Don't add the relationship to the model
+        String expectedMessage = String.format("Sorry %s do not exist", new Relationship(person1Uuid,
+                person2Uuid, relationshipDescriptor));
+        DeleteRelationshipCommand deleteRelationshipCommand =
+                new DeleteRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        assertCommandFailure(deleteRelationshipCommand, model, expectedMessage);
+    }
+
+    @Test
+    void testExecute_invalidRelationshipType_throwsCommandException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0002";
+        String relationshipDescriptor = "123"; // Provide an invalid relationship type
+        DeleteRelationshipCommand deleteRelationshipCommand =
+                new DeleteRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        // Ensure that the IllegalArgumentException is thrown during execution
+        assertThrows(CommandException.class, () -> deleteRelationshipCommand.execute(model));
+    }
+
+    @Test
+    void execute_sameOriginAndTargetUuidsButNotTestUuids_throwsCommandException() {
+        String testOriginUuid = "0001";
+        String testTargetUuid = "0001"; // Same as originUuid
+        String relationshipDescriptor = "friend";
+
+        DeleteRelationshipCommand deleteRelationshipCommand = new DeleteRelationshipCommand(
+                testOriginUuid, testTargetUuid, relationshipDescriptor);
+
+        assertCommandFailure(deleteRelationshipCommand, model, "Relationships must be between 2 different people");
+    }
+
+    @Test
+    void execute_deleteRelationTypeRelationshipTypeNotExists_throwsCommandException() {
+        String relationshipDescriptor = "nonexistent";
+
+        DeleteRelationshipCommand deleteRelationshipCommand = new DeleteRelationshipCommand(
+                relationshipDescriptor, true);
+
+        assertThrows(CommandException.class, () -> deleteRelationshipCommand.execute(model));
+    }
+
+    @Test
+    void execute_invalidRelationshipType_throwsCommandException() {
+        String originUuid = "0001";
+        String targetUuid = "0002";
+        String relationshipDescriptor = "invalid"; // Provide an invalid relationship type
+
+        DeleteRelationshipCommand deleteRelationshipCommand = new DeleteRelationshipCommand(
+                originUuid, targetUuid, relationshipDescriptor);
+
+        assertThrows(CommandException.class, () -> deleteRelationshipCommand.execute(model));
+    }
+
+}
