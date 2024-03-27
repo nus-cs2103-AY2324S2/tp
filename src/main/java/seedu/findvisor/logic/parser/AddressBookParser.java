@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.findvisor.commons.core.LogsCenter;
 import seedu.findvisor.logic.commands.AddCommand;
+import seedu.findvisor.logic.commands.AddTagCommand;
 import seedu.findvisor.logic.commands.ClearCommand;
 import seedu.findvisor.logic.commands.Command;
 import seedu.findvisor.logic.commands.DeleteCommand;
@@ -58,6 +59,9 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
 
         case ScheduleCommand.COMMAND_WORD:
             return new ScheduleCommandParser().parse(arguments);
