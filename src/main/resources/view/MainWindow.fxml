@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Housekeeping Hub" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -48,13 +49,24 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="stack-pane" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS"
-              style="-fx-background-color: #ECE9E9">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+          <HBox VBox.vgrow="ALWAYS">
+            <VBox fx:id="clientList" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #ECE9E9">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <VBox fx:id="housekeeperList" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: #ECE9E9">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
+              <StackPane fx:id="housekeeperListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+          </HBox>
+
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

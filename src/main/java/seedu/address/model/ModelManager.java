@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Client;
+import seedu.address.model.person.Housekeeper;
 import seedu.address.model.person.Person;
 
 /**
@@ -21,7 +23,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Client> filteredClients;
+    private final FilteredList<Housekeeper> filteredHousekeepers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +36,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredHousekeepers = new FilteredList<>(this.addressBook.getHousekeeperList());
     }
 
     public ModelManager() {
@@ -101,7 +105,11 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (person.isClient()) {
+            updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        } else {
+            updateFilteredHousekeeperList(PREDICATE_SHOW_ALL_HOUSEKEEPERS);
+        }
     }
 
     @Override
@@ -118,14 +126,25 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public ObservableList<Housekeeper> getFilteredHousekeeperList() {
+        return filteredHousekeepers;
+    }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredHousekeeperList(Predicate<Housekeeper> predicate) {
+        requireNonNull(predicate);
+        filteredHousekeepers.setPredicate(predicate);
     }
 
     @Override
@@ -142,7 +161,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredClients.equals(otherModelManager.filteredClients)
+                && filteredHousekeepers.equals(otherModelManager.filteredHousekeepers);
     }
 
 }

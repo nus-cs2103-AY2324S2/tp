@@ -7,7 +7,7 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class TypePredicate implements Predicate<Person> {
+public class TypePredicate implements Predicate<Client> {
     private final String type;
 
     public TypePredicate(String type) {
@@ -23,7 +23,7 @@ public class TypePredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Client person) {
         if (type.equals("housekeeper")) {
             return !person.isClient();
         } else if (type.equals("client")) {

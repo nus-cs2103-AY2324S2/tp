@@ -13,4 +13,8 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    Path getClientFilePath();
+
+    Path getHousekeeperFilePath();
+
 }
