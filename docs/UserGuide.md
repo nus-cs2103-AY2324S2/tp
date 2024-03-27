@@ -69,6 +69,7 @@ ___
 
 There is no wrong way to read this guide: if you want to skip ahead, go for it! Each section is contained entirely in itself, and you can find what you are looking for without needing to read the previous sections. However, we recommend that you read through the entire guide at least once before utilizing the application, so that you would have a more thorough understanding of the all necessary features.
 
+
 This guide has 4 main sections:
 1. The [**Quick Start**](#quick-start) section, we will walk through you in how to get started installing as well as running the ConnectCare on your own desktop.
 
@@ -104,10 +105,49 @@ ___
 ## Quick start
 <IMPROVE BY ADDING SCREENSHOTS AND LINKS>
 
-1. Ensure Java 11 is installed in your computer. If it's not, install it [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)
-2. Download the latest ConnectCare.jar <Link here>
-3. Copy the jar file to the folder you want to use as the home folder
-4. Double-click the file to start the application!
+This section allows you to start caring for your clients as soon as possible!
+It will help you [install](#installation-instructions) and [start](#startup-instructions) using the application as fast as possible.
+
+### Installation instructions
+1. To use ConnectCare you will require Java 11 to be installed in your computer.
+
+**If you have Java 11 installed**
+
+2. Check that it is the correct version
+    - Windows or macOS users might find [this guide](https://blog.hubspot.com/website/check-java-verison) useful.
+    - Linux users might find [this guide](https://phoenixnap.com/kb/check-java-version-linux) useful.
+    - If you have the correct version skip ahead to step 4, otherwise, follow step 3 to install Java 11.
+
+**If you do _not_ have Java 11 installed**
+
+3. Install Java 11 based on your Operating System
+   - **Windows** users should use [this guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA). 
+   - **MacOS** users should use [this guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE).
+   - **Linux** users should use [this guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-linux-platforms.html#GUID-737A84E4-2EFF-4D38-8E60-3E29D1B884B8).
+
+4. Download the latest release of `addressbook.jar` [here](https://github.com/AY2324S2-CS2103T-W12-4/tp/releases).
+
+<div class="image-container" align="middle" style="display:flex">
+    <pic src="images/quickstart/latest-release.png" alt="jar_file">
+        <markdown> Find the latest release with the 'Latest tag' </markdown>
+    </pic>
+    <pic src="images/quickstart/jar-file.png" alt="jar_file">
+        <markdown> Click on the `.jar` file at the bottom of the page to download it </markdown>
+    </pic>
+</div>
+
+5. Copy the jar file to the folder you want to use as the home folder.
+
+### Startup instructions
+
+6. Double-click on the `addressbook.jar` file to start the application. 
+   - If you are facing issues, you can consult [this guide](https://www.wikihow.com/Run-a-.Jar-Java-File).
+
+**Your first command**
+- Type this command to add and manage your first client
+    
+    `add n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 d/Suffers from depression k/Jasmin Doe t/mentalIllness`
+- Go to the [command summary](#command-summary) for a list of different commands to try out!
 
 ___
 
@@ -148,8 +188,9 @@ _This command adds a new client to your client list._
 | d/DESCRIPTION  | Description of client that you want to add         | Description should not be blank and is compulsory                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | t/TAG          | Tag to identify the client                         | A person can have any number of tags (or even 0)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-<box type="tip">
 
+<box type="tip" seamless>
+  
 **Tip:** If you have difficulty adding clients, check if you have added the correct prefixes
 
 </box>
@@ -275,6 +316,7 @@ As the commands given were invalid, there would be no changes to the client list
 
 &nbsp;
 
+
 <div class="image-container" align="middle" style="display: flex;">
     <pic src="images/user-guide/update_command/update_command_after_with_invalid_client.png" alt="update"> 
         <markdown> Figure 1.2: After the invalid `update` command with an invalid client is executed </markdown>
@@ -283,6 +325,7 @@ As the commands given were invalid, there would be no changes to the client list
         <markdown> Figure 1.3: After the invalid  `update` command with invalid parameters is executed </markdown> 
     </pic>
 </div>
+
 
 &nbsp;
 
