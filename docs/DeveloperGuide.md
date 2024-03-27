@@ -164,23 +164,23 @@ the new details we are tracking.
 Similarly, a `JsonAdaptedApplicant` extends `JsonAdaptedPerson` to achieve
 the same effect in `Storage` component.
 
-[//]: # (#### Alternatives considered)
-
-
-### \[Developed\] Add_Applicant feature
+### \[Developed\] Add applicant feature
 The add applicant feature allows users to add applicants with the following details: `Name`, `Phone`, `Email`,
 `Address`, `Role`, `Tag`, `Note` and `Date`. 
 
 #### How the feature is implemented
 * The add applicant is designed in mind with how the `Applicant` class extends `Person` class 
 to maximize the benefits of inheritance.
-* In the add applicant related command and parser, there will be a check to cast if the `Person` object handled is
-an applicant or a normal person.
+* In the add applicant command and parser, the applicant is parse to into `addPerson()` as `Applicant`.  
 * In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
 and applicant, hence it can store and differentiate applicants from person when retrieved.   
 * There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
 assumed to be at the `'initial_application'` stage.
+* Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
+`JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.  
 
+
+![AddApplicantSequenceDiagram.png](images%2FAddApplicantSequenceDiagram.png)
 
 
 ### \[Developed\] Edit_Applicant feature
