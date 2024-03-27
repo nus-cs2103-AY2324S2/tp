@@ -5,8 +5,7 @@ pageNav: 3
 ---
 
 # Internhub User Guide
-Intern Hub is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). If you can type fast, InternHub can help you complete your contact management tasks more efficiently than traditional GUI apps.
-Target Audience: Intern Hub is designed for undergraduates, professors, and carreer guidance officers seeking a streamlined approach to managing internship contacts.Intern Hub simplifies the process of organizing and accessing contact information, making it ideal for users who value efficiency and productivity.
+Intern Hub is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI). If you can type fast, InternHub can help you complete your contact management tasks more efficiently than traditional GUI apps. Intern Hub is designed for undergraduates, professors, and carreer guidance officers seeking a streamlined approach to managing internship contacts.Intern Hub simplifies the process of organizing and accessing contact information, making it ideal for users who value efficiency and productivity.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -166,7 +165,7 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving the data 
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -182,20 +181,20 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 </box>
 
-### Finding the data
+### Finding the data : `find`
 
 To find specific data entries, use the `find` command followed by keywords related to the data you're looking for. This command will help you quickly locate the information you need within your address book.
 
 Format: `find Grab`
 
-### Filtering the data (by tags)
+### Filtering the data (by tags) : `filter`
 
 Filtering data allows you to narrow down your search results to focus on specific criteria. Use the `filter t/` command to filter by tag and find exactly the internships that have an interview.
 
 
 Format: `filter t/ I`
 
-### Sending reminders
+### Sending reminders : `reminder`
 
 Sending reminders is a great way to stay organized and on top of important tasks. While our application currently doesn't have a built-in reminder feature, you can manually retrieve reminders using this command. It will show the interviews you have within the next 3 days.
 
