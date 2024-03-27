@@ -16,9 +16,11 @@ import seedu.address.model.person.relationship.Relationship;
 public class DeleteRelationshipCommand extends Command {
     public static final String COMMAND_WORD = "deleteRelation";
     public static final String MESSAGE_DELETE_RELATIONSHIP_SUCCESS = "Delete successful";
-    private String originUuid;
-    private String targetUuid;
+    private String originUuid = "0000";
+    private String targetUuid = "0000";
     private String relationshipDescriptor;
+
+    private boolean isRelationType = false;
 
     /**
      * Constructor for deleteRelationshipCommand, deletes Relationship sepcified by the 2 Person Uuid given if the
@@ -32,6 +34,17 @@ public class DeleteRelationshipCommand extends Command {
         this.targetUuid = targetUuid;
         this.relationshipDescriptor = relationshipDescriptor.toLowerCase();
     }
+
+    /**
+     * Constructor for deleteRelationshipCommand, deletes Relationship type if it exist otherwise tell user relationship
+     * do not exist
+     * @param relationshipDescriptor String describing the type of relationship if exisiting
+     */
+    public DeleteRelationshipCommand(String relationshipDescriptor, boolean isRelationType) {
+        this.relationshipDescriptor = relationshipDescriptor.toLowerCase();
+        this.isRelationType = isRelationType;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         UUID fullOriginUuid = model.getFullUuid(originUuid);
@@ -40,15 +53,14 @@ public class DeleteRelationshipCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_UUID);
         }
         if (fullOriginUuid == fullTargetUuid) {
-            if (originUuid == "test" && targetUuid == "test") {
-                try {
-                    model.deleteRelationType(relationshipDescriptor);
-                    return new CommandResult(MESSAGE_DELETE_RELATIONSHIP_SUCCESS);
-                } catch (IllegalArgumentException e) {
-                    throw new CommandException(e.getMessage());
-                }
-            } else {
-                throw new CommandException("Relationships must be between 2 different people");
+            throw new CommandException("Relationships must be between 2 different people");
+        }
+        if (isRelationType) {
+            try {
+                model.deleteRelationType(relationshipDescriptor);
+                return new CommandResult(MESSAGE_DELETE_RELATIONSHIP_SUCCESS);
+            } catch (IllegalArgumentException e) {
+                throw new CommandException(e.getMessage());
             }
         }
         try {

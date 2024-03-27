@@ -34,7 +34,7 @@ public class DeleteRelationshipCommandParser implements Parser<DeleteRelationshi
                     || relationshipDescriptor.equals("siblings") || relationshipDescriptor.equals("spouses")) {
                 throw new ParseException(Messages.MESSAGE_INVALID_PREDEFINED_RELATIONSHIP_DESCRIPTOR);
             }
-            return new DeleteRelationshipCommand("test", "test", relationshipDescriptor);
+            return new DeleteRelationshipCommand(relationshipDescriptor, true);
         } else {
             try {
                 String originUuid = ParserUtil.parseUuid(parts[0]);

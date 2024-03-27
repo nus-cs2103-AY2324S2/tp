@@ -100,6 +100,4 @@ class DeleteRelationshipCommandParserTest {
         String userInput = "invalid_uuid 1234 relationshipDescriptor";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
-
-
 }
