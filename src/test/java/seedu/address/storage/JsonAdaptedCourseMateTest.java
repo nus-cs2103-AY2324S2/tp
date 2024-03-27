@@ -101,4 +101,12 @@ public class JsonAdaptedCourseMateTest {
                 null, BENSON.getSkills());
         assertEquals(expectedCourseMate, courseMate.toModelType());
     }
+
+    @Test
+    public void toModelType_nullTelegramHandle_returnsCourseMate() throws Exception {
+        JsonAdaptedCourseMate courseMate =
+                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_SKILLS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TelegramHandle.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
+    }
 }
