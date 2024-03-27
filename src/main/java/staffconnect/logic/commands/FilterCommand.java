@@ -32,7 +32,7 @@ public class FilterCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_MODULE + "MODULE]"
             + " [" + PREFIX_FACULTY + "FACULTY]"
-            + " [" + PREFIX_TAG + "TAG]...\n"
+            + " [" + PREFIX_TAG + "TAG]..."
             + " [" + PREFIX_AVAILABILITY + "AVAILABILITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG + "BestProf";
