@@ -450,7 +450,8 @@ Finds internship entries whose specified fields contains the keywords.
 * Internship matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
-<div markdown="span" class="alert alert-success">
+** screenshots to be updated
+<div markdown="span" class="alert alert-success"> 
 
 💡 **Try It Out:**<br>
 
@@ -498,11 +499,11 @@ This will sort the list of internships by company name in ascending order.
    ![After successfully filtering by all toapply and remote](./images/find/findToApplyRemote-after.png)<br><br>
 
 3. Other examples:<br>
-   i.`sort /status desc` returns Internship sorted in the following order: `TO_APPLY` -> `ONGOING` -> `PENDING` -> `ACCEPTED` -> `REJECTED`<br>
-   ii.`sort /phone asc` returns Internships sorted in ascending order of phone numbers.
+   i.`sort /status desc` returns internships sorted in the following order: `TO_APPLY` -> `ONGOING` -> `PENDING` -> `ACCEPTED` -> `REJECTED`<br>
+   ii.`sort /phone asc` returnsiInternships sorted in ascending order of phone numbers.
 </div>
 
-**Common errors:**
+**Common errors:** * error messages to be updated
 1. If no field prefixes are specified to sort by, the command will be rejected with error message:<br>
    `At least one field prefix and keyword must be specified to be searched.`
 2. ORDER must be present, and be either `asc` or `desc`. If not, the command will be rejected with error message:<br>
