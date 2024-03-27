@@ -63,5 +63,13 @@
     "tags" : [ "Friends", "OwesMoney" ],
     "parentPhoneNumberOne" : "98765432",
     "parentPhoneNumberTwo" : "91233322"
+  }, {
+    "name" : "John Doe",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "studentId" : "00881",
+    "tags" : [ "Friends", "OwesMoney" ],
+    "parentPhoneNumberOne" : "98765432",
+    "parentPhoneNumberTwo" : "91233322"
   }
 ]}

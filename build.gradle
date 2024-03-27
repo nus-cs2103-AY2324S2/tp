@@ -65,7 +65,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'PedagoguePages.jar'
 }
 
 defaultTasks 'clean', 'test'
