@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -180,5 +182,27 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns a new list containing strings from an input array that start with the given prefix.
+     * The strings are case and space sensitive (i.e. "hello" will not match " hello" or "HELLO").
+     * Note that if the given prefix is an empty string, the returned list will contain all the strings
+     * in the input array.
+     *
+     * @param prefix Input prefix string.
+     * @param strings An array of strings to match with the given prefix.
+     * @return List of strings that start with the given prefix.
+     */
+    public static List<String> filterByPrefix(String prefix, String[] strings) {
+        final List<String> matchedStrings = new ArrayList<>();
+
+        for (String string : strings) {
+            if (string.startsWith(prefix)) {
+                matchedStrings.add(string);
+            }
+        }
+
+        return matchedStrings;
     }
 }
