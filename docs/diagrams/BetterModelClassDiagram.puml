@@ -18,6 +18,7 @@ Person *--> Name
 Person *--> Email
 Person *--> Address
 Person *--> Course
+Enum "<<enumeration>>\nRole" as Role
 Person *--> Role
 Person *--> "*" Phone
 
