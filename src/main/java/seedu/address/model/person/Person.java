@@ -72,7 +72,10 @@ public class Person {
      * which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     public Person updateNote(Note note) {
-        return new Person(this.name, this.phone, this.email, this.address, note, this.tags, rating);
+        Person personToReturn = new Person(this.name, this.phone, this.email, this.address, note, this.tags,
+                this.rating);
+        personToReturn.setPinIfPinned(this);
+        return personToReturn;
     }
 
     /**
@@ -80,7 +83,10 @@ public class Person {
      * which throws {@code UnsupportedOperationException} if modification is attempted.
      */
     public Person updateRating(Rating rating) {
-        return new Person(this.name, this.phone, this.email, this.address, this.note, this.tags, rating);
+        Person personToReturn = new Person(this.name, this.phone, this.email, this.address, this.note, this.tags,
+                rating);
+        personToReturn.setPinIfPinned(this);
+        return personToReturn;
     }
 
     public Pin getPin() {
@@ -97,6 +103,12 @@ public class Person {
 
     public boolean isPinned() {
         return pin.getIsPinned();
+    }
+
+    public void setPinIfPinned(Person person) {
+        if (person.isPinned()) {
+            this.toPin();
+        }
     }
 
     /**
@@ -166,5 +178,4 @@ public class Person {
                 .add("rating", rating)
                 .toString();
     }
-
 }

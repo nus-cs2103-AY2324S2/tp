@@ -32,9 +32,7 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
     private final String name;
     private final String phone;
     private final String email;
@@ -44,7 +42,6 @@ class JsonAdaptedPerson {
     private String product;
     private String price;
     private String skill;
-
     private String commission;
     private String note;
     private String rating;
@@ -92,6 +89,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        rating = source.getRating().toString();
         note = source.getNote().toString();
         pin = source.getPin().toString();
         tags.addAll(source.getTags().stream()
@@ -125,6 +123,10 @@ class JsonAdaptedPerson {
 
     public void setPin(String pin) {
         this.pin = pin;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     /**
@@ -174,7 +176,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Rating modelRating = new Rating("0");
+        final Rating modelRating = new Rating(rating);
 
         if (salary != null && employment != null) {
             if (!Salary.isValidSalary(salary)) {
@@ -230,12 +232,18 @@ class JsonAdaptedPerson {
             return currMaintainer;
         }
 
-
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
         }
         if (!Note.isValidNote(note)) {
             throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
 
         Person personToAdd = new Person(modelName, modelPhone, modelEmail, modelAddress, modelNote, modelTags,
