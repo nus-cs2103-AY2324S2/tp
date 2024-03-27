@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -47,23 +45,29 @@ public class EditMeetingCommand extends Command {
     private final Index meetingIndex;
     private final Index clientIndex;
 
-    private final EditMeetingDescriptor editMeetingDescriptor;
+    private final String description;
+
+    private final LocalDateTime dateTime;
 
     /**
-     * @param clientIndex of the person in the filtered person list to edit
-     * @param meetingIndex of the meeting in the filtered meeting list to edit
-     * @param editMeetingDescriptor details to edit the meeting with
+     * @param clientIndex           of the person in the filtered person list to edit
+     * @param meetingIndex          of the meeting in the filtered meeting list to edit
+     * @param description           details to edit the meeting with
+     * @param dateTime              dateTime of meeting
      */
-    public EditMeetingCommand(Index clientIndex, EditMeetingDescriptor editMeetingDescriptor, Index meetingIndex) {
+    public EditMeetingCommand(Index clientIndex, Index meetingIndex, String description, LocalDateTime dateTime) {
         requireNonNull(meetingIndex);
-        requireNonNull(editMeetingDescriptor);
+        requireNonNull(description);
         requireNonNull(clientIndex);
+        requireNonNull(dateTime);
 
         this.meetingIndex = meetingIndex;
-        this.editMeetingDescriptor = new EditMeetingDescriptor(editMeetingDescriptor);
         this.clientIndex = clientIndex;
+        this.description = description;
+        this.dateTime = dateTime;
 
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -75,8 +79,6 @@ public class EditMeetingCommand extends Command {
 
         Person selectedClient = clientList.get(clientIndex.getZeroBased());
         List<Meeting> clientMeetingList = selectedClient.getMeetings();
-        System.out.println(meetingIndex);
-        System.out.println(clientMeetingList);
 
         if (meetingIndex.getZeroBased() >= clientMeetingList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
@@ -84,9 +86,13 @@ public class EditMeetingCommand extends Command {
 
         Meeting meetingToEdit = clientList.get(clientIndex.getZeroBased())
                 .getMeetings().get(meetingIndex.getZeroBased());
-        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
+        Meeting editedMeeting = new Meeting(description, dateTime, selectedClient);
 
         if (meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+
+        if (model.hasMeeting(editedMeeting) && selectedClient.hasExistingMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
@@ -98,17 +104,16 @@ public class EditMeetingCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, Messages.formatMeeting(editedMeeting)));
     }
 
-    /**
-     * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
-     * edited with {@code editMeetingDescriptor}.
-     */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
-        assert meetingToEdit != null;
+    public Index getMeetingIndex() {
+        return meetingIndex;
+    }
 
-        String updatedName = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
-        LocalDateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
-        Person updatedClient = editMeetingDescriptor.getClient().orElse(meetingToEdit.getClient());
-        return new Meeting(updatedName, updatedDateTime, updatedClient);
+    public Index getClientIndex() {
+        return clientIndex;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
@@ -124,97 +129,19 @@ public class EditMeetingCommand extends Command {
 
         EditMeetingCommand otherEditMeeting = (EditMeetingCommand) other;
         return meetingIndex.equals(otherEditMeeting.meetingIndex)
-                && editMeetingDescriptor.equals(otherEditMeeting.editMeetingDescriptor)
-                && clientIndex.equals(otherEditMeeting.clientIndex);
-    }
-
-    public Index getClientIndex() {
-        return clientIndex;
-    }
-
-    public Index getMeetingIndex() {
-        return meetingIndex;
+                && clientIndex.equals(otherEditMeeting.clientIndex)
+                && description.equals(otherEditMeeting.description)
+                && dateTime.equals(otherEditMeeting.dateTime);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("clientIndex", clientIndex)
-                .add("editMeetingDescriptor", editMeetingDescriptor)
                 .add("meetingIndex", meetingIndex)
+                .add("description", description)
+                .add("dateTime", dateTime)
                 .toString();
     }
-
-    /**
-     * Stores the details to edit the meeting with. Each non-empty field value will replace the
-     * corresponding field value of the meeting.
-     */
-    public static class EditMeetingDescriptor {
-        private String description;
-
-        private LocalDateTime dateTime;
-        private Person client;
-
-        public EditMeetingDescriptor() {}
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
-            setDescription(toCopy.description);
-            setDateTime(toCopy.dateTime);
-            setClient(toCopy.client);
-        }
-
-        public void setDescription(String name) {
-            this.description = name;
-        }
-
-        public Optional<String> getDescription() {
-            return Optional.ofNullable(description);
-        }
-
-        public void setDateTime(LocalDateTime dateTime) {
-            this.dateTime = dateTime;
-        }
-
-        public Optional<LocalDateTime> getDateTime() {
-            return Optional.ofNullable(dateTime);
-        }
-
-        public void setClient(Person client) {
-            this.client = client;
-        }
-
-        public Optional<Person> getClient() {
-            return Optional.ofNullable(client);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditMeetingDescriptor)) {
-                return false;
-            }
-
-            EditMeetingDescriptor otherEditPersonDescriptor = (EditMeetingDescriptor) other;
-            return Objects.equals(description, otherEditPersonDescriptor.description)
-                    && Objects.equals(dateTime, otherEditPersonDescriptor.dateTime)
-                    && Objects.equals(client, otherEditPersonDescriptor.client);
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this)
-                    .add("description", description)
-                    .add("dateTime", dateTime)
-                    .add("client", client)
-                    .toString();
-        }
-    }
 }
+
