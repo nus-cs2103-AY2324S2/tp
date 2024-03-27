@@ -38,11 +38,11 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                         PREFIX_COMMENT, PREFIX_TAG);
         String trimmedArgs = args.trim();
         String trimmedPreamble = argMultimap.getPreamble().trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(SearchCommand.MESSAGE_NO_FIELD_PROVIDED);
-        }
         if (!trimmedPreamble.equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        }
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(SearchCommand.MESSAGE_NO_FIELD_PROVIDED);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COUNTRY, PREFIX_STATUS,
