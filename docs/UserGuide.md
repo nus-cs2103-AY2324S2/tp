@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 pageNav: 3
 ---
-
-# CareerSync User Guide
 Welcome to <span style="color: #f66a0a;">CareerSync</span>'s  User Guide! <span style="color: #f66a0a;">CareerSync</span> 
 is an **internship application manager designed to simplify the management of internship applications**. It is designed to help you **keep track of all your
 internship applications in one place**, so that you can focus on preparing for your interviews and securing your dream internship.
@@ -25,16 +23,16 @@ of all the necessary tools, even if you have never used a CLI before.
 
 ### How to use this User Guide?
 This user guide is split into these primary sections: [Quick Start](#quick-start), [Interface Overview](#interface-overview), [Tutorial](#tutorial), 
-[Commands](#commands), [FAQ](#faq), [Known Issues](#known-issues),[Command Summary](#command-summary), [Fields Summary](#fields-summary) and [Glossary](#glossary). 
+[Commands](#commands), [FAQ](#faq), [Known Issues](#known-issues), [Command Summary](#command-summary), [Field Summary](#field-summary) and [Glossary](#glossary). 
 We recommend that you navigate our User Guide in this order:
 1. Go through the [Quick Start](#quick-start) section to get started with the installation of CareerSync.
 2. Take a look at [Interface Overview](#interface-overview) to understand the elements of our GUI.
 3. Follow the instructions in [Tutorial](#tutorial) to understand the basic commands and how to use them.
 4. Read through the [Commands](#commands) section to understand all the commands and how to use them.
-5. Read through the [Fields Summary](#fields-summary) section to understand all the fields and their restrictions.
+5. Read through the [Field Summary](#field-summary) section to understand all the fields and their restrictions.
 
 [FAQ](#faq), [Known Issues](#known-issues) and [Glossary](#glossary) sections provide additional information that you may find useful.
-[Command Summary](#command-summary) provides a quick reference to all the commands available in CareerSync.
+[Command Summary](#command-summary) provides a quick reference to all the commands available and their formats in CareerSync.
 
 After that, you would be ready to use CareerSync to manage your internship applications!
 
@@ -54,62 +52,28 @@ does so via the following features:
 2. **Search and Filter**: Search and filter your internship applications by keywords, making it easy to find the information you need.
 3. **Task Management**: Add tasks to your individual internship applications and keep track of their individual deadlines.
 
-
-<span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** ([CLI](#Glossary)).
-
-<span style="color: #f66a0a;">CareerSync</span> is an **internship application tracker** that helps you keep track of all your internship applications in one place.
-<br>Record all the relevant information, such as contact details, application status, and tasks to-do for **all your internships** in one place.
-
-If you are:
-1. someone who is applying for many internships
-2. someone who is looking for a way to keep track of all your internship applications
-3. a Computer Science student
-4. a fast typist
-
-Then <span style="color: #f66a0a;">CareerSync</span> is perfect just for you!
-
-
-It lets you effortlessly manage, search, and sift through your various internship applications!
-
-Primary features include:
-- Add your internship applications in this app to keep track of them easily!
-- See all the important details of your internship applications at a glance!
-- Edit your application details to keep them up-to-date!
-- Search for your internship applications by keywords easily!
-- Keep track of your status for each individual internship application!
-- Add remarks to your internship applications to remember important details!
-- Add tasks to your internship applications to keep track of your progress! (to be added in v1.3)
-
-![Ui](images/Ui.png)
-
-If you are interested in using CareerSync, head over to the [Quick Start](#quick-start) section to get started!
-
 ### Table Of Contents
 
-| Section                             | When Should I Use This?                                                 |
-|-------------------------------------|-------------------------------------------------------------------------|
-| [Quick Start](#quick-start)         | If you are using the application for the first time or need a refresher |
-| [Features](#features)               | If you would like to know the capabilities of the application           |
-| [FAQ](#faq)                         | If you have any questions about the application                         |
-| [Known Issues](#known-issues)       | If you have a technical problem. We may have the solution!              |
-| [Command Summary](#command-summary) | If you would like to find more information about a specific command     |
+| Section                                 | When Should I Use This?                                                                 |
+|-----------------------------------------|-----------------------------------------------------------------------------------------|
+| [Quick Start](#quick-start)             | If you are using the application for the first time or need a refresher                 |
+| [Interface Overview](#interface-overview) | If you would like to know more about the interface of the application                   |
+| [Tutorial](#tutorial)                   | If you would like to learn how to use the application                                   |
+| [Commands](#commands)                   | If you would like to know the capabilities of the application                           |
+| [FAQ](#faq)                             | If you have any questions about the application                                         |
+| [Known Issues](#known-issues)           | If you have a technical problem. We may have the solution!                              |
+| [Command Summary](#command-summary)     | If you would like to find more information about a specific command                     |
+| [Field Summary](#field-summary)         | If you would like to know more about the fields and its restrictions in the application |
+| [Glossary](#glossary)                   | If you would like to know more about the terms used in the application                  |
 
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
 
-Start keeping track of your internships easily with <span style="color: #f66a0a;">CareerSync!</span>
-
 ### Installation
-
-
-1. Ensure that you have **Java 11 or above** installed on your computer.
-    - For MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html).
-    - For Windows or Linux, follow the instructions [here](https://www.java.com/en/download/). 
 
 1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer if you are using Windows.
     - If you are using MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
-
 2. Download the latest `CareerSync.jar` file [here](https://github.com/AY2324S2-CS2103T-W11-1/tp/releases/tag/v1.2).
 3. Make sure your [jar](#glossary) file is located in an empty folder.
 4. Start <span style="color: #f66a0a;">CareerSync</span>.
@@ -137,11 +101,9 @@ When you first start CareerSync, you will see this window. This is the main wind
 
 ![Ui](images/Ui.png)
 
-
    * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
-      /phone 90890301 /loc remote /role Software Intern` : <br> Adds this internship entry to the 
-      <span style="color: #f66a0a;">CareerSync</span> application.
-
+      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
+     #f66a0a;">CareerSync</span> application.
 ### Areas
 The main window of CareerSync is divided into four main areas: the **Tab Area**, the **CLI**, the **Message Box** and the **Internship List Display**.
 
@@ -153,7 +115,7 @@ The main window of CareerSync is divided into four main areas: the **Tab Area**,
 3. **Message Box**: The Message Box displays messages to provide feedback to you.
 4. **Internship List Display**: The Internship List Display displays the details of all your internship applications.
 
-### Fields Summary
+### Internship Fields
 The names of the fields for each internship application is as stated below. When you edit these fields, you will see the changes reflected in the display.
 For the restrictions on what is accepted for each field, kindly refer to [Fields Summary](#fields-summary).
 
@@ -168,8 +130,8 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 7. `CONTACT_NAME` - The name of the contact person.
 8. `CONTACT_EMAIL` - The email of the contact person.
 9. `CONTACT_NUMBER` - The phone number of the contact person.
+
 --------------------------------------------------------------------------------------------------------------------
-=======
 ## Tutorial
 This section would guide you through the basic commands of CareerSync, and how to use them.
 
@@ -240,7 +202,7 @@ Let's say you want to find all internships that you want to apply for, that give
 
 💡 **Try It Out:**<br>
 
-Key in the following command in the CLI: `find WITHALL /status to_apply /role Software Intern`
+Key in the following command in the CLI: `find withall /status to_apply /role Software Intern`
 
 Successful output after finding all entries that satisfy the conditions:<br>
 ![After successfully finding](./images/tutorial/find.png)
@@ -298,10 +260,8 @@ applications now.
 Only **simple and common use cases** are covered in this tutorial. Please refer to the [Commands](#commands) section so that
 you fully understand each command and their usage.
 
---------------------------------------------------------------------------------------------------------------------
-## Commands
-
-### Command Summary
+____________________________________________________________________________________________________________________
+## Command Summary
 
 | Action                                        | Description                              | Format |
 |-----------------------------------------------|------------------------------------------|------------------------------------------|
@@ -314,6 +274,8 @@ you fully understand each command and their usage.
 | [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
 | [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
 
+--------------------------------------------------------------------------------------------------------------------
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -571,6 +533,7 @@ After every command that changes the data, CareerSync performs a save automatica
 --------------------------------------------------------------------------------------------------------------------
 
 ## Field Summary
+
 | Prefix  | Description                        | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |---------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | /com    | Company Name                       | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -583,6 +546,7 @@ After every command that changes the data, CareerSync performs a save automatica
 | /role   | Role for the Internship            | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Glossary
+
 | Term      | Meaning                                                                                                                   |
 |-----------|---------------------------------------------------------------------------------------------------------------------------|
 | CLI       | [Command Line Interface](#https://en.wikipedia.org/wiki/Command-line_interface)                                           |
