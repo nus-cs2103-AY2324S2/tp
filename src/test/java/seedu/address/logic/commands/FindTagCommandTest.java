@@ -11,25 +11,25 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.TypicalStudents;
 
 public class FindTagCommandTest {
-    private static final List<Person> OWES =
-            Arrays.asList(TypicalPersons.BENSON);
-    private static final List<Person> E =
-            Arrays.asList(TypicalPersons.ALICE, TypicalPersons.BENSON, TypicalPersons.DANIEL);
+    private static final List<Student> OWES =
+            Arrays.asList(TypicalStudents.BENSON);
+    private static final List<Student> E =
+            Arrays.asList(TypicalStudents.ALICE, TypicalStudents.BENSON, TypicalStudents.DANIEL);
 
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalStudents.getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalStudents.getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    void execute_emptyString_allPersons() {
+    void execute_emptyString_allStudents() {
         String expectedMessage = String.format(FindTagCommand.MESSAGE_FOUND_PEOPLE, 7, "");
         FindTagCommand command = new FindTagCommand("");
 
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(model.getFilteredPersonList(), TypicalPersons.getTypicalPersons());
+        assertEquals(model.getFilteredStudentList(), TypicalStudents.getTypicalStudents());
     }
 
     @Test
@@ -37,10 +37,10 @@ public class FindTagCommandTest {
         String keyword = "E";
         FindTagCommand command = new FindTagCommand(keyword);
         String expectedMessage = String.format(FindTagCommand.MESSAGE_FOUND_PEOPLE, E.size(), keyword);
-        expectedModel.updateFilteredPersonList(person -> E.contains(person));
+        expectedModel.updateFilteredStudentList(student -> E.contains(student));
 
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(model.getFilteredPersonList(), E);
+        assertEquals(model.getFilteredStudentList(), E);
     }
 
     @Test
@@ -48,10 +48,10 @@ public class FindTagCommandTest {
         String keyword = "owesMoney";
         FindTagCommand command = new FindTagCommand(keyword);
         String expectedMessage = String.format(FindTagCommand.MESSAGE_FOUND_PEOPLE, OWES.size(), keyword);
-        expectedModel.updateFilteredPersonList(person -> OWES.contains(person));
+        expectedModel.updateFilteredStudentList(student -> OWES.contains(student));
 
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(model.getFilteredPersonList(), OWES);
+        assertEquals(model.getFilteredStudentList(), OWES);
     }
 
     @Test

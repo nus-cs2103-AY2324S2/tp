@@ -8,12 +8,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all persons in address book that has a tag that contains the given text. Matching is
+ * Finds and lists all students in address book that has a tag that contains the given text. Matching is
  * case insensitive.
  */
 public class FindTagCommand extends Command {
     public static final String COMMAND_WORD = "findtag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tags contain the specified"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose tags contain the specified"
         + " text (case-insensitive) and displays them in the list.\n"
         + "Parameters: KEYWORD”\n"
         + "Example: " + COMMAND_WORD + " friend";
@@ -22,8 +22,8 @@ public class FindTagCommand extends Command {
     private final String subString;
 
     /**
-     * Creates a FindTagCommand to find persons with tags that contain {@code str}.
-     * @param str the substring to search for. This instructs the command to find all persons with a tag that contain
+     * Creates a FindTagCommand to find students with tags that contain {@code str}.
+     * @param str the substring to search for. This instructs the command to find all students with a tag that contain
      *            this {@code String}.
      */
     public FindTagCommand(String str) {
@@ -35,14 +35,14 @@ public class FindTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.updateFilteredPersonList(person -> subString.isEmpty()
-                || person
+        model.updateFilteredStudentList(student -> subString.isEmpty()
+                || student
                 .getTags()
                 .stream()
                 .anyMatch(tag -> StringUtil.containsSubstringIgnoreCase(tag.tagName, subString))
         );
         return new CommandResult(String.format(MESSAGE_FOUND_PEOPLE,
-                model.getFilteredPersonList().size(), subString));
+                model.getFilteredStudentList().size(), subString));
 
     }
 

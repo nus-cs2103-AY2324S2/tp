@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Star;
+import seedu.address.model.student.Star;
 
 /**
  * Parses input arguments and creates a new EditCommand object

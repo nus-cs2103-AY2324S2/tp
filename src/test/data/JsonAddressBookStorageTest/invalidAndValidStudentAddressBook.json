@@ -1,0 +1,20 @@
+{
+  "students": [ {
+    "name": "Valid Student",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "major": "Math",
+    "star" : 1,
+    "bolt" : 0,
+    "tags" : []
+
+  }, {
+    "name": "Student With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "major": "Math",
+    "star" : 1,
+    "bolt" : 0,
+    "tags" : []
+  } ]
+}

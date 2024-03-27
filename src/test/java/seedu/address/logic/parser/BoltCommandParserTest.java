@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BoltCommand;
-import seedu.address.model.person.Bolt;
+import seedu.address.model.student.Bolt;
 
 public class BoltCommandParserTest {
 

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +16,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Bolt;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Bolt;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for BoltCommand.
@@ -29,37 +29,37 @@ public class BoltCommandTest {
 
     @Test
     public void execute_addBoltUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person boltredPerson = new PersonBuilder(firstPerson).withBolt(8).build();
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student boltredStudent = new StudentBuilder(firstStudent).withBolt(8).build();
 
-        BoltCommand boltCommand = new BoltCommand(INDEX_FIRST_PERSON, new Bolt(3));
+        BoltCommand boltCommand = new BoltCommand(INDEX_FIRST_STUDENT, new Bolt(3));
 
-        String expectedMessage = String.format(BoltCommand.MESSAGE_ADD_BOLT_SUCCESS, Messages.format(boltredPerson));
+        String expectedMessage = String.format(BoltCommand.MESSAGE_ADD_BOLT_SUCCESS, Messages.format(boltredStudent));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, boltredPerson);
+        expectedModel.setStudent(firstStudent, boltredStudent);
 
         assertCommandSuccess(boltCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+    public void execute_invalidStudentIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         BoltCommand boltCommand = new BoltCommand(outOfBoundIndex, new Bolt(1));
 
-        assertCommandFailure(boltCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(boltCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        BoltCommand boltFirstCommand = new BoltCommand(INDEX_FIRST_PERSON, new Bolt(1));
-        BoltCommand boltSecondCommand = new BoltCommand(INDEX_SECOND_PERSON, new Bolt(1));
+        BoltCommand boltFirstCommand = new BoltCommand(INDEX_FIRST_STUDENT, new Bolt(1));
+        BoltCommand boltSecondCommand = new BoltCommand(INDEX_SECOND_STUDENT, new Bolt(1));
 
         // same object -> returns true
         assertTrue(boltFirstCommand.equals(boltFirstCommand));
 
         // same values -> returns true
-        BoltCommand boltFirstCommandCopy = new BoltCommand(INDEX_FIRST_PERSON, new Bolt(1));
+        BoltCommand boltFirstCommandCopy = new BoltCommand(INDEX_FIRST_STUDENT, new Bolt(1));
         assertTrue(boltFirstCommand.equals(boltFirstCommandCopy));
 
         // different types -> returns false
@@ -68,7 +68,7 @@ public class BoltCommandTest {
         // null -> returns false
         assertFalse(boltFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(boltFirstCommand.equals(boltSecondCommand));
     }
 }
