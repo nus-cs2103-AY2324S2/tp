@@ -118,6 +118,8 @@ public class EditAppointmentCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditAppointmentDescriptor {
+        private Nric doctorNric;
+        private Nric patientNric;
         private AppointmentDate apptdate;
 
         public EditAppointmentDescriptor() {}
@@ -128,6 +130,8 @@ public class EditAppointmentCommand extends Command {
          */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setDate(toCopy.apptdate);
+            setDoctorNric(toCopy.doctorNric);
+            setPatientNric(toCopy.patientNric);
         }
 
         /**
@@ -145,6 +149,22 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(apptdate);
         }
 
+        public void setDoctorNric(Nric nric) {
+            this.doctorNric = nric;
+        }
+
+        public Optional<Nric> getDoctorNric() {
+            return Optional.ofNullable(doctorNric);
+        }
+
+        public void setPatientNric(Nric nric) {
+            this.patientNric = nric;
+        }
+
+        public Optional<Nric> getPatientNric() {
+            return Optional.ofNullable(patientNric);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -157,7 +177,9 @@ public class EditAppointmentCommand extends Command {
             }
 
             EditAppointmentDescriptor otherEditAppointmentDescriptor = (EditAppointmentDescriptor) other;
-            return Objects.equals(apptdate, otherEditAppointmentDescriptor.apptdate);
+            return Objects.equals(apptdate, otherEditAppointmentDescriptor.apptdate)
+                    && Objects.equals(doctorNric, otherEditAppointmentDescriptor.doctorNric)
+                    && Objects.equals(patientNric, otherEditAppointmentDescriptor.patientNric);
         }
 
         @Override
