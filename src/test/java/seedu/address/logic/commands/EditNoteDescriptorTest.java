@@ -24,7 +24,7 @@ public class EditNoteDescriptorTest {
     @Nested
     public class GetSetAttributesTests {
         @Test
-        void setAndGetDate() {
+        void setAndGetDate_returnSetDate() {
             LocalDate testDate = LocalDate.of(2023, 10, 5);
             EditNoteDescriptor descriptor = new EditNoteDescriptor();
             descriptor.setDate(testDate);
@@ -32,7 +32,7 @@ public class EditNoteDescriptorTest {
             assertEquals(Optional.of(testDate), descriptor.getDate());
         }
         @Test
-        void setAndGetTime() {
+        void setAndGetTime_returnSetTime() {
             LocalTime testTime = LocalTime.of(12, 0);
             EditNoteDescriptor descriptor = new EditNoteDescriptor();
             descriptor.setTime(testTime);
@@ -41,7 +41,7 @@ public class EditNoteDescriptorTest {
         }
 
         @Test
-        void setAndGetDescription() {
+        void setAndGetDescription_returnSetDescription() {
             Description testDescription = new Description("Test description");
             EditNoteDescriptor descriptor = new EditNoteDescriptor();
             descriptor.setDescription(testDescription);
