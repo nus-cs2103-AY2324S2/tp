@@ -160,6 +160,38 @@ The edit_applicant functionality allows users to edit applicants' details. The d
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
+### \[Developed\] Note feature
+* The `note` command gives users the ability to add notes to applicants. There is also an option to add a timestamp to the note to date it.
+* Arguments for this command is `note`, `index`, and `date`, where `note` is the note content, `index` being which applicant in the list to add to, and `date` to specify whether the timestamp should be added.
+* An example usage of the command is `note 1 /note Buy groceries /date true`
+
+This feature is implemented by first adding an additional `Note` property to the `Person` model, as illustrated by the UML diagram below:
+![ModelClassDiagram](images/ModelClassDiagram.png)
+
+* This allows the `Note` property to be stored in the `Person` model for further manipulation during program runtime.
+* Then, the `storage` component is modified to also include the `Note` property, so that when the program saves the applicant, the `Note` will also be saved into `addressbook.json`
+
+* The following class diagram shows the design of the `Note` command:
+![NoteCommand](images/NoteCommand.png)
+
+* As mentioned earlier, the `Note` command has an optional `date` that can be attached to a `note`.
+* In the class diagram above, the toggle for adding the `date` is stored as a boolean `withDate`.
+* When `withDate` is set to true, a date `String` is then generated when `generateDate()` is called.
+* The reason for not saving the `date` as an actual date related data type is due to the fact that it will always default to the current timestamp when the note is added.
+* For convenience and to avoid the need to cast date datatype, the actual `date` for the note is stored as a `String`, which can be directly saved into `.json` files.
+
+#### Design considerations:
+
+**Aspect: How Note dates are stored:**
+
+* **Alternative 1 (current choice):** Simply stored as a `String`.
+    * Pros: Straightforward and easy.
+    * Cons: Is not searchable/sortable unlike actual date datatype.
+
+* **Alternative 2:** Store date with proper date datatype.
+    * Pros: Can be searchable/sortable in the future if the need arises.
+    * Cons: Takes more time to implement as it needs to be added to Model, Storage, and `NoteCommand` needs to be modified.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
