@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.SwitchViewCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.SwitchViewCommand.MESSAGE_SWITCH_VIEW_SUCCESS;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class SwitchViewCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false, false, true);
         assertCommandSuccess(new SwitchViewCommand(), model, expectedCommandResult, expectedModel);
     }
 }
