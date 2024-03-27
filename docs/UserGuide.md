@@ -33,7 +33,7 @@ So, whether you're a busy professional juggling multiple appointments, vitalConn
     - [Deleting medical information](#deleting-medical-information--deletem)
     - [Adding an appointment](#adding-an-appointment--adda)
     - [Deleting an appointment](#deleting-an-appointment--deletea)
-    - [Listing appointments](#list-out-appointment--lista)
+    - [Listing appointments](#list-out-appointments--lista)
     - [Clearing all entries](#clearing-all-entries--clear)
     - [Exiting the program](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
@@ -343,27 +343,25 @@ Clinic data are saved in the hard disk automatically after any command that chan
 
 Edit the medical information of an existing person.
 
-Format: `editm ic/NRIC h/HEIGHT w/WEIGHT [ot/ALLERGY] [at/ALLERGY]…​`
+Format: `editm ic/NRIC h/HEIGHT w/WEIGHT -o at/ALLERGY…​`
 
 * All fields are optional field but at least one should be present.
-* There should only be one field `ot`.
+* There should only be one field `-o`.
+* The order of `-o` and at does not matter, as long as `-o` exist in current command, 
+all allergyTags will be new tags overwriting the old tags.
 
 Prefix explanation:
-- `ot/ALLERGY` overwrite all existing tag with this tag.
+- `-o` will set mode for this command to overwrite.
 - `at/ALLERGY` append this tag to existing tag.
 
 Example:
-* `editm ic/G1234567J w/100, ot/peanut at/milk at/egg`
+* `editm ic/G1234567J w/100, -o at/milk at/egg`
 
 This will change the weight of person with ic G1234567J to 100 and
-overwrite allergy tag to peanut, milk and egg.
-
-**Hint:**
-User may use `ot/FirstTag` followed by wanted numbers of `at/moreTag` 
-to overwrite current tag with a series of new tag. 
+overwrite allergy tag to milk and egg.
 
 > [!CAUTION]
-> Use if prefix ot/ will delete all existing tag, including the added tag in current command before it. 
+> Use if prefix `-o` will delete all existing tag, including the added tag in current command before it. 
 > Please use with cautious.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
