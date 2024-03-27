@@ -102,8 +102,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_markLoan() throws Exception {
-        assertTrue(parser.parseCommand(MarkLoanCommand.COMMAND_WORD) instanceof MarkLoanCommand);
-        assertTrue(parser.parseCommand(MarkLoanCommand.COMMAND_WORD + " 3") instanceof MarkLoanCommand);
+        assertTrue(parser.parseCommand(MarkLoanCommand.COMMAND_WORD + " 1 l/2") instanceof MarkLoanCommand);
     }
 
     @Test

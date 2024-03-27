@@ -91,7 +91,7 @@ public class AddressBookParser {
             return new ViewLoanCommandParser().parse(arguments);
 
         case MarkLoanCommand.COMMAND_WORD:
-            return new MarkLoanCommand();
+            return new MarkLoanCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

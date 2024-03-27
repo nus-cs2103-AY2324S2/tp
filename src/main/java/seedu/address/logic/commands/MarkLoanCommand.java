@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_INDEX;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -19,6 +21,19 @@ public class MarkLoanCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + "l/2\n"
             + "This marks the loan of loan index 2 of the person at index 1 as paid.";
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Remark command not implemented yet";
+    private final Index personIndex;
+    private final Index loanIndex;
+
+    /**
+     * Creates a MarkLoanCommand to delete the specified loan.
+     * @param personIndex
+     * @param loanIndex
+     */
+    public MarkLoanCommand(Index personIndex, Index loanIndex) {
+        requireAllNonNull(personIndex, loanIndex);
+        this.personIndex = personIndex;
+        this.loanIndex = loanIndex;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

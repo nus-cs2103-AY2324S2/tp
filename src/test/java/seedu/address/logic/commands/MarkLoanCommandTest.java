@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -19,6 +20,7 @@ public class MarkLoanCommandTest {
 
     @Test
     public void execute() {
-        assertCommandFailure(new MarkLoanCommand(), model, MESSAGE_NOT_IMPLEMENTED_YET);
+        assertCommandFailure(new MarkLoanCommand(Index.fromZeroBased(0), Index.fromZeroBased(0)),
+                model, MESSAGE_NOT_IMPLEMENTED_YET);
     }
 }
