@@ -37,7 +37,7 @@ public class NoteCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index (note -5)
+        // negative index (note -5 n/John)
         assertParseFailure(parser, "-5" + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
 
@@ -52,6 +52,10 @@ public class NoteCommandParserTest {
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE));
+
+        // invalid index (note -5)
+        assertParseFailure(parser, "-5",
+                String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, NoteCommand.MESSAGE_USAGE));
     }
 
     @Test
