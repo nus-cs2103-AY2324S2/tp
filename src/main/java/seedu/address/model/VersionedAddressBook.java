@@ -1,8 +1,10 @@
-
 package seedu.address.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.model.person.Person;
+
 
 /**
  * {@code AddressBook} that keeps track of its own history.
@@ -11,6 +13,9 @@ public class VersionedAddressBook extends AddressBook {
 
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
+    private final List<Person> personList;
+    private List<Person> archivedPersons = new ArrayList<>();
+
 
     /**
      * {@code AddressBook} that keeps track of its own history.
@@ -21,6 +26,7 @@ public class VersionedAddressBook extends AddressBook {
         addressBookStateList = new ArrayList<>();
         addressBookStateList.add(new AddressBook(initialState));
         currentStatePointer = 0;
+        personList = new ArrayList<>();
     }
 
     /**
@@ -94,6 +100,7 @@ public class VersionedAddressBook extends AddressBook {
                 && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
     }
 
+
     /**
      * Thrown when trying to {@code undo()} but can't.
      */
@@ -111,5 +118,7 @@ public class VersionedAddressBook extends AddressBook {
             super("Current state pointer at end of addressBookState list, unable to redo.");
         }
     }
+
+
 }
 
