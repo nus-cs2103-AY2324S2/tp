@@ -12,6 +12,9 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;
@@ -202,11 +205,26 @@ public class ExportCommand extends Command {
      */
     public void writeToCsvFile(File csvFile, JsonNode jsonTree) throws IOException {
         CsvSchema csvSchema = buildCsvSchema(jsonTree);
-
         CsvMapper csvMapper = new CsvMapper();
+
+        // The Code below removes examscores from the json tree
+        // Potential future implementation: Export Command also exports exam scores
+
+        // Create a new array node to hold the modified json nodes
+        ArrayNode modifiedJsonTree = JsonNodeFactory.instance.arrayNode();
+        // Iterate over each json node in the json tree
+        for (JsonNode jsonNode : jsonTree) {
+            // Create a copy of the json node
+            ObjectNode modifiedJsonNode = ((ObjectNode) jsonNode).deepCopy();
+            // Remove the 'examScores' field from the copy
+            modifiedJsonNode.remove("examScores");
+            // Add the modified json node to the new array node
+            modifiedJsonTree.add(modifiedJsonNode);
+        }
+
         csvMapper.writerFor(JsonNode.class)
                 .with(csvSchema)
-                .writeValue(csvFile, jsonTree);
+                .writeValue(csvFile, modifiedJsonTree);
     }
 
     @Override
