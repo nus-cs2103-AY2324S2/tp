@@ -33,6 +33,9 @@ public class TaskCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label description;
+    @FXML
+    private Label deadline;
+
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -44,5 +47,6 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().taskName);
         status.setText(task.getStatus().toString());
         description.setText(task.getDescription().taskDescription);
+        deadline.setText(task.getDeadline().toString());
     }
 }
