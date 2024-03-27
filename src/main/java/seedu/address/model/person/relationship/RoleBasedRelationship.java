@@ -33,7 +33,7 @@ public class RoleBasedRelationship extends Relationship {
 
     @Override
     public String toString() {
-        return String.format("%s\n %s is %s, %s is %s",
+        return String.format("%s\n%s is %s, %s is %s",
                 super.toString(), super.getPerson1().toString(), getRoleDescriptor(super.getPerson1()),
                 super.getPerson2().toString(), getRoleDescriptor(super.getPerson2()));
     }
