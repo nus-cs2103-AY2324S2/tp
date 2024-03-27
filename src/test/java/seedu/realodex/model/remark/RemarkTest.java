@@ -25,6 +25,7 @@ public class RemarkTest {
         assertTrue(Remark.isValidRemark("")); // Empty remark
         assertTrue(Remark.isValidRemark("abc123")); // Alphanumeric characters allowed
         assertTrue(Remark.isValidRemark("<>?.' [];>")); // Special characters allowed
+        assertTrue(Remark.isValidRemark("      ")); // Pure whitespace remark
     }
 
     @Test
@@ -45,6 +46,10 @@ public class RemarkTest {
 
         // different values -> returns false
         assertFalse(remark.equals(new Remark("Other Valid Name")));
+
+        Remark emptyRemark = new Remark("");
+        Remark whiteSpaceRemark = new Remark("       ");
+        assertTrue(emptyRemark.equals(whiteSpaceRemark));
     }
 
     @Test
@@ -52,10 +57,12 @@ public class RemarkTest {
         Remark emptyRemark = new Remark(""); // Create a Remark object with an empty string
         Remark nonEmptyRemark = new Remark("This is a remark");
         Remark specialCharRemark = new Remark("<>:}{{}()}");
+        Remark whiteSpaceRemark = new Remark("       ");
 
         //Empty remark will be represented with "No remark." instead of just a blank
         assertEquals("No remark.", emptyRemark.toStringWithRepresentation());
         assertEquals("Remark: This is a remark", nonEmptyRemark.toStringWithRepresentation());
         assertEquals("Remark: <>:}{{}()}", specialCharRemark.toStringWithRepresentation());
+        assertEquals("No remark.", whiteSpaceRemark.toStringWithRepresentation());
     }
 }
