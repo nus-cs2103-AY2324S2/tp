@@ -138,7 +138,6 @@ public class ImportManager implements Import {
         StringBuilder jsonStringBuilder = new StringBuilder();
         String csvContents = FileUtil.readFromFile(pathToImportFrom);
         String[] lines = csvContents.split("\n");
-
         jsonStringBuilder.append("{ \"persons\": [");
 
         // Skip the first line (header) and process the rest
@@ -170,8 +169,10 @@ public class ImportManager implements Import {
         }
         return String.format(
                 "  { \"studentId\": \"%s\", \"name\": \"%s\", \"parentPhoneNumberOne\": \"%s\", "
-                        + "\"parentPhoneNumberTwo\": \"%s\", \"email\": \"%s\", \"address\": \"%s\", \"tags\": %s }",
-                data[0], capitalizeWords(data[1]), data[2], data[3], data[4], capitalizeWords(data[5]), tagsJoiner);
+                        + "\"parentPhoneNumberTwo\": \"%s\", \"email\": \"%s\", \"address\": \"%s\", \"tags\": %s,"
+                        + " \"formClass\": \"%s\" }",
+                data[0], capitalizeWords(data[1]), data[2], data[3], data[4], capitalizeWords(data[5]), tagsJoiner,
+                data[7]);
     }
 
 }

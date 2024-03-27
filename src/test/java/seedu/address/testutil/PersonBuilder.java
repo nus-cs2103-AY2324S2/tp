@@ -122,8 +122,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Classroom} of the {@code Person} that we are building.
      */
-    public PersonBuilder withClass(String classroom) {
-        this.formClass = new FormClass(classroom);
+    public PersonBuilder withClass(String formClass) {
+        this.formClass = new FormClass(formClass);
         return this;
     }
 

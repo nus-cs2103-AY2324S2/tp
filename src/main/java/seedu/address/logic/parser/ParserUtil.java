@@ -179,14 +179,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses classroom name into a Classroom instance.
-     * @param classroom name of class
+     * Parses formClass name into a FormClass instance.
+     * @param formClass name of class
      * @return Classroom instance
-     * @throws ParseException if the classroom name is invalid.
+     * @throws ParseException if the formClass name is invalid.
      */
-    public static FormClass parseClass(String classroom) throws ParseException {
-        requireNonNull(classroom);
-        String trimmedClass = classroom.trim();
+    public static FormClass parseClass(String formClass) throws ParseException {
+        requireNonNull(formClass);
+        String trimmedClass = formClass.trim();
         if (!FormClass.isValidClassName(trimmedClass)) {
             throw new ParseException(FormClass.MESSAGE_CONSTRAINTS);
         }
