@@ -28,6 +28,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MigrateCommand;
+import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -53,6 +54,11 @@ public class AddressBookParserTest {
         ChangeDataSourceCommand command = (ChangeDataSourceCommand) parser.parseCommand(
                 ChangeDataSourceCommand.COMMAND_WORD + " " + "data/ab.json");
         assertEquals(new ChangeDataSourceCommand(path), command);
+    }
+
+    @Test
+    public void parseCommand_theme() throws Exception {
+        assertTrue(parser.parseCommand(ThemeCommand.COMMAND_WORD) instanceof ThemeCommand);
     }
 
     @Test
