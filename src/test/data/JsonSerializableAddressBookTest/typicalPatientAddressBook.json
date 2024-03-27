@@ -1,0 +1,75 @@
+{
+  "_comment": "AddressBook save file which contains the same Patient values as in TypicalPatient#getTypicalAddressBook()",
+  "patients" : [ {
+    "name": "Alice Pauline",
+    "patientHospitalId" : "12234",
+    "preferredName" : "Alice",
+    "foodPreference" : "Duck rice",
+    "familyCondition" : "Have 2 daughters working overseas",
+    "hobby" : "Watching Hong Kong drama",
+    "tags" : [ "depression" ],
+    "importantDates" : [],
+    "events" : []
+  }, {
+    "patientHospitalId" : "12235",
+    "name" : "Benson Meier",
+    "preferredName" : "Benson",
+    "foodPreference" : "Kampung Fried Rice",
+    "familyCondition" : "Wife in ICU",
+    "hobby" : "Listen to Coldplay songs",
+    "tags" : [ "diabetes", "cholesterol" ],
+    "events" : [ {
+      "name": "Birthday",
+      "dateTime": "20-02-2022"
+    }, {
+      "name": "Birthday",
+      "dateTime": "20-02-2022, 12:12 - 15:15"
+    } ]
+  }, {
+    "patientHospitalId" : "12236",
+    "name" : "Carl Kurz",
+    "preferredName" : "Ah Carl",
+    "foodPreference" : "Sambal fish",
+    "familyCondition" : "Has no children",
+    "hobby" : "Likes to play mahjong",
+    "tags" : [ ],
+    "events" : []
+  }, {
+    "patientHospitalId" : "12237",
+    "name" : "Daniel Meier",
+    "preferredName" : "Ah Da",
+    "foodPreference" : "Steak",
+    "familyCondition" : "Nieces not around Singapore",
+    "hobby" : "Cycling",
+    "tags" : [ "eczema" ],
+    "importantDates" : [],
+    "events" : []
+  }, {
+    "patientHospitalId" : "12238",
+    "name" : "Elle Meyer",
+    "preferredName" : "Elle",
+    "foodPreference" : "Maggie Goreng",
+    "familyCondition" : "Husband working overseas",
+    "hobby": "Dancing",
+    "tags" : [ ],
+    "events" : []
+  }, {
+    "patientHospitalId" : "12239",
+    "name" : "Fiona Kunz",
+    "preferredName" : "Ms Fi",
+    "foodPreference" : "Fish soup without milk",
+    "familyCondition" : "Daughter fights with her every week",
+    "hobby" : "dancing",
+    "tags" : [ ],
+    "events" : []
+  }, {
+    "patientHospitalId" : "12240",
+    "name" : "George Best",
+    "preferredName" : "George",
+    "foodPreference" : "Salmon with lemon",
+    "familyCondition" : "no children",
+    "hobby" : "reading books",
+    "tags" : [ ],
+    "events" : []
+  } ]
+}

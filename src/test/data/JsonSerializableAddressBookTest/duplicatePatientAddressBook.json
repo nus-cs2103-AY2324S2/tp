@@ -1,0 +1,19 @@
+{
+  "patients": [ {
+    "patientHospitalId" : "12234",
+    "name" : "Alice Pauline",
+    "preferredName" : "Alice",
+    "foodPreference" : "Duck rice",
+    "familyCondition" : "Have 2 daughters working overseas",
+    "hobby" : "Watching Hong Kong drama",
+    "tags" : [ "depression" ]
+  }, {
+    "patientHospitalId" : "12234",
+    "name" : "Alice Pauline",
+    "preferredName" : "Alice",
+    "foodPreference" : "Duck rice",
+    "familyCondition" : "Have 2 daughters working overseas",
+    "hobby" : "Watching Hong Kong drama",
+    "tags" : [ "depression" ]
+  } ]
+}
