@@ -13,6 +13,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reservation.Pax;
+import seedu.address.model.reservation.RsvDate;
+import seedu.address.model.reservation.RsvTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +123,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code RsvDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static RsvDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!RsvDate.isValidRsvDate(trimmedDate)) {
+            throw new ParseException(RsvDate.MESSAGE_CONSTRAINTS);
+        }
+        return new RsvDate(date);
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code RsvTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static RsvTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!RsvTime.isValidRsvTime(trimmedTime)) {
+            throw new ParseException(RsvTime.MESSAGE_CONSTRAINTS);
+        }
+        return new RsvTime(time);
+    }
+
+    /**
+     * Parses a {@code String pax} into a {@code Pax}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code pax} is invalid.
+     */
+    public static Pax parsePax(String pax) throws ParseException {
+        requireNonNull(pax);
+        String trimmedPax = pax.trim();
+        if (!Pax.isValidPax(trimmedPax)) {
+            throw new ParseException(Pax.MESSAGE_CONSTRAINTS);
+        }
+        return new Pax(pax);
     }
 }
