@@ -6,8 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.COURSE_DESC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COURSE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -16,12 +18,15 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CLASSMATE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -42,6 +47,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CHARLIE;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -283,35 +289,37 @@ public class AddCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
-    @Disabled
     @Test
     public void parse_address_failure() {
         // role is professor, address is not provided
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + COURSE_DESC_BOB,
-                Address.MESSAGE_CONSTRAINTS_PROFESSOR);
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_AMY
+                + COURSE_DESC_AMY, Address.MESSAGE_CONSTRAINTS_PROFESSOR);
 
         // role is professor, empty address provided
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + ADDRESS_DESC_EMPTY
-                + COURSE_DESC_BOB, Address.MESSAGE_CONSTRAINTS_PROFESSOR);
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_AMY
+                + ADDRESS_DESC_EMPTY + COURSE_DESC_AMY, Address.MESSAGE_CONSTRAINTS);
 
         // role is not professor, empty address provided
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + ADDRESS_DESC_EMPTY
-                + COURSE_DESC_BOB, new AddCommand(new PersonBuilder(BOB).withAddress("").build()));
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB
+                + ADDRESS_DESC_EMPTY + COURSE_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
     }
 
     @Disabled
     @Test
     public void parse_address_success() {
         // role is professor, address is provided
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + ADDRESS_DESC_BOB
-                + COURSE_DESC_BOB, new AddCommand(new PersonBuilder(BOB).withAddress(VALID_ADDRESS_BOB).build()));
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ROLE_DESC_AMY
+                        + ADDRESS_DESC_AMY + COURSE_DESC_AMY + TAG_DESC_FRIEND,
+                new AddCommand(new PersonBuilder(AMY).build()));
 
         // role is not professor, address is provided
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + ADDRESS_DESC_BOB
-                + COURSE_DESC_BOB, new AddCommand(new PersonBuilder(BOB).withAddress(VALID_ADDRESS_BOB).build()));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB
+                        + ADDRESS_DESC_BOB + COURSE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_CLASSMATE,
+                new AddCommand(new PersonBuilder(BOB).build()));
 
         // role is not professor, address is not provided
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROLE_DESC_BOB + COURSE_DESC_BOB,
-                new AddCommand(new PersonBuilder(BOB).withAddress("").build()));
+        assertParseSuccess(parser, NAME_DESC_CHARLIE + PHONE_DESC_CHARLIE + EMAIL_DESC_CHARLIE
+                        + ROLE_DESC_CHARLIE + COURSE_DESC_CHARLIE + TAG_DESC_FRIEND,
+                new AddCommand(new PersonBuilder(CHARLIE).build()));
     }
 }
