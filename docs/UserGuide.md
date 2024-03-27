@@ -67,6 +67,7 @@ Do look out for them!
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dook.jar` command to run the application.<br>
+   If you are unfamiliar with the command terminal, follow [this](https://tutorials.codebar.io/command-line/introduction/tutorial.html)
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](docs/images/NewUi.png)
 
@@ -177,6 +178,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
@@ -197,7 +199,7 @@ Examples:
 
 Adds the specified booking to the address book.
 
-Format: `-n [description] -s [start_time] -e [end_time]`
+Format: `-n DESCRIPTION -s START_TIME -e END_TIME`
 
 * Creates a booking with the specified parameters.
 * Start and end time formats are in yyyy-mm-d.
