@@ -79,7 +79,7 @@ public class Student {
     }
 
     /**
-     * Returns list of modules student is taking
+     * Returns list of module timings for the student
      */
     public List<ModuleTiming> getModuleTimings() {
         return moduleTimings;
