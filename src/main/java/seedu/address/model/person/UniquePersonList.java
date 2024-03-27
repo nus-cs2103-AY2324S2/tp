@@ -104,7 +104,7 @@ public class UniquePersonList implements Iterable<Person> {
      * @param comparator The comparator to sort the list by.
      */
     public void sortPersonsList(Comparator<Person> comparator) {
-        FXCollections.sort(internalList,comparator);
+        FXCollections.sort(internalList, comparator);
     }
 
     /**

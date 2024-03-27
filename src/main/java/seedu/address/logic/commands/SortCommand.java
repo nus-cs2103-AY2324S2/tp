@@ -1,20 +1,22 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEWTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 import seedu.address.model.person.PersonCompanyNameComparator;
 import seedu.address.model.person.PersonInterviewTimeComparator;
 import seedu.address.model.person.PersonNameComparator;
 import seedu.address.model.person.PersonPriorityComparator;
 import seedu.address.model.person.PersonSalaryComparator;
 
+/**
+ * Sorts the list of contacts based on a specified information.
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
@@ -30,11 +32,14 @@ public class SortCommand extends Command {
     public static final String MESSAGE_LIST_SORTED_SUCCESS = "List Sorted";
     private final Integer info;
 
-    //sort | tt/ |
+    /**
+     * Creates a SortCommand to sort the list of contacts based on the specified information.
+     */
     public SortCommand(Integer info) {
         requireNonNull(info);
         this.info = info;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -54,6 +59,8 @@ public class SortCommand extends Command {
         case 4:
             model.updateSortedPersonList(new PersonSalaryComparator());
             break;
+        default:
+            throw new CommandException("Invalid Sort Command Index");
         }
         return new CommandResult(MESSAGE_LIST_SORTED_SUCCESS);
     }

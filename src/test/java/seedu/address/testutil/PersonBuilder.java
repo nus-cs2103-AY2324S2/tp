@@ -40,7 +40,7 @@ public class PersonBuilder {
     private Info info;
     private Set<Tag> tags;
     private Set<ProgrammingLanguage> programmingLanguages;
-    private int priority ;
+    private int priority;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */

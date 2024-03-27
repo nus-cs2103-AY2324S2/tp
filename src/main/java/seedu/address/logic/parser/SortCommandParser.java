@@ -7,15 +7,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.Objects;
-
-public class SortCommandParser implements  Parser<SortCommand> {
+/**
+ * Parses input arguments and creates a new SortCommand object
+ */
+public class SortCommandParser implements Parser<SortCommand> {
     private static final String MESSAGE_INVALID_COMMAND_LENGTH = "Invalid command length for sort command"
             + "sort command only accepts 1 arguments";
     private static final String MESSAGE_INVALID_COMMAND_KEYWORD = "Invalid command keyword for sort command";
+    /**
+     * Parses the given {@code String} of arguments in the context of the SortCommand
+     * and returns a SortCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public SortCommand parse(String args) throws ParseException {
         Integer index = null;
         String trimmedArgs = args.trim();
