@@ -128,18 +128,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-[//]: # (<box type="info" seamless>)
-
-[//]: # ()
-[//]: # (**Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>)
-
-[//]: # ()
-[//]: # (<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />)
-
-[//]: # ()
-[//]: # (</box>)
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -195,7 +183,9 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/AddCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/AddCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered:
 
@@ -255,7 +245,9 @@ The following sequence diagram shows how an addnote operation goes through the `
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
@@ -312,7 +304,9 @@ The following sequence diagram shows how a find operation goes through the `Logi
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/FindCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+  <puml src="diagrams/FindCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
@@ -357,7 +351,9 @@ The following sequence diagram shows how a delete operation goes through the `Lo
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
@@ -401,7 +397,9 @@ The following sequence diagram shows how an edit operation goes through the `Log
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/EditCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/EditCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
