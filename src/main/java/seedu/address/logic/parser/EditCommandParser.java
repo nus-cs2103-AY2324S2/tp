@@ -76,7 +76,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        // Set scores to null to prevent scores from being edited
+        // Editcommand never changes scores so the value does not matter
         editPersonDescriptor.setScores(null);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
