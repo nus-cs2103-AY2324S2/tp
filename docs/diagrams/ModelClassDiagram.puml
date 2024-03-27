@@ -20,7 +20,9 @@ Class Name
 Class Phone
 Class Tag
 Class Course
-Enum "<<enumeration>>\nRole" as Role
+Enum "<<enumeration>>\nRole" {
+    STUDENT, TA, PROFESSOR
+} as Role
 
 Class I #FFFFFF
 }
