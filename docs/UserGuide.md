@@ -237,6 +237,22 @@ _This command allows you to undo your last command, restoring the ConnectCare ap
 
 Format: `undo`
 
+**Walkthrough:**
+
+The screenshots below are what you would expect when using the `undo` command.
+
+In this example, after using the `add` command to add a new client `bertrand`, I wish to undo this addition as bertrand will not be assigned to me.
+&nbsp;
+
+<img src="images/user-guide/undo_command_before1.png" alt="Update command example" />
+&nbsp;
+
+As seen in the second image, after using the `undo` command, betrand is no longer present in the client list as his addition has been undone.
+&nbsp;
+
+<img src="images/user-guide/undo_command_after1.png" alt="Update command example" />
+&nbsp;
+
 <box type="tip">
 
 **Tip:**
@@ -245,32 +261,54 @@ For a comprehensive deep-dive into the undo command, please refer to the [Implem
 
 </box>
 
-Examples:
-_IMAGE_BEFORE and IMAGE_AFTER TBA_
-
 ### Redoing a command : `redo`
 
 _This command allows you to redo your command, reversing any changes that were previously undone._
 
 Format: `redo`
 
+**Walkthrough:**
+
+The screenshots below are what you would expect when using the `redo` command.
+
+In this example, after undoing an update of my client's name from `Alex Yeoh` to `alex yee`, we can see that the current client list has his name as `Alex Yeoh`
+&nbsp;
+
+<img src="images/user-guide/redo_command_before.png" alt="Redo command example" />
+&nbsp;
+
+As seen in the second image, after using the `redo` command, the change is redone, and the client list shows the client's name as `alex yee`
+&nbsp;
+
+<img src="images/user-guide/redo_command_after.png" alt="Redo command example" />
+&nbsp;
+
 <box type="tip">
 
 **Tip:**
 The redo command does not redo every single command, only those that change the address-book in a significant way.
 For a comprehensive deep-dive into the redo command, please refer to the [Implementation section of our Developer Guide](https://ay2324s2-cs2103t-w12-4.github.io/tp/DeveloperGuide.html)
-</box>
 
-Examples:
-_IMAGE_BEFORE and IMAGE_AFTER TBA_
+</box>
 
 ### Displaying a client's information : `display`
 
 _This command allows you to view a client's information in a more detailed manner_
 
-Format: `display n/NAME`
+**Format:** `display n/NAME`
 
-Examples: `display John` would display all of John's information as a contact card on the application.
+<panel header="Parameter Descriptions and Remarks" alt="Parameters" minimized>
+<markdown>
+
+| Parameter | Description                            | Remarks                                  |
+|-----------|----------------------------------------|------------------------------------------|
+| NAME      | Name of the client you want to display | Name must be present in the client list  |
+</markdown>
+</panel>
+
+**Examples:**
+
+`display John` would display all of John's information as a contact card on the application.
 
 ### Deleting a client: `delete`
 
@@ -293,7 +331,7 @@ _This command allows you to delete a client at a specified `INDEX` from your cli
 - `delete 1` would delete the first client in your client list.
 - `delete 2` would delete the second client in your client list.
 
-**Walkthrough:**
+Walkthrough:
 
 The screenshots below are what you would expect when using the `delete` command. In this example, after using the `list` command,
 the full clients list is displayed. Thereafter, the `delete 1` command was used, removing `David Li`, the first person in the list, from the list of client contacts.
@@ -337,6 +375,13 @@ Format: `clear`
 
 **Caution:**
 Only use this command if you are **absolutely** sure that you are willing to clear **all** of your clients from the list, as after running this command, any existing clients will be **unrecoverable**.
+</box>
+
+<box type="tip">
+
+**Tip:**
+Accidently cleared your client list? Worry not, the `undo` feature might be able to help you get it back!
+
 </box>
 
 ### Exiting the program : `exit`
