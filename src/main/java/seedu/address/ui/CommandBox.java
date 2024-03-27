@@ -69,6 +69,12 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleArrowKey(KeyEvent event) {
         String keyName = event.getCode().getName();
+        assert !keyName.isEmpty();
+
+        //Performs nothing if there is no history.
+        if (inputHistory.inputList.isEmpty()) {
+            return;
+        }
         if (keyName.equals("Up")) {
             inputHistory.decrementIndex();
             setTextField();
@@ -86,6 +92,7 @@ public class CommandBox extends UiPart<Region> {
         String commandText = inputHistory.getCommand();
         commandTextField.setText(commandText);
         commandTextField.end();
+        assert !commandText.isEmpty();
     }
 
     /**
