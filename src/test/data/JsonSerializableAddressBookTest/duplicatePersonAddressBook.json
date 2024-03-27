@@ -16,5 +16,6 @@
     "reflection": "R1",
     "studio" : "S1",
     "email": "alice@example.com"
-  } ]
+  } ],
+  "exams": []
 }

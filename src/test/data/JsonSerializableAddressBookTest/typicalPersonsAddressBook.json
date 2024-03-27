@@ -1,67 +1,103 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ],
     "matric" : "A1111111A",
-    "reflection": "R1",
+    "reflection" : "R1",
     "studio" : "S1",
-    "tags" : [ "friends" ]
+    "examScores" : [ ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "tags" : [ "owesMoney", "friends" ],
     "matric" : "A2222222A",
-    "reflection": "R2",
+    "reflection" : "R2",
     "studio" : "S2",
-    "tags" : [ "owesMoney", "friends" ]
+    "examScores" : [ ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "tags" : [ ],
     "matric" : "A3333333A",
-    "reflection": "R3",
+    "reflection" : "R3",
     "studio" : "S3",
-    "tags" : [ ]
+    "examScores" : [ {
+      "examName" : "Midterm",
+      "examMaxScore" : 100,
+      "score" : 30
+    } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "tags" : [ "friends" ],
     "matric" : "A4444444A",
-    "reflection": "R4",
+    "reflection" : "R4",
     "studio" : "S4",
-    "tags" : [ "friends" ]
+    "examScores" : [ {
+      "examName" : "Midterm",
+      "examMaxScore" : 100,
+      "score" : 40
+    } ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "tags" : [ ],
     "matric" : "A5555555A",
-    "reflection": "R5",
+    "reflection" : "R5",
     "studio" : "S5",
-    "tags" : [ ]
+    "examScores" : [ {
+      "examName" : "Midterm",
+      "examMaxScore" : 100,
+      "score" : 50
+    } ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "tags" : [ ],
     "matric" : "A6666666A",
-    "reflection": "R6",
+    "reflection" : "R6",
     "studio" : "S6",
-    "tags" : [ ]
+    "examScores" : [ {
+      "examName" : "Midterm",
+      "examMaxScore" : 100,
+      "score" : 60
+    } ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "tags" : [ ],
     "matric" : "A7777777A",
-    "reflection": "R7",
+    "reflection" : "R7",
     "studio" : "S7",
-    "tags" : [ ]
+    "examScores" : [ {
+      "examName" : "Midterm",
+      "examMaxScore" : 100,
+      "score" : 70
+    } ]
+  } ],
+  "exams" : [ {
+    "name" : "Midterm",
+    "maxScore" : "100"
+  }, {
+    "name" : "Final",
+    "maxScore" : "100"
+  }, {
+    "name" : "Quiz",
+    "maxScore" : "100"
   } ]
 }

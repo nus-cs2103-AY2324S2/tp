@@ -39,7 +39,7 @@ public class JsonAdaptedExamScore {
      * Converts a given {@code Exam} into this class for Jackson use.
      */
     public Exam toModelTypeExam() throws IllegalValueException {
-        if (!Exam.isValidName(examName) || !Exam.isValidScore(score)) {
+        if (!Exam.isValidName(examName) || !Exam.isValidExamScore(score)) {
             throw new IllegalValueException(Exam.MESSAGE_CONSTRAINTS);
         }
         return new Exam(examName, new Score(examMaxScore));
