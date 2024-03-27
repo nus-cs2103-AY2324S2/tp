@@ -70,7 +70,7 @@ public class EditPersonDescriptorTest {
                     + editPersonDescriptor.getAddress().orElse(null) + ", student id="
                     + editPersonDescriptor.getStudentId().orElse(null) + ", tags="
                     + editPersonDescriptor.getTags().orElse(null) + ", class="
-                    + editPersonDescriptor.getClassroom().orElse(null)
+                    + editPersonDescriptor.getFormClass().orElse(null)
                     + "}";
         } else {
             expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
@@ -80,7 +80,7 @@ public class EditPersonDescriptorTest {
                     + editPersonDescriptor.getAddress().orElse(null) + ", student id="
                     + editPersonDescriptor.getStudentId().orElse(null) + ", tags="
                     + editPersonDescriptor.getTags().orElse(null) + ", class="
-                    + editPersonDescriptor.getClassroom().orElse(null)
+                    + editPersonDescriptor.getFormClass().orElse(null)
                     + "}";
         }
 

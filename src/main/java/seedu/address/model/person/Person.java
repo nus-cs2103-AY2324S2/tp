@@ -50,7 +50,7 @@ public class Person {
     public Name getName() {
         return name;
     }
-    public FormClass getClassroom() {
+    public FormClass getFormClass() {
         return formClass;
     }
 

@@ -43,7 +43,7 @@ public class ExportManager implements Export {
                     .map(tag -> tag.toString().replaceAll("\\[|\\]", ""))
                     .collect(Collectors.joining(";"));
             csvContent.append(tagsString).append(",");
-            csvContent.append(person.getClassroom().toString());
+            csvContent.append(person.getFormClass().toString());
             csvContent.append("\n");
         }
 

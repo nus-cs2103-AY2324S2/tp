@@ -41,7 +41,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        sb.append(PREFIX_CLASS + person.getClassroom().value + " ");
+        sb.append(PREFIX_CLASS + person.getFormClass().value + " ");
         return sb.toString();
     }
 
@@ -71,7 +71,7 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        descriptor.getClassroom()
+        descriptor.getFormClass()
                 .ifPresent(formClass -> sb.append(" ").append(PREFIX_CLASS).append(formClass.value).append(" "));
         //System.out.println(sb.toString());
         return sb.toString();

@@ -137,7 +137,7 @@ public class PersonTest {
                 + ", address=" + ALICE.getAddress()
                 + ", student id=" + ALICE.getStudentId()
                 + ", tags=" + ALICE.getTags()
-                + ", class=" + ALICE.getClassroom() + "}";
+                + ", class=" + ALICE.getFormClass() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

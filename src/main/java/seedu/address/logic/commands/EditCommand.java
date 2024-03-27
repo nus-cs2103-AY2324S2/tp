@@ -119,7 +119,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        FormClass updatedClass = editPersonDescriptor.getClassroom().orElse(personToEdit.getClassroom());
+        FormClass updatedClass = editPersonDescriptor.getFormClass().orElse(personToEdit.getFormClass());
 
         return new Person(updatedName, updatedParentPhoneOne, updatedParentPhoneTwo, updatedEmail, updatedAddress,
                 updatedStudentId, updatedTags, updatedClass);
@@ -177,7 +177,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setStudentId(toCopy.studentId);
             setTags(toCopy.tags);
-            setClassroom(toCopy.formClass);
+            setFormClass(toCopy.formClass);
         }
 
         /**
@@ -269,11 +269,11 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setClassroom(FormClass formClass) {
+        public void setFormClass(FormClass formClass) {
             this.formClass = formClass;
         }
 
-        public Optional<FormClass> getClassroom() {
+        public Optional<FormClass> getFormClass() {
             return Optional.ofNullable(formClass);
         }
 
