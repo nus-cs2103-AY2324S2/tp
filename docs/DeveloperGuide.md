@@ -325,6 +325,29 @@ There are a few key features that this module aims to implement
 1. 2 stacks, one undo and one redo were used at first. However, this had the drawback of not being able to remember commands after undoing and writing a new command.
 2. undo() and redo() both returned the previous and next command respectively - This had a flaw in which the logic of handling the command index became unnecessarily complex as we had to worry about when we incremented/decremented an index. This also made it harder to test the functionality
 
+=======
+### Add Appointment Feature
+
+The add appointment feature allows users to create a new appointment and insert them into the application.
+
+**Implementation**
+An observable list was used to store the list of appointments.
+- The list is initialised as an empty list of type appointments in the beginning.
+
+There are a few methods used to interact with the add appointment command.
+1. AddAppointmentCommand
+   1. Defines add appointment command key word and other error messages.
+   2. Validates the results of the AddAppointmentCommandParser#parse()
+2. AddAppointmentCommandParser#parse()
+   1. Parses the add appointment commands, ensuring that all required parameters are present.
+   2. Returns AddAppointmentCommand
+
+**Rationale for implementation**
+There are a few key features that this module aims to implement
+1. Allow users to add new appointments to keep track of all past and upcoming appointments.
+
+**Alternatives considered**
+1. Using an array list instead of an observable list. However, the GUI was not able to accurately reflect the new appointment list when new appointments were added.
 
 ### \[Proposed\] Undo/redo feature
 
