@@ -61,7 +61,7 @@ public class GroupCommand extends Command {
         String missingIds = "";
         requireNonNull(model);
 
-        if (studentIds.size() == 0) {
+        if (group.size() == 0) {
             for (StudentId studentId : studentIds) {
                 clearGroups(model, studentId);
             }
@@ -71,17 +71,19 @@ public class GroupCommand extends Command {
         for (StudentId studentId : studentIds) {
             //get the existing groups
             Person currentPerson = model.getPerson(studentId);
+
+            if (currentPerson == null) {
+                missingIds += studentId + " ";
+                continue;
+            }
+
             Set<Group> newGroup = new HashSet<>();
             Set<Group> existingGroup = currentPerson.getGroups();
-
             newGroup.addAll(group);
             newGroup.addAll(existingGroup);
 
-            try {
-                addGroups(newGroup, model, studentId);
-            } catch (CommandException e) {
-                missingIds += studentId + " ";
-            }
+            addGroups(newGroup, model, studentId);
+
             //there's a dependency on EditCommand, but this for loop shouldn't cause EditCommand to throw any exception.
         }
         if (missingIds.equals("")) {

@@ -3,9 +3,11 @@ package seedu.teachstack.logic.commands;
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.teachstack.model.util.SampleDataUtil.getGroupSet;
+import static seedu.teachstack.model.util.SampleDataUtil.getStudentIdSet;
 import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,15 +26,26 @@ public class GroupCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     /**
+     * Clears the default ID of a person (in this case, Alice).
+     */
+    @Test
+    public void clear_validID_success() {
+        Person alice = new PersonBuilder(TypicalPersons.ALICE).build();
+
+    }
+
+    /**
      * Checks that Alice's group is correctly changed to group 99.
      */
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
 
+        //clear Alice's group
+        model.setPerson(TypicalPersons.ALICE, new PersonBuilder(TypicalPersons.ALICE).withGroups().build());
+
         //change alice to group 99
         Person editedPerson = new PersonBuilder(TypicalPersons.ALICE).withGroups("Group 99").build();
-        HashSet<StudentId> studentIds = new HashSet<>();
-        studentIds.add(editedPerson.getStudentId());
+        Set<StudentId> studentIds = getStudentIdSet(TypicalPersons.ALICE.getStudentId());
         GroupCommand groupCommand = new GroupCommand(editedPerson.getGroups(), studentIds);
 
         String expectedMessage = String.format(GroupCommand.MESSAGE_GROUP_SUCCESS, Messages.format(editedPerson));
@@ -66,6 +79,10 @@ public class GroupCommandTest {
      */
     @Test
     public void execute_rememberPreviousGroups_success() throws CommandException {
+
+        //clear Alice's group
+        model.setPerson(TypicalPersons.ALICE, new PersonBuilder(TypicalPersons.ALICE).withGroups().build());
+
         //change alice to group 99 and 100
         Person editedPerson = new PersonBuilder(TypicalPersons.ALICE).withGroups("Group 99", "Group 100").build();
 

@@ -54,4 +54,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a StudentId set containing the list of studentIds given.
+     */
+    public static Set<StudentId> getStudentIdSet(StudentId... studentIds) {
+        return Arrays.stream(studentIds)
+                .collect(Collectors.toSet());
+    }
 }
