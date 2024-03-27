@@ -30,7 +30,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<AppointmentView> filteredAppointmentsView;
     private final FilteredList<AppointmentView> filteredAppointmentsDayView;
 
@@ -45,7 +44,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
         this.filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
         this.filteredAppointmentsDayView = new FilteredList<>(this.addressBook.getAppointmentViewList());
         this.updateFilteredAppointmentDayViewList();
@@ -158,7 +156,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
-        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
     }
 
     @Override
@@ -228,6 +226,7 @@ public class ModelManager implements Model {
             Optional.empty());
         filteredAppointmentsDayView.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object other) {

@@ -25,7 +25,6 @@ public class JsonAdaptedAppointmentTest {
 
 
     private static final String INVALID_TYPE = "";
-    private static final String INVALID_NOTE = "@@@";
 
     private static final String VALID_NRIC = ALICE_APPT.getNric().toString();
     private static final String VALID_DATE = ALICE_APPT.getDate().toString();
