@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox id="displayPane" fx:id="displayPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="300.0" HBox.hgrow="ALWAYS">
+        <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+          </columnConstraints>
+          <VBox minHeight="105" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <padding>
+              <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox spacing="5">
+              <Label fx:id="id" alignment="TOP_LEFT" styleClass="cell_big_label">
+                <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+              <Label fx:id="name" alignment="TOP_LEFT" styleClass="display_big_label" text="\$first" />
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </VBox.margin>
+            </HBox>
+               <Separator prefWidth="200.0">
+                  <VBox.margin>
+                     <Insets right="10.0" />
+                  </VBox.margin>
+               </Separator>
+               <HBox VBox.vgrow="NEVER">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="20.0" top="10.0" />
+                  </VBox.margin>
+                  <children>
+                     <Label fx:id="tagLabel" alignment="TOP_LEFT" styleClass="display_small_bold_label" text="\$tag">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  <FlowPane fx:id="tags" alignment="CENTER_LEFT" rowValignment="TOP" />
+                  </children>
+               </HBox>
+               <HBox>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="20.0" top="5.0" />
+                  </VBox.margin>
+                  <children>
+                     <Label fx:id="phoneLabel" styleClass="display_small_bold_label" text="Label">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  <Label fx:id="phone" alignment="TOP_LEFT" styleClass="display_small_label" text="\$phone" />
+                  </children>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="addressLabel" styleClass="display_small_bold_label" text="Label">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  <Label fx:id="address" alignment="TOP_LEFT" styleClass="display_small_label" text="\$address" />
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="20.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="emailLabel" styleClass="display_small_bold_label" text="Label">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  <Label fx:id="email" alignment="TOP_LEFT" styleClass="display_small_label" text="\$email" />
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="20.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="birthdayLabel" styleClass="display_small_bold_label" text="Label">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  <Label fx:id="birthday" alignment="TOP_LEFT" styleClass="display_small_label" text="\$birthday" />
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="20.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox>
+                  <children>
+                     <Label fx:id="moneyLabel" styleClass="display_small_bold_label" text="Label">
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                  <Label fx:id="moneyOwed" alignment="TOP_LEFT" styleClass="display_small_label" text="\$moneyOwed" />
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="20.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+               <Separator prefWidth="200.0">
+                  <VBox.margin>
+                     <Insets right="10.0" />
+                  </VBox.margin>
+               </Separator>
+               <VBox>
+                  <children>
+                     <Label fx:id="remarkLabel" styleClass="display_small_bold_label" text="Label" />
+                  <Label fx:id="remark" alignment="TOP_LEFT" styleClass="display_small_label" text="\$remark" />
+                  </children>
+                  <VBox.margin>
+                     <Insets left="20.0" top="10.0" />
+                  </VBox.margin>
+               </VBox>
+          </VBox>
+          <rowConstraints>
+            <RowConstraints vgrow="ALWAYS" /> <!-- This makes the row grow and hence the VBox fills the vertical space -->
+          </rowConstraints>
+        </GridPane>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>
