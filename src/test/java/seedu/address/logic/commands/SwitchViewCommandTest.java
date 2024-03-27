@@ -14,7 +14,7 @@ public class SwitchViewCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_exit_success() {
+    public void execute_switchView_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWITCH_VIEW_SUCCESS, false,
                 false, ViewMode.SWITCH);
         assertCommandSuccess(new SwitchViewCommand(), model, expectedCommandResult, expectedModel);
