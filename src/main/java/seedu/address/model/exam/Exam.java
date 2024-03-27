@@ -90,6 +90,6 @@ public class Exam {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return name.hashCode() + maxScore.hashCode();
     }
 }

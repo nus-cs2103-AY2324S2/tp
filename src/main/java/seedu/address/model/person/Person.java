@@ -35,7 +35,7 @@ public class Person {
     private final Reflection reflection;
     private final Studio studio;
 
-    private final Map<Exam, Score> scores = new HashMap<>();
+    private final HashMap<Exam, Score> scores = new HashMap<>();
 
 
     /**
@@ -97,7 +97,7 @@ public class Person {
      * if modification is attempted.
      */
     public Map<Exam, Score> getScores() {
-        return Collections.unmodifiableMap(scores);
+        return new HashMap<>(scores);
     }
 
     /**
