@@ -524,6 +524,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
+**Use case: deletes a group of people**
+
+**MSS**
+
+1.  User requests to delete all people in a specific group.
+2.  User inputs the name of the group into the AddressBook.
+3.  AddressBook deletes all people that are classified under the specified group.
+
+**Extensions**
+
+* 1a. User uses the wrong format in his request.
+
+    * 1a1. AddressBook shows an error message.
+    * 1a2. User uses the correct format as shown in the error message for his request.
+
+      Use case resumes at step 2.
+
+* 2a. The group does not exist.
+
+    * 2a1. AddressBook shows an error message.
+
+      Use case ends.
+
+
 
 
 ### Non-Functional Requirements

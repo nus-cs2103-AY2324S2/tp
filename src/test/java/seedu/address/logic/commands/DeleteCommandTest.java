@@ -14,6 +14,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 
@@ -41,11 +42,19 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidNusIdUnfilteredList_throwsCommandException() {
+    public void execute_invalidNusIdUnfilteredList_throwsCommandExceptionNusId() {
         NusId testNusId = new NusId("E1234567");
         DeleteCommand deleteCommand = new DeleteCommand(testNusId);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NON_EXISTENT_PERSON);
+    }
+
+    @Test
+    public void execute_invalidNusIdUnfilteredList_throwsCommandExceptionGroup() {
+        Group testGroup = new Group("husband");
+        DeleteCommand deleteCommand = new DeleteCommand(testGroup);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NON_EXISTENT_GROUP);
     }
 
     @Test
@@ -101,7 +110,7 @@ public class DeleteCommandTest {
         //DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         NusId testNusId = new NusId("E1234567");
         DeleteCommand deleteCommand = new DeleteCommand(testNusId);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetnusId=" + testNusId.toString() + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetNusId=" + testNusId.toString() + "}";
         assertEquals(expected, deleteCommand.toString());
     }
 

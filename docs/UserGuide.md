@@ -138,14 +138,39 @@ Examples:
 
 Deletes the specified person from the address book.
 
-Format: `delete nusId`
+Format 1: `delete id/nusId`
 
 * Deletes the person of a specified `nusId`.
 * The nusId refers to the nusId shown in the displayed person list.
 * The nusId **must be a 7-digit number following an 'E'** 
 
 Examples:
-* `delete E0123456` will delete an existing person with `nusId` of "E0123456".
+* `delete id/E0123456` will delete an existing person with `nusId` of "E0123456".
+
+Format 2: `delete g/group`
+
+* Deletes the people in a specified `group`.
+* The group refers to the group shown in the displayed person list.
+* The group **must exist in the address book beforehand**
+
+Examples:
+* `delete g/CS2013-T15` will delete an existing person with `group` of "CS2013-T15".
+
+### Assigning a person a group : `group`
+
+Assigns the specified person either a group or a tag from the address book.
+
+Format: `group [id/NUSID] [g/GROUP] [t/TAG]`
+
+* Edits the person with a specified `nusId`. The nusId refers to the nusId shown in the displayed person list. The nusId **must be a 7-digit number following an 'E'**
+* At least one of the optional fields must be provided.
+* When editing tags, the valid forms have to be either 1 of these:  Group, Tag
+
+Examples:
+* `group id/E0123456 g/CS2101-T15` will assign the person with nusid E0123456 to the group CS2101-T15
+* `group id/E0123456 t/STUDENT` will assign the person with nusid E0123456 to the student tag
+
+
 
 
 ### Clearing all entries : `clear`
@@ -200,8 +225,10 @@ _Details coming soon ..._
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Delete** | `delete id/NUSID`<br> e.g., `delete id/E01234567 OR delete g/GROUP` <br> e.g., `delete g/CS2103-T15`                                                                  |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**   | `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG] [g/GROUP]`<br> e.g., `find n/James g/CS2103T`                                                                       |
+| **Group**  | `group [id/NUSID] [g/GROUP] [t/TAG] `                                                                                                                                 |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+
