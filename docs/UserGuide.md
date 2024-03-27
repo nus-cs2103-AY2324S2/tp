@@ -500,15 +500,15 @@ Sorts the internships by the specified field in ascending or descending order.
 
 1. Input:<br>
    `sort /com asc`<br>
-   ![Before filtering by all toapply and remote](./images/find/find-before.png)<br>
+   ![Before filtering by all to_apply and remote](./images/find/find-before.png)<br>
 This will sort the list of internships by company name in ascending order.
 
 2. Successful Output after sorting:<br>
-   ![After successfully filtering by all toapply and remote](./images/find/findToApplyRemote-after.png)<br><br>
+   ![After successfully filtering by all to_apply and remote](./images/find/findToApplyRemote-after.png)<br><br>
 
 3. Other examples:<br>
    i.`sort /status desc` returns internships sorted in the following order: `TO_APPLY` -> `ONGOING` -> `PENDING` -> `ACCEPTED` -> `REJECTED`<br>
-   ii.`sort /phone asc` returnsiInternships sorted in ascending order of phone numbers.
+   ii.`sort /phone asc` returns internships sorted in ascending order of phone numbers.
 </div>
 
 **Common errors:** * error messages to be updated
