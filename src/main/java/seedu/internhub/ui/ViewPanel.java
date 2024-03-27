@@ -48,10 +48,18 @@ public class ViewPanel extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        interviewDate.setText("Interview : " + person.getInterviewDate().toString());
+        if ((person.getInterviewDate().toString()).equals("")) {
+            interviewDate.setText("Interview Date: -");
+        } else {
+            interviewDate.setText("Interview Date: " + person.getInterviewDate().toString());
+        }
         tag.setText(person.getTag().getTagName());
         internDuration.setText(person.getInternDuration().value);
         salary.setText("$" + person.getSalary().value);
-        note.setText(person.getNote().value);
+        if ((person.getNote().value).equals("")) {
+            note.setText("-");
+        } else {
+            note.setText(person.getNote().value);
+        }
     }
 }

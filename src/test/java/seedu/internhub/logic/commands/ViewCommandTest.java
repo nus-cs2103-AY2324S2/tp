@@ -30,7 +30,8 @@ class ViewCommandTest {
         assertEquals(
                 String.format(
                         "Viewing Person: %s; Phone: %s; Email: %s; Address: %s; Tags: %s; "
-                                + "Job Description: %s; Interview Date: %s; Internship Duration: %s; Salary: %s",
+                                + "Job Description: %s; Interview Date: %s; Internship Duration: %s; Salary: %s"
+                                + "; Note: %s",
                         personToView.getCompanyName(),
                         personToView.getPhone(),
                         personToView.getEmail(),
@@ -39,7 +40,8 @@ class ViewCommandTest {
                         personToView.getJobDescription(),
                         personToView.getInterviewDate(),
                         personToView.getInternDuration(),
-                        personToView.getSalary()
+                        personToView.getSalary(),
+                        personToView.getNote()
                 ),
                 commandResult.getFeedbackToUser()
         );
