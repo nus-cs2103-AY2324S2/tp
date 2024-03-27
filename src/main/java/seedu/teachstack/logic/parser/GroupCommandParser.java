@@ -31,8 +31,6 @@ public class GroupCommandParser implements Parser<GroupCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_GROUP);
-        //set with one group. for compatibility with edit command.
         Set<Group> group = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
         Set<StudentId> studentIds = ParserUtil.parseStudentIds(argMultimap.getAllValues(PREFIX_STUDENTID));
         return new GroupCommand(group, studentIds);
