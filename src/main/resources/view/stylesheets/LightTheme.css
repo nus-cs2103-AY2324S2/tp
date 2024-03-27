@@ -96,11 +96,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: rgb(206, 218, 241);
+    -fx-background-color: rgb(146, 182, 243);
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: rgb(169, 197, 237);
+    -fx-background-color: rgb(160, 194, 241);
 }
 
 .list-cell:filled:selected {
@@ -120,11 +120,11 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Bold";
+    -fx-font-family: "Hack";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: black;
@@ -228,6 +228,12 @@
     -fx-font-weight: bold;
 }
 
+.icon-container {
+    -fx-background-radius: 50%;
+    -fx-background-color: #0078d7;
+    -fx-padding: 5;
+}
+
 /* ========================================================
       Scroll Bar Styles
    ======================================================== */
@@ -265,7 +271,7 @@
      Command isSuccess Styles
    ======================================================== */
 .success {
-    -fx-text-fill: rgba(105, 239, 50, 0.92) !important; /* Text color for successful commands */
+    -fx-text-fill: rgba(33, 193, 49, 0.92) !important; /* Text color for successful commands */
 }
 
 .error {

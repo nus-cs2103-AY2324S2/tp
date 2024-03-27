@@ -38,9 +38,11 @@
         <HBox VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" minWidth="390" prefHeight="600" prefWidth="390" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <HBox alignment="CENTER_LEFT" spacing="5" styleClass="title-bar">
-                  <ImageView fitHeight="35" fitWidth="35" preserveRatio="true">
-                      <Image url="@/images/person_icon.png" />
-                  </ImageView>
+                  <StackPane styleClass="icon-container">
+                      <ImageView fitHeight="35" fitWidth="35" preserveRatio="true">
+                          <Image url="@/images/person_icon.png" />
+                      </ImageView>
+                  </StackPane>
                   <Label styleClass="title-label" text="Contacts" />
               </HBox>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS">
@@ -57,9 +59,11 @@
           <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <VBox fx:id="bookingList" minWidth="350" prefHeight="600" prefWidth="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="5" styleClass="title-bar">
-                    <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                        <Image url="@/images/booking_icon.png" />
-                    </ImageView>
+                    <StackPane styleClass="icon-container">
+                        <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                            <Image url="@/images/booking_icon.png" />
+                        </ImageView>
+                    </StackPane>
                     <Label styleClass="title-label" text="Bookings">
                            <HBox.margin>
                               <Insets />
@@ -101,9 +105,11 @@
             <VBox>
                 <VBox fx:id="commandList" minWidth="300.0" prefHeight="150.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <HBox alignment="TOP_LEFT" spacing="5" styleClass="title-bar">
-                        <ImageView fitHeight="35" fitWidth="35" preserveRatio="true">
-                            <Image url="@/images/terminal_icon.png" />
-                        </ImageView>
+                        <StackPane styleClass="icon-container">
+                            <ImageView fitHeight="35" fitWidth="35" preserveRatio="true">
+                                <Image url="@/images/terminal_icon.png" />
+                            </ImageView>
+                        </StackPane>
                         <Label styleClass="title-label" text="Commands">
                            <HBox.margin>
                               <Insets />
