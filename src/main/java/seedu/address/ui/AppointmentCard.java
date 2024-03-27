@@ -70,7 +70,7 @@ public class AppointmentCard extends UiPart<Region> {
         Timeline timeline = getTimeline();
         timeline.play();
         if (appt.getMark().isMarked) {
-            cardPane.setStyle(Colors.MARKED_APPOINTMENT_GREEN_COLOR);
+            cardPane.setStyle("-fx-background-color:" + Colors.MARKED_APPOINTMENT_GREEN_COLOR);
         }
     }
 
@@ -89,7 +89,7 @@ public class AppointmentCard extends UiPart<Region> {
     private void bindCardPaneStyle() {
         cardPane.styleProperty().bind(
                 Bindings.when(isPastAppointment(appt))
-                        .then(Colors.PAST_APPOINTMENT_RED_COLOR)
+                        .then("-fx-background-color:" + Colors.PAST_APPOINTMENT_RED_COLOR)
                         .otherwise("")
         );
     }
@@ -98,7 +98,7 @@ public class AppointmentCard extends UiPart<Region> {
         return Bindings.createBooleanBinding(() -> (
                 appt.getStartTime().value.isBefore(LocalTime.now())
                         && !appt.getDate().value.isAfter(LocalDate.now()))
-                        || appt.getDate().value.isBefore(LocalDate.now())
+                || appt.getDate().value.isBefore(LocalDate.now())
         );
     }
 }
