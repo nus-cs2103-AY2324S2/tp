@@ -84,10 +84,8 @@ public class CommandTestUtil {
 
     public static final String[] ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS = {VALID_TAG_FRIEND, VALID_TAG_FINANCIAL_PLAN};
     public static final String[] ARRAY_OF_SINGLE_VALID_TAG_STRING = {VALID_TAG_FINANCIAL_PLAN};
-    public static final Set<Tag> SET_OF_VALID_TAGS = new SampleDataUtil().getTagSet(
-            ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS);
-    public static final Set<Tag> SET_OF_VALID_TAG = new SampleDataUtil().getTagSet(
-            ARRAY_OF_SINGLE_VALID_TAG_STRING);
+    public static final Set<Tag> SET_OF_VALID_TAGS = SampleDataUtil.getTagSet(ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS);
+    public static final Set<Tag> SET_OF_VALID_TAG = SampleDataUtil.getTagSet(ARRAY_OF_SINGLE_VALID_TAG_STRING);
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
