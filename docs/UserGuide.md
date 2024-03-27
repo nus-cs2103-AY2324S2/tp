@@ -17,8 +17,7 @@ TutorTrack is a **desktop app for tutors to manage their students and scheduled 
   - List : Listing all students
   - Edit : Editing a student
   - Find : Finding a student
-  - Delete : Deleting a student 
-  - Adding lessons to students
+  - Delete : Deleting a student
   - Clear : Clearing all entries 
   - Exit : Exiting the program
   - Saving data
