@@ -35,7 +35,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, Set<Order> orders) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, tags, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;

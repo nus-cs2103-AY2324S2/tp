@@ -82,10 +82,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Order> orders = personToEdit.getOrders();
+        Set<Order> orderSet = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, orders);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, orderSet);
     }
 
     @Override
@@ -143,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Order> orders;
 
         public EditPersonDescriptor() {
         }
@@ -157,6 +157,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setOrders(toCopy.orders);
         }
 
         /**
@@ -215,6 +216,23 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
+        /**
+         * Returns an unmodifiable order set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code orders} is null.
+         */
+        public Optional<Set<Order>> getOrders() {
+            return (orders != null) ? Optional.of(Collections.unmodifiableSet(orders)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code orders} to this object's {@code orders}.
+         * A defensive copy of {@code orders} is used internally.
+         */
+        public void setOrders(Set<Order> orders) {
+            this.orders = (orders != null) ? new HashSet<>(orders) : null;
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -242,6 +260,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("orders", orders)
                     .toString();
         }
     }
