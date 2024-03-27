@@ -106,7 +106,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags)
-                && (otherPerson.isArchived() == this.isArchived());
+                && (otherPerson.isArchived == this.isArchived);
     }
 
     @Override

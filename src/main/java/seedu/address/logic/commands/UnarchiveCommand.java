@@ -43,8 +43,22 @@ public class UnarchiveCommand extends Command {
 
         Person personToUnarchive = lastShownList.get(targetIndex.getZeroBased());
         model.unarchivePerson(personToUnarchive);
-        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, personToUnarchive));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS,
+                Messages.format(personToUnarchive)));
     }
 
-    // standard equals method
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UnarchiveCommand)) {
+            return false;
+        }
+
+        UnarchiveCommand otherUnarchiveCommand = (UnarchiveCommand) other;
+        return targetIndex.equals(otherUnarchiveCommand.targetIndex);
+    }
 }

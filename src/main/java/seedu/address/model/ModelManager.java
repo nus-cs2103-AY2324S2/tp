@@ -159,9 +159,8 @@ public class ModelManager implements Model {
 
     @Override
     public void archivePerson(Person target) {
-        addressBook.removePerson(target);
+        addressBook.archivePerson(target);
         target.setArchived(true);
-        addressBook.addArchivedPerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -188,10 +187,10 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         if (isViewingArchivedList) {
             // Apply the predicate only to archived persons if viewing archived list
-            filteredPersons.setPredicate(person -> predicate.test(person) && person.isArchived());
+            filteredPersons.setPredicate(person -> person.isArchived() && predicate.test(person));
         } else {
             // Apply the predicate only to non-archived persons if not viewing archived list
-            filteredPersons.setPredicate(person -> predicate.test(person) && !person.isArchived());
+            filteredPersons.setPredicate(person -> !person.isArchived() && predicate.test(person));
         }
     }
 

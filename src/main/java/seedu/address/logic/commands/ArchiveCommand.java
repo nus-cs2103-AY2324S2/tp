@@ -46,13 +46,21 @@ public class ArchiveCommand extends Command {
 
         Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
         model.archivePerson(personToArchive);
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, personToArchive));
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, Messages.format(personToArchive)));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ArchiveCommand // instanceof handles nulls
-                && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ArchiveCommand)) {
+            return false;
+        }
+
+        ArchiveCommand otherArchiveCommand = (ArchiveCommand) other;
+        return targetIndex.equals(otherArchiveCommand.targetIndex);
     }
 }
