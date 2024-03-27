@@ -215,5 +215,26 @@ public class ParserUtil {
         return programmingLanguageSet;
     }
 
+    /**
+     * Parses a string representing a priority into an integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param priority A string representing a priority.
+     * @return An integer parsed from the input string.
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static int parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        return Integer.parseInt(trimmedPriority);
+    }
+
+    /**
+     * Returns true if a given string is a valid priority.
+     */
+    private static boolean isValidPriority(String test) {
+        String validRegex = "^[0-4]$";
+        return test.matches(validRegex);
+    }
 
 }

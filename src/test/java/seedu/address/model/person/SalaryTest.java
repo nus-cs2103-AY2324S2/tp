@@ -25,8 +25,12 @@ public class SalaryTest {
 
     @Test
     public void isValidSalary() {
-        // null salary
-        assertThrows(NullPointerException.class, () -> Salary.isValidSalary(null));
+        // valid salaries
+        assertTrue(Salary.isValidSalary("0"));
+        assertTrue(Salary.isValidSalary("1"));
+        assertTrue(Salary.isValidSalary("99999999"));
+        assertTrue(Salary.isValidSalary("100-10000"));
+        assertTrue(Salary.isValidSalary("9999999-10000"));
 
         // invalid salaries
         assertFalse(Salary.isValidSalary(""));
@@ -39,13 +43,6 @@ public class SalaryTest {
         assertFalse(Salary.isValidSalary("5000-4000-3000"));
         assertFalse(Salary.isValidSalary("100-dfadfdsfsdfds"));
         assertFalse(Salary.isValidSalary("42389408320478923432423"));
-
-        // valid salaries
-        assertTrue(Salary.isValidSalary("0"));
-        assertTrue(Salary.isValidSalary("1"));
-        assertTrue(Salary.isValidSalary("99999999"));
-        assertTrue(Salary.isValidSalary("100-10000"));
-        assertTrue(Salary.isValidSalary("9999999-10000"));
     }
 
     @Test
@@ -78,5 +75,31 @@ public class SalaryTest {
         // Test with a single salary
         salary = new Salary("6000");
         assertEquals("6000", salary.toString());
+    }
+
+    @Test
+    public void equals() {
+        Salary salary1 = new Salary("5000-6000");
+        Salary salary2 = new Salary("5000-6000");
+        Salary salary3 = new Salary("4000-5000");
+        Salary salary4 = new Salary("5000");
+
+        // same object -> returns true
+        assertTrue(salary1.equals(salary1));
+
+        // same values -> returns true
+        assertTrue(salary1.equals(salary2));
+
+        // different values -> returns false
+        assertFalse(salary1.equals(salary3));
+
+        // different type -> returns false
+        assertFalse(salary1.equals(5));
+
+        // null -> returns false
+        assertFalse(salary1.equals(null));
+
+        // different range status -> returns false
+        assertFalse(salary1.equals(salary4));
     }
 }
