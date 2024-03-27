@@ -1,0 +1,21 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "{abstract}\nPayNowPayload" as PayNowPayload
+Class PayNowCode
+Class MerchantAccountInformation
+Class PayNowField {
+    -int id
+    -Object value
+}
+show PayNowField fields
+
+PayNowPayload *--> "fields" PayNowField
+MerchantAccountInformation --|> PayNowPayload
+PayNowCode --|> PayNowPayload
+PayNowCode .. MerchantAccountInformation
+
+@enduml
