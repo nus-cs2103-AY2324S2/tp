@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,51 +11,49 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Abdul Khaliq
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/breezetall.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/breezetall)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Chong Chin Herng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chin-herng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/chin-herng)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Dinh Tran Hai Chien
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaya3842.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Kaya3842)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tang Hao Liang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nobodyishappy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nobodyishappy)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Mark/Unmark Feature
+
+
+### Yong Shi Kang
+
+<img src="images/yskie.png" width="200px">
+
+[[github](http://github.com/yskie)]
+
+* Role: Developer
+* Responsibilities: Deletion Feature
