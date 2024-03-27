@@ -55,6 +55,28 @@ public class PersonTest {
     }
 
     @Test
+    public void has_upcomingField() {
+        Person editedAlice = new PersonBuilder(ALICE).withUpcoming("").build();
+
+        // has upcoming field -> returns true
+        assertTrue(ALICE.hasUpcoming());
+
+        // no upcoming field -> returns false
+        assertFalse(editedAlice.hasUpcoming());
+    }
+
+    @Test
+    public void has_lastcontactField() {
+        Person editedAlice = new PersonBuilder(ALICE).withLastContact("").build();
+
+        // has lastcontact field -> returns true
+        assertTrue(ALICE.hasLastcontact());
+
+        // no lastcontact field -> returns false
+        assertFalse(editedAlice.hasLastcontact());
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
