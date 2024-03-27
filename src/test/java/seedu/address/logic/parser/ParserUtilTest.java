@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_LIST;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -183,6 +182,8 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("a b"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1, b"));
         assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1 2 3"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("   "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(" ,,  "));
     }
 
     @Test
@@ -196,9 +197,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndices_validInput_success() throws Exception {
-        // No indices
-        assertEquals(new ArrayList<Index>(), ParserUtil.parseIndices(""));
-
         // No whitespaces
         assertEquals(INDEX_LIST, ParserUtil.parseIndices("1,2,3"));
 

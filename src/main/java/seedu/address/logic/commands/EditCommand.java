@@ -21,6 +21,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -126,8 +127,9 @@ public class EditCommand extends Command {
                 ? editPersonDescriptor.getTelegram() : personToEdit.getTelegram();
         Optional<Github> updatedGithub = editPersonDescriptor.getGithub().isPresent()
                 ? editPersonDescriptor.getGithub() : personToEdit.getGithub();
+        Attendance existingAttendance = personToEdit.getAttendance();
         return new Person(updatedName, updatedClassGroup, updatedEmail,
-                updatedPhone, updatedTelegram, updatedGithub);
+                updatedPhone, updatedTelegram, updatedGithub, existingAttendance);
     }
 
     @Override

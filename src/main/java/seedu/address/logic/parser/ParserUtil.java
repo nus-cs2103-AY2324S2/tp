@@ -26,6 +26,7 @@ import seedu.address.model.person.Telegram;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_NO_VALID_INDICES = "No valid indices were provided.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -176,7 +177,12 @@ public class ParserUtil {
     public static Week parseWeek(String week) throws ParseException {
         requireNonNull(week);
         String trimmedWeek = week.trim();
-        Index weekIndex = parseIndex(trimmedWeek);
+        Index weekIndex;
+        try {
+            weekIndex = parseIndex(trimmedWeek);
+        } catch (ParseException e) {
+            throw new ParseException(Week.MESSAGE_CONSTRAINTS);
+        }
         if (!Week.isValidWeek(weekIndex)) {
             throw new ParseException(Week.MESSAGE_CONSTRAINTS);
         }
@@ -200,6 +206,11 @@ public class ParserUtil {
         for (String index : trimmedIndices) {
             indexList.add(parseIndex(index));
         }
+
+        if (indexList.isEmpty()) {
+            throw new ParseException(MESSAGE_NO_VALID_INDICES);
+        }
+
         return indexList;
     }
 }
