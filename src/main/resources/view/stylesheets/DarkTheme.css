@@ -150,7 +150,7 @@
     -fx-background-color: #0c0c0c;
 }
 
-.pane-without-border {
+.pane-with-border {
     -fx-background-color: #151515;
     -fx-border-color: #272727;
     -fx-border-width: 2px;

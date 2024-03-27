@@ -71,7 +71,7 @@ public class CommandListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code CommandInfo}.
      */
-    class CommandListViewCell extends ListCell<CommandInfo> {
+    static class CommandListViewCell extends ListCell<CommandInfo> {
         @Override
         protected void updateItem(CommandInfo commandInfo, boolean empty) {
             super.updateItem(commandInfo, empty);

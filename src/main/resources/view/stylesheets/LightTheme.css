@@ -1,0 +1,327 @@
+.background {
+    -fx-background-color: derive(#ffffff, 20%);
+    background-color: #ffffff; /* Used in the default.html file */
+}
+
+.BG {
+    -fx-background-color: #f4f4f4;
+}
+
+
+
+/* ========================================================
+      Menu Bar Styles
+   ======================================================== */
+
+.menu-bar {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Avenir";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: black;
+}
+
+/* ========================================================
+      Menu Button Styles
+   ======================================================== */
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+/* ========================================================
+      Person Card and Panel Styles
+   ======================================================== */
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 12px;
+    -fx-padding: 2 2 2 2;
+}
+
+.list-cell:filled:even {
+    -fx-background-color: rgb(206, 218, 241);
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: rgb(169, 197, 237);
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #0e66dc;
+    -fx-background-radius: 12px;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-border-color: #09b5f3;
+    -fx-border-width: 1;
+    -fx-border-radius: 12px;
+}
+
+.list-cell:filled:selected #tags .label {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+}
+
+.list-cell .label {
+    -fx-text-fill: black;
+}
+
+.cell_big_label {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+}
+
+.stack-pane {
+    -fx-background-color: #ffffff;
+}
+
+.pane-with-border {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b0d1f8;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+}
+
+/* ========================================================
+      Result Box Styles
+   ======================================================== */
+.result-display {
+    -fx-background-color: #fffdfd;
+    -fx-font-family: "Hack";
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
+}
+
+#resultDisplay .content {
+    -fx-background-color: transparent, #ffffff, transparent, #ffffff;
+    -fx-background-radius: 0;
+}
+
+/* ========================================================
+      Status Bar Styles
+   ======================================================== */
+.status-bar {
+    -fx-background-color: #1a1a1a;
+}
+
+.status-bar .label {
+    -fx-font-family: "Avenir";
+    -fx-text-fill: white;
+    -fx-padding: 4px;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-border-width: 1px;
+}
+
+.status-bar-with-border .label {
+    -fx-text-fill: white;
+}
+
+/* ========================================================
+      Unknown Component Styles
+   ======================================================== */
+
+.grid-pane {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-border-width: 1px;
+}
+
+.grid-pane .stack-pane {
+    -fx-background-color: derive(#1d1d1d, 30%);
+}
+
+.context-menu {
+    -fx-background-color: derive(#1d1d1d, 50%);
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+
+/* ========================================================
+      Component Title Styles
+   ======================================================== */
+.title-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 5 5 20 20;
+}
+
+.title-label {
+    -fx-text-fill: #121111;
+    -fx-font-family: "Hack";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+/* ========================================================
+      Scroll Bar Styles
+   ======================================================== */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 0, 0, 2;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(166, 166, 166, 0.75);
+    -fx-background-insets: 2, 2, 2, 2;
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #f0f0f0;
+    -fx-background-insets: 2, 2, 2, 2;
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " "; /* Empty shape */
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 0;
+}
+
+/* ========================================================
+     Command isSuccess Styles
+   ======================================================== */
+.success {
+    -fx-text-fill: rgba(105, 239, 50, 0.92) !important; /* Text color for successful commands */
+}
+
+.error {
+    -fx-text-fill: rgba(234, 46, 10, 0.92) !important; /*  Text color for unsuccessful commands */
+}
+
+/* ========================================================
+     CommandBox Text Styles
+   ======================================================== */
+#commandTextField {
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
+    -fx-font-family: "Hack";
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a87ff;
+}
+
+/* ========================================================
+     Other Styles
+   ======================================================== */
+
+#cardPane {
+    -fx-border-width: 1;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 12px;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #ff1723;
+}
+
+#filterField, #personListPanel, #personWebpage {
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+}
+
+/* ========================================================
+     Tags Styles
+   ======================================================== */
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #186ADD;
+    -fx-padding: 5 12 5 12;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-font-size: 12;
+}
