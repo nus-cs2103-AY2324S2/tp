@@ -56,7 +56,7 @@ AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 destroy AddTagCommandParser
 
-LogicManager -> AddTagCommand : a.execute(m)
+LogicManager -> AddTagCommand : execute(m)
 activate AddTagCommand
 
 
