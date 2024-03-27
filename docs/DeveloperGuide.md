@@ -128,15 +128,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<box type="info" seamless>
-
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
-
-</box>
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -150,13 +141,55 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.addressbook.commons` package. The three over-arching sub-packages are `core`, `exceptions`, and `util`.
+
+`core`: This package defines classes for user configuration, GUI settings, and even a version number.
+
+`exceptions`: This package defines exceptions thrown by InternHub when it encounters an error state.
+
+`util`: This package defines utility classes for certain operations, like file I/O, argument validation, and image processing.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add Command
+
+#### Implementation
+This command adds an internship application into the InternHub using the company name, phone number, email, address, tag, job description, interview date, intern duration, salary and note.
+
+The following steps show how the add internship application feature works:
+
+The `add` command entered by the user is parsed and the different fields are tokenized.
+
+`AddCommand#execute(Model model)` is invoked which checks for validity of the entered parameter values.
+
+The command is then executed by creating a new Person object using the parameter values entered and adding the Person object into the InternHub.
+
+If successful, a `CommandResult` object is created to show a success message in the feedback box of the ui.
+
+The diagram below shows the class diagram for AddCommand.
+
+<puml src="diagrams/AddCommandClassDiagram.puml" width="300" />
+
+#### Design Considerations
+Alternative 1 (current choice): Creates a new Person object in AddCommandParser.
+
+Pros: Simpler to test and understand.
+
+Cons: Command object should not know details about model i.e. Person.
+
+Alternative 2: New Person object is created and added to InternHub in model.
+
+Pros: Command has no knowledge of Model and its attributes.
+
+Cons: More prone to error.
+
+The Diagram below shows the sequence diagram for AddCommand. All Initialization commands above are similar in their interactions with the [logic component](###logic-component) and [model component](###model-component).
+
+<puml src="diagrams/AddSequenceDiagram.puml" />
 
 ### \[Proposed\] Undo/redo feature
 
