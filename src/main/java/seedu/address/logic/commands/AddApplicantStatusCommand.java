@@ -14,6 +14,7 @@ import seedu.address.model.person.Applicant;
 import seedu.address.model.person.ApplicantStatus;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.enums.Type;
 
 /**
  * Parses input arguments and creates a new AddApplicantCommandStatus object
@@ -63,7 +64,7 @@ public class AddApplicantStatusCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INCORRECT_APPLICANT_PHONE_NUMBER);
         }
 
-        if (!personToEdit.getPersonType().equals("APPLICANT")) {
+        if (!personToEdit.getPersonType().equals(Type.APPLICANT.toString())) {
             throw new CommandException(Messages.MESSAGE_INCORRECT_STATUS_APPLICANT);
         }
 

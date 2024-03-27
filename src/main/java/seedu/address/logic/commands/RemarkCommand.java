@@ -5,13 +5,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Applicant;
+import seedu.address.model.person.ApplicantStatus;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Interviewer;
+import seedu.address.model.person.InterviewerStatus;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.enums.Type;
+import seedu.address.model.tag.Tag;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -53,8 +63,21 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                remark, personToEdit.getTags());
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Set<Tag> tags = personToEdit.getTags();
+        String type = personToEdit.getPersonType();
+        String status = personToEdit.getCurrentStatus();
+
+        Person editedPerson;
+        if (type.equals(Type.APPLICANT.toString())) {
+            editedPerson = new Applicant(name, phone, email, remark, new ApplicantStatus(status), tags);
+        } else if (type.equals(Type.INTERVIEWER.toString())) {
+            editedPerson = new Interviewer(name, phone, email, remark, new InterviewerStatus(status), tags);
+        } else {
+            editedPerson = new Person(name, phone, email, remark, tags);
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
