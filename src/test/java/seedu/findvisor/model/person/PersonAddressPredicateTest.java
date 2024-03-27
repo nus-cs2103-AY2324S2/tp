@@ -78,6 +78,15 @@ public class PersonAddressPredicateTest {
     }
 
     @Test
+    public void testGetPredicateDescription() {
+        String keyword = "30 Apple Ave";
+        PersonAddressPredicate predicate = new PersonAddressPredicate(keyword);
+
+        String expected = String.format("Address = \"%1$s\"", keyword);
+        assertEquals(expected, predicate.getPredicateDescription());
+    }
+
+    @Test
     public void toStringMethod() {
         String keyword = "30 Apple Ave";
         PersonAddressPredicate predicate = new PersonAddressPredicate(keyword);

@@ -3,7 +3,7 @@ package seedu.findvisor.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.findvisor.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.findvisor.logic.Messages.MESSAGE_FIND_PERSONS_LISTED_OVERVIEW;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -22,7 +22,6 @@ import static seedu.findvisor.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +31,8 @@ import seedu.findvisor.model.UserPrefs;
 import seedu.findvisor.model.person.PersonAddressPredicate;
 import seedu.findvisor.model.person.PersonEmailPredicate;
 import seedu.findvisor.model.person.PersonNamePredicate;
-import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.PersonPhonePredicate;
+import seedu.findvisor.model.person.PersonPredicate;
 import seedu.findvisor.model.tag.PersonTagsPredicate;
 
 /**
@@ -73,7 +72,7 @@ public class FindCommandTest {
     }
 
     // Helper method to test equality of FindCommand objects
-    private void testCommandEquality(Predicate<Person> firstPredicate, Predicate<Person> secondPredicate) {
+    private void testCommandEquality(PersonPredicate firstPredicate, PersonPredicate secondPredicate) {
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
         // same object -> returns true
@@ -95,7 +94,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_nonExistentName_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedSearchString = String.format("Name = \"%1$s\"", VALID_NAME_AMY);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 0);
         PersonNamePredicate namePredicate = new PersonNamePredicate(VALID_NAME_AMY);
         FindCommand command = new FindCommand(namePredicate);
         expectedModel.updateFilteredPersonList(namePredicate);
@@ -105,7 +105,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_nonExistentPhone_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedSearchString = String.format("Phone = \"%1$s\"", VALID_PHONE_AMY);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 0);
         PersonPhonePredicate phonePredicate = new PersonPhonePredicate(VALID_PHONE_AMY);
         Command command = new FindCommand(phonePredicate);
         expectedModel.updateFilteredPersonList(phonePredicate);
@@ -115,7 +116,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_nonExistentEmail_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedSearchString = String.format("Email = \"%1$s\"", VALID_EMAIL_AMY);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 0);
         PersonEmailPredicate predicate = new PersonEmailPredicate(VALID_EMAIL_AMY);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -125,7 +127,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_nonExistentAddress_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedSearchString = String.format("Address = \"%1$s\"", VALID_ADDRESS_AMY);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 0);
         PersonAddressPredicate predicate = new PersonAddressPredicate(VALID_ADDRESS_AMY);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -135,7 +138,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_nonExistentTag_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedSearchString = String.format("Tags = \"%1$s\"", VALID_TAG_HUSBAND);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 0);
         PersonTagsPredicate tagsPredicate = new PersonTagsPredicate(
             Arrays.asList(new String[]{VALID_TAG_HUSBAND}));
         Command command = new FindCommand(tagsPredicate);
@@ -147,7 +151,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_existingName_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedSearchString = String.format("Name = \"%1$s\"", ALICE.getName().fullName);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 1);
         PersonNamePredicate predicate = new PersonNamePredicate(ALICE.getName().fullName);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -157,7 +162,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_existingPhone_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedSearchString = String.format("Phone = \"%1$s\"", BENSON.getPhone().value);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 1);
         PersonPhonePredicate predicate = new PersonPhonePredicate(BENSON.getPhone().value);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -167,7 +173,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_existingEmail_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedSearchString = String.format("Email = \"%1$s\"", CARL.getEmail().value);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 1);
         PersonEmailPredicate predicate = new PersonEmailPredicate(CARL.getEmail().value);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -177,7 +184,8 @@ public class FindCommandTest {
 
     @Test
     public void execute_existingAddress_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedSearchString = String.format("Address = \"%1$s\"", BENSON.getAddress().value);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 1);
         PersonAddressPredicate predicate = new PersonAddressPredicate(BENSON.getAddress().value);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -187,9 +195,10 @@ public class FindCommandTest {
 
     @Test
     public void execute_existingTags_personFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedSearchString = String.format("Tags = \"%1$s\"", VALID_TAG_FRIEND);
+        String expectedMessage = String.format(MESSAGE_FIND_PERSONS_LISTED_OVERVIEW, expectedSearchString, 3);
         PersonTagsPredicate predicate = new PersonTagsPredicate(
-            Arrays.asList(new String[]{"friends"}));
+            Arrays.asList(new String[]{VALID_TAG_FRIEND}));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

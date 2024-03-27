@@ -61,6 +61,15 @@ public class PersonTagsPredicateTest {
     }
 
     @Test
+    public void testGetPredicateDescription() {
+        List<String> keywords = Arrays.asList(new String[]{"exampleTag1", "exampleTag2"});
+        PersonTagsPredicate predicate = new PersonTagsPredicate(keywords);
+
+        String expected = String.format("Tags = \"%1$s\", \"%2$s\"", "exampleTag1", "exampleTag2");
+        assertEquals(expected, predicate.getPredicateDescription());
+    }
+
+    @Test
     public void toStringMethod() {
         List<String> keywords = Arrays.asList(new String[]{"exampleTag1, exampleTag2"});
         PersonTagsPredicate predicate = new PersonTagsPredicate(keywords);

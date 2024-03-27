@@ -82,6 +82,15 @@ public class PersonNamePredicateTest {
     }
 
     @Test
+    public void testGetPredicateDescription() {
+        String keyword = "Alice";
+        PersonNamePredicate predicate = new PersonNamePredicate(keyword);
+
+        String expected = String.format("Name = \"%1$s\"", keyword);
+        assertEquals(expected, predicate.getPredicateDescription());
+    }
+
+    @Test
     public void toStringMethod() {
         String keyword = "Alice";
         PersonNamePredicate predicate = new PersonNamePredicate(keyword);

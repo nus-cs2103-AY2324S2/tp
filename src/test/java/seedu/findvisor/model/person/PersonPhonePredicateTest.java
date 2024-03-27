@@ -53,6 +53,15 @@ public class PersonPhonePredicateTest {
     }
 
     @Test
+    public void testGetPredicateDescription() {
+        String keyword = "91234567";
+        PersonPhonePredicate predicate = new PersonPhonePredicate(keyword);
+
+        String expected = String.format("Phone = \"%1$s\"", keyword);
+        assertEquals(expected, predicate.getPredicateDescription());
+    }
+
+    @Test
     public void toStringMethod() {
         String keyword = "91234567";
         PersonPhonePredicate predicate = new PersonPhonePredicate(keyword);

@@ -1,14 +1,12 @@
 package seedu.findvisor.model.person;
 
-import java.util.function.Predicate;
-
 import seedu.findvisor.commons.util.ToStringBuilder;
 
 /**
  * A predicate for evaluating if a {@link Person}'s phone contains a given keyword.
  * This is used to filter for persons based on their phone attribute.
  */
-public class PersonPhonePredicate implements Predicate<Person> {
+public class PersonPhonePredicate implements PersonPredicate {
     private final String keyword;
 
     /**
@@ -18,6 +16,15 @@ public class PersonPhonePredicate implements Predicate<Person> {
      */
     public PersonPhonePredicate(String keyword) {
         this.keyword = keyword;
+    }
+
+    /**
+     * Returns the description of this predicate, indicating the phone keyword criteria.
+     *
+     * @return A string describing the predicate
+     */
+    public String getPredicateDescription() {
+        return String.format("Phone = \"%1$s\"", keyword);
     }
 
     @Override

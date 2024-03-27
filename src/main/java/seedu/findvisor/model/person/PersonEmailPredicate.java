@@ -1,7 +1,5 @@
 package seedu.findvisor.model.person;
 
-import java.util.function.Predicate;
-
 import seedu.findvisor.commons.util.StringUtil;
 import seedu.findvisor.commons.util.ToStringBuilder;
 
@@ -9,7 +7,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * A predicate for evaluating if a {@link Person}'s email contains (case-insensitive) a given keyword.
  * This is used to filter for persons based on their email attribute.
  */
-public class PersonEmailPredicate implements Predicate<Person> {
+public class PersonEmailPredicate implements PersonPredicate {
     private final String keyword;
 
     /**
@@ -19,6 +17,15 @@ public class PersonEmailPredicate implements Predicate<Person> {
      */
     public PersonEmailPredicate(String keyword) {
         this.keyword = keyword;
+    }
+
+    /**
+     * Returns the description of this predicate, indicating the email keyword criteria.
+     *
+     * @return A string describing the predicate
+     */
+    public String getPredicateDescription() {
+        return String.format("Email = \"%1$s\"", keyword);
     }
 
     @Override
