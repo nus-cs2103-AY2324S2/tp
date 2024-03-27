@@ -26,7 +26,7 @@ import seedu.findvisor.model.tag.Tag;
 /**
  * Adds tags to an existing person in the address book.
  */
-public class AddtagCommand extends Command {
+public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "addtag";
 
@@ -39,7 +39,7 @@ public class AddtagCommand extends Command {
             + PREFIX_TAG + "PRUactiveCash "
             + PREFIX_TAG + "UniversityStudentYear1";
 
-    public static final String MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS = "Added tag to Person: %1$s";
+    public static final String MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS = "Added tags to Person: %1$s";
     public static final String MESSAGE_TAG_CONSTRAINTS_VIOLATED = "One or more tags violate the tag constraints\n"
             + "Tags must be alphanumeric with no spaces\n"
             + "Example: " + PREFIX_TAG + "PRUactiveCash23\n"
@@ -52,7 +52,7 @@ public class AddtagCommand extends Command {
      * @param index of the person in the filtered person list to add tags to
      * @param newTags tags to add to the person
      */
-    public AddtagCommand(Index index, Set<Tag> newTags) {
+    public AddTagCommand(Index index, Set<Tag> newTags) {
         requireNonNull(index);
         requireNonNull(newTags);
 
@@ -108,11 +108,11 @@ public class AddtagCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddtagCommand)) {
+        if (!(other instanceof AddTagCommand)) {
             return false;
         }
 
-        AddtagCommand otherAddtagCommand = (AddtagCommand) other;
+        AddTagCommand otherAddtagCommand = (AddTagCommand) other;
         return newTags.equals(otherAddtagCommand.newTags) && index.equals(otherAddtagCommand.index);
     }
 

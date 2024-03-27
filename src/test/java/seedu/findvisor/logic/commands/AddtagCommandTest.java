@@ -29,34 +29,35 @@ import seedu.findvisor.model.UserPrefs;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.tag.Tag;
 import seedu.findvisor.testutil.PersonBuilder;
-public class AddtagCommandTest {
+
+public class AddTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddtagCommand(null, SET_OF_VALID_TAGS));
+        assertThrows(NullPointerException.class, () -> new AddTagCommand(null, SET_OF_VALID_TAGS));
     }
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddtagCommand(INDEX_FIRST_PERSON, null));
+        assertThrows(NullPointerException.class, () -> new AddTagCommand(INDEX_FIRST_PERSON, null));
     }
 
     @Test
     public void execute_validIndexUnfilteredListAddMultipleTags_success() {
         Person personToAddTagTo = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AddtagCommand addtagCommand = new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
 
         PersonBuilder personBuilder = new PersonBuilder(personToAddTagTo).addTags(ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS);
         Person editedPerson = personBuilder.build();
 
-        String expectedMessage = String.format(AddtagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
                 Messages.format(editedPerson));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(addtagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -66,32 +67,32 @@ public class AddtagCommandTest {
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).addTags(
                 ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS).build();
-        AddtagCommand addtagCommand = new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
 
-        String expectedMessage = String.format(AddtagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(addtagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validIndexUnfilteredListAddSingleTag_success() {
         Person personToAddTagTo = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AddtagCommand addtagCommand = new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG);
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG);
 
         PersonBuilder personBuilder = new PersonBuilder(personToAddTagTo).addTags(ARRAY_OF_SINGLE_VALID_TAG_STRING);
         Person editedPerson = personBuilder.build();
 
-        String expectedMessage = String.format(AddtagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
                 Messages.format(editedPerson));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(addtagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -101,55 +102,55 @@ public class AddtagCommandTest {
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).addTags(
                 ARRAY_OF_SINGLE_VALID_TAG_STRING).build();
-        AddtagCommand addtagCommand = new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG);
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG);
 
-        String expectedMessage = String.format(AddtagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAGS_TO_PERSON_SUCCESS,
                 Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(addtagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredListIndexOutOfBounds_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        AddtagCommand addtagCommand = new AddtagCommand(INDEX_THIRD_PERSON, SET_OF_VALID_TAG);
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_THIRD_PERSON, SET_OF_VALID_TAG);
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        assertCommandFailure(addtagCommand, model, expectedMessage);
+        assertCommandFailure(addTagCommand, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        final AddtagCommand standardAddtagCommand = new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
+        final AddTagCommand standardAddTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
 
         // same values -> returns true
-        AddtagCommand addtagCommandWithSameValues = new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
-        assertTrue(standardAddtagCommand.equals(addtagCommandWithSameValues));
+        AddTagCommand addTagCommandWithSameValues = new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAGS);
+        assertTrue(standardAddTagCommand.equals(addTagCommandWithSameValues));
 
         // same object -> returns true
-        assertTrue(standardAddtagCommand.equals(standardAddtagCommand));
+        assertTrue(standardAddTagCommand.equals(standardAddTagCommand));
 
         // null -> returns false
-        assertFalse(standardAddtagCommand.equals(null));
+        assertFalse(standardAddTagCommand.equals(null));
 
         // different command type -> returns false
-        assertFalse(standardAddtagCommand.equals(new ClearCommand()));
+        assertFalse(standardAddTagCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardAddtagCommand.equals(new AddtagCommand(INDEX_SECOND_PERSON, SET_OF_VALID_TAGS)));
+        assertFalse(standardAddTagCommand.equals(new AddTagCommand(INDEX_SECOND_PERSON, SET_OF_VALID_TAGS)));
 
         // different tag set -> returns false
-        assertFalse(standardAddtagCommand.equals(new AddtagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG)));
+        assertFalse(standardAddTagCommand.equals(new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG)));
     }
 
     @Test
     public void toStringMethod() {
         Index index = Index.fromOneBased(1);
         Set<Tag> setOfTags = SET_OF_VALID_TAGS;
-        AddtagCommand addTagCommand = new AddtagCommand(index, setOfTags);
-        String expected = AddtagCommand.class.getCanonicalName() + "{index=" + index + ", tags=" + setOfTags + "}";
+        AddTagCommand addTagCommand = new AddTagCommand(index, setOfTags);
+        String expected = AddTagCommand.class.getCanonicalName() + "{index=" + index + ", tags=" + setOfTags + "}";
         assertEquals(expected, addTagCommand.toString());
     }
 }

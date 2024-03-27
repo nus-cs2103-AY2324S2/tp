@@ -13,15 +13,15 @@ import static seedu.findvisor.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.commons.core.index.Index;
-import seedu.findvisor.logic.commands.AddtagCommand;
-public class AddtagCommandParserTest {
+import seedu.findvisor.logic.commands.AddTagCommand;
+public class AddTagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            AddtagCommand.MESSAGE_USAGE);
+            AddTagCommand.MESSAGE_USAGE);
 
     private static final String MESSAGE_INVALID_TAG = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            AddtagCommand.MESSAGE_TAG_CONSTRAINTS_VIOLATED);
+            AddTagCommand.MESSAGE_TAG_CONSTRAINTS_VIOLATED);
 
-    private AddtagCommandParser parser = new AddtagCommandParser();
+    private AddTagCommandParser parser = new AddTagCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -38,7 +38,7 @@ public class AddtagCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddtagCommand.MESSAGE_USAGE));
+                AddTagCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -72,9 +72,9 @@ public class AddtagCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_DESC_SET;
-        AddtagCommand addtagCommand = new AddtagCommand(targetIndex, SET_OF_VALID_TAGS);
+        AddTagCommand addTagCommand = new AddTagCommand(targetIndex, SET_OF_VALID_TAGS);
 
-        assertParseSuccess(parser, userInput, addtagCommand);
+        assertParseSuccess(parser, userInput, addTagCommand);
     }
 
     @Test
@@ -82,8 +82,8 @@ public class AddtagCommandParserTest {
         //adding duplicate tags will not do anything to the tags as they are contained in a set
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_DESC_SET + TAG_DESC_SET + TAG_DESC_SET;
-        AddtagCommand addtagCommand = new AddtagCommand(targetIndex, SET_OF_VALID_TAGS);
-        assertParseSuccess(parser, userInput, addtagCommand);
+        AddTagCommand addTagCommand = new AddTagCommand(targetIndex, SET_OF_VALID_TAGS);
+        assertParseSuccess(parser, userInput, addTagCommand);
     }
 
 }
