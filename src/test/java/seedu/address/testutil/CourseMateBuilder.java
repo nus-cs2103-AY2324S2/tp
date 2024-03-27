@@ -7,6 +7,7 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.TelegramHandle;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,10 +19,12 @@ public class CourseMateBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_TELEGRAM = "";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private TelegramHandle telegramHandle;
     private Set<Skill> skills;
 
     /**
@@ -31,6 +34,7 @@ public class CourseMateBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        telegramHandle = null;
         skills = new HashSet<>();
     }
 
@@ -41,6 +45,7 @@ public class CourseMateBuilder {
         name = courseMateToCopy.getName();
         phone = courseMateToCopy.getPhone();
         email = courseMateToCopy.getEmail();
+        telegramHandle = courseMateToCopy.getTelegramHandle();
         skills = new HashSet<>(courseMateToCopy.getSkills());
     }
 
@@ -92,8 +97,20 @@ public class CourseMateBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TelegramHandle} of the {@code CourseMate} that we are building.
+     */
+    public CourseMateBuilder withTelegramHandle(String telegramHandle) {
+        if (telegramHandle.isEmpty()) {
+            this.telegramHandle = null;
+        } else {
+            this.telegramHandle = new TelegramHandle(telegramHandle);
+        }
+        return this;
+    }
+
     public CourseMate build() {
-        return new CourseMate(name, phone, email, skills);
+        return new CourseMate(name, phone, email, telegramHandle, skills);
     }
 
 }

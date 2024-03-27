@@ -146,7 +146,7 @@ public class AddSkillCommand extends Command {
         Set<Skill> updatedSkills = addSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
 
         return new CourseMate(courseMateToEdit.getName(), courseMateToEdit.getPhone(),
-                courseMateToEdit.getEmail(), updatedSkills);
+                courseMateToEdit.getEmail(), courseMateToEdit.getTelegramHandle(), updatedSkills);
     }
 
     @Override

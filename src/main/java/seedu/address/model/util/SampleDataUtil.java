@@ -23,17 +23,17 @@ public class SampleDataUtil {
     public static CourseMate[] getSampleCourseMates() {
         return new CourseMate[] {
             new CourseMate(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                getSkillSet("C++")),
+                null, getSkillSet("C++")),
             new CourseMate(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                getSkillSet("Java", "C++")),
+                null, getSkillSet("Java", "C++")),
             new CourseMate(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                getSkillSet("Python")),
+                null, getSkillSet("Python")),
             new CourseMate(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                getSkillSet("C")),
+                null, getSkillSet("C")),
             new CourseMate(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                getSkillSet("Python", "C++")),
+                null, getSkillSet("Python", "C++")),
             new CourseMate(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                getSkillSet("Java"))
+                null, getSkillSet("Java"))
         };
     }
 
@@ -42,25 +42,25 @@ public class SampleDataUtil {
             new Group(new Name("CS2103T"),
                 new HashSet<>(Arrays.asList(
                     new CourseMate(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        getSkillSet("C++")),
+                        null, getSkillSet("C++")),
                     new CourseMate(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        getSkillSet("Java", "C++")),
+                        null, getSkillSet("Java", "C++")),
                     new CourseMate(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                        getSkillSet("C")),
+                        null, getSkillSet("C")),
                     new CourseMate(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                        getSkillSet("Python", "C++"))
+                        null, getSkillSet("Python", "C++"))
                     )),
                 new HashSet<>(Arrays.asList(new Skill("C++")))),
             new Group(new Name("CS2101"),
                 new HashSet<>(Arrays.asList(
                     new CourseMate(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        getSkillSet("C++")),
+                        null, getSkillSet("C++")),
                     new CourseMate(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        getSkillSet("Java", "C++")),
+                        null, getSkillSet("Java", "C++")),
                     new CourseMate(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                        getSkillSet("C")),
+                        null, getSkillSet("C")),
                     new CourseMate(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                        getSkillSet("Python", "C++"))
+                        null, getSkillSet("Python", "C++"))
                     )))
         };
     }

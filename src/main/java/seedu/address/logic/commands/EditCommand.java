@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COURSE_MATES;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.TelegramHandle;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.skill.Skill;
 
@@ -38,7 +40,8 @@ public class EditCommand extends Command {
             + "Parameters: NAME "
             + "[" + PREFIX_NAME + " NEW_NAME] "
             + "[" + PREFIX_PHONE + " NEW_PHONE_NUMBER] "
-            + "[" + PREFIX_EMAIL + " NEW_EMAIL]\n"
+            + "[" + PREFIX_EMAIL + " NEW_EMAIL] "
+            + "[" + PREFIX_TELEGRAM + " NEW_TELEGRAM_HANDLE]\n"
             + "Example: " + COMMAND_WORD + " John Doe "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com";
@@ -104,9 +107,11 @@ public class EditCommand extends Command {
         Name updatedName = editCourseMateDescriptor.getName().orElse(courseMateToEdit.getName());
         Phone updatedPhone = editCourseMateDescriptor.getPhone().orElse(courseMateToEdit.getPhone());
         Email updatedEmail = editCourseMateDescriptor.getEmail().orElse(courseMateToEdit.getEmail());
+        TelegramHandle updatedTelegramHandle = editCourseMateDescriptor.getTelegramHandle()
+                .orElse(courseMateToEdit.getTelegramHandle());
         Set<Skill> updatedSkills = courseMateToEdit.getSkills();
 
-        return new CourseMate(updatedName, updatedPhone, updatedEmail, updatedSkills);
+        return new CourseMate(updatedName, updatedPhone, updatedEmail, updatedTelegramHandle, updatedSkills);
     }
 
     @Override
@@ -141,6 +146,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private TelegramHandle telegramHandle;
 
         public EditCourseMateDescriptor() {}
 
@@ -152,6 +158,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setTelegramHandle(toCopy.telegramHandle);
         }
 
         /**
@@ -183,6 +190,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setTelegramHandle(TelegramHandle telegramHandle) {
+            this.telegramHandle = telegramHandle;
+        }
+
+        public Optional<TelegramHandle> getTelegramHandle() {
+            return Optional.ofNullable(telegramHandle);
         }
 
         @Override

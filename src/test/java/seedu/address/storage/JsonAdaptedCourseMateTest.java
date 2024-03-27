@@ -11,18 +11,22 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.TelegramHandle;
 
 public class JsonAdaptedCourseMateTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_TELEGRAM_HANDLE = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
+    private static final String VALID_TELEGRAM_HANDLE = BENSON.getTelegramHandle().toString();
     private static final List<JsonAdaptedSkill> VALID_SKILLS = BENSON.getSkills().stream()
             .map(JsonAdaptedSkill::new)
             .collect(Collectors.toList());
@@ -36,7 +40,7 @@ public class JsonAdaptedCourseMateTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_SKILLS);
+                new JsonAdaptedCourseMate(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_SKILLS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -44,7 +48,7 @@ public class JsonAdaptedCourseMateTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(null, VALID_PHONE, VALID_EMAIL, VALID_SKILLS);
+                new JsonAdaptedCourseMate(null, VALID_PHONE, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -52,7 +56,7 @@ public class JsonAdaptedCourseMateTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_SKILLS);
+                new JsonAdaptedCourseMate(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_SKILLS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -60,7 +64,7 @@ public class JsonAdaptedCourseMateTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(VALID_NAME, null, VALID_EMAIL, VALID_SKILLS);
+                new JsonAdaptedCourseMate(VALID_NAME, null, VALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -68,7 +72,7 @@ public class JsonAdaptedCourseMateTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_SKILLS);
+                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_TELEGRAM_HANDLE, VALID_SKILLS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
@@ -76,9 +80,25 @@ public class JsonAdaptedCourseMateTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedCourseMate courseMate =
-                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, null, VALID_SKILLS);
+                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, null, VALID_TELEGRAM_HANDLE, VALID_SKILLS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidTelegramHandle_throwsIllegalValueException() {
+        JsonAdaptedCourseMate courseMate =
+                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_TELEGRAM_HANDLE, VALID_SKILLS);
+        String expectedMessage = TelegramHandle.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyTelegramHandle_returnsCourseMate() throws Exception {
+        JsonAdaptedCourseMate courseMate =
+                new JsonAdaptedCourseMate(VALID_NAME, VALID_PHONE, VALID_EMAIL, "", VALID_SKILLS);
+        CourseMate expectedCourseMate = new CourseMate(BENSON.getName(), BENSON.getPhone(), BENSON.getEmail(),
+                null, BENSON.getSkills());
+        assertEquals(expectedCourseMate, courseMate.toModelType());
+    }
 }
