@@ -13,11 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentType;
-import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 
 /**
@@ -43,7 +41,6 @@ public class CancelAppCommand extends Command {
     public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled Appointment: %1$s";
 
     private Appointment apptToCancel;
-    private AppointmentView apptViewToCancel;
     private final Nric nricToMatch;
     private final Date dateToMatch;
     private final TimePeriod timePeriodToMatch;
@@ -56,7 +53,6 @@ public class CancelAppCommand extends Command {
         this.dateToMatch = dateToMatch;
         this.timePeriodToMatch = timePeriodToMatch;
         this.apptToCancel = null;
-        this.apptViewToCancel = null;
     }
 
     @Override
@@ -74,10 +70,8 @@ public class CancelAppCommand extends Command {
         }
 
         this.apptToCancel = model.getMatchingAppointment(nricToMatch, dateToMatch, timePeriodToMatch);
-        Name name = model.getPersonWithNric(nricToMatch).getName();
-        this.apptViewToCancel = model.getMatchingAppointmentView(name, apptToCancel);
 
-        model.cancelAppointment(apptToCancel, apptViewToCancel);
+        model.cancelAppointment(apptToCancel);
         return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, Messages.format(apptToCancel)));
     }
 

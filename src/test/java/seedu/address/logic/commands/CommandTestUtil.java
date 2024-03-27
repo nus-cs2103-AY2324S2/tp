@@ -23,7 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -173,13 +173,12 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredPersonList = new ArrayList<>(actualModel.getFilteredPersonList());
-        List<Appointment> expectedFilteredAppointmentList =
-                new ArrayList<>(actualModel.getFilteredAppointmentList());
-
+        List<AppointmentView> expectedFilteredAppointmentViewList =
+                new ArrayList<>(actualModel.getFilteredAppointmentViewList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredPersonList, actualModel.getFilteredPersonList());
-        assertEquals(expectedFilteredAppointmentList, actualModel.getFilteredAppointmentList());
+        assertEquals(expectedFilteredAppointmentViewList, actualModel.getFilteredAppointmentViewList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

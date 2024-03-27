@@ -9,7 +9,6 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
@@ -19,7 +18,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<AppointmentView> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+    Predicate<AppointmentView> PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -116,7 +115,7 @@ public interface Model {
      * Cancels the given appointment.
      * The appointment must exist in the address book.
      */
-    void cancelAppointment(Appointment key, AppointmentView apptViewKey);
+    void cancelAppointment(Appointment key);
 
     /**
      * Adds the given appointment.
@@ -131,9 +130,6 @@ public interface Model {
      * not be the same as another existing appointment in CLInic.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
-
-    /** Returns an unmodifiable view of the filtered appointment list */
-    ObservableList<Appointment> getFilteredAppointmentList();
 
     /** Returns an unmodifiable view of the filtered appointment view list */
     ObservableList<AppointmentView> getFilteredAppointmentViewList();
@@ -155,9 +151,6 @@ public interface Model {
 
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);
-
-    /** Returns an AppointmentView that matches based on Name, Appointment given **/
-    AppointmentView getMatchingAppointmentView(Name name, Appointment appt);
 
     /** Deletes all appointments of a targetNric **/
     void deleteAppointmentsWithNric(Nric targetNric);

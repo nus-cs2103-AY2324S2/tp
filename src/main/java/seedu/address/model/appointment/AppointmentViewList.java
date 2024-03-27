@@ -1,6 +1,5 @@
 package seedu.address.model.appointment;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
@@ -9,10 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
-import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 
 /**
@@ -34,77 +32,45 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
     private final ObservableList<AppointmentView> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    /**
-     * Returns true if the list contains an equivalent appointmentView as the given argument.
-     */
-    public boolean contains(AppointmentView toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameAppointmentView);
-    }
 
-    /**
-     * Adds an appointmentView to the list.
-     * The appointmentView must not already exist in the list.
-     */
-    public void add(AppointmentView toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateAppointmentException();
+    public void setAppointmentViews(UniquePersonList personList, List<Appointment> appointmentList) {
+        requireAllNonNull(personList, appointmentList);
+        internalList.clear();
+
+        for (Person person : personList) {
+            Nric personNric = person.getNric();
+
+            for (Appointment appointment : appointmentList) {
+                Nric appointmentNric = appointment.getNric();
+
+                // Check if the NRICs match
+                if (personNric.equals(appointmentNric)) {
+                    AppointmentView appointmentView = new AppointmentView(person.getName(), appointment);
+                    internalList.add(appointmentView);
+                }
+            }
         }
-        internalList.add(toAdd);
         sortList();
     }
 
-    /**
-     * Replaces the appointmentView {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the list.
-     * The appointmentView of {@code editedAppointment} must not be the same as
-     * another existing appointmentView in the list.
-     */
-    public void setAppointmentView(AppointmentView target, AppointmentView editedAppointment) {
-        requireAllNonNull(target, editedAppointment);
 
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new AppointmentNotFoundException();
+    public void setAppointmentViews(UniquePersonList personList, AppointmentList appointmentList) {
+        requireAllNonNull(personList, appointmentList);
+        internalList.clear();
+
+        for (Person person : personList) {
+            Nric personNric = person.getNric();
+
+            for (Appointment appointment : appointmentList) {
+                Nric appointmentNric = appointment.getNric();
+
+                // Check if the NRICs match
+                if (personNric.equals(appointmentNric)) {
+                    AppointmentView appointmentView = new AppointmentView(person.getName(), appointment);
+                    internalList.add(appointmentView);
+                }
+            }
         }
-
-        if (!target.isSameAppointmentView(editedAppointment) && contains(editedAppointment)) {
-            throw new DuplicateAppointmentException();
-        }
-
-        internalList.set(index, editedAppointment);
-        sortList();
-    }
-
-    /**
-     * Removes the equivalent appointmentView from the list.
-     * The appointmentView must exist in the list.
-     */
-    public void remove(AppointmentView toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new AppointmentNotFoundException();
-        }
-    }
-
-    public void setAppointmentViews(AppointmentViewList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-        sortList();
-    }
-
-    /**
-     * Replaces the contents of this list with {@code appointmentViews}.
-     * {@code appointmentViews} must not contain duplicate appointmentViews.
-     */
-    public void setAppointmentViews(List<AppointmentView> appointments) {
-        requireAllNonNull(appointments);
-        if (!appointmentViewsAreUnique(appointments)) {
-            throw new DuplicateAppointmentException();
-        }
-
-        internalList.setAll(appointments);
         sortList();
     }
 
@@ -118,25 +84,6 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
     @Override
     public Iterator<AppointmentView> iterator() {
         return internalList.iterator();
-    }
-
-    /**
-     * Returns an AppointmentView that matches from the AppointmentView list based on
-     * {@code Nric, Date, TimePeriod} given.
-     * Throws an {@code AppointmentNotFoundException} if no matching appointmentView is found.
-     */
-    public AppointmentView getMatchingAppointmentView(Name name, Appointment appointment) {
-        requireNonNull(name);
-        requireNonNull(appointment);
-
-        for (AppointmentView appointmentView : this) {
-            if (appointmentView.getName().equals(name)
-                    && appointmentView.getAppointment().equals(appointment)) {
-                return appointmentView;
-            }
-        }
-
-        throw new AppointmentNotFoundException();
     }
 
     @Override
@@ -185,11 +132,5 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
         internalList.sort(
             Comparator.comparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getDate())
                 .thenComparing((AppointmentView appointmentView) -> appointmentView.getAppointment().getTimePeriod()));
-    }
-
-    /** Delete all appointments with given Nric if such appointments exist without exceptions **/
-    public void deleteAppointmentsWithNric(Nric nric) {
-        requireNonNull(nric);
-        internalList.removeIf(appointmentView -> appointmentView.getAppointment().getNric().equals(nric));
     }
 }

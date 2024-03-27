@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
@@ -20,7 +20,7 @@ import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 
 /**
- * Marks an existing appointment in the CLInic as completed.
+ * Edits the details of an existing person in the CLInic.
  */
 public class MarkCommand extends Command {
 
@@ -41,9 +41,8 @@ public class MarkCommand extends Command {
     private final TimePeriod timePeriod;
 
     /**
-     * @param nric nric of the Appointment to be identified
-     * @param date date of the existing Appointment to be specified
-     * @param timePeriod timePeriod of the existing Appointment to be marked
+     * @param index of the person in the filtered person list to edit
+     * @param editPersonDescriptor details to edit the person with
      */
     public MarkCommand(Nric nric, Date date, TimePeriod timePeriod) {
         requireNonNull(nric);
@@ -72,7 +71,7 @@ public class MarkCommand extends Command {
 
         model.setAppointment(appt, newAppt);
 
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
         return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(newAppt)));
     }
 

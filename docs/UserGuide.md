@@ -211,6 +211,19 @@ Format: `mark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
 Examples:
 * `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
 
+### Marking an Appointment: `mark`
+
+Marks an appointment from the address book.
+
+Format: `mark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
+
+* Marks an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Appointment with the following details **must exist within database**.
+
+Examples:
+* `mark i/ T0123456A d/ 2024-02-20 from/ 11:00 to/ 11:30`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from CLInic.

@@ -7,17 +7,19 @@ import static seedu.address.testutil.TypicalAppointments.ALICE_APPT_1;
 import static seedu.address.testutil.TypicalAppointments.AMY_APPT;
 import static seedu.address.testutil.TypicalAppointments.BENSON_APPT;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAddressBookWithAppointments;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 
 /**
- * A utility class containing a list of {@code Appointment} objects to be used in tests.
+ * A utility class containing a list of {@code AppointmentView} objects to be used in tests.
  * Appointment NRICs match those in {@code TypicalPersons}.
  */
 public class TypicalAppointmentViews {
@@ -47,11 +49,17 @@ public class TypicalAppointmentViews {
      * persons and appointments
      */
     public static AddressBook getTypicalAddressBookWithAppointmentViews() {
-        AddressBook ab = getTypicalAddressBookWithAppointments();
+        AddressBook ab = getTypicalAddressBook();
+
+        for (Appointment appointment : getTypicalAppointments()) {
+            //appointmentView is updated every time
+            ab.addAppointment(appointment);
+        }
         return ab;
     }
 
     public static List<AppointmentView> getTypicalAppointmentViews() {
         return new ArrayList<>(Arrays.asList(ALICE_APPT_VIEW, ALICE_APPT_VIEW_1, BENSON_APPT_VIEW));
     }
+
 }
