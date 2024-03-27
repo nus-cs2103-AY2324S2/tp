@@ -156,6 +156,8 @@ public class ParserUtil {
         return Integer.parseInt(trimmedVacancy);
     }
 
+
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */

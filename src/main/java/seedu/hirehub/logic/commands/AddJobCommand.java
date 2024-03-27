@@ -18,7 +18,7 @@ public class AddJobCommand extends Command {
     public static final String COMMAND_WORD = "add_job";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new job to list of open jobs. "
             + "Parameters: "
-                    + PREFIX_TITLE + "TITLE "
+            + PREFIX_TITLE + "TITLE "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + PREFIX_VACANCY + "VACANCY \n"
             + "Example: " + COMMAND_WORD + " "
@@ -60,8 +60,8 @@ public class AddJobCommand extends Command {
             return false;
         }
 
-        AddJobCommand otherAddJobCommand = (AddJobCommand) other;
-        return job.equals(otherAddJobCommand.job);
+        AddJobCommand otherJobCommand = (AddJobCommand) other;
+        return job.equals(otherJobCommand.job);
     }
 
     @Override
@@ -70,4 +70,5 @@ public class AddJobCommand extends Command {
                 .add("job", job)
                 .toString();
     }
+
 }

@@ -57,7 +57,6 @@ public class UniqueJobList implements Iterable<Job> {
         requireAllNonNull(target, editedJob);
 
         int index = internalList.indexOf(target);
-
         if (index == -1) {
             throw new JobNotFoundException();
         }
@@ -75,7 +74,6 @@ public class UniqueJobList implements Iterable<Job> {
      */
     public void removeJob(Job toRemove) {
         requireNonNull(toRemove);
-
         if (!internalList.remove(toRemove)) {
             throw new JobNotFoundException();
         }
@@ -92,7 +90,6 @@ public class UniqueJobList implements Iterable<Job> {
      */
     public void setJobs(List<Job> jobs) {
         requireAllNonNull(jobs);
-
         if (!jobsAreUnique(jobs)) {
             throw new DuplicateJobException();
         }

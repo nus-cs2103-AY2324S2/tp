@@ -12,13 +12,13 @@ import seedu.hirehub.logic.parser.exceptions.ParseException;
 import seedu.hirehub.model.job.Job;
 
 /**
- * Parses input arguments and creates a new JobCommand object
+ * Parses input arguments and creates a new AddJobCommand object
  */
 public class AddJobCommandParser implements Parser<AddJobCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the JobCommand
-     * and returns an JobCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddJobCommand
+     * and returns an AddJobCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddJobCommand parse(String args) throws ParseException {
