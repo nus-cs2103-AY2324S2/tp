@@ -115,24 +115,6 @@ How the `Logic` component works:
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve. 
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("export")` API call as an example.
-
-<puml src="diagrams/ExportSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `export` Command" />
-
-How the `Logic` component works here:
-
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser`.
-
-<box type="info" seamless>
-
-**Note:** For the `export` command above, a parser that matches the command is not created by `AddressBookParser` as it only contains a command and does not contain an argument. However, for other relevant commands, `AddressBookParser` will create the parser that matches the command.
-</box>
-
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `ExportCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to retrieve the filtered persons list).<br>
-   Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <puml src="diagrams/ParserClasses.puml" width="600"/>
@@ -183,6 +165,60 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### **Export Feature**
+
+The `export` command allows users to export the details of each person currently displayed in the `PersonListPanel` to a CSV file. The CSV file is generated in the file `./addressbookdata/avengersassemble.csv`.
+
+#### Implementation Details
+
+The user uses the `find` feature to filter out the relevant persons, which will be displayed in the `PersonListPanel`. 
+The `export` feature utilizes the `filteredPersons` list stored in `Model` to retrieve the relavant data displayed in `PersonListPanel`.
+The `export` feature also relies the Jackson Dataformat CSV module and the Jackson Databind module write the details of persons to the CSV file `./addressbookdata/avengersassemble.csv`.
+
+#### Parsing User Input
+
+The `ExportCommand` class is instantiated directly by the `AddressBookParser` class when the user inputs the `export` command as the `export` command does not require any additional arguments.
+
+#### Executing the Command
+
+When the user inputs an `export` command, it is passed to an `AddressBookParser` which creates an `ExportCommand` object. The `LogicManager` then calls the `execute` method in the `ExportCommand` class.
+
+#### Data Retrieval
+
+The `excute` method calls the `Model#getFilteredPersonList()` to retrieve the `filteredPersons` list stored in `Model`. This lists stores the relevant persons currently displayed in the `PersonListPanel`.
+It then creates a temporary `AddressBook` object and iterates through the `filteredPerons` list to add each person from the list into the AddressBook.
+
+#### JSON Serialization
+
+The information in the temporary `AddressBook` is written into a JSON file, `filteredaddressbook.json` using the `JsonAddressBookStorage#writeToJsonFile()` method.
+
+#### CSV Conversion
+
+The `export` feature relies on the Jackson Dataformat CSV module and the Jackson Databind module to read the JSON file and write the information into a CSV file.
+Given below is are the steps taken to convert the JSON-formatted data to CSV:
+
+* The JSON data is read from the JSON file and converted into a JSON tree using Jackson's `ObjectMapper`.
+* The JSON tree is processed to extract the array of persons.
+* A CSV schema is dynamically built based on the structure of the JSON array.
+* The CSV schema and JSON data are used to write to the CSV file using Jackson's `CsvMapper`.
+
+The following sequence diagram shows the interactions within the different classes when the user inputs an `export` command.
+
+<puml src="diagrams/ExportSequenceDiagram.puml" alt="Sequence Diagram for the `export` Command" />
+
+#### Alternative Implementations
+
+* **Alternative 1 (current choice):** Exports the details of persons displayed in `PersonListPanel`.
+    * Pros: Users do not have to go through the extra step of filtering through the persons in the CSV file in an external software.
+    * Cons: The extent to which users can filter the persons displayed is highly dependent on the `find` feature.
+
+* **Alternative 2:** Exports **all** contacts stored in the address book.
+    * Pros: 
+      * Easy to implement.
+      * The `export` feature is not reliant on the `find` feature to update the `filteredPersons` list.
+    * Cons: Users need to manually filter and sort through the CSV file if they require certain data which may be less efficient.
+
 
 ### \[Proposed\] Undo/redo feature
 
