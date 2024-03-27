@@ -182,7 +182,7 @@ public class MainWindow extends UiPart<Stage> {
 
         commandBox.freezeCommandBox();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), exitEvent -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), exitEvent -> {
             logic.setGuiSettings(guiSettings);
             helpWindow.hide();
             primaryStage.hide();
