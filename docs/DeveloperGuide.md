@@ -369,9 +369,9 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Extremely easy to understand.
     * Cons: Each time we want to access any task or employee we have to iterate through the split string and then iterate through every task/employee to compare the ids.
 
-* **Alternative 3:** Using only the String variable.
-    * Pros: Extremely easy to understand.
-    * Cons: Each time we want to access any task or employee we have to iterate through the split string and then iterate through every task/employee to compare the ids.
+* **Alternative 3:** Using only the hashtable.
+    * Pros: We can easily access the assigned tasks and employees so that we do not need to loop and compare every id each function call.
+    * Cons: When we try to store or load the stored JSON data to the hashtable we have to go through quite a complicated process to do it in the right order.
 
 ### \[Proposed\] Find task by name
 
