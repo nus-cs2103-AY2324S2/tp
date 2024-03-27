@@ -152,13 +152,14 @@ You can also delete multiple people by chaining the indices using a comma.
 
 Format: `delete INDEX1, INDEX2, INDEX3, …​`
 
-* A comma must be used to separate each pair of Indices, otherwise an error message will be displayed.
-* The indices do not have to be listed in order. (i.e. `2, 4, 6` is the same as `6, 2, 4`)
-* Duplicated indices will be ignored. (i.e. `1, 1, 4, 1` is the same as `1, 4`)
+* A comma (`,`) must be used to separate each pair of Indices.
+* The indices do not need to be listed in order. (i.e. `2, 4, 6` is the same as `6, 2, 4`)
+* Listing the same index more than once will result in an error message being displayed.
 * Each `INDEX` must still adhere to the points listed above.
 
-Example:
+Examples:
 * `delete 3, 1, 7, 8` deletes the first, third, seventh, and eighth person in the address book.
+* `delete 1, 1, 2` causes `There is a duplicate Index listed.` error message to be displayed.
 
 ### Clearing all entries : `clear`
 

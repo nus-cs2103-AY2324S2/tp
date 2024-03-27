@@ -64,6 +64,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseIndices_duplicateIndex_throwsParseException() {
+        String args = "1, 4, 5, 1, 2";
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(args, ","));
+    }
+
+    @Test
     public void parseIndices_validArgsWhiteSpaceSep_success() throws Exception {
         List<Index> actualList = ParserUtil.parseIndices("1 5 3", " ");
         List<Index> expectedList = Arrays.asList(
@@ -82,19 +88,6 @@ public class ParserUtilTest {
             Index.fromOneBased(10),
             Index.fromOneBased(3),
             Index.fromOneBased(2)
-        );
-
-        assertEquals(expectedList, actualList);
-    }
-
-    @Test
-    public void parseIndices_duplicateIndex_distinctList() throws Exception {
-        String args = "1, 1, 4, 6, 4, 1, 6";
-        List<Index> actualList = ParserUtil.parseIndices(args, ",");
-        List<Index> expectedList = Arrays.asList(
-            Index.fromOneBased(1),
-            Index.fromOneBased(4),
-            Index.fromOneBased(6)
         );
 
         assertEquals(expectedList, actualList);
