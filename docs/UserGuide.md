@@ -53,7 +53,7 @@ does so via the following features:
    a. For more information on what information you can store, refer to the [Fields Summary](#fields-summary) section.
 2. **Search and Filter**: Search and filter your internship applications by keywords, making it easy to find the information you need.
 3. **Task Management**: Add tasks to your individual internship applications and keep track of their individual deadlines.
-=======
+
 
 <span style="color: #f66a0a;">CareerSync</span> is a **desktop app for managing internships, optimized for use via a Command Line Interface** ([CLI](#Glossary)).
 
@@ -106,7 +106,7 @@ Start keeping track of your internships easily with <span style="color: #f66a0a;
 1. Ensure that you have **Java 11 or above** installed on your computer.
     - For MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html).
     - For Windows or Linux, follow the instructions [here](https://www.java.com/en/download/). 
-=======
+
 1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer if you are using Windows.
     - If you are using MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
 
@@ -139,9 +139,9 @@ When you first start CareerSync, you will see this window. This is the main wind
 
 
    * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
-      /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
-     #f66a0a;">CareerSync</span> application.
-=======
+      /phone 90890301 /loc remote /role Software Intern` : <br> Adds this internship entry to the 
+      <span style="color: #f66a0a;">CareerSync</span> application.
+
 ### Areas
 The main window of CareerSync is divided into four main areas: the **Tab Area**, the **CLI**, the **Message Box** and the **Internship List Display**.
 
