@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELECT_TASK;
-import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import seedu.address.model.internship.Deadline;
 import seedu.address.model.internship.Internship;
 
 /**
- * Edits the details of an existing internship in the internship data.
+ * Adds a deadline to a task in an internship, or replaces the deadline if there already is one.
  */
 public class InternshipAddDeadlineCommand extends InternshipCommand {
 
@@ -27,12 +26,13 @@ public class InternshipAddDeadlineCommand extends InternshipCommand {
             + "Parameters: INDEX_INTERNSHIP (must be a positive integer)" + PREFIX_SELECT_TASK
             + " INDEX_TASK (must be a positive integer) "
             + PREFIX_DEADLINE + " DEADLINE\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEADLINE + " 1 "
-            + PREFIX_DEADLINE + " 20/4/2024";
+            + Deadline.MESSAGE_CONSTRAINTS + "\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_SELECT_TASK + " 1 "
+            + PREFIX_DEADLINE + " 20/04/2024";
 
     public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "Deadline Added: %1$s";
 
-    public static final String MESSAGE_INVALID_TASK_INDEX = "Invalid task index.";
+    public static final String MESSAGE_INVALID_DISPLAYED_TASK_INDEX = "Invalid task index.";
 
     public static final String MESSAGE_EMPTY_DEADLINE = "Deadline cannot be blank!";
     private final Index internshipIndex;
@@ -59,7 +59,7 @@ public class InternshipAddDeadlineCommand extends InternshipCommand {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
-        if (internshipIndex.getOneBased() >= lastShownList.size()) {
+        if (internshipIndex.getOneBased() > lastShownList.size()) {
             throw new CommandException(InternshipMessages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
@@ -70,7 +70,6 @@ public class InternshipAddDeadlineCommand extends InternshipCommand {
         }
         internshipToAddDeadline.getTaskList().getTask(taskIndex.getZeroBased()).addDeadline(deadline);
 
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(String.format(MESSAGE_ADD_DEADLINE_SUCCESS,
                 InternshipMessages.format(internshipToAddDeadline)));
     }
