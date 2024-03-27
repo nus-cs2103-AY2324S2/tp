@@ -162,7 +162,6 @@ mark {
 }
 
 h1, h2 {
- text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
  padding: 10px;
  color: #333333; /* Sets the text color inside the container */
  background-clip: text;
@@ -174,9 +173,8 @@ h3,
 h4,
 h5,
 h6 {
-   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
    padding: 10px;
-   color: #333333; /* Sets the text color inside the container */
+   color: #5A5A5A; /* Sets the text color inside the container */
    background-clip: text;
    background: linear-gradient(90deg in oklab, #ADD8E6, #9FE2BF);
    border-radius: 10px; /* Sets the corner radius to 20px */
