@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import vitalconnect.commons.exceptions.IllegalValueException;
-import vitalconnect.model.allergytag.AllergyTag;
+import vitalconnect.model.person.medicalinformation.AllergyTag;
 
 /**
  * Jackson-friendly version of {@link AllergyTag}.

@@ -1,4 +1,4 @@
-package vitalconnect.model.allergytag;
+package vitalconnect.model.person.medicalinformation;
 
 import static java.util.Objects.requireNonNull;
 import static vitalconnect.commons.util.AppUtil.checkArgument;

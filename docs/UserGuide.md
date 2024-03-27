@@ -38,6 +38,7 @@ So, whether you're a busy professional juggling multiple appointments, vitalConn
     - [Exiting the program](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
+    - [Editing medical information](#editing-the-medical-information--editm)
     - [Archiving data files](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
@@ -335,6 +336,35 @@ Format: `exit`
 ### Saving the data
 
 Clinic data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[<span style="font-size: small;">Back to Top</span>](#top)
+
+### Editing the medical information : "editm"
+
+Edit the medical information of an existing person.
+
+Format: `editm ic/NRIC h/HEIGHT w/WEIGHT [ot/ALLERGY] [at/ALLERGY]…​`
+
+* All fields are optional field but at least one should be present.
+* There should only be one field `ot`.
+
+Prefix explanation:
+- `ot/ALLERGY` overwrite all existing tag with this tag.
+- `at/ALLERGY` append this tag to existing tag.
+
+Example:
+* `editm ic/G1234567J w/100, ot/peanut at/milk at/egg`
+
+This will change the weight of person with ic G1234567J to 100 and
+overwrite allergy tag to peanut, milk and egg.
+
+**Hint:**
+User may use `ot/FirstTag` followed by wanted numbers of `at/moreTag` 
+to overwrite current tag with a series of new tag. 
+
+> [!CAUTION]
+> Use if prefix ot/ will delete all existing tag, including the added tag in current command before it. 
+> Please use with cautious.
 
 [<span style="font-size: small;">Back to Top</span>](#top)
 
