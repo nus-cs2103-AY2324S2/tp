@@ -159,6 +159,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find andrew` returns `andrew` and `Andrew`
+
   ![Find example 1](images/FindCommandCapsInsensitive.png)
 * `find nic faaheem` returns `nic`, `faaheem`<br>
   ![result for 'find nic faaheem'](images/FindExample2.png)
