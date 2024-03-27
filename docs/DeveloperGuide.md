@@ -435,6 +435,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
+   * 2a1. SWEE shows an error message.
+
   Use case ends.
 
 * 3a. The given index is invalid.

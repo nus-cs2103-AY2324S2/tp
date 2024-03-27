@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
@@ -79,6 +80,15 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model,
             String.format(DeleteCommand.MESSAGE_DELETE_CLIENT_FAIL, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX));
+    }
+
+    @Test
+    public void execute_emptyList_throwsCommandException() {
+        assumeTrue(model.getFilteredClientList().isEmpty());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_CLIENT);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CLIENT_FAIL, Messages.MESSAGE_EMPTY_LIST);
+
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
     @Test

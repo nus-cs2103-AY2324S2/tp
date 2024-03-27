@@ -38,7 +38,10 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(MESSAGE_DELETE_CLIENT_FAIL,
+            Messages.MESSAGE_EMPTY_LIST));
+        } else if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(String.format(MESSAGE_DELETE_CLIENT_FAIL,
                 Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX));
         }
