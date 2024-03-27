@@ -37,7 +37,7 @@ public class Main {
         // can be ignored.
 
         logger.warning("The warning about Unsupported JavaFX configuration below can be ignored.");
-        Font.loadFont(MainApp.class.getResourceAsStream("/docs/Pixel_font/PressStart2P_Regular.ttf"), 14);
+        Font.loadFont(MainApp.class.getResourceAsStream("/docs/Pixel_font/PressStart2P-Regular.ttf"), 14);
         Application.launch(MainApp.class, args);
     }
 }
