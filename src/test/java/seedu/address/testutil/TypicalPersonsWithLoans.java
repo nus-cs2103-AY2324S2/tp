@@ -15,17 +15,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.LoanRecords;
 import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalPersonsWithLoans {
+    public static final LoanRecords LOAN_RECORDS = loanRecords();
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends").withLoanRecords(LOAN_RECORDS).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -56,7 +60,22 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalPersonsWithLoans() {} // prevents instantiation
+
+    /**
+     * Returns an {@code LoanRecords} stub with some typical loans.
+     */
+    public static LoanRecords loanRecords() {
+        LoanRecords loanRecords = new LoanRecords();
+        try {
+            loanRecords.addLoan(100F, DateUtil.parse("2020-01-01"), DateUtil.parse("2020-01-13"));
+            loanRecords.addLoan(200F, DateUtil.parse("2020-02-01"), DateUtil.parse("2020-02-13"));
+            loanRecords.addLoan(300F, DateUtil.parse("2020-02-13"), DateUtil.parse("2020-02-14"));
+        } catch (IllegalValueException e) {
+            e.printStackTrace();
+        }
+        return loanRecords;
+    }
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
