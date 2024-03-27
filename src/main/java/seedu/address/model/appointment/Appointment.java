@@ -50,6 +50,14 @@ public class Appointment {
         return timePeriod;
     }
 
+    public Time getStartTime() {
+        return timePeriod.getStartTime();
+    }
+
+    public Time getEndTime() {
+        return timePeriod.getEndTime();
+    }
+
     public AppointmentType getAppointmentType() {
         return appointmentType;
     }

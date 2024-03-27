@@ -143,7 +143,16 @@ public interface Model {
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
+
     void updateFilteredAppointmentList(Predicate<Appointment> predicate, Predicate<AppointmentView> predicateView);
+
+    /** Returns an unmodifiable view of the appointment day-view list */
+    ObservableList<AppointmentView> getFilteredAppointmentDayViewList();
+
+    /**
+     * Updates the appointment day-view list, filtering by today's date
+     */
+    void updateFilteredAppointmentDayViewList();
 
     /** Returns an Appointment that matches based on Nric, Date and TimePeriod given **/
     Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod);

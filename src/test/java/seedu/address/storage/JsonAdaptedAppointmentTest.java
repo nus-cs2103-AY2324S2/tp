@@ -29,8 +29,8 @@ public class JsonAdaptedAppointmentTest {
 
     private static final String VALID_NRIC = ALICE_APPT.getNric().toString();
     private static final String VALID_DATE = ALICE_APPT.getDate().toString();
-    private static final String VALID_START_TIME = ALICE_APPT.getTimePeriod().getStartTime().toString();
-    private static final String VALID_END_TIME = ALICE_APPT.getTimePeriod().getEndTime().toString();
+    private static final String VALID_START_TIME = ALICE_APPT.getStartTime().toString();
+    private static final String VALID_END_TIME = ALICE_APPT.getEndTime().toString();
     private static final String VALID_TYPE = ALICE_APPT.getAppointmentType().typeName;
     private static final String VALID_NOTE = ALICE_APPT.getNote().note;
     private static final boolean VALID_MARK = ALICE_APPT.getMark().isMarked;

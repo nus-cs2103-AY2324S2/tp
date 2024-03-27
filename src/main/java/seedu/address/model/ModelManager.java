@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.date.Date;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.AppointmentView;
 import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Name;
@@ -30,6 +33,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<AppointmentView> filteredAppointmentsView;
+    private final FilteredList<AppointmentView> filteredAppointmentsDayView;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,9 +45,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
-        filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        this.filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.filteredAppointmentsDayView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.updateFilteredAppointmentDayViewList();
     }
 
     public ModelManager() {
@@ -217,6 +223,22 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
         filteredAppointmentsView.setPredicate(predicateView);
+    }
+
+    //=========== Filtered Appointment Day-View List Accessors =====================================================
+
+    @Override
+    public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+        return filteredAppointmentsDayView;
+    }
+
+    @Override
+    public void updateFilteredAppointmentDayViewList() {
+        Predicate<AppointmentView> predicate = new AppointmentContainsKeywordsPredicate(
+            Optional.empty(),
+            Optional.of(new Date(LocalDate.now().toString())),
+            Optional.empty());
+        filteredAppointmentsDayView.setPredicate(predicate);
     }
 
     @Override

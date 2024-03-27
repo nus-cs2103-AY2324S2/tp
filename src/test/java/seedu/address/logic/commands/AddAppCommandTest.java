@@ -225,6 +225,14 @@ public class AddAppCommandTest {
         @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate,
             Predicate<AppointmentView> predicateView) {
+          
+        @Override
+        public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredAppointmentDayViewList() {
         }
 
         @Override
