@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,6 +18,29 @@ public class Birthday {
     public static final String BIRTHDAY_CONSTRAINTS =
             "Birthday should be in the format dd/mm/yyyy and should be before today";
     public static final String BIRTHDAY_FORMAT = "dd/MM/yyyy";
+
+    /**
+     * This comparator will sort contacts with no birthdays to the back.
+     * Contacts with their next birthday closest to today will be put first.
+     */
+    public static final Comparator<Person> BIRTHDAY_COMPARATOR = (personA, personB) -> {
+        if (personA.getBirthday().birthday == null) {
+            return 1;
+        }
+        if (personB.getBirthday().birthday == null) {
+            return -1;
+        }
+        LocalDate now = LocalDate.now();
+        LocalDate nextABirthday = personA.getBirthday().birthday.withYear(now.getYear());
+        if (nextABirthday.isBefore(now)) {
+            nextABirthday = nextABirthday.plusYears(1);
+        }
+        LocalDate nextBBirthday = personB.getBirthday().birthday.withYear(now.getYear());
+        if (nextBBirthday.isBefore(now)) {
+            nextBBirthday = nextBBirthday.plusYears(1);
+        }
+        return nextABirthday.compareTo(nextBBirthday);
+    };
 
     public final LocalDate birthday;
 
