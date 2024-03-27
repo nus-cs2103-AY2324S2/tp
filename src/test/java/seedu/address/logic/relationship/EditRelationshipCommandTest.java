@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.relationship.Relationship;
+import seedu.address.model.person.relationship.RoleBasedRelationship;
 import seedu.address.testutil.TypicalPersonsUuid;
 
 public class EditRelationshipCommandTest {
@@ -28,7 +29,7 @@ public class EditRelationshipCommandTest {
     public void execute_editNonExistentRelationship_throwsCommandException() {
         Model model = new ModelManager();
         EditRelationshipCommand editCommand = new EditRelationshipCommand("uuid1", "uuid2",
-                "family", "friend");
+                "siblings", "friend");
         assertThrows(CommandException.class, () -> editCommand.execute(model));
     }
 
@@ -36,10 +37,10 @@ public class EditRelationshipCommandTest {
     public void execute_editSameDescriptor_throwsCommandException() {
         Model model = new ModelManager();
         Relationship existingRelationship = new Relationship(UUID.randomUUID(),
-                UUID.randomUUID(), "family");
+                UUID.randomUUID(), "siblings");
         model.addRelationship(existingRelationship);
         EditRelationshipCommand editCommand = new EditRelationshipCommand("uuid1", "uuid2",
-                "family", "family");
+                "siblings", "siblings");
         assertThrows(CommandException.class, () -> editCommand.execute(model));
     }
 
@@ -48,7 +49,7 @@ public class EditRelationshipCommandTest {
         // Setup
         Model model = new ModelManager();
         String targetUuid = "target123";
-        String oldRelationshipDescriptor = "family";
+        String oldRelationshipDescriptor = "siblings";
         String newRelationshipDescriptor = "friend";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(null, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
@@ -62,7 +63,7 @@ public class EditRelationshipCommandTest {
     public void execute_invalidTargetUuid_throwsCommandException() {
         Model model = new ModelManager();
         String originUuid = "1234";
-        String oldDescriptor = "family";
+        String oldDescriptor = "siblings";
         String newDescriptor = "friend";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, null,
                 oldDescriptor, newDescriptor);
@@ -76,7 +77,7 @@ public class EditRelationshipCommandTest {
         Model model = new ModelManager();
         String originUuid = "person123";
         String targetUuid = "person123";
-        String oldRelationshipDescriptor = "family";
+        String oldRelationshipDescriptor = "siblings";
         String newRelationshipDescriptor = "friend";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
@@ -94,8 +95,8 @@ public class EditRelationshipCommandTest {
         model.setAddressBook(typicalPersonsAddressBook);
         String originUuid = "0001";
         String targetUuid = "0006";
-        String oldRelationshipDescriptor = "family";
-        String newRelationshipDescriptor = "family";
+        String oldRelationshipDescriptor = "siblings";
+        String newRelationshipDescriptor = "siblings";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
 
@@ -116,7 +117,7 @@ public class EditRelationshipCommandTest {
         model.setAddressBook(typicalPersonsAddressBook);
         String originUuid = "0001";
         String targetUuid = "0003";
-        String oldDescriptor = "family";
+        String oldDescriptor = "siblings";
         String newDescriptor = "friend";
 
         // Attempt to edit a non-existent relationship
@@ -143,7 +144,7 @@ public class EditRelationshipCommandTest {
         String originUuid = "0001";
         String targetUuid = "0002";
         String oldDescriptor = "friend";
-        String newDescriptor = "family";
+        String newDescriptor = "siblings";
 
         // Add the relationship to the model
         Relationship oldRelationship = new Relationship(
@@ -198,7 +199,7 @@ public class EditRelationshipCommandTest {
         String originUuid = "0001";
         String targetUuid = "0002";
         String oldRelationshipDescriptor = "friend";
-        String newRelationshipDescriptor = "family";
+        String newRelationshipDescriptor = "siblings";
         EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid, targetUuid,
                 oldRelationshipDescriptor, newRelationshipDescriptor);
 
@@ -214,6 +215,38 @@ public class EditRelationshipCommandTest {
                 new Relationship(fullOriginUuid, fullTargetUuid, oldRelationshipDescriptor);
         Relationship expectedAddedRelationship =
                 new Relationship(fullOriginUuid, fullTargetUuid, newRelationshipDescriptor);
+
+        assertFalse(model.hasRelationshipWithDescriptor(expectedDeletedRelationship));
+        assertTrue(model.hasRelationshipWithDescriptor(expectedAddedRelationship));
+    }
+
+    @Test
+    public void execute_successfulRelationshipWithRoles_throwsCommandException() {
+        // Setup
+        Model model = new ModelManager();
+        AddressBook typicalPersonsAddressBook = TypicalPersonsUuid.getTypicalAddressBook();
+        model.setAddressBook(typicalPersonsAddressBook);
+        String originUuid = "0001";
+        String targetUuid = "0002";
+        String oldRelationshipDescriptor = "friend";
+        String newRelationshipDescriptor = "bioparents";
+        String role1 = "parent";
+        String role2 = "child";
+        EditRelationshipCommand editCommand = new EditRelationshipCommand(originUuid,
+                targetUuid, oldRelationshipDescriptor, newRelationshipDescriptor, role1, role2);
+
+        CommandResult result = assertDoesNotThrow(() -> editCommand.execute(model));
+
+        // Verify
+        assertEquals(EditRelationshipCommand.MESSAGE_EDIT_RELATIONSHIP_SUCCESS, result.getFeedbackToUser());
+
+        // Assert that the relationship was deleted and added successfully
+        UUID fullOriginUuid = model.getFullUuid(originUuid);
+        UUID fullTargetUuid = model.getFullUuid(targetUuid);
+        Relationship expectedDeletedRelationship =
+                new Relationship(fullOriginUuid, fullTargetUuid, oldRelationshipDescriptor);
+        Relationship expectedAddedRelationship =
+                new RoleBasedRelationship(fullOriginUuid, fullTargetUuid, newRelationshipDescriptor, role1, role2);
 
         assertFalse(model.hasRelationshipWithDescriptor(expectedDeletedRelationship));
         assertTrue(model.hasRelationshipWithDescriptor(expectedAddedRelationship));

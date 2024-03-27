@@ -87,7 +87,8 @@ public class Relationship {
         if (!validDescriptors.contains(relationType)) {
             throw new IllegalArgumentException("Relationship type does not exist yet");
         }
-        if (relationType.equals("family") || relationType.equals("friend")) {
+        if (relationType.equals("siblings") || relationType.equals("friend")
+                || relationType.equals("spouses") || relationType.equals("bioparents")) {
             throw new IllegalArgumentException("Cannot delete default relationship type");
         }
         RelationshipUtil relationshipUtil = new RelationshipUtil();

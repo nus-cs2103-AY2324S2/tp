@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class EditRelationshipCommandParserTest {
-    private final EditRelationshipCommandParser parser = new EditRelationshipCommandParser();
+    private EditRelationshipCommandParser parser = new EditRelationshipCommandParser();
 
     @Test
     public void parse_invalidInputMissingParts_throwsParseException() {
@@ -37,7 +37,7 @@ public class EditRelationshipCommandParserTest {
 
 
     @Test
-    public void parse_validInput_success() {
+    public void parse_validInputWithoutRoles_success() {
         // Valid input with UUIDs and relationship descriptors
         String userInput = "1234 "
                 + "5432 "
@@ -51,6 +51,63 @@ public class EditRelationshipCommandParserTest {
         } catch (ParseException e) {
             fail("Unexpected ParseException thrown");
         }
+    }
+
+    @Test
+    public void parse_validInputWithRoles_success() {
+        // Valid input with UUIDs and relationship descriptors
+        String userInput = "Boss 1234 "
+                + "subordinate 5432 "
+                + "family workbuddies";
+
+        EditRelationshipCommandParser parser = new EditRelationshipCommandParser();
+
+        try {
+            EditRelationshipCommand command = parser.parse(userInput);
+            assertNotNull(command);
+        } catch (ParseException e) {
+            fail("Unexpected ParseException thrown");
+        }
+    }
+
+    @Test
+    public void parse_validInputWithRoleInvalidNewRelationshipDescriptor_throwsParseException() {
+        String userInput = "Role1 uuid1 Role2 uuid2 oldDescriptor family";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_invalidInputInvalidUuidWithRole_throwsParseException() {
+        String userInput = "Role1 invalidUuid Role2 uuid2 oldDescriptor newDescriptor";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_invalidInputInvalidRole_throwsParseException() {
+        String userInput = "Role1 uuid1 Role2 uuid2 oldDescriptor newDescriptor";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_invalidInputMissingPartsWithRoles_throwsParseException() {
+        String userInput = "Role1 uuid1 Role2 uuid2 oldDescriptor";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_invalidInputWithFamilyDescriptor_throwsParseException() {
+        String userInput = "role1 uuid1 role2 uuid2 oldDescriptor family";
+
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    void parse_invalidRoleInput_throwsIllegalArgumentException() {
+        String userInput = "parent 0001 123 0002 friends bioparents";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
+
+        String userInput2 = "123 0001 child 0002 friends bioparents";
+        assertThrows(ParseException.class, () -> parser.parse(userInput));
     }
 
     @Test

@@ -141,13 +141,13 @@ class AddRelationshipCommandParserTest {
     @Test
     void execute_addSiblingRelationship_success() {
         String testOriginUuid = "0001";
-        String testTargetUuid = "0004";
+        String testTargetUuid = "0005";
         String relationshipDescriptor = "siblings";
         AddRelationshipCommand addRelationshipCommand =
                 new AddRelationshipCommand(testOriginUuid, testTargetUuid, relationshipDescriptor);
         String expectedMessage = "Add success";
         UUID person1Uuid = UUID.fromString("00000000-0000-0000-0000-000000000001");
-        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000004");
+        UUID person2Uuid = UUID.fromString("00000000-0000-0000-0000-000000000005");
         expectedModel.addRelationship(
                 new SiblingRelationship(person1Uuid, person2Uuid));
         assertCommandSuccess(addRelationshipCommand, model, expectedMessage, expectedModel);
