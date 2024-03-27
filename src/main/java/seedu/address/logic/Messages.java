@@ -8,6 +8,8 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
 
+import static seedu.address.model.schedule.Schedule.getDateTimeStringFormat;
+
 /**
  * Container for user visible messages.
  */
@@ -21,6 +23,10 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+
+    public static final String MESSAGE_INVALID_DATETIME_FORMAT = "The date format provided is invalid. " +
+            "Format: " + getDateTimeStringFormat();
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
