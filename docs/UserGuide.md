@@ -27,7 +27,7 @@ This user guide is split into 4 parts:
 
 
 <!-- * Table of Contents -->
-<page-nav-print />
+<page-nav-print><h2>Table of Contents</h2></page-nav-print>
 
 --------------------------------------------------------------------------------------------------------------------
 
