@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,6 +11,8 @@ import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
@@ -27,20 +30,23 @@ class JsonAdaptedPerson {
     private final String classGroup;
     private final String telegram;
     private final String github;
+    private final ArrayList<String> notes;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
-            @JsonProperty("telegram") String telegram, @JsonProperty("github") String github) {
+                             @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
+                             @JsonProperty("telegram") String telegram, @JsonProperty("github") String github,
+                             @JsonProperty("notes") ArrayList<String> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.classGroup = classGroup;
         this.telegram = telegram;
         this.github = github;
+        this.notes = notes;
     }
 
     /**
@@ -53,6 +59,7 @@ class JsonAdaptedPerson {
         classGroup = source.getClassGroup().classGroup;
         telegram = source.getTelegram().orElse(Telegram.EMPTY).telegramId;
         github = source.getGithub().orElse(Github.EMPTY).githubId;
+        notes = source.getNotes().getAsStrings();
     }
 
     /**
@@ -113,6 +120,19 @@ class JsonAdaptedPerson {
             modelGithub = Optional.of(new Github(github));
         }
 
-        return new Person(modelName, modelClassGroup, modelEmail, modelPhone, modelTelegram, modelGithub);
+        final Notes modelNotes = new Notes();
+        if (notes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Notes.class.getSimpleName()));
+        }
+        for (String note: notes) {
+            if (!Note.isValidNote(note)) {
+                throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+            } else {
+                Note modelNote = new Note(note);
+                modelNotes.addNote(modelNote);
+            }
+        }
+
+        return new Person(modelName, modelClassGroup, modelEmail, modelPhone, modelTelegram, modelGithub, modelNotes);
     }
 }

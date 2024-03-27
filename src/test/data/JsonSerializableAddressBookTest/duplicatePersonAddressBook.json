@@ -5,12 +5,14 @@
     "email": "alice@example.com",
     "telegram": "@alicepauline",
     "github": "alicep",
-    "classGroup": "B01"
+    "classGroup": "B01",
+    "notes" : [ "Asked a good question about general relativity" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "telegram": "@alicepauline",
-    "classGroup": "B01"
+    "classGroup": "B01",
+    "notes" : [ "Asked a good question about general relativity" ]
   } ]
 }
