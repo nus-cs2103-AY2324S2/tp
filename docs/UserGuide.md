@@ -213,8 +213,8 @@ Adds a remark or modifies the existing one, of an existing internship at the spe
 <span style="color: #f66a0a;">Format:</span> `addremark INDEX /remark REMARK`
 
 * The index refers to the index number shown in the displayed internship list. The index **must be a positive integer** 1, 2, 3, …
-* The remark cannot be blank.
-
+* To delete an existing remark, simply input an empty string as the remark like so: <br>`addremark INDEX /remark `.
+ 
 <span style="color: #f66a0a;">Examples:</span>
 *  `addremark 1 /remark This internship has a behavioural interview!` <br> Adds or modifies the remark of the internship at index 1 to be `This internship has a behavioural interview!`.
  
