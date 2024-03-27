@@ -96,7 +96,7 @@ public class Task {
     /**
      * Compare with other tasks for sorting in tags
      * @param otherTask Task to be compared to
-     * @return value of the comparison
+     * @return Value of the comparison
      */
     public int compare(Task otherTask) {
         if (this.getName().taskName.compareTo(otherTask.getName().taskName) == 0) {

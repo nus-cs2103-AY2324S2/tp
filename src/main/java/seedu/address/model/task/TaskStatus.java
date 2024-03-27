@@ -24,6 +24,7 @@ public class TaskStatus {
 
     /**
      * Constructs an {@code TaskStatus}.
+     * @param name A valid status from json.
      */
     public TaskStatus(String status) {
         requireNonNull(status);

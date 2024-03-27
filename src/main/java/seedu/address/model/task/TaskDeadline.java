@@ -16,7 +16,7 @@ public class TaskDeadline {
     public static final String EMPTY_DEADLINE = "Empty";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the deadline must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -28,9 +28,7 @@ public class TaskDeadline {
     private boolean isEmpty;
 
     /**
-     * Constructs an {@code TaskDescription}.
-     *
-     * @param description A valid description.
+     * Constructs an {@code TaskDeadline}.
      */
     public TaskDeadline() {
         taskDeadline = null;
@@ -38,9 +36,9 @@ public class TaskDeadline {
     }
 
     /**
-     * Constructs an {@code TaskDescription}.
+     * Constructs an {@code TaskDeadline}.
      *
-     * @param description A valid description.
+     * @param deadline A valid deadline.
      */
     public TaskDeadline(String deadline) {
         requireNonNull(deadline);
