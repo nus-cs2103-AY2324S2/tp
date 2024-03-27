@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
+participant ":ParseUtil" as ParseUtil LOGIC_COLOR
+participant "c:RemarkCommand" as RemarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "r:Remark" as Remark MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remark 1 r/" + value)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remark 1 r/" + value)
+activate AddressBookParser
+
+create RemarkCommandParser
+AddressBookParser -> RemarkCommandParser
+activate RemarkCommandParser
+
+RemarkCommandParser --> AddressBookParser
+deactivate RemarkCommandParser
+
+AddressBookParser -> RemarkCommandParser : parse("1 r/" + value)
+activate RemarkCommandParser
+
+RemarkCommandParser -> ParseUtil : parseRemark(value)
+activate ParseUtil
+
+alt value is not blank
+create Remark
+ParseUtil -> Remark : new Remark(value)
+activate Remark
+
+Remark --> ParseUtil
+deactivate Remark
+ParseUtil --> RemarkCommandParser : Optional.of(r)
+
+else value is blank
+    ParseUtil --> RemarkCommandParser : Optional.Empty()
+deactivate ParseUtil
+end
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand : RemarkCommand(1, optionalRemark)
+activate RemarkCommand
+
+RemarkCommand --> RemarkCommandParser : c
+deactivate RemarkCommand
+
+RemarkCommandParser --> AddressBookParser : c
+deactivate RemarkCommandParser
+
+RemarkCommandParser -[hidden]-> AddressBookParser
+destroy RemarkCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+@enduml

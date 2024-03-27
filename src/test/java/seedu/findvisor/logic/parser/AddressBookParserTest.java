@@ -6,10 +6,12 @@ import static seedu.findvisor.commons.util.DateTimeUtil.dateTimeToInputString;
 import static seedu.findvisor.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.findvisor.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.REMARK;
+import static seedu.findvisor.logic.commands.CommandTestUtil.SET_OF_VALID_TAG;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_MEETING_REMARK;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_FINANCIAL_PLAN;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.findvisor.logic.commands.CommandTestUtil.createValidMeeting;
@@ -30,6 +32,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.logic.commands.AddCommand;
+import seedu.findvisor.logic.commands.AddTagCommand;
 import seedu.findvisor.logic.commands.ClearCommand;
 import seedu.findvisor.logic.commands.DeleteCommand;
 import seedu.findvisor.logic.commands.EditCommand;
@@ -157,6 +160,12 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addTag() throws Exception {
+        AddTagCommand command = (AddTagCommand) parser.parseCommand(AddTagCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_TAG + VALID_TAG_FINANCIAL_PLAN);
+        assertEquals(new AddTagCommand(INDEX_FIRST_PERSON, SET_OF_VALID_TAG), command);
+    }
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
@@ -166,4 +175,7 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+
+
 }
