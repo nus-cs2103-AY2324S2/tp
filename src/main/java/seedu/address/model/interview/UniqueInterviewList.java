@@ -71,9 +71,12 @@ public class UniqueInterviewList implements Iterable<Interview> {
         internalList.set(index, editedInterview);
     }
 
+    /**
+     * Sorts the interviews by date and time.
+     */
     public void sortInterviewsByDate() {
         Comparator<Interview> dateSorter = (interview1, interview2) -> {
-            if(interview1.getDate().isBefore(interview2.getDate())) {
+            if (interview1.getDate().isBefore(interview2.getDate())) {
                 return -1;
             } else if (interview1.getDate().isEqual(interview2.getDate())) {
                 if (interview1.getStartTime().isBefore(interview2.getStartTime())) {
