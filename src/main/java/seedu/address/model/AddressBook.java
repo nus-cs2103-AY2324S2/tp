@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reservation.Reservation;
+import seedu.address.model.reservation.UniqueReservationList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,21 +19,20 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+
     private final UniquePersonList archivedPersons;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    {
-        persons = new UniquePersonList();
-        archivedPersons = new UniquePersonList();
-    }
+    private final UniqueReservationList reservations;
 
-    public AddressBook() {}
+
+    /**
+     * Creates an empty AddressBook with no persons and reservations.
+     */
+    public AddressBook() {
+        this.persons = new UniquePersonList();
+        this.reservations = new UniqueReservationList();
+        this.archivedPersons = new UniquePersonList();
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -57,6 +58,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setArchivedPersons(List<Person> archivedPersons) {
         this.archivedPersons.setPersons(archivedPersons);
+      
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations.setReservations(reservations);
     }
 
     /**
@@ -66,6 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
         setArchivedPersons(newData.getArchivedPersonList());
+        setReservations(newData.getReservationList());
     }
 
     //// person-level operations
@@ -143,6 +152,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(person);
     }
 
+    //// reservation-level operations
+
+    /**
+     * Returns true if a reservation by the same person and has same date and time as {@code reservation}
+     * exists in the address book.
+     */
+    public boolean hasReservation(Reservation reservation) {
+        requireNonNull(reservation);
+        return reservations.contains(reservation);
+    }
+
+    /**
+     * Adds a reservation to the address book.
+     * The reservation must not already exist in the address book.
+     */
+    public void addReservation(Reservation r) {
+        reservations.add(r);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReservation(Reservation key) {
+        reservations.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -162,6 +198,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getArchivedPersonList() {
         return archivedPersons.asUnmodifiableObservableList();
     }
+    
+    @Override
+    public ObservableList<Reservation> getReservationList() {
+        return reservations.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -177,6 +218,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons)
                 && archivedPersons.equals(otherAddressBook.archivedPersons);
+                && reservations.equals(otherAddressBook.reservations);
     }
 
     @Override
