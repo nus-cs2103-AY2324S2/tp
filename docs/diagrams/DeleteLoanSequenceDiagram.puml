@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteLoanCommandParser" as DeleteLoanCommandParser LOGIC_COLOR
+participant "<< class >>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "d:DeleteLoanCommand" as DeleteLoanCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deleteloan 1 l/2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deleteloan 1 l/2")
+activate AddressBookParser
+
+create DeleteLoanCommandParser
+AddressBookParser -> DeleteLoanCommandParser
+activate DeleteLoanCommandParser
+
+DeleteLoanCommandParser --> AddressBookParser
+deactivate DeleteLoanCommandParser
+
+AddressBookParser -> DeleteLoanCommandParser : parse("1 l/2")
+activate DeleteLoanCommandParser
+
+DeleteLoanCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil --> DeleteLoanCommandParser
+deactivate ParserUtil
+
+DeleteLoanCommandParser -> ParserUtil : parseIndex("2")
+activate ParserUtil
+
+ParserUtil --> DeleteLoanCommandParser
+deactivate ParserUtil
+
+create DeleteLoanCommand
+DeleteLoanCommandParser -> DeleteLoanCommand
+activate DeleteLoanCommand
+
+DeleteLoanCommand --> DeleteLoanCommandParser :
+deactivate DeleteLoanCommand
+
+DeleteLoanCommandParser --> AddressBookParser : d
+deactivate DeleteLoanCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteLoanCommandParser -[hidden]-> AddressBookParser
+destroy DeleteLoanCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteLoanCommand : execute(m)
+activate DeleteLoanCommand
+
+DeleteLoanCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> DeleteLoanCommand
+deactivate Model
+
+create CommandResult
+DeleteLoanCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteLoanCommand
+deactivate CommandResult
+
+DeleteLoanCommand --> LogicManager : r
+deactivate DeleteLoanCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -13,9 +13,11 @@ activate Person
 Person -> Analytics : getAnalytics(LoanRecords)
 activate Analytics
 
+loop LoanRecords.size() times
 Analytics -> Analytics :updateNumFields(Loan)
 Analytics -> Analytics :updateValueFields(Loan)
 Analytics -> Analytics :updateDateFields(Loan)
+end
 Analytics -> Analytics :updatePropFields(Loan)
 Analytics -> Analytics :updateAverageFields(Loan)
 Analytics --> Person :

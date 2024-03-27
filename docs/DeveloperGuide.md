@@ -295,13 +295,15 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
 
-### Loan Analytics
+## Enhancements Added
+
+### Loan Analytics - Joseph
 
 #### Implementation
 The `Analytics` class handles the analysis of a `LoanRecords` object. This class can only be instantiated by calling the
-static method `getAnalytics(LoanRecords loanRecords)`. 
+static method `getAnalytics(LoanRecords loanRecords)`.
 
 It contains the following fields that can prove to be useful for the user:
 * `propOverdueLoans`: proportion of loans that are overdue over active loans
@@ -334,6 +336,52 @@ It contains the following fields that can prove to be useful for the user:
 * **Alternative 2:** Include only raw data (e.g. total number of loans, total value of all loans).
     * Pros: No redundant information.
     * Cons: GUI developer has to calculate the analytics themselves, violating 'ask, don't tell' principle.
+
+
+### Delete Loan - Xiaorui
+
+#### Implementation
+
+The `DeleteLoanCommand` class handles the deletion of a loan from a contact, and executes the command after the input is
+parsed and transformed into an appropriate format.
+The parsing of the command is done by the `DeleteLoanCommandParser` class, which is responsible for parsing the user
+input.
+
+The `DeleteLoanCommand` class is instantiated in the `DeleteLoanCommandParser` class, while the 
+`DeleteLoanCommandParser` is instantiated in the `AddressBookParser` class. Both classes are instantiated when the user
+enters a `deleteloan` command, which needs to be of the format `deleteloan INDEX l/LOAN_INDEX`
+where INDEX is the index of the person and LOAN_INDEX is the index of the loan to be deleted, both of
+which are positive whole numbers.
+
+The `DeleteLoanCommand` class contains the following fields which can prove to be useful for the user:
+* `personIndex`: the index of the person whose loan is to be deleted
+* `loanIndex`: the index of the loan to be deleted
+* Several string fields that are displayed to the user under different scenarios.
+
+The `DeleteLoanCommandParser` class does not contain any fields.
+
+Sequence diagram for the deletion of a loan:
+
+![DeleteLoanSequenceDiagram](images/DeleteLoanSequenceDiagram.png)
+
+#### Design considerations:
+##### Aspect: How the command is executed:
+* **Alternative 1 (current choice):** The `DeleteLoanCommand` class is responsible for executing the command only.
+    * Pros: Follows the Single Responsibility Principle. Simpler to debug.
+    * Cons: May result in more classes.
+* **Alternative 2:** The `LogicManager` class is responsible for executing the command.
+    * Pros: More centralized command execution.
+    * Cons: May result in the `LogicManager` class becoming too large. This also goes against various SWE principles,
+  and makes the code harder to maintain.
+
+##### Aspect: How the command is parsed:
+* **Alternative 1 (current choice):** The `DeleteLoanCommandParser` class is responsible for parsing the command.
+    * Pros: Follows the Single Responsibility Principle. Simpler to debug.
+    * Cons: May result in more classes.
+* **Alternative 2:** The `AddressBookParser` class is responsible for parsing the command.
+    * Pros: More centralized command parsing.
+    * Cons: May result in the `AddressBookParser` class becoming too large. This also goes against various SWE principles
+  ,and makes the code harder to maintain.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -370,15 +418,15 @@ they want to answer the following questions quickly:
 
 **Value proposition**: Manage contacts faster than a typical mouse/GUI driven app
 
-Our address book is tailored for business owners whose job might involve loaning items on a 
-regular basis. It simplifies loan categorization and tracks product quality post-return, 
-ensuring efficient decision-making. Some boundaries include no detailed client reviews or 
-personal loan management, as we focus solely on business loans and contact management for 
+Our address book is tailored for business owners whose job might involve loaning items on a
+regular basis. It simplifies loan categorization and tracks product quality post-return,
+ensuring efficient decision-making. Some boundaries include no detailed client reviews or
+personal loan management, as we focus solely on business loans and contact management for
 a select client group.
 
 Our software streamlines loanee management, preventing profit loss and enhancing partner relations.
-It simplifies loan categorization and tracks product quality post-return, ensuring efficient 
-decision-making. Some boundaries include no detailed client reviews or personal loan management, 
+It simplifies loan categorization and tracks product quality post-return, ensuring efficient
+decision-making. Some boundaries include no detailed client reviews or personal loan management,
 as we focus solely on business loans and contact management for a select client group.
 
 
@@ -395,8 +443,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | User who loans cash out regularly                 | See the overdue loans easily                            | chase after people more easily                                          |
 | `* * *`  | User who values relationships                     | Send automated reminders to contacts with overdue loans | I can maintain good relations while ensuring the return of items        |
 | `* * *`  | Busy user                                         | Keep track of all my loanees(view)                      | save time and use it for more meaningful activities                     |
-| `* * *`  | Busy user                                         | Quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually        
-| `* * *`  | User who loans cash                               | Track partial repayments                                | maintain accurate records of the outstanding balance                    
+| `* * *`  | Busy user                                         | Quickly view a summary of all outstanding loans(view)   | have an overview without going through each contact individually        |
+| `* * *`  | User who loans cash                               | Track partial repayments                                | maintain accurate records of the outstanding balance                    |
 | `* * *`  | User with a dynamic network                       | Delete loan                                             | my records always reflect the current status of each loan               |
 | `* *`    | User with a dynamic network                       | Update loan entries as situations change                | my records always reflect the current status of each loan               |
 | `* *`    | First time user                                   | See the available commands/usage manual                 | familiarize with the command structure                                  |
@@ -404,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Experienced user                                  | Omit certain parts of the CLI commands                  | perform tasks more efficiently and quickly                              |
 | `* *`    | Forgetful user                                    | Get reminders to collect cash                           | collect cash promptly                                                   |
 | `* *`    | Organised user                                    | Have a system to manage my loanees                      |                                                                         |
-| `* *`    | Detail-oriented user                              | Add notes to each loan entry                            | I can record specific details or conditions of the loan                 |                                                               |
+| `* *`    | Detail-oriented user                              | Add notes to each loan entry                            | I can record specific details or conditions of the loan                 |
 | `* `     | User who lends frequently to the same individuals | View aggregated loan statistics per contact             | I can understand our loan history at a glance                           |
 | `* *`    | Frequent lender                                   | Track the history of cash loaned to and from a contact  | I can reference past transactions during conversations                  |
 | `* *`    | User looking to minimize losses                   | Flag high-risk loans based on past behavior             | I can make more informed lending decisions in the future                |
@@ -436,7 +484,7 @@ Precondition: `list` command shows a numbered list of contacts.
 
 #### Extensions
 
-1a. Index is invalid (e.g. negative, zero, or larger than the list size)  
+1a. Index is invalid (e.g. negative, zero, or larger than the list size)
 1a1. System shows an error message in the status message.
 Use case ends.
 
@@ -450,11 +498,11 @@ Use case ends.
 
 #### Extensions
 
-1a. User searches for a contact using an empty prompt.  
+1a. User searches for a contact using an empty prompt.
 1a1. System shows an error message in the status message.
 Use case ends.
 
-1a. No contact matches the prompt.  
+1a. No contact matches the prompt.
 1a1. System shows a message in the status message that no contact matches the prompt.
 Use case ends.
 
@@ -469,19 +517,19 @@ Use case ends.
 
 #### Extensions
 
-1a. Contact does not exist in the address book.  
+1a. Contact does not exist in the address book.
 1a1. System shows an error message that no contact with the name exists.
 Use case ends.
 
-1a. Loan details are invalid (e.g. empty, incomplete, wrong format).  
+1a. Loan details are invalid (e.g. empty, incomplete, wrong format).
 1a1. System shows an error message that the loan details are invalid.
 Use case ends.
 
-1a. Multiple contacts with the same name exist.  
-1a1. System shows list of contacts with the same name and asks user to choose one by index.  
-1a2. User chooses a contact by index.  
-1a3. System links the loan to the chosen contact.  
-1a4. System shows the contact and the loan that was linked successfully in the status message.  
+1a. Multiple contacts with the same name exist.
+1a1. System shows list of contacts with the same name and asks user to choose one by index.
+1a2. User chooses a contact by index.
+1a3. System links the loan to the chosen contact.
+1a4. System shows the contact and the loan that was linked successfully in the status message.
 Use case ends.
 
 #### Use case: UC4 - View all loans linked to particular contact
@@ -494,7 +542,7 @@ Use case ends.
 
 #### Extensions
 
-1a. Contact name does not exist in the address book.  
+1a. Contact name does not exist in the address book.
 1a1. System shows an error message that no contact with the name exists.
 Use case ends.
 
@@ -511,7 +559,7 @@ Use case ends.
 1. User <u>views all loans linked to the contact (UC4)</u>.
 2. User issues `clear` command with the name of contact and the index of loan to be cleared.
 3. System clears the loan from the contact.
-4. System shows the contact and the loan that was cleared successfully in the status message.  
+4. System shows the contact and the loan that was cleared successfully in the status message.
    Use case ends.
 
 #### Extensions
@@ -527,13 +575,13 @@ Use case ends.
 1. User <u>views all loans linked to the contact (UC4)</u>.
 2. User marks a loan as returned specifying contact name and loan index.
 3. System marks the loan as returned.
-4. System shows the contact and the loan that was marked as returned successfully in the status message.  
+4. System shows the contact and the loan that was marked as returned successfully in the status message.
    Use case ends.
 
 #### Extensions
 
-1a. Index is invalid (e.g. negative, zero, or larger than the list size)  
-1a1. System shows an error message that the index is invalid.  
+1a. Index is invalid (e.g. negative, zero, or larger than the list size)
+1a1. System shows an error message that the index is invalid.
 Use case ends.
 
 ### Non-Functional Requirements
