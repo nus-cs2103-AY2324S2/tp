@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.ParallelTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane bookingListPanelPlaceholder;
+
+    @FXML
+    private StackPane commandListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -132,6 +136,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        CommandListPanel commandListPanel = new CommandListPanel();
+        commandListPanelPlaceholder.getChildren().add(commandListPanel.getRoot());
     }
 
     /**
@@ -145,16 +152,17 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
+
     private void setTheme(GuiSettings guiSettings) {
         String styleSheet;
         Theme theme = guiSettings.getTheme();
         switch(theme) {
         case LIGHTTHEME:
-            styleSheet = "/view/styleSheets/LightTheme.css";
+            styleSheet = "/view/stylesheets/LightTheme.css";
             break;
         case DARKTHEME:
         default:
-            styleSheet = "/view/styleSheets/DarkTheme.css";
+            styleSheet = "/view/stylesheets/DarkTheme.css";
         }
         Scene scene = primaryStage.getScene();
         scene.getStylesheets().clear();
@@ -206,7 +214,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser(), true);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -223,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage(), false);
             throw e;
         }
     }
