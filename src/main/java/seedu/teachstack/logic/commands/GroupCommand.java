@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.teachstack.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.teachstack.logic.parser.CliSyntax.PREFIX_STUDENTID;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.teachstack.commons.util.ToStringBuilder;
 import seedu.teachstack.logic.commands.exceptions.CommandException;
 import seedu.teachstack.model.Model;
 import seedu.teachstack.model.group.Group;
+import seedu.teachstack.model.person.Person;
 import seedu.teachstack.model.person.StudentId;
 
 
@@ -57,8 +59,21 @@ public class GroupCommand extends Command {
         String missingIds = "";
         requireNonNull(model);
         for (StudentId studentId : studentIds) {
+            //get the existing groups
+            Person currentPerson = model.getPerson(studentId);
+            Set<Group> newGroup = new HashSet<>();
+            Set<Group> existingGroup = currentPerson.getGroups();
+
+            for (Group group : group) {
+                newGroup.add(group);
+            }
+
+            for (Group group : existingGroup) {
+                newGroup.add(group);
+            }
+
             EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-            editPersonDescriptor.setGroups(group);
+            editPersonDescriptor.setGroups(newGroup);
             EditCommand editCommand = new EditCommand(studentId, editPersonDescriptor);
             try {
                 editCommand.execute(model);
