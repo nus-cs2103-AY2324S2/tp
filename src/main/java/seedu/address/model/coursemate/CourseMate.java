@@ -20,11 +20,13 @@ public class CourseMate {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Rating rating;
 
     // Data fields
     private final Set<Skill> skills = new HashSet<>();
 
     /**
+     * A basic constructor for {@code CourseMate}.
      * Every field must be present and not null.
      */
     public CourseMate(Name name, Phone phone, Email email, Set<Skill> skills) {
@@ -33,6 +35,20 @@ public class CourseMate {
         this.phone = phone;
         this.email = email;
         this.skills.addAll(skills);
+        this.rating = new Rating("0");
+    }
+
+    /**
+     * A basic constructor for {@code CourseMate} that takes in a {@code Rating}.
+     * Every field must be present and not null.
+     */
+    public CourseMate(Name name, Phone phone, Email email, Set<Skill> skills, Rating rating) {
+        requireAllNonNull(name, phone, email, skills, rating);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.skills.addAll(skills);
+        this.rating = rating;
     }
 
     public Name getName() {
@@ -45,6 +61,10 @@ public class CourseMate {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     /**
@@ -87,13 +107,14 @@ public class CourseMate {
         return name.equals(otherCourseMate.name)
                 && phone.equals(otherCourseMate.phone)
                 && email.equals(otherCourseMate.email)
+                && rating.equals(otherCourseMate.rating)
                 && skills.equals(otherCourseMate.skills);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, skills);
+        return Objects.hash(name, phone, email, rating, skills);
     }
 
     @Override
@@ -102,6 +123,7 @@ public class CourseMate {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("rating", rating)
                 .add("skills", skills)
                 .toString();
     }
