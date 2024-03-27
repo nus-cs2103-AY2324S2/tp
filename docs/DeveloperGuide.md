@@ -159,6 +159,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a project
+#### Implementation
+1. The AddressBookParser parses the command string given by the user, and looks for the command word "add project". Then AddProjectCommandParser parse function is called.
+2. If the PROJECT_NAME is an empty string, an exception is thrown, else the addProjectCommand execution function is called.
+3. The `AddProjectCommand` class is responsible for adding a project to the project list.
+   - The constructor of the class takes in a project of type Project.
+   - If the same project already exists within the project list, then an exception is thrown to alert users that the project already exists.
+   - Else the project is successfully added.
+
+![Interactions Inside the Logic Component for the `add project Duke` Command](images/AddProjectSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect of including team members**
+
+- **Alternative 1 (current choice):** Split add project and add team into 2 different commands.
+  - Pros: Ensure that command stays short and rather intuitive for users to use, as well as allows users the flexibility to add team members to the project whenever.
+  - Cons: Users have to remember more command words, and type more commands.
+
+- **Alternative 2:** Use prefix to indicate the team members that will be added to the project.
+    - Example: `add project PROJECT_NAME /t Rachel, Daniel, John`.
+    - Pros: Users have 1 less command to remember.
+    - Cons: The command syntax is inconsistent with all the other commands as none of them uses prefixes.
+
+**Aspect of command word**
+
+- **Alternative 1:** Command word is `add` and the same command word is used for add tasks, add team, add deadline etc.
+  - The different commands are differentiated by the prefix (eg: '/t' for add team, '/p' for add project).
+  - Pros: Users have fewer commands to remember, and fewer words to type.
+  - Cons: Users have to remember the prefixes for each command and can be confusing.
+
+- **Alternative 2 (current choice):** Command word is `add project` (2 words). 
+    - There will be different command words for add tasks `add task`, add team `add team` etc.
+    - Pros: This is more intuitive for users to use as there will be no need for prefixes.
+    - Cons: More words to type for users. 
+  
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
