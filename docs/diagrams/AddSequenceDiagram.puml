@@ -1,0 +1,95 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "ac:AddCommand" as AddCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "toAdd:Employee" as Employee MODEL_COLOR
+participant "e:Employee" as Model MODEL_COLOR
+end box
+
+box Storage MODEL_COLOR_T2
+participant ":Storage" as Storage MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add [args]")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add [args]")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse("[args]")
+activate AddCommandParser
+
+create Employee
+AddCommandParser -> Employee
+activate Employee
+
+Employee --> AddCommandParser
+deactivate Employee
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : ac
+deactivate AddCommand
+
+AddCommandParser --> AddressBookParser : ac
+deactivate AddCommandParser
+
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+AddressBookParser --> LogicManager : ac
+deactivate AddressBookParser
+
+AddressBookParser -[hidden]-> LogicManager
+destroy AddressBookParser
+
+LogicManager -> AddCommand : execute(commandText)
+activate AddCommand
+
+AddCommand -> Model : addEmployee(toAdd)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand : cr
+deactivate CommandResult
+
+AddCommand --> LogicManager : cr
+deactivate AddCommand
+
+LogicManager -> Model : getAddressBook()
+activate Model
+Model --> LogicManager : ab
+deactivate Model
+
+LogicManager -> Storage : saveAddressBook(ab)
+activate Storage
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
