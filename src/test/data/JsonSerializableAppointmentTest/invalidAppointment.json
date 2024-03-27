@@ -1,0 +1,10 @@
+{
+  "appointments": [
+    {
+      "patientName": "Alice Pauline",
+      "patientIc": "S1234567A",
+      "dateTime": "not-a-valid-datetime"
+    }
+  ]
+}
+

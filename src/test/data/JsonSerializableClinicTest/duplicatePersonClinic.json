@@ -1,0 +1,21 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "nric": "S1234567D",
+    "tags": [ "friends" ],
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "111",
+    "weight": "111"
+
+  }, {
+    "name": "Alice Pauline",
+    "nric": "S1234567D",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "111",
+    "weight": "111"
+  } ]
+}

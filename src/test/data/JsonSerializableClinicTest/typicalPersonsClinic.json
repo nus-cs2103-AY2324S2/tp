@@ -1,0 +1,61 @@
+{
+  "_comment": "Clinic save file which contains the same Person values as in TypicalPersons#getTypicalClinic()",
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "nric" : "S1234567D",
+    "email": "email@e.com",
+    "phone": "",
+    "address": "",
+    "height": "163",
+    "weight": "50"
+  }, {
+    "name" : "Benson Meier",
+    "nric" : "S1234568B",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "",
+    "weight": ""
+  }, {
+    "name" : "Carl Kurz",
+    "nric" : "T1234567J",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "",
+    "weight": ""
+  }, {
+    "name" : "Daniel Meier",
+    "nric" : "F1234567N",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "",
+    "weight": ""
+  }, {
+    "name" : "Elle Meyer",
+    "nric" : "G1234567X",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "",
+    "weight": ""
+  }, {
+    "name" : "Fiona Kunz",
+    "nric" : "M1234567K",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "",
+    "weight": ""
+  }, {
+    "name" : "George Best",
+    "nric" : "F1234560R",
+    "email": "",
+    "phone": "",
+    "address": "",
+    "height": "160",
+    "weight": "160",
+    "tags" : [ "peanuts" ]
+  } ]
+}

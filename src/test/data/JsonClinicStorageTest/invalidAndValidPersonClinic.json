@@ -1,0 +1,10 @@
+{
+  "persons": [ {
+    "name": "Valid Person",
+    "nric": "S1234567D"
+
+  }, {
+    "name": "Person With Invalid NRIC Field",
+    "nric": "S1234568AB"
+  } ]
+}

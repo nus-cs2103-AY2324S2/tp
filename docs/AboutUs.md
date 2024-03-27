@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ng Wei Chong Javier
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/javierng2knus.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/javierng2knus)]
+[[portfolio](team/javier.md)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities: <Will be reassigned on a later date>
 
-### Jane Doe
+### Ma Yuehan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mayuehan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/MaYuehan)]
+[[portfolio](team/mayuehan.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Command implementation, documentation, Ui
 
-### Jean Doe
+### Mu Zhaoyu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ella-e.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Ella-e)] 
+[[portfolio](team/ella-e.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Command implementation, documentation
+
+### Lai Yiwen
+
+<img src="images/seahogs.png" width="200px">
+
+[[github](https://github.com/SeaHogs)]
+[[portfolio](team/seahogs.md)]
+
+* Role: Developer
+* Responsibilities: Command implementation, documentation
