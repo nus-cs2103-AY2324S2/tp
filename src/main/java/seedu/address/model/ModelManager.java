@@ -105,6 +105,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void pinPerson(Person person) {
+        requireNonNull(person);
+        addressBook.pinPerson(person);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 

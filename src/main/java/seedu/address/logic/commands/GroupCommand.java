@@ -84,15 +84,15 @@ public class GroupCommand extends Command {
         return new CommandResult(String.format(MESSAGE_GROUP_PERSON_SUCCESS, Messages.format(groupedPerson)));
     }
 
-    private static Person createGroupedPerson(Person personToGroup, GroupPersonDescriptor GroupPersonDescriptor) {
+    private static Person createGroupedPerson(Person personToGroup, GroupPersonDescriptor groupPersonDescriptor) {
         assert personToGroup != null;
 
         NusId nusId = personToGroup.getNusId();
         Name name = personToGroup.getName();
         Phone phone = personToGroup.getPhone();
         Email email = personToGroup.getEmail();
-        Tag updatedTag = GroupPersonDescriptor.getTag().orElse(personToGroup.getTag());
-        Set<Group> updatedGroups = GroupPersonDescriptor.getGroups().orElse(personToGroup.getGroups());
+        Tag updatedTag = groupPersonDescriptor.getTag().orElse(personToGroup.getTag());
+        Set<Group> updatedGroups = groupPersonDescriptor.getGroups().orElse(personToGroup.getGroups());
         Schedule schedule = personToGroup.getSchedule();
         Remark remark = personToGroup.getRemark();
 
