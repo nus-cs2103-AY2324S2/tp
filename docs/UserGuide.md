@@ -167,7 +167,7 @@ If you have faced issues opening the app, you can find the alternative solution 
 
 <br>
 
-#### For MacOS
+#### For macOS
 1. To start ClientCare, simply open up the folder where your downloaded `clientcare.jar`.
 2. Next, double left-click on `clientcare.jar` to start the application.
 ![Starting up app on macOS](images/ug/startUpAppMacOS.png =600x)
@@ -203,7 +203,7 @@ Let's learn the language that ClientCare speaks in.
 ### ClientCare Commands
 A ClientCare command has the following parts:
 
-![Command Structure](images/ug/commandStructure.png =600x)
+![Command Structure](images/ug/commandStructure.jpg =450x)
 
 ##### 1) Command Keyword
 This keyword tells ClientCare what you want to do. If you want to add a new client, then `add` will be the keyword.
@@ -232,7 +232,6 @@ Alternatively, [Command Summary](#command-summary) has all of them under one pag
 
 **CAUTION**: If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as the command format may be copied over incorrectly.
 </box>
-
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -292,6 +291,7 @@ Let's type the following command into the Command Input:
 
 ![success_schedule](images/ug/success_add.png =600x)
 
+<div style="page-break-after: always;"></div>
 
 5. Now let's get interesting. What happens if we encounter an error?
 
@@ -676,12 +676,11 @@ Furthermore, certain edits can cause the ClientCare to behave in unexpected ways
 # Known issues and Troubleshooting
 <br>
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the application will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-<br>
+#### Opening ClientCare app 
 
-2. **If you are unable to open ClientCare by clicking**, here is another way.
+**If you are unable to open ClientCare by clicking**, here is another way.
 
-    **For Windows:**
+**For Windows:**
     1. Next, click on the Address Bar as shown below. It should turn !!blue!! upon clicking.
        ![folder](images/ug/windows%20saveDirectory.png =600x)
 
@@ -695,13 +694,24 @@ Furthermore, certain edits can cause the ClientCare to behave in unexpected ways
 
     4. Hit ENTER and there we go! You should see ClientCare running on your computer! <br> <br>
 
-    **For macOS:**
+<div style="page-break-after: always;"></div>
+
+**For macOS:**
    1. If you see the following prompt, fret not! Simply click on OK and follow the following.
        ![Unidentified developer prompt on macOS](images/ug/unidentifiedDeveloperMacOS.png =600x)
+
+
    2. To bypass the prompt, right-click on the 'clientcare.jar' app and select 'Open'.
       ![Bypassing the prompt on macOS](images/ug/bypassPromptMacOS.png =600x)
+
+
    3. Select 'Open' to start the application.
       ![Confirmation to open the app on macOS](images/ug/confirmOpenMacOS.
+
+<br>
+
+#### Multiple Screens
+**When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the application will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
