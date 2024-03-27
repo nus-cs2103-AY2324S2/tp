@@ -9,6 +9,7 @@ import static vitalconnect.logic.parser.CliSyntax.PREFIX_NRIC;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_OVERWRITETAG;
 import static vitalconnect.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import vitalconnect.logic.commands.exceptions.CommandException;
@@ -42,7 +43,7 @@ public class EditMedicalCommand extends Command {
     private final Nric nric;
     private final Height height;
     private final Weight weight;
-    private final Set<AllergyTag> overwriteTag;
+    private final boolean overwriteTag;
     private final Set<AllergyTag> appendTag;
 
     /**
@@ -53,7 +54,7 @@ public class EditMedicalCommand extends Command {
      * @param appendTag details to edit the person with
      */
     public EditMedicalCommand(Nric nric, Height height, Weight weight,
-                              Set<AllergyTag> overwriteTag, Set<AllergyTag> appendTag) {
+                              boolean overwriteTag, Set<AllergyTag> appendTag) {
         this.nric = nric;
         this.height = height;
         this.weight = weight;
@@ -81,8 +82,8 @@ public class EditMedicalCommand extends Command {
             medicalInformation.setWeight(weight);
         }
 
-        if (overwriteTag != null) {
-            medicalInformation.setAllergyTag(overwriteTag);
+        if (overwriteTag) {
+            medicalInformation.setAllergyTag(new HashSet<>());
         }
 
         if (appendTag != null) {

@@ -37,7 +37,7 @@ public class EditMedicalCommandParser implements Parser<EditMedicalCommand> {
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Height height = null;
         Weight weight = null;
-        Set<AllergyTag> overwriteTags = null;
+        boolean overwriteTags = false;
         Set<AllergyTag> appendTags = null;
 
         if (argMultimap.getValue(PREFIX_HEIGHT).isPresent()) {
@@ -49,14 +49,14 @@ public class EditMedicalCommandParser implements Parser<EditMedicalCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_OVERWRITETAG).isPresent()) {
-            overwriteTags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_OVERWRITETAG));
+            overwriteTags = true;
         }
 
         if (argMultimap.getValue(PREFIX_APPENDTAG).isPresent()) {
             appendTags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_APPENDTAG));
         }
 
-        if (height == null && weight == null && overwriteTags == null && appendTags == null) {
+        if (height == null && weight == null && !overwriteTags && appendTags == null) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMedicalCommand.MESSAGE_USAGE));
         }
 
