@@ -5,7 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "relationship": "client",
-    "policy": "",
+    "policy": [ ],
     "clientStatus": "1",
     "tags": [ "friends" ]
   }, {
@@ -14,7 +14,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "relationship": "client",
-    "policy": "",
+    "policy": [ ],
     "clientStatus": "1"
   } ]
 }

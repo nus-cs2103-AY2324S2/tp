@@ -21,14 +21,14 @@ public class RelationshipTest {
 
     @Test
     public void isValidRelationship() {
-        // null address
+        // null relationship
         assertThrows(NullPointerException.class, () -> Relationship.isValidRelationship(null));
 
-        // invalid addresses
+        // invalid relationship
         assertFalse(Relationship.isValidRelationship("")); // empty string
         assertFalse(Relationship.isValidRelationship(" ")); // spaces only
 
-        // valid addresses
+        // valid relationship
         assertTrue(Relationship.isValidRelationship("client"));
         assertTrue(Relationship.isValidRelationship("partner"));
         assertTrue(Relationship.isValidRelationship("Client")); // uppercase

@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -63,16 +64,36 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a policy set containing the list of strings given.
+     * Parses a string representation of a policy into a Policy object.
+     *
+     * @param policyString The string representation of the policy.
+     *                     The format should be "policyName_date_premium", where date is in "yyyy-MM-dd" format,
+     *                     and premium is a double value.
+     *                     If date or premium is not present or invalid, they are set to null and 0.0 respectively.
+     * @return The parsed Policy object.
      */
-    public static Set<Policy> getPolicySet(String... strings) {
-        if (strings.length == 0) {
-            return new HashSet<>();
-        } else {
-            return Arrays.stream(strings)
-                    .map(Policy::new)
-                    .collect(Collectors.toSet());
+    public static Policy parsePolicy(String policyString) {
+        String[] parts = policyString.split("_");
+        String policyName = parts[0];
+        LocalDate expiryDate = null;
+        double premium = 0.0;
+
+        if (parts.length > 1) {
+            try {
+                expiryDate = LocalDate.parse(parts[1]);
+            } catch (Exception e) {
+                // Date format is invalid or not present, leave it as null
+            }
         }
+        if (parts.length > 2) {
+            try {
+                premium = Double.parseDouble(parts[2]);
+            } catch (NumberFormatException e) {
+                // Premium format is invalid or not present, leave it as 0.0
+            }
+        }
+
+        return new Policy(policyName, expiryDate, premium);
     }
 
 }

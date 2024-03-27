@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
@@ -24,11 +26,16 @@ public class PolicyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the policy of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing policy will be overwritten by the input.\n"
+            + "Existing policy will be overwritten by the input. If policy is not presented, "
+            + "it will be considered as removed policy.\n"
+            + "There could be multiple policies, expiry date and premium is optional.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_POLICY + "[POLICY]\n"
+            + PREFIX_POLICY + "[POLICY] "
+            + PREFIX_EXPIRY_DATE + "[EXPIRY DATE] "
+            + PREFIX_PREMIUM + "[PREMIUM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_POLICY + "Policy XYZ";
+            + PREFIX_POLICY + "Policy XYZ "
+            + PREFIX_EXPIRY_DATE + "01-01-2020";
 
     public static final String MESSAGE_ADD_POLICY_SUCCESS = "Added policy to Person: %1$s";
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Removed policy from Person: %1$s";
@@ -81,6 +88,14 @@ public class PolicyCommand extends Command {
     private String generateSuccessMessage(Person personToEdit) {
         String message = !policies.isEmpty() ? MESSAGE_ADD_POLICY_SUCCESS : MESSAGE_DELETE_POLICY_SUCCESS;
         return String.format(message, Messages.format(personToEdit));
+    }
+
+    public Index getIndex() {
+        return this.index;
+    }
+
+    public Set<Policy> getPolicies() {
+        return this.policies;
     }
 
     @Override

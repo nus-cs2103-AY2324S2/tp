@@ -290,8 +290,3 @@ class JsonAdaptedPerson {
     }
 
 }
-
-
-
-
-

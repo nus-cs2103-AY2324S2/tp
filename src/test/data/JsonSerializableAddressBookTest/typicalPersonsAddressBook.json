@@ -6,7 +6,15 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "relationship" : "client",
-    "policies" : [ "Policy 1" , "Policy 2"],
+    "policies" : [ {
+      "policyName" : "Policy 1",
+      "expiryDate" : null,
+      "premium" : 0.0
+    }, {
+      "policyName" : "Policy 2",
+      "expiryDate" : null,
+      "premium" : 0.0
+    } ],
     "clientStatus": "1",
     "tags" : [ "friends" ]
   }, {
@@ -15,7 +23,11 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "relationship" : "client",
-    "policies" : [ "Policy 1" ],
+    "policies" : [ {
+      "policyName" : "Policy 1",
+      "expiryDate" : null,
+      "premium" : 0.0
+    } ],
     "clientStatus": "1",
     "tags" : [ "owesMoney", "friends" ]
   }, {
