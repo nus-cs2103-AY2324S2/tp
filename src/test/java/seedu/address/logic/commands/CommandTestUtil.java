@@ -38,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_SKILL_JAVA = "Java";
     public static final String VALID_SKILL_CSHARP = "C#";
     public static final String VALID_SKILL_NEWSKILL = "THISISANEWSKILLTHATNOOTHERCOURSEMATEHAS";
+    public static final String VALID_SKILL_NEWSKILL2 = "THISISANEWSKILLTHATNOOTHERCOURSEMATEHAS2";
 
     public static final String INVALID_NAME_AMPERSAND = "James&";
     public static final String INVALID_PHONE_ALPHABET = "911a";

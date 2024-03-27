@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.ALICE;
+import static seedu.address.testutil.TypicalCourseMates.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -65,14 +66,15 @@ public class AddCommandTest {
     public void execute_courseMateNewSkillWarning_addSuccessful() throws Exception {
         ModelStubAcceptingCourseMateAdded modelStub = new ModelStubAcceptingCourseMateAdded();
 
-        CommandResult commandResult = new AddCommand(ALICE).execute(modelStub);
+        CommandResult commandResult = new AddCommand(BOB).execute(modelStub);
 
         Set<Skill> newSkills = new HashSet<>();
         newSkills.add(new Skill("Java"));
+        newSkills.add(new Skill("C++"));
 
         assertEquals(AddCommand.messageNewSkill(newSkills) + AddCommand.MESSAGE_SUCCESS,
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(ALICE), modelStub.courseMatesAdded);
+        assertEquals(Arrays.asList(BOB), modelStub.courseMatesAdded);
     }
 
     @Test
