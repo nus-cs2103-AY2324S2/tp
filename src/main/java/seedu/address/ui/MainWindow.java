@@ -150,6 +150,29 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Clears the placeholders of client list panel.
+     */
+    private void clearClientListPanel() {
+        clientListPanelPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Fills up the placeholders of client list panel.
+     */
+    private void addClientListPanel() {
+        clientListPanel = new ClientListPanel(logic.getFilteredPersonList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+    }
+
+    /**
+     * Refreshes the client list panel.
+     */
+    private void refreshClientListPanel() {
+        clearClientListPanel();
+        addClientListPanel();
+    }
+
+    /**
      * Fills up placeholders of client view panel.
      */
     private void addClientViewPanel() {
@@ -208,6 +231,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Refreshes the client view panel, client list panel and reminders panel.
+     */
+    private void refreshAllPanels() {
+        refreshClientViewPanel();
+        refreshClientListPanel();
+        refreshRemindersPanel();
+    }
+
+    /**
      * Sets the default size based on {@code guiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
@@ -258,8 +290,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            refreshClientViewPanel();
-            refreshRemindersPanel();
+            refreshAllPanels();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

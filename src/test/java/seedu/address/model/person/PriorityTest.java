@@ -86,7 +86,7 @@ public class PriorityTest {
         Priority priority = new Priority("medium");
 
         // same values -> returns true
-        Priority priorityCopy = new Priority("medium");
+        assertTrue(priority.equals(new Priority("medium")));
 
         // same object -> returns true
         assertTrue(priority.equals(priority));

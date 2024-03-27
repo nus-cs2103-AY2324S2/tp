@@ -93,4 +93,26 @@ public class LastMetTest {
         assertTrue(lastMet2.compareTo(lastMet) > 0);
         assertTrue(lastMet.compareTo(lastMet) == 0);
     }
+
+    @Test
+    public void equals() {
+        LocalDate lastMetDate = LocalDate.now();
+        LastMet lastMet = new LastMet(lastMetDate);
+
+        // same values -> returns true
+        LastMet lastMetCopy = new LastMet(lastMetDate);
+        assertTrue(lastMet.equals(lastMet));
+
+        // same object -> returns true
+        assertTrue(lastMet.equals(lastMet));
+
+        // null -> returns false
+        assertFalse(lastMet.equals(null));
+
+        // different types -> returns false
+        assertFalse(lastMet.equals(5.0f));
+
+        // different values -> returns false
+        assertFalse(lastMet.equals(new LastMet(lastMetDate.plusDays(1))));
+    }
 }

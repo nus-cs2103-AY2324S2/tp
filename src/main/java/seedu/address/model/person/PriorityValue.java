@@ -8,8 +8,8 @@ import java.util.Map;
 /**
  * Represents the value of a person's priority in the address book.
  */
-public enum PriorityValue {
-    LOW, MEDIUM, HIGH, VIP;
+public enum PriorityValue { // Already implements Comparable<PriorityValue> in the original code
+    LOW, MEDIUM, HIGH, VIP; // Order of priority values matters for compareTo method (low < medium < high < vip)
 
     /**
      * Mapping of priority values to their corresponding string representations in full form.

@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SortCriteria;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
@@ -260,5 +261,47 @@ public class ParserUtilTest {
     public void parsePolicyId_validValueWithWhitespacePolicyID_returnsTrimmedString() throws Exception {
         String policyIdWithWhitespace = WHITESPACE + VALID_POLICYID + WHITESPACE;
         assertEquals(VALID_POLICYID, ParserUtil.parsePolicyId(policyIdWithWhitespace));
+    }
+
+    @Test
+    public void parseSortCriteria_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortCriteria(null));
+    }
+
+    @Test
+    public void parseSortCriteria_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortCriteria("invalid"));
+    }
+
+    @Test
+    public void parseSortCriteria_validValueWithoutWhitespace_returnsSortCriteria() throws Exception {
+        assertEquals(SortCriteria.NAME, ParserUtil.parseSortCriteria("name"));
+    }
+
+    @Test
+    public void parseSortCriteria_validValueWithWhitespace_returnsTrimmedSortCriteria() throws Exception {
+        String sortCriteriaWithWhitespace = WHITESPACE + "name" + WHITESPACE;
+        assertEquals(SortCriteria.NAME, ParserUtil.parseSortCriteria(sortCriteriaWithWhitespace));
+    }
+
+    @Test
+    public void parseSortOrder_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortOrder(null));
+    }
+
+    @Test
+    public void parseSortOrder_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortOrder("invalid"));
+    }
+
+    @Test
+    public void parseSortOrder_validValueWithoutWhitespace_returnsSortOrder() throws Exception {
+        assertEquals(ParserUtil.parseSortOrder("asc"), ParserUtil.parseSortOrder("asc"));
+    }
+
+    @Test
+    public void parseSortOrder_validValueWithWhitespace_returnsTrimmedSortOrder() throws Exception {
+        String sortOrderWithWhitespace = WHITESPACE + "asc" + WHITESPACE;
+        assertEquals(ParserUtil.parseSortOrder("asc"), ParserUtil.parseSortOrder(sortOrderWithWhitespace));
     }
 }

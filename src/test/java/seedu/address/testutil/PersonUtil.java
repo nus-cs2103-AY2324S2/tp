@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -13,6 +14,8 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortCriteria;
+import seedu.address.model.person.SortOrder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,6 +68,20 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the descriptor part of sort command string for the given {@code criteria} and {@code order}.
+     *
+     * @param criteria the criteria
+     * @param order the order
+     * @return the sort command string descriptor
+     */
+    public static String getSortPersonsDescriptor(SortCriteria criteria, SortOrder order) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(criteria.toString() + " ");
+        sb.append(PREFIX_SORT_ORDER + order.toString());
         return sb.toString();
     }
 }

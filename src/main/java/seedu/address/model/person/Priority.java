@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's Priority in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPriority(String)}
  */
-public class Priority {
+public class Priority implements Comparable<Priority> {
 
     public static final String MESSAGE_CONSTRAINTS = "Priority should be one of the following values: "
             + String.join(", ", PriorityValue.getFullPriorities()) + " or "
@@ -56,5 +56,10 @@ public class Priority {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Priority other) {
+        return value.compareTo(other.value);
     }
 }
