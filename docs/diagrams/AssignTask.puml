@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+Package Model as ModelPackage <<Rectangle>>{
+object "<u>:Employee" as Employee
+object "<u>:AssignedTasks" as AssignedTasks
+
+Employee - AssignedTasks
+
+object "<u>:Task" as Task
+object "<u>:AssignedEmployees" as AssignedEmployees
+
+Task - AssignedEmployees
+}
+
+@enduml

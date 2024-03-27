@@ -1,0 +1,17 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes "assigntask" command;
+:Logic retrieves all employees
+and tasks from the model;
+:Logic iterates through all employees
+and tasks to look for employee and task
+with matching id to the parameter;
+:Model creates new Employee and Task updated
+with the new AssignedTasks and AssignedEmployees;
+:Save after execution
+completes;
+stop
+@enduml
