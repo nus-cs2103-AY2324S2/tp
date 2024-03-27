@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PARAMETER_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_NO_PARAMETERS;
+import static seedu.address.logic.Messages.MESSAGE_NAME_PARAMETER_MISSING;
 import static seedu.address.logic.Messages.MESSAGE_PHONE_PARAMETER_MISSING;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
@@ -162,6 +163,10 @@ public class AddCommandParserTest {
         // missing phone prefix e.g (add n/John)
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 String.format(MESSAGE_PHONE_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
+
+        // missing name prefix e.g (add p/99998989)
+        assertParseFailure(parser, PHONE_DESC_BOB,
+                String.format(MESSAGE_NAME_PARAMETER_MISSING, AddCommand.MESSAGE_USAGE));
 
         // all prefixes missing e.g (add name 99898888)
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
