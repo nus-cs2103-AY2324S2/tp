@@ -27,6 +27,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListOrderCommand;
+import seedu.address.logic.commands.RemoveFavouriteCommand;
 import seedu.address.logic.commands.ShowFavouriteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Date;
@@ -106,6 +107,16 @@ public class AddressBookParserTest {
                 + "i/ 1,2,4"
         );
         assertEquals(new AddFavouriteCommand(indices), command);
+    }
+
+    @Test
+    public void parseCommand_removeFavourite() throws Exception {
+        Set<Index> indices = Set.of(Index.fromOneBased(1), Index.fromOneBased(2), Index.fromOneBased(4));
+        RemoveFavouriteCommand command = (RemoveFavouriteCommand) parser.parseCommand(
+                RemoveFavouriteCommand.COMMAND_WORD + " "
+                        + "i/ 1,2,4"
+        );
+        assertEquals(new RemoveFavouriteCommand(indices), command);
     }
 
     @Test
