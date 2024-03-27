@@ -163,9 +163,9 @@ The add policy feature allows users to add a policy to a client. The policy is s
 
 #### Implementation
 
-The add policy command mechanism is facilitated by the `AddPolicyCommandParser` class which is created by the `AddressBookParser` .
+The add policy command mechanism is facilitated by the `AddPolicyCommandParser` class which is created by the `AddressBookParser`.
 
-The `AddPolicyCommandParser` class is responsible for parsing the user input and creating an `AddPolicyCommand` object. 
+The `AddPolicyCommandParser` class is responsible for parsing the user input and creating an `AddPolicyCommand` object.
 
 The `AddPolicyCommandParser#parse()` overrides `Parser#parse()` in the `Parser` interface.
 - `AddPolicyCommandParser#parse()` - Parses the input arguments by storing the prefixes of it respective values in a `ArgumentMultimap` object, and creates a new `AddPolicyCommand` object with the parsed policy name and policy ID.
