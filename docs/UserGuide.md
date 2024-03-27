@@ -4,12 +4,39 @@
   pageNav: 3
 ---
 
-# TutorTrack User Guide
+# TutorTrack User Guide 
 
-TutorTrack is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorTrack can get your contact management tasks done faster than traditional GUI apps.
+TutorTrack is a **desktop app for tutors to manage their students and scheduled classes, optimized for use via a Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorTrack can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
+### What is in this user guide
+- Quick start
+- Features
+  - Help : Viewing help
+  - Add : Adding a student
+  - List : Listing all students
+  - Edit : Editing a student
+  - Find : Finding a student
+  - Delete : Deleting a student
+  - Clear : Clearing all entries 
+  - Exit : Exiting the program
+  - Saving data
+  - Editing the data file
+  - Archiving data files 
+- FAQs
+- Known issues
+- Command summary
+
 <page-nav-print />
+
+### How to use this guide 
+**Navigation** :  Use the table of contents to find the section you are looking for. </br>
+
+**Features** : Each feature and what they do are listed with their commands for you to understand what our app can do. </br>
+
+**Examples** : Under each feature, examples of commands and ui are given for you to better understand how the app should work.</br>
+
+**Getting started** : For first time users, refer to the "Quick start" segment to start up the app for the first time 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,14 +114,17 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/SUBJECT [l/LESSON]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/Maths|2024-05-03|10:30`
+* `add n/John Doe p/84920491 e/rena@gmail.com a/RVRC s/Physics`
+![img.png](img.png)
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+What you should see:
+![img_1.png](img_1.png)
 
 ### Editing a person : `edit`
 
@@ -110,8 +140,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LESSON]…​`
     specifying any lessons after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower l/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing lessons.
+*  `edit 1 a/Yale-nus` Edits the address of the first person to be `Cinnamon College` and clears all existing lessons.
+![img_2.png](img_2.png)
 
 ### Locating persons by name: `find`
 
@@ -127,9 +157,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find Sherlock Jessica` returns `Sherlock` `Jessica` <br>
+![img_3.png](img_3.png)
+
 
 ### Deleting a person : `delete`
 
@@ -142,12 +172,14 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in TutorTrack.
+![img_4.png](img_4.png)
+* `find Jessica Jane` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* ![img_5.png](img_5.png)
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from TutorTrack.
 
 Format: `clear`
 
@@ -159,11 +191,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TutorTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TutorTrack data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 
