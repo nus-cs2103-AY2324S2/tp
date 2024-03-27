@@ -98,15 +98,9 @@ public class RealodexParser {
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
-            if (isHelp) {
-                return new HelpCommandParser().parse(commandWord);
-            }
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            if (isHelp) {
-                return new HelpCommandParser().parse(commandWord);
-            }
             return new HelpCommand("");
 
         default:
