@@ -1,30 +1,84 @@
 {
   "persons" : [ {
-    "name" : "John Doe",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "name" : "Jeremy Ng",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
     "studentId" : "00001",
-    "tags" : [ "Class 3A", "Owes Money" ],
+    "tags" : [ "Class 4b" ],
+    "parentPhoneNumberOne" : "91273527",
+    "parentPhoneNumberTwo" : "99149687",
+    "classroom" "6 Innovation"
+  }, {
+    "name" : "Bernice Yu",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "studentId" : "00002",
+    "tags" : [ "colleagues", "friends" ],
+    "parentPhoneNumberOne" : "99272758",
+    "parentPhoneNumberTwo" : "86898742",
+    "classroom": "6 Innovation"
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "studentId" : "00003",
+    "tags" : [ "neighbours" ],
+    "parentPhoneNumberOne" : "93210283",
+    "parentPhoneNumberTwo" : "92532563",
+    "classroom": "6 Innovation"
+  }, {
+    "name" : "David Li",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "studentId" : "00004",
+    "tags" : [ "family" ],
+    "parentPhoneNumberOne" : "91031282",
+    "parentPhoneNumberTwo" : "83496437",
+    "classroom": "6 Innovation"
+  }, {
+    "name" : "Irfan Ibrahim",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "studentId" : "00005",
+    "tags" : [ "classmates" ],
+    "parentPhoneNumberOne" : "92492021",
+    "parentPhoneNumberTwo" : "88548559",
+    "classroom": "6 Innovation"
+  }, {
+    "name" : "Roy Balakrishnan",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "studentId" : "00006",
+    "tags" : [ "colleagues" ],
+    "parentPhoneNumberOne" : "92624417",
+    "parentPhoneNumberTwo" : "99811124",
+    "classroom": "6 Innovation"
+  }, {
+    "name" : "John",
+    "email" : "john@gmail.com",
+    "address" : "wisteria walk",
+    "studentId" : "00010",
+    "tags" : [ ],
+    "parentPhoneNumberOne" : "91273527",
+    "parentPhoneNumberTwo" : "19992222",
+    "classroom": "6 Innovation"
+  }, {
+    "name" : "Doe John",
+    "email" : "johnd@example.com",
+    "address" : "Wisteria Walk, Blk 333, #03-23",
+    "studentId" : "00011",
+    "tags" : [ "Friends", "OwesMoney" ],
     "parentPhoneNumberOne" : "98765432",
     "parentPhoneNumberTwo" : "91233322",
-    "classroom" : "6 Aadd"
+    "classroom": "6 Innovation"
   }, {
     "name" : "John Doe",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "studentId" : "00002",
-    "tags" : [ "Class 3A", "Owes Money" ],
+    "studentId" : "00881",
+    "tags" : [ "Friends", "OwesMoney" ],
     "parentPhoneNumberOne" : "98765432",
     "parentPhoneNumberTwo" : "91233322",
-    "classroom" : "5B"
-  }, {
-    "name" : "Betsy Crowe",
-    "email" : "betsycrowe@example.com",
-    "address" : "611, Queenstown Road, #05-24",
-    "studentId" : "00003",
-    "tags" : [ "Friend" ],
-    "parentPhoneNumberOne" : "81948732",
-    "parentPhoneNumberTwo" : "95738132",
-    "classroom" : "Nnnnnnnnnnnn"
-  } ]
-}
+    "classroom": "6 Innovation"
+  }
+  ]}
