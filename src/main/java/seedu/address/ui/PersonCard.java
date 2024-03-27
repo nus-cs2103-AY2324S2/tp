@@ -53,7 +53,19 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        upcoming.setText("Upcoming: " + person.getUpcoming().toString());
-        lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+
+        if (person.hasUpcoming()) {
+            upcoming.setVisible(true);
+            upcoming.setText("Upcoming: " + person.getUpcoming().toString());
+        } else {
+            upcoming.setVisible(false);
+        }
+
+        if (person.hasLastcontact()) {
+            lastcontact.setVisible(true);
+            lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        } else {
+            lastcontact.setVisible(false);
+        }
     }
 }
