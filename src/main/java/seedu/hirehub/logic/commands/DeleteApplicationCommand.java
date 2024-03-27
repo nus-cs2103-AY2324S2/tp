@@ -36,7 +36,7 @@ public class DeleteApplicationCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddApplicationCommand)) {
+        if (!(other instanceof DeleteApplicationCommand)) {
             return false;
         }
         return true;
