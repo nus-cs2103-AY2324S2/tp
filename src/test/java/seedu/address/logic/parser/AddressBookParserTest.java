@@ -115,7 +115,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_switchiew() throws Exception {
+    public void parseCommand_switchView() throws Exception {
         assertTrue(parser.parseCommand(SwitchViewCommand.COMMAND_WORD) instanceof SwitchViewCommand);
         assertTrue(parser.parseCommand(SwitchViewCommand.COMMAND_WORD + " 3") instanceof SwitchViewCommand);
     }

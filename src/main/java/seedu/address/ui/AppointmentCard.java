@@ -69,9 +69,8 @@ public class AppointmentCard extends UiPart<Region> {
         note.setText("Notes: " + appt.getNote().toString());
         Timeline timeline = getTimeline();
         timeline.play();
-        //make appointment green depending on mark status
         if (appt.getMark().isMarked) {
-            cardPane.setStyle("-fx-background-color: #33B864;");
+            cardPane.setStyle(Colors.MARKED_APPOINTMENT_GREEN_COLOR);
         }
     }
 
@@ -90,7 +89,7 @@ public class AppointmentCard extends UiPart<Region> {
     private void bindCardPaneStyle() {
         cardPane.styleProperty().bind(
                 Bindings.when(isPastAppointment(appt))
-                        .then("-fx-background-color: #FF7074")
+                        .then(Colors.PAST_APPOINTMENT_RED_COLOR)
                         .otherwise("")
         );
     }
