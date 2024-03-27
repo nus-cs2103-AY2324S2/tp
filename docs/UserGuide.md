@@ -458,6 +458,34 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Common Errors
+
+### Unknown Command
+
+![Unknown Command](images/ug-images/error-images/unknown-command.png)
+
+Key in only valid commands as mentioned in this User Guide (eg. `/add`, `/edit`, etc.)
+
+### Invalid Field
+
+![img.png](images/ug-images/error-images/invalid-field.png)
+
+Key in only valid field parameters within the command (e.g. `name`, `phone`, `email` etc.)
+
+### Incorrect formatting
+
+![img.png](images/ug-images/error-images/incorrect-phone-format.png)
+
+![img.png](images/ug-images/error-images/incorrect-salary-format.png)
+
+To fix the formatting errors, key in the appropiate syntax based on the error message
+
+Examples:
+- `Phone` field accepts only numbers that are at least 3 digits long
+- `Salary` field must follow the format `$___/hr`
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
