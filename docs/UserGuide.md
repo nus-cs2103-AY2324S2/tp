@@ -202,7 +202,7 @@ Adds the specified booking to the address book.
 Format: `-n DESCRIPTION -s START_TIME -e END_TIME`
 
 * Creates a booking with the specified parameters.
-* Start and end time formats are in yyyy-mm-d.
+* Start and end time formats are in yyyy-mm-d hh:mm.
 
 Examples:
 * `book -n John's Birthday Party -s 2023-12-31 19:00 -e 2023-12-31 23:00`
