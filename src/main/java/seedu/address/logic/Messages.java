@@ -24,6 +24,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INPUT_NOT_REQUIRED_FIELDS = "Input not required for the following field(s): ";
+    public static final String MESSAGE_INVALID_FILE_NAME = "Cannot use file names HRConnect and ArchivedApplicants";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

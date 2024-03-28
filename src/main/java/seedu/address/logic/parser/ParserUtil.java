@@ -174,4 +174,14 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Ensures that {@code String fileName} is not null
+     *
+     * @throws ParseException
+     */
+    public static String parseFileName(String fileName) throws ParseException {
+        requireNonNull(fileName);
+        return fileName;
+    }
 }
