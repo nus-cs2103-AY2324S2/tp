@@ -179,11 +179,11 @@ Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeLi
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
 - **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-### showAll Command Implementation
+### Show All Command Implementation
 
-The `showAll` command is a simple feature designed to reset any filters applied and show the complete list of employees.
+The `ShowAllCommand` is a simple feature designed to reset any filters applied and show the complete list of employees.
 
-- `showAll` command directly interacts with the `Model` to reset the filtered employee list to show all employees.
+- `ShowAllCommand` directly interacts with the `Model` to reset the filtered employee list to show all employees.
 - It calls `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that always returns true, ensuring all employees are displayed.
 
 Given below is how the show all mechanism operates:
