@@ -95,13 +95,13 @@ public class EditArticleCommand extends ArticleCommand {
         Set<Author> authors = editArticleDescriptor.getAuthors().orElse(articleToEdit.getAuthors());
         Set<Source> sources = editArticleDescriptor.getSources().orElse(articleToEdit.getSources());
         Set<Tag> tags = editArticleDescriptor.getTags().orElse(articleToEdit.getTags());
-        Outlet outlet = editArticleDescriptor.getOutlet().orElse(articleToEdit.getOutlet());
+        Set<Outlet> outlets = editArticleDescriptor.getOutlets().orElse(articleToEdit.getOutlets());
         LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
                 .orElse(articleToEdit.getPublicationDate());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
 
         return new Article(title, authors, sources, tags,
-                outlet, publicationDate, status); // Include all article attributes here.
+                outlets, publicationDate, status); // Include all article attributes here.
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EditArticleCommand extends ArticleCommand {
         private Set<Author> authors;
         private Set<Source> sources;
         private Set<Tag> tags;
-        private Outlet outlet;
+        private Set<Outlet> outlets;
         private LocalDateTime publicationDate;
         private Status status;
 
@@ -152,7 +152,7 @@ public class EditArticleCommand extends ArticleCommand {
             setAuthors(toCopy.authors);
             setSources(toCopy.sources);
             setTags(toCopy.tags);
-            setOutlet(toCopy.outlet);
+            setOutlets(toCopy.outlets);
             setPublicationDate(toCopy.publicationDate);
             setStatus(toCopy.status);
         }
@@ -161,7 +161,7 @@ public class EditArticleCommand extends ArticleCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, authors, sources, outlet, publicationDate, tags, status);
+            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status);
         }
 
         public void setTitle(String title) {
@@ -204,12 +204,12 @@ public class EditArticleCommand extends ArticleCommand {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setOutlet(Outlet outlet) {
-            this.outlet = outlet;
+        public void setOutlets(Set<Outlet> outlets) {
+            this.outlets = (outlets != null) ? new HashSet<>(outlets) : null;
         }
 
-        public Optional<Outlet> getOutlet() {
-            return Optional.ofNullable(outlet);
+        public Optional<Set<Outlet>> getOutlets() {
+            return (outlets != null) ? Optional.of(Collections.unmodifiableSet(outlets)) : Optional.empty();
         }
         public void setStatus(Status status) {
             this.status = status;
@@ -236,7 +236,7 @@ public class EditArticleCommand extends ArticleCommand {
             return Objects.equals(title, otherEditArticleDescriptor.title)
                     && Objects.equals(authors, otherEditArticleDescriptor.authors)
                     && Objects.equals(sources, otherEditArticleDescriptor.sources)
-                    && Objects.equals(outlet, otherEditArticleDescriptor.outlet)
+                    && Objects.equals(outlets, otherEditArticleDescriptor.outlets)
                     && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
                     && Objects.equals(tags, otherEditArticleDescriptor.tags)
                     && Objects.equals(status, otherEditArticleDescriptor.status);

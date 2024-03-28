@@ -216,8 +216,22 @@ public class ParserUtil {
     public static Outlet parseOutlet(String outlet) throws ParseException {
         requireNonNull(outlet);
         String trimmedOutlet = outlet.trim();
-        //removed the check for category validity
+        if (!Outlet.isValidOutletName(trimmedOutlet)) {
+            throw new ParseException(Outlet.MESSAGE_CONSTRAINTS);
+        }
         return new Outlet(trimmedOutlet);
+    }
+
+    /**
+     * Parses a {@code List<String> outlets} into a {@code Set<Outlet>}.
+     */
+    public static Set<Outlet> parseOutlets(Collection<String> outlets) throws ParseException {
+        requireNonNull(outlets);
+        final Set<Outlet> outletSet = new HashSet<>();
+        for (String outletName : outlets) {
+            outletSet.add(parseOutlet(outletName));
+        }
+        return outletSet;
     }
 
     /**

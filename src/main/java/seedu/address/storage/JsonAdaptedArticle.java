@@ -27,7 +27,7 @@ public class JsonAdaptedArticle {
     private final LocalDateTime publicationDate;
     private final List<JsonAdaptedSource> sources = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final String outlet;
+    private final List<JsonAdaptedOutlet> outlets = new ArrayList<>();
     private final Article.Status status;
 
     /**
@@ -37,7 +37,7 @@ public class JsonAdaptedArticle {
      * @param authors
      * @param sources
      * @param tags
-     * @param outlet
+     * @param outlets
      * @param publicationDate
      * @param status
      */
@@ -46,7 +46,7 @@ public class JsonAdaptedArticle {
                               @JsonProperty("authors") List<JsonAdaptedAuthor> authors,
                               @JsonProperty("sources") List<JsonAdaptedSource> sources,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("outlet") String outlet,
+                              @JsonProperty("outlets") List<JsonAdaptedOutlet> outlets,
                               @JsonProperty("publicationDate") LocalDateTime publicationDate,
                               @JsonProperty("status") Article.Status status) {
         this.title = title;
@@ -59,7 +59,9 @@ public class JsonAdaptedArticle {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.outlet = outlet;
+        if (outlets != null) {
+            this.outlets.addAll(outlets);
+        }
         this.publicationDate = publicationDate;
         this.status = status;
     }
@@ -78,7 +80,9 @@ public class JsonAdaptedArticle {
         tags.addAll(sourceArticle.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        outlet = sourceArticle.getOutlet().outletName;
+        outlets.addAll(sourceArticle.getOutlets().stream()
+                .map(JsonAdaptedOutlet::new)
+                .collect(Collectors.toList()));
         publicationDate = sourceArticle.getPublicationDate();
         status = sourceArticle.getStatus();
     }
@@ -108,7 +112,10 @@ public class JsonAdaptedArticle {
         for (JsonAdaptedSource source : sources) {
             articleSources.add(source.toModelType());
         }
-
+        final List<Outlet> articleOutlets = new ArrayList<>();
+        for (JsonAdaptedOutlet outlet : outlets) {
+            articleOutlets.add(outlet.toModelType());
+        }
 
         final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
 
@@ -116,8 +123,8 @@ public class JsonAdaptedArticle {
 
         final Set<Tag> modelTags = new HashSet<>(articleTags);
 
-        final Outlet modelOutlet = new Outlet(outlet);
+        final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
 
-        return new Article(title, modelAuthors, modelSources, modelTags, modelOutlet, publicationDate, status);
+        return new Article(title, modelAuthors, modelSources, modelTags, modelOutlets, publicationDate, status);
     }
 }

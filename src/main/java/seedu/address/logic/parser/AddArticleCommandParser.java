@@ -45,12 +45,12 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
         Set<Author> authorList = ParserUtil.parseAuthors(argMultimap.getAllValues(PREFIX_AUTHOR));
         Set<Source> sourceList = ParserUtil.parseSources(argMultimap.getAllValues(PREFIX_SOURCE));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ARTICLETAG));
-        Outlet outlet = ParserUtil.parseOutlet(argMultimap.getValue(PREFIX_OUTLET).get());
+        Set<Outlet> outletList = ParserUtil.parseOutlets(argMultimap.getAllValues(PREFIX_OUTLET));
         LocalDateTime publicationDate = ParserUtil.parsePublicationDate(argMultimap.getValue(PREFIX_PUBLICATION_DATE)
                 .get());
         Article.Status status = (Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
-        Article article = new Article(title, authorList, sourceList, tagList, outlet, publicationDate, status);
+        Article article = new Article(title, authorList, sourceList, tagList, outletList, publicationDate, status);
 
         return new AddArticleCommand(article);
     }

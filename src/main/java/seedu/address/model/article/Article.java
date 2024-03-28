@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Article {
     private final String title;
-    private final Outlet outlet;
+    private final Set<Outlet> outlets = new HashSet<>();
     private final Set<Author> authors = new HashSet<>();
     private final Set<Source> sources = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
@@ -43,13 +43,13 @@ public class Article {
      * @param status the current status of the article.
      */
     public Article(String title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
-                   Outlet outlet, LocalDateTime publicationDate, Status status) {
-        requireAllNonNull(title, authors, sources, tags, outlet, publicationDate, status);
+                   Set<Outlet> outlets, LocalDateTime publicationDate, Status status) {
+        requireAllNonNull(title, authors, sources, tags, outlets, publicationDate, status);
         this.title = title;
         this.authors.addAll(authors);
         this.sources.addAll(sources);
         this.tags.addAll(tags);
-        this.outlet = outlet;
+        this.outlets.addAll(outlets);
         this.publicationDate = publicationDate;
         this.status = status;
     }
@@ -71,8 +71,8 @@ public class Article {
         return this.publicationDate.format(formatter);
     }
 
-    public Outlet getOutlet() {
-        return this.outlet;
+    public Set<Outlet> getOutlets() {
+        return Collections.unmodifiableSet(outlets);
     }
 
     public Set<Source> getSources() {

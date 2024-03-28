@@ -22,7 +22,7 @@ public class SampleArticleDataUtil {
     public static Article[] getSampleArticles() {
         return new Article[]{
             new Article("The epitome of pain and suffering by NUS CS students.", getAuthorSet("Alice", "Bob"),
-                    getSourceSet("NUS Computing Club"), getTagSet("Student Life"), new Outlet("SOC News Bulletin"),
+                    getSourceSet("NUS Computing Club"), getTagSet("Student Life"), getOutletSet("SOC News Bulletin"),
                     LocalDateTime.now(), Status.PUBLISHED)
         };
     }
@@ -59,6 +59,15 @@ public class SampleArticleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns an outlet set containing the list of strings given.
+     */
+    public static Set<Outlet> getOutletSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Outlet::new)
                 .collect(Collectors.toSet());
     }
 }

@@ -21,6 +21,7 @@ import seedu.address.logic.commands.articlecommands.EditArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
 import seedu.address.model.tag.Tag;
 
@@ -64,13 +65,11 @@ public class EditArticleCommandParser {
             editArticleDescriptor.setStatus((Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
                     .get()));
         }
-        if (argMultimap.getValue(PREFIX_OUTLET).isPresent()) {
-            editArticleDescriptor.setOutlet(ParserUtil.parseOutlet(argMultimap.getValue(PREFIX_OUTLET).get()));
-        }
 
         parseAuthorsForEdit(argMultimap.getAllValues(PREFIX_AUTHOR)).ifPresent(editArticleDescriptor::setAuthors);
         parseSourcesForEdit(argMultimap.getAllValues(PREFIX_SOURCE)).ifPresent(editArticleDescriptor::setSources);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_ARTICLETAG)).ifPresent(editArticleDescriptor::setTags);
+        parseOutletsForEdit(argMultimap.getAllValues(PREFIX_OUTLET)).ifPresent(editArticleDescriptor::setOutlets);
 
         if (!editArticleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -107,6 +106,15 @@ public class EditArticleCommandParser {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+    private Optional<Set<Outlet>> parseOutletsForEdit(Collection<String> outlets) throws ParseException {
+        assert outlets != null;
+
+        if (outlets.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> outletSet = outlets.size() == 1 && outlets.contains("") ? Collections.emptySet() : outlets;
+        return Optional.of(ParserUtil.parseOutlets(outletSet));
     }
 
 }

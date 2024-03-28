@@ -31,8 +31,8 @@
         <FlowPane fx:id="authors"/>
         <FlowPane fx:id="sources"/>
         <FlowPane fx:id="tags"/>
+        <FlowPane fx:id="outlets"/>
       </VBox>
-      <Label fx:id="outlet" styleClass="cell_small_label" text="\$outlet" />
       <Label fx:id="publicationDate" styleClass="cell_small_label" text="\$publicationDate" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
     </VBox>
