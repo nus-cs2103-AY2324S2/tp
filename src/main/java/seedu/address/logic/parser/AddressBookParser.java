@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CompanyCommand;
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.FilterHighPriorityCommand;
 import seedu.address.logic.commands.FilterMedPriorityCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindCompanyCommand;
+import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PriorityCommand;
@@ -96,6 +98,12 @@ public class AddressBookParser {
 
         case PriorityCommand.COMMAND_WORD_NONE:
             return new PriorityCommandParser("").parse(arguments);
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
+
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

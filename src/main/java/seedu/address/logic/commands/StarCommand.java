@@ -49,8 +49,9 @@ public class StarCommand extends Command {
 
         // Star the contact
         contactToStar.starContact();
-        Person starredContact = new Person(contactToStar.getName(), contactToStar.getPhone(),
-                contactToStar.getEmail(), contactToStar.getAddress(), contactToStar.getCompany(),
+
+        Person starredContact = new Person(contactToStar.getName(), contactToStar.getPhone(), contactToStar.getEmail(),
+                contactToStar.getAddress(), contactToStar.getCompany(), contactToStar.getMeeting(),
                 contactToStar.getPriority(), contactToStar.isStarred(), contactToStar.getTags());
 
         model.setPerson(contactToStar, starredContact);

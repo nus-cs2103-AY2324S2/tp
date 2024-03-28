@@ -3,9 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.AddMeetingCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Company company;
+    private Meeting meeting;
     private Priority priority;
     private Boolean starred;
     private Set<Tag> tags;
@@ -44,6 +47,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         company = new Company(DEFAULT_COMPANY);
+        meeting = new Meeting("", "", "", "");
         priority = new Priority(DEFAULT_PRIORITY);
         starred = DEFAULT_STAR;
         tags = new HashSet<>();
@@ -58,6 +62,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         company = personToCopy.getCompany();
+        meeting = personToCopy.getMeeting();
         priority = personToCopy.getPriority();
         starred = personToCopy.isStarred();
         tags = new HashSet<>(personToCopy.getTags());
@@ -112,6 +117,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeeting(String meeting) {
+        String[] details = AddMeetingCommandParser.parseDetails(meeting);
+        this.meeting = new Meeting(details[0], details[1], details[2], details[3]);
+        return this;
+    }
+
+    /**
      * Sets the {@code Star} of the {@code Person} that we are building.
      */
     public PersonBuilder withStar(Boolean starred) {
@@ -128,7 +142,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, company, priority, starred, tags);
+        return new Person(name, phone, email, address, company, meeting, priority, starred, tags);
     }
 
 }

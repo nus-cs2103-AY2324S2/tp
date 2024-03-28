@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -93,6 +96,32 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String timeString} into an {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LocalTime parseTime(String timeString) {
+        requireNonNull(timeString);
+        String trimmedTimeString = timeString.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+        LocalTime time = LocalTime.parse(trimmedTimeString, formatter);
+        return time;
+    }
+
+    /**
+     * Parses a {@code String dateString} into an {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static LocalDate parseDate(String dateString) {
+        requireNonNull(dateString);
+        String trimmedDateString = dateString.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(trimmedDateString, formatter);
+        return date;
     }
 
     /**

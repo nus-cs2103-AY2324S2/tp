@@ -8,52 +8,50 @@ import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Company;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
-
 /**
- * Changes the company of an existing person in the address book.
+ * Changes the meeting of an existing person in the address book.
  */
-public class CompanyCommand extends Command {
+public class AddMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "co";
+    public static final String COMMAND_WORD = "mtg";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a company to the person identified by the contact name "
-            + "Existing company will be overwritten by the input.\n"
-            + "c/ [COMPANY_NAME]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "c/ Friends";
+            + ": Adds a meeting to the person identified by the contact name.\n"
+            + "mtg [CONTACT_NAME] m/[MTG_DESC] t/[TIMING]\n"
+            + "Example: " + COMMAND_WORD + " Alex Tan "
+            + "m/Interview t/23-03-2024 1600-1700";
 
-    public static final String MESSAGE_ADD_COMPANY_SUCCESS = "Tagged %1$s's company as %2$s";
-    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Removed the company tag from %1$s's contact";
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Company command not implemented yet";
+    public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added the meeting with %1$s. The meeting details "
+            + "are as follows:\n" + "%2$s\n";
+    public static final String MESSAGE_DELETE_MEETING_SUCCESS = "Removed the meeting with %1$s.";
+
     public static final String MESSAGE_PERSON_NOT_FOUND = "Oops, %1$s's contact does not exist. Unable to add "
-            + "company tag.";
+            + "meeting.";
     public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";
 
     private final String name;
-    private final Company company;
+    private final Meeting meeting;
 
 
     /**
-     * @param name  of the person in the filtered person list to edit the company
-     * @param company of the person to be updated to
+     * @param name  of the person in the filtered person list to edit the meeting
+     * @param meeting of the person to be updated to
      */
-    public CompanyCommand(String name, Company company) {
-        requireAllNonNull(name, company);
+    public AddMeetingCommand(String name, Meeting meeting) {
+        requireAllNonNull(name, meeting);
 
         this.name = name;
-        this.company = company;
+        this.meeting = meeting;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (name.isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_EMPTY_NAME, name));
+            throw new CommandException(MESSAGE_EMPTY_NAME);
         }
         List<Person> contactList = model.getFilteredPersonList();
         Person personToEdit = null;
@@ -68,7 +66,7 @@ public class CompanyCommand extends Command {
         }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), company, personToEdit.getMeeting(), personToEdit.getPriority(),
+                personToEdit.getAddress(), personToEdit.getCompany(), meeting, personToEdit.getPriority(),
                 personToEdit.isStarred(), personToEdit.getTags());
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -78,12 +76,13 @@ public class CompanyCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the company is added to or removed from
+     * the meeting is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !company.value.isEmpty() ? MESSAGE_ADD_COMPANY_SUCCESS : MESSAGE_DELETE_COMPANY_SUCCESS;
-        return String.format(message, personToEdit.getName(), company);
+        String message = !meeting.toString().isEmpty() ? MESSAGE_ADD_MEETING_SUCCESS : MESSAGE_DELETE_MEETING_SUCCESS;
+        String result = String.format(message, personToEdit.getName(), meeting.toString());
+        return result;
     }
 
     @Override
@@ -93,12 +92,12 @@ public class CompanyCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CompanyCommand)) {
+        if (!(other instanceof AddMeetingCommand)) {
             return false;
         }
 
-        CompanyCommand e = (CompanyCommand) other;
+        AddMeetingCommand e = (AddMeetingCommand) other;
         return name.equals(e.name)
-                && company.equals(e.company);
+                && meeting.equals(e.meeting);
     }
 }

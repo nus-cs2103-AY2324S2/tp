@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Company company;
+    private final Meeting meeting;
     private final Priority priority;
     private boolean starred;
     private final Set<Tag> tags = new HashSet<>();
@@ -31,14 +32,15 @@ public class Person {
     /**
      * Name, phone, email, address, tags must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  Company company, Priority priority, Boolean starred, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Company company,
+                  Meeting meeting, Priority priority, Boolean starred, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.company = company;
+        this.meeting = meeting;
         this.priority = priority;
         this.starred = starred;
         this.tags.addAll(tags);
@@ -62,6 +64,10 @@ public class Person {
 
     public Company getCompany() {
         return company;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
     }
     public Priority getPriority() {
         return priority;
@@ -139,6 +145,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("company", company)
+                .add("meeting", meeting)
                 .add("priority", priority)
                 .add("starred", starred)
                 .add("tags", tags)
