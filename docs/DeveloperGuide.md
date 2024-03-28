@@ -515,6 +515,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddressBook shows the list of people, ordering them from the nearest to the farthest upcoming appointment based on date.
 
 **Extensions**
+* 1a. No clients with any upcoming info
+  * 1ai. The system would show a blank list.
+    Use case resumes at step 1. 
+
+**Extensions**
 * 2a. Client name does not exist.
     * 2a1. The system shows an error message.
       Use case resumes at step 1.
