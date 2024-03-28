@@ -37,23 +37,23 @@ public class NameTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
+    public void of_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Name.of((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsIllegalArgumentException() {
+    public void of_invalidValue_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Name.of(INVALID_NAME));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
+    public void of_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, Name.of(VALID_NAME));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+    public void of_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, Name.of(nameWithWhitespace));
@@ -64,10 +64,13 @@ public class NameTest {
         Name name = new Name("Valid Name");
 
         // same values -> returns true
-        assertTrue(name.equals(new Name("Valid Name")));
+        Name name2 = new Name("Valid Name");
+        assertTrue(name.equals(name2));
+        assertEquals(name.hashCode(), name2.hashCode());
 
         // same object -> returns true
         assertTrue(name.equals(name));
+        assertEquals(name.hashCode(), name.hashCode());
 
         // null -> returns false
         assertFalse(name.equals(null));
@@ -76,7 +79,8 @@ public class NameTest {
         assertFalse(name.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(name.equals(new Name("Other Valid Name")));
+        Name otherName = new Name("Other Valid Name");
+        assertFalse(name.equals(otherName));
     }
 
 }

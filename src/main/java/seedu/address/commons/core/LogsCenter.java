@@ -18,6 +18,7 @@ import java.util.logging.SimpleFormatter;
  *   file reaches 5MB big, up to a maximum of 5 files.<br>
  */
 public class LogsCenter {
+
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (int) (Math.pow(2, 20) * 5); // 5MB
     private static final String LOG_FILE = "addressbook.log";
@@ -101,6 +102,5 @@ public class LogsCenter {
             logger.warning("Error adding file handler for logger.");
         }
     }
-
 
 }

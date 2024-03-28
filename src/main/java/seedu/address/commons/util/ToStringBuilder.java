@@ -4,6 +4,7 @@ package seedu.address.commons.util;
  * Builds a string representation of an object that is suitable as the return value of {@link Object#toString()}.
  */
 public class ToStringBuilder {
+
     private static final String OBJECT_PREFIX = "{";
     private static final String OBJECT_SUFFIX = "}";
     private static final String FIELD_SEPARATOR = ", ";
@@ -50,4 +51,5 @@ public class ToStringBuilder {
     public String toString() {
         return stringBuilder.toString() + OBJECT_SUFFIX;
     }
+
 }

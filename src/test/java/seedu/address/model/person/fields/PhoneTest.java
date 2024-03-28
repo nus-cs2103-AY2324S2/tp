@@ -37,23 +37,23 @@ public class PhoneTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
+    public void of_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Phone.of((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsIllegalArgumentException() {
+    public void of_invalidValue_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Phone.of(INVALID_PHONE));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+    public void of_validValueWithoutWhitespace_returnsPhone() throws Exception {
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, Phone.of(VALID_PHONE));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
+    public void of_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, Phone.of(phoneWithWhitespace));
@@ -64,10 +64,13 @@ public class PhoneTest {
         Phone phone = new Phone("999");
 
         // same values -> returns true
-        assertTrue(phone.equals(new Phone("999")));
+        Phone phone2 = new Phone("999");
+        assertTrue(phone.equals(phone2));
+        assertEquals(phone.hashCode(), phone2.hashCode());
 
         // same object -> returns true
         assertTrue(phone.equals(phone));
+        assertEquals(phone.hashCode(), phone.hashCode());
 
         // null -> returns false
         assertFalse(phone.equals(null));
@@ -76,6 +79,8 @@ public class PhoneTest {
         assertFalse(phone.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(phone.equals(new Phone("995")));
+        Phone otherPhone = new Phone("995");
+        assertFalse(phone.equals(otherPhone));
     }
+
 }

@@ -109,6 +109,18 @@ public class AddressBookTest {
     }
 
     @Test
+    public void equals() {
+        assertTrue(addressBook.equals(addressBook));
+        assertEquals(addressBook.hashCode(), addressBook.hashCode());
+
+        assertFalse(addressBook.equals(null));
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(ALICE);
+        assertFalse(addressBook.equals(addressBook2));
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());

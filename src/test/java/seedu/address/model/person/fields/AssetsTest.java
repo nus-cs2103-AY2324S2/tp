@@ -1,7 +1,7 @@
 package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -23,35 +23,42 @@ class AssetsTest {
 
     @Test
     public void constructor_emptyArray_success() {
-        assertEquals(new Assets(emptyAssetArray), new Assets(emptyStringArray));
+        Assets emptyAssets = new Assets(emptyStringArray);
+        Assets emptyAssets2 = new Assets(emptyAssetArray);
+        assertEquals(emptyAssets, emptyAssets2);
+        assertEquals(emptyAssets.hashCode(), emptyAssets2.hashCode());
     }
 
     @Test
-    public void parseAssets_null_throwsNullPointerException() {
+    public void of_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Assets.of(null));
     }
 
     @Test
-    public void parseAssets_collectionWithInvalidAssets_throwsIllegalArgumentException() {
+    public void of_collectionWithInvalidAssets_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () ->
                 Assets.of(Arrays.asList(VALID_ASSET_1, INVALID_ASSET)));
     }
 
     @Test
-    public void parseAssets_emptyCollection_returnsEmptyAssets() throws Exception {
-        assertEquals(new Assets(new Asset[0]), Assets.of(Collections.emptyList()));
+    public void of_emptyCollection_returnsEmptyAssets() {
+        Assets emptyAssets = new Assets(new Asset[0]);
+        Assets emptyAssets2 = Assets.of(Collections.emptyList());
+        assertEquals(emptyAssets, emptyAssets2);
+        assertEquals(emptyAssets.hashCode(), emptyAssets2.hashCode());
     }
 
     @Test
-    public void parseAssets_collectionWithValidAssets_returnsAssetSet() throws Exception {
+    public void of_collectionWithValidAssets_returnsAssetSet() {
         Assets actualAssets = Assets.of(Arrays.asList(VALID_ASSET_1, VALID_ASSET_2));
         Assets expectedAssets = new Assets(Asset.of(VALID_ASSET_1), Asset.of(VALID_ASSET_2));
-
         assertEquals(expectedAssets, actualAssets);
+        assertEquals(expectedAssets.hashCode(), actualAssets.hashCode());
     }
 
     @Test
     void equals_null_false() {
-        assertNotEquals(null, new Assets(emptyAssetArray));
+        assertFalse(new Assets(emptyAssetArray).equals(null));
     }
+
 }

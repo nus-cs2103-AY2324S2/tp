@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -116,4 +117,5 @@ public interface Model {
      * Changes the target asset into the editedAsset.
      */
     void editAsset(Asset target, Asset editedAsset);
+
 }
