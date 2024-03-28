@@ -10,8 +10,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -108,14 +106,6 @@ public class MarkImportantCommand extends Command {
                 && markImportantDescriptor.equals(otherMarkImportantCommand.markImportantDescriptor);
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("group", groupName)
-                .add("markImportantDescriptor", markImportantDescriptor)
-                .toString();
-    }
-
     /**
      * Stores the list of skills to mark important in the group
      */
@@ -136,7 +126,7 @@ public class MarkImportantCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(skills);
+            return (skills == null || skills.size() == 0) ? false : true;
         }
 
         /**
@@ -182,11 +172,6 @@ public class MarkImportantCommand extends Command {
             MarkImportantCommand.MarkImportantDescriptor otherMarkImportantDescriptor =
                     (MarkImportantCommand.MarkImportantDescriptor) other;
             return Objects.equals(skills, otherMarkImportantDescriptor.skills);
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this).add("skills", skills).toString();
         }
     }
 }

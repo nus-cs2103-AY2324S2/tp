@@ -4,7 +4,10 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "skills": [ "Java" ]
+    "skills" : [ {
+      "important" : false,
+      "skillName" : "Java"
+    } ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.Collection;
@@ -28,15 +29,22 @@ public class UnmarkImportantCommandParser implements Parser<UnmarkImportantComma
         ArgumentMultimap argMultiMap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SKILL);
 
-        Name name = ParserUtil.parseName(argMultiMap.getPreamble());
-        UnmarkImportantDescriptor unmarkImportantDescriptor = new UnmarkImportantDescriptor();
+        try {
+            Name name = ParserUtil.parseName(argMultiMap.getPreamble());
+            UnmarkImportantDescriptor unmarkImportantDescriptor = new UnmarkImportantDescriptor();
 
-        parseSkillsForEdit(argMultiMap.getAllValues(PREFIX_SKILL)).ifPresent(unmarkImportantDescriptor::setSkills);
+            parseSkillsForEdit(argMultiMap.getAllValues(PREFIX_SKILL)).ifPresent(unmarkImportantDescriptor::setSkills);
 
-        if (!unmarkImportantDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UnmarkImportantCommand.MESSAGE_NOT_EDITED);
+            //Will be caught by catch clause
+            if (!unmarkImportantDescriptor.isAnyFieldEdited()) {
+                throw new ParseException("");
+            }
+
+            return new UnmarkImportantCommand(name, unmarkImportantDescriptor);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    UnmarkImportantCommand.MESSAGE_USAGE));
         }
-        return new UnmarkImportantCommand(name, unmarkImportantDescriptor);
     }
 
     /**
