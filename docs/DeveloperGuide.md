@@ -158,6 +158,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Invite Person to Event
+
+The `InvitePersonCommand` allows users to invite a person to the selected event from the global address book.
+
+#### Implementation Details
+
+The `InvitePersonCommand` is implemented by extending the base `Command` class. It uses a `targetIndex`, specifying the desired person's global list index, to identify the person to be added to the selected event. It implements the following operations:
+
+* `execute(Model)` — Checks the current address book state by calling `isAnEventSelected()`, and throws a `CommandException` if no event is selected. 
+It also calls `isPersonInSelectedEvent` to ensure the invitee is not already added to the event by throwing a `CommandException` if he is already on the invitee list.
+* `addPersonToSelectedEvent(Person)` — Adds the participant to the selected event. in the filtered global participant list. This operation is exposed in the `Model` interface as `Model#addPersonToSelectedEvent(Person)`.
+
+The invite command is initiated by firstly retrieving the filtered person list and locating the `personToInvite` object in it, after which `Model#addPersonToSelectedEvent(Person)(Person)` is called to complete the actual invitation.
+
+Given below is an example usage scenario of how the deletion mechanism behaves when the user tries to delete a participant from the global participant list.
+
+Step 1. The user launches the application, with some events and participants added to the address book already. The `AddressBook` will be initialized with the previously saved address book state, and the `selectedEvent` in the `EventBook` will initially be `null`.
+
+Step 2. The user executes `sel 1` command to select the first event to be modified
+
+Step 3. The user executes `inv 3` command to invite the 5th person in the global list to the selected event. The `InviteCommand` will then call `excecute()`, which checks that an event is selected and the user doesn't already exist in the selected event invitee list before calling `addPersonToSelectedEvent(Person)`.
+
+<box type="info" seamless>
+
+**Note:** If the `targetIndex` provided is invalid, a `CommandException` will be thrown.
+
+</box>
+
+#### Sequence Diagram
+
+![Sequence diagram](images/InviteSequenceDiagram.png)
+
+#### Design Considerations:
+
+**Aspect 1: How to specify the event the person should be added to:**
+
+* **Alternative 1 (current choice):** Select an event first, then use the `index` in the filtered list
+    * Pros: Easier to implement.  Immediate visual reference.
+    * Cons: Extra select command is needed before participant can be added
+  
+* **Alternative 2:** Specify event and person indices in one command
+    * Pros: Action can be performed in one command
+    * Cons: Requires more complex input parsing, makes the user input longer, and may be confusing for the user
+
+**Rationale:**
+The primary rationale for selecting an event first is it lets the user have a clear sense that a certain event is currently being modified.  
+This will prevent future errors where the user confuses `invite` and `add` commands.
+
+
 ### Delete Participant
 
 The `DeletePersonCommand` allows users to delete a person either from the global address book or from a specific event, depending on whether an event is selected.
