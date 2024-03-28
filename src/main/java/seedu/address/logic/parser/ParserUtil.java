@@ -8,12 +8,16 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddMemPointsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,29 +100,83 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String membershipPts} into a {@code MembershipPoints}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code membershipPts} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static int parseMemPointsToAdd(String pointsToAdd) throws ParseException {
+        requireNonNull(pointsToAdd);
+
+        int parsedPointsToAdd;
+        try {
+            parsedPointsToAdd = Integer.parseInt(pointsToAdd);
+        } catch (NumberFormatException e) {
+            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+
+        if (!MembershipPoints.isValidMembershipPoints(parsedPointsToAdd)) {
+            throw new ParseException(AddMemPointsCommand.MESSAGE_CONSTRAINTS);
+        }
+
+        return parsedPointsToAdd;
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String allergen} into a {@code Allergen}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code allergen} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Allergen parseAllergen(String allergen) throws ParseException {
+        requireNonNull(allergen);
+        String trimmedAllergen = allergen.trim();
+        if (!Allergen.isValidAllergenName(trimmedAllergen)) {
+            throw new ParseException(Allergen.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Allergen(trimmedAllergen);
     }
+
+    /**
+     * Parses {@code Collection<String> allergens} into a {@code Set<Allergen>}.
+     */
+    public static Set<Allergen> parseAllergens(Collection<String> allergens) throws ParseException {
+        requireNonNull(allergens);
+        final Set<Allergen> allergenSet = new HashSet<>();
+        for (String allergenName : allergens) {
+            allergenSet.add(parseAllergen(allergenName));
+        }
+        return allergenSet;
+    }
+
+    /**
+     * Parses a {@code String points} into a {@code Points}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code points} is invalid (not a non-negative integer).
+     */
+    public static Points parsePoints(String points) throws ParseException {
+        requireNonNull(points);
+        String trimmedPoints = points.trim();
+        if (!Points.isValidPoints(trimmedPoints)) {
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
+        }
+        return new Points(trimmedPoints);
+    }
+
+    /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Address.isValidAddress(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
+    }
+
+
 }

@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddMemshipCommandParser" as AddMemshipCommandParser LOGIC_COLOR
+participant "ms:Membership" as Membership LOGIC_COLOR
+participant "a:AddMemshipCommand" as AddMemshipCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+participant "abby:Person" as Person LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\n"addmship \nAbby \nms/T2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\n"addmship \nAbby \nms/T2")
+activate AddressBookParser
+
+create AddMemshipCommandParser
+AddressBookParser -> AddMemshipCommandParser
+activate AddMemshipCommandParser
+
+AddMemshipCommandParser --> AddressBookParser
+deactivate AddMemshipCommandParser
+
+AddressBookParser -> AddMemshipCommandParser : parse(\n"Abby \nms/T2")
+activate AddMemshipCommandParser
+
+create Membership
+AddMemshipCommandParser -> Membership
+activate Membership
+
+Membership --> AddMemshipCommandParser : ms
+deactivate Membership
+
+create AddMemshipCommand
+AddMemshipCommandParser -> AddMemshipCommand : AddMemshipCommand(name, ms)
+activate AddMemshipCommand
+
+AddMemshipCommand --> AddMemshipCommandParser : a
+deactivate AddMemshipCommand
+
+AddMemshipCommandParser --> AddressBookParser : a
+deactivate AddMemshipCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddMemshipCommandParser -[hidden]-> AddressBookParser
+destroy AddMemshipCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddMemshipCommand : execute(m)
+activate AddMemshipCommand
+
+AddMemshipCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddMemshipCommand : fpl
+deactivate Model
+
+alt "Abby" matches name in fpl
+    AddMemshipCommand -> Person : addMembership(ms)
+activate Person
+
+Person --> AddMemshipCommand
+deactivate Person
+
+create CommandResult
+AddMemshipCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddMemshipCommand
+deactivate CommandResult
+
+AddMemshipCommand --> LogicManager : r
+
+[<--LogicManager
+deactivate LogicManager
+
+else
+    [<-- AddMemshipCommand : commandException
+    deactivate AddMemshipCommand
+end
+@enduml

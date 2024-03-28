@@ -1,16 +1,21 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -36,7 +41,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setAllergens(person.getAllergens());
+        descriptor.setPoints(person.getPoints());
+        descriptor.setOrders(person.getOrders());
     }
 
     /**
@@ -72,12 +79,35 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code allergens} into a {@code Set<Allergen>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withAllergens(String... allergens) {
+        Set<Allergen> allergenSet = Stream.of(allergens).map(Allergen::new).collect(Collectors.toSet());
+        descriptor.setAllergens(allergenSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Points} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPoints(String points) {
+        descriptor.setPoints(new Points(points));
+        return this;
+    }
+
+    /**
+     * Parses the {@code orders} into a {@code ArrayList<Order>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withOrders(String... orders) {
+        ArrayList<Order> orderList = Arrays.stream(orders)
+                .map(str -> {
+                    String[] parts = str.split("@");
+                    return new Order(parts[0], LocalDateTime.parse(parts[1]));
+                })
+                .collect(Collectors.toCollection(ArrayList::new));
+        descriptor.setOrders(orderList);
         return this;
     }
 

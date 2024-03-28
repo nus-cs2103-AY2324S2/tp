@@ -2,12 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGENS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,12 +23,15 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Points;
+import seedu.address.model.person.orders.Order;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -38,12 +43,14 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "Orders cannot be edited this way.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_NAME + "MEMBER_NAME] "
+            + "[" + PREFIX_PHONE + "MEMBER_PHONE] "
+            + "[" + PREFIX_EMAIL + "MEMBER_EMAIL] "
+            + "[" + PREFIX_ADDRESS + "MEMBER_ADDRESS] "
+            + "[" + PREFIX_ALLERGENS + "ALLERGENS]"
+            + "[" + PREFIX_POINTS + "POINTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -90,7 +97,8 @@ public class EditCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editPersonDescriptor}. Orders of {@code personToEdit} is copied
+     * over to the returned {@code Person}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
@@ -99,9 +107,13 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        MembershipPoints updatedMembershipPoints = personToEdit.getMembershipPoints();
+        Set<Allergen> updatedAllergens = editPersonDescriptor.getAllergens().orElse(personToEdit.getAllergens());
+        Points updatedPoints = editPersonDescriptor.getPoints().orElse(personToEdit.getPoints());
+        ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembershipPoints,
+                updatedAllergens, updatedPoints, updatedOrders);
     }
 
     @Override
@@ -137,7 +149,9 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Allergen> allergens;
+        private Points points;
+        private ArrayList<Order> orders;
 
         public EditPersonDescriptor() {}
 
@@ -150,14 +164,16 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setAllergens(toCopy.allergens);
+            setPoints(toCopy.points);
+            setOrders(toCopy.orders);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, allergens, points);
         }
 
         public void setName(Name name) {
@@ -193,20 +209,45 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code allergens} to this object's {@code allergens}.
+         * A defensive copy of {@code allergens} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setAllergens(Set<Allergen> allergens) {
+            this.allergens = (allergens != null) ? new HashSet<>(allergens) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable allergen set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code allergens} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Allergen>> getAllergens() {
+            return (allergens != null) ? Optional.of(Collections.unmodifiableSet(allergens)) : Optional.empty();
+        }
+
+        public void setPoints(Points points) {
+            this.points = points;
+        }
+
+        public Optional<Points> getPoints() {
+            return Optional.ofNullable(points);
+        }
+
+
+        /**
+         * Sets {@code orders} to this object's {@code orders}.
+         * A defensive copy of {@code orders} is used internally.
+         */
+        public void setOrders(ArrayList<Order> orders) {
+            this.orders = (orders != null) ? new ArrayList<>(orders) : null;
+        }
+
+        /**
+         * Returns an order ArrayList
+         * Returns {@code Optional#empty()} if {@code ArrayList} is null.
+         */
+        public Optional<ArrayList<Order>> getOrders() {
+            return (orders != null) ? Optional.of(orders) : Optional.empty();
         }
 
         @Override
@@ -225,7 +266,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(allergens, otherEditPersonDescriptor.allergens)
+                    && Objects.equals(points, otherEditPersonDescriptor.points);
         }
 
         @Override
@@ -235,8 +277,10 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("tags", tags)
+                    .add("allergens", allergens)
+                    .add("points", points)
                     .toString();
         }
+
     }
 }

@@ -145,4 +145,7 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    public String toString() {
+        return String.format("%s %s %s", addressBook, userPrefs, filteredPersons);
+    }
 }
