@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.commons.core.date.Date;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentView;
+import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Patient;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +29,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<AppointmentView> filteredAppointmentsView;
+    private final FilteredList<AppointmentView> filteredAppointmentsDayView;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +43,10 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
+        this.filteredAppointmentsView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.filteredAppointmentsDayView = new FilteredList<>(this.addressBook.getAppointmentViewList());
+        this.updateFilteredAppointmentDayViewList();
     }
 
     public ModelManager() {
@@ -88,45 +101,132 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.hasPatientWithNric(nric);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public Patient getPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return addressBook.getPatientWithNric(nric);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deletePatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        addressBook.deletePatientWithNric(nric);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPatient(patient);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void deletePatient(Patient target) {
+        addressBook.removePatient(target);
+    }
+
+    @Override
+    public void addPatient(Patient patient) {
+        addressBook.addPatient(patient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+    }
+
+    @Override
+    public void setPatient(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
+
+        addressBook.setPatient(target, editedPatient);
+    }
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public void cancelAppointment(Appointment appointment) {
+        addressBook.cancelAppointment(appointment);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        addressBook.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_VIEWS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+        addressBook.setAppointment(target, editedAppointment);
+    }
+
+    @Override
+    public Appointment getMatchingAppointment(Nric nric, Date date, TimePeriod timePeriod) {
+        return addressBook.getMatchingAppointment(nric, date, timePeriod);
+    }
+
+    @Override
+    public void deleteAppointmentsWithNric(Nric targetNric) {
+        requireNonNull(targetNric);
+        addressBook.deleteAppointmentsWithNric(targetNric);
+    }
+
+    //=========== Filtered Patient List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Patient} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Patient> getFilteredPatientList() {
+        return filteredPatients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPatients.setPredicate(predicate);
     }
+
+    //=========== Filtered Appointment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+
+    @Override
+    public ObservableList<AppointmentView> getFilteredAppointmentViewList() {
+        return filteredAppointmentsView;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<AppointmentView> predicate) {
+        requireNonNull(predicate);
+        filteredAppointmentsView.setPredicate(predicate);
+    }
+
+    //=========== Filtered Appointment Day-View List Accessors =====================================================
+
+    @Override
+    public ObservableList<AppointmentView> getFilteredAppointmentDayViewList() {
+        return filteredAppointmentsDayView;
+    }
+
+    @Override
+    public void updateFilteredAppointmentDayViewList() {
+        Predicate<AppointmentView> predicate = new AppointmentContainsKeywordsPredicate(
+            Optional.empty(),
+            Optional.of(new Date(LocalDate.now().toString())),
+            Optional.empty());
+        filteredAppointmentsDayView.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -142,7 +242,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPatients.equals(otherModelManager.filteredPatients);
     }
 
 }

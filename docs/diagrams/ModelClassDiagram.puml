@@ -12,15 +12,28 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniquePatientList
+Class Patient
+Class Nric
+Class DateOfBirth
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
 
+Class Nric
+Class AppointmentList
+Class Appointment
+Class Date
+Class TimePeriod
+Class Time
+Class AppointmentType
+Class Note
+
 Class I #FFFFFF
+Class J #FFFFFF
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,20 +48,44 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniquePatientList
+UniquePatientList --> "~* all" Patient
+Patient *--> Name
+Patient *--> Nric
+Patient *--> DateOfBirth
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
+Patient *--> "*" Tag
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Patient -[hidden]up--> I
+UniquePatientList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
+Name -[hidden]right-> Nric
+Nric -[hidden]right-> DateOfBirth
+DateOfBirth -[hidden]right-> Address
+Address -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager --> "~* filtered" Person
+AddressBook *--> "1" AppointmentList
+AppointmentList --> "~* all" Appointment
+Appointment *--> Nric
+Appointment *--> Date
+Appointment *--> TimePeriod
+TimePeriod *--> "2" Time
+Appointment *--> AppointmentType
+Appointment *--> Note
+
+Appointment -[hidden]up--> J
+AppointmentList -[hidden]right-> J
+
+Nric -[hidden]right-> Date
+Date -[hidden]right-> TimePeriod
+TimePeriod -[hidden]right-> AppointmentType
+AppointmentType -[hidden]right-> Note
+
+
+ModelManager --> "~* filtered" Patient
+ModelManager --> "~* filtered" Appointment
 @enduml

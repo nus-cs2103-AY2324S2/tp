@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,51 +11,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ang Zi Jun Dayn
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dayn-1.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/dayn-1)]
 
-* Role: Project Advisor
+* Role: Testing
 
-### Jane Doe
+### Chee Wei Xiong Clifton
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cliftonchee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/cliftonchee)]
 
-* Role: Team Lead
+* Role: Documentation
 * Responsibilities: UI
 
-### Johnny Doe
+### Jaime Ng Jia Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thatgirljam.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/thatgirljam)]
 
-* Role: Developer
+* Role: Scheduling and Tracking
 * Responsibilities: Data
 
-### Jean Doe
+### Lim Rik
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/limrik.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/limrik)]
 
-* Role: Developer
+* Role: Code quality
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Low Xue Ling
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xuelinglow.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/xuelinglow)]
 
-* Role: Developer
+* Role: Integration
 * Responsibilities: UI

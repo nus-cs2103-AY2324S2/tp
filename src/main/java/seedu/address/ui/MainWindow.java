@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -31,9 +33,13 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
+    private DayViewListPanel dayViewListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private ToggleGroup toggleGroup;
+    private ViewMode currentView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,13 +48,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane patientListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private ToggleButton overallViewButton;
+
+    @FXML
+    private ToggleButton dayViewButton;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,10 +74,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
-
         helpWindow = new HelpWindow();
+        setNavbar();
+        this.currentView = ViewMode.OVERALL;
     }
 
     public Stage getPrimaryStage() {
@@ -110,8 +122,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList(), logic.getFilteredAppointmentViewList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        dayViewListPanel = new DayViewListPanel(logic.getFilteredAppointmentDayViewList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -147,6 +161,67 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void setNavbar() {
+        toggleGroup = new ToggleGroup();
+        overallViewButton.setToggleGroup(toggleGroup);
+        dayViewButton.setToggleGroup(toggleGroup);
+        overallViewButton.setSelected(true);
+    }
+
+    /**
+     * Displays the day-view and hides the overall-view
+     */
+    @FXML
+    public void handleShowDayView() {
+        patientListPanelPlaceholder.getChildren().remove(0);
+        patientListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
+        currentView = ViewMode.DAY;
+        dayViewButton.setSelected(true);
+    }
+
+    /**
+     * Displays the overall-view and hides the day-view
+     */
+    @FXML
+    public void handleShowOverallView() {
+        patientListPanelPlaceholder.getChildren().remove(0);
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+        currentView = ViewMode.OVERALL;
+        overallViewButton.setSelected(true);
+    }
+
+    /**
+     * Switches between displaying the overall view and day-view
+     */
+    @FXML
+    public void setView(ViewMode viewMode) {
+        if (viewMode == null) {
+            return;
+        }
+
+        switch (viewMode) {
+        case DAY:
+            handleShowDayView();
+            break;
+        case OVERALL:
+            handleShowOverallView();
+            break;
+        case SWITCH:
+            switchView();
+            break;
+        default:
+            break;
+        }
+    }
+
+    private void switchView() {
+        if (currentView == ViewMode.DAY) {
+            handleShowOverallView();
+        } else {
+            handleShowDayView();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -161,10 +236,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -185,6 +256,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            setView(commandResult.getViewMode());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

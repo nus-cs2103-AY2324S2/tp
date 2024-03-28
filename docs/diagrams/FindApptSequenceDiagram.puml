@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindApptCommandParser" as FindApptCommandParser LOGIC_COLOR
+participant "pred:AppointmentContainsKeywordPredicate" as AppointmentContainsKeywordPredicate LOGIC_COLOR
+participant "d:FindApptCommand" as FindApptCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findAppt i/T0123456A d/2024-02-20 from/11:00")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findAppt i/T0123456A d/2024-02-20 from/11:00")
+activate AddressBookParser
+
+create FindApptCommandParser
+AddressBookParser -> FindApptCommandParser
+activate FindApptCommandParser
+
+FindApptCommandParser --> AddressBookParser
+deactivate FindApptCommandParser
+
+AddressBookParser -> FindApptCommandParser : parse("i/T0123456A d/2024-02-20 from/11:00"")
+activate FindApptCommandParser
+
+create AppointmentContainsKeywordPredicate
+FindApptCommandParser -> AppointmentContainsKeywordPredicate: AppointmentContainsKeywordPredicate(nricFilter, dateFilter, timeFilter)
+activate AppointmentContainsKeywordPredicate
+AppointmentContainsKeywordPredicate -> FindApptCommandParser : pred
+deactivate AppointmentContainsKeywordPredicate
+
+create FindApptCommand
+FindApptCommandParser -> FindApptCommand : FindApptCommand(pred)
+activate FindApptCommand
+
+FindApptCommand --> FindApptCommandParser : d
+deactivate FindApptCommand
+
+FindApptCommandParser --> AddressBookParser : d
+deactivate FindApptCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindApptCommandParser -[hidden]-> AddressBookParser
+destroy FindApptCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> FindApptCommand : execute(m)
+activate FindApptCommand
+
+FindApptCommand -> Model : updateFilteredAppointmentList(pred)
+activate Model
+
+Model --> FindApptCommand
+deactivate Model
+
+create CommandResult
+FindApptCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindApptCommand
+deactivate CommandResult
+
+FindApptCommand --> LogicManager : r
+deactivate FindApptCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

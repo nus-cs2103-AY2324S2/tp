@@ -8,15 +8,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddApptCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.DeleteApptCommand;
+import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindApptCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.SwitchViewCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,20 +59,28 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddPatientCommand.COMMAND_WORD:
+        case AddPatientCommand.COMMAND_WORD_ALT:
+            return new AddPatientCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditPatientCommand.COMMAND_WORD:
+        case EditPatientCommand.COMMAND_WORD_ALT:
+            return new EditPatientCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeletePatientCommand.COMMAND_WORD:
+        case DeletePatientCommand.COMMAND_WORD_ALT:
+            return new DeletePatientCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindApptCommand.COMMAND_WORD:
+        case FindApptCommand.COMMAND_WORD_ALT:
+            return new FindApptCommandParser().parse(arguments);
+
+        case FindPatientCommand.COMMAND_WORD:
+        case FindPatientCommand.COMMAND_WORD_ALT:
+            return new FindPatientCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -77,10 +91,26 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case AddApptCommand.COMMAND_WORD:
+        case AddApptCommand.COMMAND_WORD_ALT:
+            return new AddApptCommandParser().parse(arguments);
+
+        case DeleteApptCommand.COMMAND_WORD:
+        case DeleteApptCommand.COMMAND_WORD_ALT:
+            return new DeleteApptCommandParser().parse(arguments);
+
+        case SwitchViewCommand.COMMAND_WORD:
+            return new SwitchViewCommand();
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

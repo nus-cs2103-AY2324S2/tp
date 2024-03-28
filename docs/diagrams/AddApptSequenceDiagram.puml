@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddApptCommandParser" as AddApptCommandParser LOGIC_COLOR
+participant "a:AddApptCommand" as AddApptCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addAppt i/ T0123456A...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addAppt i/ T0123456A...")
+activate AddressBookParser
+
+create AddApptCommandParser
+AddressBookParser -> AddApptCommandParser
+activate AddApptCommandParser
+
+AddApptCommandParser --> AddressBookParser
+deactivate AddApptCommandParser
+
+AddressBookParser -> AddApptCommandParser : parse("i/ T0123456A...")
+activate AddApptCommandParser
+
+create AddApptCommand
+AddApptCommandParser -> AddApptCommand
+activate AddApptCommand
+
+AddApptCommand --> AddApptCommandParser :
+deactivate AddApptCommand
+
+AddApptCommandParser --> AddressBookParser : a
+deactivate AddApptCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddApptCommandParser -[hidden]-> AddressBookParser
+destroy AddApptCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddApptCommand : execute(m)
+activate AddApptCommand
+
+
+AddApptCommand -> Model : addAppointment(Appointment)
+activate Model
+Model --> AddApptCommand
+deactivate Model
+
+create CommandResult
+AddApptCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddApptCommand
+deactivate CommandResult
+
+AddApptCommand --> LogicManager : r
+deactivate AddApptCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -6,13 +6,20 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.date.Date;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.appointment.AppointmentType;
+import seedu.address.model.appointment.Note;
+import seedu.address.model.appointment.Time;
+import seedu.address.model.appointment.TimePeriod;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.DateOfBirth;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +55,36 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String nric} into a {@code Nric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nric} is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmedNric);
+    }
+
+    /**
+     * Parses a {@code String dob} into a {@code dob}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dob} is invalid.
+     */
+    public static DateOfBirth parseDateOfBirth(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDob)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDob);
     }
 
     /**
@@ -120,5 +157,78 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String appointmentType} into a {@code AppointmentType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code appointmentType} is invalid.
+     */
+    public static AppointmentType parseAppointmentType(String apptType)
+            throws ParseException {
+        requireNonNull(apptType);
+        String trimmedApptType = apptType.trim();
+        if (!AppointmentType.isValidAppointmentType(trimmedApptType)) {
+            throw new ParseException(AppointmentType.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentType(trimmedApptType);
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Note parseNote(String note) {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code Time}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        return new Time(trimmedTime);
+    }
+
+    /**
+     * Parses a {@code String fromTime} and {@code String toTime}into a {@code TimePeriod}.
+     *
+     * @throws ParseException if the given {@code TimePeriod} is invalid.
+     */
+    public static TimePeriod parseTimePeriod(String fromTime, String toTime) throws ParseException {
+        requireNonNull(fromTime);
+        requireNonNull(toTime);
+        Time startTime = parseTime(fromTime);
+        Time endTime = parseTime(toTime);
+        if (!TimePeriod.isValidTimePeriod(startTime, endTime)) {
+            throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS);
+        }
+        return new TimePeriod(startTime, endTime);
     }
 }
