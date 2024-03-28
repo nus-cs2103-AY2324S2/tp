@@ -27,7 +27,7 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 public class AddMemberCommand extends Command {
     public static final String COMMAND_WORD = "add-member";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds CourseMates as members to an existing group."
+            + ": Adds CourseMates as members to an existing group. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: NAME (group must exist) "
             + PREFIX_COURSEMATE + " COURSEMATE"

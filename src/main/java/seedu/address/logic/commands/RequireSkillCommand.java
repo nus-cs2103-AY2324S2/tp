@@ -22,7 +22,7 @@ import seedu.address.model.skill.Skill;
 public class RequireSkillCommand extends Command {
     public static final String COMMAND_WORD = "require-skill";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds required skills to an already existing group."
+            + ": Adds required skills to an already existing group. "
             + "Parameters: NAME (group must exist) "
             + PREFIX_SKILL + " SKILL "
             + "[" + PREFIX_SKILL + " SKILL" + "]\n"
@@ -69,5 +69,20 @@ public class RequireSkillCommand extends Command {
         model.updateFilteredGroupList(PREDICATE_SHOW_ALL_GROUPS);
         return new CommandResult(String.format(MESSAGE_SUCCESFULLY_ADDED, groupName,
                 modifiedGroup.getSkills().size()), false, false, true);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RequireSkillCommand)) {
+            return false;
+        }
+
+        RequireSkillCommand otherRequireSkillCommand = (RequireSkillCommand) other;
+        return otherRequireSkillCommand.groupName.equals(groupName)
+                && otherRequireSkillCommand.skillSet.equals(skillSet);
     }
 }

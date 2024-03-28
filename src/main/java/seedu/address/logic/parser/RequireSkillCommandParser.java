@@ -14,7 +14,7 @@ import seedu.address.model.skill.Skill;
 /**
  * Parses input arguments and creates a new {@code RequireSkillCommand} object
  */
-public class RequireSkillCommandParser {
+public class RequireSkillCommandParser implements Parser<RequireSkillCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RequireSkillCommand}

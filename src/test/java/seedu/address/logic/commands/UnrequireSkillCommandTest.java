@@ -22,9 +22,9 @@ import seedu.address.model.skill.Skill;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code RequireSkillCommand}.
+ * {@code UnrequireSkillCommand}.
  */
-public class RequireSkillCommandTest {
+public class UnrequireSkillCommandTest {
     private final Model model = new ModelManager(getTypicalContactList(), new UserPrefs(), getTypicalGroupList());
     private final Model emptyGroupListModel =
             new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
@@ -34,31 +34,31 @@ public class RequireSkillCommandTest {
     @Test
     public void constructor_nullParameters_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new RequireSkillCommand(null, null));
+                new UnrequireSkillCommand(null, null));
     }
 
     @Test
     public void execute_nullParameters_throwsNullPointerException() {
-        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet1);
+        UnrequireSkillCommand unrequireSkillCommand = new UnrequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet1);
         assertThrows(NullPointerException.class, () ->
-                requireSkillCommand.execute(null));
+                unrequireSkillCommand.execute(null));
     }
 
     @Test
     public void execute_groupNotInList_throwsCommandException() {
-        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet1);
-        assertThrows(CommandException.class, () -> requireSkillCommand.execute(emptyGroupListModel));
+        UnrequireSkillCommand unrequireSkillCommand = new UnrequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet1);
+        assertThrows(CommandException.class, () -> unrequireSkillCommand.execute(emptyGroupListModel));
     }
 
     @Test
     public void execute_groupInListNoCommonSkills_runsNormally() {
-        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet2);
-        assertDoesNotThrow(() -> requireSkillCommand.execute(model));
+        UnrequireSkillCommand unrequireSkillCommand = new UnrequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet2);
+        assertDoesNotThrow(() -> unrequireSkillCommand.execute(model));
     }
 
     @Test
     public void execute_groupInListDuplicateSkills_runsNormally() {
-        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet1);
-        assertDoesNotThrow(() -> requireSkillCommand.execute(model));
+        UnrequireSkillCommand unrequireSkillCommand = new UnrequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet1);
+        assertDoesNotThrow(() -> unrequireSkillCommand.execute(model));
     }
 }
