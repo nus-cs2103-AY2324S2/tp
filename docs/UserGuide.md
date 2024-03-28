@@ -66,6 +66,23 @@ does so via the following features:
 | [Field Summary](#field-summary)         | If you would like to know more about the fields and its restrictions in the application |
 | [Glossary](#glossary)                   | If you would like to know more about the terms used in the application                  |
 
+### Legend
+This User Guide contains coloured blocks that highlight important information!
+
+<div markdown="span" class="alert alert-success">
+    💡 Green blocks contain examples that you can follow on <span style="color: #f66a0a;">CareerSync</span> yourself!
+</div>
+
+<div markdown="span" class="alert alert-info">
+    ℹ️ Blue blocks contain tips to enhance your experience using <span style="color: #f66a0a;">CareerSync</span>!
+</div>
+
+<div markdown="span" class="alert alert-danger">
+    ⚠️ 
+Red blocks contain warnings to note when using <span style="color: #f66a0a;">CareerSync</span>!
+</div>
+
+[Go to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick Start
@@ -97,7 +114,7 @@ For more information on the interface, please refer to the [Interface Overview](
 --------------------------------------------------------------------------------------------------------------------
 ## Interface Overview
 
-When you first start CareerSync, you will see this window. This is the main window of CareerSync, where you can view all your internship applications.
+When you first start <span style="color: #f66a0a;">CareerSync</span>, you will see this window. This is the main window of <span style="color: #f66a0a;">CareerSync</span>, where you can view all your internship applications.
 
 ![Ui](images/Ui.png)
 
@@ -105,13 +122,13 @@ When you first start CareerSync, you will see this window. This is the main wind
       /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
      #f66a0a;">CareerSync</span> application.
 ### Areas
-The main window of CareerSync is divided into four main areas: the **Tab Area**, the **CLI**, the **Message Box** and the **Internship List Display**.
+The main window of <span style="color: #f66a0a;">CareerSync</span> is divided into four main areas: the **Tab Area**, the **CLI**, the **Message Box** and the **Internship List Display**.
 
 
 ![Areas Annotation](images/introduction/AreasAnnotation.png)
 
 1. **Tab Area**: The Tab Area contains File and Help, which allows you to navigate its respective functions.
-2. **CLI**: The Command Line Interface (CLI) is where you can input commands to interact with CareerSync.
+2. **CLI**: The Command Line Interface (CLI) is where you can input commands to interact with <span style="color: #f66a0a;">CareerSync</span>.
 3. **Message Box**: The Message Box displays messages to provide feedback to you.
 4. **Internship List Display**: The Internship List Display displays the details of all your internship applications.
 
@@ -133,12 +150,12 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 
 --------------------------------------------------------------------------------------------------------------------
 ## Tutorial
-This section would guide you through the basic commands of CareerSync, and how to use them.
+This section would guide you through the basic commands of <span style="color: #f66a0a;">CareerSync</span>, and how to use them.
 
 
 ### Clearing sample internship entries: `clear`
 
-To begin using CareerSync, you should clear the sample internship entries that are present when you first start the 
+To begin using <span style="color: #f66a0a;">CareerSync</span>, you should clear the sample internship entries that are present when you first start the 
 application.
 
 Key in the command `clear` in the CLI and press `Enter` to clear the sample internship entries.
@@ -254,7 +271,7 @@ You now see all your internships that you have when you exited. Your data was sa
 
 ### Wrapping up the tutorial
 
-This wraps up our tutorial! Hope you now have a better understanding of how to use CareerSync to manage your internship 
+This wraps up our tutorial! Hope you now have a better understanding of how to use <span style="color: #f66a0a;">CareerSync</span> to manage your internship 
 applications now.
 
 Only **simple and common use cases** are covered in this tutorial. Please refer to the [Commands](#commands) section so that
@@ -513,8 +530,8 @@ Users are **NOT** recommended to modify their data file directly, since wrong fo
 Only do so if you are an experienced user! <br>
 </div>
 
-CareerSync data is saved in the hard disk, as a [JSON](#glossary) file at the path `[JAR file location]/data/internship.json`.
-After every command that changes the data, CareerSync performs a save automatically. There is no need to save manually.
+<span style="color: #f66a0a;">CareerSync</span> data is saved in the hard disk, as a [JSON](#glossary) file at the path `[JAR file location]/data/internship.json`.
+After every command that changes the data, <span style="color: #f66a0a;">CareerSync</span> performs a save automatically. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
