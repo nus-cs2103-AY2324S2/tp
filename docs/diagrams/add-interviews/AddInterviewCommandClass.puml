@@ -1,0 +1,42 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+Class "{abstract}\nCommand" as Command {
+  +execute(Model): CommandResult
+}
+Class AddInterviewCommand {
+  +{static}COMMAND_WORD: String
+  +{static}MESSAGE_INFORMATION: String
+  +{static}MESSAGE_USAGE: String
+  +{static}MESSAGE_SUCCESS: String
+  +{static}MESSAGE_DUPLICATE_INTERVIEW: String
+  -description:String
+  -applicant:Phone
+  -interviewer:Phone
+  -date:LocalDate
+  -startTime:LocalTime
+  -endTime:LocalTime
+  +execute(Model): CommandResult
+}
+
+Class Interview {
+  -applicant:Person
+  -interviewer:Person
+  -date:LocalDate
+  -startTime:LocalTime
+  -endTime:LocalTime
+  -description:String
+  +getApplicant(): Person
+  +getInterviewer(): Person
+  +getDate():LocalDate
+  +getStartTime():LocalTime
+  +getEndTime():LocalTime
+  +getDescription():String
+  +isSameInterview(Interview):boolean
+}
+
+AddInterviewCommand -up-|> Command
+Interview -down-> AddInterviewCommand
+Command ..> CommandException: throws >
+@enduml
