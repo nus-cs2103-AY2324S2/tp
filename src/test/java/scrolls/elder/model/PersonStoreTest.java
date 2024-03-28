@@ -174,22 +174,34 @@ public class PersonStoreTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Person> getFilteredVolunteerList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Person> getFilteredBefriendeeList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredVolunteerList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBefriendeeList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
 }

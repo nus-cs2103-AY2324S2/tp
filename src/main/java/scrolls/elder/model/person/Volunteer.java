@@ -29,6 +29,11 @@ public class Volunteer extends Person {
     }
 
     @Override
+    public boolean isBefriendee() {
+        return false;
+    }
+
+    @Override
     public Role getRole() {
         return this.role;
     }

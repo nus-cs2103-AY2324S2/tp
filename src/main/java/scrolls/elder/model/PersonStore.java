@@ -72,8 +72,28 @@ public class PersonStore implements ReadOnlyPersonStore {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
         filteredVolunteers.setPredicate(person -> predicate.test(person) && person.isVolunteer());
-        filteredBefriendees.setPredicate(person -> predicate.test(person) && !(person.isVolunteer()));
+        filteredBefriendees.setPredicate(person -> predicate.test(person) && person.isBefriendee());
     }
+
+    @Override
+    public void updateFilteredVolunteerList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+
+        // Only apply predicate to volunteers
+        filteredPersons.setPredicate(person -> person.isBefriendee() || predicate.test(person));
+        filteredVolunteers.setPredicate(person -> predicate.test(person) && person.isVolunteer());
+    }
+
+    @Override
+    public void updateFilteredBefriendeeList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+
+        // Only apply predicate to befriendees
+        filteredPersons.setPredicate(person -> predicate.test(person) || person.isVolunteer());
+        filteredBefriendees.setPredicate(person -> predicate.test(person) && person.isBefriendee());
+    }
+
+
 
     /**
      * Replaces the contents of the person list with {@code persons}.
