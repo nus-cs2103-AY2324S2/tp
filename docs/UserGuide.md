@@ -507,7 +507,7 @@ _Details coming soon ..._
 
 ## <span id='feature-faq'> FAQ <span>
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsContactsPro home folder.
 
 [Table Of Contents](#table-of-contents)
