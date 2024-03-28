@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="151.0" prefWidth="205.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="151.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane prefHeight="139.0" prefWidth="205.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -31,13 +31,12 @@
             <FlowPane fx:id="tags" />
             <FlowPane fx:id="status" />
             <Label fx:id="interviewerNamePhone" layoutX="15.0" layoutY="10.0" prefHeight="17.0" prefWidth="357.0" style="-fx-font-size: 18;" styleClass="cell_big_label" text="\$interviewerNamePhone" wrapText="true" />
-            <Label fx:id="date" prefHeight="17.0" prefWidth="306.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$date" />
-            <Label fx:id="startEndTime" prefHeight="17.0" prefWidth="307.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$startEndTime" />
-            <Label fx:id="description" layoutX="25.0" layoutY="80.0" prefHeight="7.0" prefWidth="346.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="description" />
+            <Label fx:id="date" prefHeight="23.0" prefWidth="358.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$date" />
+            <Label fx:id="startEndTime" prefHeight="23.0" prefWidth="357.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$startEndTime" />
+            <Label fx:id="description" layoutX="25.0" layoutY="80.0" prefHeight="23.0" prefWidth="355.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="description" />
         </VBox>
         <rowConstraints>
             <RowConstraints />
         </rowConstraints>
     </GridPane>
 </HBox>
-

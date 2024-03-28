@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -210,9 +210,9 @@ The following sequence diagram shows how a find operation, specifically `find_na
 
 #### Design considerations:
 
-**Aspect: How find executes:**
+**Aspect: How find is implemented:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** 3 separate commands for phone, email, and name.
     * Pros: Easy and straightforward to implement.
     * Cons: Uses 3 separate command words resulting in 3 separate CommandParser classes.
 
@@ -279,7 +279,6 @@ The following sequence diagram illustrates step 4:
     * Pros: Greater flexibility in setting statuses.
     * Cons: Possible performance issues when updating multi-statuses, as well as graphical design overhead when choosing how to sort and render multiple statuses.
 
-
 ### Add Interview Feature
 #### Implementation
 
@@ -289,12 +288,13 @@ AddInterviewCommand implements the following operations:
 
 * `AddInterviewCommand#execute()`  —  Adds the encapsulated `Interview` to the list.
 
-The above `excute` operation utilises `ModelManager#updateFilteredPersonList()` implemented from the Model interface to obtain the list of `applicant` and `interviewer` phone numbers.
-This is followed by checking the validity of the phone numbers before creating an `Interview` object to be added into the interview list. The operation `excute` then utilises
-`ModelManager#addInterview()` implemented from the Model to add the `Interview` to the list. The operation `excute` also utilises `ModelManager#sortInterview()` to the `interview` objects by `date`, `startTime` and `endTime`.
+The above `execute` operation utilises `ModelManager#updateFilteredPersonList()` implemented from the Model interface to obtain the list of `applicant` and `interviewer` phone numbers.
+This is followed by checking the validity of the phone numbers before creating an `Interview` object to be added into the interview list. The operation `execute` then utilises
+`ModelManager#addInterview()` implemented from the Model to add the `Interview` to the list. The operation `execute` also utilises `ModelManager#sortInterview()` to the `interview` objects by `date`, `startTime` and `endTime`.
 
 The following class diagram summarizes the organisation of the `AddInterviewCommand`:
 <puml src="diagrams/add-interviews/AddInterviewCommandClass.puml"/>
+
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time and executes `add_applicant n/Wesley p/81159858 e/ywesley16@gmail.com`. An applicant `Wesley` is initialised.
@@ -327,9 +327,7 @@ The following sequence diagram shows demonstrates step 3:
     * Pros: Better encapsulation.
     * Cons: Harder to conduct the necessary checks for validity for phone numbers.
 
-{more aspects and alternatives to be added}_
-
-### Saving of interviews/person feature
+### Saving of interviews/persons feature
 
 #### Implementation
 The interview and person saving mechanism in the application is powered through the coordination of seven key components:
@@ -349,9 +347,9 @@ Each `JsonAdaptedPerson` retains `Person` attributes as `@JsonProperty` and enca
 as `JsonAdaptedTag` collections. Likewise, `JsonAdaptedInterview` conserves `Interview` attributes, 
 additionally incorporating applicant and interviewer information as `JsonAdaptedPerson` instances.
 
-The following sequence diagrams shows illustrates a simplified version of the above process.
+The following sequence diagram illustrates a simplified version of the above process.
 
-<puml src="diagrams/saving/SavingInterviewsAndPersonsSequence.puml" width="250"/>
+<puml src="diagrams/saving/SavingInterviewsAndPersonsSequence.puml"/>
 
 #### Design considerations:
 
@@ -575,7 +573,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java 11 or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  Should be able to display multiple lists of applicants/interviews/interviewers without a noticeable sluggishness in performance for typical usage.
 4.  Should be responsive in all functionality, especially updating and displaying the list after each request.

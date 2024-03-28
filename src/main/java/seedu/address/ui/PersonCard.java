@@ -52,20 +52,27 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        remark.setText(person.getRemark().value);
+        phone.setText("Phone: " + person.getPhone().value);
+        email.setText("Email: " + person.getEmail().value);
+        remark.setText("Remark: " + person.getRemark().value);
         status.getChildren().add(new Label(person.getCurrentStatus()));
-        if (person.getCurrentStatus().equals(ApplicantState.OUTCOME_TWO.toString())) {
-            status.getChildren().get(0).getStyleClass().add("bg-green");
-        } else if (person.getCurrentStatus().equals(ApplicantState.OUTCOME_THREE.toString())) {
-            status.getChildren().get(0).getStyleClass().add("bg-red");
-        } else {
-            status.getChildren().get(0).getStyleClass().add("bg-black");
-        }
+        status.getChildren().get(0).getStyleClass().add(determineStatusColor(person));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private String determineStatusColor(Person person) {
+        String currentStatus = person.getCurrentStatus();
+        if (currentStatus.equals(ApplicantState.OUTCOME_TWO.toString())) {
+            return "bg-green";
+        } else if (currentStatus.equals(ApplicantState.OUTCOME_THREE.toString())) {
+            return "bg-red";
+        } else if (currentStatus.equals(ApplicantState.OUTCOME_ONE.toString())) {
+            return "bg-orange";
+        } else {
+            return "bg-black";
+        }
     }
 
     @Override

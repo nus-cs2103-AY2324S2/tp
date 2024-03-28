@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/UpdatedUi.png)
 
-This is a professional Applicant Tracking System (ATS) for hiring managers in small to mid range startups.<br>
+Tether is a professional Applicant Tracking System (ATS) for hiring managers in small to mid range startups.<br>
 
 Hiring managers can use this application to keep track of the following:
 1. Applicant and Interviewer contacts

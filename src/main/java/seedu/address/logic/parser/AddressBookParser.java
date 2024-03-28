@@ -18,6 +18,7 @@ import seedu.address.logic.commands.DeleteInterviewCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterInterviewsByDateCommand;
+import seedu.address.logic.commands.FilterPersonsByStatusCommand;
 import seedu.address.logic.commands.FindEmailCommand;
 import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.commands.FindPhoneCommand;
@@ -98,8 +99,13 @@ public class AddressBookParser {
 
         case ListInterviewsCommand.COMMAND_WORD:
             return new ListInterviewsCommand();
+
         case FilterInterviewsByDateCommand.COMMAND_WORD:
             return new FilterInterviewsByDateCommandParser().parse(arguments);
+
+        case FilterPersonsByStatusCommand.COMMAND_WORD:
+            return new FilterPersonsByStatusCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
