@@ -23,6 +23,8 @@ public class AddAliasCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddAliasCommand(String alias, String toReplace) {
+        requireNonNull(alias);
+        requireNonNull(toReplace);
         this.alias = alias;
         this.toReplace = toReplace;
     }

@@ -1,30 +1,24 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Theme;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Predicate;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class AddAliasCommandTest {
 
@@ -35,11 +29,12 @@ public class AddAliasCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        AddAliasCommandTest.ModelStubAcceptingAliasAdded modelStub = new AddAliasCommandTest.ModelStubAcceptingAliasAdded();
+        AddAliasCommandTest.ModelStubAcceptingAliasAdded modelStub =
+                new AddAliasCommandTest.ModelStubAcceptingAliasAdded();
 
         CommandResult commandResult = new AddAliasCommand("test", "result").execute(modelStub);
 
-        assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS,"test"), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS, "test"), commandResult.getFeedbackToUser());
 
         Alias alias = new Alias();
         alias.addAlias("test", "result");
@@ -48,33 +43,32 @@ public class AddAliasCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddAliasCommand addAliasTestCommand = new AddAliasCommand("test", "result");
+        AddAliasCommand addAlias1TestCommand = new AddAliasCommand("test1", "result1");
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAliasTestCommand.equals(addAliasTestCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddAliasCommand addAliasTestCommandCopy = new AddAliasCommand("test", "result");
+        assertTrue(addAliasTestCommand.equals(addAliasTestCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAliasTestCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAliasTestCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliasTestCommand.equals(addAlias1TestCommand));
     }
 
     @Test
     public void toStringMethod() {
         AddAliasCommand addAliasCommand = new AddAliasCommand("test", "result");
         addAliasCommand.toString();
-        String expected = AddAliasCommand.class.getCanonicalName() + "{alias=test" + ", toReplace=result}";
+        String expected = AddAliasCommand.class.getCanonicalName()
+                + "{alias=test" + ", toReplace=result}";
         assertEquals(expected, addAliasCommand.toString());
     }
 
