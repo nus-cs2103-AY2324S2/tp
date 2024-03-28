@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -51,8 +51,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE
-            = "Please ensure that only one field is edited at most.";
+    public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE =
+            "Please ensure that only one field is edited at most.";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
