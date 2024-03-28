@@ -41,11 +41,7 @@ public class RateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person personToRate = model.findByName(targetName);
-
-        if (personToRate == null) {
-            throw new CommandException(RateMessages.MESSAGE_RATE_NAME_NOT_FOUND);
-        }
+        Person personToRate = model.findByName(targetName, RateMessages.MESSAGE_RATE_NAME_NOT_FOUND);
 
         Person ratedPerson = personToRate.updateRating(rating);
 

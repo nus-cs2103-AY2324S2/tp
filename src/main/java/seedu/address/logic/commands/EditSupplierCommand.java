@@ -76,7 +76,8 @@ public class EditSupplierCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Supplier supplierToEdit = model.findSupplierByName(name);
+        Supplier supplierToEdit = model.findSupplierByName(name,
+                EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER);
 
         Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 

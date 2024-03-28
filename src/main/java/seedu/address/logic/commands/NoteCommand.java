@@ -42,11 +42,7 @@ public class NoteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person personToEdit = model.findByName(name);
-
-        if (personToEdit == null) {
-            throw new CommandException(NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
-        }
+        Person personToEdit = model.findByName(name, NoteMessages.MESSAGE_NOTE_NAME_NOT_FOUND);
 
         Person editedPerson = personToEdit.updateNote(note);
 

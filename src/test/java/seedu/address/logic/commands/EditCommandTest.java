@@ -57,7 +57,8 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         try {
-            Person lastPerson = model.findPersonByName(new Name("George Best"));
+            Person lastPerson = model.findPersonByName(new Name("George Best"),
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
             PersonBuilder personInList = new PersonBuilder(lastPerson);
             Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                     .withTags(VALID_TAG).build();
@@ -82,7 +83,8 @@ public class EditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         try {
             EditCommand editCommand = new EditCommand(ALICE.getName(), new EditPersonDescriptor());
-            Person editedPerson = model.findPersonByName(new Name("Alice Pauline"));
+            Person editedPerson = model.findPersonByName(new Name("Alice Pauline"),
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
             String expectedMessage = String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
                     EditMessages.format(editedPerson));
             editCommand.execute(model);
@@ -97,7 +99,8 @@ public class EditCommandTest {
     @Test
     public void execute_filteredList_success() {
         try {
-            Person personInFilteredList = model.findPersonByName(new Name("Alice Pauline"));
+            Person personInFilteredList = model.findPersonByName(new Name("Alice Pauline"),
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
             Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
             EditCommand editCommand = new EditCommand(ALICE.getName(),
                     new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -117,7 +120,8 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         try {
-            Person firstPerson = model.findPersonByName(new Name("Alice Pauline"));
+            Person firstPerson = model.findPersonByName(new Name("Alice Pauline"),
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
             EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
             EditCommand editCommand = new EditCommand(BENSON.getName(), descriptor);
 
@@ -130,7 +134,8 @@ public class EditCommandTest {
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
         try {
-            Person personInList = model.findPersonByName(new Name("Benson Meier"));
+            Person personInList = model.findPersonByName(new Name("Benson Meier"),
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
             EditCommand editCommand = new EditCommand(ALICE.getName(),
                     new EditPersonDescriptorBuilder(personInList).build());
 

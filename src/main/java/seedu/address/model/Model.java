@@ -98,41 +98,47 @@ public interface Model {
     /**
      * Find a contact by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Person that matches the name.
+     * @throws CommandException Handles invalid person message.
      */
-    Person findByName(Name targetName);
+    Person findByName(Name targetName, String message) throws CommandException;
 
     /**
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Person that matches the name.
      * @throws CommandException Handles invalid person message.
      */
-    Person findPersonByName(Name targetName) throws CommandException;
+    Person findPersonByName(Name targetName, String message) throws CommandException;
 
     /**
      * Find the maintainer by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Maintainer that matches the name.
      * @throws CommandException Handles invalid maintainer message.
      */
-    Maintainer findMaintainerByName(Name targetName) throws CommandException;
+    Maintainer findMaintainerByName(Name targetName, String message) throws CommandException;
 
     /**
      * Find the staff by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Staff that matches the name.
      * @throws CommandException Handles invalid staff message.
      */
-    Staff findStaffByName(Name targetName) throws CommandException;
+    Staff findStaffByName(Name targetName, String message) throws CommandException;
 
     /**
      * Find the supplier by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Supplier that matches the name.
      * @throws CommandException Handles invalid supplier message.
      */
-    Supplier findSupplierByName(Name targetName) throws CommandException;
+    Supplier findSupplierByName(Name targetName, String message) throws CommandException;
 
     /**
      * Commits new version of AddressBook into VersionedAddressBook Tracker.

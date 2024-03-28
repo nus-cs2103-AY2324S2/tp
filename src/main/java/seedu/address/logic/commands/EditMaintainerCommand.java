@@ -75,7 +75,8 @@ public class EditMaintainerCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Maintainer maintainerToEdit = model.findMaintainerByName(name);
+        Maintainer maintainerToEdit = model.findMaintainerByName(name,
+                EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER);
 
         Maintainer editedMaintainer = createEditedMaintainer(maintainerToEdit, editMaintainerDescriptor);
 

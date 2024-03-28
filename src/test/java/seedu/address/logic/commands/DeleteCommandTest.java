@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.messages.DeleteMessages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -43,11 +44,12 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validNameFilteredList_success() {
+    public void execute_validNameFilteredList_success() throws CommandException {
         showPersonWithName(model, ALICE.getName());
 
         Person personToDelete;
-        personToDelete = model.findByName(ALICE.getName());
+        personToDelete = model.findByName(ALICE.getName(),
+                DeleteMessages.MESSAGE_DELETE_NAME_NOT_FOUND);
         DeleteCommand deleteCommand = new DeleteCommand(ALICE.getName());
 
         String expectedMessage = String.format(DeleteMessages.MESSAGE_DELETE_PERSON_SUCCESS,

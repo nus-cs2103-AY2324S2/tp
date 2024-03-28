@@ -24,6 +24,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
@@ -223,7 +224,7 @@ public class CommandTestUtil {
         Person person;
 
         try {
-            person = model.findPersonByName(targetName);
+            person = model.findPersonByName(targetName, EditMessages.MESSAGE_INVALID_EDIT_PERSON);
             final String[] splitName = person.getName().fullName.split("\\s+");
             model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

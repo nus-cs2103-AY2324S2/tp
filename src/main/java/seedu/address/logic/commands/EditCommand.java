@@ -69,7 +69,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person personToEdit = model.findPersonByName(name);
+        Person personToEdit = model.findPersonByName(name, EditMessages.MESSAGE_INVALID_EDIT_PERSON);
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 

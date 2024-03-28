@@ -75,7 +75,8 @@ public class EditStaffCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Staff staffToEdit = model.findStaffByName(name);
+        Staff staffToEdit = model.findStaffByName(name,
+                EditMessages.MESSAGE_INVALID_EDIT_STAFF);
 
         Staff editedStaff = createEditedStaff(staffToEdit, editStaffDescriptor);
 

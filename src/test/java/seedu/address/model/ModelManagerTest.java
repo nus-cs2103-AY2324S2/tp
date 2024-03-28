@@ -138,7 +138,8 @@ public class ModelManagerTest {
 
         // finds a valid person by name
         try {
-            assertEquals(ALICE, modelManagerCopy.findPersonByName(ALICE.getName()));
+            assertEquals(ALICE, modelManagerCopy.findPersonByName(ALICE.getName(),
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON));
         } catch (CommandException e) {
             e.printStackTrace();
         }
@@ -153,7 +154,8 @@ public class ModelManagerTest {
         Name nameToFind = ALICE.getName();
         Name nameFound = new Name("Not Alice Pauline");
         try {
-            nameFound = modelManager.findPersonByName(nameToFind).getName();
+            nameFound = modelManager.findPersonByName(nameToFind,
+                    EditMessages.MESSAGE_INVALID_EDIT_PERSON).getName();
         } catch (CommandException e) {
             fail();
         }
@@ -164,7 +166,8 @@ public class ModelManagerTest {
     public void findPersonByNameFailure_throwsCommandException() {
         Name nameToFind = ALICE.getName();
         assertThrows(CommandException.class,
-                EditMessages.MESSAGE_INVALID_EDIT_PERSON, () -> modelManager.findPersonByName(nameToFind));
+                EditMessages.MESSAGE_INVALID_EDIT_PERSON, () -> modelManager
+                        .findPersonByName(nameToFind, EditMessages.MESSAGE_INVALID_EDIT_PERSON));
     }
 
     @Test
@@ -176,7 +179,8 @@ public class ModelManagerTest {
         Name nameToFind = ALICEMAINTAINER.getName();
         Name nameFound = new Name("Not Alice Pauline");
         try {
-            nameFound = modelManager.findMaintainerByName(nameToFind).getName();
+            nameFound = modelManager.findMaintainerByName(nameToFind,
+                    EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER).getName();
         } catch (CommandException e) {
             fail();
         }
@@ -187,7 +191,8 @@ public class ModelManagerTest {
     public void findMaintainerByNameFailure_throwsCommandException() {
         Name nameToFind = ALICEMAINTAINER.getName();
         assertThrows(CommandException.class,
-                EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER, () -> modelManager.findMaintainerByName(nameToFind));
+                EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER, () -> modelManager
+                .findMaintainerByName(nameToFind, EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER));
     }
 
     @Test
@@ -199,7 +204,8 @@ public class ModelManagerTest {
         Name nameToFind = ALICESTAFF.getName();
         Name nameFound = new Name("Not Alice Pauline");
         try {
-            nameFound = modelManager.findStaffByName(nameToFind).getName();
+            nameFound = modelManager.findStaffByName(nameToFind,
+                    EditMessages.MESSAGE_INVALID_EDIT_STAFF).getName();
         } catch (CommandException e) {
             fail();
         }
@@ -210,7 +216,8 @@ public class ModelManagerTest {
     public void findStaffByNameFailure_throwsCommandException() {
         Name nameToFind = ALICESTAFF.getName();
         assertThrows(CommandException.class,
-                EditMessages.MESSAGE_INVALID_EDIT_STAFF, () -> modelManager.findStaffByName(nameToFind));
+                EditMessages.MESSAGE_INVALID_EDIT_STAFF, () -> modelManager
+                        .findStaffByName(nameToFind, EditMessages.MESSAGE_INVALID_EDIT_STAFF));
     }
 
     @Test
@@ -222,7 +229,8 @@ public class ModelManagerTest {
         Name nameToFind = ALICESUPPLIER.getName();
         Name nameFound = new Name("Not Alice Pauline");
         try {
-            nameFound = modelManager.findSupplierByName(nameToFind).getName();
+            nameFound = modelManager.findSupplierByName(nameToFind,
+                    EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER).getName();
         } catch (CommandException e) {
             fail();
         }
@@ -233,7 +241,8 @@ public class ModelManagerTest {
     public void findSupplierByNameFailure_throwsCommandException() {
         Name nameToFind = ALICESUPPLIER.getName();
         assertThrows(CommandException.class,
-                EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER, () -> modelManager.findSupplierByName(nameToFind));
+                EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER, () -> modelManager
+                        .findSupplierByName(nameToFind, EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER));
     }
 
 }
