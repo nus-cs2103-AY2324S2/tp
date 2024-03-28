@@ -12,8 +12,8 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the link to the user guide.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String RESULT_MESSAGE = "Successfully opened help window. " +
-            "\nAccess the user guide to see all the usable commands.";
+    public static final String RESULT_MESSAGE = "Successfully opened help window. "
+            + "\nAccess the user guide to see all the usable commands.";
 
     @Override
     public CommandResult execute(Model model) {
