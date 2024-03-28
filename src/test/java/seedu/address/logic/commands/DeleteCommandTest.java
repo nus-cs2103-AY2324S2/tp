@@ -11,6 +11,11 @@ import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -22,13 +27,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ModelStubWithEmployee;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.employee.*;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.Role;
+import seedu.address.model.employee.Team;
+import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
