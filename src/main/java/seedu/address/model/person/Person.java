@@ -20,20 +20,21 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
-    // Data fields
-    private final Address address;
+    // Critically, this refers to what type the buyer WANTS, and what type the seller HAS
+    // I think this one we have to clarify whether housingType should be under House or Person,
+    // because it seems very weird to be under Person
+    private final String housingType;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, String housingType, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, housingType, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.housingType = housingType;
         this.tags.addAll(tags);
     }
 
@@ -49,9 +50,10 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getHousingType() {
+        return housingType;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -93,14 +95,14 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && housingType.equals(otherPerson.housingType)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, housingType, tags);
     }
 
     @Override
@@ -109,9 +111,8 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
+                .add("housingType", housingType)
                 .add("tags", tags)
                 .toString();
     }
-
 }

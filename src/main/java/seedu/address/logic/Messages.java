@@ -32,20 +32,19 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code person} for display to the user, differentiating between Buyer and Seller.
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
-                .append("; Phone: ")
+                .append("; Phone= ")
                 .append(person.getPhone())
-                .append("; Email: ")
+                .append("; Email= ")
                 .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
+                .append("; Housing Type= ")
+                .append(person.getHousingType())
+                .append("; Tags= ");
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

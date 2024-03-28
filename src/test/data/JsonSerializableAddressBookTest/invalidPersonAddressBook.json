@@ -1,8 +1,14 @@
 {
-  "persons": [ {
+  "sellers": [ {
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street"
+  } ],
+  "buyers" : [ {
+    "name" : "Ben Yolo",
+    "phone" : "222222222222",
+    "email" : "bob@example.com!!!",
+    "tags" : [ "friend", "husband" ]
   } ]
 }
