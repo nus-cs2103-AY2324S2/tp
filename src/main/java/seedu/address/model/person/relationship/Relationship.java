@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
-import seedu.address.model.person.Person;
-
 /**
  * Represents a relationship between two people.
  */
@@ -120,7 +118,7 @@ public class Relationship {
      * @param origin
      * @return
      */
-    public UUID containsUUID(UUID origin) {
+    public UUID containsUuid(UUID origin) {
         if (origin.equals(person1)) {
             return person2;
         }

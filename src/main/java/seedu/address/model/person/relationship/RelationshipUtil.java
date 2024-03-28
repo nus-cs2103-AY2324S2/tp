@@ -124,6 +124,26 @@ public class RelationshipUtil {
         requireAllNonNull(relationships);
         relationshipsTracker.setAll(relationships);
     }
+    /**
+     * Performs a breadth-first search (BFS) through the relationships tracker to find a path
+     * of relationship descriptors between two UUIDs, representing the origin and target entities.
+     * This method considers all types of relationships in the search.
+     *
+     * @param origin The UUID of the origin entity from which the search begins.
+     * @param target The UUID of the target entity the search aims to find a path to.
+     * @return An {@link ArrayList<String>} containing the relationship descriptors in the order
+     *         encountered from the origin to the target. If no path exists, returns an empty list.
+     */
+    /**
+     * Searches for a path of family relationships between two entities identified by their UUIDs,
+     * specifically considering only those relationships that are instances of FamilyRelationship.
+     * Utilizes a breadth-first search (BFS) strategy to navigate through the relationships tracker.
+     *
+     * @param origin The UUID of the entity from which to start the search.
+     * @param target The UUID of the entity to find a path to, using only family relationships.
+     * @return An {@link ArrayList<String>} listing the family relationship descriptors from the origin
+     *         to the target, in order encountered. Returns an empty list if no such path exists.
+     */
     public ArrayList<String> anySearchDescriptors(UUID origin, UUID target) {
         ArrayList<String> result = new ArrayList<>();
         HashSet<UUID> visited = new HashSet<>();
@@ -137,11 +157,11 @@ public class RelationshipUtil {
                 UUID start = currentNode.uuid;
                 for (int i = 0; i < relationshipsTracker.size(); i++) {
                     Relationship current = relationshipsTracker.get(i);
-                    UUID nextUUID = current.containsUUID(start);
-                    if (nextUUID == null) {
+                    UUID nextUuid = current.containsUuid(start);
+                    if (nextUuid == null) {
                         continue;
                     }
-                    if (nextUUID == target) {
+                    if (nextUuid == target) {
                         parent[i] = new Pair(start, currentNode.relationshipPairIndex);
                         int currentIdx = i;
                         while (currentIdx != -1) {
@@ -152,10 +172,10 @@ public class RelationshipUtil {
                         }
                         return result;
                     }
-                    if (!visited.contains(nextUUID)) {
-                        visited.add(nextUUID);
+                    if (!visited.contains(nextUuid)) {
+                        visited.add(nextUuid);
                         parent[i] = new Pair(start, currentNode.relationshipPairIndex);
-                        nextFrontier.add(new Pair(nextUUID, i));
+                        nextFrontier.add(new Pair(nextUuid, i));
                     }
                 }
             }
@@ -180,11 +200,11 @@ public class RelationshipUtil {
                     if (!(current instanceof FamilyRelationship)) {
                         continue;
                     }
-                    UUID nextUUID = current.containsUUID(start);
-                    if (nextUUID == null) {
+                    UUID nextUuid = current.containsUuid(start);
+                    if (nextUuid == null) {
                         continue;
                     }
-                    if (nextUUID == target) {
+                    if (nextUuid == target) {
                         parent[i] = new Pair(start, currentNode.relationshipPairIndex);
                         int currentIdx = i;
                         while (currentIdx != -1) {
@@ -195,10 +215,10 @@ public class RelationshipUtil {
                         }
                         return result;
                     }
-                    if (!visited.contains(nextUUID)) {
-                        visited.add(nextUUID);
+                    if (!visited.contains(nextUuid)) {
+                        visited.add(nextUuid);
                         parent[i] = new Pair(start, currentNode.relationshipPairIndex);
-                        nextFrontier.add(new Pair(nextUUID, i));
+                        nextFrontier.add(new Pair(nextUuid, i));
                     }
                 }
             }
