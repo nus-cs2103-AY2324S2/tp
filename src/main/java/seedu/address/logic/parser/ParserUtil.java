@@ -21,6 +21,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_INVALID_ID = "Id is empty";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
