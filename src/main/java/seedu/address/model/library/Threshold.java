@@ -1,6 +1,5 @@
 package seedu.address.model.library;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.MeritScore;
 
 /**
