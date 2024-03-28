@@ -229,18 +229,16 @@ Include `Person` meetings as a search field. A user can supply a given date and 
 ### AddTag Feature
 This feature allows users to add `tags` to a `person` within the contact list, without the need to use the `edit` command.
 
-This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively. The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`.
+This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively.
 
-The current allowed formats for required fields are as follows:
-- `Index` : an `Integer` within the range greater than 0, smaller than the size of the currently displayed contact list.
-- `Tags` : one or more alphanumeric characters with no spaces between them.
+The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`, if not it will throw an exception according to the error.
 
 The following sequence diagram shows how `AddTag` interacts with `Logic`.
 
 ![AddTagSequenceDiagram](images/AddTagSequenceDiagram.svg)
 
 1. The user keys in `addtags 1 t/validTag1 t/validTag2` to add 2 valid tags to the `person` at the first `index`.
-2. The `AddTagCommandParser` checks that the `index` and `tags` are valid, then returns a new `AddTagCommand` with the corresponding index and set of tags.
+2. The `AddTagCommandParser` validates `index` and `tags`, then returns a new `AddTagCommand` with the corresponding index and set of tags.
 3. The `LogicManager` then executes the `AddTagCommand`.
 4. The `AddTagCommand` finds the `Person` to add tags to using `Index` and creates a new `Person` with the added tags.
 5. `AddTagCommand` then calls the `setPerson(person, personWithAddedTags)` method to set the old `Person` to the newly created `Person`.
