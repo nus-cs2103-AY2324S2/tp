@@ -34,15 +34,18 @@ public class ExportCommand extends Command {
 
     private static final String ARCHIVED_APPLICANTS = "ArchivedApplicants";
 
+    private static final String EMPTY = "";
+
     private Path savePath;
 
     private String fileName;
 
     /**
-     *
+     * Constructor for export command
      * @param fileName name of file where contacts are to be saved
      */
     public ExportCommand(String fileName) {
+        requireNonNull(fileName);
         this.fileName = fileName.trim();
         savePath = Paths.get("data", fileName + ".json");
     }
@@ -50,6 +53,7 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         JsonAddressBookStorage storage = new JsonAddressBookStorage(savePath);
@@ -58,6 +62,10 @@ public class ExportCommand extends Command {
 
         if (fileName.equals(HRCONNECT) || fileName.equals(ARCHIVED_APPLICANTS)) {
             throw new CommandException(Messages.MESSAGE_INVALID_FILE_NAME);
+        }
+
+        if (fileName.equals(EMPTY)) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_FILE_NAME);
         }
 
         try {
