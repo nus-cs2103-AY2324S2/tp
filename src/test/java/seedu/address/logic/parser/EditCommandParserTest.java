@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_DESC;
@@ -14,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ROOMNUMBER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ROOMNUMBER_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -179,5 +181,41 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER));
+    }
+    @Test
+    public void parse_multiplePersonEditName_failure() {
+        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased(), NAME_DESC_AMY);
+        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "NAME"));
+    }
+    @Test
+    public void parse_multiplePersonEditPhone_failure() {
+        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased(), PHONE_DESC_AMY);
+        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "PHONE"));
+    }
+    @Test
+    public void parse_multiplePersonEditEmail_failure() {
+        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased(), EMAIL_DESC_AMY);
+        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "EMAIL"));
+    }
+    @Test
+    public void parse_multiplePersonEditRoomNumber_failure() {
+        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased(), ROOMNUMBER_DESC_AMY);
+        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "ROOM NUMBER"));
+    }
+    @Test
+    public void parse_multiplePersonEditTelegram_failure() {
+        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased(), TELEGRAM_DESC_AMY);
+        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "TELEGRAM"));
+    }
+    @Test
+    public void parse_multiplePersonEditBirthday_failure() {
+        String userInput = String.format("%d %d %s", INDEX_FIRST_PERSON.getOneBased(),
+                INDEX_SECOND_PERSON.getOneBased(), BIRTHDAY_DESC_AMY);
+        assertParseFailure(parser, userInput, String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "BIRTHDAY"));
     }
 }
