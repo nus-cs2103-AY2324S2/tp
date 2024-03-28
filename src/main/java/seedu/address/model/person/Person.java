@@ -2,39 +2,77 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import com.google.zxing.WriterException;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.QrCodeGenerator;
+import seedu.address.model.person.exceptions.AttributeNotFoundException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagSet;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
-
+    private static final Logger logger = LogsCenter.getLogger(Person.class);
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final TagSet tags;
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Note note, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        Set<Tag> tagSet = new HashSet<>();
+        tagSet.addAll(tags);
+        this.tags = new TagSet(tagSet);
+        this.note = note;
+    }
+
+    /**
+     * Get the valued of the specified attribute.
+     *
+     * @param attribute Attribute to retrieve
+     * @return Value of the specified attribute
+     */
+    public Attribute<? extends Object> getAttribute(PersonAttribute attribute) {
+        switch (attribute) {
+        case NAME:
+            return this.name;
+        case PHONE:
+            return this.phone;
+        case EMAIL:
+            return this.email;
+        case ADDRESS:
+            return this.address;
+        case TAGS:
+            return this.tags;
+        case NOTE:
+            return this.note;
+        default:
+            throw new AttributeNotFoundException();
+        }
     }
 
     public Name getName() {
@@ -54,11 +92,37 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return this.tags.getValue();
+    }
+
+    public Note getNote() {
+        return this.note;
+    }
+
+    /**
+     * Retrieves the QR code path.
+     *
+     * @return the path of the generated QR code
+     */
+    public Path getQrCodePath() {
+        return QrCodeGenerator.getQrCodePath(this);
+    }
+
+    /**
+     * Generates a QR code for the person.
+     */
+    public void generateQrCode() {
+        try {
+            QrCodeGenerator.generateQrCode(this);
+            logger.info("Generated QR code for " + this);
+        } catch (WriterException | IOException e) {
+            logger.warning("Unable to generate QR code for " + this);
+        }
     }
 
     /**
@@ -71,7 +135,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getAttribute(PersonAttribute.NAME).equals(getAttribute(PersonAttribute.NAME))
+                && otherPerson.getAttribute(PersonAttribute.PHONE).equals(getAttribute(PersonAttribute.PHONE));
     }
 
     /**
@@ -94,7 +159,8 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && note.equals(otherPerson.note);
     }
 
     @Override
@@ -110,8 +176,69 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("note", note)
                 .add("tags", tags)
                 .toString();
     }
 
+    /**
+     * Deletes the QR code for the person.
+     *
+     * @return true if a QR code was deleted, false otherwise
+     */
+    public boolean deleteQrCode() {
+        try {
+            boolean result = Files.deleteIfExists(this.getQrCodePath());
+            if (result) {
+                logger.info("Deleted QR code for " + this);
+            } else {
+                logger.info("Unable to delete QR code for " + this + " as it does not exist");
+            }
+            return result;
+        } catch (IOException e) {
+            logger.warning("Unable to delete QR code for " + this);
+            return false;
+        }
+    }
+
+    /**
+     * Generates a formatted message for the Person.
+     * Only fields with values are included.
+     */
+    public String getFormattedMessage() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Name: ").append(name);
+        sb.append(" | Phone: ").append(phone);
+
+        if (!email.getValue().isEmpty()) {
+            sb.append(" | Email: ").append(email);
+        }
+
+        if (!address.getValue().isEmpty()) {
+            sb.append("\nAddress: ").append(address);
+        }
+
+        if (!note.getValue().isEmpty()) {
+            sb.append(" | Note: ").append(note);
+        }
+
+        if (!getTags().isEmpty()) {
+            sb.append(" | Tags: ").append(tags);
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * Attributes of a Person
+     */
+    public enum PersonAttribute {
+        NAME,
+        PHONE,
+        EMAIL,
+        ADDRESS,
+        TAGS,
+        NOTE
+    }
 }

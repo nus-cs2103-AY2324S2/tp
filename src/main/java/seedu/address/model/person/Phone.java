@@ -7,13 +7,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone extends Attribute<String> {
 
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers,"
+            + "starts with either '6', '8' or '9' and be a total of 8 digits long";
+    public static final String VALIDATION_REGEX = "^[689]\\d{7}$";
 
     /**
      * Constructs a {@code Phone}.
@@ -21,9 +19,9 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
+        super(phone);
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
     }
 
     /**
@@ -33,9 +31,28 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Determine if the phone value stored is a match with a specified string.
+     * Returns true if specified value is a substring of the phone value stored.
+     *
+     * @param otherValue Other value to check against
+     *
+     * @return True if specified value is a match, False otherwise
+     */
+    @Override
+    public boolean isMatch(Object otherValue) {
+        if (!(otherValue instanceof String)) {
+            return false;
+        }
+
+        String other = (String) otherValue;
+
+        return this.getValue().trim().toLowerCase().contains(other.trim().toLowerCase());
+    }
+
     @Override
     public String toString() {
-        return value;
+        return this.getValue();
     }
 
     @Override
@@ -50,12 +67,12 @@ public class Phone {
         }
 
         Phone otherPhone = (Phone) other;
-        return value.equals(otherPhone.value);
+        return this.getValue().equals(otherPhone.getValue());
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.getValue().hashCode();
     }
 
 }

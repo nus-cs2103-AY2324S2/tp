@@ -21,3 +21,13 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# VSCode local configuration files
+.vscode/
+
+# Local settings
+.settings/
+.prettierignore
+
+# Binary files
+bin

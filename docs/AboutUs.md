@@ -3,57 +3,61 @@ layout: page
 title: About Us
 ---
 
+<!-- @format -->
+
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+## FitBook
 
-## Project team
+### Tan Kah Ho Dillon
 
-### John Doe
+<img src="images/dillontkh.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/dillontkh)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Team Lead
+- Responsible for overall project coordination.
 
-### Jane Doe
+### Baskar Gopinath
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bgopi23.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/bgopi23)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Deadlines, deliverables and IntelliJ Expert
+- Responsibilities: Ensure project deliverables are done in time and help others with any IntelliJ issues
 
-### Johnny Doe
+### Ng Wei Han, Ryan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanngwh.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/ryanngwh)]
+[[linkedin](https://www.linkedin.com/in/ryan-ngwh)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Testing Lead
+- Responsible for the quality and timeliness of the project testing.
 
-### James Doe
+### Chee Jing Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jjchee77.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/jjchee77)]
+[[linkedin](https://www.linkedin.com/in/absythe/)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Code Quality and Integration Lead
+- Responsible for the code quality and software integration.
+
+### Tay Rui-Jie
+
+<img src="images/ruijietay.png" width="200px">
+
+[[github](http://github.com/ruijietay)]
+[[linkedin](https://www.linkedin.com/in/tayruijie/)]
+[[portfolio](team/johndoe.md)]
+
+- Role: Documentation Lead
+- Responsible for the quality of the project website as well as various project documents.

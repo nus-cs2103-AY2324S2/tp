@@ -7,10 +7,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name extends Attribute<String> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric"
+            + " characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -18,17 +18,15 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
-
     /**
      * Constructs a {@code Name}.
      *
      * @param name A valid name.
      */
     public Name(String name) {
+        super(name);
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
     }
 
     /**
@@ -38,10 +36,28 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Determine if the name value stored is a match with a specified string.
+     * Returns true if specified value is a substring of the name value stored.
+     *
+     * @param otherValue Other value to check against
+     *
+     * @return True if specified value is a match, False otherwise
+     */
+    @Override
+    public boolean isMatch(Object otherValue) {
+        if (!(otherValue instanceof String)) {
+            return false;
+        }
+
+        String other = (String) otherValue;
+
+        return this.getValue().trim().toLowerCase().contains(other.trim().toLowerCase());
+    }
 
     @Override
     public String toString() {
-        return fullName;
+        return this.getValue();
     }
 
     @Override
@@ -56,12 +72,12 @@ public class Name {
         }
 
         Name otherName = (Name) other;
-        return fullName.equals(otherName.fullName);
+        return this.getValue().equals(otherName.getValue());
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return this.getValue().hashCode();
     }
 
 }

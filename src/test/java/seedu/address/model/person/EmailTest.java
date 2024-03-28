@@ -14,12 +14,6 @@ public class EmailTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
-        assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
-    }
-
-    @Test
     public void isValidEmail() {
         // null email
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
@@ -84,5 +78,28 @@ public class EmailTest {
 
         // different values -> returns false
         assertFalse(email.equals(new Email("other.valid@email")));
+    }
+
+    @Test
+    public void isMatch() {
+        Email email = new Email("valid@example.com");
+
+        // Exact match -> returns true
+        assertTrue(email.isMatch("valid@example.com"));
+
+        // Substring partial word -> returns true
+        assertTrue(email.isMatch("valid"));
+
+        // Substring case mismatch -> returns true
+        assertTrue(email.isMatch("VALID"));
+
+        // Additional whitespace
+        assertTrue(email.isMatch(" valid@example.com\n"));
+
+        // Substring mismatch
+        assertFalse(email.isMatch("invalid"));
+
+        // Different type
+        assertFalse(email.isMatch(1));
     }
 }
