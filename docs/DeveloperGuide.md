@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add command
 
-This section describes how the add commands work which will serve as a basic understanding of how commands are implemented.  
+This section describes how the `add` commands work which will serve as a basic understanding of how commands are implemented.  
 
 **AddressBookParser** : [`AddressBookParser`](https://github.com/AY2324S2-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java)
 **AddCommandParser** : [`AddCommandParser.java`](https://github.com/AY2324S2-CS2103T-T17-1/tp/blob/master/src/main/java/seedu/address/logic/parser/AddCommandParser.java)
@@ -189,9 +189,13 @@ How an `add` command is executed.
 
 ### View command
 
-This section describes how the view command works and is implemented.
+This section describes how the `view` command works and is implemented.
 
-The Object, Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the view command is activated.
+The Object, Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the `view` command is activated.
+
+#### Class Diagram
+
+<img src="images/ViewClassDiagram.png" width="850"/>
 
 #### Object Diagram
 
@@ -221,9 +225,9 @@ How a `view` command is executed.
 
 ### Delete command
 
-This section describes how the delete command works and is implemented.
+This section describes how the `delete` command works and is implemented.
 
-The Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the delete command is activated.
+The Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the `delete` command is activated.
 
 #### Sequence Diagram
 
@@ -246,6 +250,39 @@ How a `delete` command is executed.
    2. The `DeleteCommand` Object is returned to the `AddressBookParser` and then to the `LogicManager`.
    3. The `LogicManager` executes the command and generates a `CommandResult`.
 4. `MainWindow` creates a `CommandBox` with the resulting command output, deleting the client at the specified index from the Address Book.
+
+### Find-Tag Command
+
+This section describes how the `find-Tag` command works and is implemented.
+
+The Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the `find-Tag` command is activated.
+
+### Class Diagram
+
+<img src="images/FindTagClassDiagram.png" width="850"/>
+
+### Sequence Diagram
+
+<img src="images/FindTagSequenceDiagram.png" width="550"/>
+
+### Activity Diagram
+
+<img src="images/FindTagActivityDiagram.png" width="550"/>
+
+How a `find-tag` command is executed.
+1. The User inputs a command in the format of "find-tag [TAG]" to find clients by tag.
+   1. `LogicManager` receives the user command and parses the command to the `AddressBookParser`.
+   2. `AddressBookParser` parses this command to the `FindTagCommandParser`.
+   3. `FindTagCommandParser` creates a new instance of `FindTagCommand` using the tag as a predicate.
+
+<img src="images/FindTagState1.png" width="650"/>
+
+2. `FindTagCommand` instance is returned to the `LogicManager`.
+   1. `LogicManager` calls the execute() method of the `FindTagCommand` instance.
+   2. A `CommandResult` is generated and returned to `MainWindow`.
+3. `MainWindow` creates a `CommandBox` with the resulting command output, listing our all clients with the specified tag.
+
+<img src="images/FindTagState2.png" width="850"/>
 
 ### \[Proposed\] Undo/redo feature
 

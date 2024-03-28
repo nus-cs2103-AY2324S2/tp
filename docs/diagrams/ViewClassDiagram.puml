@@ -1,0 +1,51 @@
+@startuml
+class UiManager {
++ start(): void
+}
+class MainWindow {
++ fillInnerparts(): void
+- executeCommand(commandText: String): CommandResult
+}
+
+class LogicManager {
++ execute(commandText: String): CommandResult
+}
+
+class AddressBookParser {
++ parseCommand(userInput: String): Command
+}
+
+class ViewCommandParser {
++ parse(args: String): ViewCommand
+}
+
+class ViewCommand {
++ execute(model: Model): CommandResult
+}
+
+class CommandResult {
+}
+
+class CommandBox {
++ CommandBox(commandExecutor: CommandExecutor)
+}
+
+interface Model
+
+class ModelManager {
++ getFilteredClientList(): ObservableList<Client>
+}
+
+UiManager -> MainWindow : creates >
+MainWindow -> LogicManager
+MainWindow --> CommandBox : creates >
+LogicManager --> AddressBookParser : creates >
+Model <|-- ModelManager
+LogicManager --> Model
+AddressBookParser --> ViewCommandParser : creates >
+ViewCommand - ViewCommandParser : creates <
+CommandResult <- ViewCommand : creates <
+ViewCommand -- ModelManager: returns filtered list <
+LogicManager -- ViewCommand : executes >
+CommandBox -- CommandResult : is used to create <
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+
+start
+:User requests to find client by tag;
+:AddressBookParser parses command;
+:FindTagParser parses command;
+if (Is tag empty or invalid command format?) then (yes)
+  :Return error message;
+else (no)
+  :Execute find-tag command;
+  :Update filtered client list;
+  :Return filtered client list;
+  :Generate command result;
+  :Present list of clients to user;
+endif
+stop
+@enduml

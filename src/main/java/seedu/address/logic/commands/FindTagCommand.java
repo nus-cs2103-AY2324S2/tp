@@ -18,7 +18,9 @@ public class FindTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose tags contain the specified "
             + "keyword (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: TAG_KEYWORD\n"
-            + "Example: " + COMMAND_WORD + " disabled";
+            + "Note: Please search for the entire tag and not partially\n"
+            + "Example: " + COMMAND_WORD + " disabled\n"
+            + "NOT: " + COMMAND_WORD + " dis";
 
     private final TagContainsKeywordsPredicate predicate;
 
