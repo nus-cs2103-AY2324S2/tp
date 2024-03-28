@@ -20,6 +20,8 @@ public class FindPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "findPatient";
 
+    public static final String COMMAND_WORD_ALT = "fp";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all patients whose names OR nric start with "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

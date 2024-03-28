@@ -37,7 +37,11 @@ public class TypicalAppointments {
             .withStartTime("16:00").withEndTime("17:00")
             .withAppointmentType("Monthly check-up")
             .withNote("Routine follow up").withMark(false).build();
-    public static final Appointment ALICE_APPT_TRUE = new AppointmentBuilder(ALICE_APPT) //alice_appt with mark true
+    //alice_appt with mark true
+    public static final Appointment ALICE_APPT_TRUE = new AppointmentBuilder(ALICE_APPT)
+            .withMark(true).build();
+    //alice_appt_1 with mark true
+    public static final Appointment ALICE_APPT_1_TRUE = new AppointmentBuilder(ALICE_APPT_1)
             .withMark(true).build();
     public static final Appointment BENSON_APPT = new AppointmentBuilder()
             .withNric("T0123456B").withDate("2024-03-02")

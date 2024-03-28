@@ -50,7 +50,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete S1234567A`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePatient S1234567A`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -90,19 +90,20 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete S1234567A")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deletePatient S1234567A")` API call as an example.
 
 <puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete S1234567A` Command" />
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+**Note:** The lifeline for `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </box>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeletePatientCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePatientCommandParser`) which is executed by the `LogicManager`.
+2. 
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a patient).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -112,8 +113,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeletePatientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -158,6 +159,58 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Completed\] Add Appointment for a Patient
+
+#### Implementation
+
+The implementation of `AddApptCommand` is supported by creation of the `Appointment` class and its related classes.
+Details captured in an `Appointment` class include: 
+* NRIC
+* Date
+* TimePeriod (composed of start and end time)
+* Appointment Type
+* [Optional] Note
+
+The management of all appointments is achieved through the `AppointmentList` class stored in the `AddressBook`, 
+similar to the `UniquePatientList`. `AppointmentList` supports adding, editing and deleting of appointments to the list. 
+The operation `AppointmentList#add(Appointment)` checks if the incoming appointment already exists in the list, preventing 
+duplicates from occurring. Since an `Appointment` can only exist in the `AppointmentList` if a `Patient` with the
+corresponding NRIC exists in the `AddressBook`, this will be checked in the execution of the `AddApptCommand`.
+
+Given below is an example usage scenario and how the add appointment mechanism works.
+
+1. The user executes `addAppt i/ S9922758A d/ 2024-03-27 from/ 00:00 to/ 00:30 t/ Medical Check-up note/`, 
+attempting to create an appointment for a patient with NRIC: S9922758A on 27 Mar 2024 from 12am to 1230am. 
+2. `AddApptCommand` calls `Model#hasPatientWithNric(Nric)` to check if the given NRIC belongs to an individual
+    in the system. If yes, continue. Else throw a `CommandException`.
+3. `AddApptCommand` calls `Model#hasAppointment(Appointment)` to check if an equivalent appointment exists
+    in the system. If no, continue. Else throw a `CommandException`.
+4. `AddApptCommand` calls `Model#addAppointment(Appointment) to add the appointment to the `AddressBook`.
+5. We are done.
+
+The following sequence diagram shows how an addAppt operation goes through the `Logic` component:
+
+<puml src="diagrams/AddApptSequenceDiagram.puml" alt="AddApptSequenceDiagram" />
+
+The following activity diagram summarises what happens when a user executes addApptCommand.
+
+<puml src="diagrams/AddApptActivityDiagram.puml" alt="AddApptActivityDiagram" />
+
+
+#### Design considerations:
+
+**Aspect: How to match an `Appointment` to a `Patient`:**
+
+* **Alternative 1 (current choice):** Store only the NRIC of the `Patient` in `Appointment`.
+    * Pros: Data integrity since NRIC is the "primary key" of `Patient` and will not change, Space efficient
+    * Cons: May have performance issues as we need to search the whole list to get other details of the `Person`
+
+* **Alternative 2:** Store `Patient` in `Appointment`
+    * Pros: Time efficient as we have access to all details of the `Patient` from `Appointment`
+    * Cons: Space inefficient, we double store `Patient`. We need to ensure `Patient` in `UniquePatientList` and `Patient` in
+        each `Appointment` is always consistent which can be tricky.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -176,11 +229,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th patient in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `deletePatient S1234567A` command to delete the patient with corresponding NRIC S1234567A in the address book. The `deletePatient` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `deletePatient S1234567A` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `addPatient n/David …​` to add a new patient. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -246,15 +299,52 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+  * Pros: Will use less memory (e.g. for `deletePatient`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+### Find appointment feature
+
+#### Implementation
+
+The Find Appointment feature will involve parsing user input, executing search queries based on specified criteria, and presenting the results to the user.
+
+The implementation will include the following key components:
+
+1. **Parsing User Input**: The application will parse user input to extract search criteria such as NRIC, date, or time (any combination of the three).
+2. **Executing Search Queries**: The application will search through the list of appointments stored in the database and identify appointments that match the specified criteria.
+3. **Presenting Search Results**: The matched appointments will be presented to the user in a clear and organized manner, displaying relevant details such as appointment time, date, and associated patient information.
+
+## Example Usage Scenario
+
+1. **Context**: User wants to find an appointment with a specific NRIC, date, and start time.
+2. **User Input**: The user enters the command `findAppt i/S1234567A d/2024-03-23 from/11:00`.
+
+<puml src="diagrams/FindApptSequeunceDiagram.puml" alt="FindApptSeqDiag" />
+
+3. **Parsing**: The application parses the user input and extracts the NRIC (`S1234567A`), date (`2024-03-23`), and start time (`11:00`) criteria for the search.
+4. **Search Execution**: The application searches through the list of appointments and identifies appointments that match the specified NRIC, date, and start time criteria.
+5. **Presentation**: The matched appointments are presented to the user, displaying relevant details such as appointment time, date, and associated patient information.
+6. **User Interaction**: The user can view the search results and perform additional actions such as viewing detailed information about specific appointments or modifying appointments as needed.
+   
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="250" />
+
+### Design Considerations
+
+### User Experience
+- **Feedback Mechanism**: Provide feedback to the user during the search process to indicate progress and inform them of any issues encountered.
+- **Support for Multiple Criteria**: Allow users to specify multiple search criteria (e.g., any combination of NRIC, date, start time) to enable more precise searches.
+
+### Error Handling
+- **Invalid Input Handling**: Implement robust error handling mechanisms to handle cases where users provide invalid or incomplete search criteria.
+- **No Matching Results**: Handle scenarios where no appointments match the specified criteria gracefully, providing informative feedback to the user.
 
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -519,17 +609,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a patient
 
-1. Deleting a patient while all patients are being shown
 
-   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
+1. Deleting a patient while all persons are being shown
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deletePatient S1234567A`<br>
+      Expected: Patient with corresponding NRIC S1234567A is removed. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `deletePatient S1234567`<br>
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletePatient`, `deletePatient x`, `...` (where x is an invalid NRIC)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

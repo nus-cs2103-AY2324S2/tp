@@ -36,6 +36,8 @@ public class EditPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "editPatient";
 
+    public static final String COMMAND_WORD_ALT = "ep";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the patient identified by their Nric number. "
             + "Existing values will be overwritten by the input values.\n"

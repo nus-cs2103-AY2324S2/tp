@@ -22,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.SwitchViewCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,22 +60,27 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddPatientCommand.COMMAND_WORD:
+        case AddPatientCommand.COMMAND_WORD_ALT:
             return new AddPatientCommandParser().parse(arguments);
 
         case EditPatientCommand.COMMAND_WORD:
+        case EditPatientCommand.COMMAND_WORD_ALT:
             return new EditPatientCommandParser().parse(arguments);
 
         case DeletePatientCommand.COMMAND_WORD:
+        case DeletePatientCommand.COMMAND_WORD_ALT:
             return new DeletePatientCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindPatientCommand.COMMAND_WORD:
-            return new FindPatientCommandParser().parse(arguments);
-
         case FindApptCommand.COMMAND_WORD:
+        case FindApptCommand.COMMAND_WORD_ALT:
             return new FindApptCommandParser().parse(arguments);
+
+        case FindPatientCommand.COMMAND_WORD:
+        case FindPatientCommand.COMMAND_WORD_ALT:
+            return new FindPatientCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -86,9 +92,11 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddApptCommand.COMMAND_WORD:
+        case AddApptCommand.COMMAND_WORD_ALT:
             return new AddApptCommandParser().parse(arguments);
 
         case DeleteApptCommand.COMMAND_WORD:
+        case DeleteApptCommand.COMMAND_WORD_ALT:
             return new DeleteApptCommandParser().parse(arguments);
 
         case SwitchViewCommand.COMMAND_WORD:
@@ -96,6 +104,9 @@ public class AddressBookParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
