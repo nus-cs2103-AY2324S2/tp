@@ -9,10 +9,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -54,6 +56,41 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndices_invalidArgs_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices("1, 2, c", ","));
+    }
+
+    @Test
+    public void parseIndices_duplicateIndex_throwsParseException() {
+        String args = "1, 4, 5, 1, 2";
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndices(args, ","));
+    }
+
+    @Test
+    public void parseIndices_validArgsWhiteSpaceSep_success() throws Exception {
+        List<Index> actualList = ParserUtil.parseIndices("1 5 3", " ");
+        List<Index> expectedList = Arrays.asList(
+            Index.fromOneBased(1),
+            Index.fromOneBased(5),
+            Index.fromOneBased(3)
+        );
+
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void parseIndices_validArgsCommaSep_success() throws Exception {
+        List<Index> actualList = ParserUtil.parseIndices("10,3 , 2 ", ",");
+        List<Index> expectedList = Arrays.asList(
+            Index.fromOneBased(10),
+            Index.fromOneBased(3),
+            Index.fromOneBased(2)
+        );
+
+        assertEquals(expectedList, actualList);
     }
 
     @Test
@@ -192,5 +229,86 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void filterByPrefix_emptyPrefix_returnsFullList() {
+        String[] words = {"Hello", "World", "Bye", "Life"};
+        List<String> actualList = ParserUtil.filterByPrefix("", words);
+        List<String> expectedList = Arrays.asList(words);
+
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void filterByPrefix_subStringPrefix_returnsOneElement() {
+        String[] words = {"Hello", "World", "Bye", "Life"};
+
+        List<String> actualList = ParserUtil.filterByPrefix("W", words);
+        List<String> expectedList = Arrays.asList("World");
+        assertEquals(expectedList, actualList);
+
+        actualList = ParserUtil.filterByPrefix("Hell", words);
+        expectedList = Arrays.asList("Hello");
+        assertEquals(expectedList, actualList);
+
+        actualList = ParserUtil.filterByPrefix("Li", words);
+        expectedList = Arrays.asList("Life");
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void filterByPrefix_fullStringPrefix_returnsOneElement() {
+        String[] words = {"Hello", "World", "Bye", "Life"};
+
+        List<String> actualList = ParserUtil.filterByPrefix("World", words);
+        List<String> expectedList = Arrays.asList("World");
+        assertEquals(expectedList, actualList);
+
+        actualList = ParserUtil.filterByPrefix("Hello", words);
+        expectedList = Arrays.asList("Hello");
+        assertEquals(expectedList, actualList);
+
+        actualList = ParserUtil.filterByPrefix("Life", words);
+        expectedList = Arrays.asList("Life");
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void filterByPrefix_noMatchPrefix_returnsEmptyList() {
+        String[] words = {"Hel lo", "World", "Bye", "Life"};
+        List<String> expectedList = Arrays.asList(); // Empty list.
+
+        // Prefix does not match any words.
+        List<String> actualList = ParserUtil.filterByPrefix("Bon", words);
+        assertEquals(expectedList, actualList);
+
+        // Prefix must be a substring.
+        actualList = ParserUtil.filterByPrefix("Bye Bye", words);
+        assertEquals(expectedList, actualList);
+
+        // Strings are case sensitive.
+        actualList = ParserUtil.filterByPrefix("LiF", words);
+        assertEquals(expectedList, actualList);
+
+        // Strings are space sensitive.
+        actualList = ParserUtil.filterByPrefix(" Wor", words);
+        assertEquals(expectedList, actualList);
+
+        actualList = ParserUtil.filterByPrefix("Hello", words);
+        assertEquals(expectedList, actualList);
+    }
+
+    @Test
+    public void filterByPrefix_commonPrefix_returnsMultipleElements() {
+        String[] words = {"pointer", "Add", "Attack", "point", "Addition", "point Forward"};
+
+        List<String> actualList = ParserUtil.filterByPrefix("A", words);
+        List<String> expectedList = Arrays.asList("Add", "Attack", "Addition");
+        assertEquals(expectedList, actualList);
+
+        actualList = ParserUtil.filterByPrefix("point", words);
+        expectedList = Arrays.asList("pointer", "point", "point Forward");
+        assertEquals(expectedList, actualList);
     }
 }

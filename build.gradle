@@ -20,6 +20,8 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+check.dependsOn javadoc
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -66,7 +68,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'NUSContacts.jar'
 }
 
 defaultTasks 'clean', 'test'

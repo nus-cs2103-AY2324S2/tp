@@ -3,18 +3,22 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Course;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,21 +30,32 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
+    private final String role;
     private final String email;
     private final String address;
+    private final String course;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedPerson(
+            @JsonProperty("name") String name,
+            @JsonInclude(JsonInclude.Include.NON_NULL) @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("role") String role,
+            @JsonInclude(JsonInclude.Include.NON_NULL)
+            @JsonProperty("address") String address,
+            @JsonProperty("course") String course,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.role = role;
         this.address = address;
+        this.course = course;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -51,9 +66,11 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        phone = source.getPhone().map(x -> x.value).orElse(null);
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        role = source.getRole().name();
+        address = source.getAddress().map(x -> x.value).orElse(null);
+        course = source.getCourse().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -78,13 +95,10 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+        if (phone != null && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Optional<Phone> modelPhone = Optional.ofNullable(phone).map(Phone::new);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -94,16 +108,30 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
+        if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        }
+        final Role modelRole = Role.valueOf(role);
+
+        if (address != null && !Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Optional<Address> modelAddress = Optional.ofNullable(address).map(Address::new);
+
+        if (course == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Course.class.getSimpleName()));
+        }
+        if (!Course.isValidCourse(course)) {
+            throw new IllegalValueException(Course.MESSAGE_CONSTRAINTS);
+        }
+        final Course modelCourse = new Course(course);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelRole, modelAddress, modelCourse, modelTags);
     }
 
 }
