@@ -28,7 +28,8 @@ public class DonateCommand extends Command {
             + PREFIX_BOOKLIST + "The Book of Answers";
 
     // todo : later need to edit this MESSAGE when the bookTitle recorded to the database.
-    public static final String MESSAGE_DONATE_SUCCESS = "Donated book from person: %1$s ";
+    public static final String MESSAGE_DONATE_SUCCESS = "Donated book from person: %1$s\n" +
+            "%2$s is added to library";
 
     private final Index index;
     private final Book book;
@@ -67,15 +68,15 @@ public class DonateCommand extends Command {
 
         // todo later : add the bookTitle to the storage of library.
         model.addBook(book);
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedPerson, book));
     }
 
     /**
      * Generates a command execution success message when book title is successfully removed
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_DONATE_SUCCESS, personToEdit);
+    private String generateSuccessMessage(Person personToEdit, Book book) {
+        return String.format(MESSAGE_DONATE_SUCCESS, personToEdit, book);
     }
 
     @Override
