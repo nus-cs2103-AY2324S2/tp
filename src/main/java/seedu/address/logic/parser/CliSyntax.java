@@ -22,4 +22,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("/desc");
     public static final Prefix PREFIX_ROLE = new Prefix("/role");
     public static final Prefix PREFIX_REMARK = new Prefix("/remark");
+    public static final Prefix PREFIX_TASK = new Prefix("/task");
+    public static final Prefix PREFIX_SELECT_TASK = new Prefix("/selecttask");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("/deadline");
 }

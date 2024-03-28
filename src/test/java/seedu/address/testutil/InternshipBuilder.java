@@ -10,6 +10,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.TaskList;
 
 /**
  * A utility class to help with building Internship objects.
@@ -24,6 +25,8 @@ public class InternshipBuilder {
     public static final String DEFAULT_APPLICATION_STATUS = "pending";
     public static final String DEFAULT_DESCRIPTION = "Develop new microsoft web applications";
     public static final String DEFAULT_ROLE = "Application Engineer";
+    public static final String DEFAULT_REMARK = "Has a behavioural interview!";
+    public static final String DEFAULT_TASKLIST = "Submit Documents, Submit Resume";
 
     private CompanyName companyName;
     private ContactName contactName;
@@ -34,6 +37,7 @@ public class InternshipBuilder {
     private Description description;
     private Role role;
     private Remark remark;
+    private TaskList taskList;
 
     /**
      * Creates an {@code InternshipBuilder} with the default details.
@@ -47,6 +51,8 @@ public class InternshipBuilder {
         applicationStatus = new ApplicationStatus(DEFAULT_APPLICATION_STATUS);
         description = new Description(DEFAULT_DESCRIPTION);
         role = new Role(DEFAULT_ROLE);
+        remark = new Remark(DEFAULT_REMARK);
+        taskList = new TaskList(DEFAULT_TASKLIST);
     }
 
     /**
@@ -61,6 +67,8 @@ public class InternshipBuilder {
         applicationStatus = internshipToCopy.getApplicationStatus();
         description = internshipToCopy.getDescription();
         role = internshipToCopy.getRole();
+        remark = internshipToCopy.getRemark();
+        taskList = internshipToCopy.getTaskList();
     }
 
     /**
@@ -136,11 +144,19 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code taskList} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withTaskList(String taskList) {
+        this.taskList = new TaskList(taskList);
+        return this;
+    }
+
+    /**
      * Builds the Internship object.
      */
     public Internship build() {
         return new Internship(companyName, contactName, contactEmail, contactNumber, location, applicationStatus,
-                description, role, remark);
+                description, role, remark, taskList);
     }
 
 }

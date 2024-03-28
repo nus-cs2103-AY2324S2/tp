@@ -20,6 +20,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.TaskList;
 
 public class InternshipModelManagerTest {
 
@@ -34,7 +35,8 @@ public class InternshipModelManagerTest {
             new ApplicationStatus("rejected"),
             new Description("Business Development Internship"),
             new Role("Business Development Associate"),
-            new Remark("")
+            new Remark(""),
+            new TaskList()
     );
 
     @Test
@@ -111,7 +113,8 @@ public class InternshipModelManagerTest {
                 new ApplicationStatus("rejected"),
                 new Description("Business Development Internship"),
                 new Role("Business Development Associate"),
-                new Remark("")
+                new Remark(""),
+                new TaskList()
         );
         Internship internship2 = new Internship(
                 new CompanyName("Google"),
@@ -122,7 +125,8 @@ public class InternshipModelManagerTest {
                 new ApplicationStatus("pending"),
                 new Description("Software Engineering Internship"),
                 new Role("Software Engineer"),
-                new Remark("")
+                new Remark(""),
+                new TaskList()
         );
         internshipModelManager.addInternship(internship1);
         internshipModelManager.setInternship(internship1, internship2);

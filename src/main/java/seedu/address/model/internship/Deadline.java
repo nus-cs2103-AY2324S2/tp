@@ -3,17 +3,21 @@ package seedu.address.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents an internship's deadline in the internship book
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should not be blank!";
+            "Deadline must be in the form DD/MM/YYYY, and be a valid date.";
 
-    /*
-     * Matches any characters that are not only whitespace
+    /**
+     * The date format of the deadline.
      */
-    public static final String VALIDATION_REGEX = "\\d{2}/\\d{2}/\\d{4}";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public final String deadline;
 
@@ -32,7 +36,13 @@ public class Deadline {
      * Returns true if a given string is a valid role.
      */
     public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate date = LocalDate.parse(test, formatter);
+            System.out.println(date);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     /**

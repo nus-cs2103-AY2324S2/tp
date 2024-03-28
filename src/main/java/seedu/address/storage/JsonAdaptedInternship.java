@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,6 +16,8 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.Task;
+import seedu.address.model.internship.TaskList;
 
 /**
  * Jackson-friendly version of {@link Internship}.
@@ -32,6 +36,8 @@ public class JsonAdaptedInternship {
     private final String role;
     private final String remark;
 
+    private final ArrayList<Task> taskList;
+
     /**
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
@@ -44,7 +50,8 @@ public class JsonAdaptedInternship {
                                  @JsonProperty("status") String applicationStatus,
                                  @JsonProperty("description") String description,
                                  @JsonProperty("role") String role,
-                                 @JsonProperty("remark") String remark) {
+                                 @JsonProperty("remark") String remark,
+                                 @JsonProperty("taskList") ArrayList<Task> taskList) {
         this.companyName = companyName;
         this.contactName = contactName;
         this.contactEmail = contactEmail;
@@ -54,6 +61,7 @@ public class JsonAdaptedInternship {
         this.description = description;
         this.role = role;
         this.remark = remark;
+        this.taskList = taskList;
     }
 
     /**
@@ -69,6 +77,7 @@ public class JsonAdaptedInternship {
         description = source.getDescription().description;
         role = source.getRole().role;
         remark = source.getRemark().value;
+        taskList = source.getTaskList().getArrayListTaskList();
     }
 
     /**
@@ -153,9 +162,13 @@ public class JsonAdaptedInternship {
         }
         final Remark modelRemark = new Remark(remark);
 
+        if (taskList == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TaskList.class.getSimpleName()));
+        }
+        final TaskList modelTaskList = new TaskList(taskList);
+
         return new Internship(modelCompanyName, modelContactName, modelContactEmail, modelContactNumber,
-                modelLocation, modelApplicationStatus, modelDescription, modelRole, modelRemark);
+                modelLocation, modelApplicationStatus, modelDescription, modelRole, modelRemark, modelTaskList);
     }
-
-
 }

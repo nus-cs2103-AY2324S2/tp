@@ -16,6 +16,7 @@ import seedu.address.model.internship.Internship;
 import seedu.address.model.internship.Location;
 import seedu.address.model.internship.Remark;
 import seedu.address.model.internship.Role;
+import seedu.address.model.internship.TaskList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ import seedu.address.model.tag.Tag;
  */
 public class InternshipSampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
+    public static final TaskList EMPTY_TASKLIST = new TaskList();
 
     public static Internship[] getSampleInternships() {
         return new Internship[]{
@@ -30,17 +32,17 @@ public class InternshipSampleDataUtil {
                     new ContactEmail("johndoe@example.com"), new ContactNumber("12345678"),
                     new Location("remote"), new ApplicationStatus("to_apply"),
                     new Description("Software Engineering Internship"),
-                    new Role("Software Engineer"), EMPTY_REMARK),
+                    new Role("Software Engineer"), EMPTY_REMARK, EMPTY_TASKLIST),
             new Internship(new CompanyName("Facebook"), new ContactName("Jane Smith"),
                     new ContactEmail("janesmith@example.com"), new ContactNumber("98765432"),
                     new Location("local"), new ApplicationStatus("pending"),
                     new Description("Product Management Internship"),
-                    new Role("Product Manager"), EMPTY_REMARK),
+                    new Role("Product Manager"), EMPTY_REMARK, EMPTY_TASKLIST),
             new Internship(new CompanyName("Amazon"), new ContactName("Mark Johnson"),
                     new ContactEmail("markjohnson@example.com"), new ContactNumber("45678901"),
                     new Location("remote"), new ApplicationStatus("rejected"),
                     new Description("Business Development Internship"),
-                    new Role("Business Development Associate"), EMPTY_REMARK),
+                    new Role("Business Development Associate"), EMPTY_REMARK, EMPTY_TASKLIST),
         };
     }
 

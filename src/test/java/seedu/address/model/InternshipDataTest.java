@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.util.InternshipSampleDataUtil.EMPTY_REMARK;
+import static seedu.address.model.util.InternshipSampleDataUtil.EMPTY_TASKLIST;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.ALICE_MICROSOFT;
 import static seedu.address.testutil.TypicalInternships.getTypicalInternshipData;
@@ -44,7 +45,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("rejected"),
                 new Description("Business Development Internship"),
                 new Role("Business Development Associate"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
 
         internshipData.addInternship(internship);
@@ -62,7 +64,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("pending"),
                 new Description("Software Engineering Internship"),
                 new Role("Software Engineer"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         InternshipData data = new InternshipData();
         data.addInternship(internship);
@@ -84,7 +87,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("accepted"),
                 new Description("Marketing Internship"),
                 new Role("Marketing Intern"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         Internship internship2 = new Internship(
                 new CompanyName("Microsoft"),
@@ -95,7 +99,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("pending"),
                 new Description("Software Development Internship"),
                 new Role("Software Developer"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         List<Internship> internships = new ArrayList<>();
         internships.add(internship1);
@@ -118,7 +123,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("rejected"),
                 new Description("Product Management Internship"),
                 new Role("Product Manager"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         InternshipData data = new InternshipData();
         data.addInternship(internship);
@@ -133,7 +139,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("accepted"),
                 new Description("Engineering Internship"),
                 new Role("Engineering Intern"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         newData.addInternship(newInternship);
 
@@ -154,7 +161,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("accepted"),
                 new Description("Engineering Internship"),
                 new Role("Engineering Intern"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         InternshipData data = new InternshipData();
         data.addInternship(internship);
@@ -173,7 +181,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("rejected"),
                 new Description("Business Development Internship"),
                 new Role("Business Development Associate"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         Internship internship2 = new Internship(
                 new CompanyName("Google"),
@@ -184,7 +193,8 @@ public class InternshipDataTest {
                 new ApplicationStatus("pending"),
                 new Description("Software Engineering Internship"),
                 new Role("Software Engineer"),
-                EMPTY_REMARK
+                EMPTY_REMARK,
+                EMPTY_TASKLIST
         );
         InternshipData data = new InternshipData();
         data.addInternship(internship1);
