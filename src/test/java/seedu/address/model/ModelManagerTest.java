@@ -112,6 +112,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void updateSortedPersonListByField_invalidField_throwsException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                 modelManager.updateSortedPersonListByField("hello", false));
+    }
+
+    @Test
+    public void updateSortedPersonListByField_sortPhoneAscending_success() {
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        modelManager.addPerson(CARL);
+
+        modelManager.updateSortedPersonListByField("phone", true);
+        ObservableList<Person> expectedList = FXCollections.observableArrayList(ALICE, CARL, BENSON);
+        assertEquals(expectedList, modelManager.getCorrectPersonList());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

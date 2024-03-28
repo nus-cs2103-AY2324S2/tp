@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new SortCommand object
  */
-public class SortCommandParser implements Parser<SortCommand>{
+public class SortCommandParser implements Parser<SortCommand> {
     private static final Set<String> VALID_FIELDS = new HashSet<>(Arrays.asList(
             "email", "major", "name", "phone", "star"
     ));
