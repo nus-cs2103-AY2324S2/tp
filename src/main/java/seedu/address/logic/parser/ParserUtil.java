@@ -9,11 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Telegram;
+import seedu.address.model.person.Year;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -66,18 +69,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Major}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Major parseMajor(String major) throws ParseException {
+        requireNonNull(major);
+        String trimmedMajor = major.trim();
+        if (!Major.isValidMajor(trimmedMajor)) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Major(trimmedMajor);
     }
 
     /**
@@ -96,29 +99,86 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String year} into an {@code Year}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code year} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidTelegram(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Telegram(trimmedTelegram);
+    }
+    /**
+     * Parses a {@code String year} into an {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+        String trimmedYear = year.trim();
+        if (!Year.isValidYear(trimmedYear)) {
+            throw new ParseException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return new Year(trimmedYear);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
+
+    /**
+     * Parses a {@code String group} into a {@code Group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code group} is invalid.
+     */
+    public static Group parseGroup(String group) throws ParseException {
+        requireNonNull(group);
+        String trimmedGroup = group.trim();
+        if (!Group.isValidGroupName(trimmedGroup)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Group(trimmedGroup);
+    }
+
+    /**
+     * Parses {@code Collection<String> groups} into a {@code Set<Group>}.
+     */
+    public static Set<Group> parseGroups(Collection<String> groups) throws ParseException {
+        requireNonNull(groups);
+        final Set<Group> groupSet = new HashSet<>();
+        for (String groupName : groups) {
+            groupSet.add(parseGroup(groupName));
+        }
+        return groupSet;
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static String parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedGroup = link.trim();
+        if (!Group.isValidLink(trimmedGroup)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
+        return link;
     }
 }

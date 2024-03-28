@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,12 +24,15 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Telegram;
+import seedu.address.model.person.Year;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -42,8 +48,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_YEAR + "YEAR] "
+            + "[" + PREFIX_MAJOR + "MAJOR] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM]"
+            + "[" + PREFIX_REMARK + "REMARK]"
+            + "[" + PREFIX_GROUP + "Group]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -98,10 +107,14 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
+        Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
+        Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTelegram,
+                updatedMajor, updatedRemark, updatedGroups);
     }
 
     @Override
@@ -136,28 +149,34 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private Year year;
+        private Major major;
+        private Telegram telegram;
+        private Remark remark;
+        private Set<Group> groups;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code groups} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setYear(toCopy.year);
+            setMajor(toCopy.major);
+            setTelegram(toCopy.telegram);
+            setRemark(toCopy.remark);
+            setGroups(toCopy.groups);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, major, telegram, remark, groups);
         }
 
         public void setName(Name name) {
@@ -184,29 +203,50 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setYear(Year year) {
+            this.year = year;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
+        }
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
+        }
+
+        public void setMajor(Major major) {
+            this.major = major;
+        }
+
+        public Optional<Major> getMajor() {
+            return Optional.ofNullable(major);
+        }
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code groups} to this object's {@code groups}.
+         * A defensive copy of {@code groups} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setGroups(Set<Group> groups) {
+            this.groups = (groups != null) ? new HashSet<>(groups) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable group set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code groups} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Group>> getGroups() {
+            return (groups != null) ? Optional.of(Collections.unmodifiableSet(groups)) : Optional.empty();
         }
 
         @Override
@@ -224,8 +264,11 @@ public class EditCommand extends Command {
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(year, otherEditPersonDescriptor.year)
+                    && Objects.equals(telegram, otherEditPersonDescriptor.telegram)
+                    && Objects.equals(major, otherEditPersonDescriptor.major)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
+                    && Objects.equals(groups, otherEditPersonDescriptor.groups);
         }
 
         @Override
@@ -234,8 +277,11 @@ public class EditCommand extends Command {
                     .add("name", name)
                     .add("phone", phone)
                     .add("email", email)
-                    .add("address", address)
-                    .add("tags", tags)
+                    .add("year", year)
+                    .add("major", major)
+                    .add("telegram", telegram)
+                    .add("remark", remark)
+                    .add("groups", groups)
                     .toString();
         }
     }

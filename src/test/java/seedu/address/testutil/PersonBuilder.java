@@ -3,12 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Major;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Telegram;
+import seedu.address.model.person.Year;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -19,13 +22,18 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-
+    public static final String DEFAULT_YEAR = "1";
+    public static final String DEFAULT_MAJOR = "Computer Science";
+    public static final String DEFAULT_TELEGRAM = "amy123";
+    public static final String DEFAULT_REMARK = "shy";
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Year year;
+    private Major major;
+    private Telegram telegram;
+    private Remark remark;
+    private Set<Group> groups;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -34,8 +42,11 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        year = new Year(DEFAULT_YEAR);
+        major = new Major(DEFAULT_MAJOR);
+        telegram = new Telegram(DEFAULT_TELEGRAM);
+        remark = new Remark(DEFAULT_REMARK);
+        groups = new HashSet<>();
     }
 
     /**
@@ -45,8 +56,11 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        year = personToCopy.getYear();
+        major = personToCopy.getMajor();
+        telegram = personToCopy.getTelegram();
+        remark = personToCopy.getRemark();
+        groups = new HashSet<>(personToCopy.getGroups());
     }
 
     /**
@@ -58,18 +72,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withGroups(String ... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Major} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public PersonBuilder withMajor(String major) {
+        this.major = new Major(major);
         return this;
     }
 
@@ -89,8 +103,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = new Telegram(telegram);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Year} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withYear(String year) {
+        this.year = new Year(year);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, year, telegram, major, remark, groups);
     }
 
 }

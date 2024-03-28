@@ -3,12 +3,19 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "year": "1",
+    "major": "Computer Science",
+    "telegram": "alicepauline",
+    "remark": "valid remark",
+    "groups": [ "TUT10" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "year": "1",
+    "major": "Computer Science",
+    "telegram": "alicepauline",
+    "remark": "valid remark"
+  } ],
+  "groups": []
 }

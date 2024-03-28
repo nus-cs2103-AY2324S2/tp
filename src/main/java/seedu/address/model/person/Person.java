@@ -8,10 +8,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the major book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -20,21 +20,30 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Year year;
+    private final Telegram telegram;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Major major;
+    private final Remark remark;
+    private final Set<Group> groups = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+
+    public Person(Name name, Phone phone, Email email, Year year, Telegram telegram, Major major, Remark remark,
+                  Set<Group> groups) {
+        requireAllNonNull(name, phone, email, major, remark, groups);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.year = year;
+        this.major = major;
+        this.telegram = telegram;
+        this.remark = remark;
+        this.groups.addAll(groups);
     }
 
     public Name getName() {
@@ -49,16 +58,25 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Major getMajor() {
+        return major;
+    }
+    public Year getYear() {
+        return year;
+    }
+    public Telegram getTelegram() {
+        return telegram;
+    }
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
     }
 
     /**
@@ -93,14 +111,17 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && year.equals(otherPerson.year)
+                && telegram.equals(otherPerson.telegram)
+                && major.equals(otherPerson.major)
+                && remark.equals(otherPerson.remark)
+                && groups.equals(otherPerson.groups);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, year, telegram, major, remark, groups);
     }
 
     @Override
@@ -109,8 +130,11 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
+                .add("year", year)
+                .add("telegram", telegram)
+                .add("major", major)
+                .add("remark", remark)
+                .add("groups", groups)
                 .toString();
     }
 

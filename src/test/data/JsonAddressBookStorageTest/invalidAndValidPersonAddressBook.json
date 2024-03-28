@@ -3,11 +3,18 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "year": "1",
+    "major": "Computer Science",
+    "telegram": "validperson",
+    "remark": "valid remark"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+    "year": "1",
+    "major": "Computer Science",
+    "telegram": "invalidperson",
+    "remark": "remark is always valid"
+  } ],
+  "groups": []
 }
