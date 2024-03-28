@@ -56,8 +56,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         major.setText(student.getMajor().value);
         email.setText(student.getEmail().value);
-        star.setText(student.getStar().toString()); // need String representation
-        bolt.setText(student.getBolt().toString());
+        star.setText("★ " + student.getStar().toString() + "  ");
+        bolt.setText("⚡ " + student.getBolt().toString());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
