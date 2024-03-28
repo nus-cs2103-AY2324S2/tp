@@ -7,6 +7,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exam.Exam;
 
+/**
+ * Deselects the currently selected exam.
+ */
 public class DeselectExamCommand extends Command {
 
     public static final String COMMAND_WORD = "deselectExam";
