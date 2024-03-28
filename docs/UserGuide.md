@@ -418,7 +418,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the major book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-
 ## <span id='feature-groupCommands'> Group Commands <span>
 
 This section contains commands for managing groups in TutorsContactsPro.
