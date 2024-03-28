@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -65,7 +66,6 @@ public class EditCommand extends Command {
         requireNonNull(editPersonDescriptor);
 
         this.studentId = studentId;
-
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -119,9 +119,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        FormClass updatedClass = editPersonDescriptor.getFormClass().orElse(personToEdit.getFormClass());
 
         return new Person(updatedName, updatedParentPhoneOne, updatedParentPhoneTwo, updatedEmail, updatedAddress,
-                updatedStudentId, updatedTags);
+                updatedStudentId, updatedTags, updatedClass);
     }
 
     @Override
@@ -160,6 +161,7 @@ public class EditCommand extends Command {
         private Address address;
         private StudentId studentId;
         private Set<Tag> tags;
+        private FormClass formClass;
 
         public EditPersonDescriptor() {}
 
@@ -175,6 +177,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setStudentId(toCopy.studentId);
             setTags(toCopy.tags);
+            setFormClass(toCopy.formClass);
         }
 
         /**
@@ -182,7 +185,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, firstParentPhone, secondParentPhone, email, address, studentId,
-                    tags);
+                    tags, formClass);
         }
 
         public void setName(Name name) {
@@ -266,6 +269,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setFormClass(FormClass formClass) {
+            this.formClass = formClass;
+        }
+
+        public Optional<FormClass> getFormClass() {
+            return Optional.ofNullable(formClass);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -284,14 +295,16 @@ public class EditCommand extends Command {
                         && Objects.equals(email, otherEditPersonDescriptor.email)
                         && Objects.equals(address, otherEditPersonDescriptor.address)
                         && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
-                        && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                        && Objects.equals(formClass, otherEditPersonDescriptor.formClass);
             } else {
                 return Objects.equals(name, otherEditPersonDescriptor.name)
                         && Objects.equals(secondParentPhone, otherEditPersonDescriptor.secondParentPhone)
                         && Objects.equals(email, otherEditPersonDescriptor.email)
                         && Objects.equals(address, otherEditPersonDescriptor.address)
                         && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
-                        && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                        && Objects.equals(formClass, otherEditPersonDescriptor.formClass);
             }
         }
 
@@ -305,6 +318,7 @@ public class EditCommand extends Command {
                         .add("address", address)
                         .add("student id", studentId)
                         .add("tags", tags)
+                        .add("class", formClass)
                         .toString();
             } else {
                 return new ToStringBuilder(this)
@@ -314,6 +328,7 @@ public class EditCommand extends Command {
                         .add("address", address)
                         .add("student id", studentId)
                         .add("tags", tags)
+                        .add("class", formClass)
                         .toString();
             }
         }

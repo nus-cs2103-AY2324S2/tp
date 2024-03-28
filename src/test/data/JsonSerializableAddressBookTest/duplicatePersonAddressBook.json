@@ -6,13 +6,15 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "studentId": "12345",
-    "tags": [ "Friends" ]
+    "tags": [ "Friends" ],
+    "formClass": "6 A"
   }, {
     "name": "Bob ddd",
     "parent phone one": "94824242",
     "parent phone two": "91204323",
     "email": "pauline@example.com",
     "address": "4th street",
-    "studentId": "12345"
+    "studentId": "12345",
+    "formClass": "6 A"
   } ]
 }

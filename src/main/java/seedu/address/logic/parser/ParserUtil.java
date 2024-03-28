@@ -10,6 +10,7 @@ import seedu.address.commons.util.StringFormatter;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
@@ -175,5 +176,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses formClass name into a FormClass instance.
+     * @param formClass name of class
+     * @return Classroom instance
+     * @throws ParseException if the formClass name is invalid.
+     */
+    public static FormClass parseClass(String formClass) throws ParseException {
+        requireNonNull(formClass);
+        String trimmedClass = formClass.trim();
+        if (!FormClass.isValidClassName(trimmedClass)) {
+            throw new ParseException(FormClass.MESSAGE_CONSTRAINTS);
+        }
+
+        String capitalizedClass = StringFormatter.capitalizeWords(trimmedClass);
+        return new FormClass(capitalizedClass);
     }
 }

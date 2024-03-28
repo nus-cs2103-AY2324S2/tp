@@ -69,7 +69,9 @@ public class EditPersonDescriptorTest {
                     + editPersonDescriptor.getEmail().orElse(null) + ", address="
                     + editPersonDescriptor.getAddress().orElse(null) + ", student id="
                     + editPersonDescriptor.getStudentId().orElse(null) + ", tags="
-                    + editPersonDescriptor.getTags().orElse(null) + "}";
+                    + editPersonDescriptor.getTags().orElse(null) + ", class="
+                    + editPersonDescriptor.getFormClass().orElse(null)
+                    + "}";
         } else {
             expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
                     + editPersonDescriptor.getName().orElse(null) + ", edited phone="
@@ -77,7 +79,9 @@ public class EditPersonDescriptorTest {
                     + editPersonDescriptor.getEmail().orElse(null) + ", address="
                     + editPersonDescriptor.getAddress().orElse(null) + ", student id="
                     + editPersonDescriptor.getStudentId().orElse(null) + ", tags="
-                    + editPersonDescriptor.getTags().orElse(null) + "}";
+                    + editPersonDescriptor.getTags().orElse(null) + ", class="
+                    + editPersonDescriptor.getFormClass().orElse(null)
+                    + "}";
         }
 
         assertEquals(expected, editPersonDescriptor.toString());

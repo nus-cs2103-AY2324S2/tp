@@ -15,7 +15,7 @@
     * Together, forming a contact list for educators!
   * Catchy abbreviation:
     * `Pe` from Pedagogue, and `Pes` from pages (`PAY-ge-S`)
-    
+
 * PedagogyPages is a **Command Line Interface** (CLI) based system.
 
 

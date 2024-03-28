@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONES;
@@ -36,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PARENT_PHONES,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STUDENT_ID, PREFIX_TAG);
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STUDENT_ID, PREFIX_TAG, PREFIX_CLASS);
 
 
         StudentId studentId = null;
@@ -72,10 +73,15 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STUDENT_ID).isPresent()) {
             editPersonDescriptor.setStudentId(ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get()));
         }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        if (argMultimap.getValue(PREFIX_CLASS).isPresent()) {
+            editPersonDescriptor.setFormClass((ParserUtil.parseClass(argMultimap.getValue(PREFIX_CLASS).get())));
         }
 
         return new EditCommand(studentId, editPersonDescriptor);

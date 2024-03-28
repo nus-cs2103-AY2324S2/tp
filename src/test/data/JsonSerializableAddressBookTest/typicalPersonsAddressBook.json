@@ -7,7 +7,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "studentId": "00001",
-    "tags" : [ "Friends" ]
+    "tags" : [ "Friends" ],
+    "formClass": "6 A"
   }, {
     "name" : "Benson Meier",
     "parent phone one": "98765432",
@@ -15,7 +16,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "studentId": "00002",
-    "tags" : [ "OwesMoney", "Friends" ]
+    "tags" : [ "OwesMoney", "Friends" ],
+    "formClass":  "6 A"
   }, {
     "name" : "Carl Kurz",
     "parent phone one": "95352563",
@@ -23,7 +25,8 @@
     "email" : "heinz@example.com",
     "address" : "Wall Street",
     "studentId": "00003",
-    "tags" : [ ]
+    "tags" : [ ],
+    "formClass":  "6 A"
   }, {
     "name" : "Daniel Meier",
     "parent phone one": "87652533",
@@ -31,7 +34,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "studentId": "00004",
-    "tags" : [ "Friends" ]
+    "tags" : [ "Friends" ],
+    "formClass":  "6 A"
   }, {
     "name" : "Elle Meyer",
     "parent phone one": "94822224",
@@ -39,7 +43,8 @@
     "email" : "werner@example.com",
     "address" : "Michegan Ave",
     "studentId": "00005",
-    "tags" : [ ]
+    "tags" : [ ],
+    "formClass":  "6 A"
   }, {
     "name" : "Fiona Kunz",
     "parent phone one": "94821427",
@@ -47,7 +52,8 @@
     "email" : "lydia@example.com",
     "address" : "Little Tokyo",
     "studentId": "00006",
-    "tags" : [ ]
+    "tags" : [ ],
+    "formClass":  "6 A"
   }, {
     "name" : "George Best",
     "parent phone one": "94822442",
@@ -55,6 +61,7 @@
     "email" : "anna@example.com",
     "address" : "4th Street",
     "studentId": "00007",
-    "tags" : [ ]
+    "tags" : [ ],
+    "formClass":  "6 A"
   } ]
 }

@@ -263,9 +263,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* is an educator working with the education of primary / secondary students 
-* require fast and organized access to students' and parents' contact detail 
-* have many students' information to manage 
+* is an educator working with the education of primary / secondary students
+* require fast and organized access to students' and parents' contact detail
+* have many students' information to manage
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -296,7 +296,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`      | school staff member                  |export contact lists for emergency purposes| ensure student safety in case of emergencies |
 | `* *` | careless (but fast typing) teacher     | run the command with some minor typo | use the application with greater ease|
 | `* *`|  forgetful teacher | add notes or additional information to each student | remember important details about them |
-| `*` | careless teacher        | undo my previous command | avoid making mistake like delete the wrong student | 
+| `*` | careless teacher        | undo my previous command | avoid making mistake like delete the wrong student |
 | `* ` | teacher                  | mark students’ attendance for each class session| |
 | `* ` | teacher                  |  set reminders for events such as parent-teacher/student-teacher meetings| I don't miss any important appointments|
 | `*` | teacher |  utilize the application to understand the geographic distribution of my students | planning school trips or outreach programs |
@@ -363,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Teacher enter a invalid command.
     * 2a1. PedagoguePages shows an error message and give a hint.
-    
+
         Use case ends.
 
 
@@ -375,7 +375,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  PedagoguePages shows a list of matched students
 3.  Teacher requests to update the info of a specific person in the list
 4.  PedagoguePages update the info for the student
-   
+
     Use case ends.
 
 **Extensions**
@@ -389,7 +389,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. PedagoguePages shows an error message.
 
       Use case resumes at step 2.
-    
+
 * 3b. The updated field is in a wrong format
     * 3b1. PedagoguePages shows an error message.
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  Teacher select the student from the list
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. The list is empty.
