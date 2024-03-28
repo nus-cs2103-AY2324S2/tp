@@ -26,7 +26,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ORDERID = "#FXXXXXXXX";
     private static final String INVALID_ORDERDATE = "24/D/23";
     private static final String INVALID_DEADLINE = "24/D/23";
-    private static final String INVALID_AMOUNT = "@6.7";
+    private static final String INVALID_PRICE = "@6.7";
     private static final String INVALID_REMARK = "%HOME";
     private static final String INVALID_STATUS = "#NOW";
 
@@ -123,7 +123,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidOrders_throwsIllegalValueException() {
         List<JsonAdaptedOrder> invalidOrders = new ArrayList<>(VALID_ORDERS);
-        invalidOrders.add(new JsonAdaptedOrder(INVALID_ORDERID, INVALID_ORDERDATE, INVALID_DEADLINE, INVALID_AMOUNT,
+        invalidOrders.add(new JsonAdaptedOrder(INVALID_ORDERID, INVALID_ORDERDATE, INVALID_DEADLINE, INVALID_PRICE,
                 INVALID_REMARK, INVALID_STATUS));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, invalidOrders);

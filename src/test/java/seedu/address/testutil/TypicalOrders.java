@@ -10,7 +10,7 @@ public class TypicalOrders {
             .withOrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae73")
             .withOrderDate("01-03-2024 23:59")
             .withDeadline("01-04-2024 23:59")
-            .withAmount("10")
+            .withPrice("10")
             .withRemark("No remark")
             .withStatus("CANCELED")
             .build();
@@ -18,7 +18,7 @@ public class TypicalOrders {
             .withOrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae74")
             .withOrderDate("23-03-2024 11:59")
             .withDeadline("05-12-2024 20:57")
-            .withAmount("10")
+            .withPrice("10")
             .withRemark("Important")
             .withStatus("PENDING")
             .build();

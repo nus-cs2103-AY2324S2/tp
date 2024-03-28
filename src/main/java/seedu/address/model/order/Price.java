@@ -4,33 +4,33 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents the amount of items for the order in the order book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
+ * Represents the price of items for the order in the order book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
  */
-public class Amount {
+public class Price {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Amount must be a positive number";
+            "Price must be a positive number";
     public final int value;
 
     /**
-     * Constructs a {@code Amount}.
+     * Constructs a {@code Price}.
      *
-     * @param value A valid amount.
+     * @param value A valid price.
      */
-    public Amount(String value) {
+    public Price(String value) {
         requireNonNull(value);
-        checkArgument(isValidAmount(value), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
         this.value = Integer.parseInt(value);
     }
 
     /**
-     * Returns true if a given double is a valid amount.
+     * Returns true if a given double is a valid price.
      *
-     * @param test the amount to be tested
-     * @return true if the amount is valid
+     * @param test the price to be tested
+     * @return true if the price is valid
      */
-    public static boolean isValidAmount(String test) {
+    public static boolean isValidPrice(String test) {
         return Integer.parseInt(test) > 0;
     }
 
@@ -45,12 +45,12 @@ public class Amount {
             return true;
         }
 
-        if (!(other instanceof Amount)) {
+        if (!(other instanceof Price)) {
             return false;
         }
 
-        Amount otherAmount = (Amount) other;
-        return value == otherAmount.value;
+        Price otherPrice = (Price) other;
+        return value == otherPrice.value;
     }
 
     @Override

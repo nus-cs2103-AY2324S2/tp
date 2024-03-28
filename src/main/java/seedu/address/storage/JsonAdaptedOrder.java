@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 
@@ -23,7 +23,7 @@ public class JsonAdaptedOrder {
     private final String orderId;
     private final String orderDate;
     private final String deadline;
-    private final String amount;
+    private final String price;
     private final String remark;
     private final String status;
 
@@ -32,12 +32,12 @@ public class JsonAdaptedOrder {
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("orderId") String orderId, @JsonProperty("orderDate") String orderDate,
-                            @JsonProperty("deadline") String deadline, @JsonProperty("amount") String amount,
+                            @JsonProperty("deadline") String deadline, @JsonProperty("price") String price,
                             @JsonProperty("remark") String remark, @JsonProperty("status") String status) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
-        this.amount = amount;
+        this.price = price;
         this.remark = remark;
         this.status = status;
     }
@@ -49,7 +49,7 @@ public class JsonAdaptedOrder {
         orderId = source.getOrderId().toString();
         orderDate = source.getOrderDate().toString();
         deadline = source.getDeadline().toString();
-        amount = source.getAmount().toString();
+        price = source.getPrice().toString();
         remark = source.getRemark().toString();
         status = source.getStatus().toString();
     }
@@ -92,14 +92,14 @@ public class JsonAdaptedOrder {
         }
         final Deadline modelDeadline = new Deadline(deadline);
 
-        if (amount == null) {
-            throw new NumberFormatException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
+        if (price == null) {
+            throw new NumberFormatException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
         }
 
-        if (!Amount.isValidAmount(amount)) {
-            throw new NumberFormatException(Amount.MESSAGE_CONSTRAINTS);
+        if (!Price.isValidPrice(price)) {
+            throw new NumberFormatException(Price.MESSAGE_CONSTRAINTS);
         }
-        final Amount modelAmount = new Amount(String.valueOf(amount));
+        final Price modelPrice = new Price(String.valueOf(price));
 
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
@@ -119,6 +119,6 @@ public class JsonAdaptedOrder {
         }
         final Status modelStatus = new Status(status);
 
-        return new Order(modelOrderId, modelOrderDate, modelDeadline, modelAmount, modelRemarks, modelStatus);
+        return new Order(modelOrderId, modelOrderDate, modelDeadline, modelPrice, modelRemarks, modelStatus);
     }
 }

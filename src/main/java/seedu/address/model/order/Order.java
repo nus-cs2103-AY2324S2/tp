@@ -13,7 +13,7 @@ public class Order {
     private final OrderId orderId;
     private final OrderDate orderDate;
     private final Deadline deadline;
-    private final Amount amount;
+    private final Price price;
     private final Remark remark;
     private final Status status;
 
@@ -21,13 +21,13 @@ public class Order {
      * Every field must be present and not null.
      */
     public Order(OrderId orderId, OrderDate orderDate, Deadline deadline,
-                 Amount amount, Remark remark, Status status
+                 Price price, Remark remark, Status status
     ) {
-        requireAllNonNull(orderId, orderDate, deadline, amount, remark, status);
+        requireAllNonNull(orderId, orderDate, deadline, price, remark, status);
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.deadline = deadline;
-        this.amount = amount;
+        this.price = price;
         this.remark = remark;
         this.status = status;
     }
@@ -44,8 +44,8 @@ public class Order {
         return deadline;
     }
 
-    public Amount getAmount() {
-        return amount;
+    public Price getPrice() {
+        return price;
     }
 
     public Remark getRemark() {
@@ -75,7 +75,7 @@ public class Order {
         return otherOrder.getOrderId().equals(getOrderId())
                 && otherOrder.getOrderDate().equals(getOrderDate())
                 && otherOrder.getDeadline().equals(getDeadline())
-                && otherOrder.getAmount().equals(getAmount())
+                && otherOrder.getPrice().equals(getPrice())
                 && otherOrder.getRemark().equals(getRemark())
                 && otherOrder.getStatus().equals(getStatus());
 
@@ -84,7 +84,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, orderDate, deadline, amount, remark, status);
+        return Objects.hash(orderId, orderDate, deadline, price, remark, status);
     }
 
     @Override
@@ -93,9 +93,10 @@ public class Order {
                 .add("orderId", orderId)
                 .add("orderDate", orderDate)
                 .add("deadline", deadline)
-                .add("amount", amount)
+                .add("price", price)
                 .add("remark", remark)
                 .add("status", status)
                 .toString();
     }
+
 }
