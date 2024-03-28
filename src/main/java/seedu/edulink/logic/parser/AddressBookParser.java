@@ -14,10 +14,12 @@ import seedu.edulink.logic.commands.Command;
 import seedu.edulink.logic.commands.DeleteCommand;
 import seedu.edulink.logic.commands.EditCommand;
 import seedu.edulink.logic.commands.ExitCommand;
+import seedu.edulink.logic.commands.ExportCommand;
 import seedu.edulink.logic.commands.FindCommand;
 import seedu.edulink.logic.commands.HelpCommand;
 import seedu.edulink.logic.commands.ListCommand;
 import seedu.edulink.logic.commands.TagCommand;
+import seedu.edulink.logic.commands.UndoCommand;
 import seedu.edulink.logic.parser.exceptions.ParseException;
 
 /**
@@ -77,10 +79,12 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
-
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

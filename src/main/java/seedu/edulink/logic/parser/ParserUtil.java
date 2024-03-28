@@ -24,6 +24,8 @@ import seedu.edulink.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String FILENAME_VALIDATION_REGEX = "^(?!^(con|prn|aux|nul|com\\d|lpt\\d)$)"
+        + "(?:[^\\\\/:*?\"<>|\\r\\n]+[ ]?)*[^\\\\/:*?\"<>|\\r\\n]+$";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -67,6 +69,23 @@ public class ParserUtil {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
         return new Id(trimmedId);
+    }
+
+    /**
+     * Parses a {@code String filename} into a {@code Filename}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filename} is invalid.
+     */
+    public static String parseFilename(String fileName) throws ParseException {
+        requireNonNull(fileName);
+        String trimmedFilename = fileName.trim();
+
+        if (trimmedFilename.isEmpty() || !trimmedFilename.matches(FILENAME_VALIDATION_REGEX)) {
+            throw new ParseException("File Name Shouldn't contain Illegal Characters!");
+        }
+
+        return trimmedFilename;
     }
 
     /**
