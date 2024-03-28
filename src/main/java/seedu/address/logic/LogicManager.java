@@ -52,8 +52,7 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(Command command) throws CommandException {
-        CommandResult commandResult;
-        commandResult = command.execute(model);
+        CommandResult commandResult = command.execute(model);
 
         try {
             storage.saveAddressBook(model.getAddressBook());

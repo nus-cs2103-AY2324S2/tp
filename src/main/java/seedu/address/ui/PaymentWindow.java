@@ -23,7 +23,6 @@ public class PaymentWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(PaymentWindow.class);
     private static final String HELP_TOOLTIP_TEXT = "Open your banking application and scan this QR code to pay %s!\n"
             + "Note that this QR code only works if the mobile number is registered to a bank account.";
-    private final Person personToPay;
     private final Runnable onResetDebt;
 
     @FXML
@@ -43,10 +42,10 @@ public class PaymentWindow extends UiPart<Stage> {
      */
     public PaymentWindow(Person person, Runnable onResetDebt) throws IOException, WriterException {
         super(FXML, new Stage());
-        this.personToPay = person;
         this.onResetDebt = onResetDebt;
         Image image = new Image(PayNowCode.generatePayNowQrCode(
-                person.getPhone().value, Math.max(0, -person.getMoneyOwed().moneyOwed)));
+                person.getPhone().toString(),
+                Math.max(0, -person.getMoneyOwed().moneyOwed)));
         qrCode.setImage(image);
         if (person.getMoneyOwed().moneyOwed == 0) {
             resetButton.setManaged(false);
