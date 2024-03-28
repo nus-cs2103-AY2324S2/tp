@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NextOfKin;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -28,6 +30,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String description;
+    private final String nextOfKin;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,11 +40,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("description") String description, @JsonProperty("nextOfKin") String nextOfKin,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.description = description;
+        this.nextOfKin = nextOfKin;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +61,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        description = source.getDescription().value;
+        nextOfKin = source.getNextOfKin().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +111,26 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (description == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Description modelDescription = new Description(description);
+
+        if (nextOfKin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NextOfKin.class.getSimpleName()));
+        }
+        if (!NextOfKin.isValidNextOfKin(nextOfKin)) {
+            throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
+        }
+        final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDescription, modelNextOfKin, modelTags);
     }
 
 }
