@@ -134,7 +134,7 @@ public class JsonAdaptedCourseMateTest {
         JsonAdaptedCourseMate courseMate = new JsonAdaptedCourseMate(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_TELEGRAM_HANDLE, INVALID_RATING, VALID_SKILLS);
         String expectedMessage = Rating.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expecxtedMessage, courseMate::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, courseMate::toModelType);
     }
 
     @Test
