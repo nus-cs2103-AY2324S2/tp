@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -12,10 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.exam.Exam;
+import seedu.address.model.person.Person;
 
 public class DeleteExamCommandTest {
 
@@ -64,4 +68,43 @@ public class DeleteExamCommandTest {
         // different exam -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
+
+    @Test
+    public void execute_validIndex_removesExamFromPersons() {
+        Exam examToDelete = model.getExamList().get(INDEX_FIRST_EXAM.getZeroBased());
+        DeleteExamCommand deleteExamCommand = new DeleteExamCommand(INDEX_FIRST_EXAM);
+
+        boolean examExistsInPersons = model.getAddressBook().getPersonList().stream()
+                                           .anyMatch(person -> person.getScores().containsKey(examToDelete));
+        assertTrue(examExistsInPersons);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteExam(examToDelete);
+
+        // Execute the command
+        assertCommandSuccess(deleteExamCommand, model,
+                             String.format(DeleteExamCommand.MESSAGE_DELETE_EXAM_SUCCESS,
+                                           Messages.format(examToDelete)),
+                             expectedModel);
+
+        // Verify that the exam is removed from all persons
+        for (Person person : expectedModel.getAddressBook().getPersonList()) {
+            assertFalse(person.getScores().containsKey(examToDelete));
+        }
+    }
+
+    @Test
+    public void execute_selectedExam_setsSelectedExamToNull() throws CommandException {
+        // Select an exam
+        model.selectExam(model.getExamList().get(INDEX_FIRST_EXAM.getZeroBased()));
+        assertEquals(model.getSelectedExam().getValue(),
+                     model.getExamList().get(INDEX_FIRST_EXAM.getZeroBased()));
+        // Delete the selected exam
+        DeleteExamCommand deleteExamCommand = new DeleteExamCommand(INDEX_FIRST_EXAM);
+        deleteExamCommand.execute(model);
+
+        // Verify that the selected exam is set to null
+        assertNull(model.getSelectedExam().getValue());
+    }
 }
+

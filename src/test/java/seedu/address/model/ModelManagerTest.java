@@ -135,6 +135,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deleteExam_examInAddressBook_removesExamFromPersons() {
+        Exam midterm = new Exam("Midterm", new Score(100));
+        modelManager.addExam(midterm);
+        modelManager.addPerson(ALICE);
+        modelManager.selectExam(midterm);
+
+        // add score for ALICE
+        modelManager.addExamScoreToPerson(ALICE, midterm, new Score(85));
+
+        // delete the exam
+        modelManager.deleteExam(midterm);
+
+        // ALICE should not have the exam in her scores
+        assertFalse(modelManager.getFilteredPersonList().get(0).getScores().containsKey(midterm));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

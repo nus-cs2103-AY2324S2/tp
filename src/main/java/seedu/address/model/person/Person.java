@@ -101,6 +101,31 @@ public class Person {
     }
 
     /**
+     * Returns true if the person has the given exam in the scores.
+     */
+    public boolean hasExamScore(Exam exam) {
+        return scores.containsKey(exam);
+    }
+
+    /**
+     * Returns a new Person with the given exam added to the scores, maintains immutability.
+     */
+    public Person removeExam(Exam exam) {
+        Map<Exam, Score> newScores = new HashMap<>(scores);
+        newScores.remove(exam);
+        return new Person(name, phone, email, address, tags, matric, reflection, studio, newScores);
+    }
+
+    /**
+     * Returns a new Person with the given exam added to the scores, maintains immutability.
+     */
+    public Person addExamScore(Exam exam, Score score) {
+        Map<Exam, Score> newScores = new HashMap<>(scores);
+        newScores.put(exam, score);
+        return new Person(name, phone, email, address, tags, matric, reflection, studio, newScores);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

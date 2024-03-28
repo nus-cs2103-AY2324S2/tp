@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -116,7 +117,17 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void addExamScoreToPerson(Person person, Exam exam, Score score) {
+        Person newPerson = person.addExamScore(exam, score);
+        setPerson(person, newPerson);
+    }
 
+    @Override
+    public void removeExamScoreFromPerson(Person person, Exam exam) {
+        Person newPerson = person.removeExam(exam);
+        setPerson(person, newPerson);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -163,18 +174,19 @@ public class ModelManager implements Model {
     @Override
     public void deleteExam(Exam target) {
         addressBook.removeExam(target);
+        for (Person person : addressBook.getPersonList()) {
+            if (person.hasExamScore(target)) {
+                removeExamScoreFromPerson(person, target);
+            }
+        }
+        if (selectedExam.getValue() != null && selectedExam.getValue().equals(target)) {
+            deselectExam();
+        }
     }
 
     @Override
     public void addExam(Exam exam) {
         addressBook.addExam(exam);
-    }
-
-    @Override
-    public void setExam(Exam target, Exam editedExam) {
-        requireAllNonNull(target, editedExam);
-
-        addressBook.setExam(target, editedExam);
     }
 
     @Override
