@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
 
 
@@ -14,6 +13,9 @@ public class SortStarsAscendingCommand extends Command {
     public static final String COMMAND_WORD = "sortStarsAscending";
     public static final String MESSAGE_SUCCESS = "Sorted all persons";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Sorts all students in the address book based on their number of starts and lists to the user.\n"
+            + "Example: " + COMMAND_WORD;
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
