@@ -61,8 +61,7 @@ public class PersonProfile extends UiPart<Region> {
         phone.setText("Phone number: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
-        upcoming.setText("Upcoming: " + person.getUpcoming().toString());
-        lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        setOptionalFields();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -78,12 +77,31 @@ public class PersonProfile extends UiPart<Region> {
         phone.setText("Phone number: " + person.getPhone().value);
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
-        upcoming.setText("Upcoming: " + person.getUpcoming().toString());
-        lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        setOptionalFields();
         tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         profilePane.setVisible(true);
+    }
+
+    private void setOptionalFields() {
+        if (person.hasUpcoming()) {
+            upcoming.setVisible(true);
+            upcoming.setManaged(true);
+            upcoming.setText("Upcoming: " + person.getUpcoming().toString());
+        } else {
+            upcoming.setVisible(false);
+            upcoming.setManaged(false);
+        }
+
+        if (person.hasLastcontact()) {
+            lastcontact.setVisible(true);
+            lastcontact.setManaged(true);
+            lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        } else {
+            lastcontact.setVisible(false);
+            lastcontact.setManaged(false);
+        }
     }
 }
