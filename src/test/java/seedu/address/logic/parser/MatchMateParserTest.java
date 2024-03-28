@@ -28,6 +28,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkImportantCommand;
 import seedu.address.logic.commands.RateMateCommand;
 import seedu.address.logic.commands.RequireSkillCommand;
+import seedu.address.logic.commands.SuggestMateCommand;
 import seedu.address.logic.commands.UnmarkImportantCommand;
 import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -176,6 +177,12 @@ public class MatchMateParserTest {
     public void parseCommand_requireSkill() throws Exception {
         assertTrue(parser.parseCommand(RequireSkillCommand.COMMAND_WORD + " Group 1 -s C++")
                 instanceof RequireSkillCommand);
+    }
+
+    @Test
+    public void parseCommand_suggestMate() throws Exception {
+        assertTrue(parser.parseCommand(SuggestMateCommand.COMMAND_WORD + " Group 1")
+                instanceof SuggestMateCommand);
     }
 
     @Test
