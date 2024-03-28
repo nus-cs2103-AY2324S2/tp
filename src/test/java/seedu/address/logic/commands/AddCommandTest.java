@@ -21,7 +21,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.article.Article;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -149,12 +151,62 @@ public class AddCommandTest {
         }
 
         @Override
+        public void sortAddressBook(String prefix) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setArticleBook(ReadOnlyArticleBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyArticleBook getArticleBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredArticleList(Predicate<Article> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Article> getFilteredArticleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteArticle(Article target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addArticle(Article article) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasArticle(Article article) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setArticle(Article target, Article editedArticle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortArticleBook(String prefix) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -1,59 +1,54 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Aung Ko Khant
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ko-khan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Ko-Khan)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Testing
 
-### Jane Doe
+### Benny Loh Choon Kiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bennylck.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/bennyLCK)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Integration
 
-### Johnny Doe
+### Hamish Stewart Dawe
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/h4mes.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/H4mes)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Deliverables + Deadlines
+### Hyun Eunkyu
 
-### James Doe
+<img src="images/howlong11.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Howlong11)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling + Tracking
+
+### Murugan Maniish
+
+<img src="images/murugan-maniish.png" width="200px">
+
+[[github](https://github.com/Murugan-Maniish)]
+
+* Role: Developer
+* Responsibilities: Code Quality

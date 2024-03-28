@@ -15,6 +15,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.article.Article;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -51,7 +52,12 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            if (command.getCommandType().equals("personCommand")) {
+                storage.saveAddressBook(model.getAddressBook());
+            } else if (command.getCommandType().equals("articleCommand")) {
+                storage.saveArticleBook(model.getArticleBook());
+            }
+
         } catch (AccessDeniedException e) {
             throw new CommandException(String.format(FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);
         } catch (IOException ioe) {
@@ -62,6 +68,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getCommandType(String commandText) throws ParseException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        Command command = addressBookParser.parseCommand(commandText);
+        return command.getCommandType();
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
@@ -69,6 +82,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Article> getFilteredArticleList() {
+        return model.getFilteredArticleList();
     }
 
     @Override
