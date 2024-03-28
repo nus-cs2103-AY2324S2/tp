@@ -227,7 +227,7 @@ This command is implemented through the `DeleteCommand` class which extend the `
 
 The activity diagram below demonstrates this error handling process in more detail.
 
-<img src="images/DeletePersonActivityDiagram.png" width="800" />
+<img src="images/QueryPersonActivityDiagram.png" width="800" />
 
 * Step 4. The `parse` command in `deleteCommandParser` return an instance of `deleteCommand`.
 * Step 5. The `LogicManager` calls the `execute` method in `deleteCommand`.
@@ -239,6 +239,33 @@ Why is this implemented this way?
 1. Making both `Doctor` and `Patient` class extend the `Person` class makes it easier to execute delete operations.
 2. `Doctor` and `Patient` all exhibit similar qualities, and thus can inherit from the `Person` superclass.
 3. Eliminates the need for seperate delete commands for doctor and patient.
+
+
+### Query `doctor` and `patient`
+
+Queries a 'doctor' or 'patient' entry by indicating their name or a substring of their name.
+This command is implemented through the `QueryDoctor` and `QueryPatient` classes which extend the `Command` class.
+
+* Step 1. User enters an `querypatient` or `querydoctor` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `queryDoctorCommandParser` or `queryPatientCommandParser`.
+* Step 3. The `parse` command in `queryDoctorCommandParser` or `queryPatientCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/DeletePersonActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `queryDoctorCommandParser` or `queryDoctorCommandParser` return an instance of `queryPatientCommand` or `queryPatientCommand` respectively.
+* Step 5. The `LogicManager` calls the `execute` method in `queryDoctorCommandParser` or `queryDoctorCommandParser`.
+* Step 6. The `execute` method in `queryDoctorCommandParser` or `queryDoctorCommandParser` executes and calls `updateFilteredPersonList` in model to get a filtered list of `Doctor` or `Patient`.
+* Step 7. Success message gets printed onto the results display to notify user and the list of matching results is produced.
+
+
+Why is this implemented this way?
+1. Making both `Doctor` and `Patient` class extend the `Person` class makes it easier to execute query operations.
+2. `Doctor` and `Patient` all exhibit similar qualities, and thus can inherit from the `Person` superclass.
+
 
 ### \[Proposed\] Undo/redo feature
 
