@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -12,13 +13,18 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.BoltWithinBoundsPredicate;
+import seedu.address.model.person.predicates.MajorContainsSubStringPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.StarWithinBoundsPredicate;
+import seedu.address.model.person.predicates.TagContainsSubStringPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -57,21 +63,62 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        // zero keywords for find name
+        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(
+                preparePredicateInput(" "));
+        FindCommand firstFindCommand = new FindCommand(firstPredicate);
+        expectedModel.updateFilteredPersonList(firstPredicate);
+        assertCommandSuccess(firstFindCommand, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        // zero sub string for find major
+        MajorContainsSubStringPredicate secondPredicate = new MajorContainsSubStringPredicate(" ");
+        FindCommand secondFindCommand = new FindCommand(secondPredicate);
+        expectedModel.updateFilteredPersonList(secondPredicate);
+        assertCommandSuccess(secondFindCommand, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        // zero sub string for find tag
+        TagContainsSubStringPredicate thirdPredicate = new TagContainsSubStringPredicate(" ");
+        FindCommand thirdFindCommand = new FindCommand(thirdPredicate);
+        expectedModel.updateFilteredPersonList(thirdPredicate);
+        assertCommandSuccess(thirdFindCommand, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
+        // multiple keywords for find name
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                preparePredicateInput("Kurz Elle Kunz"));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_starBound_success() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        StarWithinBoundsPredicate predicate = new StarWithinBoundsPredicate(">", 0);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        System.out.println(model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_boltBound_success() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        BoltWithinBoundsPredicate predicate = new BoltWithinBoundsPredicate(">", 0);
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        System.out.println(model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
     }
 
     @Test
@@ -85,7 +132,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private List<String> preparePredicateInput(String userInput) {
+        return Arrays.asList(userInput.split("\\s+"));
     }
 }

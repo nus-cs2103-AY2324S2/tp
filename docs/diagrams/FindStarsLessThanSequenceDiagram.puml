@@ -30,16 +30,16 @@ deactivate FindStarsLessThanCommandParser
 AddressBookParser -> FindStarsLessThanCommandParser : parse("1")
 activate FindStarsLessThanCommandParser
 
-create FindStarsLessThanCommand
-FindStarsLessThanCommandParser -> FindStarsLessThanCommand
-activate FindStarsLessThanCommand
-
 create StarsLessThanPredicate
 FindStarsLessThanCommandParser -> StarsLessThanPredicate
 activate StarsLessThanPredicate
 
 StarsLessThanPredicate --> FindStarsLessThanCommandParser
 deactivate StarsLessThanPredicate
+
+create FindStarsLessThanCommand
+FindStarsLessThanCommandParser -> FindStarsLessThanCommand
+activate FindStarsLessThanCommand
 
 FindStarsLessThanCommand --> FindStarsLessThanCommandParser :
 deactivate FindStarsLessThanCommand
