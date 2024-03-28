@@ -3,6 +3,11 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam ClassAttributeFontSize 15
+skinparam ClassAttributeFontColor #FFFFFF
+skinparam ClassAttributeFontName Arial
+skinparam ClassAttributeFontStyle Normal
+
 
 AddressBook *-right-> "1" UniquePersonList
 AddressBook *-right-> "1" UniqueTagList
@@ -21,4 +26,5 @@ Person *--> "*" Address
 Person *--> "*" Company
 Person *--> "*" Priority
 Person *--> "*" Note
+Person : starred: Boolean
 @enduml
