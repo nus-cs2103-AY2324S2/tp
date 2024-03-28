@@ -25,6 +25,8 @@ import seedu.address.logic.commands.FindGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RateMateCommand;
+import seedu.address.logic.commands.RequireSkillCommand;
+import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
@@ -153,6 +155,18 @@ public class MatchMateParserTest {
     public void parseCommand_rateMate() throws Exception {
         assertTrue(parser.parseCommand(RateMateCommand.COMMAND_WORD + " Bob -r 3")
                 instanceof RateMateCommand);
+    }
+
+    @Test
+    public void parseCommand_requireSkill() throws Exception {
+        assertTrue(parser.parseCommand(RequireSkillCommand.COMMAND_WORD + " Group 1 -s C++")
+                instanceof RequireSkillCommand);
+    }
+
+    @Test
+    public void parseCommand_unrequireSkill() throws Exception {
+        assertTrue(parser.parseCommand(UnrequireSkillCommand.COMMAND_WORD + " Group 1 -s C++")
+                instanceof UnrequireSkillCommand);
     }
 
     @Test

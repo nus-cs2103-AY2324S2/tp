@@ -5,7 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_NAME_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_1;
-import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_2;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_3;
 import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 
 import java.util.HashSet;
@@ -29,7 +29,7 @@ public class RequireSkillCommandTest {
     private final Model emptyGroupListModel =
             new ModelManager(getTypicalContactList(), new UserPrefs(), new GroupList());
     private final Set<Skill> skillSet1 = new HashSet<>(SAMPLE_SKILL_LIST_1);
-    private final Set<Skill> skillSet2 = new HashSet<>(SAMPLE_SKILL_LIST_2);
+    private final Set<Skill> skillSet3 = new HashSet<>(SAMPLE_SKILL_LIST_3);
 
     @Test
     public void constructor_nullParameters_throwsNullPointerException() {
@@ -52,7 +52,7 @@ public class RequireSkillCommandTest {
 
     @Test
     public void execute_groupInListNoCommonSkills_runsNormally() {
-        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet2);
+        RequireSkillCommand requireSkillCommand = new RequireSkillCommand(SAMPLE_GROUP_NAME_1, skillSet3);
         assertDoesNotThrow(() -> requireSkillCommand.execute(model));
     }
 
