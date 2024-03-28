@@ -3,16 +3,16 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_EDIT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL_EDIT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_EDIT;
 
 import java.util.Collection;
@@ -85,7 +85,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT, PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
+                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
