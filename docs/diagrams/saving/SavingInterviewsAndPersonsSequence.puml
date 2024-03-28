@@ -11,22 +11,32 @@ participant ":JsonSerializableAddressBook" as JsonSerializableAddressBook LOGIC_
 end box
 
 [-> LogicManager: execute(command)
+activate LogicManager
 
 LogicManager -> Model : getAddressBook()
+activate Model
+
+Model --> LogicManager
+deactivate Model
+
 LogicManager -> StorageManager : saveAddressBook(addressBook)
 activate StorageManager
 
 StorageManager -> JsonAddressBookStorage : saveAddressBook(addressBook, filePath)
-deactivate StorageManager
 activate JsonAddressBookStorage
 
 create JsonSerializableAddressBook
 JsonAddressBookStorage -> JsonSerializableAddressBook
-deactivate JsonAddressBookStorage
 activate JsonSerializableAddressBook
 
-JsonSerializableAddressBook --> LogicManager
+JsonSerializableAddressBook --> JsonAddressBookStorage
 deactivate JsonSerializableAddressBook
+
+JsonAddressBookStorage --> StorageManager
+deactivate JsonAddressBookStorage
+
+StorageManager --> LogicManager
+deactivate StorageManager
 
 [<--LogicManager
 deactivate LogicManager
