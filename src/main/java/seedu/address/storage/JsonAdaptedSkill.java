@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.skill.Skill;
@@ -12,13 +12,17 @@ import seedu.address.model.skill.Skill;
 class JsonAdaptedSkill {
 
     private final String skillName;
+    private boolean important;
 
     /**
-     * Constructs a {@code JsonAdaptedSkill} with the given {@code skillName}.
+     * Constructs a {@code JsonAdaptedSkill} with the given {@code skillName}
+     * and {@code important}.
      */
     @JsonCreator
-    public JsonAdaptedSkill(String skillName) {
+    public JsonAdaptedSkill(@JsonProperty("name") String skillName,
+                            @JsonProperty("important") boolean important) {
         this.skillName = skillName;
+        this.important = important;
     }
 
     /**
@@ -26,11 +30,7 @@ class JsonAdaptedSkill {
      */
     public JsonAdaptedSkill(Skill source) {
         skillName = source.skillName;
-    }
-
-    @JsonValue
-    public String getSkillName() {
-        return skillName;
+        important = source.getImportant();
     }
 
     /**
@@ -39,7 +39,7 @@ class JsonAdaptedSkill {
      * @throws IllegalValueException if there were any data constraints violated in the adapted skill.
      */
     public Skill toModelType() throws IllegalValueException {
-        return new Skill(skillName);
+        return new Skill(skillName, important);
     }
 
 }

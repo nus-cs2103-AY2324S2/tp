@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,11 +28,13 @@ public class AddCommand extends Command {
             + "Parameters: NAME"
             + PREFIX_PHONE + " PHONE_NUMBER "
             + PREFIX_EMAIL + " EMAIL "
+            + "[" + PREFIX_TELEGRAM + " TELEGRAM_HANDLE] "
             + "[" + PREFIX_SKILL + " SKILL]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " John Doe "
             + PREFIX_PHONE + " 98765432 "
             + PREFIX_EMAIL + " johnd@example.com "
+            + PREFIX_TELEGRAM + " johndoe "
             + PREFIX_SKILL + " Python "
             + PREFIX_SKILL + " Java";
 

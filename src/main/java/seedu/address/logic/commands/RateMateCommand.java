@@ -66,6 +66,7 @@ public class RateMateCommand extends Command {
                 courseMateToRate.getName(),
                 courseMateToRate.getPhone(),
                 courseMateToRate.getEmail(),
+                courseMateToRate.getTelegramHandle(),
                 courseMateToRate.getSkills(),
                 rating);
 

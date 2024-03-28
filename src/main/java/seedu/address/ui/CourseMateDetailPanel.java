@@ -29,6 +29,8 @@ public class CourseMateDetailPanel extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label telegramHandle;
+    @FXML
     private FlowPane skills;
 
     /**
@@ -47,6 +49,11 @@ public class CourseMateDetailPanel extends UiPart<Region> {
         name.setText(courseMate.getName().fullName);
         phone.setText(courseMate.getPhone().value);
         email.setText(courseMate.getEmail().value);
+        if (courseMate.getTelegramHandle() == null) {
+            telegramHandle.setText("");
+        } else {
+            telegramHandle.setText(courseMate.getTelegramHandle().value);
+        }
         skills.getChildren().clear();
         courseMate.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))

@@ -29,7 +29,7 @@ public class EditGroupCommand extends Command {
 
     /**
      * Basic constructor for {@code EditGroupCommand}. Edits the telegram chat of a specified group.
-     * @param toDelete group to be edited
+     * @param toModify group to be edited
      * @param telegramChat new telegram chat
      */
     public EditGroupCommand(Name toModify, TelegramChat telegramChat) {

@@ -28,20 +28,6 @@ public class Group extends UniqueCourseMateList {
     }
 
     /**
-     * A constructor for a {@code Group} that takes members and a {@code TelegramChat}.
-     */
-    public Group(Name name, Iterable<CourseMate> members, TelegramChat telegramChat) {
-        this(name, members, new HashSet<>(), telegramChat);
-    }
-
-    /**
-     * A basic constructor for a group.
-     */
-    public Group(Name name) {
-        this(name, new HashSet<>(), new HashSet<>(), null);
-    }
-
-    /**
      * A constructor for a {@code Group} that takes members and a list of skills.
      */
     public Group(Name name, Iterable<CourseMate> members, Iterable<Skill> skills) {
@@ -61,6 +47,13 @@ public class Group extends UniqueCourseMateList {
         skills.forEach(this.skills::add);
 
         this.telegramChat = telegramChat;
+    }
+
+    /**
+     * Copy constructor for a {@code Group}.
+     */
+    public Group(Group toCopy) {
+        this(toCopy.name, toCopy.asUnmodifiableObservableList(), toCopy.skills, toCopy.telegramChat);
     }
 
     public Name getName() {

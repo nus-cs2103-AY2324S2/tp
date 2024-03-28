@@ -101,6 +101,6 @@ public class AddSkillCommandParserTest {
         AddSkillDescriptor descriptor = new AddSkillDescriptorBuilder().withSkills().build();
         AddSkillCommand expectedCommand = new AddSkillCommand(new QueryableCourseMate(targetIndex), descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, AddSkillCommand.MESSAGE_NOT_EDITED);
     }
 }
