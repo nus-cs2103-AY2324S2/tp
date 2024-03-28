@@ -21,6 +21,8 @@ Class Phone
 Class Tag
 Class Grade
 Class Subject
+Class Attendance
+Class Payment
 
 Class I #FFFFFF
 }
@@ -46,10 +48,14 @@ Person *--> Address
 Person *--> "*" Tag
 Person *-> Grade
 Person *-> Subject
+Person *-> Attendance
+Person *-> Payment
 
 Person -[hidden]up--> I
 Name -[hidden]-> Grade
 Phone -[hidden]-> Subject
+Address -[hidden]-> Attendance
+Email -[hidden]-> Payment
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
