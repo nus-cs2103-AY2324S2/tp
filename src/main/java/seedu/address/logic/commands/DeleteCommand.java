@@ -10,7 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
-
+import seedu.address.ui.ConfirmationBox;
+import seedu.address.ui.Prompt;
 
 /**
  * Deletes a person identified using the email id from the address book.
@@ -27,11 +28,38 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
     public static final String MESSAGE_ID_NOT_FOUND = "User ID %1$s not found. "
            + "Consider checking database to ensure the correct ID has been entered.";
+    public static final String MESSAGE_DELETION_CANCELLED = "Deletion cancelled by user.";
 
     private final Id targetId;
 
+    private Prompt confirmationBox;
+
+    /**
+     * Creates a {@code DeleteCommand} with the specified target ID and a custom {@code Prompt}
+     * for displaying confirmation dialogs. This constructor is primarily intended for use in
+     * scenarios where dependency injection is desired, such as unit testing, allowing for
+     * the replacement of the confirmation dialog with a fake implementation.
+     *
+     * @param targetId The ID of the person to be deleted.
+     * @param confirmationBox The {@code Prompt} implementation to be used for displaying
+     *                        confirmation dialogs.
+     */
+    public DeleteCommand(Id targetId, Prompt confirmationBox) {
+        this.targetId = targetId;
+        this.confirmationBox = confirmationBox;
+    }
+
+    /**
+     * Creates a {@code DeleteCommand} with the specified target ID and no custom {@code Prompt}.
+     * This constructor is intended for normal use, where the default confirmation mechanism
+     * is used.
+     *
+     * @param targetId The ID of the person to be deleted. This is the only parameter required
+     *                 to identify the person within the address book for deletion.
+     */
     public DeleteCommand(Id targetId) {
         this.targetId = targetId;
+        this.confirmationBox = null;
     }
 
     @Override
@@ -43,6 +71,20 @@ public class DeleteCommand extends Command {
         String deletedInformation = "";
         for (Person person : lastShownList) {
             if (person.getId().equals(this.targetId)) {
+                boolean isConfirmed;
+                if (confirmationBox == null) {
+                    isConfirmed = new ConfirmationBox().display("Confirmation",
+                            "Are you sure you want to delete this person?");
+                } else {
+                    // This branch is designed for tests only.
+                    // In actual use this branch will not be visited.
+                    isConfirmed = confirmationBox.display("test", "test");
+                }
+                if (!isConfirmed) {
+                    throw new CommandException(MESSAGE_DELETION_CANCELLED);
+                }
+                assert isConfirmed;
+
                 Person personToDelete = person;
                 model.deletePerson(personToDelete);
                 isAnyRecordDeleted = true;
