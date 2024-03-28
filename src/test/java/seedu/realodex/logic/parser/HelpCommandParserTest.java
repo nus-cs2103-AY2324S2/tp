@@ -11,7 +11,7 @@ public class HelpCommandParserTest {
     private HelpCommandParser parser = new HelpCommandParser();
 
     @Test
-    public void parse_validArgs_returnsFilterCommand() throws ParseException {
+    public void parse_validArgs_returnsHelpCommand() throws ParseException {
         HelpCommand expectedHelpCommand = new HelpCommand("");
         assertParseSuccess(parser, "", expectedHelpCommand);
 
@@ -36,9 +36,5 @@ public class HelpCommandParserTest {
 
         HelpCommand expectedListHelpCommand = new HelpCommand("list");
         assertParseSuccess(parser, "list", expectedListHelpCommand);
-
-
-
-
     }
 }
