@@ -14,10 +14,12 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
+Class Country
 Class Email
 Class Name
 Class Phone
+Class Status
+Class Comment
 Class Tag
 
 Class I #FFFFFF
@@ -40,15 +42,17 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Country
+Person *--> Status
+Person *--> Comment
 Person *--> "*" Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Country
+Country -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 @enduml

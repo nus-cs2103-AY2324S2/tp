@@ -17,5 +17,7 @@ Person -up-> "*" Tag
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Country
+Person *--> Status
+Person *--> Comment
 @enduml
