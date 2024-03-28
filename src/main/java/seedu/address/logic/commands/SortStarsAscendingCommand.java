@@ -19,7 +19,7 @@ public class SortStarsAscendingCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateSortedPersonListSortStarsAscending();
+        model.updateSortedStudentListSortStarsAscending();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 

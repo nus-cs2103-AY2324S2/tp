@@ -1,0 +1,19 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "major" : "Business",
+    "star" : 5,
+    "bolt" : 5,
+    "tags": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "major" : "Business",
+    "star" : 5,
+    "bolt" : 5,
+    "tags": [ "friends" ]
+  } ]
+}

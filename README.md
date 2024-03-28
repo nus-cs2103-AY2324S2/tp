@@ -11,7 +11,7 @@
 ClassMonitor can be used for the following: <br>
 1) Keeping track of your students' class participation
 2) Storing your students personal particulars
-3) Identifying underperforming students 
+3) Identifying underperforming students
  
 ##### _And more_
 

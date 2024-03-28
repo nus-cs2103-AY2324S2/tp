@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 
 /**
@@ -32,14 +32,14 @@ public class SortStarsAscendingCommandTest {
         String expectedMessage = SortStarsAscendingCommand.MESSAGE_SUCCESS;
         CommandResult commandResult = sortStarsAscendingCommand.execute(model);
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
-        ObservableList<Person> lastShownList = model.getCorrectPersonList();
+        ObservableList<Student> lastShownList = model.getCorrectStudentList();
         assertTrue(isSortedByStarsAscending(lastShownList));
     }
 
     /**
-     * Helper method to check if the list of persons is sorted by stars in ascending order.
+     * Helper method to check if the list of students is sorted by stars in ascending order.
      */
-    private boolean isSortedByStarsAscending(ObservableList<Person> list) {
+    private boolean isSortedByStarsAscending(ObservableList<Student> list) {
         for (int i = 0; i < list.size() - 1; i++) {
             int currentStars = list.get(i).getStarCount();
             int nextStars = list.get(i + 1).getStarCount();

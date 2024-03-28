@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "addressBookParser\n:AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":BoltCommandParser" as BoltCommandParser LOGIC_COLOR
+participant ":BoltCommand" as BoltCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model\n:Model" as Model MODEL_COLOR
+participant ":Bolt" as Bolt MODEL_COLOR
+end box
+
+box Model STORAGE_COLOR_T1
+participant "storage\n:Storage" as Storage MODEL_COLOR
+end box
+
+[-> LogicManager : execute("bolt 1 s/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("bolt 1 s/1")
+activate AddressBookParser
+
+create BoltCommandParser
+AddressBookParser -> BoltCommandParser
+activate BoltCommandParser
+
+BoltCommandParser --> AddressBookParser
+deactivate BoltCommandParser
+
+AddressBookParser -> BoltCommandParser : parse(" 1 s/1")
+activate BoltCommandParser
+
+create Bolt
+BoltCommandParser -> Bolt
+activate Bolt
+
+Bolt --> BoltCommandParser
+deactivate Bolt
+
+create BoltCommand
+BoltCommandParser -> BoltCommand
+activate BoltCommand
+
+BoltCommand --> BoltCommandParser :
+deactivate BoltCommand
+
+BoltCommandParser --> AddressBookParser :
+deactivate BoltCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+BoltCommandParser -[hidden]-> AddressBookParser
+destroy BoltCommandParser
+deactivate BoltCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> BoltCommand : execute(model)
+activate BoltCommand
+
+BoltCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> BoltCommand : Updated filtered person list
+deactivate Model
+
+create CommandResult
+BoltCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> BoltCommand
+deactivate CommandResult
+
+BoltCommand --> LogicManager :
+deactivate BoltCommand
+
+LogicManager -> Storage : saveAddressBook(model)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

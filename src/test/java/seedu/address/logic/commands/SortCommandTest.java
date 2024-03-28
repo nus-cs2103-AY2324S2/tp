@@ -4,14 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.TypicalStudents.CARL;
+import static seedu.address.testutil.TypicalStudents.DANIEL;
+import static seedu.address.testutil.TypicalStudents.ELLE;
+import static seedu.address.testutil.TypicalStudents.FIONA;
+import static seedu.address.testutil.TypicalStudents.GEORGE;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,10 +34,10 @@ public class SortCommandTest {
     public void execute_starAscending_success() {
         String expectedMessage = "Sorted all persons by star in ascending order.";
         SortCommand command = new SortCommand("star", true);
-        expectedModel.updateSortedPersonListByField("star", true);
+        expectedModel.updateSortedStudentListByField("star", true);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         List expectedList = Arrays.asList(BENSON, CARL, DANIEL, FIONA, ELLE, ALICE, GEORGE);
-        assertEquals(expectedList, model.getCorrectPersonList());
+        assertEquals(expectedList, model.getCorrectStudentList());
     }
     @Test
     public void equals() {

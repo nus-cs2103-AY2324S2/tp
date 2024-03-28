@@ -9,12 +9,14 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.BoltCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindStarsLessThanCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -92,6 +94,12 @@ public class AddressBookParser {
 
         case StarCommand.COMMAND_WORD:
             return new StarCommandParser().parse(arguments);
+
+        case BoltCommand.COMMAND_WORD:
+            return new BoltCommandParser().parse(arguments);
+
+        case FindStarsLessThanCommand.COMMAND_WORD:
+            return new FindStarsLessThanCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
