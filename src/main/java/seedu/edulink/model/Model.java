@@ -1,7 +1,6 @@
 package seedu.edulink.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -81,6 +80,10 @@ public interface Model {
      */
     void setPerson(Student target, Student editedStudent);
 
+
+    /**
+     * Saves the state i.e List of students in a Stack
+     */
     void saveState();
 
     /**

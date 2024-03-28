@@ -21,12 +21,14 @@ import seedu.edulink.model.student.Student;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final int MAX_HISTORY_LIMIT = 20;
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private Stack<List<Student>> previousStates;
-    private final static int MAX_HISTORY_LIMIT =  20;
+
+    private final Stack<List<Student>> previousStates;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -132,7 +134,7 @@ public class ModelManager implements Model {
     @Override
     public void saveState() {
         List<Student> prev = new ArrayList<>(addressBook.getPersonList());
-        if(previousStates.size() > MAX_HISTORY_LIMIT) {
+        if (previousStates.size() > MAX_HISTORY_LIMIT) {
             previousStates.remove(0);
         }
         previousStates.push(prev);

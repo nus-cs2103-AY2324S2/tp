@@ -101,6 +101,14 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void saveState_test() {
+        assertFalse(modelManager.resetToPreviousState());
+        modelManager.addPerson(ALICE);
+        modelManager.saveState();
+        assertTrue(modelManager.resetToPreviousState());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
