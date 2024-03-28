@@ -21,6 +21,7 @@ Class Phone
 Class Tag
 Class Grade
 Class Subject
+Class DateTime
 Class Attendance
 Class Payment
 
@@ -48,6 +49,7 @@ Person *--> Address
 Person *--> "*" Tag
 Person *-> Grade
 Person *-> Subject
+Person *--> "*" DateTime
 Person *-> Attendance
 Person *-> Payment
 
