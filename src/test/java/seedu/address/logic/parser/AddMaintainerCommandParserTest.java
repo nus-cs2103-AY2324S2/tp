@@ -30,6 +30,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_BOB;
 import static seedu.address.logic.messages.Messages.MESSAGE_COMMAND_FORMAT;
 import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_FIELD_FORMAT;
+import static seedu.address.logic.messages.Messages.MESSAGE_UNDETECTED_FIELD_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -43,6 +44,7 @@ import static seedu.address.testutil.TypicalPersons.BOBMAINTAINER;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddMaintainerCommand;
+import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
@@ -52,6 +54,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Skill;
 import seedu.address.testutil.MaintainerBuilder;
+
+import java.util.ArrayList;
 
 public class AddMaintainerCommandParserTest {
     private AddMaintainerCommandParser parser = new AddMaintainerCommandParser();
@@ -142,7 +146,11 @@ public class AddMaintainerCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
+        ArrayList<String> undetectedFields = new ArrayList<>();
+        undetectedFields.add("name");
+        String exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        String expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -150,31 +158,66 @@ public class AddMaintainerCommandParserTest {
                 expectedMessage);
 
         // missing phone prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("phone");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + SKILL_DESC_BOB + COMMISSION_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("email");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
                         + SKILL_DESC_BOB + COMMISSION_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("address");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
                         + SKILL_DESC_BOB + COMMISSION_DESC_BOB,
                 expectedMessage);
 
         // missing skill prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("skill");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + VALID_SKILL_BOB + COMMISSION_DESC_BOB,
                 expectedMessage);
 
         // missing commission prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("commission");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + SKILL_DESC_BOB + VALID_COMMISSION_BOB,
                 expectedMessage);
 
         // all prefixes missing
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("name");
+        undetectedFields.add("address");
+        undetectedFields.add("phone");
+        undetectedFields.add("email");
+        undetectedFields.add("skill");
+        undetectedFields.add("commission");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
                         + VALID_SKILL_BOB + VALID_COMMISSION_BOB,
                 expectedMessage);
@@ -231,7 +274,7 @@ public class AddMaintainerCommandParserTest {
 
     @Test
     public void parse_invalidField_failure() {
-        String exception = String.format(MESSAGE_INVALID_FIELD_FORMAT, "; salary :");
+        String exception = String.format(MESSAGE_INVALID_FIELD_FORMAT, "[salary]");
         exception += "\n" + String.format(MESSAGE_COMMAND_FORMAT, AddMaintainerCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + SALARY_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + COMMISSION_DESC_BOB + SKILL_DESC_BOB,

@@ -31,6 +31,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SALARY_BOB;
 import static seedu.address.logic.messages.Messages.MESSAGE_COMMAND_FORMAT;
 import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_FIELD_FORMAT;
+import static seedu.address.logic.messages.Messages.MESSAGE_UNDETECTED_FIELD_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
@@ -44,6 +45,7 @@ import static seedu.address.testutil.TypicalPersons.BOBSTAFF;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddStaffCommand;
+import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -53,6 +55,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.Staff;
 import seedu.address.testutil.StaffBuilder;
+
+import java.util.ArrayList;
 
 
 public class AddStaffCommandParserTest {
@@ -144,7 +148,11 @@ public class AddStaffCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
+        ArrayList<String> undetectedFields = new ArrayList<>();
+        undetectedFields.add("name");
+        String exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        String expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -152,31 +160,66 @@ public class AddStaffCommandParserTest {
                 expectedMessage);
 
         // missing phone prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("phone");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + SALARY_DESC_BOB + EMPLOYMENT_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("email");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
                         + SALARY_DESC_BOB + EMPLOYMENT_DESC_BOB,
                 expectedMessage);
 
         // missing address prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("address");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
                         + SALARY_DESC_BOB + EMPLOYMENT_DESC_BOB,
                 expectedMessage);
 
         // missing salary prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("salary");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + VALID_SALARY_BOB + EMPLOYMENT_DESC_BOB,
                 expectedMessage);
 
         // missing employment prefix
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("employment");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + SALARY_DESC_BOB + VALID_EMPLOYMENT_BOB,
                 expectedMessage);
 
         // all prefixes missing
+        undetectedFields = new ArrayList<>();
+        undetectedFields.add("name");
+        undetectedFields.add("phone");
+        undetectedFields.add("email");
+        undetectedFields.add("address");
+        undetectedFields.add("salary");
+        undetectedFields.add("employment");
+        exception = String.format(MESSAGE_UNDETECTED_FIELD_FORMAT, undetectedFields);
+        expectedMessage = exception + "\n"
+                + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
                         + VALID_SALARY_BOB + VALID_EMPLOYMENT_BOB,
                 expectedMessage);
@@ -227,7 +270,7 @@ public class AddStaffCommandParserTest {
 
     @Test
     public void parse_invalidField_failure() {
-        String exception = String.format(MESSAGE_INVALID_FIELD_FORMAT, "; commission :");
+        String exception = String.format(MESSAGE_INVALID_FIELD_FORMAT, "[commission]");
         exception += "\n" + String.format(MESSAGE_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
         assertParseFailure(parser, NAME_DESC_BOB + COMMISSION_DESC_BOB + PHONE_DESC_BOB
                         + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + SALARY_DESC_BOB + EMPLOYMENT_DESC_BOB,
