@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view contacts(UC01)
-2.  User requests to delete a specific person in the list 
+2.  User requests to delete a specific person in the list
 3.  AddressBook deletes the person
 
     Use case ends.
@@ -352,14 +352,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10.  The software should work without requiring an installer.
 11.  The software should not depend on a specific remote server.
 12.  The GUI should work well for standard screen resolutions 1920x1080 and higher, and, for screen scales 100% and 125%.
-13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for, 
+13.  The GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for,
      resolutions 1280x720 and higher, and, for screen scales 150%.
 14.  The product should be available as a single JAR file of size 100MB or below.
 15.  The web documents saved should be a PDF file of size 15MB or below.
 16.  The final JAR/PDF files should not be bloated unnecessarily.
 17.  The DG and UG should be PDF-friendly, without any expandable panels, embedded videos, animated GIFs etc.
-18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this 
-     doesn't apply to services), and have permissive license terms; do not require any installation by the user; do 
+18.  The use of third-party frameworks/libraries/services is allowed only if they, are free, open-source (this
+     doesn't apply to services), and have permissive license terms; do not require any installation by the user; do
      not violate other constraints.
 19.  The product should process a user input command within 1 second.
 20.  The system must perform without failure in 95 percent of use cases during a month.
