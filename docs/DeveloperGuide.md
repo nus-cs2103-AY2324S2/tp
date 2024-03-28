@@ -258,7 +258,7 @@ Usage: `star INDEX s/STARS [c/COMMENT]`
 
 the `edit` command will also be extended to allow users to edit the comments.
 
-Usage: `edit ...c/INDEX INDEX2 COMMENT...`
+Usage: `edit INDEX ...c/INDEX2 COMMENT...`
 
 The command will edit the comment at the student with index `INDEX` with comment index `INDEX2`. 
 
