@@ -350,6 +350,14 @@ Use Case: Delete Meeting
 3. FinCliq displays successful deletion message
     - Use case ends
 
+Use Case: Filter Clients by Tag
+
+**MSS:**
+1. Financial advisor requests to filter meetings by a tag by inputting the name of the tag.
+2. FinCliq filters clients based on the specified tag
+3. FinCliq displays the filtered clients to the financial advisor.
+    - Use case ends.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
