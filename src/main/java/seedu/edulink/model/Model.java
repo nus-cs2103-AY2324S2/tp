@@ -80,6 +80,12 @@ public interface Model {
      */
     void setPerson(Student target, Student editedStudent);
 
+
+    /**
+     * Saves the state i.e List of students in a Stack
+     */
+    void saveState();
+
     /**
      * Returns an unmodifiable view of the filtered person list
      */

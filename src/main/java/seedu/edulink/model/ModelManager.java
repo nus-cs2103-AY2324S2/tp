@@ -21,11 +21,14 @@ import seedu.edulink.model.student.Student;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final int MAX_HISTORY_LIMIT = 20;
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+
     private final Stack<List<Student>> previousStates;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -100,25 +103,41 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Student target) {
-        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
-        previousStates.push(prev);
+        saveState();
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Student student) {
-        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
-        previousStates.push(prev);
+        saveState();
         addressBook.addPerson(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Student target, Student editedStudent) {
-        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
-        previousStates.push(prev);
+        saveState();
         requireAllNonNull(target, editedStudent);
         addressBook.setPerson(target, editedStudent);
+    }
+
+    @Override
+    public boolean resetToPreviousState() {
+        if (previousStates.isEmpty()) {
+            return false;
+        } else {
+            addressBook.setPersons(previousStates.pop());
+            return true;
+        }
+    }
+
+    @Override
+    public void saveState() {
+        List<Student> prev = new ArrayList<>(addressBook.getPersonList());
+        if (previousStates.size() > MAX_HISTORY_LIMIT) {
+            previousStates.remove(0);
+        }
+        previousStates.push(prev);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -138,15 +157,7 @@ public class ModelManager implements Model {
         filteredStudents.setPredicate(predicate);
     }
 
-    @Override
-    public boolean resetToPreviousState() {
-        if (previousStates.isEmpty()) {
-            return false;
-        } else {
-            addressBook.setPersons(previousStates.pop());
-            return true;
-        }
-    }
+
 
     @Override
     public boolean equals(Object other) {

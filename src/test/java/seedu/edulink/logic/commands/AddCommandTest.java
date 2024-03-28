@@ -159,6 +159,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void saveState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean resetToPreviousState() {
             throw new AssertionError("This method should not be called.");
         }
