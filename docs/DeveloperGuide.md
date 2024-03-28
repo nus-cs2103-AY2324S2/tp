@@ -227,7 +227,7 @@ then it will raise a parse error.
 </div>
 
 Step 4. `LogicManager` calls on `SortCommand.execute()`, which updates the addressbook with the new sorted list.
-=======
+
 ### Awarding Bolts to a Student
 
 #### Overview
