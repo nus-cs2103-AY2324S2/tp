@@ -44,9 +44,9 @@ public class EditCommand extends Command {
             + "[" + OPTION_PRINT_NAME + "] or "
             + "[" + OPTION_PRINT_PHONE + "] or "
             + "[" + OPTION_PRINT_EMAIL + "] or "
+            + "[" + OPTION_PRINT_ADDRESS + "] or "
             + "[" + OPTION_PRINT_TAG + "] or "
-            + "[" + OPTION_PRINT_GRADE + "] or "
-            + "[" + OPTION_PRINT_ADDRESS + "]\n"
+            + "[" + OPTION_PRINT_GRADE + "]\n"
             + "Example: " + COMMAND_WORD + " 1 " + OPTION_PRINT_EMAIL;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
