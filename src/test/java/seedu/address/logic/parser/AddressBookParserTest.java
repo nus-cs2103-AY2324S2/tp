@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.autocomplete.AutoComplete;
 import seedu.address.logic.autocomplete.AutoCompleteCommand;
+import seedu.address.logic.autocomplete.AutoCompleteNusNetId;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandTestUtil;
@@ -61,7 +62,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeletePersonCommand command = (DeletePersonCommand) parser.parseCommand(
-                DeletePersonCommand.COMMAND_WORD + " " + CommandTestUtil.VALID_NUSNET_AMY);
+            DeletePersonCommand.COMMAND_WORD + " " + CommandTestUtil.VALID_NUSNET_AMY);
         assertEquals(new DeletePersonCommand(new NusNet(CommandTestUtil.VALID_NUSNET_AMY)), command);
     }
 
@@ -70,7 +71,7 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+            + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -84,8 +85,8 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindPersonCommand command = (FindPersonCommand) parser.parseCommand(
-                FindPersonCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")));
+            FindPersonCommand.COMMAND_WORD + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindPersonCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -100,8 +101,8 @@ public class AddressBookParserTest {
         final NusNet nusNet = new NusNet("e1234567");
         final WeekNumber weekNumber = new WeekNumber("10");
         MarkAttendanceCommand command = (MarkAttendanceCommand) parser.parseCommand(
-                MarkAttendanceCommand.COMMAND_WORD + " " + PREFIX_NUSNET
-                        + nusNet.value + " " + PREFIX_WEEK + weekNumber.value);
+            MarkAttendanceCommand.COMMAND_WORD + " " + PREFIX_NUSNET
+                + nusNet.value + " " + PREFIX_WEEK + weekNumber.value);
         assertEquals(new MarkAttendanceCommand(nusNet, weekNumber), command);
     }
 
@@ -110,8 +111,8 @@ public class AddressBookParserTest {
         final NusNet nusNet = new NusNet("e1234567");
         final WeekNumber weekNumber = new WeekNumber("10");
         UnmarkAttendanceCommand command = (UnmarkAttendanceCommand) parser.parseCommand(
-                UnmarkAttendanceCommand.COMMAND_WORD + " " + PREFIX_NUSNET
-                        + nusNet.value + " " + PREFIX_WEEK + weekNumber.value);
+            UnmarkAttendanceCommand.COMMAND_WORD + " " + PREFIX_NUSNET
+                + nusNet.value + " " + PREFIX_WEEK + weekNumber.value);
         assertEquals(new UnmarkAttendanceCommand(nusNet, weekNumber), command);
     }
 
@@ -131,14 +132,13 @@ public class AddressBookParserTest {
     public void parseCommand_setCourse() throws Exception {
         final String code = VALID_COURSE_CODE_CS2103T;
         SetCourseCommand command = (SetCourseCommand) parser.parseCommand(SetCourseCommand.COMMAND_WORD + " "
-                 + code);
+            + code);
         assertEquals(new SetCourseCommand(new Course(code)), command);
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
-                parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 
     /**
@@ -156,5 +156,9 @@ public class AddressBookParserTest {
         // Test for input that contains command word and arguments
         ac = parser.parseAutoComplete("arbitrary_command arbitrary_arguments");
         assertEquals(ac.getAutoComplete("arbitrary_input"), "");
+
+        // Test for input that contains NUSNET ID
+        ac = parser.parseAutoComplete("arbitrary_command nn/arbitrary_nusnet_id");
+        assert (ac instanceof AutoCompleteNusNetId);
     }
 }

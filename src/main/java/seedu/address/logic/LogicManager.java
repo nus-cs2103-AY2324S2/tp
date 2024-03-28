@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.autocomplete.AutoComplete;
 import seedu.address.logic.autocomplete.AutoCompleteCommand;
+import seedu.address.logic.autocomplete.AutoCompleteNusNetId;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -36,9 +37,8 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
-
-    public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =
-            "Could not save data to file %s due to insufficient permissions to write to the file or the folder.";
+    public static final String FILE_OPS_PERMISSION_ERROR_FORMAT = "Could not save data to file %s due to "
+        + "insufficient permissions to write to the file or the folder.";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
@@ -47,7 +47,8 @@ public class LogicManager implements Logic {
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
@@ -60,9 +61,22 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-
         Command command = addressBookParser.parseCommand(commandText);
         CommandResult commandResult = command.execute(model);
+
+        // Update the autocomplete for the NUSNET IDs if the command
+        // potentially modifies the NUSNET IDs
+        if (command instanceof AddPersonCommand
+            || command instanceof DeletePersonCommand
+            || command instanceof EditPersonCommand) {
+
+            AutoCompleteNusNetId.update(
+                getAddressBook()
+                    .getPersonList()
+                    .stream()
+                    .map(person -> person.getNusNet().value)
+                    .toArray(String[]::new));
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -89,17 +103,24 @@ public class LogicManager implements Logic {
     private void initialize() {
         // Initialize the autocomplete for the commands
         AutoCompleteCommand.initialize(
-                AddPersonCommand.COMMAND_WORD,
-                EditPersonCommand.COMMAND_WORD,
-                DeletePersonCommand.COMMAND_WORD,
-                ClearCommand.COMMAND_WORD,
-                FindPersonCommand.COMMAND_WORD,
-                ListPersonCommand.COMMAND_WORD,
-                MarkAttendanceCommand.COMMAND_WORD,
-                UnmarkAttendanceCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_WORD,
-                HelpCommand.COMMAND_WORD
-        );
+            AddPersonCommand.COMMAND_WORD,
+            EditPersonCommand.COMMAND_WORD,
+            DeletePersonCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            FindPersonCommand.COMMAND_WORD,
+            ListPersonCommand.COMMAND_WORD,
+            MarkAttendanceCommand.COMMAND_WORD,
+            UnmarkAttendanceCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD);
+
+        // Initialize the autocomplete for the NUSNET IDs
+        AutoCompleteNusNetId.initialize(
+            getAddressBook()
+                .getPersonList()
+                .stream()
+                .map(person -> person.getNusNet().value)
+                .toArray(String[]::new));
     }
 
     @Override
