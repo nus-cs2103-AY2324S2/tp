@@ -191,6 +191,33 @@ An alternative was to use a flag to denote the condition to filter the list by. 
 the name `Bob`, the command would be `find-n Bob`. This was rejected as it only allows for finding with a single condition, leading 
 to a less flexible feature.
 
+
+### Delete All feature
+
+#### Implementation
+
+The feature of deleting all entries is implemented via two separate commands (DeleteAllCommand and ForceDeleteAllCommand).
+When the user enters 'delete-all' command, AddressBookParser parses the command into a DeleteAllCommand.
+The LogicManager executes the DeleteAllCommand. This would return a CommandResult with a confirmation message,
+which asks if the user wants to truly delete all entries. When prompted with the confirmation message, the user would 
+have the choice to enter 'delete-all-f' command or to cancel the 'delete-all' command.
+When the 'delete-all-f' command is entered, AddressBookParser would parse the command into a ForceDeleteAllCommand.
+The LogicManager would execute the ForceDeleteAllCommand. This would set the current model of the patient list to clear 
+out all existing entries by calling setAddressBook method with an empty AddressBook object used as its argument.
+A CommandResult object would be returned with a success message that states that all data has been successfully deleted.
+
+The following sequence diagram describes the sequence of logic when the user inputs 'delete-all-f' command:
+
+<puml src="diagrams/ForceDeleteAllSequenceDiagram-Logic.puml" alt="ForceDeleteAllSequenceDiagram" />
+
+#### Design considerations
+
+The current design was chosen so that there is a safety check mechanism that asks for confirmation from the user if the
+user truly wants to delete all entries when the 'delete-all' command is given. 
+If the user wishes to bypass the safety check and is certain of the intent to delete all entries, the user can enter 
+'delete-all-f' command to forcefully delete all entries.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
