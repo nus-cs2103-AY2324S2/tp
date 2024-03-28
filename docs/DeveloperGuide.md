@@ -155,6 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
 ### Add Feature
 
 #### Implementation
@@ -167,11 +168,11 @@ Step 1. Assume the user has some existing students in the `UniquePersonList`.
 ![AddState1](images/AddState1.png)
 
 Step 2. The user executes `add id/A0123456X n/John e/e0123456@u.nus.edu g/A` command to add the student into the list.
-* The `add` command calls `LogicManager#execute()`.
+* The `add` command invokes `LogicManager#execute()`.
 * `LogicManager#execute()` would first invoke `AddressBookParser#parseCommand()`.
-* `AddressBookParser#parseCommand()` will identifies the `add` command and calls `AddCommandParser#parse()` to parse the arguments accordingly.
+* `AddressBookParser#parseCommand()` will identifies the `add` command and then invokes `AddCommandParser#parse()` to parse the arguments accordingly.
 * `AddCommandParser#parse()` will return a `AddCommand` object which takes in a `Person` object.
-* `LogicManager#execute()` invoke `AddCommand#execute()`. Then, `model#addPerson` is called to add the person into the list.
+* `LogicManager#execute()` invokes `AddCommand#execute()`. Then, `model#addPerson` is called to add the person into the list.
 ![AddState2](images/AddState2.png)
 
 Given below is the sequence diagram for `add` command:
@@ -187,6 +188,63 @@ Given below is the sequence diagram for `add` command:
 * **Alternative 2:** Allow any other format for `student_id` and valid format for `email`.
   * Pros: Can accommodate users from other universities, not only NUS.
   * Cons: Validation may be more complex as need to account for a wider range of possible inputs.
+
+
+### Delete feature
+
+#### Implementation
+
+The delete feature is adapted from the delete feature of `AddressBook`. Instead of identifying a student by the index displayed, it uses the `StudentId` that is unique to each student. Calling `DeleteCommand#execute(model)` will delete any student that is in the `UniquePersonList` that is not necessarily in but not in `FilteredList` to be deleted.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user has added some students to `UniquePersonList`.
+
+![DeleteState1](images/DeleteState1.png)
+
+Step 2. The user executes `find` command where only `student1` and `student2` matches the predicate so only `student1` and `student2` are in the `FilteredList` of `ModelManager`.
+
+![DeleteState2](images/DeleteState2.png)
+
+Step 3. The user executes `delete A0123456A` command to delete student with student ID `A0123456A`. `ModelManager#getPerson(StudentId)` returns `student3` which the id belongs to. `student3` will be removed from `UniquePersonList`
+
+![DeleteState3](images/DeleteState3.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `ModelManager#getPerson(StudentId)` returns 0, then there no `Person` having the `studentId`. `DeleteCommand#execute(model)` will check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the deletion.
+</div>
+
+
+The following sequence diagram shows how a delete operation goes through the `Logic` component:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a delete command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: Allow deletion of all `Person` added or only those displayed:**
+
+* **Alternative 1 (current choice):** Can delete any person in the list.
+    * Pros: Delete command will execute successfully without having to run additional command to ensure that the person to be deleted is being displayed.
+    * Cons: May result in accidental deletion if wrong student id is given.
+
+* **Alternative 2:** Only delete person that is displayed.
+    * Pros: Allow user to refer to the displayed data to reduce risk of specifying a wrong id belonging to another person.
+    * Cons: May reduce usability as user may have to enter additional command to ensure the student to be deleted is displayed.
+    * 
+
+**Aspect: Deleted `Person` stored or ready for garbage collection:**
+
+* **Alternative 1 (current choice):** Person deleted is no longer used and ready for garbage collection.
+    * Pros: Easy to implement.
+    * Cons: May result in lost of data upon accidental deletion.
+
+* **Alternative 2:** Create a list to store all deleted person.
+    * Pros: Easier to implement command to recover a deleted person in the future.
+    * Cons: Stored deleted person may never be used. May have performance issue in terms of memory usage.
 
 
 ### \[Proposed\] Undo/redo feature
