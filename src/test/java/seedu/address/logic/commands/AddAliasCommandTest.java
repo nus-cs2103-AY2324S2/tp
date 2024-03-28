@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,74 +14,70 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Theme;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddAliasCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddAliasCommand(null, null));
+    }
+    @Test
+    public void constructor_addSuccessful() {
+        HashMap<String, String> map = new HashMap<>();
+        Alias alias = new Alias(map);
+        Alias alias1 = new Alias(map);
+        assertTrue(alias.equals(alias1));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_aliasAcceptedByModel_addSuccessful() throws Exception {
+        AddAliasCommandTest.ModelStubAcceptingAliasAdded modelStub =
+                new AddAliasCommandTest.ModelStubAcceptingAliasAdded();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddAliasCommand("test", "result").execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
+        assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS, "test"), commandResult.getFeedbackToUser());
 
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        Alias alias = new Alias();
+        alias.addAlias("test", "result");
+        assertFalse(modelStub.getAlias().equals(alias));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddAliasCommand addAliasTestCommand = new AddAliasCommand("test", "result");
+        AddAliasCommand addAlias1TestCommand = new AddAliasCommand("test1", "result1");
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAliasTestCommand.equals(addAliasTestCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddAliasCommand addAliasTestCommandCopy = new AddAliasCommand("test", "result");
+        assertTrue(addAliasTestCommand.equals(addAliasTestCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAliasTestCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAliasTestCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliasTestCommand.equals(addAlias1TestCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        AddAliasCommand addAliasCommand = new AddAliasCommand("test", "result");
+        addAliasCommand.toString();
+        String expected = AddAliasCommand.class.getCanonicalName()
+                + "{alias=test" + ", toReplace=result}";
+        assertEquals(expected, addAliasCommand.toString());
     }
 
     /**
@@ -195,55 +188,35 @@ public class AddCommandTest {
         public void addAlias(String string, String string2) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public Alias getAlias() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
         public Theme getTheme() {
             throw new AssertionError("This method should not be called.");
         }
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingAliasAdded extends AddAliasCommandTest.ModelStub {
+
+        private Alias alias = new Alias();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public void addAlias(String string, String string2) {
+            alias.addAlias(string, string);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public Alias getAlias() {
+            return alias;
         }
 
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
     }
-
 }

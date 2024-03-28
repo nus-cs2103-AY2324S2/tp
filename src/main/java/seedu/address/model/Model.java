@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Theme;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 
@@ -114,5 +115,8 @@ public interface Model {
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
 
+    Alias getAlias();
+
+    void addAlias(String alias, String toReplace);
     Theme getTheme();
 }
