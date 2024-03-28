@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -94,6 +95,37 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// order operations
+
+    /**
+     * Adds an order to the person.
+     * The person must exist in the address book.
+     */
+    public void addOrder(Person target, Order order) {
+        target.addOrder(order);
+        persons.setPerson(target, target);
+    }
+
+    /**
+     * Deletes an order from the person.
+     * The person must exist in the address book.
+     */
+    public void deleteOrder(Person target, Order order) {
+        requireNonNull(target);
+        requireNonNull(order);
+
+        target.removeOrder(order);
+        persons.setPerson(target, target);
+    }
+
+    /**
+     * Gets the orders of the person.
+     *  The person must exist in the address book.
+     */
+    public List<Order> getOrders(Person target) {
+        return target.getOrders();
+    }
+
     //// util methods
 
     @Override
@@ -127,4 +159,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }
