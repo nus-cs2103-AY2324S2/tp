@@ -31,6 +31,7 @@
       <Label fx:id="loc" styleClass="cell_small_label" text="\$location" />
       <Label fx:id="poc" styleClass="cell_small_label" text="\$contactInformation" wrapText="true" />
       <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+      <Label fx:id="tasks" styleClass="cell_small_label" text="\$tasks" />
     </VBox>
   </GridPane>
 </HBox>
