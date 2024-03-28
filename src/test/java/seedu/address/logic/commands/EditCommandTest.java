@@ -116,34 +116,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        try {
-            Person firstPerson = model.findPersonByName(new Name("Alice Pauline"),
-                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
-            EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-            EditCommand editCommand = new EditCommand(BENSON.getName(), descriptor);
-
-            assertCommandFailure(editCommand, model, EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
-        } catch (CommandException e) {
-            fail();
-        }
-    }
-
-    @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        try {
-            Person personInList = model.findPersonByName(new Name("Benson Meier"),
-                    EditMessages.MESSAGE_INVALID_EDIT_PERSON);
-            EditCommand editCommand = new EditCommand(ALICE.getName(),
-                    new EditPersonDescriptorBuilder(personInList).build());
-
-            assertCommandFailure(editCommand, model, EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
-        } catch (CommandException e) {
-            fail();
-        }
-    }
-
-    @Test
     public void execute_invalidPersonNameUnfilteredList_failure() {
         Name invalidName = new Name(INVALID_NAME);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName("Benson").build();

@@ -86,10 +86,6 @@ public class EditSupplierCommand extends Command {
                 EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER);
         Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 
-        if (supplierToEdit.equals(editedSupplier)) {
-            throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
-        }
-
         model.setPerson(supplierToEdit, editedSupplier);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         logger.fine(String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,

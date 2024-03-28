@@ -84,10 +84,6 @@ public class EditMaintainerCommand extends Command {
                 EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER);
         Maintainer editedMaintainer = createEditedMaintainer(maintainerToEdit, editMaintainerDescriptor);
 
-        if (maintainerToEdit.equals(editedMaintainer)) {
-            throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
-        }
-
         model.setPerson(maintainerToEdit, editedMaintainer);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
