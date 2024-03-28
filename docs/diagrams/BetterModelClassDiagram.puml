@@ -20,4 +20,5 @@ Person *--> Email
 Person *--> Address
 Person *--> Grade
 Person *--> Subject
+Person *--> "*" DateTime
 @enduml
