@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+' style.uml hides all class members, hence we show them using
+' the following commands
+show members
+hide empty members
+skinparam ClassAttributeFontColor #FFFFFF
+
+package Model as ModelPackage <<Rectangle>>{
+    Class Person {
+        name
+        phone
+        major
+        email
+        tag
+    }
+    Class Stars
+    class Comment {
+        Integer: stars
+        Optional(String): content
+    }
+}
+
+' Create an invisible class in the diagram to draw the arrow representing
+' the external user of the model
+class HiddenOutside #FFFFFF
+HiddenOutside ..> Person
+
+Person *-right-> Stars
+Stars *-right> "*" Comment
+
+
+'Person -[hidden]up--> I
+'UniquePersonList -[hidden]right-> I
+
+'ModelManager --> "~* filtered" Person
+@enduml

@@ -9,8 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -72,7 +71,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +80,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
@@ -91,18 +90,18 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("findStarsLT 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/FindStarsLessThanSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindStarsLessThanCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `FindStarsLessThanCommandParser`) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `FindStarsLessThanCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to return students with number of stars less than specified number).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -122,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -155,6 +154,123 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Awarding Stars to a Student
+
+#### Overview
+
+The star mechanism is facilitated by `StarCommand`, which is called by its `execute` method to add stars to a `Student`.
+
+* `StarCommandParser#parse()` — Parses the parameters of the star command from its command-line String input.
+* `StarCommand#execute()` — Updates the `AddressBook` with the added stars.
+
+#### Feature Details
+
+Here is the activity diagram showing the process of the `star` command:
+
+![StarActivityDiagram](images/StarActivityDiagram.png)
+
+Here is the sequence diagram showing how a star operation goes through the `Logic`, `Model` and `Storage` components.
+
+![StarSequenceDiagram](images/StarCommandSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time and enters in command: `star 1 s/2`.
+
+Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
+
+Step 3. The `AddressBookParser` calls `StarCommandParser.parse()`, which returns a `StarCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the number of stars is negative (i.e. < 1), then it will raise a parse error.
+
+</div>
+
+Step 4. `LogicManager` calls on `StarCommand.execute()`, which updates the addressbook with the new number of stars.
+
+#### Design considerations:
+
+**Aspect: How star executes:**
+
+* **Method 1:** Updates the number of stars using `Star` command.
+    * Pros: Easy to implement, easy to use.
+    * Cons: Does not allow user to edit the number of stars.
+
+* **Method 2:** Updates the number of stars using `Edit` command.
+    * Pros: Able to edit the number of stars however one desires.
+    * Cons: Command is not modularised, user have to calculate the number of stars themselves when updating.
+
+### Sorting Students
+
+#### Overview
+
+The sorting mechanism is facilitated by `SortCommand`, which is called by its `execute` method to sort the students
+based on one of its fields either in ascending or descending order
+
+* `SortCommandParser#parse()` — Parses the parameters of the sort command from its command-line String input.
+* `SortCommand#execute()` — Updates the `AddressBook` to display the sorted list.
+* 
+#### Feature Details
+
+Here is the activity diagram showing the process of the `Sort` command:
+
+Here is the sequence diagram showing how a sort operation goes through the `Logic`, `Model` and `Storage` components.
+
+![SortSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time and enters in command: `sort name desc`.
+
+Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
+
+Step 3. The `AddressBookParser` calls `SortCommandParser.parse()`, which returns a `SortCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If either the field `field` or sorting order `isAscending`, 
+then it will raise a parse error.
+
+</div>
+
+Step 4. `LogicManager` calls on `SortCommand.execute()`, which updates the addressbook with the new sorted list.
+
+### Awarding Bolts to a Student
+
+#### Overview
+
+The bolt mechanism is facilitated by `BoltCommand`, which is called by its `execute` method to add bolts to a `Student`.
+
+* `BoltCommandParser#parse()` — Parses the parameters of the bolt command from its command-line String input.
+* `BoltCommand#execute()` — Updates the `AddressBook` with the added bolts.
+
+#### Feature Details
+
+Here is the activity diagram showing the process of the `bolt` command:
+
+![BoltActivityDiagram](images/BoltActivityDiagram.png)
+
+Here is the sequence diagram showing how a bolt operation goes through the `Logic`, `Model` and `Storage` components.
+
+![BoltSequenceDiagram](images/BoltCommandSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time and enters in command: `bolt 1 b/2`.
+
+Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
+
+Step 3. The `AddressBookParser` calls `BoltCommandParser.parse()`, which returns a `BoltCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the number of bolts is negative (i.e. < 1), then it will raise a parse error.
+
+</div>
+
+Step 4. `LogicManager` calls on `BoltCommand.execute()`, which updates the addressbook with the new number of bolts.
+
+#### Design considerations:
+
+**Aspect: How bolt executes:**
+
+* **Method 1:** Updates the number of bolts using `Bolt` command.
+    * Pros: Easy to implement, easy to use.
+    * Cons: Does not allow user to edit the number of bolts.
+
+* **Method 2:** Updates the number of bolts using `Edit` command.
+    * Pros: Able to edit the number of bolts however one desires.
+    * Cons: Command is not modularised, user have to calculate the number of bolts themselves when updating.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -173,11 +289,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -185,7 +301,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -234,7 +350,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -242,6 +358,37 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Student Comments
+
+#### Feature Proposal
+
+This feature is an extension of the 'Stars' feature. When a TA gives a student stars, they can also leave a comment to explain why the Student received them. Each instance of a user giving stars (with optional comments) can be stored by Student.
+
+![Proposed Class diagram](images\StarCommentModelClassDiagram.png).
+
+#### Command Format
+
+Users will be able to add comments to a student by using the `star` command:
+
+Usage: `star INDEX s/STARS [c/COMMENT]`
+
+the `edit` command will also be extended to allow users to edit the comments.
+
+Usage: `edit INDEX ...c/INDEX2 COMMENT...`
+
+The command will edit the comment at the student with index `INDEX` with comment index `INDEX2`. 
+
+#### UI Modifications
+
+**Alternative 1**
+* Users will be able to view the comments they have left for each student in a separate **window**. The components of the window will track changes to the student comments in the model.
+
+**Alternative 2**
+* Users will be able to view the comments they have left for each student in a separate display in the same window. 
+
+
+![Proposed UI](images\StarCommentUiClassDiagram.png).
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -262,11 +409,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Teaching Assistant (TA) who is responsible for managing classes of students
+* Has a need to track class participation across students
+* prefers desktop apps on a laptop
+* prefers typing in a CLI interface to mouse interactions
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
@@ -275,29 +421,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                  | I want to …​                                      | So that I can…​                                                                           |
+|----------|------------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | TA using the App for the first time      | see usage instructions                            | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | TA                                       | add a new student                                 |                                                                                           |
+| `* * *`  | TA                                       | delete a student                                  | remove entries that I no longer need                                                      |
+| `* * *`  | TA                                       | find a student by name                            | locate details of students without having to go through the entire list                   |
+| `* * *`  | TA                                       | know the majors of my students                    | understand their learning needs                                                           |
+| `*`      | TA                                       | have a personal description of the student        | know more about them                                                                      |
+| `* * *`  | TA                                       | give student stars for class participation        | give credit for class participation                                                       |
+| `* * *`  | TA                                       | view a student's participation                    | gauge their engagement in class                                                           |
+| `*`      | TA                                       | sort students based on participation              | praise those who have taken initiative and remind those who have not to be more proactive |
+| `* * *`  | TA                                       | tag the students by their TGs                     | remember which class my students are in                                                   |
+| `* * *`  | TA                                       | tag the students by their modules                 | remember which module my students are in                                                  |
+| `* *`    | TA                                       | filter the students by their TGs                  | view all the students from a TG                                                           |
+| `* *`    | TA                                       | filter students by their modules                  | view all the students from a module                                                       |
+| `* *`    | TA                                       | identify underperforming students with bad grades | intervene and help them                                                                   |
+| `* *`    | TA                                       | check who's work I havent graded yet              | remember to do so                                                                         |
+| `* * `   | TA                                       | exit the program                                  |                                                                                           |
+| `* `     | TA                                       | clear all students' details                       | remove all entries quickly                                                                |
+| `*`      | TA with many students in the address book | sort students by name                             | locate a student easily                                                                   |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ClassMonitor` and the **Actor** is the `TA`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to delete a specific student in the list
+4.  ClassMonitor deletes the student
 
     Use case ends.
 
@@ -309,24 +467,150 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. ClassMonitor shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a student**
+
+**MSS**
+
+1. TA requests to add a student in the list
+2. TA includes the relevant student's info
+3. ClassMonitor adds the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. TA did not follow the correct format as stated in the instructions.
+* 2a1. ClassMonitor shows an error message.
+
+  Use case ends.
+
+**Use case: Add a tag to a student**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to add a tag to a specific student in the list
+4.  ClassMonitor adds the tag
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Find a student by name**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA searches a specific student in the list
+4.  ClassMonitor returns the specific student's details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keyword does not match any student's name.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a star to a student**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA adds a star to a specific student in the list
+4.  ClassMonitor adds a star to the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Filter students by tag**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to filter students by a specific tag
+4.  ClassMonitor shows a filtered list of students
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+* 3a. The given tag does not exist.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+  Use case ends.
+
+**Use case: Sort list of students by parameter**
+
+**MSS**
+
+1.  TA requests to list students
+2.  ClassMonitor shows a list of students
+3.  TA requests to sort students by a specific parameter in ascending/descending order
+4.  ClassMonitor shows a sorted list of students.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+* 3a. The given parameter does not exist.
+
+    * 3a1. ClassMonitor shows an error message.
+
+      Use case resumes at step 2.
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  All user operations should be completed within 100 milliseconds.
+5.  The project must adhere to a bi-weekly iterative development schedule, ensuring continuous delivery or improvement of a working product every two weeks.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Course**: A course with a program and syllabus. e.g. CS2030S
+* **Tutorial Group (TG)**: A group of students from a particular course. e.g. G13
+* **Teaching Assistant (TA)**: A tutor attached to class
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -356,17 +640,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindStarsLessThanCommandParser" as FindStarsLessThanCommandParser LOGIC_COLOR
+participant "d:FindStarsLessThanCommand" as FindStarsLessThanCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findStarsLT 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findStarsLT 1")
+activate AddressBookParser
+
+create FindStarsLessThanCommandParser
+AddressBookParser -> FindStarsLessThanCommandParser
+activate FindStarsLessThanCommandParser
+
+FindStarsLessThanCommandParser --> AddressBookParser
+deactivate FindStarsLessThanCommandParser
+
+AddressBookParser -> FindStarsLessThanCommandParser : parse("1")
+activate FindStarsLessThanCommandParser
+
+create StarsLessThanPredicate
+FindStarsLessThanCommandParser -> StarsLessThanPredicate
+activate StarsLessThanPredicate
+
+StarsLessThanPredicate --> FindStarsLessThanCommandParser
+deactivate StarsLessThanPredicate
+
+create FindStarsLessThanCommand
+FindStarsLessThanCommandParser -> FindStarsLessThanCommand
+activate FindStarsLessThanCommand
+
+FindStarsLessThanCommand --> FindStarsLessThanCommandParser :
+deactivate FindStarsLessThanCommand
+
+FindStarsLessThanCommandParser --> AddressBookParser : d
+deactivate FindStarsLessThanCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindStarsLessThanCommandParser -[hidden]-> AddressBookParser
+destroy FindStarsLessThanCommandParser
+deactivate FindStarsLessThanCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> FindStarsLessThanCommand : execute(m)
+activate FindStarsLessThanCommand
+
+FindStarsLessThanCommand -> Model : updateFilteredStudentList(predicate)
+activate Model
+
+Model --> FindStarsLessThanCommand : Updated filtered student list
+deactivate Model
+
+create CommandResult
+FindStarsLessThanCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindStarsLessThanCommand
+deactivate CommandResult
+
+FindStarsLessThanCommand --> LogicManager : r
+deactivate FindStarsLessThanCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

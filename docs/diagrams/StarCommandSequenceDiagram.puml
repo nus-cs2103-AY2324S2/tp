@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "addressBookParser\n:AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":StarCommandParser" as StarCommandParser LOGIC_COLOR
+participant ":StarCommand" as StarCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model\n:Model" as Model MODEL_COLOR
+participant ":Star" as Star MODEL_COLOR
+end box
+
+box Model STORAGE_COLOR_T1
+participant "storage\n:Storage" as Storage MODEL_COLOR
+end box
+
+[-> LogicManager : execute("star 1 s/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("star 1 s/1")
+activate AddressBookParser
+
+create StarCommandParser
+AddressBookParser -> StarCommandParser
+activate StarCommandParser
+
+StarCommandParser --> AddressBookParser
+deactivate StarCommandParser
+
+AddressBookParser -> StarCommandParser : parse(" 1 s/1")
+activate StarCommandParser
+
+create Star
+StarCommandParser -> Star
+activate Star
+
+Star --> StarCommandParser
+deactivate Star
+
+create StarCommand
+StarCommandParser -> StarCommand
+activate StarCommand
+
+StarCommand --> StarCommandParser :
+deactivate StarCommand
+
+StarCommandParser --> AddressBookParser :
+deactivate StarCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StarCommandParser -[hidden]-> AddressBookParser
+destroy StarCommandParser
+deactivate StarCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> StarCommand : execute(model)
+activate StarCommand
+
+StarCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> StarCommand : Updated filtered person list
+deactivate Model
+
+create CommandResult
+StarCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StarCommand
+deactivate CommandResult
+
+StarCommand --> LogicManager :
+deactivate StarCommand
+
+LogicManager -> Storage : saveAddressBook(model)
+activate Storage
+
+Storage --> LogicManager
+deactivate Storage
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
