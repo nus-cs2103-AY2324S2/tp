@@ -1,3 +1,5 @@
+
+
 ---
   layout: default.md
   title: "Developer Guide"
@@ -112,7 +114,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object. If the command deals with Articles then the `AddressBookParser` will pass it to the `ArticleBookParser` which will then handle to command similarly to the `AddressBookParser`.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -250,6 +252,18 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### \[Proposed\] Lookup Article
+
+#### Proposed Implementation
+
+The proposed lookup feature is enabled by altering `Article` such that whenever one is created, it stores a list of `Person` objects that are the Authors or Sources involved in the article. The `LookUpCommand` feature will then retrieve this list and display it to the user, enabling the user to see Persons involved in the article.
+
+#### Design considerations:
+
+* Make sure Edits and Deletes of Persons and Articles are handled correctly.
+* Consider including a UI alternative to access the list: Pressing a button in the Article's display will show the list of Persons involved.
+
 
 ### \[Proposed\] Data archiving
 
