@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.book.Book;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,11 +26,15 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final MeritScore meritScore;
+    private final ArrayList<Book> bookList;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Constructs a person without any books borrowed.
      * Every field must be present and not null.
      */
+
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -35,6 +42,24 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.meritScore = new MeritScore(0);
+        this.bookList = new ArrayList<>();
+    }
+
+    /**
+     * Constructs a person with books borrowed.
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  MeritScore meritScore, ArrayList<Book> bookList, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.meritScore = meritScore;
+        this.bookList = bookList;
     }
 
     public Name getName() {
@@ -59,6 +84,72 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * @return the merit score of the person
+     */
+    public MeritScore getMeritScore() {
+        return meritScore;
+    }
+
+    /**
+     * Returns an immutable book list, consisting of books in the person's book list.
+     *
+     * @return The book list.
+     */
+    public ArrayList<Book> getBookList() {
+        return new ArrayList<>(Collections.unmodifiableList(this.bookList));
+    }
+
+    /**
+     * Returns an immutable book list, consisting of books in the person's book list
+     * without the book passed in.
+     *
+     * @param book The book to be removed.
+     * @return An immutable copy of the person's book list without the book.
+     */
+    public ArrayList<Book> getBookListWithoutBook(Book book) {
+        ArrayList<Book> mutableCopy = new ArrayList<>(this.getBookList());
+        mutableCopy.remove(book);
+        return new ArrayList<>(Collections.unmodifiableList(mutableCopy));
+    }
+
+    /**
+     * Returns an immutable book list, consisting of books in the person's book list
+     * with an additional book, which is the book passed in.
+     *
+     * @param book The book to be added.
+     * @return An immutable copy of the person's book list with the new book.
+     */
+    public ArrayList<Book> getBookListWithNewBook(Book book) {
+        ArrayList<Book> mutableCopy = new ArrayList<>(this.getBookList());
+        mutableCopy.add(book);
+        return new ArrayList<>(Collections.unmodifiableList(mutableCopy));
+    }
+
+    public String getBookListToString() {
+        this.bookList.sort(Comparator.comparing(book -> book.bookTitle));
+        String result = "";
+        for (int i = 0; i < bookList.size(); i++) {
+            result += this.bookList.get(i).bookTitle.toString();
+            if (i != bookList.size() - 1) {
+                result += "\n";
+            }
+        }
+        return result;
+    }
+
+    public String getBookListToStringWithIndex() {
+        this.bookList.sort(Comparator.comparing(book -> book.bookTitle));
+        String result = "";
+        for (int i = 0; i < bookList.size(); i++) {
+            result += (i + 1) + ". " + this.bookList.get(i).bookTitle.toString();
+            if (i != bookList.size() - 1) {
+                result += "\n";
+            }
+        }
+        return result;
     }
 
     /**
@@ -94,13 +185,15 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && meritScore.equals(otherPerson.meritScore)
+                && bookList.equals(otherPerson.bookList);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, meritScore, bookList, tags);
     }
 
     @Override
@@ -111,6 +204,8 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("Merit score", meritScore)
+                .add("book borrowed", bookList)
                 .toString();
     }
 

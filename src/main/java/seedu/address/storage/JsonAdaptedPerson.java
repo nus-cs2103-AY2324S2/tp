@@ -10,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.book.Book;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MeritScore;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,6 +30,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String meritScore;
+    private final ArrayList<JsonAdaptedBook> bookList = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,11 +40,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("meritScore") String meritScore,
+            @JsonProperty("bookList") ArrayList<JsonAdaptedBook> bookList,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.meritScore = meritScore;
+        if (bookList != null) {
+            this.bookList.addAll(bookList);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,20 +64,30 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        meritScore = source.getMeritScore().meritScore;
+        bookList.addAll(source.getBookList().stream()
+                .map(JsonAdaptedBook::new)
+                .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+        final List<Book> personBooks = new ArrayList<>();
+        for (JsonAdaptedBook book : bookList) {
+            personBooks.add(book.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +122,18 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-    }
+        if (meritScore == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MeritScore.class.getSimpleName()));
+        }
+        if (!MeritScore.isValidMeritScore(meritScore)) {
+            throw new IllegalValueException(MeritScore.MESSAGE_CONSTRAINTS);
+        }
+        final MeritScore modelMeritScore = new MeritScore(meritScore);
 
+        final ArrayList<Book> modelBookList = new ArrayList<>(personBooks);
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMeritScore, modelBookList, modelTags);
+    }
 }

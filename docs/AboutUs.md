@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ho Jin Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jinhanfromnus.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jinhanfromNUS)]
+[[portfolio](team/jinhanfromNUS.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Features and Documentation
 
-### Jean Doe
+### Khoo Jing Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/meowwtama.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/meowwtama)]
+[[portfolio](team/meowwtama.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Ashley Chang
+
+<img src="images/ashleyclx.png" width="200px">
+
+[[github](http://github.com/ashleyclx)] [[portfolio](team/ashleyclx.md)]
+
+* Role: Developer
+* Responsibilities: Features and Documentation
+
+### Tan Yi-Sheng
+
+<img src="images/ty-stan0417.png" width="200px">
+
+[[github](http://github.com/Ty-stan0417)]
+[[portfolio](team/Ty-stan0417.md)]
+
+* Role: Developer
+* Responsibilities: Features and Documentation
+
+### Shenoy Suraj Bantwal
+
+<img src="images/darkarche3.png" width="200px">
+
+[[github](https://github.com/Darkarche3)]
+[[portfolio](team/Darkarche3.md)]
+
+* Role: Developer
+* Responsibilities: Testing

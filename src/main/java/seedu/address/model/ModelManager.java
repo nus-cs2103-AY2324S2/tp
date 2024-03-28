@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.book.Book;
+import seedu.address.model.library.Library;
+import seedu.address.model.library.Threshold;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,22 +25,23 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-
+    private final Library library;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyLibrary library) {
+        requireAllNonNull(addressBook, userPrefs, library);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.library = new Library(library);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new Library());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -128,6 +132,57 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Library =============================================================
+    @Override
+    public void setLibrary(ReadOnlyLibrary library) {
+        this.library.resetData(library);
+    }
+
+    @Override
+    public ReadOnlyLibrary getLibrary() {
+        return library;
+    }
+
+    @Override
+    public void addBook(Book book) {
+        library.addBook(book);
+    }
+
+    @Override
+    public void deleteBook(int index) {
+        library.deleteBook(index);
+    }
+
+    @Override
+    public boolean canLendTo(Person person) {
+        return library.canLendTo(person);
+    }
+
+    @Override
+    public void setThreshold(Threshold threshold) {
+        library.setThreshold(threshold);
+    }
+
+    @Override
+    public Threshold getThreshold() {
+        return library.getThreshold();
+    }
+
+    @Override
+    public boolean hasThreshold(Threshold threshold) {
+        return library.hasThreshold(threshold);
+    }
+
+    @Override
+    public boolean hasBookInLibrary(Book book) {
+        return library.hasBookInLibrary(book);
+    }
+
+    @Override
+    public Book popBookFromLibrary(Book book) {
+        return library.popBookFromLibrary(book);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -142,7 +197,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && library.equals(otherModelManager.library);
     }
-
 }

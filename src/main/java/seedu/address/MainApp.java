@@ -2,6 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -19,8 +20,13 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyLibrary;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.book.Book;
+import seedu.address.model.library.Library;
+import seedu.address.model.library.LibraryLogic;
+import seedu.address.model.library.Threshold;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -44,6 +50,7 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model model;
+    protected LibraryLogic libraryLogic;
     protected Config config;
 
     @Override
@@ -77,6 +84,8 @@ public class MainApp extends Application {
 
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+        ReadOnlyLibrary libraryData;
+        libraryLogic = new LibraryLogic();
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -90,7 +99,26 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ArrayList<Book> booksData;
+        Threshold thresholdData;
+        try {
+            libraryLogic.loadLibraryFromFile();
+            thresholdData = libraryLogic.getThreshold();
+            if (libraryLogic.hasNoAvailableBooks()) {
+                logger.info("Creating a new library data file " + libraryLogic.getLibraryFilePath()
+                        + " populated with a empty book list.");
+                //TODO Make sample book list
+            }
+            booksData = libraryLogic.getAvailableBooks();
+            libraryData = new Library(booksData, thresholdData);
+
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + libraryLogic.getLibraryFilePath() + " could not be loaded."
+                    + " Will be starting with an empty Library.");
+            libraryData = new Library();
+        }
+
+        return new ModelManager(initialData, userPrefs, libraryData);
     }
 
     private void initLogging(Config config) {

@@ -267,37 +267,39 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* needs to keep track of which borrower borrowed which book
+* needs to keep track of which borrower returned which book
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage borrowers and keepts track of borrowing and returning of books faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​     | I want to …​                                      | So that I can…​                                                                  |
+| -------- | ---------- | ------------------------------------------------ |----------------------------------------------------------------------------------|
+| `* * *`  | libarian   | record the phone number of the borrower          | send SMS reminders to notify them that someone else is looking for the book      |
+| `* * *`  | libarian   | record the email address of the borrower         | send an email reminders to notify them that someone else is looking for the book |
+| `* * *`  | libarian   | record the postal address of the borrower        | send a warning letter when breaching community guidelines                        |
+| `* * *`  | libarian   | record how many books the borrower has borrowed  | keep track of the position of the books                                          |
+| `* * *`  | libarian   | record the date the borrower borrowed the book   | calculate when they need to return the book                                      |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MyBookshelf` and the **Actor** is the `Community Library Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Borrower borrows a book from the library**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Borrower requests to borrow a book.
+2.  Librarian requests to list borrowers.
+3.  MyBookshelf shows a list of borrowers.
+4.  Librarian adds the book to the borrower.
+5.  MyBookshelf updates the borrower's details.
 
     Use case ends.
 
@@ -307,26 +309,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 4a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 4a1. MyBookshelf shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 3.
+
+*{More to be added}*
+
+**Use case: Borrower returns a book to the library**
+
+**MSS**
+
+1.  Borrower requests to return a book.
+2.  Librarian requests to list borrowers.
+3.  MyBookshelf shows a list of borrowers.
+4.  Librarian removes the book from the borrower.
+5.  MyBookshelf updates the borrower's details.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The given index is invalid.
+
+    * 4a1. AddressBook shows an error message.
+
+      Use case resumes at step 3.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be easy to use and fast to learn for  users who are new to this application.
+5. Response time should be fast enough that it does not take the user a long time to use it.
+6. Should be easy to recognise and remember necessary commands to minimise need for user to check what command to use.
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, MacOS.
+* **Librarian**: Community Library Manager, who is also the main target user of MyBookshelf.
+* **User**: People who uses the community library, including people who donate books to library and people who borrow books from the library.
+* **Personal Information**: Personal Information of a user, e.g. name, phone number, email, address and tags, but not borrowed books and merit score.
+* **Book**: A Book Class containing details relating to book.
+* **Borrow**: An action where a user borrows a book from the library.
+* **Return**: An Action where a user returns the book which they borrowed from the library.
+* **Donate**: An action where a person donates a book to the library.
+* **Merit Score**: A measurement of a person's credibility. Everyone starts from 0, donating increases merit score.
 
 --------------------------------------------------------------------------------------------------------------------
 

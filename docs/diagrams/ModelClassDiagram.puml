@@ -19,6 +19,9 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class MeritScore
+Class BookList
+Class Book
 
 Class I #FFFFFF
 }
@@ -42,6 +45,10 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> MeritScore
+Person *--> BookList
+BookList *--> Book
+
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

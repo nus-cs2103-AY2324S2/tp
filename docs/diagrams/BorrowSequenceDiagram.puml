@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+skinparam sequenceReferenceBackgroundColor yellow
+
+box Logic LOGIC_COLOR_T1
+participant "b:BorrowCommand" as BorrowCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "personToEdit:Person" as PersonToEdit LOGIC_COLOR
+participant ":MeritScore" as MeritScore LOGIC_COLOR
+participant "bookTitle:BookList" as BookList LOGIC_COLOR
+participant ":Book" as Book LOGIC_COLOR
+participant "editedPerson:Person" as EditedPerson LOGIC_COLOR
+participant "model:Model" as Model LOGIC_COLOR
+end box
+
+
+[-> BorrowCommand :
+activate BorrowCommand
+
+BorrowCommand -> Model : get(i)
+activate Model
+
+Model --> BorrowCommand : personToEdit
+deactivate Model
+
+BorrowCommand -> PersonToEdit
+activate PersonToEdit
+
+ref over PersonToEdit, MeritScore
+    get Person fields
+end ref
+
+PersonToEdit --> BorrowCommand
+deactivate PersonToEdit
+
+BorrowCommand -> MeritScore : decrementScore()
+activate MeritScore
+
+MeritScore --> BorrowCommand :
+deactivate MeritScore
+
+create BookList
+BorrowCommand -> BookList
+activate BookList
+
+create Book
+BookList -> Book
+activate Book
+
+Book --> BookList
+deactivate Book
+
+BookList --> BorrowCommand
+deactivate BookList
+
+create EditedPerson
+BorrowCommand -> EditedPerson
+activate EditedPerson
+
+EditedPerson --> BorrowCommand : editedPerson
+deactivate EditedPerson
+
+BorrowCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model -[hidden]-> BorrowCommand
+deactivate Model
+
+[<--BorrowCommand
+deactivate BorrowCommand
+
+@enduml
