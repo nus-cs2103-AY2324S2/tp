@@ -13,7 +13,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,6 +29,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
 import seedu.address.model.tag.Tag;
+import seedu.address.ui.HelpWindow;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -35,10 +38,12 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "/edit-person";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ":\nEdits the details of the person identified "
             + "by the name used in the displayed person list.\n"
-            + "Parameters: "
-            + "[" + PREFIX_FIELD + "FIELD] "
+            + "Main Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_FIELD + "FIELD] \n"
+            + "Field Parameters: "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_EMAIL + "EMAIL] \n"
@@ -48,6 +53,8 @@ public class EditCommand extends Command {
             + "phone : " + "99820550 "
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
+
+    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
 
     private final Name name;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -78,6 +85,9 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        logger.fine(String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
+                EditMessages.format(editedPerson)));
         return new CommandResult(String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
                 EditMessages.format(editedPerson)));
     }
