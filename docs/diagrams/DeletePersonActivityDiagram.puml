@@ -1,0 +1,26 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User enters command to delete doctor or patient;
+
+if () then ([command is invalid])
+    :Show error message\nfor invalid command;
+else ([else])
+    if () then ([missing required fields])
+        :Show error message\nfor missing required fields;
+    else ([else])
+        if () then ([Invalid person index detected])
+            :Show error message\nindicating invalid Person index;
+            else ([else])
+                 :Remove patient/doctor\nfrom the persons list\nalso removes any appointments\nassociated with the deleted patient/doctor;
+                 :Update the 'person' panel\nand appointments panel\n in the GUI;
+                 :Show success message\nwith removed doctor/patient information;
+        endif;
+    endif
+endif
+
+stop
+@enduml

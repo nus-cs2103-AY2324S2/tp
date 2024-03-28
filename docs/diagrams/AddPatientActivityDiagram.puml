@@ -1,0 +1,30 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User enters command to add a patient;
+
+if () then ([command is invalid])
+    :Show error message\nfor invalid command;
+else ([else])
+    if () then ([missing required fields])
+        :Show error message\nfor missing required fields;
+    else ([else])
+        if () then ([invalid field arguments])
+            :Show error message\nindicating invalid field\narguments provided;
+        else ([else])
+            if () then ([Duplicate patient detected])
+                :Show error message\nindicating duplicate patient;
+                else ([else])
+                    :Add the patient\ninto the persons list;
+                    :Update the 'person' panel\nin the GUI;
+                    :Show success message\nwith patient's information;
+            endif;
+        endif
+    endif
+endif
+
+stop
+@enduml

@@ -8,28 +8,27 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.QueryPatientCommand;
-import seedu.address.model.person.PatientContainsKeywordsPredicate;
+import seedu.address.logic.commands.QueryDoctorAppointmentCommand;
+import seedu.address.model.appointment.AppointmentContainsDoctorPredicate;
 
-public class QueryPatientCommandParserTest {
-
-    private QueryPatientCommandParser parser = new QueryPatientCommandParser();
+public class QueryDoctorAppointmentCommandParserTest {
+    private QueryDoctorAppointmentCommandParser parser = new QueryDoctorAppointmentCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                QueryPatientCommand.MESSAGE_USAGE));
+                QueryDoctorAppointmentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsQueryCommand() {
         // no leading and trailing whitespaces
-        QueryPatientCommand expectedQueryCommand =
-                new QueryPatientCommand(new PatientContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        QueryDoctorAppointmentCommand expectedQueryCommand =
+                new QueryDoctorAppointmentCommand(new AppointmentContainsDoctorPredicate(
+                        Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedQueryCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedQueryCommand);
     }
-
 }

@@ -39,6 +39,28 @@ public class StringUtil {
     }
 
     /**
+     * Checks if the given sentence contains the specified substring, ignoring case.
+     *
+     * @param sentence  The sentence to search within.
+     * @param substring The substring to search for.
+     * @return True if the sentence contains the substring, ignoring case; false otherwise.
+     * @throws NullPointerException     if either the sentence or the substring is null.
+     * @throws IllegalArgumentException if the substring parameter is empty.
+     */
+    public static boolean containsSubstringIgnoreCase(String sentence, String substring) {
+        requireNonNull(sentence);
+        requireNonNull(substring);
+
+        String preppedSubstring = substring.trim();
+        checkArgument(!preppedSubstring.isEmpty(), "Substring parameter cannot be empty");
+
+        String preppedSentence = sentence.toLowerCase();
+        String preppedSubstringLower = preppedSubstring.toLowerCase();
+
+        return preppedSentence.contains(preppedSubstringLower);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

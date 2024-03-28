@@ -65,9 +65,7 @@ public class Messages {
                 .append("; Doctor: ")
                 .append(appointment.getDoctorNric())
                 .append("; Patient: ")
-                .append(appointment.getPatientNric())
-                .append("; ID: ")
-                .append(appointment.getAppointmentId());
+                .append(appointment.getPatientNric());
         return builder.toString();
     }
 }

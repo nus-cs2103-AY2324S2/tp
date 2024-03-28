@@ -155,6 +155,151 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a `Patient`
+
+Adds a new `Patient` entry by indicating their `NRIC`, `Name`, `DoB`, and `Phone`.
+This command is implemented through the `AddPatientCommand` class which extend the `Command` class.
+
+* Step 1. User enters an `addpatient` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `addPatientCommandParser`.
+* Step 3. The `parse` command in `addPatientCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the patient to added already exists in the system, a `DuplicatePersonException` is thrown`.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/AddPatientActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `addPatientCommandParser` return an instance of `addPatientCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `addPatientCommand`.
+* Step 6. The `execute` method in `addPatientCommand` executes and calls `addPerson` in model to add the new patient into the system.
+* Step 7. Success message gets printed onto the results display to notify user.
+
+The sequence diagram below closely describes the interaction between the various components during the execution of the `AddPatientCommand`.
+
+<img src="images/AddPatientSequenceDiagram.png" width="800" />
+
+#### Design considerations:
+
+**Aspect: How editing a Person works:**
+
+* **Alternative 1 (current choice):** Removes the `originalPerson` and adds the `editedPerson`.
+    * Pros: Retains the sorted order of Persons by `Name` in the person list.
+    * Cons: May have performance issues in terms of time complexity since it requires 2 operations (`deletePerson()` and `addPerson`).
+
+* **Alternative 2:** Directly update the fields in the `originalPerson`
+    * Pros: Better performance, since this only requires searching through the person list once.
+    * Cons: The order of person list will be lost, since `Name` of a `Person` may be edited.
+
+### Add a `doctor`
+
+Adds a new `doctor` entry by indicating their `NRIC`, `Name`, `DoB`, and `Phone`.
+This command is implemented through the `AddDoctorCommand` class which extend the `Command` class.
+
+* Step 1. User enters an `adddoctor` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `addDoctorCommandParser`.
+* Step 3. The `parse` command in `addDoctorCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the doctor to added already exists in the system, a `DuplicatePersonException` is thrown`.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/AddDoctorActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `addDoctorCommandParser` return an instance of `addDoctorCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `addDoctorCommand`.
+* Step 6. The `execute` method in `addDoctorCommand` executes and calls `addDoctor` in model to add the new doctor into the system.
+* Step 7. Success message gets printed onto the results display to notify user.
+
+### Delete `doctor` or `patient`
+
+Deletes a `doctor` or `patient` entry by indicating their `Index`.
+This command is implemented through the `DeleteCommand` class which extend the `Command` class.
+
+* Step 1. User enters an `delete` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `deleteCommandParser`.
+* Step 3. The `parse` command in `deleteCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the provided `index` is invalid, a `CommandException` is thrown.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/DeletePersonActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `deleteCommandParser` return an instance of `deleteCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `deleteCommand`.
+* Step 6. The `execute` method in `deleteCommand` executes and calls `deletePerson` in model to remove doctor or patient from the system.
+* Step 7. The `execute` method in `deleteCommand` also iterates through the `ObservableList<Appointments>` and retrieves all appointments that have the person to be deleted, and calls the `deleteAppointmentCommand` as well.
+* Step 8. Success message gets printed onto the results display to notify user.
+
+Why is this implemented this way?
+1. Making both `Doctor` and `Patient` class extend the `Person` class makes it easier to execute delete operations.
+2. `Doctor` and `Patient` all exhibit similar qualities, and thus can inherit from the `Person` superclass.
+3. Eliminates the need for separate delete commands for doctor and patient.
+4. Since appointments are constructed with unique `Person` `Nric` fields, it does not make sense to have an appointment that does not have valid doctor or patient entries.
+5. As such, the solution that is inbuilt to deleting a `Person`, comes with the added functionality on the backend to delete all related `Appointment` entries as well.
+6. This results in a cleaner `Appointments` panel, and saves the user from the hassle of needing to delete unwanted `Appointment` entries one by one.
+
+### Add a `Appointment`
+
+Adds a new `Appointment` entry by indicating the `patientNric`, `doctorNric`, and an `appointmentDate`.
+The values stored in each of these attributes are self explanatory. A key thing to note is that patients/doctors must already exist in the records, and the date must be in the future.
+
+This command is implemented through the `AddAppointmentCommand` class which extend the `Command` class.
+
+* Step 1. User enters the keyword and attributes necessary for adding an appointment as indicated above.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `addAppointmentCommandParser`.
+* Step 3. The `parse` command in `addPatientCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match constraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the doctor/patient does not exist or the date is not >= current date, a `InvalidAppointmentException` is thrown
+    * If an appointment between the doctor and patient on the specified date already exists, then a `DuplicateAppointmentException` is thrown.
+
+The activity diagram below demonstrates this error handling process in more detail.
+<img src="images/AddAppointmentActivityDiagram.png" width="800" />
+
+<img src="images/AddPatientActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `addAppointmentCommandParser` return an instance of `addAppointmentCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `addAppointmentCommand`.
+* Step 6. The `execute` method in `addAppointmentCommand` executes and calls `addAppointment` in model to add the new appointment into the system.
+* Step 7. Success message gets printed onto the results display to notify user.
+
+The sequence diagram below closely describes the interaction between the various components during the execution of the `AddAppointmentCommand`.
+
+<img src="images/AddAppointmentSequenceDiagram.png" width="800" />
+
+#### Context and thought process behind implementation:
+
+* One key focus of the appoitment implementation was to keep it as similar to the implementation of patients and doctors. 
+* The idea is that at the end of the day, the appointment is simply another type of entry being tracked. 
+* Nevertheless, looking at it from a UI perspective, we would want to differentiate the appointment entries from the person entries.
+* Hence, while similar in terms of the code and functionality, a lot of the infrastructure to handle appointments was built parallel to the one for persons.
+* For instance, there is a separate `UniqueAppointmentList` class for storing and manipulating appointments that functions very similar to the equivalent list for persons.
+
+#### How and why it was implemented the way it was:
+* Based on the thought process, the approach was to emulate the functionality of MediCLI, except with Appointments instead of persons.
+* The overall structure including how appointments are stored, managed etc. is largely similar to support debugging and improve readability and comprehension.
+* In other words, if you understand how MediCLI manages persons, you will also understand how it manages appointments.
+* Some differences are however inevitable and have been listed below:
+  * Appointments have doctor NRIC, patient NRIC, and a Appointment Date as attributes. Doctor and patient nric must already exist before the appointment was created, and the date must be >= current date.
+  * Each appointment is also assigned a unique appointmentId. This is because while patients and doctors use NRIC as a unique identifier, appointments dont have one, hence the auto generated appoitnmentId. There is a util file to achieve this called 'idutil.java'.
+    * Each appointmentId is structured as `aXXXXXXXX` where each `X` is a number. The idUtil stores used numbers to ensure no duplicates are created.
+  * The appointments are stored in a separate list called the `UniqueAppointmentList`, to allow for different operations and flexibility down the line.
+  * In terms of the UI, the appointments appear in a separate column to ensure that the user is able to clearly distinguish between them.
+
+#### Alternatives considered
+* One key alternative we looked at was implementing the appointment as part of the same list i.e. `UniquePersonList`.
+* This would mean changing the `person` class to a different one such as `entry` and have all three of `patient` , `doctor` and `appointment` extend from the person class.
+* We decided against this because we thought that it was not the most OOP friendly solution and just didn't feel right or justifiable. 
+* Furthermore, it might get confusing for the user if everything was dumped into the same list of them to sieve through. Perhaps the user was only concerned with looking up patients in which case the appointments would simple be added clutter.
+* The increased level of integration would also be problems for implementation and testing as existing functionality would have to be adapated exposing the system to more risks and potential for bugs. Eg: the classes would have to change from `Person` to `Entry` in a number of different places.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

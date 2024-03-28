@@ -133,6 +133,13 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        addressBook.setAppointment(target, editedAppointment);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
