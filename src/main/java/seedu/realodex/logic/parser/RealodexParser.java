@@ -46,36 +46,62 @@ public class RealodexParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
+        //just for checking if help is called so that trimming is possible
+        String nonFinalArguments = matcher.group("arguments");
+
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+        boolean isHelp = false;
+        if (nonFinalArguments.trim().equalsIgnoreCase("help")) {
+            isHelp = true;
+        }
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+            if (isHelp) {
+                return new HelpCommandParser().parse(commandWord);
+            }
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            if (isHelp) {
+                return new HelpCommandParser().parse(commandWord);
+            }
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
+            if (isHelp) {
+                return new HelpCommandParser().parse(commandWord);
+            }
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            if (isHelp) {
+                return new HelpCommandParser().parse(commandWord);
+            }
             return new ClearCommand();
 
         case FilterCommand.COMMAND_WORD:
+            if (isHelp) {
+                return new HelpCommandParser().parse(commandWord);
+            }
             return new FilterCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            if (isHelp) {
+                return new HelpCommandParser().parse(commandWord);
+            }
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommand("");
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

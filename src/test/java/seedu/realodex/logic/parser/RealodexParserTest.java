@@ -91,6 +91,48 @@ public class RealodexParserTest {
     }
 
     @Test
+    public void parseCommand_add_help() throws Exception {
+        assertTrue(parser.parseCommand("add help") instanceof HelpCommand);
+        HelpCommand expected = new HelpCommand("add");
+        assertEquals(parser.parseCommand("add help"), expected);
+    }
+
+    @Test
+    public void parseCommand_clear_help() throws Exception {
+        assertTrue(parser.parseCommand("clearRealodex help") instanceof HelpCommand);
+        HelpCommand expected = new HelpCommand("clearRealodex");
+        assertEquals(parser.parseCommand("clearRealodex help"), expected);
+    }
+
+    @Test
+    public void parseCommand_delete_help() throws Exception {
+        assertTrue(parser.parseCommand("delete help") instanceof HelpCommand);
+        HelpCommand expected = new HelpCommand("delete");
+        assertEquals(parser.parseCommand("delete help"), expected);
+    }
+
+    @Test
+    public void parseCommand_edit_help() throws Exception {
+        assertTrue(parser.parseCommand("edit help") instanceof HelpCommand);
+        HelpCommand expected = new HelpCommand("edit");
+        assertEquals(parser.parseCommand("edit help"), expected);
+    }
+
+    @Test
+    public void parseCommand_filter_help() throws Exception {
+        assertTrue(parser.parseCommand("filter help") instanceof HelpCommand);
+        HelpCommand expected = new HelpCommand("filter");
+        assertEquals(parser.parseCommand("filter help"), expected);
+    }
+
+    @Test
+    public void parseCommand_list_help() throws Exception {
+        assertTrue(parser.parseCommand("list help") instanceof HelpCommand);
+        HelpCommand expected = new HelpCommand("list");
+        assertEquals(parser.parseCommand("list help"), expected);
+    }
+
+    @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
