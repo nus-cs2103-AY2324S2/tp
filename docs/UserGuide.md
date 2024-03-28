@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Pedagogue Pages is a **desktop app for teachers of young children to manage class rosters, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Pedagogue Pages holds many advantages over traditional rostering methods, such as Excel and physical methods due to it being tailored for teachers of young children.
 
 * Table of Contents
 {:toc}
@@ -14,22 +14,21 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `pedagoguepages.jar` from [here](https://github.com/AY2324S2-CS2103T-W10-3/tp/releases/tag/v1.2).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Pedagogue Pages.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar pedagoguepages.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
+   * `list` : Lists all students.
 
-   * `list` : Lists all contacts.
+   * `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00007 t/Friends t/Owes Money` : Adds a student named `John Doe` with `Student ID` 00007 to Pedagogue Pages.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 00003` : Deletes the student with `Student ID` 00003 from the list.
 
    * `clear` : Deletes all contacts.
 
@@ -72,78 +71,80 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `add`
 
-Adds a person to the address book.
+Adds a student to Pedagogue Pages.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PARENT_PHONE_NUMBER_1, PARENT_PHONE_NUMBER_2 e/STUDENT_EMAIL a/ADDRESS id/STUDENT_ID [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00001 t/Class 3A t/Owes Money`
+* `add n/Betsy Crowe t/Friend e/betsycrowe@example.com a/611, Queenstown Road, #05-24 p/81948732, 95738132 id/00002 `
 
-### Listing all persons : `list`
+Input restrictions for each field can be found in this [table](##input restrictions).
 
-Shows a list of all persons in the address book.
+### Listing all students : `list`
+
+Shows a list of all students in Pedagogue Pages.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a student : `edit`
 
-Edits an existing person in the address book.
+Edits an existing student in Pedagogue Pages.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit STUDENT_ID [n/NAME] [p/PARENT_PHONE_NUMBER, WHICH_TO_EDIT] [e/EMAIL] [a/ADDRESS] [id/STUDENT ID] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student with the specified `STUDENT_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 00001 p/91234567, 2 e/johndoe@example.com` Edits the second parent phone number and email address of the student with `STUDENT ID` 00001 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 00002 n/Betsy Crower t/` Edits the name of the student with `STUDENT ID` 00002 to be `Betsy Crower` and clears all existing tags of the student.
 
-### Locating persons by name: `find`
+### Locating students by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds students based on the provided keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find MODE KEYWORD [MORE_KEYWORDS]`
+
+* The mode decides which parameter to search.
+  * Mode 1: Find by `Name`
+  * Mode 2: Find by `Student ID`
+  * Mode 3: Find by `Tag`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find 1 John` returns `john` and `John Doe`
+* `find 2 00001` returns the student with `Student ID` 00001.
+* `find 3 Class 3A` returns all students with `Tag` Class 3A.
+* `find 1 alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified student from Pedagogue Pages.
 
-Format: `delete INDEX`
+Format: `delete STUDENT ID`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* Deletes the student with the specified `STUDENT ID`.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Pedagogue Pages.
 
 Format: `clear`
 
@@ -155,18 +156,19 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Pedagogue Pages data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Pedagogue Pages data are saved automatically as a JSON file `[JAR file location]/data/pedagoguepages.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, Pedagogue Pages will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the Pedagogue Pages to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+
+### Importing and exporting data files `[coming in v1.3]`
 
 _Details coming soon ..._
 
@@ -175,7 +177,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Pedagogue Pages home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,10 +191,22 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PARENT_PHONE_NUMBER_1, PARENT_PHONE_NUMBER_2 e/STUDENT_EMAIL a/ADDRESS id/STUDENT_ID [t/TAG]…` <br> e.g., `add n/John Doe p/98765432, 91233322 e/johnd@example.com a/311, Clementi Ave 2, #02-25 id/00007 t/Friends t/Owes Money`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete STUDENT ID`<br> e.g., `delete 00003`
+**Edit** | `edit STUDENT_ID [n/NAME] [p/PARENT_PHONE_NUMBER, WHICH_TO_EDIT] [e/EMAIL] [a/ADDRESS] [id/STUDENT ID] [t/TAG]…`<br> e.g.,`edit 00002 n/James Lee e/jameslee@example.com`
+**Find** | `find MODE KEYWORD [MORE_KEYWORDS]`<br> e.g., `find 1 James Jake`, `find 2 00005`, `find 3 Class 3B`
 **List** | `list`
 **Help** | `help`
+
+## Input restrictions
+
+Field | Restrictions
+--------|------------------
+**Name** | Type: Alphanumeric String, Other restrictions: -
+**Parent phone number** | Type: 8 digit positive integer, Other restrictions: Must not begin with `0`.
+**Email** | Type: Alphanumeric username followed by an "@", then an alphanumeric domain
+**Address** | Type: Alphanumeric String, Other restrictions: -
+**Student ID** | Type: 5 digit positive integer, Other restrictions: -
+**Tags** | Type: Alphanumeric String, Other restrictions: Maximum length of `2` words
+

@@ -6,13 +6,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.StringFormatter;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,19 +22,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
-    /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -47,22 +35,86 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+
+        String capitalisedName = StringFormatter.capitalizeWords(name);
+        return new Name(capitalisedName);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String studentId} into a {@code StudentId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code studentId} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedStudentId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
+        }
+        return new StudentId(trimmedStudentId);
+    }
+
+    /**
+     * Parses a {@code String phone} into an array of 2 {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid and if less than 2 phone numbers are provided.
+     */
+    public static Phone[] parsePhone(String phones) throws ParseException {
+        requireNonNull(phones);
+        String[] splitPhones = phones.split(",");
+
+        Phone[] phoneArray = new Phone[2];
+        if (splitPhones.length == 2) {
+            for (int i = 0; i < splitPhones.length; i++) {
+                String trimmedPhone = splitPhones[i].trim();
+                if (!Phone.isValidPhone(trimmedPhone)) {
+                    throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+                }
+                phoneArray[i] = new Phone(trimmedPhone);
+            }
+            return phoneArray;
+        } else if (splitPhones.length == 1) {
+            String trimmedPhone = splitPhones[0].trim();
+            if (!Phone.isValidPhone(trimmedPhone)) {
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            }
+            phoneArray[0] = new Phone(trimmedPhone);
+            phoneArray[1] = new Phone(trimmedPhone);
+            return phoneArray;
+        } else {
+            throw new ParseException(Phone.INVALID_NUMBER_OF_PHONES);
+        }
+
+    }
+
+    /**
+     * Parses a {@code String phone} into an array of the {@code Phone} to edit and a {@code number} to designate
+     * which parent phone number to edit.
+     *
+     * @throws ParseException if the given {@code phone} is invalid and if the second input is invalid.
+     */
+    public static String[] parsePhoneForEdit(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String[] splitInput = phone.split(",");
+
+        if (splitInput.length != 2) {
+            throw new ParseException(Phone.INVALID_EDIT_INPUT);
+        }
+
+        String trimmedPhone = splitInput[0].trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+
+        String number = splitInput[1].trim();
+        //Checks if it is either "1" or "2"
+        if (!number.equals("1") && !number.equals("2")) {
+            throw new ParseException(Phone.INVALID_EDIT_INPUT);
+        }
+
+        return splitInput;
     }
 
     /**
@@ -77,7 +129,9 @@ public class ParserUtil {
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+
+        String capitalizedAddress = StringFormatter.capitalizeWords(trimmedAddress);
+        return new Address(capitalizedAddress);
     }
 
     /**
@@ -107,7 +161,9 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+
+        String capitalizedTag = StringFormatter.capitalizeWords(trimmedTag);
+        return new Tag(capitalizedTag);
     }
 
     /**
@@ -120,5 +176,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses formClass name into a FormClass instance.
+     * @param formClass name of class
+     * @return Classroom instance
+     * @throws ParseException if the formClass name is invalid.
+     */
+    public static FormClass parseClass(String formClass) throws ParseException {
+        requireNonNull(formClass);
+        String trimmedClass = formClass.trim();
+        if (!FormClass.isValidClassName(trimmedClass)) {
+            throw new ParseException(FormClass.MESSAGE_CONSTRAINTS);
+        }
+
+        String capitalizedClass = StringFormatter.capitalizeWords(trimmedClass);
+        return new FormClass(capitalizedClass);
     }
 }

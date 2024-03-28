@@ -1,10 +1,15 @@
 package seedu.address.commons.util;
 
+import static seedu.address.logic.Messages.MESSAGE_FILE_ALREADY_EXISTS;
+import static seedu.address.logic.Messages.MESSAGE_MISSING_FILE;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Writes and reads files
@@ -78,6 +83,50 @@ public class FileUtil {
      */
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
+    }
+
+    /**
+     * Converts the filename into csv filepath to be imported from.
+     *
+     * @param fileName Name of file to be imported.
+     * @path Path of the folder csv files are stored in.
+     * @return Path of csv file to be imported from.
+     * @throws ParseException File does not exist.
+     */
+    public static Path convertFileNameToCsvPath(String fileName, String csvFolder) throws ParseException {
+        Path csvFilePath = Paths.get(csvFolder + fileName + ".csv");
+        if (!FileUtil.isFileExists(csvFilePath)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_FILE));
+        }
+        return csvFilePath;
+    }
+
+    /**
+     * Converts the filename into json filepath to be imported to.
+     *
+     * @param fileName Name of file to be imported.
+     * @param jsonFolder Path of the folder json files are stored in.
+     * @return Path of json file to be imported to.
+     */
+    public static Path convertFileNameToJsonPathForMigration(String fileName, String jsonFolder) {
+        Path placeholderJsonFilePath = Paths.get(jsonFolder + fileName + ".json");
+        return placeholderJsonFilePath;
+    }
+
+    /**
+     * Converts the filename into json filepath to be imported to.
+     *
+     * @param fileName Name of file to be imported.
+     * @param jsonFolder Path of the folder json files are stored in.
+     * @return Path of json file to be imported to.
+     * @throws ParseException There is already a json file that shares the new filepath.
+     */
+    public static Path convertFileNameToJsonPathForImport(String fileName, String jsonFolder) throws ParseException {
+        Path jsonFilePath = Paths.get(jsonFolder + fileName + ".json");
+        if (FileUtil.isFileExists(jsonFilePath)) {
+            throw new ParseException(String.format(MESSAGE_FILE_ALREADY_EXISTS));
+        }
+        return jsonFilePath;
     }
 
 }

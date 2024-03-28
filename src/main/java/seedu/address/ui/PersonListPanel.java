@@ -1,13 +1,11 @@
 package seedu.address.ui;
 
-import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,7 +13,6 @@ import seedu.address.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
     private ListView<Person> personListView;
@@ -27,6 +24,17 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setStyle("-fx-padding: 2;");
+    }
+
+    public void toNormal() {
+        personListView.setStyle("-fx-padding: 2;");
+    }
+    public void onAdd() {
+        personListView.setStyle("-fx-background-color: rgba(117,200,33,0.66);-fx-padding: 2;");
+    }
+    public void onDelete() {
+        personListView.setStyle("-fx-background-color: rgb(200,33,33);-fx-padding: 2;");
     }
 
     /**

@@ -1,10 +1,9 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,33 +27,14 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
+    private static final String VALID_PHONE_TWO = "87654321";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "Friend";
+    private static final String VALID_TAG_2 = "Neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
-
-    @Test
-    public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
-    }
-
-    @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
-    }
-
-    @Test
-    public void parseIndex_validInput_success() throws Exception {
-        // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
-
-        // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
-    }
 
     @Test
     public void parseName_null_throwsNullPointerException() {
@@ -90,16 +70,56 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePhoneForEdit_validInput_success() throws Exception {
+        String phone = "12345678, 1";
+        String[] expected = new String[]{"12345678", " 1"};
+
+        assertArrayEquals(expected, ParserUtil.parsePhoneForEdit(phone));
+    }
+
+    @Test
+    public void parsePhoneForEdit_invalidPhone_throwsParseException() {
+        String invalidPhone = "abcd, 1";
+
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneForEdit(invalidPhone));
+    }
+
+    @Test
+    public void parsePhoneForEdit_invalidNumberToEdit_throwsParseException() {
+        String invalidEditNumber = "12345678, 3";
+
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneForEdit(invalidEditNumber));
+    }
+
+    @Test
+    public void parsePhoneForEdit_incorrectFormat_throwsParseException() {
+        String incorrectFormat = "12345678";
+
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhoneForEdit(incorrectFormat));
+    }
+
+    @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+        String phoneString = VALID_PHONE + "," + VALID_PHONE_TWO;
         Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        Phone expectedPhoneTwo = new Phone(VALID_PHONE_TWO);
+        Phone[] expectedPhoneArray = new Phone[2];
+        expectedPhoneArray[0] = expectedPhone;
+        expectedPhoneArray[1] = expectedPhoneTwo;
+        assertEquals(expectedPhoneArray[0], ParserUtil.parsePhone(phoneString)[0]);
+        assertEquals(expectedPhoneArray[1], ParserUtil.parsePhone(phoneString)[1]);
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE + " , " + VALID_PHONE_TWO + WHITESPACE;
+        Phone expectedPhoneOne = new Phone(VALID_PHONE);
+        Phone expectedPhoneTwo = new Phone(VALID_PHONE_TWO);
+        Phone[] expectedPhoneArray = new Phone[2];
+        expectedPhoneArray[0] = expectedPhoneOne;
+        expectedPhoneArray[1] = expectedPhoneTwo;
+        assertEquals(expectedPhoneArray[0], ParserUtil.parsePhone(phoneWithWhitespace)[0]);
+        assertEquals(expectedPhoneArray[1], ParserUtil.parsePhone(phoneWithWhitespace)[1]);
     }
 
     @Test
@@ -193,4 +213,47 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseName_capitalizationCheck() throws Exception {
+        String inputName = "john doe";
+        Name expectedName = new Name("John Doe");
+        assertEquals(expectedName, ParserUtil.parseName(inputName));
+    }
+
+    @Test
+    public void parseName_capitalizationCheckWithNumbers() throws Exception {
+        String inputNameWithNumbers = "mary jane 2nd";
+        Name expectedNameWithNumbers = new Name("Mary Jane 2nd");
+        assertEquals(expectedNameWithNumbers, ParserUtil.parseName(inputNameWithNumbers));
+    }
+
+    @Test
+    public void parseAddress_capitalizationCheck() throws Exception {
+        String inputAddress = "123 baker street";
+        Address expectedAddress = new Address("123 Baker Street");
+        assertEquals(expectedAddress, ParserUtil.parseAddress(inputAddress));
+    }
+
+    @Test
+    public void parseAddress_capitalizationCheckWithSpecialCharacters() throws Exception {
+        String inputAddressWithSpecialChar = "4th avenue, #05-06";
+        Address expectedAddressWithSpecialChar = new Address("4th Avenue, #05-06");
+        assertEquals(expectedAddressWithSpecialChar, ParserUtil.parseAddress(inputAddressWithSpecialChar));
+    }
+
+    @Test
+    public void parseTag_capitalizationCheck() throws Exception {
+        String inputTag = "Friend";
+        Tag expectedTag = new Tag("Friend");
+        assertEquals(expectedTag, ParserUtil.parseTag(inputTag));
+    }
+
+    @Test
+    public void parseTag_capitalizationCheckWithNumbers() throws Exception {
+        String inputTag = "3a";
+        Tag expectedTag = new Tag("3a");
+        assertEquals(expectedTag, ParserUtil.parseTag(inputTag));
+    }
+
 }

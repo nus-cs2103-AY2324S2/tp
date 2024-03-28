@@ -1,7 +1,8 @@
 {
   "persons": [ {
     "name": "Hans Muster",
-    "phone": "9482424",
+    "parent phone one": "94824242",
+    "parent phone two": "91204323",
     "email": "invalid@email!3e",
     "address": "4th street"
   } ]

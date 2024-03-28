@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -15,7 +16,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -23,47 +23,49 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student Pedagogue Pages.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the student ID used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: STUDENT_ID (must be positive 5-digit integers)  "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_PARENT_PHONES + "PHONE, WHICH PHONE NUMBER TO EDIT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_PARENT_PHONES + "91234567, 2"
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
-    private final Index index;
+    private final StudentId studentId;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param studentId of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(StudentId studentId, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(studentId);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.studentId = studentId;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
@@ -72,11 +74,21 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        Person personToEdit = null;
+        boolean found = false;
+
+        for (Person person : lastShownList) {
+            if (person.getStudentId().equals(this.studentId)) {
+                personToEdit = person;
+                found = true;
+                break;
+            }
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!found) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID);
+        }
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -85,7 +97,10 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        CommandResult result =
+                new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        result.setAddCommand();
+        return result;
     }
 
     /**
@@ -96,12 +111,18 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Phone updatedParentPhoneOne =
+                editPersonDescriptor.getFirstParentPhone().orElse(personToEdit.getParentPhoneOne());
+        Phone updatedParentPhoneTwo =
+                editPersonDescriptor.getSecondParentPhone().orElse(personToEdit.getParentPhoneTwo());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        StudentId updatedStudentId = editPersonDescriptor.getStudentId().orElse(personToEdit.getStudentId());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        FormClass updatedClass = editPersonDescriptor.getFormClass().orElse(personToEdit.getFormClass());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedParentPhoneOne, updatedParentPhoneTwo, updatedEmail, updatedAddress,
+                updatedStudentId, updatedTags, updatedClass);
     }
 
     @Override
@@ -116,14 +137,14 @@ public class EditCommand extends Command {
         }
 
         EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
+        return studentId.equals(otherEditCommand.studentId)
                 && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("index", index)
+                .add("studentId", studentId)
                 .add("editPersonDescriptor", editPersonDescriptor)
                 .toString();
     }
@@ -134,10 +155,13 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private Phone firstParentPhone;
+        private Phone secondParentPhone;
         private Email email;
         private Address address;
+        private StudentId studentId;
         private Set<Tag> tags;
+        private FormClass formClass;
 
         public EditPersonDescriptor() {}
 
@@ -147,17 +171,21 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setFirstParentPhone(toCopy.firstParentPhone);
+            setSecondParentPhone(toCopy.secondParentPhone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setStudentId(toCopy.studentId);
             setTags(toCopy.tags);
+            setFormClass(toCopy.formClass);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, firstParentPhone, secondParentPhone, email, address, studentId,
+                    tags, formClass);
         }
 
         public void setName(Name name) {
@@ -168,12 +196,36 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(Phone phone, String numberToEdit) {
+            if ("1".equals(numberToEdit)) {
+                setFirstParentPhone(phone);
+            } else if ("2".equals(numberToEdit)) {
+                setSecondParentPhone(phone);
+            }
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public void setFirstParentPhone(Phone phone) {
+            this.firstParentPhone = phone;
+        }
+
+        public void setSecondParentPhone(Phone phone) {
+            this.secondParentPhone = phone;
+        }
+
+        public Optional<Phone> getFirstParentPhone() {
+            return Optional.ofNullable(firstParentPhone);
+        }
+
+        public Optional<Phone> getSecondParentPhone() {
+            return Optional.ofNullable(secondParentPhone);
+        }
+
+        public Optional<Phone> getEditedPhone() {
+            if (firstParentPhone != null) {
+                return Optional.ofNullable(firstParentPhone);
+            } else {
+                return Optional.ofNullable(secondParentPhone);
+            }
         }
 
         public void setEmail(Email email) {
@@ -190,6 +242,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setStudentId(StudentId studentId) {
+            this.studentId = studentId;
+        }
+
+        public Optional<StudentId> getStudentId() {
+            return Optional.ofNullable(studentId);
         }
 
         /**
@@ -209,6 +269,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setFormClass(FormClass formClass) {
+            this.formClass = formClass;
+        }
+
+        public Optional<FormClass> getFormClass() {
+            return Optional.ofNullable(formClass);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -221,22 +289,48 @@ public class EditCommand extends Command {
             }
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            if (firstParentPhone != null) {
+                return Objects.equals(name, otherEditPersonDescriptor.name)
+                        && Objects.equals(firstParentPhone, otherEditPersonDescriptor.firstParentPhone)
+                        && Objects.equals(email, otherEditPersonDescriptor.email)
+                        && Objects.equals(address, otherEditPersonDescriptor.address)
+                        && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                        && Objects.equals(formClass, otherEditPersonDescriptor.formClass);
+            } else {
+                return Objects.equals(name, otherEditPersonDescriptor.name)
+                        && Objects.equals(secondParentPhone, otherEditPersonDescriptor.secondParentPhone)
+                        && Objects.equals(email, otherEditPersonDescriptor.email)
+                        && Objects.equals(address, otherEditPersonDescriptor.address)
+                        && Objects.equals(studentId, otherEditPersonDescriptor.studentId)
+                        && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                        && Objects.equals(formClass, otherEditPersonDescriptor.formClass);
+            }
         }
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this)
-                    .add("name", name)
-                    .add("phone", phone)
-                    .add("email", email)
-                    .add("address", address)
-                    .add("tags", tags)
-                    .toString();
+            if (firstParentPhone != null) {
+                return new ToStringBuilder(this)
+                        .add("name", name)
+                        .add("edited phone", firstParentPhone)
+                        .add("email", email)
+                        .add("address", address)
+                        .add("student id", studentId)
+                        .add("tags", tags)
+                        .add("class", formClass)
+                        .toString();
+            } else {
+                return new ToStringBuilder(this)
+                        .add("name", name)
+                        .add("edited phone", secondParentPhone)
+                        .add("email", email)
+                        .add("address", address)
+                        .add("student id", studentId)
+                        .add("tags", tags)
+                        .add("class", formClass)
+                        .toString();
+            }
         }
     }
 }

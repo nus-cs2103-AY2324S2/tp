@@ -5,10 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 /**
- * Helper functions for handling strings.
+ * Helper functions for handling strings without changing them.
  */
 public class StringUtil {
 
@@ -65,4 +67,16 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Gets a timestamp to be used in the file to prevent overwriting of previous exports.
+     *
+     * @return A String representation of the time now.
+     */
+    public static String timeStampString() {
+        LocalDateTime timeNow = LocalDateTime.now();
+        String timeStamp = DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(timeNow);
+        return timeStamp;
+    }
+
 }

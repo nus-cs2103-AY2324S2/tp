@@ -25,8 +25,11 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private final String lightUrl = getClass().getResource("/view/LightTheme.css").toExternalForm();
+    private final String darkUrl = getClass().getResource("/view/DarkTheme.css").toExternalForm();
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private String currentTheme = "light";
     private Stage primaryStage;
     private Logic logic;
 
@@ -163,6 +166,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleTheme() {
+        primaryStage.getScene().getStylesheets().clear();
+        if (currentTheme.equals("light")) {
+            primaryStage.getScene().getStylesheets().add(darkUrl);
+            currentTheme = "dark";
+        } else {
+            primaryStage.getScene().getStylesheets().add(lightUrl);
+            currentTheme = "light";
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -177,7 +191,22 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            personListPanel.toNormal();
+            statusbarPlaceholder.setStyle("");
+            if (commandResult.isAddCommand()) {
+                personListPanel.onAdd();
+            }
+            if (commandResult.isDeleteCommand()) {
+                personListPanel.onDelete();
+            }
+            if (commandResult.isChangeDataSource()) {
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+                statusbarPlaceholder.setStyle("-fx-background-color:  rgba(33,200,36,0.76); -fx-padding: 1");
+            }
+            if (commandResult.isThemeCommand()) {
+                handleTheme();
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

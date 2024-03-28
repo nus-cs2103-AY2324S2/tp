@@ -5,55 +5,45 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Jeremy Wang
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/j-wang-csma.png" width="200px">
 
-* Role: Project Advisor
+[[github](http://github.com/J-wang-CSMA)]
+[[portfolio](team/j-wang-csma.md)]
 
-### Jane Doe
+* Role: Developer, Deliverables and deadlines
+* Responsibilities: Data + UI
 
-<img src="images/johndoe.png" width="200px">
+### XU HANXIAO
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/wallacexuhanxiao.png" width="200px">
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/wallacexuhanxiao)]
+[[portfolio](team/wallacexuhanxiao.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Develop
 
-### Jean Doe
+### Ong Zhi Li
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ongzhili.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ongzhili)]
+[[portfolio](team/ongzhili.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI + Logic handling
+
+### Seng Zhen Hong
+
+<img src="images/iamzhenhong.png" width="200px">
+
+[[github](http://github.com/IamZhenHong)]
+[[portfolio](team/iamzhenhong.md)]
+
+* Role: Developer
+* Responsibilities: Develop

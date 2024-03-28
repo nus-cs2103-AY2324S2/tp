@@ -33,6 +33,17 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+        commandResult.setChangeDataSource();
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+
+        assertTrue(commandResult.isChangeDataSource());
+        commandResult.setAddCommand();
+        assertTrue(commandResult.isAddCommand());
+        commandResult.setDeleteCommand();
+        assertTrue(commandResult.isDeleteCommand());
+        commandResult.setThemeCommand();
+        assertTrue(commandResult.isThemeCommand());
     }
 
     @Test
