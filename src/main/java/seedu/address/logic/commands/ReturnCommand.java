@@ -62,6 +62,10 @@ public class ReturnCommand extends Command {
             throw new CommandException(Messages.MESSAGE_EMPTY_BOOKLIST_FIELD);
         }
 
+        if (!personToEdit.getBookList().contains(book)) {
+            throw new CommandException(Messages.MESSAGE_BOOK_DOES_NOT_EXIST);
+        }
+
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getMeritScore().incrementScore(),
                 personToEdit.getBookListWithoutBook(book), personToEdit.getTags());

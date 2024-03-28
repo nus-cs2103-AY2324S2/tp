@@ -19,6 +19,7 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_EMPTY_BOOK_INPUT_FIELD = "Book title cannot be empty!";
     public static final String MESSAGE_EMPTY_BOOKLIST_FIELD = "Person is currently not borrowing any books!";
+    public static final String MESSAGE_BOOK_DOES_NOT_EXIST = "Person does not have this book borrowed currently!";
     public static final String MESSAGE_FILLED_BOOKLIST_FIELD = "Person has reached his maximum borrowing limit!";
 
     // Merit Score
