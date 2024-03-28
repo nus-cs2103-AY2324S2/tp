@@ -315,6 +315,54 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Select Event Feature
+
+The Select Event mechanism is a pivotal part of Eventy's functionality. It's importance can be summarised in 2 main
+purposes:
+1. Selecting an event (or an event not being selected) affects the functionality of several commands. For example, the 
+`Delete a Person` command if an event is not selected, it will delete the person from Eventy as a whole, else if an 
+event is selected, it will delete the person only from that selected event
+2. The UI will display the person list of the selected event when an event is selected, if no event is selected, 
+it will display a message to `Select an event`
+
+The Select Event mechanism is facilitated by `EventBook`. It implements `ReadOnlyEventBook`, and can be thought of 
+the counterpart to `AddressBook`, in that while `AddressBook` handles People-related functionality, `EventBook` handles
+Event-related functionality. 
+
+To implement the Select Event mechanism, `EventBook` stores internally:
+* `selectedEvent` &thinsp;—&thinsp; The event that is currently selected. If no event is selected, it is `null`
+* `selectedEventObservable` &thinsp;—&thinsp; A wrapper for `selectedEvent` to allow the UI to update with respect
+to the 2nd main purpose, as explained above
+* `personsOfSelectedEvent` &thinsp;—&thinsp; Unique person list of the selected event. If no event is selected, it is an 
+empty list
+
+Additionally, it implements the following operations:
+* `EventBook#isAnEventSelected()` &thinsp;—&thinsp; Returns `true` if an event is selected, else `false`
+* `EventBook#selectEvent(Event event)` &thinsp;—&thinsp; Selects the given event 
+* `EventBook#deselectEvent()` &thinsp;—&thinsp; Deselect the currently selected event, if any, so that no event is 
+selected
+* `EventBook#isPersonInSelectedEvent(Person person)` &thinsp;—&thinsp; Returns `true` if the given person is in the 
+selected event, else `false`
+* `EventBook#getSelectedEvent()` &thinsp;—&thinsp; Returns `selectedEventObservable` as an 
+
+`EventBook` also implements other operations that are specific to certain commands that will not be covered here, as 
+they are not directly pertinent to the implementation of the Select Event mechanism. An example of such an operation is
+one that adds the given person to the selected event.
+
+These operations are exposed to other components through `ModelManager` with the same names.
+
+In order to select an event and deselect an event, we have the Select command and deselect command respectively.
+Both commands function similarly.
+
+The following sequence diagram shows how the Select command works through the `Logic` component:
+
+<puml src="diagrams/SelectEventSequenceDiagram -- Model.puml" width="250" />
+
+Similarly, how the Select command goes through the Model component is shown below:
+
+<puml src="diagrams/SelectEventSequenceDiagram -- Logic.puml" width="250" />
+
+The deselect Command generally does the inverse. For `setPersons` however, it will set it to null instead.
 
 --------------------------------------------------------------------------------------------------------------------
 
