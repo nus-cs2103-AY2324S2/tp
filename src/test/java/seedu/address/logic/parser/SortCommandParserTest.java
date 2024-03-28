@@ -28,14 +28,19 @@ class SortCommandParserTest {
 
     @Test
     void parse_unknownField_throws() {
-        CommandParserTestUtil.assertParseFailure(PARSER, "hello",
+        CommandParserTestUtil.assertParseFailure(PARSER, "hello asc",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     @Test
+    void parse_unknownDirection_throws() {
+        CommandParserTestUtil.assertParseFailure(PARSER, "major hi",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+    @Test
     void parse_word_success() {
-        CommandParserTestUtil.assertParseSuccess(PARSER, " major asc",
-                new SortCommand("major", true));
+        CommandParserTestUtil.assertParseSuccess(PARSER, " major desc",
+                new SortCommand("major", false));
     }
 
     @Test

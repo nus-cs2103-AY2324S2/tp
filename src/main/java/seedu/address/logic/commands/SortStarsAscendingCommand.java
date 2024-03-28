@@ -28,12 +28,10 @@ public class SortStarsAscendingCommand extends Command {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof SortStarsAscendingCommand)) {
             return false;
         }
         return true;
     }
-
 }

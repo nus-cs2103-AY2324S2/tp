@@ -40,6 +40,24 @@ public class SortCommandTest {
         assertEquals(expectedList, model.getCorrectStudentList());
     }
     @Test
+    public void execute_nameDescending_success() {
+        String expectedMessage = "Sorted all persons by name in descending order.";
+        SortCommand command = new SortCommand("name", false);
+        expectedModel.updateSortedStudentListByField("name", false);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        List expectedList = Arrays.asList(GEORGE, FIONA, ELLE, DANIEL, CARL, BENSON, ALICE);
+        assertEquals(expectedList, model.getCorrectStudentList());
+    }
+    @Test
+    public void execute_majorAscendingFieldAllCaps_success() {
+        String expectedMessage = "Sorted all persons by major in ascending order.";
+        SortCommand command = new SortCommand("MAJOR", true);
+        expectedModel.updateSortedStudentListByField("MAJOR", true);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        List expectedList = Arrays.asList(ALICE, CARL, ELLE, BENSON, DANIEL, GEORGE, FIONA);
+        assertEquals(expectedList, model.getCorrectStudentList());
+    }
+    @Test
     public void equals() {
         String firstField = "major";
         boolean firstIsAscending = false;

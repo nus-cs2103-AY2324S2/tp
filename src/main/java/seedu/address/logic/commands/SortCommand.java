@@ -26,7 +26,7 @@ public class SortCommand extends Command {
      * @param isAscending A boolean flag for the sort if its ascending or descending
      */
     public SortCommand(String field, boolean isAscending) {
-        this.field = field;
+        this.field = field.toLowerCase();
         this.isAscending = isAscending;
     }
 

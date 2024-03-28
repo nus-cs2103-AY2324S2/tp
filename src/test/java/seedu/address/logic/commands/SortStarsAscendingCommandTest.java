@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
@@ -48,5 +48,19 @@ public class SortStarsAscendingCommandTest {
             }
         }
         return true;
+    }
+
+    @Test
+    public void equals() {
+        SortStarsAscendingCommand firstSortCommand = new SortStarsAscendingCommand();
+
+        // same object -> returns true
+        assertTrue(firstSortCommand.equals(firstSortCommand));
+        // different types -> returns false
+        assertFalse(firstSortCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(firstSortCommand.equals(null));
+
     }
 }
