@@ -52,7 +52,7 @@ public class ModelManager implements Model {
                         ReadOnlyAppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(patientList, appointmentList, userPrefs);
 
-        logger.fine("Initializing with address book: " + patientList
+        logger.fine("Initializing with patientList book: " + patientList
                 + ", appointment list: " + appointmentList + " and user prefs " + userPrefs);
 
         this.patientList = new PatientList(patientList);
