@@ -46,5 +46,13 @@ public class DeleteOrderCommandParserTest {
         // Prefix before person index
         assertParseFailure(parser, "potato 1 o/2",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE));
+
+        // Completely missing input
+        assertParseFailure(parser, "",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE));
+
+        // Missing both person and order index but with the order index prefix present
+        assertParseFailure(parser, "o/",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE));
     }
 }
