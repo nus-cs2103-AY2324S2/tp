@@ -52,7 +52,7 @@ public class AppParametersTest {
         AppParameters appParameters2 = new AppParameters();
 
         // same values -> returns true
-        assertTrue(appParameters.equals(appParameters));
+        assertTrue(appParameters.equals(appParameters2));
         assertEquals(appParameters.hashCode(), appParameters2.hashCode());
 
         // same object -> returns true
