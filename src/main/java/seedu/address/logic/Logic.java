@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * API of the Logic component
@@ -47,4 +48,23 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the client to be displayed in ClientViewPanel.
+     */
+    Person getDisplayClient();
+
+    /**
+     * Returns true if there is a client in the display.
+     */
+    boolean hasDisplayClient();
+
+    /**
+     * Returns the reminder list for the overdue last met to be displayed in RemindersPanel.
+     */
+    ReminderList getOverDueLastMet();
+    /**
+     * Returns the reminder list for the appointments to be displayed in RemindersPanel.
+     */
+    ReminderList getSchedules();
 }

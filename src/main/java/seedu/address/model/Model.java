@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReminderList;
 
 /**
  * The API of the Model component.
@@ -84,4 +86,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sorts the filtered person list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortFilteredPersonList(Comparator<Person> comparator);
+
+    /**
+     * Returns the client to be displayed in ClientViewPanel.
+     */
+    Person getDisplayClient();
+
+    /**
+     * Returns true if there is a client in the display.
+     */
+    boolean hasDisplayClient();
+
+    /**
+     * Clears the client to display to null.
+     */
+    void clearDisplayClient();
+
+    /**
+     * Replaces the current client to be displayed to {@code person}.
+     */
+    void setDisplayClient(Person person);
+    /**
+     * Returns the reminder list for the overdue last met to be displayed in RemindersPanel.
+     */
+    ReminderList getOverDueLastMet();
+    /**
+     * Returns the reminder list for the appointments to be displayed in RemindersPanel.
+     */
+    ReminderList getSchedules();
 }

@@ -31,7 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ClientListPanel clientListPanel;
+    private ClientViewPanel clientViewPanel;
+    private RemindersPanel remindersPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
+
+    @FXML
+    private StackPane clientDetailsCardPlaceholder;
+
+    @FXML
+    private StackPane clientPolicyTablePlaceholder;
+
+    @FXML
+    private StackPane lastMetCardPlaceholder;
+
+    @FXML
+    private StackPane appointmentsCardPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,10 +124,22 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredPersonList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+
+        clientViewPanel = new ClientViewPanel(logic.getDisplayClient());
+        addClientViewPanel();
+        // Clear table if no clients to keep UI consistent
+        if (!logic.hasDisplayClient()) {
+            clearClientViewPanel();
+        }
+
+        remindersPanel = new RemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
+        addRemindersPanel();
+
 
         resultDisplay = new ResultDisplay();
+
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -121,6 +147,98 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Clears the placeholders of client list panel.
+     */
+    private void clearClientListPanel() {
+        clientListPanelPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Fills up the placeholders of client list panel.
+     */
+    private void addClientListPanel() {
+        clientListPanel = new ClientListPanel(logic.getFilteredPersonList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+    }
+
+    /**
+     * Refreshes the client list panel.
+     */
+    private void refreshClientListPanel() {
+        clearClientListPanel();
+        addClientListPanel();
+    }
+
+    /**
+     * Fills up placeholders of client view panel.
+     */
+    private void addClientViewPanel() {
+        ClientDetailsCard clientDetailsCard = clientViewPanel.getClientDetailsCard();
+        clientDetailsCardPlaceholder.getChildren().add(clientDetailsCard.getRoot());
+
+        ClientPolicyTable clientPolicyTable = clientViewPanel.getClientPolicyTable();
+        clientPolicyTablePlaceholder.getChildren().add(clientPolicyTable.getRoot());
+    }
+
+    /**
+     * Clears the placeholders of client view panel.
+     */
+    private void clearClientViewPanel() {
+        clientDetailsCardPlaceholder.getChildren().clear();
+        clientPolicyTablePlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Refreshes the client view panel.
+     */
+    private void refreshClientViewPanel() {
+        clearClientViewPanel();
+        if (logic.hasDisplayClient()) {
+            clientViewPanel.updateClientViewPanel(logic.getDisplayClient());
+            addClientViewPanel();
+        }
+    }
+
+    /**
+     * Fills up placeholders of reminders panel.
+     */
+    private void addRemindersPanel() {
+        RemindersCard lastMetCard = remindersPanel.getLastMetCard();
+        lastMetCardPlaceholder.getChildren().add(lastMetCard.getRoot());
+
+        RemindersCard appointmentsCard = remindersPanel.getAppointmentsCard();
+        appointmentsCardPlaceholder.getChildren().add(appointmentsCard.getRoot());
+    }
+
+    /**
+     * Clears the placeholders of reminders panel.
+     */
+    private void clearRemindersPanel() {
+        lastMetCardPlaceholder.getChildren().clear();
+        appointmentsCardPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Refreshes the reminders panel.
+     */
+    private void refreshRemindersPanel() {
+        clearRemindersPanel();
+        remindersPanel.updateRemindersPanel(logic.getOverDueLastMet(), logic.getSchedules());
+        addRemindersPanel();
+    }
+
+    /**
+     * Refreshes the client view panel, client list panel and reminders panel.
+     */
+    private void refreshAllPanels() {
+        refreshClientViewPanel();
+        refreshClientListPanel();
+        refreshRemindersPanel();
+
+        logger.info("All panels refreshed: client view, client list and reminders");
     }
 
     /**
@@ -163,10 +281,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +291,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            refreshAllPanels();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
