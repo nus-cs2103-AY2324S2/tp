@@ -25,20 +25,22 @@ public class Person {
     // Data fields
     private final Address address;
     private final Birthday birthday;
+    private final Instrument instrument;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Instrument instrument,
                   Set<Tag> tags, Set<Attendance> attendances) {
-        requireAllNonNull(name, phone, email, address, birthday, tags, attendances);
+        requireAllNonNull(name, phone, email, address, birthday, instrument, tags, attendances);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.instrument = instrument;
         this.tags.addAll(tags);
         this.attendances.addAll(attendances);
     }
@@ -58,8 +60,13 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public Birthday getBirthday() {
         return birthday;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
     }
 
     /**
@@ -113,6 +120,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && birthday.equals(otherPerson.birthday)
+                && instrument.equals(otherPerson.instrument)
                 && tags.equals(otherPerson.tags)
                 && attendances.equals(otherPerson.attendances);
     }
@@ -120,7 +128,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, birthday, tags, attendances);
+        return Objects.hash(name, phone, email, address, birthday, instrument, tags, attendances);
     }
 
     @Override
@@ -131,6 +139,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("birthday", birthday)
+                .add("instrument", instrument)
                 .add("tags", tags)
                 .add("attendances", attendances)
                 .toString();

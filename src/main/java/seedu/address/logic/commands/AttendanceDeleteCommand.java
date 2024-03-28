@@ -17,6 +17,7 @@ import seedu.address.model.attendance.Attendance;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Instrument;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -94,12 +95,13 @@ public class AttendanceDeleteCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         Birthday updatedBirthday = personToEdit.getBirthday();
+        Instrument updatedInstrument = personToEdit.getInstrument();
         Set<Tag> updatedTags = personToEdit.getTags();
         Set<Attendance> updatedAttendances = new HashSet<>(personToEdit.getAttendances());
         updatedAttendances.remove(attendance);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedBirthday, updatedTags, updatedAttendances);
+                updatedBirthday, updatedInstrument, updatedTags, updatedAttendances);
     }
 
     @Override

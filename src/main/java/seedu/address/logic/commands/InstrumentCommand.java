@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,39 +23,40 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Marks a person's attendance in the address book.
+ * Assigns an instrument to a person in the address book.
  */
-public class AttendanceCommand extends Command {
-    public static final String MESSAGE_ARGUMENTS = "Indexes: %1$d, Date: %2$s";
+public class InstrumentCommand extends Command {
+    public static final String MESSAGE_ARGUMENTS = "Indexes: %1$d, Instrument: %2$s";
 
-    public static final String COMMAND_WORD = "att";
+    public static final String COMMAND_WORD = "assign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds the attendance date to the persons identified "
+            + ": Assigns an instrument to the persons identified "
             + "by the index numbers used in the last person listing. \n"
             + "Parameters: INDEXES (must be positive integers separated by a whitespace) "
-            + "d/ [DATE]\n"
+            + "i/[INSTRUMENT]\n"
             + "Example: " + COMMAND_WORD + " 1 2 "
-            + "d/ 2024-02-02";
-    public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked attendance for Persons: %1$s";
-    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance has already been marked for %1$s";
+            + "i/Flute";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Persons: %1$s";
+    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This instrument has already been assigned to %1$s";
 
     private final Set<Index> indexes;
-    private final LocalDate date;
+    private final Instrument instrument;
 
     /**
-     * Creates an AttendanceCommand to add the specified {@code date} to the persons identified by {@code indexes}
+     * Creates an InstrumentCommand to add the specified {@code instrument} to the persons identified by {@code indexes}
      */
-    public AttendanceCommand(Set<Index> indexes, LocalDate date) {
-        requireAllNonNull(indexes, date);
+    public InstrumentCommand(Set<Index> indexes, Instrument instrument) {
+        requireAllNonNull(indexes, instrument);
 
         this.indexes = indexes;
-        this.date = date;
+        this.instrument = instrument;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Set<Name> editedNames = new HashSet<>();
+
         for (Index index : this.indexes) {
             requireNonNull(model);
             List<Person> lastShownList = model.getFilteredPersonList();
@@ -66,11 +66,10 @@ public class AttendanceCommand extends Command {
             }
 
             Person personToEdit = lastShownList.get(index.getZeroBased());
-            Attendance attendance = new Attendance(date);
-            Person editedPerson = createEditedPerson(personToEdit, attendance);
+            Person editedPerson = createEditedPerson(personToEdit, instrument);
             editedNames.add(editedPerson.getName());
 
-            if (personToEdit.getAttendances().contains(attendance)) {
+            if (personToEdit.getInstrument() == instrument) {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_ATTENDANCE, personToEdit.getName()));
             }
 
@@ -78,14 +77,14 @@ public class AttendanceCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         }
 
-        return new CommandResult(String.format(MESSAGE_MARK_ATTENDANCE_SUCCESS, editedNames));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedNames));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, Attendance attendance) {
+    private static Person createEditedPerson(Person personToEdit, Instrument instrument) {
         assert personToEdit != null;
 
         Name updatedName = personToEdit.getName();
@@ -93,10 +92,9 @@ public class AttendanceCommand extends Command {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         Birthday updatedBirthday = personToEdit.getBirthday();
-        Instrument updatedInstrument = personToEdit.getInstrument();
+        Instrument updatedInstrument = instrument;
         Set<Tag> updatedTags = personToEdit.getTags();
-        Set<Attendance> updatedAttendances = new HashSet<>(personToEdit.getAttendances());
-        updatedAttendances.add(attendance);
+        Set<Attendance> updatedAttendances = personToEdit.getAttendances();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedBirthday, updatedInstrument, updatedTags, updatedAttendances);
@@ -109,12 +107,12 @@ public class AttendanceCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AttendanceCommand)) {
+        if (!(other instanceof InstrumentCommand)) {
             return false;
         }
 
-        AttendanceCommand e = (AttendanceCommand) other;
+        InstrumentCommand e = (InstrumentCommand) other;
         return indexes.equals(e.indexes)
-                && date.equals(e.date);
+                && instrument.equals(e.instrument);
     }
 }
