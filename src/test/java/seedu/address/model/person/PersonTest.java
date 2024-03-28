@@ -51,11 +51,11 @@ public class PersonTest {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
-        assertEquals(ALICE.hashCode(),aliceCopy.hashCode());
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
 
         // same object -> returns true
         assertTrue(ALICE.equals(ALICE));
-        assertEquals(ALICE.hashCode(),ALICE.hashCode());
+        assertEquals(ALICE.hashCode(), ALICE.hashCode());
 
         // null -> returns false
         assertFalse(ALICE.equals(null));
