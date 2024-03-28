@@ -6,6 +6,7 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.TelegramHandle;
 
 /**
  * A utility class to help with building EditCourseMateDescriptor objects.
@@ -30,6 +31,7 @@ public class EditCourseMateDescriptorBuilder {
         descriptor.setName(courseMate.getName());
         descriptor.setPhone(courseMate.getPhone());
         descriptor.setEmail(courseMate.getEmail());
+        descriptor.setTelegramHandle(courseMate.getTelegramHandle());
     }
 
     /**
@@ -53,6 +55,18 @@ public class EditCourseMateDescriptorBuilder {
      */
     public EditCourseMateDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TelegramHandle} of the {@code EditCourseMateDescriptor} that we are building.
+     */
+    public EditCourseMateDescriptorBuilder withTelegramHandle(String telegramHandle) {
+        if (telegramHandle == null) {
+            descriptor.setTelegramHandle(null);
+        } else {
+            descriptor.setTelegramHandle(new TelegramHandle(telegramHandle));
+        }
         return this;
     }
 

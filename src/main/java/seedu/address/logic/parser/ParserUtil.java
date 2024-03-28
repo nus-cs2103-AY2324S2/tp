@@ -13,6 +13,8 @@ import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.Rating;
+import seedu.address.model.coursemate.TelegramHandle;
 import seedu.address.model.group.TelegramChat;
 import seedu.address.model.skill.Skill;
 
@@ -98,6 +100,9 @@ public class ParserUtil {
     public static Skill parseSkill(String skill) throws ParseException {
         requireNonNull(skill);
         String trimmedSkill = skill.trim();
+        if (!Skill.isValidSkill(trimmedSkill)) {
+            throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
+        }
         return new Skill(trimmedSkill);
     }
 
@@ -178,5 +183,29 @@ public class ParserUtil {
             throw new ParseException(TelegramChat.MESSAGE_CONSTRAINTS);
         }
         return new TelegramChat(trimmedTelegramChat);
+    }
+
+    /**
+     * Parses a {@code String telegramHandle} into a {@code TelegramHandle}.
+     */
+    public static TelegramHandle parseTelegramHandle(String telegramHandle) throws ParseException {
+        requireNonNull(telegramHandle);
+        String trimmedTelegramHandle = telegramHandle.trim();
+        if (!TelegramHandle.isValidTelegramHandle(trimmedTelegramHandle)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramHandle(trimmedTelegramHandle);
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 }

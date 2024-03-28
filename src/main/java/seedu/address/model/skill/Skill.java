@@ -1,6 +1,7 @@
 package seedu.address.model.skill;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Skill in the contact list.
@@ -8,6 +9,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Skill {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Skills cannot be blank";
     public final String skillName;
     private boolean important;
 
@@ -18,6 +21,7 @@ public class Skill {
      */
     public Skill(String skillName) {
         requireNonNull(skillName);
+        checkArgument(isValidSkill(skillName), MESSAGE_CONSTRAINTS);
         this.skillName = skillName;
         this.important = false;
     }
@@ -70,6 +74,13 @@ public class Skill {
      */
     public String toString() {
         return '[' + skillName + ']' + importantStringRepresentation();
+    }
+
+    /**
+     * Returns if a given string is a valid skill.
+     */
+    public static boolean isValidSkill(String test) {
+        return !test.isEmpty();
     }
 
 }

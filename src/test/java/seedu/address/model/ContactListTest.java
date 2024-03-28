@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -51,7 +52,7 @@ public class ContactListTest {
         CourseMate editedAlice = new CourseMateBuilder(ALICE)
                 .withSkills(VALID_SKILL_JAVA).build();
         List<CourseMate> newCourseMates = Arrays.asList(ALICE, editedAlice);
-        List<Group> newGroups = Arrays.asList(new Group(new Name("Grp1"), Set.of(ALICE)));
+        List<Group> newGroups = Arrays.asList(new Group(new Name("Grp1"), Set.of(ALICE), new HashSet<>(), null));
         ContactListStub newData = new ContactListStub(newCourseMates, newGroups);
 
         assertThrows(DuplicateCourseMateException.class, () -> contactList.resetData(newData));

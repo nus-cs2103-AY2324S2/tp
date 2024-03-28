@@ -16,7 +16,7 @@ import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.skill.Skill;
 
 /**
- * Parses input arguments and creates a new AddSkillCommand object
+ * Parses input arguments and creates a new {@code AddSkillCommand} object
  */
 public class AddSkillCommandParser implements Parser<AddSkillCommand> {
 

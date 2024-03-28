@@ -27,7 +27,7 @@ import seedu.address.model.group.exceptions.GroupNotFoundException;
 public class AddMemberCommand extends Command {
     public static final String COMMAND_WORD = "add-member";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds CourseMates as members to an existing group."
+            + ": Adds CourseMates as members to an existing group. "
             + "CourseMates can be specified either by name or by the '#' notation.\n"
             + "Parameters: NAME (group must exist) "
             + PREFIX_COURSEMATE + " COURSEMATE"
@@ -78,8 +78,7 @@ public class AddMemberCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME);
         }
 
-        Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList(),
-                toModify.getSkills(), toModify.getTelegramChat());
+        Group modifiedGroup = new Group(toModify);
 
         List<CourseMate> courseMateList = new ArrayList<>();
         int index = 0;
