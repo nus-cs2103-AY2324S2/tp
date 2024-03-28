@@ -1,0 +1,34 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User enters command to add a patient;
+
+if () then ([command is invalid])
+    :Show error message\nfor invalid command;
+else ([else])
+    if () then ([missing required fields])
+        :Show error message\nfor missing required fields;
+    else ([else])
+        if () then ([doctor/patient does not exist])
+            :Show error message\nindicating that the appointment is invalid;
+        else ([else])
+            if () then ([appointment date is invalid])
+                :Show error message\nindicating that the appointment is invalid;
+            else ([else])
+                if () then ([Duplicate appointment detected])
+                    :Show error message\nindicating duplicate appointment;
+                else ([else])
+                    :Add the appointment\ninto the appointment list;
+                    :Update the 'appointment' panel\nin the GUI;
+                    :Show success message\nwith appointments' information;
+                endif;
+            endif
+        endif
+    endif
+endif
+
+stop
+@enduml
