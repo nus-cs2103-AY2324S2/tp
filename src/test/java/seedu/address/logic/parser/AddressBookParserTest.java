@@ -12,10 +12,14 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddExamCommand;
+import seedu.address.logic.commands.AddScoreCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteExamCommand;
 import seedu.address.logic.commands.DeleteShownCommand;
+import seedu.address.logic.commands.DeselectExamCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,6 +29,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ImportExamCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonDetailContainsKeywordPredicate;
@@ -123,6 +128,31 @@ public class AddressBookParserTest {
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
+    }
+
+    @Test
+    void parseCommand_addExam() throws Exception {
+        assertTrue(parser.parseCommand("addExam n/Midterm s/100") instanceof AddExamCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteExam() throws Exception {
+        assertTrue(parser.parseCommand("deleteExam 1") instanceof DeleteExamCommand);
+    }
+
+    @Test
+    public void parseCommand_selectExam() throws Exception {
+        assertTrue(parser.parseCommand("selectExam n/Midterm") instanceof SelectExamCommand);
+    }
+
+    @Test
+    public void parseCommand_deselectExam() throws Exception {
+        assertTrue(parser.parseCommand("deselectExam") instanceof DeselectExamCommand);
+    }
+
+    @Test
+    public void parseCommand_addScore() throws Exception {
+        assertTrue(parser.parseCommand("addScore 1 s/100") instanceof AddScoreCommand);
     }
 
     @Test

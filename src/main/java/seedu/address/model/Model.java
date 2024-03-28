@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * The API of the Model component.
@@ -79,12 +80,21 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Adds an exam score to the given person {@code target},
+     * maintains immutability. A new person is set into the list with the exam score added
+     * @param target The person to add the exam score to.
+     * @param exam The exam to add the score to.
+     * @param score The score to add.
+     */
+    void addExamScoreToPerson(Person target, Exam exam, Score score) throws IllegalArgumentException;
+
+    /**
      * Removes an exam from the given person {@code target},
      * maintains immutability. A new person is set into the list with the exam removed
      * @param target The person to remove the exam from.
      * @param exam The exam to remove.
      */
-    void removeExamFromPerson(Person target, Exam exam);
+    void removeExamScoreFromPerson(Person target, Exam exam) throws IllegalArgumentException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

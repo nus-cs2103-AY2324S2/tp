@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -122,7 +123,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void removeExamFromPerson(Person target, Exam exam) {
+    public void addExamScoreToPerson(Person target, Exam exam, Score score) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeExamScoreFromPerson(Person target, Exam exam) {
         throw new AssertionError("This method should not be called.");
     }
 
