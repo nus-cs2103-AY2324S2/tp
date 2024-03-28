@@ -77,10 +77,12 @@ public class PersonCard extends UiPart<Region> {
         note.setText(person.getNote().toString());
         String currentRating = person.getRating().toString();
         if ("0".equals(currentRating)) {
-            rating.setText("No rating given yet");
+            rating.setText("");
+            rating.setManaged(false);
         } else {
             int intValue = Integer.parseInt(currentRating);
             rating.setText("⭐".repeat(Math.max(0, intValue)));
+            rating.setManaged(true);
         }
         if (person.getPin().getIsPinned()) {
             pin.setText("📌   ");

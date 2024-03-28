@@ -10,6 +10,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="PoochPlanner" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
@@ -23,7 +25,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox styleClass="backdrop">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -32,6 +34,18 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+
+        <StackPane fx:id="titlePlaceholder" styleClass="title">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10"/>
+          </padding>
+          <ImageView fitWidth="90" fitHeight="100" StackPane.alignment="CENTER_RIGHT">
+            <Image url="@/images/pooch.png"/>
+          </ImageView>
+          <Label text="PoochPlanner" styleClass="title-label"/>
+        </StackPane>
+
+
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
