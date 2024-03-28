@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FindStarsLessThanCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.StarsLessThanPredicate;
@@ -102,7 +103,12 @@ public class AddressBookParserTest {
                 FindStarsLessThanCommand.COMMAND_WORD + " 2");
         assertEquals(new FindStarsLessThanCommand(new StarsLessThanPredicate(2)), command);
     }
-
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " major asc");
+        assertEquals(new SortCommand("major", true), command);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

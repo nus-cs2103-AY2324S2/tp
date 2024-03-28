@@ -37,7 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "major" : "Business",
-    "star" : 0,
+    "star" : 3,
     "bolt" : 0,
     "tags" : [ ]
   }, {
@@ -53,7 +53,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "major" : "Math",
-    "star" : 0,
+    "star" : 5,
     "bolt" : 0,
     "tags" : [ ]
   } ]

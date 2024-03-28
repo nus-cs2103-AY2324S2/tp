@@ -20,7 +20,7 @@ import seedu.address.logic.commands.FindStarsLessThanCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortAscendingCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.StarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -73,9 +73,8 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case SortAscendingCommand.COMMAND_WORD:
-            return new SortAscendingCommand();
-
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 

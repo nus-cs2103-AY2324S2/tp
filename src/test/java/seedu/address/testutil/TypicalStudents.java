@@ -59,8 +59,7 @@ public class TypicalStudents {
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withMajor("Business")
-            .withStar(0)
-            .withBolt(0).build();
+            .withStar(3).build();
     public static final Student FIONA = new StudentBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
@@ -73,7 +72,7 @@ public class TypicalStudents {
             .withPhone("9482442")
             .withEmail("anna@example.com")
             .withMajor("Math")
-            .withStar(0)
+            .withStar(5)
             .withBolt(0).build();
 
     // Manually added
