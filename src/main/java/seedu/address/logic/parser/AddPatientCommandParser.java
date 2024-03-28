@@ -8,7 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Set;
+import java.util.logging.*;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Email;
@@ -22,6 +24,8 @@ import seedu.address.model.tag.Tag;
  */
 public class AddPatientCommandParser implements Parser<AddCommand> {
 
+    private static final Logger logger = LogsCenter.getLogger(AddPatientCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -33,6 +37,7 @@ public class AddPatientCommandParser implements Parser<AddCommand> {
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.log(Level.WARNING, "processing error", args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
