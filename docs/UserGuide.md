@@ -300,38 +300,41 @@ Format: `help`
 
 ### Adding an internship: `add`
 
-Adds an internship entry and all the relevant fields
+With any internship manager, it is important to know how to add an internship entry with all the relevant fields. <br>
 
-Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​`
+This command lets you add an internship entry easily!
+
+**Format:** `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​` <br>
 
 * The fields `COMPANY_NAME`, `DESCRIPTION`, `CONTACT_NAME` and `ROLE` allow the use of any text, number and/or spaces
 * The field `STATUS` accepts only the following inputs: `to_apply`, `ongoing`, `rejected`, `accepted`
 * The field `CONTACT_EMAIL` accepts only the format of `<email> @ domain.com`
-* The field `CONTACT_NUMBER` accepts only positive integers and it must be minimally 3 **positive integers** and above
+* The field `CONTACT_NUMBER` accepts only positive integers and it must be minimally 3 **positive** integers and above
   * A **positive integer** refers to 1, 2, 3, …​
 * The field `LOCATION_ENUM` accepts only the following inputs: `remote`, `local`, `overseas`
 
-Now, let us try to add an internship entry.
+**Successful Output After Executing Add:** <br>
+![success-add](images/add/add-success.png)
 
-<div markdown="span" class="alert alert-success">
+**Unsuccessful Output After Executing Add:** <br>
+![success-add](images/add/add-failure.png)
 
-💡 **Try It Out:**<br>
-
-Key in the following command in the CLI: `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
-/phone 90890301 /loc remote /role Software Intern`
-
-Successful output after adding the entry:<br>
-![After successfully adding](./images/tutorial/add.png)
-You can now see your new internship with the details you entered in the **Internship List Display!**
+<div markdown="span" class="alert alert-info">
+ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to add an internship entry !
 </div>
 
-**Common errors:**
-1. If no field prefixes are specified or if there are errors, the command will be rejected with error message:<br>
-   `Invalid Command Prefix!` followed by the format to use and an example for you to refer to or try out
+
+<div markdown="span" class="alert alert-danger">
+⚠️ **Common errors:** <br>
+1. If no field prefixes are specified or if there are errors, the command will be rejected with error message seen above.
+Refer to the format and example displayed along with this message, to help you rectify your errors!
+</div>
 
 ### Deleting an internship: `delete`
 
-Deletes the internship entry with the corresponding index (based on the displayed list at point of deletion)
+With any internship manager, it is important to know how to delete an internship entry with all the relevant fields. <br>
+
+This command lets you delete the internship entry with the corresponding index (based on the displayed list at point of deletion)
 
 Format: `delete INDEX`
 
@@ -339,15 +342,20 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list of internship entries at point of deletion.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-success">
+**Successful Output After Executing Delete:** <br>
+![success-delete](images/delete/delete-success.png)
 
-💡 **Try It Out:**<br>
+**Unsuccessful Output After Executing Delete:** <br>
+![success-failure](images/delete/delete-failure.png)
 
-Key in the following command in the CLI: `delete 2`
+<div markdown="span" class="alert alert-info">
+ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to delete an internship entry !
+</div>
 
-Successful output after deleting the entry:<br>
-![After successfully deleting](./images/tutorial/delete.png)
-The Facebook internship entry has been removed, and is no longer present in your database.
+<div markdown="span" class="alert alert-danger">
+⚠️ **Common errors:** <br>
+1. If a positive integer or an integer not used in the current window/list is entered, the command will be rejected. 
+Refer to the error message displayed for the correct format to use!
 </div>
 
 ### Listing all internships: `list`
