@@ -1,6 +1,7 @@
 package seedu.edulink.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -79,6 +80,8 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Student target, Student editedStudent);
+
+    void saveState();
 
     /**
      * Returns an unmodifiable view of the filtered person list
