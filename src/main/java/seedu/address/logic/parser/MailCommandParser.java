@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.Arrays;
 
 import seedu.address.logic.commands.MailCommand;
@@ -28,7 +30,8 @@ public class MailCommandParser implements Parser<MailCommand> {
 
         for (String keyword : groupKeywords) {
             if (!Group.isValidGroupName(keyword)) {
-                throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, Group.MESSAGE_CONSTRAINTS_KEYWORD));
             }
         }
         return new MailCommand(new GroupContainsKeywordsPredicate(Arrays.asList(groupKeywords)));

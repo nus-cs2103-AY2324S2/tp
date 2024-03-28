@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FilterCommand;
+import seedu.address.model.group.Group;
 import seedu.address.model.group.GroupContainsKeywordsPredicate;
 
 public class FilterCommandParserTest {
@@ -19,6 +20,13 @@ public class FilterCommandParserTest {
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterCommand.MESSAGE_USAGE));
+    }
+
+
+    @Test
+    public void parse_invalidArg_throwsParseException() {
+        assertParseFailure(parser, "TUT", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                Group.MESSAGE_CONSTRAINTS_KEYWORD));
     }
 
     @Test

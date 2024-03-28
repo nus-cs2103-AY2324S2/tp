@@ -158,6 +158,148 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+## Delete a student 
+
+### About
+
+The delete student feature allows TAs to delete an existing student information from the student contact list
+using the command `delete INDEX`.
+
+### How it is implemented
+
+The `delete` command mechanism is facilitated by the `DeleteCommand` and the `DeleteCommandParser`.
+It allows users to delete a student contact from the student contact list.
+It uses the `AddressBook#removePerson(Person key)` which is exposed in the `Model`
+interface as `Model#deletePerson(Person personToDelete)`. Then, the `remove(Person person)` is called on the `UniquePersonList`
+in `AddressBook` to delete the student contact from the list. <br>
+
+A modification from AB3 delete mechanism is that the `delete` command also involves the facilitation of the `AddressBook#deassignPerson(Person persontToDeassign, Group group)`
+which is exposed in the `Model` interface as `Model#deassignPerson(Person person, Group group)`, which result in the call of `Group#deassign(Person person)` to
+deassign the deleted student contact from all previously assigned groups.
+
+#### Parsing input
+
+1. The TA inputs the `delete` command.
+
+2. The `TutorsContactsPro` then preliminary process the input and creates a new `DeleteCommandParser`.
+
+3. The `DeleteCommandParser` then calls the `ParserUtil#parseIndex()` to check for the validity of the `INDEX`.
+   At this stage, if the `INDEX is invalid or absent`, `ParseException` would be thrown.
+
+4. The `DeleteCommandParser` then creates the `DeleteCommand` based on the processed input.
+
+
+#### Command execution
+
+5. The `LogicManager` executes the `DeleteCommand`.
+
+6. The `DeleteCommand` calls the `Model#getFilteredPersonList()` to get the unmodifiable view of the filtered person list to get the target
+   person to delete based on the provided `INDEX`. <br><br> At this stage, `CommandException` would be thrown if the input `INDEX`
+   is invalid (i.e. `INDEX` exceeds the size of the student contact list).
+
+7. The `DeleteCommand` the calls the `Model#deletePerson(Person personToDelete)` to delete the target student contact from the
+   student contact list.
+
+
+#### Displaying of result
+
+8. Finally, the `DeleteCommand` creates a `CommandResult` with a success message and return it to the `LogicManager` to complete the command execution.
+    The GUI would also be updated on this change in the student contact list accordingly.
+
+The following sequence diagram shows how the `delete` mechanism works:
+
+![](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `delete` command:
+
+![](images/DeleteActivityDiagram.png)
+
+
+## Filter Students by Group
+
+#### About
+The filter students by group feature allows TAs to filter and list students in the address book whose group name matches the specified keywords. 
+It helps TAs to quickly find students belonging to specific groups.
+
+#### How it is implemented
+The filtering mechanism is facilitated by the `FilterCommand` and the `FilterCommandParser`. 
+It enables TAs to filter students based on the groups they belong to. It utilizes the `Model` interface to interact with the student contact list.
+
+#### Parsing input
+
+1. The TA inputs the `filter` command along with the group keywords.
+
+2. The TutorsContactsPro then preliminarily processes the input and creates a new `FilterCommandParser`.
+
+3. The `FilterCommandParser` then checks for the validity of the provided group keywords. If the keywords are invalid or absent, a `ParseException` is thrown.
+
+4. The `FilterCommandParser` creates the `FilterCommand` based on the processed input, with a `GroupContainsKeywordsPredicate` to filter students based on the specified groups.
+
+#### Command execution
+
+5. The `LogicManager` executes the `FilterCommand`.
+
+6. The `FilterCommand` calls the `Model#updateFilteredPersonList()` method to update the filtered person list according to the specified group keywords.
+
+#### Displaying results
+
+7. Finally, the `FilterCommand` creates a CommandResult with the list of students matching the specified groups, and returns it to the LogicManager to complete the command execution. 
+The GUI would also be updated accordingly to display the filtered list of students.
+
+The following sequence diagram illustrates how the `filter` mechanism works:
+![](images/FilterSequenceDiagram.png)
+
+
+## Mail Command
+
+### About
+
+The Mail Command feature enables TAs to generate a mailto link containing the email addresses of students filtered based on specified keywords. 
+This link can be used to compose emails to these students directly from the TA's default email client.
+
+### How it is Implemented
+
+The Mail Command feature is implemented using the `MailCommand` class and its corresponding parser, `MailCommandParser`.
+
+#### Command Structure
+
+The user inputs the `mail` command followed by optional keywords specifying groups of students they want to include in the email. 
+If no keywords are provided, the mailto link will include all students in the current list.
+
+#### Parsing Input
+
+1. The `MailCommandParser` parses the input arguments to extract the specified keywords.
+
+2. If no keywords are provided, an empty `MailCommand` is created, which results in the generation of a mailto link for all students.
+
+3. If keywords are provided, the parser validates them to ensure they conform to the expected format. If any keyword is invalid, a `ParseException` is thrown.
+
+4. The `MailCommand` with the appropriate predicate is then created using the `GroupContainsKeywordsPredicate`, which filters the students based on the specified keywords.
+
+#### Command Execution
+
+5. When the `MailCommand` is executed, it updates the filtered person list in the model based on the provided predicate.
+
+6. It then extracts the email addresses of the filtered students from the model.
+
+7. Using these email addresses, it generates a mailto link, concatenating them with semicolons to form a single string.
+
+#### Displaying Result
+
+8. Finally, the generated mailto link is encapsulated in a `CommandResult` object and returned to the logic manager for further handling.
+
+### Summary
+
+The Mail Command feature provides an efficient way for TAs to compose emails to specific groups of students directly from the application. By leveraging the power of filtering, it allows for targeted communication while maintaining simplicity and ease of use.
+
+The following activity diagram illustrates how the `mail` mechanism works:
+![](images/MailActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -274,7 +416,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* A computer science tutor managing students for tutorials
+* A computer science TA (Teaching Assistant) managing students for tutorials
 * has numerous of students to manage in a tutorial slot
 * has to add, list, delete, sort, search students in the app
 * is reasonably comfortable using CLI apps
@@ -290,14 +432,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I want to …​                                | So that I can…​                                                  |
-|----------|----------------|---------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | Tutor          | add new students to the app                 | keep track of their information                |
-| `* * *`  | Tutor          | edit student profiles                       | keep their information up to date.                                                                |
-| `* * *`  | Tutor          | delete students from my class               | track the existing number of students in my tutorial class                             |
-| `* * *`  | Tutor          | list all students in my class(es)           | view all of my students’ details at one glance |
-| `* * *`  | Tutor          | search for specific students using keywords | quickly find relevant information          |
-| `* *`    | new tutor user | be able to access a help window                        | easily seek help for the errors encountered                                           |
+| Priority | As a …​     | I want to …​                                | So that I can…​                                               |
+|----------|-------------|---------------------------------------------|---------------------------------------------------------------|
+| `* * *`  | TA          | add new students to the app                 | keep track of their information                               |
+| `* * *`  | TA          | edit student profiles                       | keep their information up to date.                            |
+| `* * *`  | TA          | delete students from my class               | track the existing number of students in my tutorial class    |
+| `* * *`  | TA          | list all students in my class(es)           | view all of my students’ details at one glance                |
+| `* * *`  | TA          | search for specific students using keywords | quickly find relevant information                             |
+| `* * *`  | TA          | filter students according to their group    | quickly find relevant information                             |
+| `* * *`  | TA          | add a new group                             | keep track of the groups that i teach                         |
+| `* * *`  | TA          | edit an existing group                      | keep information of the groups i teach up to date             |
+| `* * *`  | TA          | delete an existing group                    | track the existing number of groups that i currently teach    |
+| `* * *`  | TA          | generate a mail link                        | conveniently sent an email to the student recipients desired  |
+| `* * *`  | TA          | add a telegram link to each group           | keep track of the telegram groups for each group that i teach |
+| `* *`    | new TA user | be able to access a help window             | easily seek help for the errors encountered                   |
 
 
 
@@ -309,9 +457,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor requests to add a specific student to the list
+3.  TA requests to add a specific student to the list
 4.  System adds the student
 
     Use case ends.
@@ -330,8 +478,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3b. TutorsContactsPro detects that the student already exists on the list.
 
-    * 3b1. TutorsContactsPro informs the tutor that the student already exists on the list.
-    * 3b2. Tutor confirms cancellation of adding the student.
+    * 3b1. TutorsContactsPro informs the TA that the student already exists on the list.
+    * 3b2. TA confirms cancellation of adding the student.
       
       Use case ends.
     
@@ -341,9 +489,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor requests to edits the particulars of the student
+3.  TA requests to edits the particulars of the student
 4.  System records the changes
 
     Use case ends.
@@ -371,9 +519,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor requests to delete a student
+3.  TA requests to delete a student
 4.  System records the changes
 
     Use case ends.
@@ -395,7 +543,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
 
     Use case ends.
@@ -411,9 +559,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Tutor requests to list students
+1.  TA requests to list students
 2.  System shows a list of students
-3.  Tutor finds student(s) by keyword
+3.  TA finds student(s) by keyword
 4.  System shows a list of students matching the keyword
 
     Use case ends.
@@ -433,6 +581,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC06 - Filter students according to their group**
+
+**MSS**
+
+1.  TA requests to list students
+2.  System shows a list of students
+3.  TA filters student(s) by keyword which is the group name desired
+4.  System shows a list of students that belong to the group 
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given keyword is in an incorrect format (e.g., contains special characters not allowed, exceeds maximum length, incorrect group name format).
+
+    * 3a1. TutorsContactsPro shows an error message.
+      Use case resumes at step 2.
+
+* 4a. The list of search results is empty.
+
+  Use case ends.
+
+**Use case: UC07 - Add a group**
+
+**MSS**
+
+1. TA requests to add a specific group 
+2. System adds the group
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The add command parameters are invalid or incomplete.
+
+    * 1a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. TutorsContactsPro detects that the group already exists.
+
+    * 1b1. TutorsContactsPro informs the TA that the group already exists. 
+    * 1b2. TA confirms cancellation of adding the group.
+
+      Use case ends.
+
+
+
+**Use case: UC08 - Edit a group**
+
+**MSS**
+
+1. TA requests to edit the information of the group
+2. System records the changes
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The edit command group name parameter is invalid or incomplete.
+
+    * 1a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC09 - Delete a group**
+
+**MSS**
+
+1. TA requests to delete a student
+2. System records the changes
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given group name parameter is invalid or incomplete.
+
+    * 1a1. TutorsContactsPro shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC010 - Generate mail link**
+
+**MSS**
+
+1.  TA requests generation of mail link
+2.  System shows the mailto link containing emails of specific students recipients
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given group name parameter is invalid.
+
+    Use case resumes at step 1.
+
+**Use case: UC011 - Add a telegram link**
+
+**MSS**
+
+1.  TA requests to add a specific telegram link to a particular group
+2.  System adds the telegram link to the group
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given telegram link is invalid or incomplete.
+
+  Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
@@ -444,7 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. The system should have an uptime of at least 99%, allowing tutors to access student information reliably at any time.
 7. Student important information (i.e name, email, telegram handle, contact number) should be encrypted both in transit and at rest to prevent unauthorized access.
 8. The system should implement secure authentication mechanisms, such as multi-factor authentication, to verify the identity of users.
-9. Tutors should only have access to student information for classes they are assigned to, ensuring data privacy.
+9. TAs should only have access to student information for classes they are assigned to, ensuring data privacy.
 10. The system should be able to scale horizontally to accommodate an increase in the number of users and classes without compromising performance.
 11. Regular backups of the system database should be performed, with a robust disaster recovery plan in place to restore data in case of any unexpected failures or outages.
 
@@ -452,9 +718,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Tutor**: Tutor refers to the person who teaches in a single tutorial group. 
+* **TA**: TA (Teaching Assistant) refers to the person who teaches in a single tutorial/recitation/lab group. 
 * **Student**: Student refers to an individual who attends a tutorial class taught by the tutor.
-* **Tutorial**: Smaller classes in university which allow discussion of lecture content and assignment.
+* **Group**: Smaller classes in university which allow discussion of lecture content and assignment. This consists of tutorial, recitation and labs. 
 * **CLI (Command-Line Interface)**: A text-based interface used to interact with the software by entering commands into a terminal or console window, typically preferred by users who prefer efficiency and automation.
 * **GUI (Graphical User Interface)**: A GUI is a user interface that employs graphical elements such as icons, buttons, and menus for user interaction, providing an intuitive and visually appealing way to navigate and use software.
 
