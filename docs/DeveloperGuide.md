@@ -392,6 +392,52 @@ Sequence diagram for the deletion of a loan:
       principles
       ,and makes the code harder to maintain.
 
+### Loan view command - Wang Junwu
+
+#### Implementation
+
+The `ViewLoanCommand` class handles the viewing of all loans attached to a contact, and executes the command after the
+input is parsed and transformed into an appropriate format.
+The parsing of the command is done by the `ViewLoanCommandParser` class,
+which is responsible for parsing the user input.
+
+The `ViewLoanCommand` class is instantiated in the `ViewLoanCommandParser` class, while the
+`ViewLoanCommandParser` is instantiated in the `AddressBookParser` class. Both classes are instantiated when the user
+enters a `viewloan` command, which needs to be of the format `viewloan INDEX`
+where INDEX is the index of the person whose loans are to be viewed, a positive whole number.
+
+The `ViewLoanCommand` class contains the following fields which can prove to be useful for the user:
+* `targetIndex`: the index of the person whose loans are to be viewed
+* Some string fields that are displayed to the user under different scenarios.
+
+The `ViewLoanCommandParser` class does not contain any fields.
+
+Sequence diagram for the viewing of loans:
+![ViewLoanSequenceDiagram](images/ViewLoanSequenceDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: How the loan list is accessed:
+
+* **Alternative 1 (current choice):** The `ViewLoanCommand.execute()` method sequentially obtains the person list,
+the person, and then the loan list.
+    * Pros: Minimises the layers of methods to follow through.
+    * Cons: May violate the SLAP principle and the Law of Demeter.
+* **Alternative 2:** The `ViewLoanCommand.execute()` method obtains the loan list directly from the `Model`.
+    * Pros: Follows the SLAP principle and the Law of Demeter. Better use of abstraction.
+    * Cons: May result in longer method chains.
+
+##### Aspect: How the command is parsed:
+
+* **Alternative 1 (current choice):** The `ViewLoanCommandParser` class is responsible for parsing the command.
+    * Pros: Follows the Single Responsibility Principle. Simpler to debug.
+    * Cons: May result in more classes.
+* **Alternative 2:** The `AddressBookParser` class is responsible for parsing the command.
+    * Pros: More centralized command parsing.
+    * Cons: May result in the `AddressBookParser` class becoming too large. This also goes against various SWE
+      principles
+      ,and makes the code harder to maintain.
+
 ### Loan view GUI - Kyal Sin Min Thet
 
 #### Implementation
