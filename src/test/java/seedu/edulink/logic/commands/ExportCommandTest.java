@@ -2,6 +2,7 @@ package seedu.edulink.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,16 +35,16 @@ public class ExportCommandTest {
 
         Path exportPath = Paths.get(CsvUtil.FOLDER_PATH + testFileName + CsvUtil.FILE_FORMAT);
         List<String> lines = Files.readAllLines(exportPath);
-        assertEquals(4, lines.size()); // 1 header line + 3 students
+        assertEquals(4, lines.size());
         Files.delete(exportPath);
     }
-
 
     @Test
     public void equals() {
         ExportCommand exportCommand1 = new ExportCommand("test1");
         ExportCommand exportCommand2 = new ExportCommand("test2");
         ExportCommand exportCommand3 = new ExportCommand("test1");
+        ExitCommand exitCommand = new ExitCommand();
 
         // same object -> returns true
         assertEquals(exportCommand1, exportCommand1);
@@ -53,6 +54,8 @@ public class ExportCommandTest {
 
         // different objects, different filename -> returns false
         assertFalse(exportCommand1.equals(exportCommand2));
+
+        assertNotEquals(exportCommand1, exitCommand);
     }
 
     @Test

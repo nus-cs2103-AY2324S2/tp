@@ -40,6 +40,7 @@ public class ExportCommand extends Command {
         return new CommandResult(MESSAGE_EXPORT_SUCCESS + fileName + ".csv");
     }
 
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

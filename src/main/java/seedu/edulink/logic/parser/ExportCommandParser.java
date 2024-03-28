@@ -16,10 +16,12 @@ public class ExportCommandParser implements Parser<ExportCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FILENAME);
 
+
         if (argMultimap.getValue(PREFIX_FILENAME).isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 ExportCommand.MESSAGE_USAGE));
         }
-        return new ExportCommand(argMultimap.getValue(PREFIX_FILENAME).get());
+        String filename = argMultimap.getValue(PREFIX_FILENAME).get();
+        return new ExportCommand(ParserUtil.parseFilename(filename));
     }
 }
