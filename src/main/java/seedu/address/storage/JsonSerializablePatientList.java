@@ -9,52 +9,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.PatientList;
+import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.patient.Patient;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable PatientList that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializablePatientList {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPatient> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializablePatientList} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPatient> persons) {
+    public JsonSerializablePatientList(@JsonProperty("persons") List<JsonAdaptedPatient> persons) {
         this.persons.addAll(persons);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyPatientList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializablePatientList}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializablePatientList(ReadOnlyPatientList source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code PatientList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public PatientList toModelType() throws IllegalValueException {
+        PatientList patientList = new PatientList();
         for (JsonAdaptedPatient jsonAdaptedPatient : persons) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (addressBook.hasPerson(patient)) {
+            if (patientList.hasPerson(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(patient);
+            patientList.addPerson(patient);
         }
-        return addressBook;
+        return patientList;
     }
 
 }

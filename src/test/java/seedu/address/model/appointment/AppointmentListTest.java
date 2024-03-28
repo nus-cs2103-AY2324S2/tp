@@ -26,7 +26,7 @@ public class AppointmentListTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyPatientList_replacesData() {
         AppointmentList newData = getTypicalAppointmentList();
         appointmentList.resetData(newData);
         assertEquals(newData, appointmentList);
@@ -40,12 +40,12 @@ public class AppointmentListTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInPatientList_returnsFalse() {
         assertFalse(appointmentList.hasAppointment(ATTENDED_FIRST_APPOINTMENT));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInPatientList_returnsTrue() {
         appointmentList.addAppointment(ATTENDED_FIRST_APPOINTMENT);
         assertTrue(appointmentList.hasAppointment(ATTENDED_FIRST_APPOINTMENT));
     }

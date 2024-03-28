@@ -7,26 +7,30 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.ReadOnlyAppointmentList;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of PatientList data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private PatientListStorage patientListStorage;
+
+    private AppointmentListStorage appointmentListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code PatientListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(PatientListStorage patientListStorage, AppointmentListStorage appointmentListStorage,
+                          UserPrefsStorage userPrefsStorage) {
+        this.patientListStorage = patientListStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.appointmentListStorage = appointmentListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -47,61 +51,70 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ PatientList methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getPatientListFilePath() {
+        return patientListStorage.getPatientListFilePath();
     }
+
+    @Override
+    public void savePatientList(ReadOnlyPatientList addressBook) throws IOException {
+        savePatientList(addressBook, patientListStorage.getPatientListFilePath());
+    }
+
+    @Override
+    public void savePatientList(ReadOnlyPatientList addressBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write persons to data file: " + filePath);
+        patientListStorage.savePatientList(addressBook, filePath);
+    }
+
+    @Override
+    public Optional<ReadOnlyPatientList> readPatientList() throws DataLoadingException {
+        return readPatientList(patientListStorage.getPatientListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyPatientList> readPatientList(Path filePath) throws DataLoadingException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return patientListStorage.readPatientList(filePath);
+    }
+
+    // ================ AppointmentList methods ==============================
 
     @Override
     public Path getAppointmentListFilePath() {
-        return addressBookStorage.getAppointmentListFilePath();
+        return appointmentListStorage.getAppointmentListFilePath();
     }
 
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
-    }
 
     @Override
     public Optional<ReadOnlyAppointmentList> readAppointmentList() throws DataLoadingException {
-        return readAppointmentList(addressBookStorage.getAppointmentListFilePath());
+        return readAppointmentList(appointmentListStorage.getAppointmentListFilePath());
     }
+
+
 
     @Override
     public Optional<ReadOnlyAppointmentList> readAppointmentList(Path filePath) throws DataLoadingException {
         logger.fine("Attempting to read appointments data from file: " + filePath);
-        return addressBookStorage.readAppointmentList(filePath);
+        return appointmentListStorage.readAppointmentList(filePath);
     }
 
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
-    }
-
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write persons to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
-    }
-
+    /**
+     * @param appointmentList
+     * @throws IOException
+     */
     @Override
     public void saveAppointmentList(ReadOnlyAppointmentList appointmentList) throws IOException {
         // This saves to a different JSON file.
-        saveAppointmentList(appointmentList, addressBookStorage.getAppointmentListFilePath());
+        saveAppointmentList(appointmentList, appointmentListStorage.getAppointmentListFilePath());
     }
 
     @Override
     public void saveAppointmentList(ReadOnlyAppointmentList appointmentList, Path filePath) throws IOException {
         logger.fine("Attempting to write appointments to data file: " + filePath);
-        addressBookStorage.saveAppointmentList(appointmentList, filePath);
+        appointmentListStorage.saveAppointmentList(appointmentList, filePath);
     }
 
 }
