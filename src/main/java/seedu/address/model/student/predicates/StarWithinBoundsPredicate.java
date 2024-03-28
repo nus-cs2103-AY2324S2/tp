@@ -6,7 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.student.Student;
 
 /**
- * Tests that a {@code student}'s {@code Star} is within the bounds specified..
+ * Tests that a {@code student}'s {@code Star} is within the bounds specified.
  */
 public class StarWithinBoundsPredicate implements Predicate<Student> {
     private final String operator;
