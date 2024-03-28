@@ -86,7 +86,7 @@ public class EditStaffCommand extends Command {
 
         Staff editedStaff = createEditedStaff(staffToEdit, editStaffDescriptor);
 
-        if (!staffToEdit.isSamePerson(editedStaff) && model.hasPerson(editedStaff)) {
+        if (staffToEdit.equals(editedStaff)) {
             throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
         }
 

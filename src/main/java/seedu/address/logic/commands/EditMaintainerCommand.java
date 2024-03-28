@@ -85,7 +85,7 @@ public class EditMaintainerCommand extends Command {
 
         Maintainer editedMaintainer = createEditedMaintainer(maintainerToEdit, editMaintainerDescriptor);
 
-        if (!maintainerToEdit.isSamePerson(editedMaintainer) && model.hasPerson(editedMaintainer)) {
+        if (maintainerToEdit.equals(editedMaintainer)) {
             throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
         }
 

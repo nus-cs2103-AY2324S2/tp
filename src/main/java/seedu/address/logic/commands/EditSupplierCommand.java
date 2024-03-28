@@ -87,7 +87,7 @@ public class EditSupplierCommand extends Command {
 
         Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 
-        if (!supplierToEdit.isSamePerson(editedSupplier) && model.hasPerson(editedSupplier)) {
+        if (supplierToEdit.equals(editedSupplier)) {
             throw new CommandException(EditMessages.MESSAGE_EDIT_NO_DIFFERENCE);
         }
 
