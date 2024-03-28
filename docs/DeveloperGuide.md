@@ -476,7 +476,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 <div class="step">2a. AB3 detects that the json file is invalid.</div>
-<div class="sub-step">2a1. AB3 displays a warning and loads an empty asset book.</div>
+<div class="sub-step">2a1. AB3 displays a warning and loads an empty address book.</div>
 <div class="sub-step">Use case ends.</div>
 
 ---
