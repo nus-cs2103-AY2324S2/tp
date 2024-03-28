@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Timeslots {
 
     public static final String MESSAGE_CONSTRAINTS = "Timeslot should be of the format: "
-            + "DayOfWeek StartTime-EndTime, and adhere to the following constraints:"
-            + "1. The DayOfWeek is any day from Monday to Sunday.\n"
-            + "2. StartTime and EndTime include hours and optional minutes in 12-hour format. "
-            + "Minutes, if included, should be separated from hours by a colon. \n"
-            + "For example, 'Saturday 4pm-6pm', 'Tuesday 2:30pm-4:30pm'.\n";
+        + "DayOfWeek StartTime-EndTime, and adhere to the following constraints:"
+        + "1. The DayOfWeek is any day from Monday to Sunday.\n"
+        + "2. StartTime and EndTime include hours and optional minutes in 12-hour format. "
+        + "Minutes, if included, should be separated from hours by a colon. \n"
+        + "For example, 'Saturday 4pm-6pm', 'Tuesday 2:30pm-4:30pm'.\n";
     public static final String VALIDATION_REGEX = "^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) "
-            + "(1[012]|[1-9])(:[0-5][0-9])?(am|pm)-(1[012]|[1-9])(:[0-5][0-9])?(am|pm)$";
+        + "(1[012]|[1-9])(:[0-5][0-9])?(am|pm)-(1[012]|[1-9])(:[0-5][0-9])?(am|pm)$";
 
 
     public final String timeslot;
