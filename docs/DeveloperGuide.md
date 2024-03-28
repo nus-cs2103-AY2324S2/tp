@@ -204,7 +204,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
-Step 5. The user wants to set the course name. He enters the command setcrs CS2103T, causing the course name to appear on the main window's title.
+Step 5. The user wants to set the course name. He enters the command `setcrs CS2103T`, causing the course name to appear on the main window's title.
 
 
 
