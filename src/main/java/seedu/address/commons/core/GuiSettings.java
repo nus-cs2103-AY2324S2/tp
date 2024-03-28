@@ -29,7 +29,7 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
-        theme = Theme.DARKTHEME;
+        theme = Theme.DARK;
     }
 
     /**
@@ -55,7 +55,7 @@ public class GuiSettings implements Serializable {
     }
 
     public Theme getDefaultTheme() {
-        return Theme.DARKTHEME;
+        return Theme.DARK;
     }
 
     public Theme getTheme() {

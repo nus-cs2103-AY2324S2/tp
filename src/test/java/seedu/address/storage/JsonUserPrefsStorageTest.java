@@ -72,7 +72,7 @@ public class JsonUserPrefsStorageTest {
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARKTHEME"));
+        userPrefs.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARK"));
         userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
         return userPrefs;
     }
@@ -103,7 +103,7 @@ public class JsonUserPrefsStorageTest {
     public void saveUserPrefs_allInOrder_success() throws DataLoadingException, IOException {
 
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARKTHEME"));
+        original.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARK"));
 
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
@@ -114,7 +114,7 @@ public class JsonUserPrefsStorageTest {
         assertEquals(original, readBack);
 
         //Try saving when the file exists
-        original.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARKTHEME"));
+        original.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARK"));
         jsonUserPrefsStorage.saveUserPrefs(original);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);

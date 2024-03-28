@@ -52,9 +52,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane bookingListPanelPlaceholder;
 
     @FXML
-    private StackPane commandListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -136,9 +133,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        CommandListPanel commandListPanel = new CommandListPanel();
-        commandListPanelPlaceholder.getChildren().add(commandListPanel.getRoot());
     }
 
     /**
@@ -157,10 +151,10 @@ public class MainWindow extends UiPart<Stage> {
         String styleSheet;
         Theme theme = guiSettings.getTheme();
         switch(theme) {
-        case LIGHTTHEME:
+        case LIGHT:
             styleSheet = "/view/stylesheets/LightTheme.css";
             break;
-        case DARKTHEME:
+        case DARK:
         default:
             styleSheet = "/view/stylesheets/DarkTheme.css";
         }
@@ -243,3 +237,4 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 }
+
