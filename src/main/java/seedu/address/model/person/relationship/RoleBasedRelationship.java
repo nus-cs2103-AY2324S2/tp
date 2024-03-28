@@ -30,6 +30,17 @@ public class RoleBasedRelationship extends Relationship {
         }
         return roles.get(targetPerson);
     }
+    @Override
+    public String getRelativeRelationshipDescriptor(UUID origin) {
+        UUID target = origin.equals(this.person1) ? this.person2 : this.person1;
+        String originString = origin.toString();
+        String targetString = target.toString();
+        String lastFourCharactersOfOriginString = originString.substring(originString.length() - 4);
+        String lastFourCharactersOfTargetString = targetString.substring(targetString.length() - 4);
+        String originRole = getRoleDescriptor(origin);
+        return String.format("(%s) %s %s of %s", relationshipDescriptor, lastFourCharactersOfOriginString,
+                originRole, lastFourCharactersOfTargetString);
+    }
 
     @Override
     public String toString() {

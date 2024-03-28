@@ -2,6 +2,8 @@ package seedu.address.model.person.relationship;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +18,14 @@ public class RelationshipUtil {
     private final ObservableList<Relationship> relationshipsTracker = FXCollections.observableArrayList();
     private final ObservableList<Relationship> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(relationshipsTracker);
+    private class Pair {
+        private UUID uuid;
+        private int relationshipPairIndex;
+        private Pair(UUID uuid, int relationshipPairIndex) {
+            this.uuid = uuid;
+            this.relationshipPairIndex = relationshipPairIndex;
+        }
+    }
 
     /**
      * Adds a new relationship to the tracker.
@@ -114,7 +124,107 @@ public class RelationshipUtil {
         requireAllNonNull(relationships);
         relationshipsTracker.setAll(relationships);
     }
-
+    /**
+     * Performs a breadth-first search (BFS) through the relationships tracker to find a path
+     * of relationship descriptors between two UUIDs, representing the origin and target entities.
+     * This method considers all types of relationships in the search.
+     *
+     * @param origin The UUID of the origin entity from which the search begins.
+     * @param target The UUID of the target entity the search aims to find a path to.
+     * @return a listcontaining the relationship descriptors in the order
+     *         encountered from the origin to the target. If no path exists, returns an empty list.
+     */
+    public ArrayList<String> anySearchDescriptors(UUID origin, UUID target) {
+        ArrayList<String> result = new ArrayList<>();
+        HashSet<UUID> visited = new HashSet<>();
+        Pair[] parent = new Pair[relationshipsTracker.size()];
+        ArrayList<Pair> frontier = new ArrayList<>();
+        frontier.add(new Pair(origin, -1));; //since we came from nowhere
+        visited.add(origin);
+        while (!frontier.isEmpty()) {
+            ArrayList<Pair> nextFrontier = new ArrayList<>();
+            for (Pair currentNode: frontier) {
+                UUID start = currentNode.uuid;
+                for (int i = 0; i < relationshipsTracker.size(); i++) {
+                    Relationship current = relationshipsTracker.get(i);
+                    UUID nextUuid = current.containsUuid(start);
+                    if (nextUuid == null) {
+                        continue;
+                    }
+                    if (nextUuid == target) {
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        int currentIdx = i;
+                        while (currentIdx != -1) {
+                            Pair parentPair = parent[currentIdx];
+                            Relationship edge = relationshipsTracker.get(currentIdx);
+                            result.add(0, edge.getRelativeRelationshipDescriptor(parentPair.uuid));
+                            currentIdx = parentPair.relationshipPairIndex;
+                        }
+                        return result;
+                    }
+                    if (!visited.contains(nextUuid)) {
+                        visited.add(nextUuid);
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        nextFrontier.add(new Pair(nextUuid, i));
+                    }
+                }
+            }
+            frontier = nextFrontier;
+        }
+        return result;
+    }
+    /**
+     * Searches for a path of family relationships between two entities identified by their UUIDs,
+     * specifically considering only those relationships that are instances of FamilyRelationship.
+     * Utilizes a breadth-first search (BFS) strategy to navigate through the relationships tracker.
+     *
+     * @param origin The UUID of the entity from which to start the search.
+     * @param target The UUID of the entity to find a path to, using only family relationships.
+     * @return A list listing the family relationship descriptors from the origin
+     *         to the target, in order encountered. Returns an empty list if no such path exists.
+     */
+    public ArrayList<String> familySearchDescriptors(UUID origin, UUID target) {
+        ArrayList<String> result = new ArrayList<>();
+        HashSet<UUID> visited = new HashSet<>();
+        Pair[] parent = new Pair[relationshipsTracker.size()];
+        ArrayList<Pair> frontier = new ArrayList<>();
+        frontier.add(new Pair(origin, -1));; //since we came from nowhere
+        visited.add(origin);
+        while (!frontier.isEmpty()) {
+            ArrayList<Pair> nextFrontier = new ArrayList<>();
+            for (Pair currentNode: frontier) {
+                UUID start = currentNode.uuid;
+                for (int i = 0; i < relationshipsTracker.size(); i++) {
+                    Relationship current = relationshipsTracker.get(i);
+                    if (!(current instanceof FamilyRelationship)) {
+                        continue;
+                    }
+                    UUID nextUuid = current.containsUuid(start);
+                    if (nextUuid == null) {
+                        continue;
+                    }
+                    if (nextUuid == target) {
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        int currentIdx = i;
+                        while (currentIdx != -1) {
+                            Pair parentPair = parent[currentIdx];
+                            Relationship edge = relationshipsTracker.get(currentIdx);
+                            result.add(0, edge.getRelativeRelationshipDescriptor(parentPair.uuid));
+                            currentIdx = parentPair.relationshipPairIndex;
+                        }
+                        return result;
+                    }
+                    if (!visited.contains(nextUuid)) {
+                        visited.add(nextUuid);
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        nextFrontier.add(new Pair(nextUuid, i));
+                    }
+                }
+            }
+            frontier = nextFrontier;
+        }
+        return result;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {

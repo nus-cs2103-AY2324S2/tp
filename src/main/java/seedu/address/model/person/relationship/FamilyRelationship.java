@@ -5,10 +5,7 @@ import java.util.UUID;
 /**
  * Represents a family relationship between two persons with predefined roles.
  */
-public class FamilyRelationship extends RoleBasedRelationship {
-
-    private String relationshipType;
-
+public abstract class FamilyRelationship extends RoleBasedRelationship {
     /**
      * Creates a new FamilyRelationship with the given UUIDs of the two persons.
      *
@@ -20,11 +17,6 @@ public class FamilyRelationship extends RoleBasedRelationship {
      */
     public FamilyRelationship(UUID person1, UUID person2, String relationshipType, String role1, String role2) {
         super(person1, person2, relationshipType, role1, role2);
-        this.relationshipType = relationshipType;
-    }
-
-    public String getRelationshipType() {
-        return relationshipType;
     }
 }
 
