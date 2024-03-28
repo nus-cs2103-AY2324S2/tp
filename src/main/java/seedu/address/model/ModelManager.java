@@ -137,14 +137,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
-
-    // Shall we deprecate this?
-    @Override
-    public void updateSortedStudentListSortStarsAscending() {
-        Comparator<Student> ascendingComparator = Comparator.comparingInt(Student::getStarCount);
-        sortedStudents.setComparator(ascendingComparator);
-    }
-
     @Override
     public void updateSortedStudentListByField(String field, boolean isAscending) {
         Comparator<Student> comparator;

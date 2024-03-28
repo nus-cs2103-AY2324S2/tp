@@ -171,9 +171,6 @@ public class AddCommandTest {
         public void updateSortedStudentListByField(String value, boolean isAscending) {
             throw new AssertionError("This method should not be called.");
         }
-        public void updateSortedStudentListSortStarsAscending() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**

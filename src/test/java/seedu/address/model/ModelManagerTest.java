@@ -94,25 +94,6 @@ public class ModelManagerTest {
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
-
-    @Test
-    public void updateSortedStudentListSortAscending_sortsStudentsCorrectly() {
-        modelManager.addStudent(ALICE);
-        modelManager.addStudent(BENSON);
-        modelManager.addStudent(CARL);
-
-
-        modelManager.updateSortedStudentListSortStarsAscending();
-
-        assert ALICE.getStarCount() == 5 : "ALICE's stars should be 5";
-        assert BENSON.getStarCount() == 0 : "BENSON's stars should be 0";
-        assert CARL.getStarCount() == 0 : "CARL's stars should be 0";
-
-        // Order should be BENSON, CARL, ALICE in ascending order. Tiebreaking should be the index of student
-        ObservableList<Student> expectedList = FXCollections.observableArrayList(BENSON, CARL, ALICE);
-        assertEquals(expectedList, modelManager.getSortedStudentList());
-    }
-
     @Test
     public void updateSortedPersonListByField_invalidField_throwsException() {
         assertThrows(IllegalArgumentException.class, () ->
