@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_TYP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_TYPE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +23,7 @@ import seedu.address.model.appointment.Appointment;
 
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.
- * Appointment NRICs match those in {@code TypicalPersons}.
+ * Appointment NRICs match those in {@code TypicalPatients}.
  */
 public class TypicalAppointments {
 
@@ -66,7 +66,7 @@ public class TypicalAppointments {
 
     /**
      * Returns an {@code AddressBook} with all the typical
-     * persons and appointments
+     * patients and appointments
      */
     public static AddressBook getTypicalAddressBookWithAppointments() {
         AddressBook ab = getTypicalAddressBook();

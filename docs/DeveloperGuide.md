@@ -103,6 +103,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeletePatientCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePatientCommandParser`) which is executed by the `LogicManager`.
+2. 
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a patient).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -158,7 +159,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Completed\] Add Appointment for a Patient
+### Add Appointment for a Patient
 
 #### Implementation
 
@@ -301,7 +302,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `deletePatient`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Find appointment feature
+### Find Appointment feature
 
 #### Implementation
 
@@ -313,12 +314,12 @@ The implementation will include the following key components:
 2. **Executing Search Queries**: The application will search through the list of appointments stored in the database and identify appointments that match the specified criteria.
 3. **Presenting Search Results**: The matched appointments will be presented to the user in a clear and organized manner, displaying relevant details such as appointment time, date, and associated patient information.
 
-## Example Usage Scenario
+#### Example Usage Scenario
 
 1. **Context**: User wants to find an appointment with a specific NRIC, date, and start time.
 2. **User Input**: The user enters the command `findAppt i/S1234567A d/2024-03-23 from/11:00`.
 
-<puml src="diagrams/FindApptSequeunceDiagram.puml" alt="FindApptSeqDiag" />
+<puml src="diagrams/FindApptSequenceDiagram.puml" alt="FindApptSeqDiag" />
 
 3. **Parsing**: The application parses the user input and extracts the NRIC (`S1234567A`), date (`2024-03-23`), and start time (`11:00`) criteria for the search.
 4. **Search Execution**: The application searches through the list of appointments and identifies appointments that match the specified NRIC, date, and start time criteria.
@@ -329,13 +330,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="250" />
 
-### Design Considerations
+#### Design Considerations
 
-### User Experience
+##### User Experience
 - **Feedback Mechanism**: Provide feedback to the user during the search process to indicate progress and inform them of any issues encountered.
 - **Support for Multiple Criteria**: Allow users to specify multiple search criteria (e.g., any combination of NRIC, date, start time) to enable more precise searches.
 
-### Error Handling
+##### Error Handling
 - **Invalid Input Handling**: Implement robust error handling mechanisms to handle cases where users provide invalid or incomplete search criteria.
 - **No Matching Results**: Handle scenarios where no appointments match the specified criteria gracefully, providing informative feedback to the user.
 
@@ -442,10 +443,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  CLInic shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  CLInic deletes the person
+1.  User requests to list patients
+2.  CLInic shows a list of patients
+3.  User requests to delete a specific patient in the list
+4.  CLInic deletes the patient
 
     Use case ends.
 
@@ -607,6 +608,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Deleting a patient
+
 
 1. Deleting a patient while all persons are being shown
 

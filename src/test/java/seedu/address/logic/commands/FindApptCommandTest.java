@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.model.appointment.Time.isValidTime;
-import static seedu.address.model.person.Nric.isValidNric;
+import static seedu.address.model.patient.Nric.isValidNric;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointmentViews.ALICE_APPT_VIEW;
 import static seedu.address.testutil.TypicalAppointmentViews.ALICE_APPT_VIEW_1;
@@ -33,7 +33,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.appointment.Time;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommand}.

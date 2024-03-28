@@ -25,7 +25,7 @@ import seedu.address.commons.core.date.Date;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class UnmarkCommandParserTest {

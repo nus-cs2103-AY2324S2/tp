@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_VIEWS;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
@@ -17,7 +17,7 @@ import seedu.address.model.appointment.AppointmentType;
 import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
 * Unmarks an existing appointment in the CLInic as not completed.
@@ -27,21 +27,22 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmark the appointment of the person identified as not completed"
+            + ": Unmark the appointment of the patient identified as not completed"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START_TIME "
             + PREFIX_END_TIME + "END_TIME";
 
-    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Appointment successfully unmarked as not seen: %1$s";
+    public static final String MESSAGE_UNMARK_APPOINTMENT_SUCCESS =
+            "Appointment successfully unmarked as not seen: %1$s";
 
     private final Nric nric;
     private final Date date;
     private final TimePeriod timePeriod;
 
     /**
-     * @param nric nric of the Appointment to be identified
+     * @param nric nric of the Patient to be identified
      * @param date date of the existing Appointment to be specified
      * @param timePeriod timePeriod of the existing Appointment to be marked
      */
@@ -72,8 +73,8 @@ public class UnmarkCommand extends Command {
 
         model.setAppointment(appt, newAppt);
 
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
-        return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS, Messages.format(newAppt)));
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_VIEWS);
+        return new CommandResult(String.format(MESSAGE_UNMARK_APPOINTMENT_SUCCESS, Messages.format(newAppt)));
     }
 
     @Override

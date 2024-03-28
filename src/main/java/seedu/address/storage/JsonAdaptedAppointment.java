@@ -11,7 +11,7 @@ import seedu.address.model.appointment.Mark;
 import seedu.address.model.appointment.Note;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.appointment.TimePeriod;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * Jackson-friendly version of {@link Appointment}.

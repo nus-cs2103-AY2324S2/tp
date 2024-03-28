@@ -33,7 +33,7 @@ public class MarkCommandTest {
         );
 
         // Expected message after successful mark
-        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_APPOINTMENT_SUCCESS,
                 Messages.format(ALICE_APPT));
 
         assertCommandSuccess(markCommand, model, expectedMessage, model);

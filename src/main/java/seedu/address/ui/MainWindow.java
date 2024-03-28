@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
     private DayViewListPanel dayViewListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -48,7 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane patientListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -122,8 +122,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getFilteredAppointmentViewList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList(), logic.getFilteredAppointmentViewList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         dayViewListPanel = new DayViewListPanel(logic.getFilteredAppointmentDayViewList());
 
@@ -173,8 +173,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowDayView() {
-        personListPanelPlaceholder.getChildren().remove(0);
-        personListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
+        patientListPanelPlaceholder.getChildren().remove(0);
+        patientListPanelPlaceholder.getChildren().add(dayViewListPanel.getRoot());
         currentView = ViewMode.DAY;
         dayViewButton.setSelected(true);
     }
@@ -184,8 +184,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowOverallView() {
-        personListPanelPlaceholder.getChildren().remove(0);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanelPlaceholder.getChildren().remove(0);
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
         currentView = ViewMode.OVERALL;
         overallViewButton.setSelected(true);
     }

@@ -12,8 +12,8 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniquePatientList
+Class Patient
 Class Nric
 Class DateOfBirth
 Class Address
@@ -48,18 +48,18 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Nric
-Person *--> DateOfBirth
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniquePatientList
+UniquePatientList --> "~* all" Patient
+Patient *--> Name
+Patient *--> Nric
+Patient *--> DateOfBirth
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
+Patient *--> "*" Tag
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Patient -[hidden]up--> I
+UniquePatientList -[hidden]right-> I
 
 Name -[hidden]right-> Nric
 Nric -[hidden]right-> DateOfBirth
@@ -86,6 +86,6 @@ TimePeriod -[hidden]right-> AppointmentType
 AppointmentType -[hidden]right-> Note
 
 
-ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Patient
 ModelManager --> "~* filtered" Appointment
 @enduml

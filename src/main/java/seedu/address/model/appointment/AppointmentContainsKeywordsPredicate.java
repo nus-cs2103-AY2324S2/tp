@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.date.Date;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * Tests that a {@code Appointment}'s {@code NRIC}, {@code Date}, {@code Time} matches any of the filters given.

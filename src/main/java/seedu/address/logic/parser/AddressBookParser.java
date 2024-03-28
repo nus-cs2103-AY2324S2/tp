@@ -8,16 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddAppCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CancelAppCommand;
+import seedu.address.logic.commands.AddApptCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.DeleteApptCommand;
+import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindApptCommand;
-import seedu.address.logic.commands.FindPersonCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
@@ -59,17 +59,17 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-        case AddCommand.COMMAND_WORD_ALT:
-            return new AddCommandParser().parse(arguments);
+        case AddPatientCommand.COMMAND_WORD:
+        case AddPatientCommand.COMMAND_WORD_ALT:
+            return new AddPatientCommandParser().parse(arguments);
 
-        case EditPersonCommand.COMMAND_WORD:
-        case EditPersonCommand.COMMAND_WORD_ALT:
-            return new EditPersonCommandParser().parse(arguments);
+        case EditPatientCommand.COMMAND_WORD:
+        case EditPatientCommand.COMMAND_WORD_ALT:
+            return new EditPatientCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-        case DeleteCommand.COMMAND_WORD_ALT:
-            return new DeleteCommandParser().parse(arguments);
+        case DeletePatientCommand.COMMAND_WORD:
+        case DeletePatientCommand.COMMAND_WORD_ALT:
+            return new DeletePatientCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -78,9 +78,9 @@ public class AddressBookParser {
         case FindApptCommand.COMMAND_WORD_ALT:
             return new FindApptCommandParser().parse(arguments);
 
-        case FindPersonCommand.COMMAND_WORD:
-        case FindPersonCommand.COMMAND_WORD_ALT:
-            return new FindPersonCommandParser().parse(arguments);
+        case FindPatientCommand.COMMAND_WORD:
+        case FindPatientCommand.COMMAND_WORD_ALT:
+            return new FindPatientCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -91,13 +91,13 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case AddAppCommand.COMMAND_WORD:
-        case AddAppCommand.COMMAND_WORD_ALT:
-            return new AddAppCommandParser().parse(arguments);
+        case AddApptCommand.COMMAND_WORD:
+        case AddApptCommand.COMMAND_WORD_ALT:
+            return new AddApptCommandParser().parse(arguments);
 
-        case CancelAppCommand.COMMAND_WORD:
-        case CancelAppCommand.COMMAND_WORD_ALT:
-            return new CancelAppCommandParser().parse(arguments);
+        case DeleteApptCommand.COMMAND_WORD:
+        case DeleteApptCommand.COMMAND_WORD_ALT:
+            return new DeleteApptCommandParser().parse(arguments);
 
         case SwitchViewCommand.COMMAND_WORD:
             return new SwitchViewCommand();

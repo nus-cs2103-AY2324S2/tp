@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalAppointments.AMY_APPT;
 import static seedu.address.testutil.TypicalAppointments.BENSON_APPT;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentView;
 
 /**
- * A utility class containing a list of {@code AppointmentView} objects to be used in tests.
- * Appointment NRICs match those in {@code TypicalPersons}.
+ * A utility class containing a list of {@code Appointment} objects to be used in tests.
+ * Appointment NRICs match those in {@code TypicalPatients}.
  */
 public class TypicalAppointmentViews {
     //set up appointmentViews
@@ -46,7 +46,7 @@ public class TypicalAppointmentViews {
 
     /**
      * Returns an {@code AddressBook} with all the typical
-     * persons and appointments
+     * patients and appointments
      */
     public static AddressBook getTypicalAddressBookWithAppointmentViews() {
         AddressBook ab = getTypicalAddressBook();

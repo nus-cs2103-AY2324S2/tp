@@ -8,9 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.patient.Nric;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.UniquePatientList;
 
 
 /**
@@ -19,7 +19,7 @@ import seedu.address.model.person.UniquePersonList;
  * {@code AppointmentView#isSameAppointment(AppointmentView)}.
  * As such, adding and updating of appointments uses AppointmentView#isSameAppointment(AppointmentView) for equality
  * to ensure that the appointmentView being added or updated is unique and not duplicated.
- * However, the removal of an appointmentView uses Person#equals(Object) to ensure that the
+ * However, the removal of an appointmentView uses Patient#equals(Object) to ensure that the
  * appointmentView with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -33,19 +33,19 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
             FXCollections.unmodifiableObservableList(internalList);
 
 
-    public void setAppointmentViews(UniquePersonList personList, List<Appointment> appointmentList) {
-        requireAllNonNull(personList, appointmentList);
+    public void setAppointmentViews(UniquePatientList patientList, List<Appointment> appointmentList) {
+        requireAllNonNull(patientList, appointmentList);
         internalList.clear();
 
-        for (Person person : personList) {
-            Nric personNric = person.getNric();
+        for (Patient patient : patientList) {
+            Nric patientNric = patient.getNric();
 
             for (Appointment appointment : appointmentList) {
                 Nric appointmentNric = appointment.getNric();
 
                 // Check if the NRICs match
-                if (personNric.equals(appointmentNric)) {
-                    AppointmentView appointmentView = new AppointmentView(person.getName(), appointment);
+                if (patientNric.equals(appointmentNric)) {
+                    AppointmentView appointmentView = new AppointmentView(patient.getName(), appointment);
                     internalList.add(appointmentView);
                 }
             }
@@ -54,19 +54,19 @@ public class AppointmentViewList implements Iterable<AppointmentView> {
     }
 
 
-    public void setAppointmentViews(UniquePersonList personList, AppointmentList appointmentList) {
-        requireAllNonNull(personList, appointmentList);
+    public void setAppointmentViews(UniquePatientList patientList, AppointmentList appointmentList) {
+        requireAllNonNull(patientList, appointmentList);
         internalList.clear();
 
-        for (Person person : personList) {
-            Nric personNric = person.getNric();
+        for (Patient patient : patientList) {
+            Nric patientNric = patient.getNric();
 
             for (Appointment appointment : appointmentList) {
                 Nric appointmentNric = appointment.getNric();
 
                 // Check if the NRICs match
-                if (personNric.equals(appointmentNric)) {
-                    AppointmentView appointmentView = new AppointmentView(person.getName(), appointment);
+                if (patientNric.equals(appointmentNric)) {
+                    AppointmentView appointmentView = new AppointmentView(patient.getName(), appointment);
                     internalList.add(appointmentView);
                 }
             }

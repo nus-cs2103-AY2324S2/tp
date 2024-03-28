@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.ALICE_APPT;
 import static seedu.address.testutil.TypicalAppointments.BOB_APPT;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPatients.ALICE;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.patient.UniquePatientList;
 
 public class AppointmentViewListTest {
 
@@ -32,14 +32,14 @@ public class AppointmentViewListTest {
 
     @Test
     public void setAppointmentViews_nonEmptyLists_success() {
-        UniquePersonList personList = new UniquePersonList();
+        UniquePatientList patientList = new UniquePatientList();
         AppointmentList appointmentList = new AppointmentList();
-        personList.add(ALICE);
+        patientList.add(ALICE);
         appointmentList.add(ALICE_APPT);
 
-        appointmentListView.setAppointmentViews(personList, appointmentList);
+        appointmentListView.setAppointmentViews(patientList, appointmentList);
 
-        assertEquals(personList.asUnmodifiableObservableList().size(),
+        assertEquals(patientList.asUnmodifiableObservableList().size(),
             appointmentListView.asUnmodifiableObservableList().size());
         assertEquals(appointmentList.asUnmodifiableObservableList().size(),
             appointmentListView.asUnmodifiableObservableList().size());
@@ -48,33 +48,33 @@ public class AppointmentViewListTest {
     }
 
     @Test
-    public void setAppointmentViews_emptyPersonList_success() {
-        UniquePersonList personList = new UniquePersonList();
+    public void setAppointmentViews_emptyPatientList_success() {
+        UniquePatientList patientList = new UniquePatientList();
         AppointmentList appointmentList = new AppointmentList();
         appointmentList.add(ALICE_APPT);
 
-        appointmentListView.setAppointmentViews(personList, appointmentList);
+        appointmentListView.setAppointmentViews(patientList, appointmentList);
         assertTrue(appointmentListView.asUnmodifiableObservableList().isEmpty());
     }
 
     @Test
     public void setAppointmentViews_emptyAppointmentList_success() {
-        UniquePersonList personList = new UniquePersonList();
+        UniquePatientList patientList = new UniquePatientList();
         AppointmentList appointmentList = new AppointmentList();
-        personList.add(ALICE);
+        patientList.add(ALICE);
 
-        appointmentListView.setAppointmentViews(personList, appointmentList);
+        appointmentListView.setAppointmentViews(patientList, appointmentList);
         assertTrue(appointmentListView.asUnmodifiableObservableList().isEmpty());
     }
 
     @Test
     public void setAppointmentViews_noMatches_success() {
-        UniquePersonList personList = new UniquePersonList();
+        UniquePatientList patientList = new UniquePatientList();
         AppointmentList appointmentList = new AppointmentList();
-        personList.add(ALICE);
+        patientList.add(ALICE);
         appointmentList.add(BOB_APPT);
 
-        appointmentListView.setAppointmentViews(personList, appointmentList);
+        appointmentListView.setAppointmentViews(patientList, appointmentList);
         assertTrue(appointmentListView.asUnmodifiableObservableList().isEmpty());
     }
 

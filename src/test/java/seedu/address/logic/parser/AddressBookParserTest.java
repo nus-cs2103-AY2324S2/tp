@@ -12,27 +12,26 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddAppCommand;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddApptCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditPersonCommand;
-import seedu.address.logic.commands.EditPersonCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.DeletePatientCommand;
+import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindPersonCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SwitchViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.NricContainsMatchPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.NricContainsMatchPredicate;
+import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.AppointmentUtil;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
+import seedu.address.testutil.PatientBuilder;
+import seedu.address.testutil.PatientUtil;
 
 public class AddressBookParserTest {
 
@@ -40,16 +39,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Patient patient = new PatientBuilder().build();
+        AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
+        assertEquals(new AddPatientCommand(patient), command);
     }
 
     @Test
     public void parseCommand_appApp() throws Exception {
         Appointment appointment = new AppointmentBuilder().build();
-        AddAppCommand command = (AddAppCommand) parser.parseCommand(AppointmentUtil.getAddAppCommand(appointment));
-        assertEquals(new AddAppCommand(appointment), command);
+        AddApptCommand command = (AddApptCommand) parser.parseCommand(AppointmentUtil.getAddAppCommand(appointment));
+        assertEquals(new AddApptCommand(appointment), command);
     }
 
     @Test
@@ -60,20 +59,20 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        Person person = new PersonBuilder().build();
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + person.getNric());
+        Patient patient = new PatientBuilder().build();
+        DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
+                DeletePatientCommand.COMMAND_WORD + " " + patient.getNric());
 
-        assertEquals(new DeleteCommand(person.getNric()), command);
+        assertEquals(new DeletePatientCommand(patient.getNric()), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
-                + person.getNric() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditPersonCommand(person.getNric(), descriptor), command);
+        Patient patient = new PatientBuilder().build();
+        EditPatientCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
+        EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
+                + patient.getNric() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
+        assertEquals(new EditPatientCommand(patient.getNric(), descriptor), command);
     }
 
     @Test
@@ -85,14 +84,14 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindPersonCommand command = (FindPersonCommand) parser.parseCommand(
-                FindPersonCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindPersonCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindPatientCommand command = (FindPatientCommand) parser.parseCommand(
+                FindPatientCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPatientCommand(new NameContainsKeywordsPredicate(keywords)), command);
 
         String keyword = "foo";
-        command = (FindPersonCommand) parser.parseCommand(
-                FindPersonCommand.COMMAND_WORD + " i/" + keyword);
-        assertEquals(new FindPersonCommand(new NricContainsMatchPredicate(keyword)), command);
+        command = (FindPatientCommand) parser.parseCommand(
+                FindPatientCommand.COMMAND_WORD + " i/" + keyword);
+        assertEquals(new FindPatientCommand(new NricContainsMatchPredicate(keyword)), command);
     }
 
     @Test
@@ -110,8 +109,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addApp() throws Exception {
         Appointment appointment = new AppointmentBuilder().build();
-        AddAppCommand command = (AddAppCommand) parser.parseCommand(AppointmentUtil.getAddAppCommand(appointment));
-        assertEquals(new AddAppCommand(appointment), command);
+        AddApptCommand command = (AddApptCommand) parser.parseCommand(AppointmentUtil.getAddAppCommand(appointment));
+        assertEquals(new AddApptCommand(appointment), command);
     }
 
     @Test

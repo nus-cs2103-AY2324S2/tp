@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.AppointmentView;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of patients.
  */
 public class DayViewListPanel extends UiPart<Region> {
     private static final String FXML = "DayViewListPanel.fxml";
@@ -21,7 +21,7 @@ public class DayViewListPanel extends UiPart<Region> {
     private ListView<AppointmentView> dayViewListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
     public DayViewListPanel(ObservableList<AppointmentView> dayViewList) {
         super(FXML);

@@ -33,7 +33,7 @@ public class UnmarkCommandTest {
         );
 
         // Expected message after successful unmark
-        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_APPOINTMENT_SUCCESS,
                 Messages.format(ALICE_APPT_TRUE));
 
         assertCommandSuccess(unmarkCommand, model, expectedMessage, model);

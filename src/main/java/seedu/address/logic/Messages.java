@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Container for user visible messages.
@@ -16,8 +16,8 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "The appointment provided is not found in the system";
-    public static final String MESSAGE_PERSON_NRIC_NOT_FOUND = "The NRIC provided is not found in the system";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_PATIENT_NRIC_NOT_FOUND = "The NRIC provided is not found in the system";
+    public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -36,23 +36,23 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code patient} for display to the user.
      */
-    public static String format(Person person) {
+    public static String format(Patient patient) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append(patient.getName())
                 .append("; NRIC: ")
-                .append(person.getNric())
+                .append(patient.getNric())
                 .append("; Date of Birth: ")
-                .append(person.getDob())
+                .append(patient.getDob())
                 .append("; Phone: ")
-                .append(person.getPhone())
+                .append(patient.getPhone())
                 .append("; Email: ")
-                .append(person.getEmail())
+                .append(patient.getEmail())
                 .append("; Address: ")
-                .append(person.getAddress())
+                .append(patient.getAddress())
                 .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+        patient.getTags().forEach(builder::append);
         return builder.toString();
     }
 

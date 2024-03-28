@@ -95,6 +95,7 @@ Shorthand: `ap n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…�
 <box type="tip" seamless>
 
 **Tip:** A patient must have a unique NRIC in CLInic.
+
 </box>
 
 Examples:
@@ -218,7 +219,7 @@ Marks an appointment from the address book.
 
 Format: `mark i/ NRIC d/ DATE /from START_TIME /to END_TIME`
 
-* Marks an appointment for the person with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
+* Marks an appointment for the patient with specified `NRIC`, on `DATE` from `START_TIME` to `END_TIME`
 * Appointment with the following details **must exist within database**.
 
 Examples:
@@ -308,7 +309,6 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
 | Action            | Format, Examples                                                                                                                                                                                 |
 |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AddPatient**    | `addPatient n/NAME i/NRIC b/DOB p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/John Doe i/T0123456A b/2001-05-02 p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
