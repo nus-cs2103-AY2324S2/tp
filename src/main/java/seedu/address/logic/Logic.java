@@ -7,7 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCourseName;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +24,15 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Returns the autocomplete text based on the input.
+     *
+     * @param commandText The input as entered by the user.
+     * @return the autocomplete text to be appended to the input.
+     * @see seedu.address.logic.autocomplete.AutoComplete#getAutoComplete(String)
+     */
+    String autoComplete(String commandText);
 
     /**
      * Returns the AddressBook.
@@ -47,4 +58,16 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the CourseName.
+     *
+     * @see Model#getCourseName()
+     */
+    ReadOnlyCourseName getCourseName();
+
+    /**
+     * Returns the user prefs' courseName file path.
+     */
+    Path getCourseNameFilePath();
 }

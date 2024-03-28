@@ -10,11 +10,14 @@ UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
 
 UniqueTagList -right-> "*" Tag
+UniqueWeekNumberList -right-> "*" WeekNumber
 UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
+Person -up-> "*" WeekNumber
 
 Person *--> Name
+Person *--> NusNetId
 Person *--> Phone
 Person *--> Email
 Person *--> Address

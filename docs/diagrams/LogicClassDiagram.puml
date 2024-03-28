@@ -12,9 +12,11 @@ Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
-
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
+
+package "Commands Utility Classes" as CommandsUtil {
+}
 }
 
 package Model {
@@ -30,6 +32,7 @@ HiddenOutside ..> Logic
 LogicManager .right.|> Logic
 LogicManager -right->"1" ParserClasses
 ParserClasses ..> XYZCommand : <<create>>
+XYZCommand .down.> CommandsUtil
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : <<call>>

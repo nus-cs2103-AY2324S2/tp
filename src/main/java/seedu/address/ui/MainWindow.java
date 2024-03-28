@@ -1,21 +1,30 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CourseName;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyCourseName;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.Storage;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -25,12 +34,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    protected Storage storage;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
+
+
 
     private Stage primaryStage;
     private Logic logic;
-
-    // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -50,15 +61,25 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+
+
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, Model model, Storage storage) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.storage = storage;
+
+        this.loadInitialCourseNameAndSetTitle();
+
+        model.courseCodeProperty().addListener((obs, oldVal, newVal) -> {
+            Platform.runLater(() -> setWindowTitle("Course:" + newVal));
+        });
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -72,8 +93,42 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
+    /**
+     * Sets the title of the application window.
+     * @param title The title to set for the window.
+     */
+    private void setWindowTitle(String title) {
+        primaryStage.setTitle(title);
+    }
+
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    /**
+     * Loads the initial course name from the storage and sets it as the window title of the given stage.
+     * This method attempts to read the course name from a persistent storage. If the course name is not present,
+     * it logs the creation of a new course data file and uses a default or sample course name. In case of any errors
+     * during the loading process, it logs the error and uses a fallback course name.
+     */
+    private void loadInitialCourseNameAndSetTitle() {
+        ReadOnlyCourseName initialCourseNameData;
+        try {
+            Optional<ReadOnlyCourseName> courseNameOptional = storage.readCourse();
+
+            if (courseNameOptional.isEmpty()) {
+                logger.info("Creating a new course data file " + storage.getCourseNameFilePath()
+                        + " populated with a course.");
+            }
+
+            initialCourseNameData = courseNameOptional.orElseGet(SampleDataUtil::getSampleCourseName);
+        } catch (DataLoadingException e) {
+            logger.warning("Error loading course name data");
+            initialCourseNameData = new CourseName(); // Default or fallback course name
+        }
+
+        // Set the initial window title with the loaded course name.
+        setWindowTitle("Course: " + initialCourseNameData.getCourse().toString());
     }
 
     /**
@@ -116,10 +171,14 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        // Use preference height to prevent children from overflowing.
+        resultDisplayPlaceholder.setMaxHeight(Region.USE_PREF_SIZE);
+        resultDisplayPlaceholder.setMinHeight(Region.USE_PREF_SIZE);
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, this::autoComplete);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -175,6 +234,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            CommandHistory commandHistory = CommandHistory.getInstance();
+            commandHistory.appendCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -192,5 +253,12 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Auto completes the command and returns the text to append to the input.
+     */
+    private String autoComplete(String commandText) {
+        return logic.autoComplete(commandText);
     }
 }

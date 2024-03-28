@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.weeknumber.WeekNumber;
 
 /**
  * Represents a Person in the address book.
@@ -20,20 +21,39 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final NusNet nusNet;
 
     // Data fields
     private final Address address;
+    private final Set<WeekNumber> attendance = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, NusNet nusNet,
+                  Address address, Set<Tag> tags) {
+        requireAllNonNull(name, nusNet, attendance, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.nusNet = nusNet;
         this.address = address;
+        this.tags.addAll(tags);
+    }
+    /**
+     * Every field must be present and not null. Alternate constructor to instantiate a person with
+     * an existing attendance.
+     */
+    public Person(Name name, Phone phone, Email email, NusNet nusNet,
+                  Address address, Set<WeekNumber> attendance, Set<Tag> tags) {
+        requireAllNonNull(name, nusNet, attendance, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.nusNet = nusNet;
+        this.address = address;
+        this.attendance.addAll(attendance);
         this.tags.addAll(tags);
     }
 
@@ -49,8 +69,20 @@ public class Person {
         return email;
     }
 
+    public NusNet getNusNet() {
+        return nusNet;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    /**
+     * Returns an immutable set of Week Numbers, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<WeekNumber> getAttendance() {
+        return Collections.unmodifiableSet(attendance);
     }
 
     /**
@@ -62,7 +94,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nusnet id.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,8 +102,13 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        if (otherPerson == null) {
+            return false;
+        }
+
+
+        // NUSNET is used as the unique identifier for a person
+        return otherPerson.getNusNet().equals(this.getNusNet());
     }
 
     /**
@@ -93,14 +130,16 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && nusNet.equals(otherPerson.nusNet)
                 && address.equals(otherPerson.address)
+                && attendance.equals(otherPerson.attendance)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, nusNet, address, attendance, tags);
     }
 
     @Override
@@ -109,7 +148,9 @@ public class Person {
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
+                .add("nusNet", nusNet)
                 .add("address", address)
+                .add("attendance", attendance)
                 .add("tags", tags)
                 .toString();
     }

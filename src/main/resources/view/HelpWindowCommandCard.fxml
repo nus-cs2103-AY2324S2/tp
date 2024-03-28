@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<VBox fx:id="helpMessageCard" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@HelpWindowCommandCard.css" />
+  </stylesheets>
+  <children>
+    <Label fx:id="commandWord" styleClass="cell_big_label" text="\$commandWord" >
+      <padding>
+        <Insets bottom="5.0"/>
+      </padding>
+    </Label>
+    <Label fx:id="messageUsage" styleClass="cell_small_label" text="\$messageUsage" />
+  </children>
+  <opaqueInsets>
+    <Insets top="10.0" right="10.0" bottom="10.0" left="15.0" />
+  </opaqueInsets>
+  <padding>
+    <Insets top="10.0" right="10.0" bottom="10.0" left="15.0" />
+  </padding>
+</VBox>
