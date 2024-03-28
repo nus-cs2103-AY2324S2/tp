@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,7 +25,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * @see Person#isSamePerson(Person)
  */
 @JsonDeserialize(using = UniquePersonListDeserializer.class)
-public class UniquePersonList implements Iterable<Person> {
+public class UniquePersonList {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
 
@@ -108,11 +107,6 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     @Override
-    public Iterator<Person> iterator() {
-        return internalList.iterator();
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -150,4 +144,5 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
 }

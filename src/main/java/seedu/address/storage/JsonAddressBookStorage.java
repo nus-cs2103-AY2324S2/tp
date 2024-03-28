@@ -20,6 +20,7 @@ import seedu.address.storage.exceptions.StorageException;
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
+
     public static final String FILE_OPS_ERROR_FORMAT = "Could not save data due to the following error: %s";
 
     public static final String FILE_OPS_PERMISSION_ERROR_FORMAT =

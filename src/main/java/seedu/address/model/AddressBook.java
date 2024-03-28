@@ -20,6 +20,7 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
+
     @JsonIgnore
     public static final String MESSAGE_UNDO_STACK_EMPTY = "There are no previous AddressBook states to return to.";
     @JsonIgnore
@@ -211,4 +212,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

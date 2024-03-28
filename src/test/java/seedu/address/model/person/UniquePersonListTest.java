@@ -169,7 +169,18 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void equals() {
+        UniquePersonList ul = new UniquePersonList();
+        ul.setPersons(List.of(ALICE));
+        assertFalse(ul.equals(null));
+
+        assertTrue(ul.equals(ul));
+        assertEquals(ul.hashCode(), ul.hashCode());
+    }
+
+    @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
+
 }

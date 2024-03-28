@@ -103,4 +103,5 @@ public class Assets implements Field {
     public int hashCode() {
         return assets.hashCode();
     }
+
 }

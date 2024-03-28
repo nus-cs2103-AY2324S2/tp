@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.model.util.SampleDataUtil.getSampleAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -82,7 +83,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void readInitialAddressBook_noDataFile_sampleAddressBook() {
+    public void readInitialAddressBook_noDataFile_sampleAddressBook() throws DataLoadingException {
         addressBookStorage = new JsonAddressBookStorage(Paths.get("unavailable"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
         ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
@@ -90,15 +91,14 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void readInitialAddressBook_corruptedDataFile_emptyAddressBook() {
+    public void readInitialAddressBook_corruptedDataFile_throwsDataLoadingException() {
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage) {
             @Override
             public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
-                throw new DataLoadingException(null);
+                throw new DataLoadingException("");
             }
         };
-        ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
-        assertEquals(new AddressBook(), new AddressBook(retrieved));
+        assertThrows(DataLoadingException.class, () -> storageManager.readInitialAddressBook());
     }
 
 }

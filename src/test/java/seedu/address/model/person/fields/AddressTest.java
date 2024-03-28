@@ -35,23 +35,23 @@ public class AddressTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void of_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Address.of((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsIllegalArgumentException() {
+    public void of_invalidValue_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Address.of(INVALID_ADDRESS));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void of_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, Address.of(VALID_ADDRESS));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void of_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, Address.of(addressWithWhitespace));
@@ -62,10 +62,13 @@ public class AddressTest {
         Address address = new Address("Valid Address");
 
         // same values -> returns true
-        assertTrue(address.equals(new Address("Valid Address")));
+        Address address2 = new Address("Valid Address");
+        assertTrue(address.equals(address2));
+        assertEquals(address.hashCode(), address2.hashCode());
 
         // same object -> returns true
         assertTrue(address.equals(address));
+        assertEquals(address.hashCode(), address.hashCode());
 
         // null -> returns false
         assertFalse(address.equals(null));
@@ -74,7 +77,8 @@ public class AddressTest {
         assertFalse(address.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(address.equals(new Address("Other Valid Address")));
+        Address otherAddress = new Address("Other Valid Address");
+        assertFalse(address.equals(otherAddress));
     }
 
 }

@@ -19,6 +19,7 @@ import seedu.address.storage.exceptions.StorageException;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -62,4 +63,5 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
 }

@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertParseFailure;
 import static seedu.address.logic.commands.EditAssetCommand.MESSAGE_INVALID_ASSET_NAME;
@@ -110,6 +112,18 @@ public class EditAssetCommandTest {
     public void equals_differentObject_returnsFalse() {
         EditAssetCommand editCommand = new EditAssetCommand(asset1, asset2);
         assertNotEquals(editCommand, new Object());
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        EditAssetCommand editCommand = new EditAssetCommand(asset1, asset2);
+        assertTrue(editCommand.equals(editCommand));
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        EditAssetCommand editCommand = new EditAssetCommand(asset1, asset2);
+        assertFalse(editCommand.equals(null));
     }
 
 }
