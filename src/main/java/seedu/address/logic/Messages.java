@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static seedu.address.model.schedule.Schedule.getDateTimeStringFormat;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,8 +9,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
-
-import static seedu.address.model.schedule.Schedule.getDateTimeStringFormat;
 
 /**
  * Container for user visible messages.
