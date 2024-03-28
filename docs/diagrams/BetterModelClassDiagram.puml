@@ -19,12 +19,13 @@ UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> "*" Email
-Person *--> "*" Address
-Person *--> "*" Company
-Person *--> "*" Priority
-Person *--> "*" Note
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
+Person *--> "0..1" Company
+Person *--> "0..1" Meeting
+Person *--> "0..1" Priority
+Person *--> "0..1" Note
 Person : starred: Boolean
 @enduml

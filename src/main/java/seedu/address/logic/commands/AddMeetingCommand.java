@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,7 +22,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a meeting to the person identified by the contact name.\n"
-            + "mtg [CONTACT_NAME] m/[MTG_DESC] t/[TIMING]\n"
+            + "mtg [CONTACT_NAME] m/[MTG_DESC] time/[TIMING]\n"
             + "Example: " + COMMAND_WORD + " Alex Tan "
             + "m/Interview t/23-03-2024 1600-1700";
 
@@ -32,9 +34,9 @@ public class AddMeetingCommand extends Command {
             + "meeting.";
     public static final String MESSAGE_EMPTY_NAME = "Oops, please state the name of the contact.";
 
+    private static Logger logger = Logger.getLogger("MeetingLogger");
     private final String name;
     private final Meeting meeting;
-
 
     /**
      * @param name  of the person in the filtered person list to edit the meeting
@@ -50,7 +52,9 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.log(Level.INFO, "going to execute the AddMeetingCommand");
         if (name.isEmpty()) {
+            logger.log(Level.WARNING, "empty name inputted.");
             throw new CommandException(MESSAGE_EMPTY_NAME);
         }
         List<Person> contactList = model.getFilteredPersonList();
