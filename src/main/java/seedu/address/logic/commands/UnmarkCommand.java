@@ -20,21 +20,21 @@ import seedu.address.model.appointment.TimePeriod;
 import seedu.address.model.person.Nric;
 
 /**
- * Marks an existing appointment in the CLInic as completed.
- */
-public class MarkCommand extends Command {
+* Unmarks an existing appointment in the CLInic as not completed.
+*/
+public class UnmarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Mark the appointment of the person identified as completed"
+            + ": Unmark the appointment of the person identified as not completed"
             + "Parameters: "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_DATE + "DATE "
             + PREFIX_START_TIME + "START_TIME "
             + PREFIX_END_TIME + "END_TIME";
 
-    public static final String MESSAGE_MARK_PERSON_SUCCESS = "Appointment successfully marked as seen: %1$s";
+    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Appointment successfully unmarked as not seen: %1$s";
 
     private final Nric nric;
     private final Date date;
@@ -45,7 +45,7 @@ public class MarkCommand extends Command {
      * @param date date of the existing Appointment to be specified
      * @param timePeriod timePeriod of the existing Appointment to be marked
      */
-    public MarkCommand(Nric nric, Date date, TimePeriod timePeriod) {
+    public UnmarkCommand(Nric nric, Date date, TimePeriod timePeriod) {
         requireNonNull(nric);
         requireNonNull(date);
         requireNonNull(timePeriod);
@@ -68,12 +68,12 @@ public class MarkCommand extends Command {
         Appointment appt = model.getMatchingAppointment(nric, date, timePeriod);
 
         Appointment newAppt = new Appointment(appt.getNric(), appt.getDate(), appt.getTimePeriod(),
-            appt.getAppointmentType(), appt.getNote(), new Mark(true));
+            appt.getAppointmentType(), appt.getNote(), new Mark(false));
 
         model.setAppointment(appt, newAppt);
 
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS_VIEW);
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS, Messages.format(newAppt)));
+        return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS, Messages.format(newAppt)));
     }
 
     @Override
@@ -83,14 +83,14 @@ public class MarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkCommand)) {
+        if (!(other instanceof UnmarkCommand)) {
             return false;
         }
 
-        MarkCommand otherMarkCommand = (MarkCommand) other;
-        return nric.equals(otherMarkCommand.nric)
-                && date.equals(otherMarkCommand.date)
-                && timePeriod.equals(otherMarkCommand.timePeriod);
+        UnmarkCommand otherUnmarkCommand = (UnmarkCommand) other;
+        return nric.equals(otherUnmarkCommand.nric)
+                && date.equals(otherUnmarkCommand.date)
+                && timePeriod.equals(otherUnmarkCommand.timePeriod);
     }
 
     @Override
