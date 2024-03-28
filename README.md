@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2324S2-CS2103T-F13-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S2-CS2103T-F13-4/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/Ui_v1.3.png)
 
 # **ClassMonitor** <br>
 
