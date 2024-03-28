@@ -14,8 +14,13 @@ UniquePersonList -right-> Person
 
 Person -up-> "*" Tag
 
+Volunteer .left.|> Person
+Befriendee .left.|> Person
+
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "0..1" pairedWith
+Person *--> Role
 @enduml
