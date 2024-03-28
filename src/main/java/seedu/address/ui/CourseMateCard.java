@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.coursemate.CourseMate;
 
 /**
@@ -28,6 +29,8 @@ public class CourseMateCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private VBox cardBox;
     @FXML
     private Label name;
     @FXML
@@ -53,12 +56,18 @@ public class CourseMateCard extends UiPart<Region> {
         name.setText(courseMate.getName().fullName);
         phone.setText(courseMate.getPhone().value);
         email.setText(courseMate.getEmail().value);
+
+
         if (courseMate.getTelegramHandle() == null) {
-            telegramHandle.setText("");
+            cardBox.getChildren().remove(telegramHandle);
         } else {
             telegramHandle.setText(courseMate.getTelegramHandle().value);
         }
-        rating.setText(courseMate.getRating().ratingText);
+        if (courseMate.getRating().ratingText.isEmpty()) {
+            cardBox.getChildren().remove(rating);
+        } else {
+            rating.setText(courseMate.getRating().ratingText);
+        }
         courseMate.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
                 .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
