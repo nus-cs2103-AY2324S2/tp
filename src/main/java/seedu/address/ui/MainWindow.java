@@ -237,6 +237,8 @@ public class MainWindow extends UiPart<Stage> {
         refreshClientViewPanel();
         refreshClientListPanel();
         refreshRemindersPanel();
+
+        logger.info("All panels refreshed: client view, client list and reminders");
     }
 
     /**
