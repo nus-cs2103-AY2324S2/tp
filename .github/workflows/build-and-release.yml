@@ -59,7 +59,7 @@ jobs:
           draft: true
           prerelease: false
           files: build/libs/clinicmate.jar
-          name: Release ${{ github.ref }}
+          name: Release ${{ github.ref_name }}
           tag_name: ${{ github.ref }}
           fail_on_unmatched_files: true
           token: ${{ secrets.GITHUB_TOKEN }}
