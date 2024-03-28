@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "f:ForceDeleteAllCommand" as ForceDeleteAllCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(delete-all-f)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(delete-all-f)
+activate AddressBookParser
+
+create ForceDeleteAllCommand
+AddressBookParser -> ForceDeleteAllCommand
+activate ForceDeleteAllCommand
+
+ForceDeleteAllCommand --> AddressBookParser
+deactivate ForceDeleteAllCommand
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> ForceDeleteAllCommand : execute()
+activate ForceDeleteAllCommand
+
+ForceDeleteAllCommand -> Model : setAddressBook()
+activate Model
+
+Model --> ForceDeleteAllCommand
+deactivate Model
+
+ForceDeleteAllCommand --> LogicManager : result
+deactivate ForceDeleteAllCommand
+ForceDeleteAllCommand -[hidden]-> LogicManager : result
+destroy ForceDeleteAllCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
