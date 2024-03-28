@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.StarCommand;
-import seedu.address.model.person.Star;
+import seedu.address.model.student.Star;
 
 public class StarCommandParserTest {
 

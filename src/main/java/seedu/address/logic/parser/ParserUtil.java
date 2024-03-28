@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Bolt;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Major;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Star;
+import seedu.address.model.student.Bolt;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Major;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Star;
 import seedu.address.model.tag.Tag;
 
 /**

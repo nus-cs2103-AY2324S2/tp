@@ -57,10 +57,10 @@ deactivate AddressBookParser
 LogicManager -> FindStarsLessThanCommand : execute(m)
 activate FindStarsLessThanCommand
 
-FindStarsLessThanCommand -> Model : updateFilteredPersonList(predicate)
+FindStarsLessThanCommand -> Model : updateFilteredStudentList(predicate)
 activate Model
 
-Model --> FindStarsLessThanCommand : Updated filtered person list
+Model --> FindStarsLessThanCommand : Updated filtered student list
 deactivate Model
 
 create CommandResult

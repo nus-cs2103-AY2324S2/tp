@@ -6,11 +6,11 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicates.BoltWithinBoundsPredicate;
-import seedu.address.model.person.predicates.MajorContainsSubStringPredicate;
-import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.StarWithinBoundsPredicate;
-import seedu.address.model.person.predicates.TagContainsSubStringPredicate;
+import seedu.address.model.student.predicates.BoltWithinBoundsPredicate;
+import seedu.address.model.student.predicates.MajorContainsSubStringPredicate;
+import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.student.predicates.StarWithinBoundsPredicate;
+import seedu.address.model.student.predicates.TagContainsSubStringPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
