@@ -33,7 +33,6 @@ public class CommandBox extends UiPart<Region> {
         this.autoCompleteExecutor = autoCompleteExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-
         commandTextField.setOnKeyPressed(this::handleKeyPressEvent);
     }
 
@@ -56,6 +55,17 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Handles the Up and Down arrow key pressed event.
+     */
+    @FXML
+    private void handleArrowKeyPressed(KeyEvent event) {
+        String direction = event.getCode().toString();
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        String previousCommand = commandHistory.getCommandHistory(direction);
+        commandTextField.setText(previousCommand);
+    }
+
+    /**
      * Sets the command box style to use the default style.
      */
     private void setStyleToDefault() {
@@ -66,6 +76,11 @@ public class CommandBox extends UiPart<Region> {
         switch (e.getCode()) {
         case TAB:
             handleTabKeyPressEvent(e);
+            break;
+        case UP:
+            // Fallthrough
+        case DOWN:
+            handleArrowKeyPressed(e);
             break;
         default:
             break;

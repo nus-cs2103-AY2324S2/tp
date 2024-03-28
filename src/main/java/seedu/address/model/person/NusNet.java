@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class NusNet {
 
-    public static final String MESSAGE_CONSTRAINTS = "NUSNET should be of the format E"
+    public static final String MESSAGE_CONSTRAINTS = "NUSNET should be of the format E "
         + "followed by 7 digits";
     public static final String VALIDATION_REGEX = "^[Ee]\\d{7}$";
 
