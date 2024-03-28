@@ -1,6 +1,6 @@
 package seedu.address.logic.paynow;
 
-import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.stream.Stream;
 
@@ -48,7 +48,8 @@ public class PayNowCode extends PayNowPayload {
      * Generates a PayNow QR Code that users can scan with their banking apps which will
      * automatically fill in the phone number and amount passed in as parameters.
      */
-    public static BufferedImage generatePayNowQrCode(String phone, float amount) throws WriterException, IOException {
+    public static ByteArrayInputStream generatePayNowQrCode(String phone, float amount)
+            throws WriterException, IOException {
         PayNowField[] fields =
                 new PayNowField[]{PAYLOAD_FORMAT_INDICATOR,
                                   POINT_OF_INITIATION_METHOD,

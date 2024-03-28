@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -68,10 +69,10 @@ public class AddCommandTest {
         assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, addAliceCommand);
+        assertNotEquals(addAliceCommand, 1);
 
         // null -> returns false
-        assertNotEquals(null, addAliceCommand);
+        assertNotEquals(addAliceCommand, null);
 
         // different person -> returns false
         assertNotEquals(addAliceCommand, addBobCommand);
@@ -160,6 +161,11 @@ public class AddCommandTest {
 
         @Override
         public void updatePersonComparator(Comparator<Person> personComparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Person> findPerson(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

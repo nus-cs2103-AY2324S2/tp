@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -74,13 +76,16 @@ public class QrGenerator {
         return image;
     }
 
+
     /**
      * Converts the given text into a QR Code and returns the Image.
      */
-    public static BufferedImage generateQrCode(String qrCodeText) throws WriterException, IOException {
+    public static ByteArrayInputStream generateQrCode(String qrCodeText) throws WriterException, IOException {
         BitMatrix bitMatrix = encodeText(qrCodeText);
         BufferedImage image = fillImageFromBitMatrix(bitMatrix);
         overlayLogo((Graphics2D) image.getGraphics());
-        return image;
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpeg", os);
+        return new ByteArrayInputStream(os.toByteArray());
     }
 }

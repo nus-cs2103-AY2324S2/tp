@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" resizable="false" title="PayNow" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/17">
+
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@PaymentWindow.css"/>
+            </stylesheets>
+            <VBox style="-fx-background-color: white; -fx-padding: 50; -fx-spacing: 20">
+                <Label contentDisplay="GRAPHIC_ONLY" style="-fx-cursor: hand">
+                    <graphic>
+                        <ImageView fitHeight="20" fitWidth="20" style="-fx-cursor: hand">
+                            <Image url="@/images/help_icon.png"/>
+                        </ImageView>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip fx:id="helpTooltip" showDelay="0ms" prefWidth="300" wrapText="true"
+                                 style="-fx-font-size: 14"/>
+                    </tooltip>
+                </Label>
+                <ImageView fx:id="qrCode" fitHeight="400" fitWidth="400" pickOnBounds="true"/>
+                <HBox style="-fx-alignment: center" spacing="10">
+                    <Button fx:id="cancelButton" text="Close Window" onMouseClicked="#hide"
+                            styleClass="payment-page-btn">
+                    </Button>
+                    <Button fx:id="resetButton" text="Clear Debt" onMouseClicked="#onResetDebt"
+                            styleClass="payment-page-btn">
+                        <tooltip>
+                            <Tooltip text="Resets money owed to $0 and closes this window." showDelay="0ms"
+                                     style="-fx-font-size: 14"/>
+                        </tooltip>
+                    </Button>
+                </HBox>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

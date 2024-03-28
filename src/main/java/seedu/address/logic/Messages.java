@@ -23,6 +23,9 @@ public class Messages {
     public static final String MESSAGE_SORT_CLEARED = "List has been sorted by default order.";
     public static final String MESSAGE_INVALID_SORT_TYPE = "%s is not a valid sort type!";
 
+    public static final String MESSAGE_INVALID_MOBILE = "The person must have a Singaporean number"
+            + " (8-digit number starting with 8 or 9).";
+
     /**
      * Returns an error message indicating the duplicate prefixes.
      */

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalPersons.AMY;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,9 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+        // different personToPay value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", AMY)));
     }
 
     @Test
@@ -46,10 +50,15 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", true, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", false, true).hashCode());
+
+        // different personToPay value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", AMY).hashCode());
     }
 
     @Test
@@ -57,7 +66,14 @@ public class CommandResultTest {
         CommandResult commandResult = new CommandResult("feedback");
         String expected = CommandResult.class.getCanonicalName() + "{feedbackToUser="
                 + commandResult.getFeedbackToUser() + ", showHelp=" + commandResult.isShowHelp()
-                + ", exit=" + commandResult.isExit() + "}";
+                + ", exit=" + commandResult.isExit()
+                + ", personToPay=" + commandResult.getPersonToPay() + "}";
         assertEquals(expected, commandResult.toString());
+    }
+
+    @Test
+    public void isShowPayment() {
+        CommandResult commandResult = new CommandResult("feedback", AMY);
+        assertTrue(commandResult.isShowPayment());
     }
 }
