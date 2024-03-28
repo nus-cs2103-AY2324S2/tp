@@ -172,7 +172,7 @@ The activity diagram below demonstrates this error handling process in more deta
 <img src="images/AddPatientActivityDiagram.png" width="800" />
 
 * Step 4. The `parse` command in `addPatientCommandParser` return an instance of `addPatientCommand`.
-* Step 5. The `LogicManager` calss the `execute` method in `addPatientCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `addPatientCommand`.
 * Step 6. The `execute` method in `addPatientCommand` executes and calls `addPerson` in model to add the new patient into the system.
 * Step 7. Success message gets printed onto the results display to notify user.
 
