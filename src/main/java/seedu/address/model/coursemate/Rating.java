@@ -12,6 +12,7 @@ public class Rating {
             + "The default is 0 if a coursemate is not yet rated.";
     public static final String VALIDATION_REGEX = "\\b[0-5]\\b";
     public final String value;
+    public final String ratingText;
 
     /**
      * Constructs a {@code Rating}.
@@ -22,6 +23,7 @@ public class Rating {
         requireNonNull(rating);
         checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
         this.value = rating;
+        this.ratingText = toStringWithStars(rating);
     }
 
     /**
@@ -29,6 +31,41 @@ public class Rating {
      */
     public static boolean isValidRating(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a rating text shown by number of stars according to the rating.
+     * If rating is 0, empty text is returned.
+     * @param rating string of integer between 1 and 5.
+     */
+    public static String toStringWithStars(String rating) {
+        requireNonNull(rating);
+        checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
+
+        int ratingValue;
+        try {
+            ratingValue = Integer.parseInt(rating);
+        } catch (NumberFormatException e) {
+            // when rating is a non-integer string (though this would not happen)
+            ratingValue = 0;
+        }
+        assert ratingValue <= 5 : "Rating is over 5!";
+
+        if (ratingValue == 0) {
+            return "";
+        } else {
+            StringBuilder ratingText = new StringBuilder("");
+            for (int i = 0; i < 5; i++) {
+                if (i < ratingValue) {
+                    // Black star (U+2605 in Unicode)
+                    ratingText.append("★");
+                } else {
+                    // White Star (U+2606 in Unicode)
+                    ratingText.append("☆");
+                }
+            }
+            return ratingText.toString();
+        }
     }
 
     @Override

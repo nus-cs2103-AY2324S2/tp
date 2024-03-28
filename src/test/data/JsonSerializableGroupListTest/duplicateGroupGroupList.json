@@ -9,11 +9,12 @@
       "name" : "Alex Yeoh",
       "phone" : "87438807",
       "email" : "alexyeoh@example.com",
+      "telegramHandle": "alexyeoh",
+      "rating": "5",
       "skills" : [ {
         "important" : false,
         "skillName" : "friends"
-      } ],
-      "telegramHandle": "alexyeoh"
+      } ]
     } ],
     "telegramChat": "https://t.me/+AAAAAEQ1J9J9J9J9J9J9J9"
   } ]

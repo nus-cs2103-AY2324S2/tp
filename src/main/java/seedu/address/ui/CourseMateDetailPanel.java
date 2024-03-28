@@ -31,6 +31,8 @@ public class CourseMateDetailPanel extends UiPart<Region> {
     @FXML
     private Label telegramHandle;
     @FXML
+    private Label rating;
+    @FXML
     private FlowPane skills;
 
     /**
@@ -54,6 +56,7 @@ public class CourseMateDetailPanel extends UiPart<Region> {
         } else {
             telegramHandle.setText(courseMate.getTelegramHandle().value);
         }
+        rating.setText(courseMate.getRating().ratingText);
         skills.getChildren().clear();
         courseMate.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))

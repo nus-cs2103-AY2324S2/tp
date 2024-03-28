@@ -3,16 +3,17 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
+    "telegramHandle": "alice",
+    "rating": "5",
     "skills" : [ {
       "important" : false,
       "skillName" : "Java"
-    } ],
-    "telegramHandle": "alice"
+    } ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "rating": "5",
     "telegramHandle": "alice"
   } ]
 }
