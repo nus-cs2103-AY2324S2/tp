@@ -37,23 +37,23 @@ activate Model
 Model --> LastMetCommand
 deactivate Model
 
-AddPolicyCommand -> Model : setDisplayClient(metPerson)
+LastMetCommand -> Model : setDisplayClient(metPerson)
 activate Model
 
-Model --> AddPolicyCommand
+Model --> LastMetCommand
 deactivate Model
 
 create CommandResult
-AddPolicyCommand --> CommandResult
+LastMetCommand --> CommandResult
 activate CommandResult
 
-CommandResult --> AddPolicyCommand
+CommandResult --> LastMetCommand
 deactivate CommandResult
 
-AddPolicyCommand --> LogicManager : result
-deactivate AddPolicyCommand
-AddPolicyCommand -[hidden]-> LogicManager : result
-destroy AddPolicyCommand
+LastMetCommand --> LogicManager : result
+deactivate LastMetCommand
+LastMetCommand -[hidden]-> LogicManager : result
+destroy LastMetCommand
 
 [<--LogicManager
 deactivate LogicManager
