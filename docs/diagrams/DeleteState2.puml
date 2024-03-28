@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam ClassBackgroundColor #FFFFAA
+
+title find PREDICATE
+
+class uniquePersonList as "<u>uniquePersonList:UniquePersonList</u>"
+class model as "<u>model:ModelManager</u>"
+class student1 as "<u>student1:Person</u>"
+class student2 as "<u>student2:Person</u>"
+class student3 as "<u>student3:Person</u>"
+class studentId1  as "<u>studentId1:StudentId</u>" {
+    id = "A0123456X"
+}
+class studentId2 as "<u>studentId2:StudentId</u>"{
+    id = "A0123456D"
+}
+class studentId3 as "<u>studentId3:StudentId</u>"{
+    id = "A0123456A"
+}
+student1 -[hidden]right-> student2
+student2 -[hidden]right-> student3
+
+uniquePersonList -down-> student1
+uniquePersonList -down-> student2
+uniquePersonList -down-> student3
+
+model -down-> student1 : filter
+model -down-> student2 : filter
+student1 *-down-> studentId1
+student2 *-down-> studentId2
+student3 *-down-> studentId3
+
+
+@enduml
