@@ -158,6 +158,66 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete Participant
+
+The `DeletePersonCommand` allows users to delete a person either from the global address book or from a specific event, depending on whether an event is selected.
+
+#### Implementation Details
+
+The `DeletePersonCommand` is implemented by extending the base `Command` class. It uses a `targetIndex` to identify the person to be deleted in the filtered person list. It implements the following operations:
+
+* `execute(Model)` — Checks the current address book state by calling `isAnEventSelected()`, and call `deleteFromGlobal` or `deleteFromEvent` accordingly.
+* `deleteFromGlobal(Model)` — Deletes the participant in the filtered global participant list. This operation is exposed in the `Model` interface as `Model#deletePerson(Person)`.
+* `deleteFromEvent(Model)` — Deletes the participant in the filtered selected event participant list. This operation is exposed in the `Model` interface as `deletePersonFromSelectedEvent(Person)`.
+
+The deletion is initiated by firstly retrieving the filtered person list and locating the `personToDelete` object in it, after which `Model#deletePerson(Person)` /  `Model#deletePersonFromSelectedEvent(Person)` is called to complete the actual deletion. 
+
+Given below is an example usage scenario of how the deletion mechanism behaves when the user tries to delete a participant from the global participant list.
+
+Step 1. The user launches the application, with some events and participants added to the address book already. The `AddressBook` will be initialized with the previously saved address book state, and the `selectedEvent` in the `EventBook` will initially be `null`.
+
+Step 2. The user executes `delp 5` command to delete the 5th person in the address book. The `deletePersonCommand` will then call `excecute()`, which checks that no event is being selected before calling `deleteFromGlobal()`.
+
+<box type="info" seamless>
+
+**Note:** If the `targetIndex` provided is invalid, a `CommandException` will be thrown.
+
+</box>
+
+Step 3. The `deleteFromGlobal()` function calls `Model#deletePerson()` to complete the deletion, and the state of the filtered person list is thereby changed.
+
+#### Sequence Diagram
+
+![Sequence diagram](images/DeleteParticipantSequenceDiagram.png)
+
+#### Design Considerations:
+
+**Aspect 1: How to structure the 2 Delete Participant Commands:**
+
+* **Alternative 1 (current choice):** Same command for global and event-specific deletion
+    * Pros: Shorter code. The unified `DeletePersonCommand` is easier to learn.  
+    * Cons: Slightly harder to implement.
+
+* **Alternative 2:** Separate commands for global and event-specific deletion
+    * Pros: Simplifies the implementation of each command. 
+    * Cons: Increases the number of commands users need to learn, potentially making the application more cumbersome to use.
+
+**Rationale:**
+The choice to unify the deletion process under a single `DeletePersonCommand` stems from a desire to streamline the user experience and reduce the learning curve associated with the application. By minimizing the number of commands a user needs to learn, the application becomes more intuitive, especially for new or infrequent users. The unified command approach emphasizes simplicity from the user's perspective, even if it introduces additional complexity behind the scenes.
+
+**Aspect 2: How to specify the person to be deleted:**
+
+* **Alternative 1 (current choice):** Use the `index` in the filtered list
+    * Pros: Easier to implement.  Immediate visual reference.
+    * Cons: Limited by Viewport. When the participant list is long and paginated or requires scrolling, users might find it cumbersome to scroll through and find the index of the person they wish to delete.
+
+* **Alternative 2:** Use the `name` of the participant
+    * Pros: Direct and intuitive, and can avoid indexing issues.
+    * Cons: Requires more complex input parsing, and makes the user input longer.
+
+**Rationale:**
+The primary rationale for using an `index` as the specifier is its simplicity and direct mapping to the user interface. Users can easily locate and specify a contact for deletion based on their position in a list, making the command straightforward to implement and understand. This approach is particularly effective in scenarios where users work with relatively short lists where the viewport limitations are minimal. In the scenario where the participant list gets longer, the user can always use the `find` command to filter out the contact they want to delete before making the actual deletion.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
