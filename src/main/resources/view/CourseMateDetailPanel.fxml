@@ -14,7 +14,7 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="300" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="125" GridPane.columnIndex="0" styleClass="detail-card">
+    <VBox alignment="CENTER_LEFT" minHeight="145" GridPane.columnIndex="0" styleClass="detail-card">
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
@@ -39,6 +39,10 @@
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label styleClass="detail_small_label" text="Telegram Handle: " minWidth="180" />
         <Label fx:id="telegramHandle" styleClass="detail_small_label" text="\$telegramHandle" />
+      </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label styleClass="detail_small_label" text="Rating: " minWidth="180" />
+        <Label fx:id="rating" styleClass="detail_small_label" text="\$rating" />
       </HBox>
     </VBox>
   </GridPane>

@@ -39,6 +39,8 @@ public class CourseMateCard extends UiPart<Region> {
     @FXML
     private Label telegramHandle;
     @FXML
+    private Label rating;
+    @FXML
     private FlowPane skills;
 
     /**
@@ -56,6 +58,7 @@ public class CourseMateCard extends UiPart<Region> {
         } else {
             telegramHandle.setText(courseMate.getTelegramHandle().value);
         }
+        rating.setText(courseMate.getRating().ratingText);
         courseMate.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
                 .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
