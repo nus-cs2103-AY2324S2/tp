@@ -86,7 +86,7 @@ public interface Model {
      * @param exam The exam to add the score to.
      * @param score The score to add.
      */
-    void addExamScoreToPerson(Person target, Exam exam, Score score) throws IllegalArgumentException;
+    void addExamScoreToPerson(Person target, Exam exam, Score score);
 
     /**
      * Removes an exam from the given person {@code target},
@@ -94,7 +94,7 @@ public interface Model {
      * @param target The person to remove the exam from.
      * @param exam The exam to remove.
      */
-    void removeExamScoreFromPerson(Person target, Exam exam) throws IllegalArgumentException;
+    void removeExamScoreFromPerson(Person target, Exam exam);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -118,25 +118,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addExamScoreToPerson(Person person, Exam exam, Score score) throws IllegalArgumentException {
-        if (!addressBook.hasExam(exam)) {
-            throw new IllegalArgumentException("Exam does not exist in the address book!");
-        }
-        if (person.hasExamScore(exam)) {
-            throw new IllegalArgumentException("Person already has a score for this exam!");
-        }
-        if (exam.getMaxScore().getScore() < score.getScore()) {
-            throw new IllegalArgumentException("Score is greater than the maximum score for this exam!");
-        }
+    public void addExamScoreToPerson(Person person, Exam exam, Score score) {
         Person newPerson = person.addExamScore(exam, score);
         setPerson(person, newPerson);
     }
 
     @Override
-    public void removeExamScoreFromPerson(Person person, Exam exam) throws IllegalArgumentException {
-        if (!person.hasExamScore(exam)) {
-            throw new IllegalArgumentException("Person does not have a score for this exam!");
-        }
+    public void removeExamScoreFromPerson(Person person, Exam exam) {
         Person newPerson = person.removeExam(exam);
         setPerson(person, newPerson);
     }
