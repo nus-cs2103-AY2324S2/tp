@@ -158,6 +158,48 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### UI Coursemate Detail Panel
+
+#### Implementation
+
+The coursemate detail panel in the UI shows the details of a selected or recently processed coursemate. It is implemented in the `CourseMateDetailPanel` class.
+
+The `CourseMateDetailPanel` class is mutable, the displayed coursemate can be change by calling the `CourseMateDetailPanel#loadCourseMate(CourseMate)` method.
+
+The following shows the sequence diagrams of how the UI component loads the coursemates into the coursemate detail panel dynamically.
+
+1. The user selects a coursemate from the coursemate list panel.
+
+   <puml src="diagrams/CourseMateListSelectSequenceDiagram.puml" alt="CourseMateListSelectSequenceDiagram" />
+
+   The main window implements the functional interface `CourseMateDetailPanel#CourseMateSelectHandler` to reflect the selected coursemate in the coursemate detail panel and the `Logic`, which saves the selected coursemate in the `Model` used for future commands with the `##` notation.
+
+2. The user executes a command that modifies the selected coursemate.
+
+    <puml src="diagrams/ProcessedCourseMateSequenceDiagram.puml" alt="ProcessedCourseMateSequenceDiagram" />
+
+    The `CommandResult` object returned by the `Logic` component contains a flag that indicates if the command involves one processed coursemate. If so, `CourseMateDetailPanel` is updated with the processed coursemate.
+
+Two types of selection in the coursemate list panel are supported: double click and pressing the enter key. This requires two different event handlers to be implemented in the `CourseMateListPanel` class as shown below. These event handlers are instantiated and set as the event handlers for the `ListView` object in the constructor of `CourseMateListPanel`.
+
+<puml src="diagrams/CourseMateListPanelClassDiagram.puml" alt="CourseMateListPanelClassDiagram" />
+
+
+#### Alternatives Considered
+
+* **Alternative 1:** The coursemate detail panel is immutable, and a new panel is created for each coursemate.
+  * Pros: Easier to implement since the other UI components no longer have to keep a reference to the coursemate detail panel.
+  * Cons: It makes it unclear that `MainWindow` and `CourseMateDetailPanel` have a one-to-one whole-part relationship.
+
+* **Alternative 2:** Allow the coursemate list panel to directly update the coursemate detail panel.
+  * Pros: Simplifies the code as the `MainWindow` no longer has to act as a middleman. The functional interface `CourseMateDetailPanel#CourseMateSelectHandler` can be removed.
+  * Cons: The `CourseMateListPanel` and `CourseMateDetailPanel` are more tightly coupled. This increases maintenance costs.
+
+* **Alternative 3:** Give full control to the `Logic` component to update the coursemate detail panel.
+  * Pros: We no longer need to include an extra field in the `CommandResult` object to indicate if the command involves one processed coursemate.
+  * Cons: The `Logic` component is now responsible for updating the UI, which is not ideal as the `Logic` component should not be aware of the UI's click and press events.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

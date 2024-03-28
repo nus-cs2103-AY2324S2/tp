@@ -10,10 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_HANDLE_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -87,10 +89,11 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_COURSE_MATE;
 
         String userInput = "#" + targetIndex.getOneBased() + PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + NAME_DESC_AMY;
+                + EMAIL_DESC_AMY + NAME_DESC_AMY + TELEGRAM_DESC_AMY;
 
         EditCourseMateDescriptor descriptor = new EditCourseMateDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
+                .withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY).build();
         EditCommand expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -126,6 +129,12 @@ public class EditCommandParserTest {
         // email
         userInput = "#" + targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditCourseMateDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // telegram handle
+        userInput = "#" + targetIndex.getOneBased() + TELEGRAM_DESC_AMY;
+        descriptor = new EditCourseMateDescriptorBuilder().withTelegramHandle(VALID_TELEGRAM_HANDLE_AMY).build();
         expectedCommand = new EditCommand(new QueryableCourseMate(targetIndex), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

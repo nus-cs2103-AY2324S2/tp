@@ -14,6 +14,7 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.TelegramHandle;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -26,6 +27,7 @@ class JsonAdaptedCourseMate {
     private final String name;
     private final String phone;
     private final String email;
+    private final String telegramHandle;
     private final List<JsonAdaptedSkill> skills = new ArrayList<>();
 
     /**
@@ -34,10 +36,12 @@ class JsonAdaptedCourseMate {
     @JsonCreator
     public JsonAdaptedCourseMate(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                  @JsonProperty("email") String email,
+                                 @JsonProperty("telegramHandle") String telegramHandle,
                                  @JsonProperty("skills") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.telegramHandle = telegramHandle;
         if (skills != null) {
             this.skills.addAll(skills);
         }
@@ -50,6 +54,11 @@ class JsonAdaptedCourseMate {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        if (source.getTelegramHandle() != null) {
+            telegramHandle = source.getTelegramHandle().value;
+        } else {
+            telegramHandle = "";
+        }
         skills.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -90,8 +99,20 @@ class JsonAdaptedCourseMate {
         }
         final Email modelEmail = new Email(email);
 
+        if (telegramHandle == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TelegramHandle.class.getSimpleName()));
+        }
+        if (telegramHandle != "" && !TelegramHandle.isValidTelegramHandle(telegramHandle)) {
+            throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        TelegramHandle modelTelegramHandle = null;
+        if (telegramHandle != "") {
+            modelTelegramHandle = new TelegramHandle(telegramHandle);
+        }
+
         final Set<Skill> modelSkills = new HashSet<>(courseMateSkills);
-        return new CourseMate(modelName, modelPhone, modelEmail, modelSkills);
+        return new CourseMate(modelName, modelPhone, modelEmail, modelTelegramHandle, modelSkills);
     }
 
 }

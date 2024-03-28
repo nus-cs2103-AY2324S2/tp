@@ -117,7 +117,7 @@ public class DeleteSkillCommand extends Command {
         Set<Skill> updatedSkills = deleteSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
 
         return new CourseMate(courseMateToEdit.getName(), courseMateToEdit.getPhone(),
-                courseMateToEdit.getEmail(), updatedSkills);
+                courseMateToEdit.getEmail(), courseMateToEdit.getTelegramHandle(), updatedSkills);
     }
 
     @Override

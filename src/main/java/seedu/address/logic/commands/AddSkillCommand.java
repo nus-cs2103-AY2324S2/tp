@@ -58,6 +58,9 @@ public class AddSkillCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        Set<Skill> newSkills = getNewSkills(model);
+
         List<CourseMate> courseMateToEditList;
         try {
             courseMateToEditList = model.findCourseMate(queryableCourseMate);
@@ -81,7 +84,54 @@ public class AddSkillCommand extends Command {
         model.setCourseMate(courseMateToEdit, editedCourseMate);
         model.updateFilteredCourseMateList(PREDICATE_SHOW_ALL_COURSE_MATES);
         model.setRecentlyProcessedCourseMate(editedCourseMate);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return new CommandResult(messageNewSkill(newSkills) + MESSAGE_SUCCESS,
+                false, false, true);
+    }
+
+    /**
+     * Creates a warning message for newly added skills that are not in the database.
+     * @param newSkills - The set of skills that are new to the courseMate list.
+     * @return A String containing the warning message.
+     */
+    public static String messageNewSkill(Set<Skill> newSkills) {
+        if (newSkills.size() == 0) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("WARNING: the following skills has not been added to any other contacts, ")
+                .append("please ensure it is not misspelt: ");
+        int size = newSkills.size();
+        int count = 0;
+        for (Skill skill : newSkills) {
+            sb.append(skill.toString());
+            count++;
+            if (count < size) {
+                sb.append(", ");
+            } else {
+                sb.append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    /** Retrieves the newly added skills not in the current courseMate list. */
+    private Set<Skill> getNewSkills(Model model) {
+        List<CourseMate> getCourseMateList = model.getContactList().getCourseMateList();
+        Set<Skill> currentSkills = new HashSet<>();
+        for (CourseMate courseMate : getCourseMateList) {
+            Set<Skill> courseMateSkills = courseMate.getSkills();
+            currentSkills.addAll(courseMateSkills);
+        }
+
+        Set<Skill> newSkills = new HashSet<>();
+        Set<Skill> toAddSkill = addSkillDescriptor.getSkills().orElse(new HashSet<>());
+        for (Skill skill : toAddSkill) {
+            if (!currentSkills.contains(skill)) {
+                newSkills.add(skill);
+            }
+        }
+        return newSkills;
     }
 
     /**
@@ -96,7 +146,7 @@ public class AddSkillCommand extends Command {
         Set<Skill> updatedSkills = addSkillDescriptor.getSkills().orElse(courseMateToEdit.getSkills());
 
         return new CourseMate(courseMateToEdit.getName(), courseMateToEdit.getPhone(),
-                courseMateToEdit.getEmail(), updatedSkills);
+                courseMateToEdit.getEmail(), courseMateToEdit.getTelegramHandle(), updatedSkills);
     }
 
     @Override

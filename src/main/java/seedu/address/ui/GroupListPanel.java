@@ -29,6 +29,7 @@ public class GroupListPanel extends UiPart<Region> {
         super(FXML);
         groupListView.setItems(groupList);
         groupListView.setCellFactory(listView -> new GroupListViewCell());
+        groupListView.setFocusTraversable(false);
     }
 
     /**

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ADDSKILL_CPP_CSHARP;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ADDSKILL_JAVA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_NEWSKILL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertRecentlyProcessedCourseMateEdited;
@@ -14,6 +15,9 @@ import static seedu.address.logic.commands.CommandTestUtil.showCourseMateAtIndex
 import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COURSE_MATE;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +33,7 @@ import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.skill.Skill;
 import seedu.address.testutil.AddSkillDescriptorBuilder;
 import seedu.address.testutil.CourseMateBuilder;
 
@@ -135,6 +140,29 @@ public class AddSkillCommandTest {
 
         assertCommandFailure(addSkillCommand, model, Messages.MESSAGE_INVALID_COURSE_MATE_NAME);
         assertRecentlyProcessedCourseMateEdited(model, null);
+    }
+
+    @Test
+    public void execute_newSkillWarning_success() {
+        Index indexLastCourseMate = Index.fromOneBased(model.getFilteredCourseMateList().size());
+        CourseMate lastCourseMate = model.getFilteredCourseMateList().get(indexLastCourseMate.getZeroBased());
+
+        CourseMateBuilder courseMateInList = new CourseMateBuilder(lastCourseMate);
+        CourseMate editedCourseMate = courseMateInList.withSkills(VALID_SKILL_NEWSKILL).build();
+
+        AddSkillDescriptor descriptor = new AddSkillDescriptorBuilder().withSkills(VALID_SKILL_NEWSKILL).build();
+        AddSkillCommand addSkillCommand = new AddSkillCommand(new QueryableCourseMate(indexLastCourseMate), descriptor);
+
+        Set<Skill> newSkills = new HashSet<>();
+        newSkills.add(new Skill(VALID_SKILL_NEWSKILL));
+        String expectedMessage = AddSkillCommand.messageNewSkill(newSkills) + AddSkillCommand.MESSAGE_SUCCESS;
+
+        Model expectedModel = new ModelManager(
+                new ContactList(model.getContactList()), new UserPrefs(), new GroupList());
+        expectedModel.setCourseMate(lastCourseMate, editedCourseMate);
+
+        assertCommandSuccess(addSkillCommand, model, expectedMessage, expectedModel, true);
+        assertRecentlyProcessedCourseMateEdited(model, editedCourseMate);
     }
 
     @Test

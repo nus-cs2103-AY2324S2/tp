@@ -16,8 +16,12 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Constructs a {@code ResultDisplay} component.
+     */
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setFocusTraversable(false);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {

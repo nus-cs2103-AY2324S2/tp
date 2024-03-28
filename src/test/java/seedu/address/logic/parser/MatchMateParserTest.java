@@ -21,12 +21,15 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditGroupCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RateMateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.group.ContainsGroupKeywordPredicate;
 import seedu.address.testutil.AddSkillDescriptorBuilder;
 import seedu.address.testutil.CourseMateBuilder;
 import seedu.address.testutil.CourseMateUtil;
@@ -136,6 +139,20 @@ public class MatchMateParserTest {
         assertTrue(parser.parseCommand(EditGroupCommand.COMMAND_WORD
                 + " CS2103T Group -t https://t.me/+3Jh9eXVeRh7qoaIN")
                 instanceof EditGroupCommand);
+    }
+
+    @Test
+    public void parseCommand_findGroup() throws Exception {
+        String keyword = "foo bar baz";
+        FindGroupCommand command = (FindGroupCommand) parser.parseCommand(
+                FindGroupCommand.COMMAND_WORD + " " + keyword);
+        assertEquals(new FindGroupCommand(new ContainsGroupKeywordPredicate(keyword)), command);
+    }
+
+    @Test
+    public void parseCommand_rateMate() throws Exception {
+        assertTrue(parser.parseCommand(RateMateCommand.COMMAND_WORD + " Bob -r 3")
+                instanceof RateMateCommand);
     }
 
     @Test

@@ -31,6 +31,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RateMateCommand;
 import seedu.address.logic.commands.RequireSkillCommand;
 import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -126,6 +127,9 @@ public class MatchMateParser {
 
         case UnrequireSkillCommand.COMMAND_WORD:
             return new UnrequireSkillCommandParser().parse(arguments);
+
+        case RateMateCommand.COMMAND_WORD:
+            return new RateMateCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
