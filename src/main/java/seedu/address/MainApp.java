@@ -15,16 +15,20 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.PatientList;
+import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.AppointmentListStorage;
+import seedu.address.storage.JsonAppointmentListStorage;
+import seedu.address.storage.JsonPatientListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PatientListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing PatientList ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,9 +61,12 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        PatientListStorage patientListStorage = new JsonPatientListStorage(userPrefs.getPatientListFilePath());
+        AppointmentListStorage appointmentListStorage =
+                new JsonAppointmentListStorage(userPrefs.getAppointmentListFilePath());
+        storage = new StorageManager(patientListStorage, appointmentListStorage, userPrefsStorage);
 
+        // TODO: Probably can inject the tracking of ID here
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
@@ -73,24 +80,39 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        logger.info("Using data file : " + storage.getAddressBookFilePath());
+        logger.info("Using data file : " + storage.getPatientListFilePath());
 
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyPatientList> patientListOptional;
+        ReadOnlyPatientList initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Creating a new data file " + storage.getAddressBookFilePath()
-                        + " populated with a sample AddressBook.");
+            patientListOptional = storage.readPatientList();
+            if (!patientListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getPatientListFilePath()
+                        + " populated with a sample PatientList.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = patientListOptional.orElseGet(SampleDataUtil::getSamplePatientList);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + storage.getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialData = new AddressBook();
+            logger.warning("Data file at " + storage.getPatientListFilePath() + " could not be loaded."
+                    + " Will be starting with an empty PatientList.");
+            initialData = new PatientList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyAppointmentList> appointmentListOptional;
+        ReadOnlyAppointmentList initialAppointmentListData;
+        try {
+            appointmentListOptional = storage.readAppointmentList();
+            if (!appointmentListOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getAppointmentListFilePath()
+                        + " populated with a sample PatientList.");
+            }
+            initialAppointmentListData = appointmentListOptional.orElseGet(SampleDataUtil::getSampleAppointmentList);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getAppointmentListFilePath() + " could not be loaded."
+                    + " Will be starting with an empty PatientList.");
+            initialAppointmentListData = new AppointmentList();
+        }
+
+        return new ModelManager(initialData, initialAppointmentListData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -170,7 +192,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting PatientList " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

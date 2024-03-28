@@ -1,0 +1,46 @@
+{
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "tags" : [ "friends" ],
+    "sid": 1
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "tags" : [ "owesMoney", "friends" ],
+    "sid": 2
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "tags" : [ ],
+    "sid": 3
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "tags" : [ "friends" ],
+    "sid": 4
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "94822240",
+    "email" : "werner@example.com",
+    "tags" : [ ],
+    "sid": 5
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "94824270",
+    "email" : "lydia@example.com",
+    "tags" : [ ],
+    "sid": 6
+  }, {
+    "name" : "George Best",
+    "phone" : "94824420",
+    "email" : "anna@example.com",
+    "tags" : [ ],
+    "sid": 7
+  } ]
+}

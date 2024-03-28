@@ -9,7 +9,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    // TODO: Change and remove this
+    public static final Prefix PREFIX_ADDRESS = new Prefix("t/");
+    public static final Prefix PREFIX_ALIAS = new Prefix("a/");
+    public static final Prefix PREFIX_PATIENT_ID = new Prefix("pid/");
+    public static final Prefix PREFIX_DATETIME = new Prefix("d/");
+    public static final Prefix PREFIX_ATTEND = new Prefix("att/");
+    //TODO: remove after case log is implemented
+    public static final Prefix PREFIX_APPOINTMENT_DESCRIPTION = new Prefix("ad/");
+    public static final Prefix PREFIX_APPOINTMENT_ID = new Prefix("aid/");
+    public static final Prefix PREFIX_FEEDBACK_SCORE = new Prefix("s/");
 
 }

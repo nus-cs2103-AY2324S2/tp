@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
+import seedu.address.model.appointment.ReadOnlyAppointmentList;
+import seedu.address.model.patient.Patient;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,25 +22,48 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final PatientList patientList;
+
+    private final AppointmentList appointmentList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Appointment> filteredAppointments;
+
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given patientList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPatientList patientList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(patientList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with patientList book: " + patientList + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.patientList = new PatientList(patientList);
+        this.appointmentList = new AppointmentList();
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatients = new FilteredList<>(this.patientList.getPersonList());
+        filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given patientList, appointmentList and userPrefs.
+     */
+    public ModelManager(ReadOnlyPatientList patientList,
+                        ReadOnlyAppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(patientList, appointmentList, userPrefs);
+
+        logger.fine("Initializing with patientList book: " + patientList
+                + ", appointment list: " + appointmentList + " and user prefs " + userPrefs);
+
+        this.patientList = new PatientList(patientList);
+        this.appointmentList = new AppointmentList(appointmentList);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPatients = new FilteredList<>(this.patientList.getPersonList());
+        filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PatientList(), new AppointmentList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,50 +91,50 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPatientListFilePath() {
+        return userPrefs.getPatientListFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPatientListFilePath(Path patientListFilePath) {
+        requireNonNull(patientListFilePath);
+        userPrefs.setPatientListFilePath(patientListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PatientList ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setPatientList(ReadOnlyPatientList patientList) {
+        this.patientList.resetData(patientList);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyPatientList getPatientList() {
+        return patientList;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasPerson(Patient patient) {
+        requireNonNull(patient);
+        return patientList.hasPerson(patient);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
+    public void deletePerson(Patient target) {
+        patientList.removePerson(target);
+    }
+
+    @Override
+    public void addPerson(Patient patient) {
+        patientList.addPerson(patient);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
 
-        addressBook.setPerson(target, editedPerson);
+        patientList.setPerson(target, editedPatient);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -118,14 +144,22 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Patient> getFilteredPersonList() {
+        return filteredPatients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPatients.setPredicate(predicate);
+    }
+
+    /**
+     * Get appointments from inside appointment list
+     */
+    @Override
+    public ReadOnlyAppointmentList getAppointmentList() {
+        return appointmentList;
     }
 
     @Override
@@ -140,9 +174,45 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return patientList.equals(otherModelManager.patientList)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPatients.equals(otherModelManager.filteredPatients);
+    }
+
+    //=========== AppointmentBook ================================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointmentList.hasAppointment(appointment);
+    }
+
+    @Override
+    public void addAppointment(Appointment appointment) {
+        appointmentList.addAppointment(appointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        appointmentList.removeAppointment(target);
+    }
+
+    //=========== Filtered Appointment List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
 }

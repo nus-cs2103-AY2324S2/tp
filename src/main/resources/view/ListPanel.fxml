@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
+  <ListView fx:id="personListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+  <ListView fx:id="appointmentListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+  <!-- removed for v1.2 <ListView fx:id="caseLogListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/> -->
+</HBox>
