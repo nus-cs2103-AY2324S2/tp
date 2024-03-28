@@ -39,7 +39,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARKTHEME"));
+        userPrefs.setGuiSettings(new GuiSettings((double) 1000, (double) 500, 300, 100, "DARK"));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -56,7 +56,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings((double) 1000, (double) 500, 300, 100, "DARKTHEME");
+        GuiSettings guiSettings = new GuiSettings((double) 1000, (double) 500, 300, 100, "DARK");
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
