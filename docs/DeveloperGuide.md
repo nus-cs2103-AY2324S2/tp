@@ -151,6 +151,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Implementation
+
+The `find` feature is implemented by using the `ArgumentTokenizer`, `ArgumentMultimap` and `Prefix` classes. `Prefix` 
+represents argument prefixes such as `n/` for names. In combination with the below methods, the parser can access different parts
+of the argument based on the prefixes:
+
+* `ArgumentTokenizer#tokenize(String argsString, Prefix... prefixes)` — Generates an `ArgumentMultimap` object which contains
+information on string argument mapped to each prefix.
+* `ArgumentMultimap#getPreamble()` — Returns the part of the argument before any prefixes.
+* `ArgumentMultimap#getValue(Prefix prefix)` — Returns the part of the argument belonging to the given prefix.
+
+The following activity diagram describes the operation of `FindCommandParser`:
+
+<puml src="diagrams/FindActivityDiagram.puml" alt="FindActivityDiagram" />
+
+Each valid prefix is checked, and if found, the value proceeding it in the argument string is saved in the form of a subclass 
+of `Predicate`. Otherwise, a `Predicate` that always returns true is used instead. When `FindCommand` is created, all of the 
+`Predicate` are passed into it, which will be chained into a singular `Predicate` such that the `Model` component can use to update 
+the `PatientList`.
+
+The operation returns an error if:
+* There is redundant argument before valid prefixes.
+* None of the valid prefixes are provided.
+* There are duplicate prefixes.
+* The arguments provided have invalid format with respect to their prefixes, e.g. argument for `p/` prefix contains letters.
+
+
+
+
+#### Design considerations
+
+The current design was chosen to allow for addition of more `find` conditions in later iterations. With the current implementation, only
+the `FindCommandParser` class needs to be changed, as well as the creation of a new `Predicate` subclass.
+
+An alternative was to use a flag to denote the condition to filter the list by. For example, if a user wishes to find a patient with
+the name `Bob`, the command would be `find-n Bob`. This was rejected as it only allows for finding with a single condition, leading 
+to a less flexible feature.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

@@ -1,0 +1,25 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:Execute parse method of FindCommandParser;
+:Generate ArgumentMultimap;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([argument contains "n/"])
+    :Set NameContainsKeywordPredicate;
+else ([else])
+    :Set PREDICATE_SHOW_ALL_PATIENTS;
+endif
+
+if () then ([argument contains "p/"])
+    :Set PhoneMatchesPredicate;
+else ([else])
+    :Set PREDICATE_SHOW_ALL_PATIENTS;
+endif
+:Return FindCommand;
+stop
+@enduml
