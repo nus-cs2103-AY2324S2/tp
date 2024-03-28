@@ -115,8 +115,12 @@ public interface Model {
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
 
+<<<<<<< HEAD
 
     Alias getAlias();
 
     void addAlias(String alias, String toReplace);
+=======
+    Theme getTheme();
+>>>>>>> master
 }

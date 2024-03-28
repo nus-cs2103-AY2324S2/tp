@@ -96,4 +96,12 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void hashCode_test() {
+        Person person1 = new PersonBuilder().withName("John Doe").withEmail("email@example.com").build();
+        Person person2 = new PersonBuilder().withName("John Doe").withEmail("email@example.com").build();
+
+        assertEquals(person1.hashCode(), person2.hashCode(), "Hash codes should be equal for equal Person objects");
+    }
 }

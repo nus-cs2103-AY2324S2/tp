@@ -149,11 +149,15 @@ public class BookCommandTest {
 
         @Override
         public void addAlias(String string, String string2) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Alias getAlias() {
-            return new Alias();
+            throw new AssertionError("This method should not be called.");
+        }
+        public Theme getTheme() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

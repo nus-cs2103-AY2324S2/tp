@@ -14,6 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_TIME = new Prefix("-s ");
     public static final Prefix PREFIX_END_TIME = new Prefix("-e ");
     public static final Prefix PREFIX_THEME = new Prefix("-bg ");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("-n ");
 
     public static final Prefix PREFIX_ALIAS = new Prefix("-al ");
     public static final Prefix PREFIX_REPLACED = new Prefix("-r ");
