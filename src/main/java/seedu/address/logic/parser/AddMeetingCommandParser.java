@@ -17,11 +17,11 @@ import seedu.address.model.person.Meeting;
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
     private static String parseErrorMsg = "Oops, please input the meeting command in the following format:\n"
-            + "mtg <contact_name> m/<mtg_description> t/dd-MM-YYYY HHmm-HHmm\n"
+            + "mtg <contact_name> m/<mtg_description> time/dd-MM-YYYY HHmm-HHmm\n"
             + "Example: mtg alex m/interview t/23-03-2024 1400-1500";
 
     private static String emptyDesc = "Oops, please input the description of your meeting.\n"
-            + "Example: mtg alex m/interview t/23-03-2024 1400-1500";
+            + "Example: mtg alex m/interview time/23-03-2024 1400-1500";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
@@ -40,7 +40,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             return new AddMeetingCommand(contactName, new Meeting("", "", "", ""));
         }
         try {
-            String[] parts = meeting.split("t/");
+            String[] parts = meeting.split("time/");
             String desc = parts[0].trim();
             if (desc.isEmpty()) {
                 throw new ParseException(emptyDesc);

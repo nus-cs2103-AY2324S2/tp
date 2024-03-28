@@ -470,6 +470,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
+**Use case: Add a meeting to a contact**
+
+**MSS**
+
+1.  User requests to add a meeting to a specific contact name.
+2.  Connectify adds the meeting details to the contact and the updated contact information is shown for the contact card.
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact already has an existing meeting with the contact.
+
+    * 1b1. Connectify informs the user about the existing meeting details and requests for confirmation
+      to update the current meeting details to the new one.
+    * 1b2a. User confirms the update.
+        * 1b2a1. Connectify updates the current meeting details of the given contact to the new one.
+
+          Use Case ends
+    * 1b2b. User cancels the update.
+        * 1b2b1. Connectify does not update the information.
+
+          Use case ends.
+
 **Use case: Assign priorities to contacts**
 
 **MSS**

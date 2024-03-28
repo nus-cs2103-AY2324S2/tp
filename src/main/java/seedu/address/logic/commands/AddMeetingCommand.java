@@ -20,7 +20,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a meeting to the person identified by the contact name.\n"
-            + "mtg [CONTACT_NAME] m/[MTG_DESC] t/[TIMING]\n"
+            + "mtg [CONTACT_NAME] m/[MTG_DESC] time/[TIMING]\n"
             + "Example: " + COMMAND_WORD + " Alex Tan "
             + "m/Interview t/23-03-2024 1600-1700";
 
