@@ -158,11 +158,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Implemented\] Undo/redo feature
 
-#### Proposed Implementation
+#### Current Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The implemented undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -291,24 +291,26 @@ outdated systems, EffiTrack offers a centralized platform for easy and accurate 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​        | I can…​                                              | So that I can…​                                                         |
-|----------|---------------|-----------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | HR Manager    | assign tasks to employees                           | effortlessly assign tasks to employees, ensuring clear communication of expectations and responsibilities.|
-| `* * *`  | HR Manager    | add or remove employees                             | maintain accurate and up-to-date employee records with ease.           |
-| `* * *`  | HR Manager    | displays tasks with deadline within a week from now | efficiently plan and prioritize tasks based on their urgency.          |
-| `* * *`  | HR Manager    | change person in charge of a task                   | easily change the person in charge of a task, ensuring smooth transition of responsibilities without disrupting workflow.|
-| `* * *`  | HR Manager    | change the deadline for an existing task            | adjust deadlines as needed to accommodate changing priorities or unforeseen circumstances without any hassle.|
-| `* * *`  | HR Manager    | set deadlines for tasks                             | easily set deadlines for tasks, enabling precise scheduling and effective time management.|
-| `* * *`  | HR Manager    | assign employees to departments                     | organize teams effectively and foster better collaboration.             |
-| `* *`  | HR Manager      | perform flexible searches                           | obtain search results even if one character matches.                    |
-| `* *`  | HR Manager      | sort the employee list based on their efficiency    | quickly sort and identify employees based on efficiency metrics, such as productivity levels, task completion rates, or performance evaluations.|
-| `* *`  | HR Manager      | mark assigned task as done                          | efficiently mark tasks as done, providing a clear indication of progress and facilitating effective task tracking and management.|
-| `* *`  | HR Manager      | filter out poor performing employees                | identify and filter out underperforming employees based on key performance indicators, allowing for targeted intervention and support.|
-| `* *`  | HR Manager      | set priority tags for assignments                   | assign priority levels to tasks, ensuring critical tasks receive appropriate attention and resources.|
-| `*`  | HR Manager        | generate efficiency reports highlighting significant changes | make informed decisions and strategic plans based on comprehensive performance insights.|
-| `*`  | HR Manager        | compare efficiency between departments               | identify trends, best practices, and areas for improvement.              |
-| `*`  | HR Manager        | access a simpler interface                           | navigate the system effortlessly and access key information without any complexity.|
-| `*`  | HR Manager        | track real time progress of assignments              | I can monitor the progress of assignments, facilitating timely intervention and resource allocation as necessary.|
+| Priority | As a …​        | I can…​                                                      | So that I can…​                                                                                                                                  |
+|----------|---------------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`  | HR Manager    | assign tasks to employees                                    | effortlessly assign tasks to employees, ensuring clear communication of expectations and responsibilities.                                       |
+| `* * *`  | HR Manager    | add or remove employees                                      | maintain accurate and up-to-date employee records with ease.                                                                                     |
+| `* * *`  | HR Manager    | displays tasks with deadline within a week from now          | efficiently plan and prioritize tasks based on their urgency.                                                                                    |
+| `* * *`  | HR Manager    | change person in charge of a task                            | easily change the person in charge of a task, ensuring smooth transition of responsibilities without disrupting workflow.                        |
+| `* * *`  | HR Manager    | change the deadline for an existing task                     | adjust deadlines as needed to accommodate changing priorities or unforeseen circumstances without any hassle.                                    |
+| `* * *`  | HR Manager    | set deadlines for tasks                                      | easily set deadlines for tasks, enabling precise scheduling and effective time management.                                                       |
+| `* * *`  | HR Manager    | assign employees to departments                              | organize teams effectively and foster better collaboration.                                                                                      |
+| `* *`  | HR Manager      | perform flexible searches                                    | obtain search results even if one character matches.                                                                                             |
+| `* *`  | HR Manager      | sort the employee list based on their efficiency             | quickly sort and identify employees based on efficiency metrics, such as productivity levels, task completion rates, or performance evaluations. |
+| `* *`  | HR Manager      | mark assigned task as done                                   | efficiently mark tasks as done, providing a clear indication of progress and facilitating effective task tracking and management.                |
+| `* *`  | HR Manager      | filter out poor performing employees                         | identify and filter out underperforming employees based on key performance indicators, allowing for targeted intervention and support.           |
+| `* *`  | HR Manager      | set priority tags for assignments                            | assign priority levels to tasks, ensuring critical tasks receive appropriate attention and resources.                                            |
+| `*`  | HR Manager        | generate efficiency reports highlighting significant changes | make informed decisions and strategic plans based on comprehensive performance insights.                                                         |
+| `*`  | HR Manager        | compare efficiency between departments                       | identify trends, best practices, and areas for improvement.                                                                                      |
+| `*`  | HR Manager        | access a simpler interface                                   | navigate the system effortlessly and access key information without any complexity.                                                              |
+| `*`  | HR Manager        | track real time progress of assignments                      | monitor the progress of assignments, facilitating timely intervention and resource allocation as necessary.                                      |
+| `*`  | HR Manager        | undo and redo my commands                                    | easily correct mistakes or revert changes.                                                                                                       |
+| `*`  | HR Manager        | view my command history                                      | recall commands I have executed.                                                                                                                 |
 
 *{More to be added}*
 
