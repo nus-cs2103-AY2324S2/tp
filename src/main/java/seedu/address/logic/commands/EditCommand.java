@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -167,8 +168,17 @@ public class EditCommand extends Command {
         }
 
         Person person = lastShownList.get(index.getZeroBased());
-        return person.getTags().toString();
+        Set<Tag> tags = person.getTags();
+
+        // Remove curly braces from tags and join them into a comma-separated string
+        String tagString = tags.stream()
+                .map(tag -> tag.toString().replaceAll("[\\[\\]]", "").trim())
+                .collect(Collectors.joining(", "));
+
+        return tagString;
     }
+
+
     private String getPersonGrade(Model model, Index index) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 

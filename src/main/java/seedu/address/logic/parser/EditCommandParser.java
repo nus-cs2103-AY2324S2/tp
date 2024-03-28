@@ -18,6 +18,7 @@ import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -40,12 +41,12 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
-                        PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT,
-                        OPTION_PRINT_NAME, OPTION_PRINT_PHONE, OPTION_PRINT_EMAIL,
-                        OPTION_PRINT_ADDRESS, OPTION_PRINT_TAG, OPTION_PRINT_GRADE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
+                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT,
+                OPTION_PRINT_NAME, OPTION_PRINT_PHONE, OPTION_PRINT_EMAIL,
+                OPTION_PRINT_ADDRESS, OPTION_PRINT_TAG, OPTION_PRINT_GRADE);
 
+        // Check if any option to print is requested
         if (argMultimap.getValue(OPTION_PRINT_NAME).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             return new EditCommand(index, new EditCommand.EditPersonDescriptor(), true, false, false, false, false, false);
@@ -67,7 +68,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -90,24 +90,29 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS_EDIT).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
         }
-//        if (argMultimap.getValue(PREFIX_TAG_EDIT).isPresent()) {
-//            editPersonDescriptor.setTags(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
-//        }
-//        if (argMultimap.getValue(PREFIX_GRADE_EDIT).isPresent()) {
-//            editPersonDescriptor.setGrades(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
-//        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_EDIT)).ifPresent(editPersonDescriptor::setTags);
-        parseGradesForEdit(argMultimap.getAllValues(PREFIX_GRADE_EDIT)).ifPresent(editPersonDescriptor::setGrades);
+
+        // Check if PREFIX_TAG_EDIT is present before parsing multiple tags
+        if (argMultimap.getValue(PREFIX_TAG_EDIT).isPresent()) {
+            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_EDIT))
+                    .ifPresent(editPersonDescriptor::setTags);
+        }
+
+        // Check if PREFIX_GRADE_EDIT is present before parsing multiple grades
+        if (argMultimap.getValue(PREFIX_GRADE_EDIT).isPresent()) {
+            parseGradesForEdit(argMultimap.getAllValues(PREFIX_GRADE_EDIT))
+                    .ifPresent(editPersonDescriptor::setGrades);
+        }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if(!editPersonDescriptor.isSingleFieldEdited()) {
+        if (!editPersonDescriptor.isSingleFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_EDITED_BUT_MORE_THAN_ONE);
         }
 
         return new EditCommand(index, editPersonDescriptor, false, false, false, false, false, false);
     }
+
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
@@ -120,9 +125,25 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (tags.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+
+        Set<Tag> tagSet = new HashSet<>();
+        for (String tagString : tags) {
+            // Remove leading and trailing whitespace
+            String trimmedTagString = tagString.trim();
+            // Remove leading and trailing curly braces if present
+            if (trimmedTagString.startsWith("[[") && trimmedTagString.endsWith("]]")) {
+                trimmedTagString = trimmedTagString.substring(2, trimmedTagString.length() - 2);
+            }
+            // Split by commas to handle multiple tags
+            String[] tagArray = trimmedTagString.split(",");
+            for (String tag : tagArray) {
+                tagSet.add(new Tag(tag.trim()));
+            }
+        }
+
+        return Optional.of(tagSet);
     }
+
 
     /**
      * Parses {@code Collection<String> grades} into a {@code Set<Grade>} if {@code grades} is non-empty.
