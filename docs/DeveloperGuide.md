@@ -361,7 +361,7 @@ Extensions
 
 **MSS**
 
-1. User requests to mark attendance for a student by providing the student's NUSNet ID; specifying the week is optional.
+1. User requests to mark attendance for a student by providing the student's NUSNet ID.
 
    Use case ends.
 
@@ -369,7 +369,7 @@ Extensions
 
 **MSS**
 
-1. User requests to un-mark attendance for a student by providing the student's NUSNet ID; specifying the week is optional.
+1. User requests to un-mark attendance for a student by providing the student's NUSNet ID.
 
    Use case ends.
 
@@ -445,24 +445,33 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a person
-If TAPro does not have any student contacts, the following comamnds can be used to add some 
+### Adding a student
+If TAPro does not have any student contacts, the following commands can be used to add some 
 students.
 
-1. Adding a person
+1. Adding a student with NUSNet ID e0123456
+   
+   1. Prerequisites: No student with NUSNet ID e0123456 in the contact book.
+   
+   1. Test case: `addstu n/John Doe p/98765432 e/johndoe@example.com nn/e0123456 a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 
-   1. Prerequisites: No persons in the list.
+      Expected: Student with NUSNet ID `e0123456` is added to the contact book. Details of the added contact 
+      shown in the status message.
+      
+1. Adding a student with NUSNet ID e0123457
 
-   1. Command 1: `addstu n/John Doe p/98765432 e/johndoe@example.com nn/e0123456 a/311, Clementi Ave 2, #02-25 
-      t/friends t/owesMoney`
-   1. Command 2: `addstu n/Mary Jane p/91234911 e/janemary@example.com nn/e0123457 a/312, Clementi St 1, #03-25
-      t/friends t/owesTutorial2` 
+   1. Prerequisites: No student with NUSNet ID e0123457 in the contact book.
+      
+   1. Test case: `addstu n/Mary Jane p/91234911 e/janemary@example.com nn/e0123457 a/312, Clementi St 1, #03-25 t/friends t/owesTutorial2`
 
-### Deleting a person
+      Expected: Student with NUSNet ID `e0123457` is added to the contact book. Details of the added contact 
+      shown in the status message.
+
+### Deleting a student
 
 1. Deleting a student
 
-   1. Prerequisites: Contact book contains at least one student.
+   1. Prerequisites: Contact book contains at least one student with NUSNet ID e0123456.
 
    1. Test case: `delete e0123456`<br>
       Expected: Student with NUSNet ID `e0123456` is deleted from the contact book. Details of the deleted contact 
@@ -472,6 +481,20 @@ students.
       in TA Pro)<br>
 
 1. _{ more test cases …​ }_
+
+### Marking a student's attendance
+
+1. Marking attendance for a student
+
+   1. Prerequisites: Contact book contains at least one student with NUSNet ID e0123456.
+
+   1. Test case: `mark nn/e0123456 wk/1`<br>
+      Expected: Student with NUSNet ID `e0123456` is marked as 'present' from the contact book, depicted on that student's card.
+      Details of the marked contact shown in the status message.
+      
+   1. Other incorrect mark commands to try: `mark`, `mark x`, `mark nn/e0123456`, `mark wk/1`, `mark e0123456 1`,  `...` (where x is not an NUSNet ID of a student 
+      in TA Pro)<br>
+
 
 ### Saving data
 
