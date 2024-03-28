@@ -1,0 +1,9 @@
+Add delete by name functionality to DeleteCommand
+
+Enhance the DeleteCommand class to allow users to delete contacts
+by specifying their name, in addition to the existing index-based
+deletion. This improvement includes updates to the DeleteCommandParser
+to handle string inputs, representing names, and parse them
+appropriately for command execution. This change makes the
+application more flexible and user-friendly, as it provides an
+alternative method for users to manage their contacts.

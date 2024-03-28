@@ -9,23 +9,29 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Email;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.Role;
+import seedu.address.model.employee.Team;
 import seedu.address.model.tag.Tag;
 
+
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -93,6 +99,36 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String team} into a {@code Team}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code team} is invalid.
+     */
+    public static Team parseTeam(String team) throws ParseException {
+        requireNonNull(team);
+        String trimmedTeamName = team.trim();
+        if (!Team.isValidTeam(trimmedTeamName)) {
+            throw new ParseException(Team.MESSAGE_CONSTRAINTS);
+        }
+        return new Team(trimmedTeamName);
+    }
+
+    /**
+     * Parses a {@code String role} into a {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
+     */
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        if (!Role.isValidRole(trimmedRole)) {
+            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        }
+        return new Role(trimmedRole);
     }
 
     /**
