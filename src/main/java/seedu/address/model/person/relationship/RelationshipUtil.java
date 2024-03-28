@@ -131,7 +131,7 @@ public class RelationshipUtil {
      *
      * @param origin The UUID of the origin entity from which the search begins.
      * @param target The UUID of the target entity the search aims to find a path to.
-     * @return An {@link ArrayList<String>} containing the relationship descriptors in the order
+     * @return a listcontaining the relationship descriptors in the order
      *         encountered from the origin to the target. If no path exists, returns an empty list.
      */
     public ArrayList<String> anySearchDescriptors(UUID origin, UUID target) {
@@ -180,7 +180,7 @@ public class RelationshipUtil {
      *
      * @param origin The UUID of the entity from which to start the search.
      * @param target The UUID of the entity to find a path to, using only family relationships.
-     * @return An {@link ArrayList<String>} listing the family relationship descriptors from the origin
+     * @return A list listing the family relationship descriptors from the origin
      *         to the target, in order encountered. Returns an empty list if no such path exists.
      */
     public ArrayList<String> familySearchDescriptors(UUID origin, UUID target) {
