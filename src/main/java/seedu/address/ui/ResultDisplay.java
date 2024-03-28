@@ -16,6 +16,11 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Constructs a new ResultDisplay object.
+     * This constructor initializes the ResultDisplay with the FXML file specified,
+     * and sets the text of the resultDisplay to the provided OUTPUT_MESSAGE.
+     */
     public ResultDisplay() {
         super(FXML);
     }
