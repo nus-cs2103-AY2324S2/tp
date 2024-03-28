@@ -128,18 +128,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-[//]: # (<box type="info" seamless>)
-
-[//]: # ()
-[//]: # (**Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>)
-
-[//]: # ()
-[//]: # (<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />)
-
-[//]: # ()
-[//]: # (</box>)
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -195,7 +183,9 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/AddCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/AddCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered:
 
@@ -255,7 +245,9 @@ The following sequence diagram shows how an addnote operation goes through the `
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/AddNoteCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
@@ -312,7 +304,9 @@ The following sequence diagram shows how a find operation goes through the `Logi
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/FindCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+  <puml src="diagrams/FindCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
@@ -357,7 +351,9 @@ The following sequence diagram shows how a delete operation goes through the `Lo
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/DeleteCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
@@ -401,58 +397,15 @@ The following sequence diagram shows how an edit operation goes through the `Log
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/EditCommandActivityDiagram.puml" width="250" align="center"/>
+<div style="text-align: center;">
+    <puml src="diagrams/EditCommandActivityDiagram.puml" width="250"/>
+</div>
 
 #### Design Considerations & Alternatives Considered
 
 **Aspect: Display of updated information when command is successful:**
 * Current choice: Displays the updated information in the correct patient’s section in the addressbook.
     * Rationale: Users will be able to view the updated information easily.
-
-**Aspect: Display of error message when command is unsuccessful:**
-* Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
-    * Rationale: Users will be able to learn of their error quickly and have an idea of what to edit to make the command successful.
-
-### \[Proposed\] Show feature
-
-#### Proposed Implementation
-
-The proposed show mechanism is facilitated by `AddressBook`. It implements `AddressBook#displayPerson(Person target)` which allow users to display patient’s details in the side window of the addressbook.
-
-These operations are exposed in the `Model` interface as `Model#displayPerson(Person target)`.
-
-Given below is an example usage scenario and how the show mechanism behaves at each step.
-
-Step 1. The user launches the application. The `AddressBook` will be initialized with the initial address book state.
-
-Step 2. The user executes `show T0123456A` to display the details of the person in the side window of the address book 
-with the unique identification number `T0123456A`. The show command calls `Model#displayPerson(Person target)`, causing the modified state of the address book after the `show T0123456A` command executes to be displayed.
-
-<box type="info" seamless>
-
-**Note:** If a command fails its execution, it will not call `Model#displayPerson(Person target)`, so the address book state will not be displayed.
-
-</box>
-
-The following sequence diagram shows how a show operation goes through the `Logic` component:
-
-[//]: # (<puml src="diagrams/ShowCommandDiagram.puml" alt="ShowCommandDiagram" />)
-
-<box type="info" seamless>
-
-**Note:** The lifeline for `ShowCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</box>
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<puml src="diagrams/ShowCommandActivityDiagram.puml" width="250" align="center"/>
-
-#### Design Considerations & Alternatives Considered
-
-**Aspect: Display of patient’s details when command is successful:**
-* Current choice:  Displays the correct patient’s details in the side window of the addressbook.
-    * Rationale: Users will be able to view the patient's details easily.
 
 **Aspect: Display of error message when command is unsuccessful:**
 * Current choice: Displays the correct error message based on the type of error made (e.g. missing fields, invalid ic format).
