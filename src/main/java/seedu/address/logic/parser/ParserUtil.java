@@ -170,25 +170,4 @@ public class ParserUtil {
         }
         return new EndTime(trimmedEnd);
     }
-
-    /**
-     * Parses a theme string into a Theme enum value.
-     *
-     * @param theme The theme string to parse.
-     * @return The corresponding Theme enum value.
-     * @throws ParseException If the theme string does not match any known theme.
-     */
-    public static Theme parseTheme(String theme) throws ParseException {
-        Theme guiTheme;
-        switch(theme.toUpperCase()) {
-        case "LIGHT":
-            guiTheme = Theme.LIGHTTHEME;
-            break;
-        case "DARK":
-            // Fall through
-        default:
-            throw new ParseException("Theme must be light or dark!");
-        }
-        return guiTheme;
-    }
 }

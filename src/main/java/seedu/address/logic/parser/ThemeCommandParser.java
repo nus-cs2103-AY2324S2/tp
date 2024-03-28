@@ -31,7 +31,18 @@ public class ThemeCommandParser implements Parser<ThemeCommand> {
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_THEME);
 
-        Theme theme = ParserUtil.parseTheme(argMultimap.getValue(PREFIX_THEME).get());
+        Theme theme;
+        String themeString = argMultimap.getValue(PREFIX_THEME).orElse(null).toUpperCase();
+
+        if (themeString == null) {
+            throw new ParseException("Theme value is null.");
+        }
+
+        try {
+            theme = Theme.valueOf(themeString);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException("Theme does not exist: " + themeString);
+        }
 
         return new ThemeCommand(theme);
     }

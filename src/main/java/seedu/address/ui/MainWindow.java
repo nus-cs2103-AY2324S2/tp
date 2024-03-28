@@ -156,10 +156,10 @@ public class MainWindow extends UiPart<Stage> {
         String styleSheet;
         Theme theme = guiSettings.getTheme();
         switch(theme) {
-        case LIGHTTHEME:
+        case LIGHT:
             styleSheet = "/view/stylesheets/LightTheme.css";
             break;
-        case DARKTHEME:
+        case DARK:
         default:
             styleSheet = "/view/stylesheets/DarkTheme.css";
         }
