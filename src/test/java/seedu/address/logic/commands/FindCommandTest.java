@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.ELLE;
 import static seedu.address.testutil.TypicalStudents.FIONA;
+import static seedu.address.testutil.TypicalStudents.GEORGE;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -102,13 +103,12 @@ public class FindCommandTest {
 
     @Test
     public void execute_starBound_success() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
-        StarWithinBoundsPredicate predicate = new StarWithinBoundsPredicate(">", 0);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
+        StarWithinBoundsPredicate predicate = new StarWithinBoundsPredicate(">=", 5);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        System.out.println(model.getFilteredStudentList());
-        assertEquals(Arrays.asList(ALICE), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(ALICE, GEORGE), model.getFilteredStudentList());
     }
 
     @Test

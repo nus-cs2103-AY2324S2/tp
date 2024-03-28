@@ -137,13 +137,33 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
-
     @Override
-    public void updateSortedStudentListSortAscending() {
-        Comparator<Student> ascendingComparator = Comparator.comparingInt(Student::getStarCount);
-        sortedStudents.setComparator(ascendingComparator);
+    public void updateSortedStudentListByField(String field, boolean isAscending) {
+        Comparator<Student> comparator;
+        switch (field.toLowerCase()) {
+        case "email":
+            comparator = Comparator.comparing(Student::getEmail);
+            break;
+        case "major":
+            comparator = Comparator.comparing(Student::getMajor);
+            break;
+        case "name":
+            comparator = Comparator.comparing(Student::getName);
+            break;
+        case "phone":
+            comparator = Comparator.comparing(Student::getPhone);
+            break;
+        case "star":
+            comparator = Comparator.comparing(Student::getStar);
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid field for sorting: " + field);
+        }
+        if (!isAscending) {
+            comparator = comparator.reversed();
+        }
+        sortedStudents.setComparator(comparator);
     }
-
     @Override
     public ObservableList<Student> getCorrectStudentList() {
         return sortedStudents;

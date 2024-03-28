@@ -91,12 +91,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
-
     /**
-     * Updates the sorted state of the sorted student list to the ascending order of stars
-     * and updates the sorted list.
+     * Updates the sorted state of the sorted person list based off a given field
+     * either in ascending or descending order
      */
-    void updateSortedStudentListSortAscending();
+    void updateSortedStudentListByField(String field, boolean isAscending);
+
 
 
 
