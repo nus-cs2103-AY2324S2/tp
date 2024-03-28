@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam objectFontColor white
+
+object "<u>:AddCommand</u>" as AddCommand LOGIC_COLOR
+object "<u>:AddCommandParser</u>" as AddCommandParser LOGIC_COLOR
+object "<u>:AddressBookParser</u>" as AddressBookParser LOGIC_COLOR
+object "<u>:Model</u>" as Model MODEL_COLOR
+object "<u>:CommandResult</u>" as CommandResult LOGIC_COLOR
+object "<u>toAdd:Person" as Person LOGIC_COLOR
+object "<u>:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+object "<u>:ParserUtil" as ParserUtil LOGIC_COLOR
+
+AddressBookParser --> AddCommandParser : calls
+AddressBookParser --> AddCommand
+AddCommandParser -> AddCommand
+AddCommandParser --> ArgumentMultimap : instantiates
+ParserUtil --> ArgumentMultimap : parses
+AddCommand --> Person
+AddCommand --> Model
+AddCommand -right-> CommandResult : outputs
+Model --> Person : Adds
+@enduml
