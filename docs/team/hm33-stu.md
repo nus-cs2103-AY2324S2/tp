@@ -1,6 +1,6 @@
 ---
-  layout: default.md
-  title: "HM33-Stu's Project Portfolio Page"
+layout: page
+title: HM33-Stu's Project Portfolio Page
 ---
 
 ### Project: CareerSync
