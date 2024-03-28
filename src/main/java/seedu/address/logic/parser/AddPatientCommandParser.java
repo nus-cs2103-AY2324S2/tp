@@ -37,7 +37,7 @@ public class AddPatientCommandParser implements Parser<AddCommand> {
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            logger.log(Level.WARNING, "processing error", args);
+            logger.log(Level.WARNING, "AddPatientCommandParser error: " + args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
