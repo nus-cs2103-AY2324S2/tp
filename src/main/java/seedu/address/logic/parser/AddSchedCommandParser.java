@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
@@ -54,7 +55,7 @@ public class AddSchedCommandParser implements Parser<AddSchedCommand> {
 
             return new AddSchedCommand(indexArrayList, schedule);
         } catch (DateTimeException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSchedCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_DATETIME_FORMAT, AddSchedCommand.MESSAGE_USAGE));
         }
     }
 

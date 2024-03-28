@@ -19,11 +19,8 @@ public class Schedule {
 
     public static final String MESSAGE_CONSTRAINTS = "Schedule names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static int schedIdCounter = 0;
-    // !! to EDIT as a metadata for Json storage
-
-    private final int schedId;
+    public static final String DATETIME_STRING = "yyyy-MM-dd HH:mm";
+    public static final DateTimeFormatter CUSTOM_DATETIME = DateTimeFormatter.ofPattern(DATETIME_STRING);
     private final String schedName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
@@ -42,7 +39,6 @@ public class Schedule {
         requireNonNull(schedName);
         //checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
-        this.schedId = schedIdCounter++;
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -60,9 +56,8 @@ public class Schedule {
     public Schedule(String schedName, LocalDateTime startTime,
                     LocalDateTime endTime, ArrayList<Person> personList) {
         requireNonNull(schedName);
-        //checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidSchedName(schedName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTiming(startTime, endTime));
-        this.schedId = schedIdCounter++;
         this.schedName = schedName;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -188,4 +183,17 @@ public class Schedule {
                 + "   Participants: " + getParticipantsName() + "\n";
     }
 
+    /**
+     * Returns ustom date time format used
+     */
+    public static DateTimeFormatter getScheduleDateTimeFormatter() {
+        return CUSTOM_DATETIME;
+    }
+
+    /**
+     * Returns custom date time format used in string
+     */
+    public static String getDateTimeStringFormat() {
+        return DATETIME_STRING;
+    }
 }

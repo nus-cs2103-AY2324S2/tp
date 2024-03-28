@@ -66,11 +66,6 @@ public class AddSchedCommand extends Command {
         schedule.addParticipants(participants);
         model.addSchedule(schedule, participants);
 
-        // !!!TO VERIFY WITH REST: is model implementation required for Schedule?
-
-        //ArrayList<Person> addedParticipants = schedule.addParticipants(participants);
-
-
         return new CommandResult(generateSuccessMessage());
     }
 
