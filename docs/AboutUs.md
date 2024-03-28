@@ -9,51 +9,47 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Joseph Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cyqjoseph.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/cyqjoseph)]
 
-* Role: Project Advisor
+* Role: DevOps
+* Responsibilities: Test implementation and Management,
+  Feature Development and Enhancement.
 
-### Jane Doe
+### Wang Minhong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chrysanthemumt.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/chrysanthemumt)]
 
 * Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Jerremy Ng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jerremyng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jerremyng)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Code
 
-### James Doe
+### Ujjwal Gaurav
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gauravuj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gauravuj)]
+
+* Role: UI/UX & Frontend Developer
+* Responsibilities: Enhance product aesthetics, refine UI functionality,
+                    ensure seamless frontend-backend integration.
+
+### Low Zheng Hui
+
+<img src="images/zhenghuil.png" width="200px">
+
+[[github](https://github.com/zhenghuil)]
 
 * Role: Developer
-* Responsibilities: UI

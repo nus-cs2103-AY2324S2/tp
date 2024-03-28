@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -27,8 +28,27 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+
+        commandTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) { // When the text field is focused
+                if (commandTextField.getText().equals("> ")) {
+                    commandTextField.setText("");
+                }
+            } else { // When the text field loses focus
+                if (commandTextField.getText().isEmpty()) {
+                    commandTextField.setText("> ");
+                }
+            }
+        });
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.startsWith("> ")) {
+                commandTextField.setText("> " + newValue.replaceAll("^> ?", ""));
+                commandTextField.positionCaret(commandTextField.getText().length());
+            }
+            setStyleToDefault();
+        });
     }
 
     /**
@@ -36,18 +56,27 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
-            return;
-        }
-
         try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("");
+            // Extract the actual command text entered by the user.
+            String commandText = commandTextField.getText().substring(2).trim();
+
+            if (!commandText.isEmpty()) {
+                commandExecutor.execute(commandText);
+
+                // Clear the command input only if the command is successful.
+                commandTextField.setText("> ");
+            }
         } catch (CommandException | ParseException e) {
+            // If there's an error, indicate command failure without clearing the text
+            System.out.println("some ui error detected");
+            commandTextField.positionCaret(commandTextField.getText().length());
             setStyleToIndicateCommandFailure();
+        } finally {
+            commandTextField.positionCaret(commandTextField.getText().length());
         }
     }
+
+
 
     /**
      * Sets the command box style to use the default style.
@@ -62,12 +91,16 @@ public class CommandBox extends UiPart<Region> {
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
 
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
+        // Just add the error style class, do not clear the text
+        if (!styleClass.contains(ERROR_STYLE_CLASS)) {
+            styleClass.add(ERROR_STYLE_CLASS);
+            System.out.println("Error style class added.");
         }
 
-        styleClass.add(ERROR_STYLE_CLASS);
+        // Keep the caret at the end of the text
+        commandTextField.positionCaret(commandTextField.getText().length());
     }
+
 
     /**
      * Represents a function that can execute commands.

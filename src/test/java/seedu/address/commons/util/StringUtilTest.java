@@ -140,4 +140,47 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    @Test
+    public void containsSubstringIgnoreCase_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", null));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                StringUtil.containsSubstringIgnoreCase("typical sentence", "aaa BBB"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsSubstringIgnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_basicMatch_returnsTrue() {
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Hello World", "world"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_caseInsensitivity_returnsTrue() {
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Java Programming", "JAVA"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_partialWordMatch_returnsTrue() {
+        assertTrue(StringUtil.containsSubstringIgnoreCase("Internationalization", "nation"));
+    }
+
+    @Test
+    public void containsSubstringIgnoreCase_nonMatch_returnsFalse() {
+        assertFalse(StringUtil.containsSubstringIgnoreCase("OpenAI GPT", "Transformer"));
+    }
+
 }

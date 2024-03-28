@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Theme;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +16,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +88,35 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given booking
+     */
+    void addBooking(Booking booking);
+
+    /**
+     * Deletes the given Booking.
+     * The Booking must exist in the address book.
+     */
+    void cancelBooking(Booking target);
+
+    /**
+     * Returns True if booking exists, else False
+     */
+    boolean hasBooking(Booking booking);
+
+    ObservableList<Booking> getFilteredBookingList();
+
+    void setTheme(Theme theme);
+
+    /**
+     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookingList(Predicate<Booking> predicate);
+
+    Alias getAlias();
+
+    void addAlias(String alias, String toReplace);
+    Theme getTheme();
 }

@@ -2,16 +2,10 @@
 layout: page
 title: Developer Guide
 ---
+Welcome to our Developer Guide! This resource is designed to provide developers with a overview of Dook's architecture. Whether you're new to the project or looking to extend its functionality, this guide is the best place to start learning how to contribute to Dook.
+
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -239,10 +233,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Theme switching
 
-_{Explain here how the data archiving feature will be implemented}_
+**Themes** practically are changed by switching the CSS file that MainWindow.java uses in
+/resources/view/stylesheets.
+* Current Themes
+    * DarkTheme.css
+    * LightTheme.css
 
+![ThemeModelSequenceDiagram](images/ThemeModelSequenceDiagram.png)
+
+Themes are referenced internally as a Class in guiSettings. After parsing the theme command,
+LogicManager will call the setTheme command of the ModelManager. From the model above we can see that,
+subsequently userPref and guiSetting is called to set the current Theme as the DarkTheme.
+
+On the Ui side when the Command Result of logic.excute(Command) is found to be a **themeCommand**, it programmatically
+sets scene's stylesheet to the respective CSS file associated with the theme.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,71 +268,237 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
+* currently in NUS school of computing
 * has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* needs to book many consultations and meetings with professors/students
+* has a busy schedule which constantly changes
+* frequently needs a quick overview of their schedule
+* prefer desktop apps
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Help students manage booking consultations/meeting with professors/students.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
+| Priority | As a …​  | I want to …​                      | So that I can…​                                                        |
+|----------|----------|-----------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user     | add a contact                     |                                                                        |
+| `* * *`  | user     | delete a contact                  | remove entries that I no longer need                                   |
+| `* * *`  | user     | update a contact                  |                                                                        |
+| `* * *`  | user     | view professors calendar          | see the available timings                                              |
+| `* * *`  | user     | view professors's office hours    | know when to contact them                                              |
+| `* * *`  | user     | view professors's office location | know where to find them                                                | 
+| `* * *`  | user     | find a prof by name               | locate details of persons without having to go through the entire list |
+| `* *`    | user     | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `*`      | user     | update my calendar                | change my schedule                                                     |
+| `*`      | user     | create event/consultations        | it can be recorded                                                     |
+| `*`      | user     | delete event                      |                                                                        |
+| `*`      | user     | update event                      |                                                                        |
+| `*`      | user     | view the current week's consults  | change my schedule                                                     |
+| `*`      | user     | view a TA's calendar              | book a consult                                                         |
+| `*`      | user     | generate email to contact         | easily send out communications                                         |
+| `*`      | user     | delete all contacts               |                                                                        | 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Dook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a contact
+2. Dook adds the contact
+3. Dook displays the details of the contact added
 
-    Use case ends.
+   Use case ends
 
 **Extensions**
+* **2a. The contact details are invalid**
+    * **2a1. Dook shows an error message**
+    
+    Use Case ends
+* **3a. Duplicate contact added**
+    * **3a1. Dook shows an error message**
+    
+    Use case ends
 
-* 2a. The list is empty.
+**Use Case: Delete a Contact**
 
-  Use case ends.
+**MSS**
 
-* 3a. The given index is invalid.
+1. User requests to delete a contact by name or index.
+2. Dook confirms the deletion request (if applicable).
+3. Dook deletes the contact.
+4. Dook confirms the contact has been deleted.
 
-    * 3a1. AddressBook shows an error message.
+   Use case ends.
+
+**Extensions**
+* **2a. User requests to delete all contacts.**
+    - **2a1. Dook asks for confirmation.**
+    - **2a2. If confirmed, Dook deletes all contacts and confirms deletion.**
+    - **2a3. If not confirmed, Dook cancels the deletion process.**
+
+      Use case ends.
+* **3a. The specified contact does not exist.**
+    - **3a1. Dook shows an error message.**
+
+      Use case ends.
+* **3b. The contact index is out of range.**
+    - **3b1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: View All Contacts**
+
+**MSS**
+
+1. User requests to view all contacts.
+2. Dook retrieves and displays all contacts.
+
+   Use case ends.
+
+**Extensions**
+* **2a. There are no contacts to display.**
+    - **2a1. Dook shows a message indicating there are no contacts.**
+
+      Use case ends.
+* **2b. An unexpected error occurs while fetching contacts.**
+    - **2b1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: Find Contacts**
+
+**MSS**
+
+1. User requests to find contacts by name or contact type.
+2. Dook searches and displays matching contacts.
+
+   Use case ends.
+
+**Extensions**
+* **2a. No contacts match the search criteria.**
+    - **2a1. Dook shows a message indicating no matches found.**
+
+      Use case ends.
+* **2b. An error occurs during the search.**
+    - **2b1. Dook shows an error message.**
+
+      Use case ends.
+
+### Booking System Use Cases
+
+**Use case: Book a Consultation Slot**
+
+**MSS**
+
+1. User inputs `book` command with necessary details.
+2. Dook schedules the booking.
+3. Dook confirms the booking details to the user.
+
+   Use case ends.
+
+**Extensions**
+* **2a. The booking details are invalid.**
+    * **2a1. Dook shows an error message.**
+
+      Use Case ends.
+* **2b. The requested time slot overlaps with an existing booking.**
+    * **2b1. Dook shows an error message.**
+
+      Use case ends.
+* **2c. The specified user does not match any contacts.**
+    * **2c1. Dook prompts the user to select a valid contact.**
 
       Use case resumes at step 2.
+
+**Use Case: View All Bookings**
+
+**MSS**
+
+1. User requests to view all bookings.
+2. Dook retrieves and displays all bookings.
+
+   Use case ends.
+
+**Extensions**
+* **2a. Unable to retrieve bookings.**
+    * **2a1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: Cancel Bookings**
+
+**MSS**
+
+1. User requests to cancel a booking or all bookings.
+2. Dook asks for confirmation (if applicable).
+3. User confirms cancellation.
+4. Dook cancels the booking(s) and confirms to the user.
+
+   Use case ends.
+
+**Extensions**
+* **2a. User decides not to cancel after all.**
+    * **2a1. Dook cancels the cancellation process.**
+
+      Use case ends.
+* **3a. The specified booking does not exist.**
+    * **3a1. Dook shows an error message.**
+
+      Use case ends.
+* **4a. Error in deleting bookings.**
+    * **4a1. Dook shows an error message.**
+
+      Use case ends.
+
+**Use Case: Find Free Time**
+
+**MSS**
+
+1. User requests to find free time for a contact.
+2. Dook retrieves and displays available time slots.
+
+   Use case ends.
+
+**Extensions**
+* **2a. No free time slots are available.**
+    * **2a1. Dook shows a message indicating no available time slots.**
+
+      Use case ends.
+* **2b. The specified contact does not exist.**
+    * **2b1. Dook prompts the user to select a valid contact.**
+
+      Use case resumes at step 2.
+
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system architecture should be designed to efficiently handle growth in data volume, capable of supporting at least 10 times the initial data volume without a complete overhaul.
+5. The system should include automated backup capabilities to prevent data loss and provide options for data recovery in case of system failure.
+6. Application should be able to use online and offline. 
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Professor**: Lecturer / Researcher in the National University of Singapore 
+* **SoC**: School of Computing in NUS
+* **Tutor**: Professor or Teaching Assistant in NUS SoC
+* **Consultation slot**: Time interval dedicated to a meeting
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -380,3 +552,11 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
+
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries}
+* Include links to the original source as well
+

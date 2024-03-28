@@ -1,13 +1,17 @@
 #copyButton, #helpMessage {
     -fx-text-fill: white;
+    -fx-font-family: "Hack";
 }
 
 #copyButton {
+    -fx-font-weight: bold;
     -fx-background-color: dimgray;
+    -fx-border-radius: 75%;
+    -fx-background-radius: 14px;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #186ADD;
 }
 
 #copyButton:armed {
@@ -17,3 +21,4 @@
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
+

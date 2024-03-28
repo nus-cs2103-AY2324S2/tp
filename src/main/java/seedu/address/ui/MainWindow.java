@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -12,10 +13,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Theme;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private BookingListPanel bookingListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane bookingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -64,6 +71,8 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
+        System.out.println(logic.getGuiSettings().getTheme());
+        setTheme(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
     }
@@ -113,6 +122,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
+        bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -133,6 +145,22 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    private void setTheme(GuiSettings guiSettings) {
+        String styleSheet;
+        Theme theme = guiSettings.getTheme();
+        switch(theme) {
+        case LIGHT:
+            styleSheet = "/view/stylesheets/LightTheme.css";
+            break;
+        case DARK:
+        default:
+            styleSheet = "/view/stylesheets/DarkTheme.css";
+        }
+        Scene scene = primaryStage.getScene();
+        scene.getStylesheets().clear();
+        scene.getStylesheets().addAll(this.getClass().getResource(styleSheet).toExternalForm());
     }
 
     /**
@@ -157,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getGuiSettings().getStringTheme());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -167,6 +195,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public BookingListPanel getBookingListPanel() {
+        return bookingListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -174,9 +206,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            Alias aliases = logic.getAlias();
+            System.out.println("here is wut the map gets:\n");
+            System.out.println(aliases.getAlias(commandText));
+            if (aliases.getAlias(commandText) != null) {
+                commandText = aliases.getAlias(commandText);
+            }
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser(), true);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -186,11 +224,17 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isTheme()) {
+                setTheme(logic.getGuiSettings());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setFeedbackToUser(e.getMessage(), false);
             throw e;
         }
     }
+
 }
+
