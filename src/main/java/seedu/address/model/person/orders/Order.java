@@ -31,11 +31,11 @@ public class Order implements Cloneable {
         requireNonNull(items);
         checkArgument(isValidItems(items), MESSAGE_CONSTRAINTS);
         this.items = items;
-        this.orderDateTime = LocalDateTime.now();
+        this.orderDateTime = LocalDateTime.now().withNano(0);
     }
 
     /**
-     * Constructs an {@code Order} with a specific {@code LocalDateTime} ordered.
+     * Constructs an {@code Order} with a specific {@code LocalDateTime} ordered. Time is rounded down to the second
      *
      * @param items A valid order
      * @param orderDateTime The time of this order
@@ -45,7 +45,7 @@ public class Order implements Cloneable {
         requireNonNull(orderDateTime);
         checkArgument(isValidItems(items), MESSAGE_CONSTRAINTS);
         this.items = items;
-        this.orderDateTime = orderDateTime;
+        this.orderDateTime = orderDateTime.withNano(0);
     }
 
     /**
