@@ -337,7 +337,7 @@ Let's start off with knowing how you can add an internship entry with all the re
 * The field `LOCATION_ENUM` accepts only the following inputs: `remote`, `local`, `overseas`
 
 <div markdown="span" class="alert alert-info">
-ℹ️ **Tip:** <br> Head over to the [Tutorial](#tutorial) and learn how to add an internship entry !
+ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to add an internship entry !
 </div>
 
 
@@ -357,8 +357,8 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list of internship entries at point of deletion.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-  <div markdown="span" class="alert alert-info">
-ℹ️ **Tip:** <br> Head over to the [Tutorial](#tutorial) and learn how to delete an internship entry !
+<div markdown="span" class="alert alert-info">
+ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to delete an internship entry !
 </div>
 
 <div markdown="span" class="alert alert-danger">
