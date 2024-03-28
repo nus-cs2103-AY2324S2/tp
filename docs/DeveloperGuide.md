@@ -257,21 +257,32 @@ This section describes how the `find-Tag` command works and is implemented.
 
 The Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the `find-Tag` command is activated.
 
+### Class Diagram
+
+<img src="images/FindTagClassDiagram.png" width="850"/>
+
 ### Sequence Diagram
+
 <img src="images/FindTagSequenceDiagram.png" width="550"/>
 
 ### Activity Diagram
+
 <img src="images/FindTagActivityDiagram.png" width="550"/>
 
 How a `find-tag` command is executed.
 1. The User inputs a command in the format of "find-tag [TAG]" to find clients by tag.
    1. `LogicManager` receives the user command and parses the command to the `AddressBookParser`.
    2. `AddressBookParser` parses this command to the `FindTagCommandParser`.
-   3. `FindTagCommandParser` creates a new instance the `FindTagCommand` using the tag as a predicate.
+   3. `FindTagCommandParser` creates a new instance of `FindTagCommand` using the tag as a predicate.
+
+<img src="images/FindTagState1.png" width="650"/>
+
 2. `FindTagCommand` instance is returned to the `LogicManager`.
    1. `LogicManager` calls the execute() method of the `FindTagCommand` instance.
    2. A `CommandResult` is generated and returned to `MainWindow`.
 3. `MainWindow` creates a `CommandBox` with the resulting command output, listing our all clients with the specified tag.
+
+<img src="images/FindTagState2.png" width="850"/>
 
 ### \[Proposed\] Undo/redo feature
 

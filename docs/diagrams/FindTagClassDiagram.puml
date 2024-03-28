@@ -2,6 +2,7 @@
 class UiManager {
 + start(): void
 }
+
 class MainWindow {
 + fillInnerparts(): void
 - executeCommand(commandText: String): CommandResult
@@ -15,12 +16,16 @@ class AddressBookParser {
 + parseCommand(userInput: String): Command
 }
 
-class ViewCommandParser {
-+ parse(args: String): ViewCommand
+class FindTagCommandParser {
++ parse(args: String): FindTagCommand
 }
 
-class ViewCommand {
+class FindTagCommand {
 + execute(model: Model): CommandResult
+}
+
+class TagContainsKeywordsPredicate {
+- keywords: List<String>
 }
 
 class CommandResult {
@@ -33,6 +38,7 @@ class CommandBox {
 interface Model
 
 class ModelManager {
++ updateFilteredClientList(predicate: predicate<Client>): void
 + getFilteredClientList(): ObservableList<Client>
 }
 
@@ -42,10 +48,12 @@ MainWindow --> CommandBox : creates >
 LogicManager --> AddressBookParser : creates >
 Model <|-- ModelManager
 LogicManager --> Model
-AddressBookParser --> ViewCommandParser : creates >
-ViewCommand - ViewCommandParser : creates <
-CommandResult <- ViewCommand : creates <
-ViewCommand -- ModelManager: returns filtered list <
-LogicManager -- ViewCommand : executes >
+AddressBookParser --> FindTagCommandParser : creates >
+FindTagCommand - FindTagCommandParser : creates <
+CommandResult <- FindTagCommand : creates <
+FindTagCommand --> TagContainsKeywordsPredicate
+FindTagCommand -- ModelManager : returns filtered list <
+TagContainsKeywordsPredicate <- ModelManager
+LogicManager -- FindTagCommand : executes >
 CommandBox -- CommandResult : is used to create <
 @enduml

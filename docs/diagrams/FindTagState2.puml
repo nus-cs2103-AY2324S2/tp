@@ -1,0 +1,25 @@
+@startuml
+object "<u>:UiManager" as UiManager
+object "<u>:MainWindow" as MainWindow
+object "<u>:LogicManager" as LogicManager
+object "<u>:AddressBookParser" as AddressBookParser
+object "<u>:FindTagCommandParser" as FindTagCommandParser
+object "<u>:FindTagCommand" as FindTagCommand
+object "<u>:TagContainsKeywordsPredicate" as TagContainsKeywordsPredicate
+object "<u>:ModelManager" as ModelManager
+object "<u>:CommandBox" as CommandBox
+object "<u>:CommandResult" as CommandResult
+
+UiManager - MainWindow : creates >
+MainWindow - LogicManager
+LogicManager -- AddressBookParser : creates >
+AddressBookParser -- FindTagCommandParser : creates >
+FindTagCommand - FindTagCommandParser : creates <
+FindTagCommand --> TagContainsKeywordsPredicate
+FindTagCommand -- ModelManager : returns filtered list <
+TagContainsKeywordsPredicate <- ModelManager
+LogicManager -- FindTagCommand: executes >
+CommandResult <- FindTagCommand : creates <
+CommandBox -- CommandResult : is used to create <
+MainWindow --> CommandBox : creates >
+@enduml
