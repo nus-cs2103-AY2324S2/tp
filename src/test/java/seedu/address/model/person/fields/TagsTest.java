@@ -1,7 +1,7 @@
 package seedu.address.model.person.fields;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -51,7 +51,7 @@ class TagsTest {
 
     @Test
     void equals_null_false() {
-        assertNotEquals(null, new Tags(emptyTagArray));
+        assertFalse(new Tags(emptyTagArray).equals(null));
     }
 
 }
