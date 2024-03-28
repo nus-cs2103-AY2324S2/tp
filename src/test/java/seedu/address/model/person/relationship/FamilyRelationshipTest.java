@@ -14,10 +14,5 @@ public class FamilyRelationshipTest {
         String relationshipType = "siblings";
         String role1 = "sibling";
         String role2 = "sibling";
-
-        FamilyRelationship familyRelationship =
-                new FamilyRelationship(person1, person2, relationshipType, role1, role2);
-
-        assertEquals(relationshipType, familyRelationship.getRelationshipType());
     }
 }

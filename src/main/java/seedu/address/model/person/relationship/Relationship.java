@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents a relationship between two people.
  */
@@ -12,10 +14,8 @@ public class Relationship {
             Arrays.asList("friend", "siblings", "spouses", "bioparents"));
     protected UUID person1;
     protected UUID person2;
-
     protected boolean isFamilyRelationship;
     protected String relationshipDescriptor;
-    protected String type;
 
     /**
      * Creates a new Relationship object with the given UUIDs.
@@ -37,7 +37,6 @@ public class Relationship {
         isFamilyRelationship = relationshipDescriptor.equalsIgnoreCase("family");
         this.relationshipDescriptor = relationshipDescriptor;
     }
-
     // Getters for person UUIDs
     public UUID getPerson1() {
         return person1;
@@ -74,6 +73,22 @@ public class Relationship {
     }
 
     /**
+     * suppose (abcd, edfg) is exisiting relationship of relationshipDescriptor friend, then
+     * getRelativeRelationshipDescrptor(edfg) will return friend of abcd
+     * @param origin
+     * @return
+     */
+    public String getRelativeRelationshipDescriptor(UUID origin) {
+        UUID target = origin.equals(this.person1) ? this.person2 : this.person1;
+        String originString = origin.toString();
+        String targetString = target.toString();
+        String lastFourCharactersOfOriginString = originString.substring(originString.length() - 4);
+        String lastFourCharactersOfTargetString = targetString.substring(targetString.length() - 4);
+        return String.format("%s %s of %s", lastFourCharactersOfOriginString,
+                relationshipDescriptor, lastFourCharactersOfTargetString);
+    }
+
+    /**
      * Adds a new relationship type to the list of valid relationship types.
      */
     public static String showRelationshipTypes() {
@@ -97,5 +112,21 @@ public class Relationship {
                     + "\nPlease delete them first.");
         }
         validDescriptors.remove(relationType);
+    }
+
+    /**
+     * check if relationship has the UUID if there is return the other party so that BFS can be done
+     * otherwise return null
+     * @param origin
+     * @return
+     */
+    public UUID containsUUID(UUID origin) {
+        if (origin.equals(person1)) {
+            return person2;
+        }
+        if (origin.equals(person2)) {
+            return person1;
+        }
+        return null;
     }
 }

@@ -2,6 +2,8 @@ package seedu.address.model.person.relationship;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +18,14 @@ public class RelationshipUtil {
     private final ObservableList<Relationship> relationshipsTracker = FXCollections.observableArrayList();
     private final ObservableList<Relationship> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(relationshipsTracker);
+    private class Pair {
+        private UUID uuid;
+        private int relationshipPairIndex;
+        private Pair(UUID uuid, int relationshipPairIndex) {
+            this.uuid = uuid;
+            this.relationshipPairIndex = relationshipPairIndex;
+        }
+    }
 
     /**
      * Adds a new relationship to the tracker.
@@ -114,7 +124,88 @@ public class RelationshipUtil {
         requireAllNonNull(relationships);
         relationshipsTracker.setAll(relationships);
     }
+    public ArrayList<String> anySearchDescriptors(UUID origin, UUID target) {
+        ArrayList<String> result = new ArrayList<>();
+        HashSet<UUID> visited = new HashSet<>();
+        Pair[] parent = new Pair[relationshipsTracker.size()];
+        ArrayList<Pair> frontier = new ArrayList<>();
+        frontier.add(new Pair(origin, -1));; //since we came from nowhere
+        visited.add(origin);
+        while (!frontier.isEmpty()) {
+            ArrayList<Pair> nextFrontier = new ArrayList<>();
+            for (Pair currentNode: frontier) {
+                UUID start = currentNode.uuid;
+                for (int i = 0; i < relationshipsTracker.size(); i++) {
+                    Relationship current = relationshipsTracker.get(i);
+                    UUID nextUUID = current.containsUUID(start);
+                    if (nextUUID == null) {
+                        continue;
+                    }
+                    if (nextUUID == target) {
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        int currentIdx = i;
+                        while (currentIdx != -1) {
+                            Pair parentPair = parent[currentIdx];
+                            Relationship edge = relationshipsTracker.get(currentIdx);
+                            result.add(0, edge.getRelativeRelationshipDescriptor(parentPair.uuid));
+                            currentIdx = parentPair.relationshipPairIndex;
+                        }
+                        return result;
+                    }
+                    if (!visited.contains(nextUUID)) {
+                        visited.add(nextUUID);
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        nextFrontier.add(new Pair(nextUUID, i));
+                    }
+                }
+            }
+            frontier = nextFrontier;
+        }
+        return result;
+    }
 
+    public ArrayList<String> familySearchDescriptors(UUID origin, UUID target) {
+        ArrayList<String> result = new ArrayList<>();
+        HashSet<UUID> visited = new HashSet<>();
+        Pair[] parent = new Pair[relationshipsTracker.size()];
+        ArrayList<Pair> frontier = new ArrayList<>();
+        frontier.add(new Pair(origin, -1));; //since we came from nowhere
+        visited.add(origin);
+        while (!frontier.isEmpty()) {
+            ArrayList<Pair> nextFrontier = new ArrayList<>();
+            for (Pair currentNode: frontier) {
+                UUID start = currentNode.uuid;
+                for (int i = 0; i < relationshipsTracker.size(); i++) {
+                    Relationship current = relationshipsTracker.get(i);
+                    if (!(current instanceof FamilyRelationship)) {
+                        continue;
+                    }
+                    UUID nextUUID = current.containsUUID(start);
+                    if (nextUUID == null) {
+                        continue;
+                    }
+                    if (nextUUID == target) {
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        int currentIdx = i;
+                        while (currentIdx != -1) {
+                            Pair parentPair = parent[currentIdx];
+                            Relationship edge = relationshipsTracker.get(currentIdx);
+                            result.add(0, edge.getRelativeRelationshipDescriptor(parentPair.uuid));
+                            currentIdx = parentPair.relationshipPairIndex;
+                        }
+                        return result;
+                    }
+                    if (!visited.contains(nextUUID)) {
+                        visited.add(nextUUID);
+                        parent[i] = new Pair(start, currentNode.relationshipPairIndex);
+                        nextFrontier.add(new Pair(nextUUID, i));
+                    }
+                }
+            }
+            frontier = nextFrontier;
+        }
+        return result;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
