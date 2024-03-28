@@ -87,7 +87,7 @@ Red blocks contain warnings to note when using <span style="color: #f66a0a;">Car
 For more information on the interface, please refer to the [Interface Overview](#interface-overview) section.
 
 --------------------------------------------------------------------------------------------------------------------
-## Interface Overview
+### Interface Overview
 
 When you first start <span style="color: #f66a0a;">CareerSync</span>, you will see this window. This is the main window of <span style="color: #f66a0a;">CareerSync</span>, where you can view all your internship applications.
 
@@ -96,7 +96,7 @@ When you first start <span style="color: #f66a0a;">CareerSync</span>, you will s
    * `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
       /phone 90890301 /loc remote /role Software Intern` : Adds this internship entry to the <span style="color:
      #f66a0a;">CareerSync</span> application.
-### Areas
+#### Areas
 The main window of <span style="color: #f66a0a;">CareerSync</span> is divided into four main areas: the **Tab Area**, the **CLI**, the **Message Box** and the **Internship List Display**.
 
 
@@ -107,7 +107,7 @@ The main window of <span style="color: #f66a0a;">CareerSync</span> is divided in
 3. **Message Box**: The Message Box displays messages to provide feedback to you.
 4. **Internship List Display**: The Internship List Display displays the details of all your internship applications.
 
-### Internship Fields
+#### Internship Fields
 The names of the fields for each internship application is as stated below. When you edit these fields, you will see the changes reflected in the display.
 For the restrictions on what is accepted for each field, kindly refer to [Fields Summary](#fields-summary).
 
@@ -125,10 +125,10 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Tutorial
+### Tutorial
 This section would guide you through the basic commands of <span style="color: #f66a0a;">CareerSync</span>, and how to use them.
 
-### Clearing sample internship entries: `clear`
+#### Clearing sample internship entries: `clear`
 
 To begin using <span style="color: #f66a0a;">CareerSync</span>, you should clear the sample internship entries that are present when you first start the 
 application.
@@ -148,7 +148,7 @@ Key in the command `clear` in the CLI and press `Enter` to clear the sample inte
    There are no more internships in the list.
 </div>
 
-### Adding an internship entry: `add`
+#### Adding an internship entry: `add`
 
 Next, let us try to add an internship entry. 
 
@@ -164,7 +164,7 @@ Successful output after adding the entry:<br>
    You can now see your new internship with the details you entered in the **Internship List Display!**
 </div>
 
-### Editing an internship entry: `edit`
+#### Editing an internship entry: `edit`
 
 Oh no! You made a mistake in the email address of the contact person. Let's edit the email address.
 
@@ -178,7 +178,7 @@ Successful output after editing the entry:<br>
 Your internship now has the updated email that you keyed in.
 </div>
 
-### Find internship entries: `find`
+#### Find internship entries: `find`
 
 Before you continue, add a few more internship entries using these commands:
 1. `add /com Google /desc create new search engine /status to_apply /poc john tan /email johntan@gmail.com /phone 98765432 /loc local /role Software Intern`
@@ -201,7 +201,7 @@ Successful output after finding all entries that satisfy the conditions:<br>
 Your **Internship List Display** now only has all the internships satisfying both conditions.
 </div>
 
-### Deleting an internship entry: `delete`
+#### Deleting an internship entry: `delete`
 You decide that to no longer pursue the internship at Facebook. Let's delete that entry.
 
 <div markdown="span" class="alert alert-success">
@@ -215,7 +215,7 @@ Successful output after deleting the entry:<br>
 The Facebook internship entry has been removed, and is no longer present in your database.
 </div>
 
-### Listing all internships: `list`
+#### Listing all internships: `list`
 You used find to filter the internships. How do you see all the internships again?
 
 <div markdown="span" class="alert alert-success">
@@ -230,7 +230,7 @@ You now see all your internships. Your Tiktok internship, previously hidden, is 
 </div>
 
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 You decide that you are done for the day. How do you exit the application and save the file?
 
 <div markdown="span" class="alert alert-success">
@@ -244,7 +244,7 @@ Upon reopening the app:<br>
 You now see all your internships that you have when you exited. Your data was saved!
 </div>
 
-### Wrapping up the tutorial
+#### Wrapping up the tutorial
 
 This wraps up our tutorial! Hope you now have a better understanding of how to use <span style="color: #f66a0a;">CareerSync</span> to manage your internship 
 applications now.
@@ -253,7 +253,7 @@ Only **simple and common use cases** are covered in this tutorial. Please refer 
 you fully understand each command and their usage.
 
 ____________________________________________________________________________________________________________________
-## Command Summary
+### Command Summary
 
 | Action                                        | Description                              | Format |
 |-----------------------------------------------|------------------------------------------|------------------------------------------|
@@ -268,14 +268,13 @@ ________________________________________________________________________________
 | [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
 
 --------------------------------------------------------------------------------------------------------------------
-## Commands
+### Commands
 
 <div markdown="block" class="alert alert-info">
 
 **Notes about the command format**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add /com COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add /com Google`.
+* `INDEX` refers to the index of the internship in the list, and is be a positive integer 1, 2, 3 …
 
 * Items in square brackets are optional.<br>
   e.g `/com COMPANY_NAME [/poc NAME_OF_CONTACT]` can be used as `/com Alibaba /poc Jack Ma` or as `/com Alibaba`.
@@ -283,14 +282,11 @@ ________________________________________________________________________________
 * Parameters can be in any order.<br>
   e.g. if the command specifies `/com COMPANY_NAME /desc DESCRIPTION`, `/desc DESCRIPTION /com COMPANY_NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines
   as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -298,7 +294,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding an internship: `add`
+#### Adding an internship: `add`
 
 With any internship manager, it is important to know how to add an internship entry with all the relevant fields. <br>
 
@@ -330,7 +326,7 @@ This command lets you add an internship entry easily!
 Refer to the format and example displayed along with this message, to help you rectify your errors!
 </div>
 
-### Deleting an internship: `delete`
+#### Deleting an internship: `delete`
 
 With any internship manager, it is important to know how to delete an internship entry with all the relevant fields. <br>
 
@@ -358,7 +354,7 @@ Format: `delete INDEX`
 Refer to the error message displayed for the correct format to use!
 </div>
 
-### Listing all internships: `list`
+#### Listing all internships: `list`
 
 Shows a list of all internships in the application.
 
@@ -383,7 +379,7 @@ In this example, the current view shows only internships with location 'REMOTE'.
 Any present filter will be removed, and all internships will be displayed in the list.
 </div>
 
-### Viewing an internship entry's details
+#### Viewing an internship entry's details
 
 This feature is accessible by clicking on an internship entry in the internship list.
 Click the back button to return to the previous view of internship entries.
@@ -392,7 +388,7 @@ Shows the full details of an internship entry. This replaces the current view of
 
 [CLI](#glossary) input will be implemented in a future release.
 
-### Editing an internship: `edit`
+#### Editing an internship: `edit`
 
 Edits an existing internship entry in the application.
 
@@ -416,7 +412,7 @@ Edits an existing internship entry in the application.
    The email field of the first internship is successfully updated to `tiktok@gmail.com`.
 </div>
 
-### Adding a remark: `addremark`
+#### Adding a remark: `addremark`
 
 Adds a remark or modifies the existing one, of an existing internship at the specified `INDEX`.
 
@@ -440,7 +436,7 @@ Adds a remark or modifies the existing one, of an existing internship at the spe
    ![After successfully adding a remark](./images/add-remark/addremark-after.png)
 </div>
 
-### Finding internships by keywords: `find`
+#### Finding internships by keywords: `find`
 
 Finds internship entries whose specified fields contains the keywords.
 
@@ -481,7 +477,7 @@ This will filter the list of internships to show only those with both status `TO
 2. MODE must be present, and be either `withall` or `withany`. If not, the command will be rejected with error message:<br>
 `Invalid mode specified. Please specify either 'withall' or 'withany'.`
 
-### Sorting internships by fields: `sort`
+#### Sorting internships by fields: `sort`
 
 Sorts the internships by the specified field in ascending or descending order.
 
@@ -516,7 +512,7 @@ This will sort the list of internships by company name in ascending order.
 2. ORDER must be present, and be either `asc` or `desc`. If not, the command will be rejected with error message:<br>
    `Invalid mode specified. Please specify either 'withall' or 'withany'.`
 
-### Clearing all internships: `clear`
+#### Clearing all internships: `clear`
 
 Clears all entries from the application.
 
@@ -535,13 +531,13 @@ Clears all entries from the application.
 There are no more internships in the list.
 </div>
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving and Editing Your Internship Data
+#### Saving and Editing Your Internship Data
 
 <div markdown="span" class="alert alert-danger">
 
@@ -555,20 +551,20 @@ After every command that changes the data, <span style="color: #f66a0a;">CareerS
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+### FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Do the following steps: <br> 1. Navigate to the folder where CareerSync.jar is stored. <br> 2. Copy your data file from data/internshipdata.json. <br> 3. Install the app in the other computer and overwrite the empty data file (data/internshipdata.json) it creates with the file that contains the data (JSON file) of your previous CareerSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+### Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen.<br>
 **The solution** is to delete the `preferences.json` file from the folder where you installed the application. Then, run the application again.
 
 --------------------------------------------------------------------------------------------------------------------
-## Command Summary
+### Command Summary
 
 | Action                                         | Description                              | Format                                                                                                                                                                      |
 |------------------------------------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -582,7 +578,7 @@ After every command that changes the data, <span style="color: #f66a0a;">CareerS
 | [exit](#exiting-the-program-exit)              | Exits and closes the application.        | `exit`                                                                                                                                                                      |
 
 
-## Field Summary
+### Field Summary
 
 | Field Name | Description                         | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -597,7 +593,7 @@ After every command that changes the data, <span style="color: #f66a0a;">CareerS
 
 
 
-## Glossary
+### Glossary
 
 | Term      | Meaning                                                                                                                   |
 |-----------|---------------------------------------------------------------------------------------------------------------------------|
