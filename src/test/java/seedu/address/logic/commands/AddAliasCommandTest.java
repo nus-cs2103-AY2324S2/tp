@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,12 +24,19 @@ import seedu.address.model.person.Person;
 public class AddAliasCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullString_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddAliasCommand(null, null));
+    }
+    @Test
+    public void constructor_addSuccessful() {
+        HashMap<String, String> map = new HashMap<>();
+        Alias alias = new Alias(map);
+        Alias alias1 = new Alias(map);
+        assertTrue(alias.equals(alias1));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_aliasAcceptedByModel_addSuccessful() throws Exception {
         AddAliasCommandTest.ModelStubAcceptingAliasAdded modelStub =
                 new AddAliasCommandTest.ModelStubAcceptingAliasAdded();
 

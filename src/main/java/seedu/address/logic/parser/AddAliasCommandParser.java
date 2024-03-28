@@ -26,8 +26,6 @@ public class AddAliasCommandParser implements Parser<AddAliasCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAliasCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ALIAS);
-
         return new AddAliasCommand(argMultimap.getValue(PREFIX_ALIAS).get(),
                 argMultimap.getValue(PREFIX_REPLACED).get());
     }

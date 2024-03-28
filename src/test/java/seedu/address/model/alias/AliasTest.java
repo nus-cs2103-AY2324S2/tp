@@ -22,6 +22,8 @@ public class AliasTest {
         assertFalse(alias.getAlias("test1").equals("result"));
 
         assertFalse(alias.getAlias("test").equals("result1"));
+
+        assertTrue(alias.getAlias("test3") == null);
     }
 
     @Test

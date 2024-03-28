@@ -20,5 +20,8 @@ public class AddAliasCommandParseTest {
         assertParseFailure(parser, userInputMissingAlias,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAliasCommand.MESSAGE_USAGE));
 
+        String multipleAliases = "alias -al test1 -al test -r result";
+        assertParseFailure(parser, multipleAliases,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAliasCommand.MESSAGE_USAGE));
     }
 }

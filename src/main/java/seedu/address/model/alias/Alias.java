@@ -35,7 +35,7 @@ public class Alias {
      * @return The term corresponding to the alias, or null if the alias doesn't exist.
      */
     public String getAlias(String string) {
-        if (this.mappings.get(string) == null) {
+        if (!this.mappings.containsKey(string)) {
             return null;
         }
         return this.mappings.get(string);
