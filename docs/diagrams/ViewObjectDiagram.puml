@@ -1,0 +1,25 @@
+@startuml
+object UiManager
+object MainWindow
+object LogicManager
+object AddressBookParser
+object ViewCommandParser
+object ViewCommand
+object CommandResult
+object CommandBox
+
+UiManager -> MainWindow : creates
+MainWindow --> LogicManager : execute()
+LogicManager -> AddressBookParser : creates
+LogicManager -> AddressBookParser : parseCommand(String)
+AddressBookParser --> ViewCommandParser : parse(String)
+ViewCommandParser -> ViewCommand : creates
+ViewCommand --> CommandResult : returns instance
+LogicManager --> CommandResult : execute()
+CommandResult --> LogicManager : returns instance (CommandResult)
+LogicManager --> MainWindow : returns instance (CommandResult)
+MainWindow -> CommandBox : creates(CommandResult)
+
+
+
+@enduml
