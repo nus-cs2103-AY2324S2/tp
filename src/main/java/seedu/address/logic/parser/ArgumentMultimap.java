@@ -75,4 +75,15 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Returns true if all the specified prefixes are present in the argument map.
+     *
+     * @param prefixes The prefixes to check for presence.
+     * @return True if all specified prefixes are present, otherwise false.
+     */
+    public boolean arePrefixesPresent(Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix ->
+                argMultimap.containsKey(prefix) && !getAllValues(prefix).isEmpty());
+    }
 }
