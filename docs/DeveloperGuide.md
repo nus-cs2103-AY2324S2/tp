@@ -164,7 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 * Each `Day` object can contain <u>0 to 24 1-hour</u> `Period` objects, or less if each `Period` has intervals longer
   than 1 hour.
 * Each `Period` is defined by the start time and end time, indicated by integers on a 24-hour clock, i.e. 0-23.
-* Each `Day` cannot contain overlapping `Period`, an overlap occurs when the start time of the previos `Period` is 
+* Each `Day` cannot contain overlapping `Period`, an overlap occurs when the start time of the previous `Period` is 
   before the end time of the next `Period`. E.g. for the case of `Period` of 12-14, `Period` of 14-16 is allowed,
   but `Period` of 13-15 is not.
 
@@ -199,6 +199,28 @@ outputted to the user.
     the earliest 2-hour slot available for the week.
 
 _{more functionality to be implemented in later versions}_
+
+### Website URL support
+
+The inclusion of the `Link` attribute enhances the versatility of EduConnect, enabling storage and access to project or assignment weblinks for each student. This feature facilitates efficient collaboration and evaluation by Teaching Assistants (TAs) and provides students with a convenient means to showcase their work.
+* Each `Student` has an additional attribute `Link`
+* `Link` is responsible for storing the student's project or assignment weblink for ease of access by the TA.
+* `Link` is wrapped around a Java `Optional` in `Student`. This means that if the link is not specified during construction of a new `Student`, the student's `Link` attribute will initialized as `Optional.empty`.
+* `Link` must be a valid URL, and a validation regex is present to check the validity of the `link`.
+* In scenarios involving group projects, the `Link` attribute need not be unique as group members will share the same project link. Therefore, enforcing uniqueness for the `Link` attribute could lead to unnecessary constraints and complexity.
+
+#### UI implementation
+* A student's weblink will be displayed using the JavaFX `Hyperlink` class at `StudentCard.java`. 
+* Due to potential UI issues arising from excessively long URLs, a clickable embedded text labeled "Project Link" will be displayed instead of the actual URL.
+* If the student has a valid Link, the Hyperlink will be visible and clickable, allowing users to access the weblink directly.
+* If the student does not have a Link attribute or if the Link is not specified, the Hyperlink will be toggled to be invisible, ensuring a clean and uncluttered user interface.
+
+#### Adding/Editing a student's Link
+* Just like any other attribute of `Student`, `Link` can be specified during the `add` command, indicated with a `l/` prefix.
+* When creating a new `Student` using the add command, the `l/` prefix is optional.
+* `Link` can also be modified using the `edit` command with the `l/` prefix.
+* Below shows the sequence diagram when editing a student's `Link`.
+
 
 ### \[Proposed\] Undo/redo feature
 
