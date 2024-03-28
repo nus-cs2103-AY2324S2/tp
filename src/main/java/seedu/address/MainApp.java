@@ -9,7 +9,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
@@ -34,45 +33,37 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 2, true);
-
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Model model;
-    protected Config config;
+    private Ui ui;
+    private Storage storage;
+    private Model model;
 
-    private String initialAddressBookStatus;
+    private String initialWelcomeMessage;
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing AssetBook-3 ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
+        Config config = initConfig(appParameters.getConfigPath());
         initLogging(config);
 
+        // initialize user preferences
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+
+        // initialize storage
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ReadOnlyAddressBook initialAddressBook = initAddressBook(storage);
 
-        ReadOnlyAddressBook initialAddressBook;
-
-        try {
-            initialAddressBook = storage.readInitialAddressBook();
-            initialAddressBookStatus = "Data file loaded successfully.";
-        } catch (DataLoadingException e) {
-            initialAddressBook = new AddressBook();
-            initialAddressBookStatus = "WARNING!! Entering a command will override the old data file.\n"
-                    + e.getMessage();
-        }
-
+        // initialize model and logic
         model = new ModelManager(initialAddressBook, userPrefs);
-        logic = new LogicManager(model, storage);
+        Logic logic = new LogicManager(model, storage);
+
+        // initialize ui
         ui = new UiManager(logic);
     }
 
@@ -85,7 +76,7 @@ public class MainApp extends Application {
      * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead
      * if {@code configFilePath} is null.
      */
-    protected Config initConfig(Path configFilePath) {
+    private static Config initConfig(Path configFilePath) {
         Config initializedConfig;
         Path configFilePathUsed;
 
@@ -124,7 +115,7 @@ public class MainApp extends Application {
      * or a new {@code UserPrefs} with default configuration if errors occur when
      * reading from the file.
      */
-    protected UserPrefs initPrefs(UserPrefsStorage storage) {
+    private static UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
         logger.info("Using preference file : " + prefsFilePath);
 
@@ -151,11 +142,30 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
+    /**
+     * Reads the filepath stored within a {@cide Storage} object and returns a {@code ReadOnlyAddressBook}.
+     *
+     * @param storage the storage object.
+     * @return a read-only address book.
+     */
+    private ReadOnlyAddressBook initAddressBook(Storage storage) {
+        ReadOnlyAddressBook initialAddressBook;
+        try {
+            initialAddressBook = storage.readInitialAddressBook();
+            initialWelcomeMessage = "Data file loaded successfully.";
+        } catch (DataLoadingException e) {
+            initialAddressBook = new AddressBook();
+            initialWelcomeMessage = "WARNING!! Entering a command will override the old data file.\n"
+                    + e.getMessage();
+        }
+        return initialAddressBook;
+    }
+
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting AssetBook-3");
         ui.start(primaryStage);
-        ui.showMessage(initialAddressBookStatus);
+        ui.showMessage(initialWelcomeMessage);
     }
 
     @Override
@@ -167,4 +177,5 @@ public class MainApp extends Application {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
     }
+
 }

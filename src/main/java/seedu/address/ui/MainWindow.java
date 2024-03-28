@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        primaryStage.show(); //This should be called before creating other UI parts
+        primaryStage.show(); // This should be called before creating other UI parts
 
         fillInnerParts();
     }
