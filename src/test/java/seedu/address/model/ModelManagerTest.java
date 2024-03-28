@@ -18,9 +18,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
