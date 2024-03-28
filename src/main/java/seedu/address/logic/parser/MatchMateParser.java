@@ -130,7 +130,6 @@ public class MatchMateParser {
         case UnmarkImportantCommand.COMMAND_WORD:
             return new UnmarkImportantCommandParser().parse(arguments);
 
-
         case RequireSkillCommand.COMMAND_WORD:
             return new RequireSkillCommandParser().parse(arguments);
 
