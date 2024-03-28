@@ -62,9 +62,9 @@ public class PersonCard extends UiPart<Region> {
         email.setText("Email Addr.: \t" + person.getEmail().value);
         membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
         orders.setText(buildOrderString(person.getOrders()));
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getAllergens().stream()
+                .sorted(Comparator.comparing(tag -> tag.allergenName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.allergenName)));
         points.setText("Redeem Pts: \t" + String.valueOf(person.getPoints().value));
     }
 

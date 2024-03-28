@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -26,7 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final MembershipPoints membershipPoints;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Allergen> allergens = new HashSet<>();
     private final Points points;
     private final ArrayList<Order> orders = new ArrayList<>();
 
@@ -34,14 +34,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, MembershipPoints membershipPoints,
-                  Set<Tag> tags, Points points, ArrayList<Order> orders) {
-        requireAllNonNull(name, phone, email, address, membershipPoints, tags, points, orders);
+                  Set<Allergen> allergens, Points points, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, membershipPoints, allergens, points, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.membershipPoints = membershipPoints;
-        this.tags.addAll(tags);
+        this.allergens.addAll(allergens);
         this.points = points;
         this.orders.addAll(orders);
     }
@@ -67,11 +67,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable allergen set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Allergen> getAllergens() {
+        return Collections.unmodifiableSet(allergens);
     }
 
     public Points getPoints() {
@@ -130,7 +130,7 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && membershipPoints.equals(otherPerson.membershipPoints)
-                && tags.equals(otherPerson.tags)
+                && allergens.equals(otherPerson.allergens)
                 && points.equals(otherPerson.points)
                 && orders.equals(otherPerson.orders);
     }
@@ -138,7 +138,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, membershipPoints, tags, points, orders);
+        return Objects.hash(name, phone, email, address, membershipPoints, allergens, points, orders);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("membership", membershipPoints)
-                .add("tags", tags)
+                .add("allergens", allergens)
                 .add("points", points)
                 .add("orders", orders)
                 .toString();

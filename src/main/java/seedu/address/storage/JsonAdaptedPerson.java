@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddMemPointsCommand;
+import seedu.address.model.allergen.Allergen;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MembershipPoints;
@@ -19,7 +20,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Points;
 import seedu.address.model.person.orders.Order;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String membershipPoints;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedAllergen> allergens = new ArrayList<>();
     private final String points;
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
@@ -44,7 +44,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("membershipPts") String membershipPts,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("points") String points,
+                             @JsonProperty("allergens") List<JsonAdaptedAllergen> allergens,
+                             @JsonProperty("points") String points,
                              @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
 
         this.name = name;
@@ -52,8 +53,8 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.membershipPoints = membershipPts;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (allergens != null) {
+            this.allergens.addAll(allergens);
         }
         this.points = points;
         if (orders != null) {
@@ -70,8 +71,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         membershipPoints = String.valueOf(source.getMembershipPoints().value);
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        allergens.addAll(source.getAllergens().stream()
+                .map(JsonAdaptedAllergen::new)
                 .collect(Collectors.toList()));
         points = String.valueOf(source.getPoints().getValue());
         orders.addAll(source.getOrders().stream()
@@ -85,9 +86,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Allergen> personAllergens = new ArrayList<>();
+        for (JsonAdaptedAllergen allergen : allergens) {
+            personAllergens.add(allergen.toModelType());
         }
 
         final List<Order> personOrders = new ArrayList<>();
@@ -153,10 +154,10 @@ class JsonAdaptedPerson {
         final Points modelPoints = new Points(points);
 
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Allergen> modelAllergens = new HashSet<>(personAllergens);
         final ArrayList<Order> modelOrders = new ArrayList<>(personOrders);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMembershipPoints,
-                modelTags, modelPoints, modelOrders);
+                modelAllergens, modelPoints, modelOrders);
     }
 
 }

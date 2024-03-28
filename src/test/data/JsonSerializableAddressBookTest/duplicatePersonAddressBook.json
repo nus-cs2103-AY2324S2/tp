@@ -5,7 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "membershipPoints": "0",
-    "tags": [ "friends" ],
+    "allergens": [ "LF" ],
     "points": "30",
     "orders" : [ ]
   }, {

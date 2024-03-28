@@ -241,8 +241,9 @@ Format: `edit INDEX [n/MEMBER_NAME] [hp/MEMBER_PHONE] [e/MEMBER_EMAIL] [a/MEMBER
 * Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the member will be removed i.e adding of tags is not cumulative.
-* You can remove all the member’s tags by typing `t/` without
+
+* When editing allergens, the existing allergens of the member will be removed i.e adding of allergens is not cumulative.
+* You can remove all the member’s allergens by typing `ag/` without
   specifying any tags after it.
 
 Examples:

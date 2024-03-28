@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "membershipPoints" : "0",
-    "tags" : [ "friends" ],
+    "allergens" : [ "LF" ],
     "points" : "50",
     "orders" : [ {
       "items" : "Cupcake x 3",
@@ -18,7 +18,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "membershipPoints" : "10",
-    "tags" : [ "owesMoney", "friends" ],
+    "allergens" : [ "GF", "LF" ],
     "points" : "70",
     "orders" : [ {
       "items" : "Cookies x 5",
@@ -33,7 +33,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "membershipPoints" : "20",
-    "tags" : [ ],
+    "allergens" : [ ],
     "points" : "0",
     "orders" : [ {
       "items" : "Kaya Toast x 1",
@@ -45,7 +45,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "membershipPoints" : "30",
-    "tags" : [ "friends" ],
+    "allergens" : [ "LF" ],
     "points" : "100",
     "orders" : [ {
       "items" : "Cheese Tart x 6",
@@ -57,7 +57,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "membershipPoints" : "100",
-    "tags" : [ ],
+    "allergens" : [ ],
     "points" : "50",
     "orders" : [ {
       "items" : "Chocolate Waffle x 1",
@@ -75,7 +75,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "membershipPoints" : "110",
-    "tags" : [ ],
+    "allergens" : [ ],
     "points" : "20",
     "orders" : [ ]
   }, {
@@ -84,7 +84,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "membershipPoints" : "300",
-    "tags" : [ ],
+    "allergens" : [ ],
     "points" : "70",
     "orders" : [ ]
   } ]
