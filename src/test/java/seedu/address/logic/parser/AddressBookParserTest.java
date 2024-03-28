@@ -51,7 +51,7 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         NusId testNusId = new NusId("E1234567");
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + testNusId);
+                DeleteCommand.COMMAND_WORD + " id/" + testNusId);
         assertEquals(new DeleteCommand(testNusId), command);
     }
 
