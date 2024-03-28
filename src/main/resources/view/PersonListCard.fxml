@@ -38,7 +38,7 @@
       <Label fx:id="price" styleClass="cell_small_label" text="\$price" managed="false"/>
       <Label fx:id="skill" styleClass="cell_small_label" text="\$skill" managed="false"/>
       <Label fx:id="commission" styleClass="cell_small_label" text="\$commission" managed="false"/>
-      <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+      <Label fx:id="note" styleClass="cell_small_label" text="\$note" managed="false"/>
       <Label fx:id="rating" styleClass="cell_small_label" text="\$rating" managed="true"/>
     </VBox>
     <HBox alignment="TOP_RIGHT">
