@@ -49,6 +49,18 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Pins a person to the front of the list.
+     * The person must already exist in the list.
+     */
+    public void pin(Person person) {
+        requireAllNonNull(person);
+        if (contains(person)) {
+            internalList.remove(person);
+            internalList.add(0, person);
+        }
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.

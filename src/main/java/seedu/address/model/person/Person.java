@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 /**
  * Represents a Person in the address book.
@@ -17,24 +17,31 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final NusId nusId;
     private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tag tag;
+    private final Set<Group> groups = new HashSet<>();
+    private final Schedule schedule;
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(NusId nusId, Name name, Phone phone, Email email, Tag tag, Set<Group> groups,
+                  Schedule schedule, Remark remark) {
+        requireAllNonNull(nusId, name, phone, email, tag, groups, schedule, remark);
+        this.nusId = nusId;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.tag = tag;
+        this.groups.addAll(groups);
+        this.schedule = schedule;
+        this.remark = remark;
     }
 
     public Name getName() {
@@ -49,20 +56,32 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Tag getTag() {
+        return tag;
+    }
+
+    public NusId getNusId() {
+        return nusId;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nusId.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -71,7 +90,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNusId().equals(getNusId());
     }
 
     /**
@@ -90,27 +109,32 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        // A person's identity does not depend on schedule or remark
         return name.equals(otherPerson.name)
+                && nusId.equals(otherPerson.nusId)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tag.equals(otherPerson.tag)
+                && groups.equals(otherPerson.groups);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(nusId, name, phone, email, tag, groups, schedule, remark);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("nusId", nusId)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
+                .add("tag", tag)
+                .add("groups", groups)
+                .add("schedule", schedule)
+                .add("remark", remark)
                 .toString();
     }
 

@@ -10,12 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NusId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Remark;
+import seedu.address.model.person.Schedule;
+import seedu.address.model.person.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -24,25 +27,33 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final String nusId;
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String tag;
+    private final String schedule;
+    private final String remark;
+    private final List<JsonAdaptedGroup> groups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedPerson(@JsonProperty("nusId") String nusId,
+            @JsonProperty("name") String name, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("tag") String tag,
+            @JsonProperty("groups") List<JsonAdaptedGroup> groups,
+            @JsonProperty("schedule") String schedule, @JsonProperty("remark") String remark) {
+        this.nusId = nusId;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        this.tag = tag;
+        this.schedule = schedule;
+        this.remark = remark;
+        if (groups != null) {
+            this.groups.addAll(groups);
         }
     }
 
@@ -50,12 +61,15 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        nusId = source.getNusId().value;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        tag = source.getTag().value.toString();
+        schedule = source.getSchedule().date.toString();
+        remark = source.getRemark().value.toString();
+        groups.addAll(source.getGroups().stream()
+                .map(JsonAdaptedGroup::new)
                 .collect(Collectors.toList()));
     }
 
@@ -65,9 +79,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Group> personGroups = new ArrayList<>();
+        for (JsonAdaptedGroup group : groups) {
+            personGroups.add(group.toModelType());
         }
 
         if (name == null) {
@@ -94,16 +108,39 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Tag.isValidTag(tag)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Tag modelTag = new Tag(tag);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (nusId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NusId.class.getSimpleName()));
+        }
+        if (!NusId.isValidNusId(nusId)) {
+            throw new IllegalValueException(NusId.MESSAGE_CONSTRAINTS);
+        }
+        final NusId modelNusId = new NusId(nusId);
+
+        if (schedule == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Schedule.class.getSimpleName()));
+        }
+        if (!Schedule.isValidSchedule(schedule)) {
+            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
+        }
+        final Schedule modelSchedule = new Schedule(schedule);
+
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
+        final Set<Group> modelGroups = new HashSet<>(personGroups);
+        return new Person(modelNusId, modelName, modelPhone, modelEmail,
+                modelTag, modelGroups, modelSchedule, modelRemark);
     }
 
 }
