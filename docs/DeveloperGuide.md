@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div class="sub-step">2a1. AB3 displays an error message.</div>
 <div class="sub-step">2a2. User enters new input.</div>
 <div class="sub-step">Steps 2a1-2a2 are repeated until user input is valid.</div>
-<div class="sub-step">Use case resumes from step 2.</div>
+<div class="sub-step">Use case resumes from step 3.</div>
 
 --- {.dotted}
 
@@ -362,7 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div class="sub-step">2a1. AB3 displays an error message.</div>
 <div class="sub-step">2a2. User enters new input.</div>
 <div class="sub-step">Steps 2a1-2a2 are repeated until user input is valid.</div>
-<div class="sub-step">Use case resumes from step 2.</div>
+<div class="sub-step">Use case resumes from step 3.</div>
 
 --- {.dotted}
 
@@ -382,7 +382,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div class="sub-step">3a1. AB3 displays an error message.</div>
 <div class="sub-step">3a2. User enters new input.</div>
 <div class="sub-step">Steps 3a1-3a2 are repeated until user input is valid.</div>
-<div class="sub-step">Use case resumes from step 3.</div>
+<div class="sub-step">Use case resumes from step 4.</div>
 
 --- {.dotted}
 
@@ -400,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div class="sub-step">3a1. AB3 displays an error message.</div>
 <div class="sub-step">3a2. User enters new input.</div>
 <div class="sub-step">Steps 3a1-3a2 are repeated until user input is valid.</div>
-<div class="sub-step">Use case resumes from step 3.</div>
+<div class="sub-step">Use case resumes from step 4.</div>
 
 --- {.dotted}
 
@@ -414,7 +414,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 <div class="step">2a. AB3 detects that the json file is invalid.</div>
-<div class="sub-step">2a1. AB3 displays an error message.</div>
+<div class="sub-step">2a1. AB3 displays a warning and loads an empty asset book.</div>
 <div class="sub-step">Use case ends.</div>
 
 ---
