@@ -22,6 +22,7 @@ public class FilterCommandParserTest {
                 FilterCommand.MESSAGE_USAGE));
     }
 
+
     @Test
     public void parse_invalidArg_throwsParseException() {
         assertParseFailure(parser, "TUT", String.format(MESSAGE_INVALID_COMMAND_FORMAT,

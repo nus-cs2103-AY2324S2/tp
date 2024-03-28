@@ -3,7 +3,7 @@
   title: "User Guide"
   pageNav: 3
 ---
-![Logo](images/TutorsContactsProLogo.png)
+![Logo](images/TutorsContactsProLogos.png)
 
 # Table of Contents
 <!-- TOC -->
@@ -61,7 +61,7 @@
 
   * [Deleting a group: `deletegroup`](#feature-deletegroup)
 
-  * [Mail broadcast: `mail`](#feature-mail)
+  * [Generating mail: `mail`](#feature-mail)
 
 * [FAQ](#feature-faq)
 
@@ -75,15 +75,15 @@
 # <span id='feature-introduction'> Introduction <span>
 
 # <span id='feature-about'> About TutorsContactsPro <span>
-TutorsContactsPro is a **desktop app for tutors teaching Computer Science courses to manage their students, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorsContactsPro can help you to gain faster and more convenient access to your list of students, even if they are from different classes.
 
-TutorsContactsPro uses a **Command Line Interface (CLI)** for you to type in your desired **actions**. If you are a **fast typist**, this is perfect for you as it allows you to execute commands without having to leave the keyboard and allows you to manage your students more conveniently than traditional GUI apps.
+Unlock the full potential of your teaching journey with TutorsContactsPro, the ultimate desktop tool designed for **NUS tutors and teaching assistants in Computer Science courses**. 
 
-TutorsContactsPro also uses a **Graphical User Interface (GUI)** to display **content and data**. This allows for data to be presented to you in an **elegant, fuss-free** manner.
+Seamlessly navigate through student information with our intuitive blend of **Command Line Interface (CLI)** and **Graphical User Interface (GUI)**.
 
-Start today with TutorsContactsPro to better streamline your TA journey!
+From effortless attendance tracking to personalized student profiles, TutorsContactsPro streamlines administrative tasks for maximum efficiency. 
 
-[Table of Contents](#table-of-contents)
+Experience the future of teaching management today with TutorsContactsPro!
+
 
 
 ## <span id='feature-aboutUG'> About the User Guide <span>
@@ -98,7 +98,7 @@ Feel free to turn back to this user guide if you encounter any problems or doubt
 
 * If you are an **experienced user** and want to quickly refer to the various commands, you may refer to the **[Command Summary](#feature-summary)** section.
 
-* If you would like to find out more about the **technical aspects of TaskHub**, you may refer to our **[Developer Guide](https://ay2324s2-cs2103t-W10-4.github.io/tp/DeveloperGuide.html)**.
+* If you would like to find out more about the **technical aspects of TutorsContactsPro**, you may refer to our **[Developer Guide](https://ay2324s2-cs2103t-W10-4.github.io/tp/DeveloperGuide.html)**.
 
 * Finally, if you would like an **overview** of this entire user guide, you may refer to our **[Table of Contents](#table-of-contents)**.
 
@@ -129,11 +129,11 @@ Below is the glossary for important technical terms that you may find useful.
 
 # <span id='feature-gettingStarted'>  Getting Started <span>
 
-## <span id='feature-install'> Installing and Launching TaskHub <span>
+## <span id='feature-install'> Installing and Launching TutorsContactsPro <span>
 
 ### Step 1: Install Java
 
-Ensure you have Java `11` or above installed on your computer. If you don't have Java installed, follow the steps in [Appendix A: Installing Java](#appendix-a-installing-java).
+Ensure you have Java `11` or above installed on your computer. If you don't have Java installed, follow the instructions in [Appendix A: Installing Java](#appendix-a-installing-java).
 
 ### Step 2: Download 
 
@@ -169,6 +169,7 @@ Copy or move the downloaded `TutorsContactsPro.jar` file to the folder you want 
 
    <img src="images/UpdatedUi.png" width="700">
 
+
    Note: The application comes with some sample data for your reference.  
 
 ---
@@ -179,8 +180,8 @@ Copy or move the downloaded `TutorsContactsPro.jar` file to the folder you want 
 
 ### Students
 A 'Student' is an individual that you will store in TutorsContactsPro. 
-It is an individual that attends one or more [`Groups`](#groups) that you teach.
-TutorsContactsPro allows you to store essential information or attributes about the student and store remarks for them.
+It is an individual that attends one or more [`Groups`](#group) that you teach.
+TutorsContactsPro allows you to store essential information or attributes about the student and remarks for them.
 
 #### Attributes:
 
@@ -193,36 +194,36 @@ TutorsContactsPro allows you to store essential information or attributes about 
 | `MAJOR`           | Academic Major of the student contact | `m/`   | String to represent the major                                                           |
 | `TELEGRAM_HANDLE` | Telegram handle of the student        | `tg/`  | Telegram handle format (a-z, 0-9 and underscores, case-insensitive), without prefix “@” |
 | `REMARKS`         | Additional remarks of the student     | `r/`   | A case-sensitive string. This can be anything                                           |
-| `GROUP`           | Tutorial/Lab/Recitation slot          | `g/`   | Must be in correct slot format TUT/LAB/REC`2-digit number`                              |
+| `GROUP`           | Tutorial/Lab/Recitation slot          | `g/`   | Must be in correct slot format `TUT/REC/LAB` + `2-digit number`                         |
 
-### Groups
+### Group
 
 A `Group` is a lesson that is taught by you and attended by students. 
-It can be a tutorial/recitation/lab. 
+It can be a tutorial/ recitation/ lab. 
 
 #### Attributes:
 
-| Parameter       | Representation             | Prefix | Constraints                                                   |
-|-----------------|----------------------------|--------|---------------------------------------------------------------|
-| `NAME`          | Name of the group          | `g/`   | Group name must begin with 'TUT'/'REC'/'LAB' + 2-digit number |
-| `TELEGRAM_LINK` | Telegram link of the group | `tg/`  | Must be a valid telegram group link                           |
+| Parameter       | Representation             | Prefix | Constraints                                                  |
+|-----------------|----------------------------|--------|--------------------------------------------------------------|
+| `NAME`          | Name of the group          | `g/`   | Group name must begin with `TUT/REC/LAB` + `2-digit number`  |
+| `TELEGRAM_LINK` | Telegram link of the group | `tg/`  | Must be a valid telegram group link                          |
 
 
 ## <span id='feature-ui'> Understanding the User Interface (UI) <span>
 TutorsContactsPro's UI consists of 4 main parts that you will be using:
 
 ### Menu Bar
-* The menu bar is where you can exit TutorsContactsPro or even open the help window with a simple click of your mouse!
-* While commands to exit TutorsContactsPro or open the help window can be entered as a command, this is a beginner-friendly alternative for newer users who might not be so familiar with the commands.
+* In the menu bar, you can effortlessly exit TutorsContactsPro or access the help window with just a click of your mouse!
+* Fear not if you are not well-versed in commands, the menu bar offers a beginner-friendly alternative to exit TutorsContactsPro or open the help window.
 
 ### Help:
 Upon clicking help on the menu bar or by using the shortcut `F1`, you will be assisted with a help window pop-up. 
 More is to be explained in [`help`](#feature-help) feature.
 
 ### Command Panel
-* The command panel is the main panel that you will be interacting with to key in commands and also get back the results of those commands.
-* The upper box is where you can type in your command.
-* And the lower box is where you will see the results of those commands.
+* The command panel where you will input commands and receive their corresponding results.
+* You can type in your command in the upper box.
+* And use the lower box to view the results of those commands.
 
 ### Student Panel
 * The Student panel is a panel that you can use to see the list of students stored in TutorsContactsPro.
@@ -235,29 +236,29 @@ More is to be explained in [`help`](#feature-help) feature.
 Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all students.
+   * [`list`](#feature-list) : Lists all students.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 ` : Adds a student named `John Doe` to the list.
+   * [`add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `](#feature-add) : Adds a student named `John Doe` to the list.
    
-   * `edit 1 p/93840823 y/3 tg/jiejfh203` : Edits the first student on the current list. 
+   * [`edit 1 p/93840823 y/3 tg/jiejfh203`](#feature-edit) : Edits the first student on the current list. 
    
-   * `find John Tan` : Lists all the students with names that matches 'John' or 'Tan'.
+   * [`find John Tan`](#feature-find) : Lists all the students with names that matches 'John' or 'Tan'.
 
-   * `filter TUT10` : Lists all the students in group 'TUT10'
+   * [`filter TUT10`](#feature-filter) : Lists all the students in group 'TUT10'
 
-   * `addgroup g/TUT01` : Adds the group 'TUT01' to TutorsContactsPro.
+   * [`addgroup g/TUT01`](#feature-addgroup) : Adds the group 'TUT01' to TutorsContactsPro.
 
-   * `editgroup g/TUT01` : Edits the group 'TUT01' in TutorsContactsPro.
+   * [`editgroup g/TUT01`](#feature-editgroup) : Edits the group 'TUT01' in TutorsContactsPro.
    
-   * `deletegroup g/TUT01` : Deletes the group 'TUT01' in TutorsContactsPro.
+   * [`deletegroup g/TUT01`](#feature-deletegroup) : Deletes the group 'TUT01' in TutorsContactsPro.
    
-   * `mail` : Generates a mail link to all the students on the list. 
+   * [`mail`](#feature-mail) : Generates a mail link to all the students on the list. 
 
-   * `delete 3` : Deletes the 3rd student shown in the current list.
+   * [`delete 3`](#feature-delete) : Deletes the 3rd student shown in the current list.
 
-   * `clear` : Deletes all students on the list.
+   * [`clear`](#feature-clear) : Deletes all students on the list.
  
-   * `exit` : Exits the app.
+   * [`exit`](#feature-exit) : Exits the app.
 
 
 5. Refer to the [Command Notes and Features](#features) below for details of each command.
@@ -281,7 +282,7 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 | Extraneous parameters |  Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored | if the command specifies `help 123`, it will be interpreted as `help`                         |                                                                                                 | Singapore phone number, 8 digits, without country code                                        |
 
 
-> **⚠️Warning**
+> **⚠️Warning:**
 If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application. 
 </box>
 
@@ -291,7 +292,7 @@ This section contains the basic commands of TutorsContactsPro.
 
 ### <span id='feature-help'> Viewing help : `help` </span>
 
-Allows you to easily access the features in TutorsContactsPro. 
+Allows you to easily access detailed information on how to use the different features in TutorsContactsPro. 
 
 ![help message](images/helpMessage.png)
 
@@ -299,23 +300,23 @@ Format: `help`
 
 ### <span id='feature-list'> Listing all students : `list` </span>
 
-Shows a list of all your students.
+Shows a list of all your students, so that you can conveniently view all their details.
 
 Format: `list`
 
-> 💡**Tips**
+> 💡**Tips:**
 Auto-capitalization will be handled. Extra/trailing/leading spaces will be removed
 
 
 ### <span id='feature-clear'> Clearing all entries : `clear` <span>
 
-Clears all student entries from TutorsContactsPro.
+Clears all student entries from TutorsContactsPro, so that you can always start a fresh in the next teaching semester.
 
 Format: `clear`
 
 ### <span id='feature-exit'> Exiting the program : `exit` <span>
 
-Exits the program.
+Exits the program and your changes will be saved automatically.
 
 Format: `exit`
 
@@ -325,26 +326,33 @@ This section contains commands for managing students in TutorsContactsPro.
 
 ### <span id='feature-add'> Adding a student: `add` </span>
 
-You can add a student to the list.
+You can add a student to the list, keeping track of all student details easily. 
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/REMARK] [g/Group]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MAJOR tg/TELEGRAM_HANDLE [r/REMARK] [g/Group]`
+
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com y/2 m/Computer Science tg/johndoe r/Very quiet student g/TUT04 g/LAB10 `
+will add a student name John Doe, phone number 98765432, email address of johnd@example.com, year 2 Computer Science student, telegram handle of johndoe who is a very quiet student belonging to groups TUT04 and LAB10 to your student list.
+
+
 * `add n/Kendra Huetta p/98765367 e/Kendra@example.com y/1 m/Computer Science tg/KendraHuetta r/quiet student g/LAB10 `
-  ![result for 'add Kendra Huetta'](images/addFeature.png)
+  will add a student name Kendra Huetta, phone number 98765367, email address of Kendra@example.com, year 1 Computer Science student, telegram handle of KendraHuetta who is a quiet student belonging to group LAB10 to your student list as shown  in the image below. 
+
+![result for 'add Kendra Huetta'](images/addFeature.png)
 
 ### <span id='feature-edit'> Editing a student : `edit` <span>
 
-Edits an existing student you have selected.
+Edits an existing student you have selected. This way, you can always keep student details recorded up to date!
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR] [m/MAJOR] [tg/TELEGRAM_HANDLE] [r/REMARK] [g/Group]`
 
-> ℹ️ **Information** 
+> ℹ️ **Information:** 
 > * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ 
 > * At least one of the optional fields must be provided. 
 
-> 💡**Tips**
+
+> 💡**Tips:**
 > * Existing values will be updated to the input values. <br>
 > * When editing groups, the existing groups of the student will be removed i.e adding of groups is not cumulative. <br>
 > * You can remove all the student’s groups by typing `g/` without specifying any groups after it. <br>
@@ -356,13 +364,12 @@ Examples:
 *  `edit 2 n/Betty tg/` Edits the name of the 2nd student to be `Betty` and clears her telegram handle.
 
 ### <span id='feature-find'> Locating students by keyword: `find` <span>
-
-Finds students whose details contain any of the given keywords.
-You can find the student even if the keywords **matches partially**. 
+Finds students whose details include any of the specified keywords. 
+You can find a student even if the keywords **match only partially**.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-> ℹ️ **Information**
+> ℹ️ **Information:**
 > * The search is case-insensitive. e.g `hans` will match `Hans`
 > * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 > * Only the student's name is searched.
@@ -370,18 +377,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find Jo` returns `John Doe`, `Johan Louis`<br>
+* `find John` returns students `john` and `John Doe`.
+* `find Jo` returns students `John Doe` and `Johan Louis` as shown in the image below.
   ![result for 'find Jo'](images/findFeature.png)
+
 
 ### <span id='feature-filter'> Filtering students using group: `filter` <span>
 
 Filters and list students belonging to any of the given group name keyword.
-You can filter students when the keywords **matches fully**.
+You can filter students only when the keywords **match fully**.
 
 Format: `filter KEYWORD [MORE_KEYWORDS]`
 
-> ℹ️ **Information**
+> ℹ️ **Information:**
 > * The search is case-insensitive. e.g `hans` will match `Hans`
 > * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 > * Only student's group name is searched.
@@ -389,7 +397,9 @@ Format: `filter KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `filter TUT04 ` returns `John Doe` and `Johan Louis` belonging to the tutorial group `TUT04`
+* `filter LAB10` returns only `Kendra Huetta` belonging to group `LAB10`. 
+* `filter TUT04 ` returns `John Doe` and `Johan Louis` belonging to group `TUT04` as shown in the image below. 
+
   ![result for 'filter TU'](images/filterFeature.png)
 
 
@@ -399,7 +409,7 @@ Deletes your specified student from the current list.
 
 Format: `delete INDEX`
 
-> ℹ️ **Information**
+> ℹ️ **Information:**
 > * Deletes the student at the specified `INDEX`.
 > * The index refers to the index number shown in the current displayed student list.
 > * The index **must be a positive integer** 1, 2, 3, …​
@@ -415,11 +425,11 @@ This section contains commands for managing groups in TutorsContactsPro.
 
 ### <span id='feature-addgroup'> Adding a group: `addgroup` <span>
 
-You can add a new group to TutorsContactsPro.
+You can add a new group to TutorsContactsPro, so that you can keep track of the groups you currently teach.
 
 Format: `addgroup g/GROUP_NAME`
 
-> ⚠️️ **Constraint**
+> ⚠️️ **Constraint:**
 > * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
 
 Examples:
@@ -428,11 +438,11 @@ Examples:
 
 ### <span id='feature-editgroup'> Adding a group: `editgroup` <span>
 
-You can edit an existing group in TutorsContactsPro.
+You can edit an existing group in TutorsContactsPro, so that you can remain up to date with each group's information.
 
 Format: `editgroup g/GROUP_NAME tg/TELEGRAM_LINK`
 
-> ⚠️️ **Constraint**
+> ⚠️️ **Constraint:**
 > * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
 
 Examples:
@@ -441,11 +451,11 @@ Examples:
 
 ### <span id='feature-deletegroup'> Deleting a group: `deletegroup` <span>
 
-You can delete an existing group in TutorsContactsPro.
+You can delete an existing group in TutorsContactsPro, so that you can start a fresh for the next teaching semester.
 
 Format: `deletegroup g/GROUP_NAME`
 
-> ⚠️️ **Constraint**
+> ⚠️️ **Constraint:**
 > * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
 
 Examples:
@@ -454,19 +464,21 @@ Examples:
 
 ### <span id='feature-mail'> Mail broadcast : `mail` <span>
 
-You can generate a mailto link with email addresses pre-filled based on specific keyword entered.
+You can conveniently generate a mail link with email addresses pre-filled based on specific keyword entered.
 
 Format: `mail [KEYWORD]`
 
-> ℹ️ **Information**
+> ℹ️ **Information:**
+> * a mail link is generated in the format of `mailto:` + `email address of each student recipient separated by;`
 > * `[KEYWORD]` are based on student's group name
 > * It requires a **full match** for the keyword 
 > * `[KEYWORD]` is optional and when no `[KEYWORD]` is entered, email addresses of all students on the current list will be included
 > * If `[KEYWORD]` is entered, only email addresses of students belonging to the group name that fully matches the `[KEYWORD]` will be included
 
 Examples:
-* `mail` generates a mailto link with email addresses of all students on the current list. 
-* `mail LAB05` generates a mailto link with email addresses of all students belonging to `LAB05`.
+* `mail` generates a mail link with email addresses of all students on the current list. 
+* `mail LAB05` generates a mail link with email addresses of all students belonging to `LAB05` which is in the format of `mailto:` + `email address of each student` as shown below.
+
 ![result for 'mail LAB05'](images/MailFeature.png)
 
 
@@ -480,7 +492,7 @@ TutorsContactsPro data are saved automatically as a JSON file `[JAR file locatio
 
 [//]: # (<box type="warning" seamless>)
 
-> [**⚠️ Caution:**]
+> **⚠️ Caution:**
 If your changes to the data file makes its format invalid, TutorsContactsPro will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the TutorsContactsPro to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
