@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SELECT_TASK;
+import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -69,6 +70,8 @@ public class InternshipAddDeadlineCommand extends InternshipCommand {
             throw new CommandException(InternshipMessages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         internshipToAddDeadline.getTaskList().getTask(taskIndex.getZeroBased()).addDeadline(deadline);
+
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(String.format(MESSAGE_ADD_DEADLINE_SUCCESS,
                 InternshipMessages.format(internshipToAddDeadline)));

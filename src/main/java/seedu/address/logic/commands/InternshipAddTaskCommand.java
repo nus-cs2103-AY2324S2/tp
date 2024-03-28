@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.model.InternshipModel.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -60,6 +61,8 @@ public class InternshipAddTaskCommand extends InternshipCommand {
         Internship internshipWithTask = createInternshipWithTask(internshipToAddTask, task);
 
         model.setInternship(internshipToAddTask, internshipWithTask);
+
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
                 this.task));
