@@ -1,21 +1,27 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.FreeTimeTag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIMETAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.RoomNumber;
+import seedu.address.model.person.Telegram;
+import seedu.address.model.tag.FreeTimeTag;
 
 /**
  * Deletes a free time to an existing person in the address book.
@@ -66,7 +72,8 @@ public class DeleteTimeCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         if (editPersonDescriptor.getTags() == null) {
@@ -94,7 +101,8 @@ public class DeleteTimeCommand extends Command {
                 Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
                 Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
 
-                if (!(trimmedTag.substring(0, 3).equals(day)) || !(newStart.equals(currentStart)) || !(newEnd.equals(currentEnd))) {
+                if (!(trimmedTag.substring(0, 3).equals(day)) || !(newStart.equals(currentStart))
+                        || !(newEnd.equals(currentEnd))) {
                     updatedTags.add(tag);
                 }
             }
