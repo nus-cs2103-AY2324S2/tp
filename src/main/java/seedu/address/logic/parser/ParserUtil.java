@@ -9,11 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.timeslots.Timeslots;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,29 +97,56 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String timeslot} into a {@code Timeslot}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code timeslot} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Timeslots parseTimeslot(String timeslot) throws ParseException {
+        requireNonNull(timeslot);
+        String trimmedTimeslot = timeslot.trim();
+        if (!Timeslots.isValidTimeslot(trimmedTimeslot)) {
+            throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Timeslots(trimmedTimeslot);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> timeslots} into a {@code Set<Timeslot>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Timeslots> parseTimeslots(Collection<String> timeslots) throws ParseException {
+        requireNonNull(timeslots);
+        final Set<Timeslots> timeslotsSet = new HashSet<>();
+        for (String timeslot : timeslots) {
+            timeslotsSet.add(parseTimeslot(timeslot));
         }
-        return tagSet;
+        return timeslotsSet;
+    }
+
+    /**
+     * Parses a {@code String grade} into a {@code grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code grade} is invalid.
+     */
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Timeslots.MESSAGE_CONSTRAINTS);
+        }
+        return new Grade(trimmedGrade);
+    }
+
+    /**
+     * Parses {@code Collection<String> grades} into a {@code Set<Grade>}.
+     */
+    public static Set<Grade> parseGrades(Collection<String> grades) throws ParseException {
+        requireNonNull(grades);
+        final Set<Grade> gradeSet = new HashSet<>();
+        for (String grade : grades) {
+            gradeSet.add(parseGrade(grade));
+        }
+        return gradeSet;
     }
 }

@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+_markbind/logs/
+
+# Dependency directories
+node_modules/
+
+# Production build files (change if you output the build to a different directory)
+_site/
+
+# Env
+.env
+.env.local
+
+# IDE configs
+.vscode/
+.idea/*
+*.iml
+
+# Compiled files
+/*.class
+
+# Binaries
+/bin/
+
+# Storage/log files
+/data/
+/config.json
+/preferences.json
+/*.log.*
+hs_err_pid[0-9]*.log
+
+# Test sandbox files
+src/test/data/sandbox/
