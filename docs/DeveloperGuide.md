@@ -233,10 +233,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Theme switching
 
-_{Explain here how the data archiving feature will be implemented}_
+**Themes** practically are changed by switching the CSS file that MainWindow.java uses in
+/resources/view/stylesheets.
+* Current Themes
+    * DarkTheme.css
+    * LightTheme.css
 
+![ThemeModelSequenceDiagram](images/ThemeModelSequenceDiagram.png)
+
+Themes are referenced internally as a Class in guiSettings. After parsing the theme command,
+LogicManager will call the setTheme command of the ModelManager. From the model above we can see that,
+subsequently userPref and guiSetting is called to set the current Theme as the DarkTheme.
+
+On the Ui side when the Command Result of logic.excute(Command) is found to be a **themeCommand**, it programmatically
+sets scene's stylesheet to the respective CSS file associated with the theme.
 
 --------------------------------------------------------------------------------------------------------------------
 
