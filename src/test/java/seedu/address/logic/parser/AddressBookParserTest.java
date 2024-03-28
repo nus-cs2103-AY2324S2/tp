@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -13,18 +14,28 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddApplicantPersonCommand;
+import seedu.address.logic.commands.AddInterviewerPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindEmailCommand;
+import seedu.address.logic.commands.FindNameCommand;
+import seedu.address.logic.commands.FindPhoneCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Applicant;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.Interviewer;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.Remark;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -34,10 +45,19 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_add_applicant() throws Exception {
+        Applicant person = new PersonBuilder().build_applicant();
+        AddApplicantPersonCommand command = (AddApplicantPersonCommand) parser.parseCommand(
+                PersonUtil.getAddApplicantCommand(person));
+        assertEquals(new AddApplicantPersonCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_add_interviewer() throws Exception {
+        Interviewer person = new PersonBuilder().withStatus("free").build_interviewer();
+        AddInterviewerPersonCommand command = (AddInterviewerPersonCommand) parser.parseCommand(
+                PersonUtil.getAddInterviewerCommand(person));
+        assertEquals(new AddInterviewerPersonCommand(person), command);
     }
 
     @Test
@@ -49,8 +69,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " 87652533");
+        assertEquals(new DeleteCommand(new Phone("87652533")), command);
     }
 
     @Test
@@ -69,11 +89,30 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_find_email() throws Exception {
+        List<String> keywords = Arrays.asList("foo@email.com", "bar@email.com", "baz@email.com");
+        FindEmailCommand command = (FindEmailCommand) parser.parseCommand(
+                FindEmailCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindEmailCommand(new EmailContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_find_name() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindNameCommand command = (FindNameCommand) parser.parseCommand(
+                FindNameCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_find_phone() throws Exception {
+        List<String> keywords = Arrays.asList("123", "456", "789");
+        FindPhoneCommand command = (FindPhoneCommand) parser.parseCommand(
+                FindPhoneCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPhoneCommand(new PhoneContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -89,9 +128,17 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_remark() throws Exception {
+        final Remark remark = new Remark("Some remark.");
+        RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark.value);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

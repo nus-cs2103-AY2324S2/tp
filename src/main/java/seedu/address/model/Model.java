@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Interview> PREDICATE_SHOW_ALL_INTERVIEWS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,6 +60,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same phone as {@code person} exists in the address book.
+     */
+    boolean hasPersonWithSamePhone(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -84,4 +91,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredInterviewList(Predicate<Interview> predicate);
+
+    void addInterview(Interview interview);
+
+    void sortInterview();
+
+    boolean hasInterview(Interview interview);
+
+    void deleteInterview(Interview interview);
+
+    ObservableList<Interview> getFilteredInterviewList();
 }

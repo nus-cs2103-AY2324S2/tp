@@ -1,10 +1,33 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: derive(#012A4A, 20%);
+    background-color: #012A4A; /* Used in the default.html file */
+}
+
+.bg-green {
+    -fx-background-color: green;
+}
+
+.bg-red {
+    -fx-background-color: #800000;
+}
+
+.bg-black {
+    -fx-background-color: black;
+}
+
+.bg-orange {
+    -fx-background-color: #EB4F0E;
+}
+
+.list-header {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
 }
 
 .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 18pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
@@ -41,8 +64,8 @@
 
 .table-view {
     -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-control-inner-background: #012A4A;
+    -fx-background-color: #012A4A;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -90,7 +113,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#012A4A, 20%);
 }
 
 .list-cell {
@@ -100,11 +123,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #013A63;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #01497C;
 }
 
 .list-cell:filled:selected {
@@ -185,7 +208,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#013A63, 50%);
 }
 
 .context-menu .label {
@@ -217,7 +240,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #013A63;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -282,11 +305,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#2A6F97, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(white, 50%);
     -fx-background-insets: 3;
 }
 
@@ -318,7 +341,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent #012A4A transparent #012A4A;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
@@ -333,7 +356,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #012A4A, transparent, #012A4A;
     -fx-background-radius: 0;
 }
 
@@ -348,5 +371,18 @@
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 18;
+}
+
+#status {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#status .label {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 18;
 }

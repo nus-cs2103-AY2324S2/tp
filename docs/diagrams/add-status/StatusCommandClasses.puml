@@ -1,0 +1,46 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+Class "{abstract}\nCommand" as Command {
+}
+Class AddApplicantStatusCommand {
+  +{static}COMMAND_WORD: String
+  +{static}MESSAGE_USAGE: String
+  +{static}MESSAGE_ADD_STATUS_SUCCESS: String
+  -Phone: Phone
+  +execute(Model): CommandResult
+  -generateSuccessMessage(Person): String
+}
+Class AddInterviewerStatusCommand {
+  +{static}COMMAND_WORD: String
+  +{static}MESSAGE_USAGE: String
+  +{static}MESSAGE_ADD_STATUS_SUCCESS: String
+  -Phone: Phone
+  +execute(Model): CommandResult
+  -generateSuccessMessage(Person): String
+}
+Class "{abstract}\nStatus" as Status {
+    +{static}MESSAGE_USAGE: String
+}
+Class ApplicantStatus {
+    +{static}MESSAGE_CONSTRAINTS: String
+    +value: String
+    +{static}isValidStatus(String): boolean
+}
+Class InterviewerStatus {
+    +{static}MESSAGE_CONSTRAINTS: String
+    +value: String
+    +{static}isValidStatus(String): boolean
+}
+Class IllegalValueException
+
+AddApplicantStatusCommand -up-|> Command
+AddApplicantStatusCommand -down-> ApplicantStatus
+AddInterviewerStatusCommand -up-|> Command
+AddInterviewerStatusCommand -down-> InterviewerStatus
+ApplicantStatus -up-|> Status
+InterviewerStatus -up-|> Status
+ApplicantStatus ..> IllegalValueException: throws >
+InterviewerStatus ..> IllegalValueException: throws >
+@enduml

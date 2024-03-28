@@ -1,15 +1,19 @@
 ---
-layout: page
-title: Developer Guide
+  layout: default.md
+  title: "Developer Guide"
+  pageNav: 3
 ---
-* Table of Contents
-{:toc}
+
+# Tether Developer Guide
+
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,14 +25,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -53,7 +52,7 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -62,7 +61,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<puml src="diagrams/ComponentManagers.puml" width="300" />
 
 The sections below give more details of each component.
 
@@ -70,7 +69,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -89,14 +88,16 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
 
 How the `Logic` component works:
 
@@ -108,7 +109,7 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -117,7 +118,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
 
 The `Model` component,
@@ -127,18 +128,20 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<box type="info" seamless>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-</div>
+<puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
+
+</box>
 
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -155,94 +158,264 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Interviews
+#### Implementation
 
-#### Proposed Implementation
+An interview contains the following fields: Date, Start time, End time, Description, and two Person instances representing the applicant and interviewer. 
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+### Find feature
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+#### Implementation
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The find mechanism is facilitated by 3 classes `FindEmailCommand`, `FindNameCommand` and `FindPhoneCommand`. They all extend `FindCommand` with their corresponding `COMMAND_WORD` : `find_email`, `find_name` and `find_phone` respectively, as well as a corresponding `predicate` variable of type `EmailContainsKeywordsPredicate`, `NameContainsKeywordsPredicate` and `PhoneContainsKeywordsPredicate` respectively.
+`EmailContainsKeywordsPredicate`, `NameContainsKeywordsPredicate` and `PhoneContainsKeywordsPredicate` extend `Predicate` from the `java.util.function` package and override the `test` function to match their respective criteria of matching `Email`, `Name` and `Phone` values respectively.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+These `Predicate` objects allow for matching of multiple substrings, facilitating searching for multiple persons in the application simultaneously. This is done by providing multiple keyword arguments after the `find_[email/name/phone]` command word. However, this only applies to keywords for the same criteria.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<br> 
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Example: Keyword arguments after `find_name` will be matched only to the `Name` values of persons in application data, and not theie `Email` or `Phone` values.
+* `FindEmailCommand#execute()` — Searches for persons based on the specified email keywords.
+* `FindNameCommand#execute()` — Searches for persons based on the specified name keywords.
+* `FindPhoneCommand#execute()` — Searches for persons based on the specified phone keywords.history.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The above `execute` operations utilise `ModelManager#updateFilteredPersonList()` implemented from the `Model` interface to update the GUI to display the persons that match the criteria provided as arguments to the `FindCommand` variant.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The following class diagram summarizes the organisation of the `FindCommand` variant classes.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram"/>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Given below is an example usage scenario and how the find mechanism behaves at each step. All 3 variants behave in the same way, just with their keywords being of different types.
 
-</div>
+Step 1. The user launches the application which loads in data from the previous session. Current data in the application include 2 `Applicant` objects, one with `Name = "Ryan"` and the other with `Name = "Wesley"`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 2. The user executes `find_name` command to find a person with the name Ryan in the application. The `find_name` command calls `FindNameCommandParser#parse()`, creating a new `FindNameCommand` object initialised with a `NameContainsKeywordsPredicate` object that is created with an array of the keywords passed as arguments with the `find_name` command. When `FindNameCommand#execute()` is called, the list displayed on the GUI will be updated to show only the entry of <u>`Ryan:Applicant`</u>.
 
-![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<box type="info" seamless>
 
-</div>
+**Note:** 
+* The command expects at least 1 argument following the `find_name` command word and will result in an `ParseException` indicating invalid command format otherwise.
+* Use the command `list_persons` to display the original list of all persons on the GUI
+* There is no need to return back to the original list before executing another `find_[email/name/phone]` command
 
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
+</box>
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+<br>
+The following sequence diagram shows how a find operation, specifically `find_name`, goes through the `Logic` component. `find_phone` and `find_email` also behave in a similar way.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<puml src="diagrams/find/FindSequenceDiagram-Logic.puml" alt="FindSequenceDiagram-Logic"/>
 
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How find is implemented:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** 3 separate commands for phone, email, and name.
+    * Pros: Easy and straightforward to implement.
+    * Cons: Uses 3 separate command words resulting in 3 separate CommandParser classes.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Command word remains as `find` and the first argument after will determine the criteria to search for: `email`, `name` or `phone`.
+    * Pros: Less repeating of similar code. Only 1 command word required.
+    * Cons: More changes to parsing is required for identification of criteria and potential errors with mixing up keywords with criteria word.
 
-_{more aspects and alternatives to be added}_
+### Applicant/Interviewer status feature
 
-### \[Proposed\] Data archiving
+#### Implementation
 
-_{Explain here how the data archiving feature will be implemented}_
+The applicant/interviewer status mechanism is facilitated by `AddApplicantStatusCommand` and `AddInterviewerStatusCommand`. They extend `Command` with their own `status` field, stored internally as `ApplicantStatus` and `InterviewerStatus` respectively. 
+`ApplicantStatus` and `InterviewerStatus` encapsulate statuses (enumerated in `ApplicantState` and `InterviewerState`) in a `value` field.
+`AddApplicantStatusCommand` and `AddInterviewerStatusCommand` implement the following operations:
 
+* `AddApplicantStatusCommand#execute()` — Adds on the encapsulated `currentStatus` to the applicant in question.
+* `AddInterviewerStatusCommand#execute()` — Adds on the encapsulated `currentStatus` to the interviewer in question.
+
+`ApplicantStatus` and `InterviewerStatus` also enable the following functionality in `Applicant` and `Interviewer`:
+
+* `Applicant#updateCurrentStatus()` — Updates the `currentStatus` of the applicant to "pending interview".
+* `Applicant#revertCurrentStatus()` — Reverts the `currentStatus` of the applicant to `previousStatus`.
+* `Interviewer#updateCurrentStatus()` — Updates the `currentStatus` of the interviewer to "interview with [applicant name]" if the `currentStatus` is "free", and vice versa.
+
+The following class diagram shows the structure of `AddApplicantStatusCommand`, `AddInterviewerStatusCommand`, `ApplicantStatus`, `InterviewerStatus`:
+
+<puml src="diagrams/add-status/StatusCommandClasses.puml"/>
+
+Given below is an example usage scenario and how the applicant/interviewer status mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time and executes `add_applicant n/Yash p/98362254 e/yashwit@u.nus.edu`. An applicant `Yash` is initialised with default `currentStatus` "resume review".
+
+Step 2. The user executes `add_interviewer n/Ryan p/12345678 e/ryan@u.nus.edu`. An interviewer `Ryan` is initialised with default `currentStatus` "free".
+
+Step 3. The user executes `add_interview....a/98362254 i/12345678` to create an interview between `Yash` and `Ryan`. The `add_interview` command makes a call to `updateCurrentStatus` in `Yash`, which updates `Yash`'s `currentStatus` to "pending interview" and `previousStatus` to "resume review". Similarly, a call is made to `updateCurrentStatus` in `Ryan` and `Ryan`'s `currentStatus` is updated to "interview with Yash". The `updateCurrentStatus` methods in `Ryan` and `Yash` in-turn call the `setPerson` list of the current `Model` for the status change to be reflected immediately.
+
+<box type="info" seamless>
+
+**Note:** If the `add_interview` command fails its execution, it will not call `updateCurrentStatus`, so the address book state will not be modified.
+
+</box>
+
+Step 4. The user now decides that she wants to edit `Yash`'s status to "completed interview" manually, and executes the `applicant_status 98362254 s/completed interview` command. The `applicant_status` command will call `AddApplicantStatusCommandParser#parse()`, which will verify the validity of the status through `ApplicantStatus#isValidStatus()` before creating an `ApplicantStatus` and then an `AddApplicantStatusCommand`. A similar flow is true for `interviewer_status...`
+
+<box type="info" seamless>
+
+**Note:** If the status passed by the user matches with none of the statuses enumerated in `ApplicantState` or `InterviewerState`, a new `ApplicantStatus` or `InterviewerStatus` is not created and consequently so aren't `AddApplicantStatusCommand` or `AddInterviewerStatusCommand`.
+
+</box>
+
+The following sequence diagram illustrates step 4:
+
+<puml src="diagrams/add-status/StatusCommandSequence.puml"/>
+
+#### Design considerations:
+
+**Aspect: How statuses are stored:**
+
+* **Alternative 1 (current choice):** One status at a time instead of a `Set` (like for `Tags`).
+    * Pros: Easy to implement.
+    * Cons: Doesn't allow for interviewers to encapsulate multiple scheduled interviews or for applicants to be in multiple hiring pipelines.
+
+* **Alternative 2:** Multiple statuses (proposed: an unmodifiable `Set`).
+    * Pros: Greater flexibility in setting statuses.
+    * Cons: Possible performance issues when updating multi-statuses, as well as graphical design overhead when choosing how to sort and render multiple statuses.
+
+### Add Interview Feature
+#### Implementation
+
+The add interview mechanism is facilitated by `AddInterviewCommand`. They all extend the `Command` with fields called `description`, `applicant` phone number, 
+`interviewer` phone number, `date` of interview, `startTime` as well as `endTime`. An `Interview` is created then added to the list. 
+AddInterviewCommand implements the following operations:
+
+* `AddInterviewCommand#execute()`  —  Adds the encapsulated `Interview` to the list.
+
+The above `execute` operation utilises `ModelManager#updateFilteredPersonList()` implemented from the Model interface to obtain the list of `applicant` and `interviewer` phone numbers.
+This is followed by checking the validity of the phone numbers before creating an `Interview` object to be added into the interview list. The operation `execute` then utilises
+`ModelManager#addInterview()` implemented from the Model to add the `Interview` to the list. The operation `execute` also utilises `ModelManager#sortInterview()` to the `interview` objects by `date`, `startTime` and `endTime`.
+
+The following class diagram summarizes the organisation of the `AddInterviewCommand`:
+<puml src="diagrams/add-interviews/AddInterviewCommandClass.puml"/>
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time and executes `add_applicant n/Wesley p/81159858 e/ywesley16@gmail.com`. An applicant `Wesley` is initialised.
+
+Step 2. The user executes `add_interviewer n/Yash p/98362254 e/yashwit@u.nus.edu`. An interviewer `Yash` is initialised.
+
+Step 3. The user executes `add_interview desc/technical interview date/2024-03-28 st/10:00 et/11:00 a/81159858 i/98362254`. The `add_interview` command calls the `AddInterviewCommandParser#parse()`,
+creating a new `AddInterviewCommand` object initialised with the respective fields. When the `AddInterviewCommand#excute()` is called, a check is conducted to determine whether the `Interview` is already scheduled.
+This is then followed by creating `Interview` object and adding it into the list. The list of interviews will then be sorted. The GUI will display the interviews under the interview column.
+
+Note:
+
+* The command expects all arguments to be filled and will result in `ParseException` indicating invalid command format otherwise.
+* When a duplicate interview is entered, it will result in a `CommandException` indicating a duplicate interview has been entered.
+* When incorrect phone numbers are entered, it will result in a `CommandException` indicating which phone number is incorrect.
+
+The following sequence diagram shows demonstrates step 3:
+
+<puml src="diagrams/add-interviews/AddInterviewCommandSequence.puml"/>
+
+#### Design considerations:
+
+**Aspect: How interviews are added:**
+
+* **Alternative 1(current choice):** Creates the `Interview` inside `AddInterviewCommand`.  
+    * Pros: Easier to implement and straight forward.
+    * Cons: Exposes the fields and tedious to recreate `Interview`.
+
+* **Alternative 2:** `Interview` is created under `AddInterviewCommandParser`.
+    * Pros: Better encapsulation.
+    * Cons: Harder to conduct the necessary checks for validity for phone numbers.
+
+### Saving of interviews/persons feature
+
+#### Implementation
+The interview and person saving mechanism in the application is powered through the coordination of seven key components:
+`JsonSerializableAddressBook`, `JsonAdaptedStorageBook` `JsonAdaptedPerson`, `JsonAdaptedTag`, `JsonAdaptedInterview`, `LogicManager`, and `StorageManager`.
+
+The `LogicManager` triggers data persistence post-command execution by invoking `StorageManager`'s `saveAddressBook` function
+which in turn triggers `JsonAddressBookStorage`'s saveAddressBook command. 
+This process generates a new `JsonSerializableAddressBook` object, encapsulating lists for both persons and 
+interviews. 
+
+The `Model` class harbors an `addressBook` with distinct 
+lists (`UniquePersonList` and `UniqueInterviewList`) for storing `Person` 
+and `Interview` entities. During the serialization phase, these entities are transformed into 
+JSON format, utilizing `JsonAdaptedPerson` and `JsonAdaptedInterview` for accurate mapping.
+
+Each `JsonAdaptedPerson` retains `Person` attributes as `@JsonProperty` and encapsulates tags 
+as `JsonAdaptedTag` collections. Likewise, `JsonAdaptedInterview` conserves `Interview` attributes, 
+additionally incorporating applicant and interviewer information as `JsonAdaptedPerson` instances.
+
+The following sequence diagram illustrates a simplified version of the above process.
+
+<puml src="diagrams/saving/SavingInterviewsAndPersonsSequence.puml"/>
+
+#### Design considerations:
+
+**Aspect: How interviews/persons are stored:**
+
+Converting person and interview data to JSON format facilitates easy data storage, retrieval, and 
+manipulation. JSON, being lightweight and text-based, is highly compatible across different systems,
+making data sharing and application scaling more efficient. It also supports hierarchical data structures,
+which is useful for representing complex data relationships. JSON's human-readable format simplifies
+debugging and development processes, enhancing overall productivity.
+
+* **Alternative 1(current choice)**: Save interviews/persons in JSON format.
+    * Pros: Human-readable format simplifies debugging and development processes, compatible with web APIs and databases.
+
+    * Cons: Harder to implement for a beginner developer.
+  
+*  **Alternative 2:** Save interview/person directly as strings.
+    * Pros: Easy to implement.
+    * Cons: Does not follow existing format, needs to reformat how saving for persons is done which could be very time-consuming, may not be compatible with exisitng APIs and databases.
+
+
+### List Persons and List interview Features
+#### Implementation
+
+The listing mechanism is facilitated by `ListCommand` and `ListInterviewsCommand`. They all extend the `Command` class. `ListCommand` is responsible for listing persons while `ListInterviewsCommand` is for listing interviews.
+The command words for `ListCommand` and `ListInterviewsCommand` are `list_persons` and `list_interviews` respectively.
+
+Both `ListCommand` and `ListInterviewsCommand` implements the following operations:
+
+* `ListCommand / ListInterviewsCommand #execute()`  -  Updates the list in `Model` with the original list.
+
+The above `execute` operation utilises `ModelManager#updateFilteredPersonList()` or `ModelManager#updateFilteredInterviewList()` respectively implemented from the Model interface, with the `PREDICATE_SHOW_ALL_PERSONS` Predicate, to update the list in `Model` with the full list.
+
+This change is then reflected in the UI list of persons / Interviews.
+
+Given below is an example usage scenario for interviews and how the mechanism behaves at each step.
+
+* Step 1. The user launches the application with existing interviewers, applicants, and interviews. The interviews' date are all different.
+
+* Step 2. The user executes the command `filter_interviews_by_date 2024-02-03`. Only interviews on the date `2024-02-03` will show up on the list of interviews on right side of the application.
+
+* Step 3. Now the user wants to see the original list of interviews in step 1 (eg. All interviews, regardless of date). The user can enter the command `list_interviews`. Now the list on the right side of the application will show the full list of interviews as in Step 1.
+
+The scenario for persons is also similar to interviews.
+
+Note:
+* Both `list_persons` and `list_interviews` commands have no arguments.
+
+
+### Delete Interview and Delete Persons feature
+#### Implementation
+
+The deleting mechanism for persons and interview are facilitated by `DeleteCommand` and `DeleteInterviewCommand`. They both extends from `Command` class. `DeleteCommand` is responsible for deleting a person while `DeleteInterviewCommand` is for deleting an interview.
+The command words are `delete_person` and `delete_interview` respectively. `DeleteCommand` takes in a phone number to identify the person to delete, while `DeleteInterviewsCommand` takes in the index of the interview to delete.
+
+Both `DeleteCommand` and `DeleteInterviewsCommand` implements the following operations:
+
+* `DeleteCommand / DeleteInterviewsCommand #execute()`  -  Removes the corresponding person or interview from the list in `Model`.
+
+The above `execute` operation utilises `ModelManager#deletePerson()` or `ModelManager#deleteInterview()` respectively implemented from the Model interface,to remove the corresponding person or interview from the list in `Model`.
+
+This change is then reflected in the UI list of persons / Interviews.
+
+Note:
+* If the argument entered (phone number or index) references a interview or person that is not in the current list, it will result in a `CommandException` indicating an out of bounds or invalid phone number error.
+* If there is no argument provided, it will result in `ParseException` indicating invalid command format.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,44 +433,69 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-
-* has a need to manage a significant number of contacts
+**Target user profile**: <br>
+Hiring manager who:
+* cannot afford a professional Applicant Tracking System (ATS)
+* has a need to manage a significant number of job applicants and their interview details
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: <br>
+Free alternative for tracking interview datetimes, applicant contacts and their application statuses.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                           | I want to …​                             | So that I can…​                                                           |
+|----------|-------------------------------------------------------------------|------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new user                                                          | see usage instructions                   | refer to instructions when I forget how to use the Tether                 |
+| `* * *`  | user                                                              | add a new person (applicant/interviewer) |                                                                           |
+| `* * *`  | user                                                              | delete a person (applicant/interviewer)  | remove person entries that I no longer need                               |
+| `* * *`  | user                                                              | add a new interview                      |                                                                           |
+| `* * *`  | user                                                              | delete an interviewer                    | remove interview entries that I no longer need                            |
+| `* *`    | user with many persons in Tether                                  | find a person by name/email              | locate details of a person without having to go through the entire list   |
+| `* *`    | user with many interviews in Tether                               | filter interviews by date                | locate details of interviews without having to go through the entire list |
+| `* *`    | user with many applicants of varying application status in Tether | tag applicants                           | identify applicant's application progress                                 |
+| `* `     | user collaborating with other Tether users                        | share an applicant's details             | update other hiring managers on applicant details                         |
+| `* `     | user who does not want to clutter local hard drive with files     | store applicant's resume                 | view applicant's resume in Tether                                         |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Tether` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  System shows a list of persons
+3.  User requests to add a new person to the list
+4.  System adds the person and updates the displayed list
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. Any of the given name, email, phone number are invalid.
+
+    * 3a1. System shows an error message indicating invalid name/email/phone number.
+
+      Use case resumes at step 2.
+
+**Use case: UC02 - Delete a person by phone number**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  System deletes the person
 
     Use case ends.
 
@@ -305,11 +503,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. System shows an error message indicating no person in list.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
+* 3a. The given phone number is invalid.
+
+    * 3a1. System shows an error message indicating person not found.
+
+      Use case resumes at step 2.
+
+**Use case: UC03 - Tag an applicant**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to tag a specific applicant, using their name/email, with an application status
+4.  System tags the requested applicant with the given application status
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. System shows an error message indicating no applicant in list.
+
+      Use case resumes at step 2.
+
+* 3a. The given name/email is invalid.
+
+    * 3a1. System shows an error message indicating applicant not found.
+
+      Use case resumes at step 2.
+
+* 4a. The tag is already added for the applicant.
+
+    * 4a1. System shows an error message indicating tag is already added.
+
+      Use case resumes at step 2.
+
+**Use case: UC04 - Find a person by name/email**
+
+**MSS**
+
+1.  User requests to list persons
+2.  System shows a list of persons
+3.  User requests to find a specific person in the list by their name or email
+4.  System updates the list to only display the requested person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. Tether shows an error message indicating no person in list.
+
+      Use case resumes at step 2.
+
+* 3a. The given name/email is invalid.
+
+    * 3a1. Tether shows an error message indicating person not found.
 
       Use case resumes at step 2.
 
@@ -317,16 +573,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1.  Should work on any _mainstream OS_ as long as it has Java 11 or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  Should be able to display multiple lists of applicants/interviews/interviewers without a noticeable sluggishness in performance for typical usage.
+4.  Should be responsive in all functionality, especially updating and displaying the list after each request.
+5.  Should be able to reliably preserve application data across multiple sessions without risk of data loss/corruption.
+6.  Should not leak applicant details, especially email and phone number, outside the application.
+7.  Should provide specific error messages to guide users on intended usage of features.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
 ### Glossary
 
+* **Application Status**: These statuses comprise resume review, pending interview, completed interview, accepted, rejected and waiting list.
+* **Application Tracking System**: A software application used by organizations to manage and streamline the recruitment and hiring process
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Person**: A person can refer to either an `Applicant` or an `Interviewer`
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,10 +599,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<box type="info" seamless>
+
+**Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</div>
+</box>
 
 ### Launch and shutdown
 
