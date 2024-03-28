@@ -184,7 +184,7 @@ The supported meeting details are:
 The `schedule` command is implemented to allow users to schedule meetings within the application. The command follows a sequence of interactions similar to the other commands. The part to highlight is `ScheduleCommandParser#parse(String)`  creates a `Meeting` object containing the parsed meeting details and it is then passed to `ScheduleCommand`.
 
 The following sequence diagram shows how a schedule meeting operation goes through the `Logic` component:
-![Schedule Meeting Sequence Diagram](images/ScheduleMeetingSequenceDiagram.png)
+![Schedule Meeting Sequence Diagram](images/ScheduleMeetingSequenceDiagram.svg)
 
 #### Unschedule Command
 The `unschedule` command is designed to provide users with the capability to remove previously scheduled meetings. The primary action is the removal of the Meeting object from the specified person's record in the Model.
