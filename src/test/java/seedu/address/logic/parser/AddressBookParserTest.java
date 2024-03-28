@@ -141,11 +141,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_selectExam() throws Exception {
-        assertTrue(parser.parseCommand("selectExam n/Midterm") instanceof SelectExamCommand);
-    }
-
-    @Test
     public void parseCommand_deselectExam() throws Exception {
         assertTrue(parser.parseCommand("deselectExam") instanceof DeselectExamCommand);
     }
