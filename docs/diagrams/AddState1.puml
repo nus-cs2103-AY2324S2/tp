@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+hide methods
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam ClassBackgroundColor #FFFFAA
+
+title initial state
+
+class uniquePersonList as "<u>uniquePersonList:UniquePersonList</u>"
+class student1 as "<u>student1:Person</u>" {
+    name = Alice
+    id = A0234567X
+    email = e0234567@u.nus.edu
+    grade = A
+    group = Group 1
+}
+class student2 as "<u>student2:Person</u>" {
+    name = Bob
+    id = A0345678X
+    email = e0345678@u.nus.edu
+    grade = B
+    group = Group 2
+}
+
+student1 -[hidden]right-> student2
+
+uniquePersonList -down-> student1
+uniquePersonList -down-> student2
+
+@enduml

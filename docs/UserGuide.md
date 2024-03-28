@@ -29,13 +29,13 @@ The growing population of computer science students worldwide presents a novel s
 
 ## 3. Purpose of User Guide (UG)
 
-The purpose of the User Guide (UG) for TeachStack is to provide users 
-with a comprehensive understanding of the application's features and 
-functionalities. Structured to facilitate ease of use and enhance productivity, 
-the guide offers clear instructions, detailed explanations, and reference 
-materials such as command summaries and a glossary. By empowering users 
-with the knowledge to efficiently navigate TeachStack's Command Line Interface (CLI) 
-and Graphical User Interface (GUI), the UG aims to streamline student management tasks 
+The purpose of the User Guide (UG) for TeachStack is to provide users
+with a comprehensive understanding of the application's features and
+functionalities. Structured to facilitate ease of use and enhance productivity,
+the guide offers clear instructions, detailed explanations, and reference
+materials such as command summaries and a glossary. By empowering users
+with the knowledge to efficiently navigate TeachStack's Command Line Interface (CLI)
+and Graphical User Interface (GUI), the UG aims to streamline student management tasks
 and ensure optimal utilization of the application's capabilities.
 
 --------------------------------------------------------------------------------------------------------------------
