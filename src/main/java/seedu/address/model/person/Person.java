@@ -15,26 +15,61 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
-    // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
-
+    //Mandatory fields
+    //Identity fields
+    private final Nric nric;
+    private Name name;
+    private Phone phone;
+    private Address address;
+    private final DateOfBirth dateOfBirth;
+    private Sex sex;
+    private Status status;
+    // Optional fields
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-
+    private Email email = null;
+    private Country country = null;
+    //Medical information
+    private Allergies allergies = null;
+    private BloodType bloodType = null;
+    private Condition condition = null;
+    private DateOfAdmission dateOfAdmission = null;
+    private Diagnosis diagnosis = null;
+    private Symptom symptom = null;
     /**
-     * Every field must be present and not null.
+     * Every mandatory field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Nric nric, Name name, Phone phone, Address address, DateOfBirth dateOfBirth, Sex sex, Status status) {
+        //Only the fields that are mandatory are included down here
+        requireAllNonNull(nric, name, phone, address, dateOfBirth, sex);
+        this.nric = nric;
         this.name = name;
         this.phone = phone;
-        this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.status = status;
+    }
+    /**
+     * Constructor for Person with only Nric.
+     */
+    private Person(Nric nric) {
+        this.nric = nric;
+        this.name = null;
+        this.phone = null;
+        this.address = null;
+        this.dateOfBirth = null;
+        this.sex = null;
+        this.status = null;
+    }
+    /**
+     * Constructor for Person with only Nric.
+     */
+    public static Person createPersonWithNric(Nric nric) {
+        return new Person(nric);
+    }
+    public Nric getNric() {
+        return nric;
     }
 
     public Name getName() {
@@ -49,8 +84,48 @@ public class Person {
         return email;
     }
 
+    public Sex getSex() {
+        return this.sex;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public Allergies getAllergies() {
+        return allergies;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public DateOfAdmission getDateOfAdmission() {
+        return dateOfAdmission;
+    }
+
+    public Diagnosis getDiagnosis() {
+        return diagnosis;
+    }
+
+    public Status getStatus() {
+        return this.status;
+    }
+
+    public Symptom getSymptom() {
+        return symptom;
     }
 
     /**
@@ -60,9 +135,99 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    /**
+     * Sets the name of the person to input value.
+     * @param name the new name.
+     */
+    public void setName(Name name) {
+        this.name = name;
+    }
 
     /**
-     * Returns true if both persons have the same name.
+     * Sets the phone of the person to input value.
+     * @param phone the new phone.
+     */
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+    /**
+     * Sets the address of the person to input value.
+     */
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    /**
+     * Sets the sex of the person to input value.
+     */
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+    /**
+     * Sets the status of the person to input value.
+     * @param status the new status.
+     */
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    /**
+     * Sets the email of the person to input value.
+     * @param email the new email.
+     */
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+    /**
+     * Sets the allergies of the person to input value.
+     * @param allergies the new allergies.
+     */
+    public void setAllergies(Allergies allergies) {
+        this.allergies = allergies;
+    }
+    /**
+     * Sets the blood type of the person to input value.
+     * @param bloodType the new blood type.
+     */
+    public void setBloodType(BloodType bloodType) {
+        this.bloodType = bloodType;
+    }
+    /**
+     * Sets the country of the person to input value.
+     * @param country the new country.
+     */
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+    /**
+     * Sets the condition of the person to input value.
+     * @param condition the new condition.
+     */
+    public void setCondition(Condition condition) {
+        this.condition = condition;
+    }
+    /**
+     * Sets the date of admission of the person to input value.
+     * @param dateOfAdmission the new date of admission.
+     */
+    public void setDateOfAdmission(DateOfAdmission dateOfAdmission) {
+        this.dateOfAdmission = dateOfAdmission;
+    }
+    /**
+     * Sets the diagnosis of the person to input value.
+     * @param diagnosis the new diagnosis.
+     */
+    public void setDiagnosis(Diagnosis diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+    /**
+     * Sets the symptom of the person to input value.
+     * @param symptom the new symptom.
+     */
+    public void setSymptom(Symptom symptom) {
+        this.symptom = symptom;
+    }
+
+    /**
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,12 +235,24 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getNric().equals(getNric());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if the person has all mandatory fields.
+     */
+    public static boolean isValidPerson(Person person) {
+        return person.nric != null
+                && person.name != null
+                && person.phone != null
+                && person.address != null
+                && person.dateOfBirth != null
+                && person.sex != null
+                && person.status != null;
+    }
+
+    /**
+     * Returns true if both persons have the same identity and all data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -88,30 +265,65 @@ public class Person {
         if (!(other instanceof Person)) {
             return false;
         }
-
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
+        if (!(isValidPerson(this) && isValidPerson(otherPerson))) {
+            return false;
+        }
+        return nric.equals(otherPerson.nric)
+                && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && dateOfBirth.equals(otherPerson.dateOfBirth)
+                && sex.equals(otherPerson.sex)
+                && status.equals(otherPerson.status)
+                && tags.equals(otherPerson.tags)
+                && Objects.equals(email, otherPerson.email)
+                && Objects.equals(country, otherPerson.country)
+                && Objects.equals(allergies, otherPerson.allergies)
+                && Objects.equals(bloodType, otherPerson.bloodType)
+                && Objects.equals(condition, otherPerson.condition)
+                && Objects.equals(dateOfAdmission, otherPerson.dateOfAdmission)
+                && Objects.equals(diagnosis, otherPerson.diagnosis)
+                && Objects.equals(symptom, otherPerson.symptom);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(nric, name, phone, address, dateOfBirth, sex, status);
     }
 
     @Override
     public String toString() {
+        // list view
         return new ToStringBuilder(this)
+                .add("nric", nric)
+                .add("name", name)
+                .add("status", status).toString();
+    }
+
+    /**
+     * @return Detailed String of Person
+     */
+    public String toDetailedString() {
+        // detailed view
+        return new ToStringBuilder(this)
+                .add("nric", nric)
                 .add("name", name)
                 .add("phone", phone)
-                .add("email", email)
                 .add("address", address)
+                .add("birthday", dateOfBirth)
+                .add("sex", sex)
+                .add("status", status)
+                .add("email", email)
+                .add("admission", dateOfAdmission)
+                .add("allergies", allergies)
+                .add("blood type", bloodType)
+                .add("country", country)
+                .add("condition", condition)
+                .add("diagnosis", diagnosis)
+                .add("symptom", symptom)
                 .add("tags", tags)
                 .toString();
     }
-
 }

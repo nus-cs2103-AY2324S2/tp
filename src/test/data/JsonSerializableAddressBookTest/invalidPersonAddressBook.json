@@ -1,8 +1,20 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "name": "Hans Muster",
+      "phone": "94820a",
+      "address": "4th street",
+      "dateOfBirth": "2001-01-01",
+      "sex": "M",
+      "status": "HEALTHY",
+      "email": null,
+      "country": null,
+      "allergies": null,
+      "bloodType": null,
+      "condition": null,
+      "dateOfAdmission": null,
+      "diagnosis": null,
+      "symptom": null
+    }
+  ]
 }

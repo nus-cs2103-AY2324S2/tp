@@ -3,57 +3,50 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a NUS based software development team.
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can contact us individually through our portfolios
 
-## Project team
+## ImmuniMate Project Team
 
-### John Doe
+### Alex Setyawan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alex-setyawan.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/alex-setyawan)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Project Manager, Back-end
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Tan Jovan
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/jovantanyk.png" width="200px">
+
+[[homepage](http:/jovantanyk.dev)]
+[[github](https://github.com/jovantanyk)]
+[[portfolio](team/jovantanyk.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Back-end, Documentation
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Zhang Lanyu
 
-[[github](http://github.com/johndoe)]
+<img src="images/laney0808.png" width="200px">
+
+[[github](http://github.com/laney0808)] [[portfolio](team/laney0808.md)]
+
+* Role: Developer
+* Responsibilities: Front-end, Documentation, UI Designer
+
+### Natalie Leong
+
+<img src="images/natleong.png" width="200px">
+
+[[github](http://github.com/NatLeong)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Front-end, Documentation
