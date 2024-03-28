@@ -1,66 +1,66 @@
 .background {
-    -fx-background-color: #d9b99b; /* A beige background */
-    background-color: #d9b99b;
+    -fx-background-color: #EFBC9B; /* Light peach color for background */
+    background-color: #EFBC9B;
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #000000; /* Black text */
+    -fx-text-fill: #9CAFAA; /* Muted green for text */
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #000000; /* Black text for bright labels */
+    -fx-text-fill: #9CAFAA; /* Muted green for bright labels, more pronounced */
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #000000; /* Black text for headers */
+    -fx-text-fill: #9CAFAA; /* Muted green for headers */
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-background-color: #edebe9; /* A lighter shade for text field backgrounds */
-    -fx-text-fill: #000000; /* Black text */
+    -fx-background-color: #FBF3D5; /* Soft yellow for text field backgrounds */
+    -fx-text-fill: #000000; /* Muted green for text */
 }
 
 .list-cell .label {
-    -fx-text-fill: #000000; /* Black text */
+    -fx-text-fill: #000000; /* Muted green for text */
 }
 
 .list-cell {
-    -fx-background-color: #f5f5dc; /* Light beige for normal state */
-    -fx-text-fill: #000000; /* Black text for contrast */
+    -fx-background-color: #FBF3D5; /* Soft yellow for normal state */
+    -fx-text-fill: #000000; /* Muted green for contrast */
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap: 0;
     -fx-padding: 0 0 0 0;
 }
 
 .list-cell:filled:selected, .list-cell:filled:selected #cardPane {
-    -fx-background-color: #d9b99b; /* Even lighter beige for the selected item */
-    -fx-text-fill: #000000; /* Black text for contrast when selected */
+    -fx-background-color: #D6DAC8; /* Muted green for the selected item */
+    -fx-text-fill: #000000; /* Muted green for contrast when selected */
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #eeeeee; /* A lighter grey for even rows */
-    -fx-text-fill: #000000; /* Black text for contrast */
+    -fx-background-color: #FBF3D5; /* Soft yellow for even rows, for variety */
+    -fx-text-fill: #000000; /* Muted green for contrast */
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #e2e2e2; /* Slightly darker beige for odd rows */
-    -fx-text-fill: #000000; /* Black text for contrast */
+    -fx-background-color: #EFBC9B; /* Light peach, to differentiate odd rows */
+    -fx-text-fill: #000000; /* Muted green for contrast */
 }
 
 .result-display, .text-area {
-    -fx-background-color: #f5f5dc; /* Light beige background */
+    -fx-background-color: #FBF3D5; /* Soft yellow background for consistency */
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: #000000; /* Black text for good contrast */
+    -fx-text-fill: #000000; /* Muted green for good contrast */
 }
