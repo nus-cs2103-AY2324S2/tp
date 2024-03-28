@@ -193,6 +193,10 @@ This section describes how the view command works and is implemented.
 
 The Object, Sequence and Activity UML diagrams belows shows the objects created as well as their interactions (e.g. method calls) when the view command is activated.
 
+#### Class Diagram
+
+<img src="images/ViewClassDiagram.png" width="850"/>
+
 #### Object Diagram
 
 <img src="images/ViewObjectDiagram.png" width="550"/>
