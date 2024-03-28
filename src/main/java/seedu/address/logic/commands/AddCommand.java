@@ -57,7 +57,12 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        if (model.shouldPurgeAddressBook()) {
+            model.purgeAddressBook();
+        }
+        CommandResult addCommandResult = new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        model.commitAddressBook(addCommandResult);
+        return addCommandResult;
     }
 
     @Override

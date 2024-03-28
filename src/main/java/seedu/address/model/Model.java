@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,25 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ReadOnlyAddressBook getVersionedAddressBook();
+
+    void commitAddressBook(CommandResult commandResult);
+
+    boolean canUndoAddressBook();
+
+    void undoAddressBook();
+
+    boolean canRedoAddressBook();
+
+    void redoAddressBook();
+
+    boolean shouldPurgeAddressBook();
+
+    void purgeAddressBook();
+
+    CommandResult getAddressBookUndoneCommand();
+
+    CommandResult getAddressBookRedoneCommand();
+
 }

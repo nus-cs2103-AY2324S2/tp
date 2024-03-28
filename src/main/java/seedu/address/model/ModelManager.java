@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,6 +21,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -32,6 +34,8 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook();
+        commitInitialAddressBook();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -78,8 +82,8 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyAddressBook newData) {
+        this.addressBook.resetData(newData);
     }
 
     @Override
@@ -145,4 +149,62 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    //=========== VersionedAddressBook Methods =============================================================
+
+    @Override
+    public ReadOnlyAddressBook getVersionedAddressBook() {
+        return versionedAddressBook;
+    }
+
+
+    public void commitInitialAddressBook() {
+        versionedAddressBook.commitInitial(addressBook);
+    }
+
+    @Override
+    public void commitAddressBook(CommandResult commandResult) {
+        versionedAddressBook.commit(addressBook, commandResult);
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        AddressBook undoneState = versionedAddressBook.undo();
+        setAddressBook(undoneState);
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        AddressBook redoneState = versionedAddressBook.redo();
+        setAddressBook(redoneState);
+    }
+
+    @Override
+    public boolean shouldPurgeAddressBook() {
+        return versionedAddressBook.shouldPurge();
+    }
+
+    @Override
+    public void purgeAddressBook() {
+        versionedAddressBook.purge();
+    }
+
+    @Override
+    public CommandResult getAddressBookUndoneCommand() {
+        return versionedAddressBook.getUndoneCommand();
+    }
+
+    @Override
+    public CommandResult getAddressBookRedoneCommand() {
+        return versionedAddressBook.getRedoneCommand();
+    }
 }

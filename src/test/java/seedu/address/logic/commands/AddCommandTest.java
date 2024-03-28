@@ -157,6 +157,55 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ReadOnlyAddressBook getVersionedAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitAddressBook(CommandResult commandResult) {}
+
+        @Override
+        public boolean canUndoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean shouldPurgeAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void purgeAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandResult getAddressBookUndoneCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CommandResult getAddressBookRedoneCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

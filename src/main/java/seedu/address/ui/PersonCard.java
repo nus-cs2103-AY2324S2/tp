@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,7 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -40,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane participationScores;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -55,5 +58,16 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        List<Integer> scores = person.getParticipationScores();
+        for (int i = 0; i < scores.size(); i++) {
+            Label label = new Label("Week " + (i + 1) + ": " + scores.get(i) + " ");
+            if (scores.get(i) == 0) {
+                label.setStyle("-fx-background-color: red");
+            } else {
+                label.setStyle("-fx-background-color: green");
+            }
+            participationScores.getChildren().add(label);
+        }
     }
 }
