@@ -3,9 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -27,6 +29,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
     }
+
+    private Optional<Note> displayNote = Optional.empty();
 
     public AddressBook() {}
 
@@ -93,6 +97,29 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
+    /**
+     * Get the display note.
+     */
+    public Note getDisplayNote() {
+        return displayNote.orElse(Note.DEFAULT);
+    }
+
+    /**
+     * Sets the display note to the given note.
+     * @param note The note to be displayed.
+     */
+    public void setDisplayNote(Note note) {
+        this.displayNote = Optional.of(note);
+    }
+
+    /**
+     * Clears the display note.
+     */
+    public void clearDisplayNote() {
+        this.displayNote = Optional.empty();
+    }
+
 
     //// util methods
 

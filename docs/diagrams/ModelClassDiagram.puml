@@ -14,11 +14,15 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
 Class Name
 Class Phone
-Class Tag
+Class Email
+Class IdentityCardNumber
+Class Age
+Class Sex
+Class Address
+Class Note
+'Class Tag
 
 Class I #FFFFFF
 }
@@ -40,8 +44,12 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
+Person *--> IdentityCardNumber
+Person *--> Age
+Person *--> Sex
 Person *--> Address
-Person *--> "*" Tag
+Person *--> Note
+'Person *--> "*" Tag
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I

@@ -3,12 +3,21 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "identityCardNumber": "S8989898A",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tags": [ "friends" ]
+    "age": "30",
+    "sex": "F",
+    "note": "Some Medical Conditions",
+    "tags": ["friends"]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "identityCardNumber": "S8989898A",
+    "address": "4th street",
+    "age": "29",
+    "sex": "F",
+    "note": "No medical conditions",
+    "tags": ["friends"]
   } ]
 }

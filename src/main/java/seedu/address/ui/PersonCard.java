@@ -39,6 +39,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label note;
+    @FXML
+    private Label age;
+    @FXML
+    private Label sex;
+    @FXML
+    private Label ic;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -50,8 +58,42 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+
+        String fullNote = person.getNote().value;
+        int maxLineLength = 30; // Maximum length of each line before truncation
+        String[] lines = fullNote.split("\\r?\\n"); // Split the note into lines
+
+        StringBuilder truncatedNoteBuilder = new StringBuilder();
+        if (lines.length > 0) {
+            String firstLine = lines[0];
+            if (firstLine.length() > maxLineLength) {
+                // Truncate the first line and add an ellipsis
+                truncatedNoteBuilder.append("Note: ").append(firstLine.substring(0, maxLineLength)).append("...\n");
+            } else {
+                truncatedNoteBuilder.append("Note: ").append(firstLine).append("\n");
+            }
+
+            // Append the rest of the lines with the same indentation
+            for (int i = 1; i < lines.length; i++) {
+                String line = lines[i];
+                if (line.length() > maxLineLength) {
+                    // Truncate the line and add an ellipsis
+                    truncatedNoteBuilder.append("            ")
+                            .append(line.substring(0, maxLineLength)).append("...\n");
+                } else {
+                    truncatedNoteBuilder.append("            ").append(line).append("\n");
+                }
+            }
+        }
+
+        String truncatedNote = truncatedNoteBuilder.toString().trim(); // Remove trailing newline
+        note.setText(truncatedNote);
+
+        ic.setText(person.getIdentityCardNumber().value);
+        age.setText(String.valueOf(person.getAge().value));
+        sex.setText(person.getSex().value);
+        address.setText(person.getAddress().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

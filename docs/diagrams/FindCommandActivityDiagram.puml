@@ -1,0 +1,23 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command successful])
+    :Filters list in
+    addressbook;
+else ([command unsuccessful])
+    :Error messages;
+    :Edit command
+    accordingly;
+    :Successfully filters
+    out contact;
+endif
+: Displays filtered list;
+stop
+@enduml

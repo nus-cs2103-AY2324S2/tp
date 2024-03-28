@@ -5,42 +5,70 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "identityCardNumber" : "S1234567A",
+    "age" : "30",
+    "sex" : "F",
+    "note" : "No medical conditions",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "identityCardNumber" : "S1234567B",
+    "age" : 31,
+    "sex" : "M",
+    "note" : "Asthma",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "identityCardNumber" : "S1234567C",
+    "age" : "32",
+    "sex" : "M",
+    "note" : "Diabetes",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "identityCardNumber" : "S1234567D",
+    "age" : 33,
+    "sex" : "M",
+    "note" : "No medical conditions",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "identityCardNumber" : "S1234567E",
+    "age" : "34",
+    "sex" : "F",
+    "note" : "High blood pressure",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "identityCardNumber" : "S1234567F",
+    "age" : 35,
+    "sex" : "F",
+    "note" : "No medical conditions",
     "tags" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "identityCardNumber" : "S1234567G",
+    "age" : "36",
+    "sex" : "M",
+    "note" : "Asthma",
     "tags" : [ ]
   } ]
 }

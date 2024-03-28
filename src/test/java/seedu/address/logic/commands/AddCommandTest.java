@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -39,7 +39,16 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        String successMessage = String.format(AddCommand.MESSAGE_SUCCESS,
+                validPerson.getName(),
+                validPerson.getPhone(),
+                validPerson.getEmail(),
+                validPerson.getIdentityCardNumber(),
+                validPerson.getAge(),
+                validPerson.getSex(),
+                validPerson.getAddress());
+
+        assertEquals(successMessage,
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -155,6 +164,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Note getDisplayNote() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDisplayNote(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDisplayNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDisplayNoteAsFirstFilteredPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearDisplayNote() {
             throw new AssertionError("This method should not be called.");
         }
     }

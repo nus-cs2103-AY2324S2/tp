@@ -1,0 +1,9 @@
+.label-notes {
+    -fx-font-weight: bold;
+    -fx-font-size: 15pt;
+}
+
+.text-area-notes {
+    -fx-font-family: 'Consolas';
+    -fx-font-size: 12pt;
+}
