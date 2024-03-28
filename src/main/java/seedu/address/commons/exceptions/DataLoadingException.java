@@ -5,6 +5,10 @@ package seedu.address.commons.exceptions;
  */
 public class DataLoadingException extends Exception {
 
+    public DataLoadingException(String message) {
+        super(message);
+    }
+
     public DataLoadingException(Exception cause) {
         super(cause);
     }
