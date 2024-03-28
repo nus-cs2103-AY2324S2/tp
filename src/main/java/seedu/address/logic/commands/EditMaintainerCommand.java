@@ -41,7 +41,6 @@ public class EditMaintainerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the maintainer identified "
             + "by the name used in the displayed person list.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_FIELD + "FIELD] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
