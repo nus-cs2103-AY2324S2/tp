@@ -60,8 +60,8 @@ public class BorrowCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         // Check whether personToEdit has sufficient merit score
-        if (personToEdit.getMeritScore().getMeritScoreInt() <= 0) {
-            throw new CommandException(Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE);
+        if (!model.canLendTo(personToEdit)) {
+            throw new CommandException(String.format(Messages.MESSAGE_INSUFFICIENT_MERIT_SCORE, model.getThreshold()));
         }
 
         ArrayList<Book> updatedBookList = personToEdit.getBookListWithNewBook(book);

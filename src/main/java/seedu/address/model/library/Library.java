@@ -1,14 +1,18 @@
 package seedu.address.model.library;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import seedu.address.model.ReadOnlyLibrary;
 import seedu.address.model.book.Book;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a collection of books in a library.
  */
-public class Library {
+public class Library implements ReadOnlyLibrary {
 
     /**
      * Comparator for comparing books alphabetically by title.
@@ -20,37 +24,68 @@ public class Library {
         }
     };
 
-    private ArrayList<Book> library;
+    private ArrayList<Book> bookList;
+    private Threshold threshold;
 
     /**
      * Construct an empty library.
      */
     public Library() {
-        this.library = new ArrayList<>();
+        bookList = new ArrayList<>();
+        threshold = new Threshold();
+    }
+
+    /**
+     * Construct an empty library with preset threshold.
+     */
+    public Library(int i) {
+        bookList = new ArrayList<>();
+        threshold = new Threshold(i);
     }
 
     /**
      * Construct a library with the specified list of books.
      *
-     * @param library The list of books to initialize the library with.
+     * @param bookList The list of books to initialize the library with.
      */
-    public Library(ArrayList<Book> library) {
-        this.library = library;
+    public Library(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
+
+    /**
+     * Construct a library with the specified list of books and threshold.
+     *
+     * @param bookList The list of books to initialize the library with.
+     * @param threshold The threshold limit
+     */
+    public Library(ArrayList<Book> bookList, Threshold threshold) {
+        this.bookList = bookList;
+        this.threshold = threshold;
+    }
+
+    /**
+     * Construct a library with the specified list of books and threshold.
+     *
+     * @param readOnlyLibrary The read only library from data.
+     */
+    public Library(ReadOnlyLibrary readOnlyLibrary) {
+        this.bookList = readOnlyLibrary.getBookList();
+        threshold = readOnlyLibrary.getThreshold();
     }
 
     public void addBook(Book book) {
-        this.library.add(book);
+        this.bookList.add(book);
     }
 
     public void deleteBook(int index) {
-        this.library.remove(index - 1);
+        this.bookList.remove(index - 1);
     }
 
     /**
      * Sort the books in the library alphabetically by title.
      */
     public void sortAlphabetically() {
-        library.sort(bookComparator);
+        bookList.sort(bookComparator);
     }
 
     /**
@@ -60,14 +95,58 @@ public class Library {
      */
     public ArrayList<Book> list() {
         this.sortAlphabetically();
-        return this.library;
+        return this.bookList;
+    }
+
+    //TODO use this in BorrowCommand
+
+    /**
+     * Checks if person is able to borrow a book from the library.
+     *
+     * @param person Person attempting to borrow a book.
+     * @return if the person can borrow the book or not.
+     */
+    public boolean canLendTo(Person person) {
+        return threshold.isLessThanOrEqualTo(person.getMeritScore());
+    }
+
+    @Override
+    public ArrayList<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(ArrayList<Book> bookList) {
+        this.bookList = bookList;
+    }
+
+    public void setThreshold(Threshold threshold) {
+        this.threshold = threshold;
+    }
+
+    @Override
+    public Threshold getThreshold() {
+        return threshold;
+    }
+
+    public boolean hasThreshold(Threshold threshold) {
+        return this.threshold.equals(threshold);
+    }
+
+    /**
+     * Resets the existing data of this {@code Library} with {@code newData}.
+     */
+    public void resetData(ReadOnlyLibrary newData) {
+        requireNonNull(newData);
+
+        setThreshold(newData.getThreshold());
+        setBookList(newData.getBookList());
     }
 
     @Override
     public String toString() {
         String result = "";
         for (int i = 1; i < this.list().size() + 1; i++) {
-            result += i + ". " + this.library.get(i - 1).bookTitle.toString();
+            result += i + ". " + this.bookList.get(i - 1).bookTitle.toString();
             if (i != this.list().size() - 1) {
                 result += "\n";
             }
@@ -82,7 +161,7 @@ public class Library {
         } else if (other instanceof Library) {
             Library otherLibrary = (Library) other;
             for (int i = 0; i < this.list().size(); i++) {
-                if (this.library.get(i).equals(otherLibrary.library.get(i))) {
+                if (this.bookList.get(i).equals(otherLibrary.bookList.get(i))) {
                     return false;
                 }
             }
