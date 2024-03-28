@@ -1,14 +1,12 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -37,12 +35,6 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private StackPane commandListPanelPlaceholder; // Placeholder for dynamic content if needed
 
-    @FXML
-    private void initialize() {
-        CommandListPanel commandListPanel = new CommandListPanel();
-        commandListPanelPlaceholder.getChildren().add(commandListPanel.getRoot());
-    }
-
     /**
      * Creates a new HelpWindow.
      *
@@ -58,6 +50,18 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the FXML file has been loaded. It instantiates the CommandListPanel
+     * and adds it to the placeholder stack pane in the Help window.
+     */
+    @FXML
+    private void initialize() {
+        CommandListPanel commandListPanel = new CommandListPanel();
+        commandListPanelPlaceholder.getChildren().add(commandListPanel.getRoot());
     }
 
     /**
@@ -125,3 +129,4 @@ public class HelpWindow extends UiPart<Stage> {
         }
     }
 }
+
