@@ -69,6 +69,21 @@ public class MoneyOwed {
     }
 
     /**
+     * Returns the amount of money owed.
+     */
+    public Float getAmount() {
+        return this.moneyOwed;
+    }
+
+    /**
+     * Returns a MoneyOwed object with the new amount owed.
+     */
+    public MoneyOwed addAmountOwed(Float addedAmount) {
+        String replacedString = String.valueOf(moneyOwed + addedAmount);
+        return new MoneyOwed(replacedString);
+    }
+
+    /**
      * Returns message to display on UI in String.
      */
     public String getMessage() {
