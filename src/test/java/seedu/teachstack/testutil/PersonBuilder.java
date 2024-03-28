@@ -67,6 +67,7 @@ public class PersonBuilder {
 
     /**
      * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Person} that we are building.
+     * If there are no args then the person is set to have no groups.
      */
     public PersonBuilder withGroups(String ... groups) {
         this.groups = SampleDataUtil.getGroupSet(groups);

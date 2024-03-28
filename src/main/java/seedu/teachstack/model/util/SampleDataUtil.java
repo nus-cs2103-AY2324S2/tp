@@ -37,6 +37,7 @@ public class SampleDataUtil {
         };
     }
 
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -54,4 +55,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a StudentId set containing the list of studentIds given.
+     */
+    public static Set<StudentId> getStudentIdSetFromStudentIds(StudentId... studentIds) {
+        return Arrays.stream(studentIds)
+                .collect(Collectors.toSet());
+    }
 }
