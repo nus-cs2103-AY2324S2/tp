@@ -66,6 +66,7 @@ public class MarkImportantCommand extends Command {
             throw new CommandException(MESSAGE_SKILL_NOT_PRESENT);
         }
 
+        markImportantDescriptor.setImportantSkills();
         Set<Skill> skills = markImportantDescriptor.replaceSkills(toModify.getSkills());
         Group modifiedGroup = new Group(toModify.getName(), toModify.asUnmodifiableObservableList(),
                 skills, toModify.getTelegramChat());
@@ -156,6 +157,15 @@ public class MarkImportantCommand extends Command {
                 }
             }
             return skills;
+        }
+
+        /**
+         * Sets the skills in the skillset to be important
+         */
+        public void setImportantSkills() {
+            for (Skill skill: skills) {
+                skill.setImportant(true);
+            }
         }
 
         @Override

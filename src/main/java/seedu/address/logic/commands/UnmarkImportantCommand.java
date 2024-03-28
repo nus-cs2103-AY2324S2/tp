@@ -159,7 +159,7 @@ public class UnmarkImportantCommand extends Command {
         }
 
         /**
-         * Merges the set of skills in the object with the set of skills in the argument
+         * Sets the skills within the skillset to be unimportant
          */
         public void setUnimportantSkills() {
             for (Skill skill: skills) {

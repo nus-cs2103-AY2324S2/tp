@@ -59,7 +59,7 @@ public class MarkImportantCommandParser implements Parser<MarkImportantCommand> 
             return Optional.empty();
         }
         Collection<String> skillSet = skills.size() == 1 && skills.contains("") ? Collections.emptySet() : skills;
-        return Optional.of(ParserUtil.parseSkillsImportant(skillSet));
+        return Optional.of(ParserUtil.parseSkills(skillSet));
     }
 
 }

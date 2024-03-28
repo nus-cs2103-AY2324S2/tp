@@ -118,31 +118,6 @@ public class ParserUtil {
         return skillSet;
     }
 
-
-    /**
-     * Parses a {@code String skill} into a {@code Skill} with importance.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code skill} is invalid.
-     */
-    public static Skill parseSkillImportant(String skill) throws ParseException {
-        requireNonNull(skill);
-        String trimmedSkill = skill.trim();
-        return new Skill(trimmedSkill, true);
-    }
-
-    /**
-     * Parses {@code Collection<String> skills} into a {@code Set<Skill>, where all the skills are important}.
-     */
-    public static Set<Skill> parseSkillsImportant(Collection<String> skills) throws ParseException {
-        requireNonNull(skills);
-        final Set<Skill> skillSet = new HashSet<>();
-        for (String skillName : skills) {
-            skillSet.add(parseSkillImportant(skillName));
-        }
-        return skillSet;
-    }
-
     /**
      * Parses {@code String label} into a {@code QueryableCourseMate}.
      */

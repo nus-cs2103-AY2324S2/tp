@@ -114,23 +114,10 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSkill_validValueWithoutWhitespace_returnsImportantSkill() throws Exception {
-        Skill expectedSkill = new Skill(VALID_SKILL_1, true);
-        assertEquals(expectedSkill, ParserUtil.parseSkillImportant(VALID_SKILL_1));
-    }
-
-    @Test
     public void parseSkill_validValueWithWhitespace_returnsTrimmedSkill() throws Exception {
         String skillWithWhitespace = WHITESPACE + VALID_SKILL_1 + WHITESPACE;
         Skill expectedSkill = new Skill(VALID_SKILL_1);
         assertEquals(expectedSkill, ParserUtil.parseSkill(skillWithWhitespace));
-    }
-
-    @Test
-    public void parseSkill_validValueWithWhitespace_returnsTrimmedImportantSkill() throws Exception {
-        String skillWithWhitespace = WHITESPACE + VALID_SKILL_1 + WHITESPACE;
-        Skill expectedSkill = new Skill(VALID_SKILL_1, true);
-        assertEquals(expectedSkill, ParserUtil.parseSkillImportant(skillWithWhitespace));
     }
 
     @Test
@@ -150,20 +137,6 @@ public class ParserUtilTest {
                 new HashSet<Skill>(Arrays.asList(new Skill(VALID_SKILL_1), new Skill(VALID_SKILL_2)));
 
         assertEquals(expectedSkillSet, actualSkillSet);
-    }
-
-    @Test
-    public void parseSkillsImportant_collectionWithValidSkills_returnsImportantSkillSet() throws Exception {
-        Set<Skill> actualSkillSet = ParserUtil.parseSkillsImportant(Arrays.asList(VALID_SKILL_1, VALID_SKILL_2));
-        Set<Skill> expectedSkillSet =
-                new HashSet<Skill>(Arrays.asList(new Skill(VALID_SKILL_1, true), new Skill(VALID_SKILL_2, true)));
-
-        assertEquals(expectedSkillSet, actualSkillSet);
-    }
-
-    @Test
-    public void parseSkillsImportant_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseSkillsImportant(Collections.emptyList()).isEmpty());
     }
 
     @Test
