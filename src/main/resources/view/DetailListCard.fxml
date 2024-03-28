@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<HBox id="dCardPane" fx:id="cardPane" styleClass="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <Label fx:id="header" styleClass="detail_header" text="\$header" />
+        <Label fx:id="content" styleClass="detail_content" text="\$content" />
+    </VBox>
+</HBox>

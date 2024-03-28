@@ -72,7 +72,13 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `DetailListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Both `DetailListPanel` and `PersonListPanel` are UI elements that depict a scrollable list containing a collection of `DetailCard` and `PersonCard` respectively. 
+
+`PersonCard` strictly represents a UI element depicting a `Person` object as found in the `Model` component. 
+
+`DetailCard` represents a general UI element that contains a header and a body (both using the JavaFx `Label` element) that can contain information of an individual `Person` object or a collection of information. The information that can be displayed using a `DetailCard` UI element is not strictly enforced like in `PersonCard`, which allows for more flexibility when choosing what information to display in the `DetailListPanel`.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -172,6 +178,18 @@ The example shown below will describe the process for an appointment given durin
 It can be seen here that each appointment, after being parsed, will be added to the list of appointments to each person.
 
 Note that certain details, such as other fields in a `Person` have been omitted for brevity.
+
+### Listing Students
+
+#### Implementation
+
+TutorRec is also able to list all current students in the address book. Note that the command `list` does not modify the address book. Additionally, it does not take in any extra parameters. It can be simply called as follows:
+
+- `list` will show all current students in the address book in the `PersonListPanel`
+
+The example shown below will describe the process for listing all students during the `list` command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
