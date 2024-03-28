@@ -158,6 +158,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Interviews
+#### Implementation
+
+An interview contains the following fields: Date, Start time, End time, Description, and two Person instances representing the applicant and interviewer. 
+
+
 ### Find feature
 
 #### Implementation
@@ -365,6 +371,53 @@ debugging and development processes, enhancing overall productivity.
 *  **Alternative 2:** Save interview/person directly as strings.
     * Pros: Easy to implement.
     * Cons: Does not follow existing format, needs to reformat how saving for persons is done which could be very time-consuming, may not be compatible with exisitng APIs and databases.
+
+
+### List Persons and List interview Features
+#### Implementation
+
+The listing mechanism is facilitated by `ListCommand` and `ListInterviewsCommand`. They all extend the `Command` class. `ListCommand` is responsible for listing persons while `ListInterviewsCommand` is for listing interviews.
+The command words for `ListCommand` and `ListInterviewsCommand` are `list_persons` and `list_interviews` respectively.
+
+Both `ListCommand` and `ListInterviewsCommand` implements the following operations:
+
+* `ListCommand / ListInterviewsCommand #execute()`  -  Updates the list in `Model` with the original list.
+
+The above `execute` operation utilises `ModelManager#updateFilteredPersonList()` or `ModelManager#updateFilteredInterviewList()` respectively implemented from the Model interface, with the `PREDICATE_SHOW_ALL_PERSONS` Predicate, to update the list in `Model` with the full list.
+
+This change is then reflected in the UI list of persons / Interviews.
+
+Given below is an example usage scenario for interviews and how the mechanism behaves at each step.
+
+* Step 1. The user launches the application with existing interviewers, applicants, and interviews. The interviews' date are all different.
+
+* Step 2. The user executes the command `filter_interviews_by_date 2024-02-03`. Only interviews on the date `2024-02-03` will show up on the list of interviews on right side of the application.
+
+* Step 3. Now the user wants to see the original list of interviews in step 1 (eg. All interviews, regardless of date). The user can enter the command `list_interviews`. Now the list on the right side of the application will show the full list of interviews as in Step 1.
+
+The scenario for persons is also similar to interviews.
+
+Note:
+* Both `list_persons` and `list_interviews` commands have no arguments.
+
+
+### Delete Interview and Delete Persons feature
+#### Implementation
+
+The deleting mechanism for persons and interview are facilitated by `DeleteCommand` and `DeleteInterviewCommand`. They both extends from `Command` class. `DeleteCommand` is responsible for deleting a person while `DeleteInterviewCommand` is for deleting an interview.
+The command words are `delete_person` and `delete_interview` respectively. `DeleteCommand` takes in a phone number to identify the person to delete, while `DeleteInterviewsCommand` takes in the index of the interview to delete.
+
+Both `DeleteCommand` and `DeleteInterviewsCommand` implements the following operations:
+
+* `DeleteCommand / DeleteInterviewsCommand #execute()`  -  Removes the corresponding person or interview from the list in `Model`.
+
+The above `execute` operation utilises `ModelManager#deletePerson()` or `ModelManager#deleteInterview()` respectively implemented from the Model interface,to remove the corresponding person or interview from the list in `Model`.
+
+This change is then reflected in the UI list of persons / Interviews.
+
+Note:
+* If the argument entered (phone number or index) references a interview or person that is not in the current list, it will result in a `CommandException` indicating an out of bounds or invalid phone number error.
+* If there is no argument provided, it will result in `ParseException` indicating invalid command format.
 
 --------------------------------------------------------------------------------------------------------------------
 
