@@ -39,6 +39,8 @@ public class ArticleCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label outlet;
+    @FXML
     private Label publicationDate;
     @FXML
     private Label status;
@@ -62,7 +64,7 @@ public class ArticleCard extends UiPart<Region> {
         article.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
+        outlet.setText(article.getOutlet().outletName);
         publicationDate.setText(article.getPublicationDateAsString());
         status.setText(article.getStatus().toString());
     }

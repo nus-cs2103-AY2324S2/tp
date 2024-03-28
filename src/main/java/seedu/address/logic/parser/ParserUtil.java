@@ -18,6 +18,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -210,13 +211,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String category} into a {@code Category}.
+     * Parses a {@code String outlet} into a {@code Outlet}.
      */
-    public static String parseCategory(String category) throws ParseException {
-        requireNonNull(category);
-        String trimmedCategory = category.trim();
+    public static Outlet parseOutlet(String outlet) throws ParseException {
+        requireNonNull(outlet);
+        String trimmedOutlet = outlet.trim();
         //removed the check for category validity
-        return trimmedCategory;
+        return new Outlet(trimmedOutlet);
     }
 
     /**

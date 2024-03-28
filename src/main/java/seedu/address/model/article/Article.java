@@ -17,10 +17,11 @@ import seedu.address.model.tag.Tag;
  */
 public class Article {
     private final String title;
+    private final Outlet outlet;
     private final Set<Author> authors = new HashSet<>();
-    private final LocalDateTime publicationDate;
     private final Set<Source> sources = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final LocalDateTime publicationDate;
 
     /**
      * Enumeration of Status of an article.
@@ -41,14 +42,15 @@ public class Article {
      * @param tags the subject of the article.
      * @param status the current status of the article.
      */
-    public Article(String title, Set<Author> authors, LocalDateTime publicationDate,
-                   Set<Source> sources, Set<Tag> tags, Status status) {
-        requireAllNonNull(title, authors, publicationDate, sources, tags, status);
+    public Article(String title, Set<Author> authors, Set<Source> sources, Set<Tag> tags,
+                   Outlet outlet, LocalDateTime publicationDate, Status status) {
+        requireAllNonNull(title, authors, sources, tags, outlet, publicationDate, status);
         this.title = title;
         this.authors.addAll(authors);
-        this.publicationDate = publicationDate;
         this.sources.addAll(sources);
         this.tags.addAll(tags);
+        this.outlet = outlet;
+        this.publicationDate = publicationDate;
         this.status = status;
     }
 
@@ -67,6 +69,10 @@ public class Article {
     public String getPublicationDateAsString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         return this.publicationDate.format(formatter);
+    }
+
+    public Outlet getOutlet() {
+        return this.outlet;
     }
 
     public Set<Source> getSources() {
