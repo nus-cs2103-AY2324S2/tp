@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.VBox?>
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/17"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
+           xmlns:fx="http://javafx.com/fxml/1" alignment="TOP_LEFT">
+  <VBox fx:id="resultDisplay" styleClass="result-display" spacing="5">
+    <padding>
+      <Insets top="5" right="5" bottom="5" left="5" />
+    </padding>
+    <TextFlow>
+      <Text/>
+    </TextFlow>
+  </VBox>
 </StackPane>

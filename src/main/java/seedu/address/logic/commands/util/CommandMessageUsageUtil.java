@@ -1,11 +1,16 @@
 package seedu.address.logic.commands.util;
 
+import static java.util.Objects.requireNonNull;
+
 /**
- * A container for {@code Command} specific utility functions.
- * <p>
- *
+ * A container for {@code Command} message specific utility functions.
  */
 public class CommandMessageUsageUtil {
+
+    public static final String EXAMPLE_LABEL = "Example: ";
+
+    public static final String PARAMETER_LABEL = "Parameters: ";
+
     /**
      * Generates the message usage, given the {@code commandWord}, {@code description},
      * and {@code example} as strings.
@@ -14,7 +19,7 @@ public class CommandMessageUsageUtil {
                                               String example) {
         return commandWord + ": "
                 + description + "\n"
-                + "Example: " + example;
+                + EXAMPLE_LABEL + example;
     }
 
     /**
@@ -25,8 +30,8 @@ public class CommandMessageUsageUtil {
                                               String parameters, String example) {
         return commandWord + ": "
                 + description + "\n"
-                + "Parameters: " + parameters + "\n"
-                + "Example: " + example;
+                + PARAMETER_LABEL + parameters + "\n"
+                + EXAMPLE_LABEL + example;
     }
 
     /**
@@ -74,5 +79,14 @@ public class CommandMessageUsageUtil {
         }
 
         return stringBuilder.toString().trim();
+    }
+
+    /**
+     * Returns true if the text is {@link #EXAMPLE_LABEL} or {@link #PARAMETER_LABEL}.
+     */
+    public static boolean isUtilLabel(String text) {
+        requireNonNull(text);
+        return EXAMPLE_LABEL.strip().equals(text.strip())
+                || PARAMETER_LABEL.strip().equals(text.strip());
     }
 }

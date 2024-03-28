@@ -1,6 +1,13 @@
-
+/* The error class should always override the default text-fill style */
 .error {
-    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+    -fx-text-fill: #d06651 !important;
+    -fx-fill: #d06651 !important;
+}
+
+ /* The success class should always override the default text-fill style */
+.success {
+    -fx-text-fill: #8AB68D !important;
+    -fx-fill: #8AB68D !important;
 }
 
 .list-cell:empty {

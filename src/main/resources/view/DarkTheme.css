@@ -157,6 +157,13 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-line-spacing: 0px;
+    -fx-font-smoothing-type: lcd;
+}
+
+.result-display .bold {
+    -fx-font-family: "Segoe UI Bold" !important;
 }
 
 .result-display .label {
