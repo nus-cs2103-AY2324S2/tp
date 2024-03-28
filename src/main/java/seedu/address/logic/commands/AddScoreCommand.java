@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,7 @@ public class AddScoreCommand extends Command {
      * Creates an AddScoreCommand to add the specified {@code Score} to the person at the specified {@code Index}.
      */
     public AddScoreCommand(Index targetIndex, Score score) {
+        requireAllNonNull(targetIndex, score);
         this.targetIndex = targetIndex;
         this.score = score;
     }

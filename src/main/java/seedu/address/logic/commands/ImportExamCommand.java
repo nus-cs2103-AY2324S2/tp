@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -16,10 +17,10 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddScoreCommandParser;
 import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.logic.parser.SelectExamCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Score;
@@ -212,12 +213,22 @@ public class ImportExamCommand extends Command {
      */
     private static boolean executeSelectExam(Model model, Object examName) {
         try {
+            // Find the index of the exam with the given name
+            Index examIndex = Index.fromZeroBased(
+                IntStream.range(0, model.getExamList().size())
+                    .filter(i -> model.getExamList().get(i).getName().equals(examName.toString()))
+                    .findFirst()
+                    .orElse(-1)
+            );
+
+            // If the exam was not found, throw an exception
+            if (examIndex.getZeroBased() == -1) {
+                throw new CommandException("Exam not found");
+            }
+
             // Select the exam
-            SelectExamCommandParser selectExamCommandParser = new SelectExamCommandParser();
-            SelectExamCommand selectExamCommand = selectExamCommandParser.parse(PREFIX_SELECT_EXAM + examName);
+            SelectExamCommand selectExamCommand = new SelectExamCommand(examIndex);
             selectExamCommand.execute(model);
-        } catch (ParseException parseException) {
-            return true;
         } catch (CommandException commandException) {
             addToErrorReport(examName.toString(), commandException.getMessage());
             return true;
