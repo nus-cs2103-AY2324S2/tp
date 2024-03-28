@@ -18,6 +18,8 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Attendance
+Class Payment
 Class Tag
 
 Class I #FFFFFF
