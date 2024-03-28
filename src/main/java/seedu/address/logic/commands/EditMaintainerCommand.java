@@ -82,7 +82,6 @@ public class EditMaintainerCommand extends Command {
 
         Maintainer maintainerToEdit = model.findMaintainerByName(name,
                 EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER);
-
         Maintainer editedMaintainer = createEditedMaintainer(maintainerToEdit, editMaintainerDescriptor);
 
         if (maintainerToEdit.equals(editedMaintainer)) {

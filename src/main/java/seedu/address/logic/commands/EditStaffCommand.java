@@ -83,7 +83,6 @@ public class EditStaffCommand extends Command {
 
         Staff staffToEdit = model.findStaffByName(name,
                 EditMessages.MESSAGE_INVALID_EDIT_STAFF);
-
         Staff editedStaff = createEditedStaff(staffToEdit, editStaffDescriptor);
 
         if (staffToEdit.equals(editedStaff)) {

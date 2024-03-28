@@ -85,8 +85,6 @@ public class EditCommandTest {
             EditCommand editCommand = new EditCommand(ALICE.getName(), new EditPersonDescriptor());
             Person editedPerson = model.findPersonByName(new Name("Alice Pauline"),
                     EditMessages.MESSAGE_INVALID_EDIT_PERSON);
-            String expectedMessage = String.format(EditMessages.MESSAGE_EDIT_PERSON_SUCCESS,
-                    EditMessages.format(editedPerson));
             editCommand.execute(model);
             AddressBook addressBookCopy = new VersionedAddressBook(model.getAddressBook());
 

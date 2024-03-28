@@ -84,7 +84,6 @@ public class EditSupplierCommand extends Command {
 
         Supplier supplierToEdit = model.findSupplierByName(name,
                 EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER);
-
         Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 
         if (supplierToEdit.equals(editedSupplier)) {
