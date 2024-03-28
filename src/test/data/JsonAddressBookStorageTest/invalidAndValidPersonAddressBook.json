@@ -1,13 +1,18 @@
 {
-  "persons": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "persons": [
+    {
+      "name": "Valid Person",
+      "studentId": "A0123456X",
+      "email": "e0123456@u.nus.edu",
+      "address": "4th street",
+      "grade": "A+"
+    },
+    {
+      "name": "Person With Invalid Grade Field",
+      "studentId": "A0123456X",
+      "email": "e0234567@u.nus.edu",
+      "address": "4th street",
+      "grade": "7"
+    }
+  ]
 }

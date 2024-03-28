@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `view A0123456X`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -91,9 +91,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete A0123456X")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete A0123456X` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -155,12 +155,103 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Add Feature
+
+#### Implementation
+
+The `add` command allows users to add students' details into the list.
+
+Given below is an example usage scenario of `add` command:
+
+Step 1. Assume the user has some existing students in the `UniquePersonList`.
+![AddState1](images/AddState1.png)
+
+Step 2. The user executes `add id/A0123456X n/John e/e0123456@u.nus.edu g/A` command to add the student into the list.
+* The `add` command invokes `LogicManager#execute()`.
+* `LogicManager#execute()` would first invoke `AddressBookParser#parseCommand()`.
+* `AddressBookParser#parseCommand()` will identifies the `add` command and then invokes `AddCommandParser#parse()` to parse the arguments accordingly.
+* `AddCommandParser#parse()` will return a `AddCommand` object which takes in a `Person` object.
+* `LogicManager#execute()` invokes `AddCommand#execute()`. Then, `model#addPerson` is called to add the person into the list.
+![AddState2](images/AddState2.png)
+
+Given below is the sequence diagram for `add` command:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: Whether to restrict to the context of NUS**
+* **Alternative 1 (current choice):** The `student_id` and `email` must be in the format of `A0123456X` and `e0123456@u.nus.edu`.
+  * Pros: Aligns with the target users who are CS instructors in NUS.
+  * Cons: Restrictive to users who are not instructors in NUS.
+
+* **Alternative 2:** Allow any other format for `student_id` and valid format for `email`.
+  * Pros: Can accommodate users from other universities, not only NUS.
+  * Cons: Validation may be more complex as need to account for a wider range of possible inputs.
+
+
+### Delete feature
+
+#### Implementation
+
+The delete feature is adapted from the delete feature of `AddressBook`. Instead of identifying a student by the index displayed, it uses the `StudentId` that is unique to each student. Calling `DeleteCommand#execute(model)` will delete any student that is in the `UniquePersonList` that is not necessarily in but not in `FilteredList` to be deleted.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user has added some students to `UniquePersonList`.
+
+![DeleteState1](images/DeleteState1.png)
+
+Step 2. The user executes `find` command where only `student1` and `student2` matches the predicate so only `student1` and `student2` are in the `FilteredList` of `ModelManager`.
+
+![DeleteState2](images/DeleteState2.png)
+
+Step 3. The user executes `delete A0123456A` command to delete student with student ID `A0123456A`. `ModelManager#getPerson(StudentId)` returns `student3` which the id belongs to. `student3` will be removed from `UniquePersonList`
+
+![DeleteState3](images/DeleteState3.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `ModelManager#getPerson(StudentId)` returns 0, then there no `Person` having the `studentId`. `DeleteCommand#execute(model)` will check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the deletion.
+</div>
+
+
+The following sequence diagram shows how a delete operation goes through the `Logic` component:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a delete command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: Allow deletion of all `Person` added or only those displayed:**
+
+* **Alternative 1 (current choice):** Can delete any person in the list.
+    * Pros: Delete command will execute successfully without having to run additional command to ensure that the person to be deleted is being displayed.
+    * Cons: May result in accidental deletion if wrong student id is given.
+
+* **Alternative 2:** Only delete person that is displayed.
+    * Pros: Allow user to refer to the displayed data to reduce risk of specifying a wrong id belonging to another person.
+    * Cons: May reduce usability as user may have to enter additional command to ensure the student to be deleted is displayed.
+    * 
+
+**Aspect: Deleted `Person` stored or ready for garbage collection:**
+
+* **Alternative 1 (current choice):** Person deleted is no longer used and ready for garbage collection.
+    * Pros: Easy to implement.
+    * Cons: May result in lost of data upon accidental deletion.
+
+* **Alternative 2:** Create a list to store all deleted person.
+    * Pros: Easier to implement command to recover a deleted person in the future.
+    * Cons: Stored deleted person may never be used. May have performance issue in terms of memory usage.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
 * `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
@@ -262,42 +353,44 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* is an instructor for a CS-related course
+* is organised and efficient
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: keep track of the details of weaker students, allowing the instructor to pay more attention to them
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                             | I want to …​                                       | So that I can…​                                    |
+|----------|-------------------------------------|----------------------------------------------------|----------------------------------------------------|
+| `* * *`  | Course Instructor who can type fast | enter new students’ information using command line | store the information efficiently            |
+| `* * *`  | Course Instructor                   | put students into groups                           |  tell which group each of the students are in |
+| `* * *`  | Course Instructor                   | access student’s contact information               | communicate with them easily                       |
+| `* *`    | Course Instructor                   | delete student details on command line             | remove students no longer in class           |
+| `* * *`  | Seasoned Course Instructor          | view a single student’s details                    | identify students of note                       |
+| `* *`    | Course Instructor                   | edit students’ info                                | update their info if it changes                    |
 
-*{More to be added}*
+*{More to be added -- this is the minimum viable product for v1.2}*
+
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeachStack` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TeachStack shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TeachStack deletes the student
 
     Use case ends.
 
@@ -307,19 +400,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given student id is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeachStack displays an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add a student**
+
+**MSS**
+
+1.  User requests to add a student
+2.  TeachStack adds a new student to the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The value given for any parameter is invalid.
+    * 1a1. TeachStack displays an error message.
+
+      Use case ends.
+
+**Use case: Form a group of students**
+
+**MSS**
+
+1.  User requests to list students
+2.  TeachStack shows a list of students
+3.  User requests to group specific students in the list
+4.  TeachStack groups the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given student id is invalid.
+
+    * 3a1. TeachStack displays an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  Should not lose data up to the latest operation in case of accidental close of application.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
@@ -362,11 +494,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete A0123456B`<br>
+      Expected: Student with id: A0123456B is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete A0000000B`<br>
+      Expected: No student with id: A000000B exists. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

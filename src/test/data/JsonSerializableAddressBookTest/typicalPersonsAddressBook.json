@@ -2,45 +2,45 @@
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "studentId": "A0223456X",
+    "email" : "e0345678@u.nus.edu",
+    "grade" : "A+",
+    "groups" : [ "Group 1" ]
   }, {
     "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "studentId": "A0323456X",
+    "email" : "e1023456@u.nus.edu",
+    "grade" : "A",
+    "groups" : [ "Group 2B", "Group 1" ]
   }, {
     "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tags" : [ ]
+    "studentId": "A0823456X",
+    "email" : "e1123456@u.nus.edu",
+    "grade" : "A-",
+    "groups" : [ ]
   }, {
     "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tags" : [ "friends" ]
+    "studentId": "A0923456X",
+    "email" : "e1234567@u.nus.edu",
+    "grade" : "B+",
+    "groups" : [ "Group 1" ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tags" : [ ]
+    "studentId": "A1023456X",
+    "email" : "e1345678@u.nus.edu",
+    "grade" : "B",
+    "groups" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tags" : [ ]
+    "studentId": "A0123656X",
+    "email" : "e1456789@u.nus.edu",
+    "grade" : "B-",
+    "groups" : [ ]
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tags" : [ ]
+    "studentId": "A0128956X",
+    "email" : "e0234567@u.nus.edu",
+    "grade" : "C",
+    "groups" : [ ]
   } ]
 }

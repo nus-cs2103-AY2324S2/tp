@@ -9,50 +9,55 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
 
-<img src="images/johndoe.png" width="200px">
+### Eu Jia Xin
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/jiaxineu.png" width="200px">
+
+[[github](https://github.com/JiaXinEu)]
+[[portfolio](team/jiaxineu.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
 
-<img src="images/johndoe.png" width="200px">
+### Yashma Sonara
 
-[[github](http://github.com/johndoe)]
+<img src="images/yashma-sonara.png" width="200px">
+
+
+[[github](https://github.com/yashma-sonara)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
 
-<img src="images/johndoe.png" width="200px">
+### Ronn Ng
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/ronnnnnnnnn.png" width="200px">
+
+[[github](http://github.com/ronnnnnnnnn)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
+### Wong Qing Yee
 
-[[github](http://github.com/johndoe)]
+<img src="images/wongqingyee.png" width="200px">
+
+[[github](http://github.com/Wongqingyee)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
 
-<img src="images/johndoe.png" width="200px">
+### Zhuo En
 
-[[github](http://github.com/johndoe)]
+<img src="images/willowisp01.png" width="200px">
+
+[[github](https://github.com/willowisp01)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
