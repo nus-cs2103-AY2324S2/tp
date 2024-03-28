@@ -64,7 +64,7 @@ public class MainApp extends Application {
 
         try {
             initialAddressBook = storage.readInitialAddressBook();
-            initialAddressBookStatus = "Storage loaded successfully.";
+            initialAddressBookStatus = "Data file loaded successfully.";
         } catch (DataLoadingException e) {
             initialAddressBook = new AddressBook();
             initialAddressBookStatus = "WARNING!! Entering a command will override the old data file.\n"
