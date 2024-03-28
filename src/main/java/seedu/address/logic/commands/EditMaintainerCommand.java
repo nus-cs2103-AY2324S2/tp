@@ -33,7 +33,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Skill;
 import seedu.address.model.tag.Tag;
-import seedu.address.ui.HelpWindow;
 
 /**
  * Edits the details of an existing maintainer in the address book.
@@ -59,7 +58,7 @@ public class EditMaintainerCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(EditMaintainerCommand.class);
 
     private final Name name;
     private final EditMaintainerDescriptor editMaintainerDescriptor;

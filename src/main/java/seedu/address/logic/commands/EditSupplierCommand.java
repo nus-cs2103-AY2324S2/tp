@@ -33,7 +33,6 @@ import seedu.address.model.person.Product;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
-import seedu.address.ui.HelpWindow;
 
 /**
  * Edits the details of an existing supplier in the address book.
@@ -60,7 +59,7 @@ public class EditSupplierCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(EditSupplierCommand.class);
 
     private final Name name;
     private final EditSupplierDescriptor editSupplierDescriptor;

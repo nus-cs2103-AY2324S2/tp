@@ -33,7 +33,6 @@ import seedu.address.model.person.Rating;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.Staff;
 import seedu.address.model.tag.Tag;
-import seedu.address.ui.HelpWindow;
 
 /**
  * Edits the details of an existing staff in the address book.
@@ -60,7 +59,7 @@ public class EditStaffCommand extends Command {
             + PREFIX_ADDRESS + "NUS College Avenue"
             + " }";
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(EditStaffCommand.class);
 
     private final Name name;
     private final EditStaffDescriptor editStaffDescriptor;
