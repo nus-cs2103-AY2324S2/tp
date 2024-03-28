@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COURSE_MATE;
 
@@ -24,7 +25,11 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkImportantCommand;
 import seedu.address.logic.commands.RateMateCommand;
+import seedu.address.logic.commands.RequireSkillCommand;
+import seedu.address.logic.commands.UnmarkImportantCommand;
+import seedu.address.logic.commands.UnrequireSkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.coursemate.ContainsKeywordPredicate;
 import seedu.address.model.coursemate.CourseMate;
@@ -49,7 +54,7 @@ public class MatchMateParserTest {
 
     @Test
     public void parseCommand_addSkill() throws Exception {
-        CourseMate courseMate = new CourseMateBuilder().build();
+        CourseMate courseMate = new CourseMateBuilder().withSkills(VALID_SKILL_JAVA).build();
         AddSkillCommand.AddSkillDescriptor descriptor = new AddSkillDescriptorBuilder(courseMate).build();
         AddSkillCommand command = (AddSkillCommand) parser.parseCommand(AddSkillCommand.COMMAND_WORD + " #"
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
@@ -72,7 +77,7 @@ public class MatchMateParserTest {
 
     @Test
     public void parseCommand_deleteSkill() throws Exception {
-        CourseMate courseMate = new CourseMateBuilder().build();
+        CourseMate courseMate = new CourseMateBuilder().withSkills(VALID_SKILL_JAVA).build();
         DeleteSkillCommand.DeleteSkillDescriptor descriptor = new DeleteSkillDescriptorBuilder(courseMate).build();
         DeleteSkillCommand command = (DeleteSkillCommand) parser.parseCommand(DeleteSkillCommand.COMMAND_WORD + " #"
                 + INDEX_FIRST_COURSE_MATE.getOneBased() + " "
@@ -117,6 +122,18 @@ public class MatchMateParserTest {
     }
 
     @Test
+    public void parseCommand_markImportant() throws Exception {
+        assertTrue(parser.parseCommand(MarkImportantCommand.COMMAND_WORD + " CS2103T Group -s Java")
+                instanceof MarkImportantCommand);
+    }
+
+    @Test
+    public void parseCommand_unmarkImportant() throws Exception {
+        assertTrue(parser.parseCommand(UnmarkImportantCommand.COMMAND_WORD + " CS2103T Group -s Java")
+                instanceof UnmarkImportantCommand);
+    }
+
+    @Test
     public void parseCommand_createGroup() throws Exception {
         assertTrue(parser.parseCommand(CreateGroupCommand.COMMAND_WORD + " CS2103T Group")
                 instanceof CreateGroupCommand);
@@ -153,6 +170,18 @@ public class MatchMateParserTest {
     public void parseCommand_rateMate() throws Exception {
         assertTrue(parser.parseCommand(RateMateCommand.COMMAND_WORD + " Bob -r 3")
                 instanceof RateMateCommand);
+    }
+
+    @Test
+    public void parseCommand_requireSkill() throws Exception {
+        assertTrue(parser.parseCommand(RequireSkillCommand.COMMAND_WORD + " Group 1 -s C++")
+                instanceof RequireSkillCommand);
+    }
+
+    @Test
+    public void parseCommand_unrequireSkill() throws Exception {
+        assertTrue(parser.parseCommand(UnrequireSkillCommand.COMMAND_WORD + " Group 1 -s C++")
+                instanceof UnrequireSkillCommand);
     }
 
     @Test

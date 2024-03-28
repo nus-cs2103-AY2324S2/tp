@@ -16,6 +16,7 @@ import seedu.address.model.coursemate.QueryableCourseMate;
 import seedu.address.model.coursemate.exceptions.CourseMateNotFoundException;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.TelegramChat;
+import seedu.address.model.skill.Skill;
 
 /**
  * Creates a group containing multiple unique CourseMates.
@@ -42,6 +43,7 @@ public class CreateGroupCommand extends Command {
 
     private final Name groupName;
     private final Set<QueryableCourseMate> queryableCourseMateSet;
+    private final Set<Skill> skillSet;
     private final TelegramChat telegramChat; // can be null
 
     /**
@@ -50,11 +52,13 @@ public class CreateGroupCommand extends Command {
      * @param groupName name of the group
      * @param queryableCourseMateSet set containing the queryableCourseMate in the group
      */
-    public CreateGroupCommand(Name groupName, Set<QueryableCourseMate> queryableCourseMateSet,
-            TelegramChat telegramChat) {
-        requireAllNonNull(groupName, queryableCourseMateSet);
+    public CreateGroupCommand(Name groupName,
+                              Set<QueryableCourseMate> queryableCourseMateSet,
+                              Set<Skill> skillSet, TelegramChat telegramChat) {
+        requireAllNonNull(groupName, queryableCourseMateSet, skillSet);
         this.groupName = groupName;
         this.queryableCourseMateSet = queryableCourseMateSet;
+        this.skillSet = skillSet;
         this.telegramChat = telegramChat;
     }
 
@@ -72,7 +76,9 @@ public class CreateGroupCommand extends Command {
             throw new CommandException(MESSAGE_MEMBERS_DONT_EXIST);
         }
 
-        Group toAdd = new Group(groupName, courseMateList, telegramChat);
+        // TODO: check if skills already exists or not, give warning if it doesn't
+
+        Group toAdd = new Group(groupName, courseMateList, skillSet, telegramChat);
         if (model.hasGroup(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }

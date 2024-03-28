@@ -58,12 +58,16 @@ public class TypicalGroups {
     public static final List<Skill> SAMPLE_SKILL_LIST_4 =
             Arrays.asList(new Skill("React"), new Skill("Java"));
 
-    public static final Group SAMPLE_GROUP_1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
-    public static final Group SAMPLE_GROUP_2 = new Group(SAMPLE_GROUP_NAME_2, SAMPLE_MEMBER_SET_2, SAMPLE_SKILL_LIST_2);
-    public static final Group SAMPLE_GROUP_3 = new Group(SAMPLE_GROUP_NAME_3, SAMPLE_MEMBER_SET_3, SAMPLE_SKILL_LIST_3);
-    public static final Group SAMPLE_GROUP_4 = new Group(SAMPLE_GROUP_NAME_4);
+    public static final Group SAMPLE_GROUP_1 =
+            new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1, null);
+    public static final Group SAMPLE_GROUP_2 =
+            new Group(SAMPLE_GROUP_NAME_2, SAMPLE_MEMBER_SET_2, SAMPLE_SKILL_LIST_2, null);
+    public static final Group SAMPLE_GROUP_3 =
+            new Group(SAMPLE_GROUP_NAME_3, SAMPLE_MEMBER_SET_3, SAMPLE_SKILL_LIST_3, null);
+    public static final Group SAMPLE_GROUP_4 =
+            new Group(SAMPLE_GROUP_NAME_4, SAMPLE_MEMBER_SET_4, SAMPLE_SKILL_LIST_4, null);
     public static final Group SAMPLE_UNINCLUDED_GROUP =
-            new Group(SAMPLE_UNINCLUDED_NAME, SAMPLE_UNINCLUDED_MEMBER_SET);
+            new Group(SAMPLE_UNINCLUDED_NAME, SAMPLE_UNINCLUDED_MEMBER_SET, new ArrayList<>(), null);
 
 
     /**

@@ -5,7 +5,10 @@
     "email": "alice@example.com",
     "telegramHandle": "alice",
     "rating": "5",
-    "skills": [ "Java" ]
+    "skills" : [ {
+      "important" : false,
+      "skillName" : "Java"
+    } ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",

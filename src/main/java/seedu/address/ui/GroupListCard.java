@@ -58,11 +58,13 @@ public class GroupListCard extends UiPart<Region> {
 
         group.completedSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
-                .forEach(skill -> completedGroupSkills.getChildren().add(new Label(skill.skillName)));
+                .forEach(skill -> completedGroupSkills.getChildren()
+                        .add(new Label(skill.importantStringRepresentation() + skill.skillName)));
 
         group.uncompletedSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
-                .forEach(skill -> uncompletedGroupSkills.getChildren().add(new Label(skill.skillName)));
+                .forEach(skill -> uncompletedGroupSkills.getChildren()
+                        .add(new Label(skill.importantStringRepresentation() + skill.skillName)));
     }
 
     /**

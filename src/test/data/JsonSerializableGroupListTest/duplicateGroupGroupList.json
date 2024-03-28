@@ -11,7 +11,10 @@
       "email" : "alexyeoh@example.com",
       "telegramHandle": "alexyeoh",
       "rating": "5",
-      "skills" : [ "friends" ]
+      "skills" : [ {
+        "important" : false,
+        "skillName" : "friends"
+      } ]
     } ],
     "telegramChat": "https://t.me/+AAAAAEQ1J9J9J9J9J9J9J9"
   } ]
