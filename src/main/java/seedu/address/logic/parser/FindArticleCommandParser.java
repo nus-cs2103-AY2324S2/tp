@@ -11,7 +11,7 @@ import seedu.address.model.article.TitleContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindArticleCommand object
  */
-public class FindArticleCommandParser {
+public class FindArticleCommandParser implements Parser<FindArticleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindArticleCommand
