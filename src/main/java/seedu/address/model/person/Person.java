@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Person in the address book.
@@ -23,18 +24,24 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Department department;
     private final Set<Tag> tags = new HashSet<>();
+    private transient Task task = null;
+    private Efficiency efficiency;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Department department, Set<Tag> tags,
+                  Efficiency efficiency) {
+        requireAllNonNull(name, phone, email, address, department, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.department = department;
         this.tags.addAll(tags);
+        this.efficiency = efficiency;
     }
 
     public Name getName() {
@@ -51,6 +58,43 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+    public Efficiency getEfficiency() {
+        return efficiency;
+    }
+
+
+    public Task getTask() {
+        return task;
+    }
+
+    /**
+     * Sets a {@code Task} to person
+     * @param task Task to be assigned to this person.
+     */
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
+    public boolean isBusy() {
+        return this.task != null;
+    }
+
+    /**
+     * Check if person has specified task assigned
+     * @param taskName
+     * @return boolean
+     */
+    public boolean hasTask(String taskName) {
+        if (this.task == null) {
+            return false;
+        } else {
+            return this.task.getTaskTitle().equals(taskName);
+        }
     }
 
     /**
@@ -100,7 +144,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, department, tags);
     }
 
     @Override
@@ -110,6 +154,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("department", department)
                 .add("tags", tags)
                 .toString();
     }

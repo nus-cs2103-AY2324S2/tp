@@ -10,6 +10,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
+    public static final Prefix PREFIX_DEPARTMENT = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_TASK = new Prefix("task/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("by/");
+    public static final Prefix PREFIX_TO = new Prefix("to/");
+    public static final Prefix PREFIX_EFFICIENCY = new Prefix("eff/");
+    public static final Prefix PREFIX_TASK_OWNER = new Prefix("o/");
 
 }

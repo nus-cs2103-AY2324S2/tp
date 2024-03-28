@@ -18,7 +18,16 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Department
 Class Tag
+Class Efficiency
+
+Class UniqueTaskList
+Class Task
+Class Deadline
+Class Title
+Class IsDone
+Class Priority
 
 Class I #FFFFFF
 }
@@ -41,7 +50,21 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Department
 Person *--> "*" Tag
+Person *--> Task
+Person *--> Efficiency
+
+AddressBook *--> "1" UniqueTaskList
+UniqueTaskList --> "~* all" Task
+Task *--> Title
+Task *--> Deadline
+Task *--> Person
+Task *--> IsDone
+Task *--> Priority
+
+Task -[hidden]up--> I
+UniqueTaskList -[hidden]right-> I
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -49,6 +72,8 @@ UniquePersonList -[hidden]right-> I
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Department
+Phone -[hidden]right-> Task
 
 ModelManager --> "~* filtered" Person
 @enduml
