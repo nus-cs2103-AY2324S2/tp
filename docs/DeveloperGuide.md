@@ -144,15 +144,12 @@ The `Model` component,
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
-* can save both global participant list data, event list data in JSON format, and read them back into corresponding objects.
+* can save both global participant list data in JSON format, and read it back into corresponding objects.
+* can save event list data in JSON format, and read it back into corresponding event objects.
 * can also save participant list data of a certain event in JSON format, and read them back into corresponding objects. 
 * inherits from`AddressBookStorage` `EventBook Storage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-* This is a placeholder to add more lines, will be deleted when updating the uml diagram.
-* This is a placeholder to add more lines, will be deleted when updating the uml diagram.
-* This is a placeholder to add more lines, will be deleted when updating the uml diagram.
-* This is a placeholder to add more lines, will be deleted when updating the uml diagram.
-* This is a placeholder to add more lines, will be deleted when updating the uml diagram.
+
 
 ### Common classes
 
