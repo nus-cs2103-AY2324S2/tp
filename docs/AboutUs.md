@@ -1,59 +1,61 @@
+
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Jared Wong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jajared.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](https://jajared.vercel.app/)]
+[[github](https://github.com/Jajared)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Team Lead
+- Responsibilities: Overall project coordination and ensure the team is doing well.
 
-### Jane Doe
+### Zack Tay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zack-tay.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Zack-Tay)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Code quality
+- Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload
 
-### Johnny Doe
+### Tan Qin Xu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qinxutan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/qinxutan)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Documentation
+- Responsibilities: Responsible for the quality of various project documents, including README, User Guide and Developer Guide.
 
-### Jean Doe
+### Whelan Low
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/whelan-low.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/whelan-low)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Deliverables and deadlines
+- Responsibilities: Ensure project deliverables are done on time and in the right format. In charge of submitting the deliverables
 
-### James Doe
+### Mahadhir
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mahadhir247.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/mahadhir247)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Code quality
+- Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. Also in charge of reviewing PRs and testing of project code before upload

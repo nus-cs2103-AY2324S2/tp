@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +12,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialClass;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.StudentId;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +28,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<ModuleCode> filteredModules;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +42,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
     }
 
     public ModelManager() {
@@ -94,14 +103,62 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonWithStudentId(StudentId id) {
+        requireAllNonNull(id);
+        return addressBook.hasPersonWithStudentId(id);
+    }
+
+    @Override
+    public boolean hasPersonWithEmail(Email email) {
+        requireAllNonNull(email);
+        return addressBook.hasPersonWithEmail(email);
+    }
+
+    @Override
+    public ModuleCode findModuleFromList(ModuleCode module) {
+        requireNonNull(module);
+        return addressBook.findModuleFromList(module);
+    }
+
+    @Override
+    public TutorialClass findTutorialClassFromList(TutorialClass tutorialClass, ModuleCode moduleCode) {
+        try {
+            return addressBook.findTutorialClassFromList(tutorialClass, moduleCode);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+    }
+
+    @Override
+    public void deleteModule(ModuleCode target) {
+        addressBook.removeModule(target);
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addModule(ModuleCode module) {
+        addressBook.addModule(module,
+            module.getDescription());
+    }
+
+    @Override
+    public void addPersonToTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        addressBook.addPersonToTutorialClass(person, module, tutorialClass);
+    }
+
+    @Override
+    public void deletePersonFromTutorialClass(Person person, ModuleCode module, TutorialClass tutorialClass) {
+        addressBook.deletePersonFromTutorialClass(person, module, tutorialClass);
     }
 
     @Override
@@ -121,11 +178,42 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
+    /**
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<ModuleCode> getFilteredModuleList() {
+        return filteredModules;
+    }
+
+    @Override
+    public ObservableList<Person> getSortedPersonList(Comparator<Person> comparator) {
+        addressBook.setSortedPersonList(comparator);
+        return addressBook.getSortedPersonList();
+    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<ModuleCode> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+    /**
+     * Searches for a person in the list of filtered persons based on the given predicate.
+     *
+     * @param predicate The predicate used to filter persons.
+     * @return The first person that matches the predicate, or {@code null} if no person matches.
+     * @throws NullPointerException if the predicate is {@code null}.
+     */
+    public Person searchPersonByPredicate(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return filteredPersons.stream().filter(predicate).findFirst().orElse(null);
     }
 
     @Override
@@ -141,8 +229,7 @@ public class ModelManager implements Model {
 
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
-                && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+            && userPrefs.equals(otherModelManager.userPrefs)
+            && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

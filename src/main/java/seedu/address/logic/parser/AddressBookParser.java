@@ -8,15 +8,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddClassCommand;
+import seedu.address.logic.commands.AddStudentCommand;
+import seedu.address.logic.commands.AddTeamCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteClassCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.DeleteTeamCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListClassesCommand;
+import seedu.address.logic.commands.ListStudentsCommand;
+import seedu.address.logic.commands.SearchStudentCommand;
+import seedu.address.logic.commands.SortStudentCommand;
+import seedu.address.logic.commands.addstudenttoclasscommands.AddStudentToClassCommand;
+import seedu.address.logic.commands.deletestudentcommands.DeleteStudentCommand;
+import seedu.address.logic.commands.deletestudentfromclasscommands.DeleteStudentFromClassCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,10 +61,11 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
+
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -65,17 +76,47 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case DeleteClassCommand.COMMAND_WORD:
+            return new DeleteClassCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case DeleteModuleCommand.COMMAND_WORD:
+            return new DeleteModuleCommandParser().parse(arguments);
+
+        case DeleteStudentCommand.COMMAND_WORD:
+            return new DeleteStudentCommandParser().parse(arguments);
+
+        case AddClassCommand.COMMAND_WORD:
+            return new AddClassCommandParser().parse(arguments);
+
+        case ListStudentsCommand.COMMAND_WORD:
+            return new ListStudentsCommand();
+
+        case ListClassesCommand.COMMAND_WORD:
+            return new ListClassesCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SearchStudentCommand.COMMAND_WORD:
+            return new SearchStudentCommandParser().parse(arguments);
+
+        case AddStudentToClassCommand.COMMAND_WORD:
+            return new AddStudentToClassCommandParser().parse(arguments);
+
+        case DeleteStudentFromClassCommand.COMMAND_WORD:
+            return new DeleteStudentFromClassCommandParser().parse(arguments);
+
+        case AddTeamCommand.COMMAND_WORD:
+            return new AddTeamCommandParser().parse(arguments);
+
+        case SortStudentCommand.COMMAND_WORD:
+            return new SortStudentCommandParser().parse(arguments);
+
+        case DeleteTeamCommand.COMMAND_WORD:
+            return new DeleteTeamCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
