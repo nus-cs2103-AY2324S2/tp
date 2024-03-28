@@ -83,6 +83,13 @@ public class JsonAdaptedArticle {
      * @throws IllegalValueException if data constraints are violated
      */
     public Article toModelType() throws IllegalValueException {
+        if (title == null) {
+            throw new IllegalValueException("The title is missing");
+        }
+        if (status == null) {
+            throw new IllegalValueException("The status is missing");
+        }
+
         final List<Tag> articleTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             articleTags.add(tag.toModelType());
@@ -96,15 +103,7 @@ public class JsonAdaptedArticle {
             articleSources.add(source.toModelType());
         }
 
-        if (title == null) {
-            throw new IllegalValueException("The title is missing");
-        }
-
         final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
-
-        if (publicationDate == null) {
-            throw new IllegalValueException("The publication date is invalid");
-        }
 
         final Set<Source> modelSources = new HashSet<>(articleSources);
 
