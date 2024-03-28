@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -73,14 +74,14 @@ public class FindCommandParserTest {
             // single space between keywords
             FindCommand findCommand = parser.parse(" n/alice a/20/03/2024");
             Predicate<Person> pred = findCommand.getPredicate();
-            assertEquals(pred.test(alice), true);
-            assertEquals(pred.test(benson), true);
+            assertTrue(pred.test(alice));
+            assertTrue(pred.test(benson));
 
             // multiple whitespaces between keywords
             FindCommand findCommand2 = parser.parse(" n/  \n alice \n \t a/20/03/2024  \t");
             Predicate<Person> pred2 = findCommand2.getPredicate();
-            assertEquals(pred2.test(alice), true);
-            assertEquals(pred2.test(benson), true);
+            assertTrue(pred2.test(alice));
+            assertTrue(pred2.test(benson));
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
         }
@@ -95,14 +96,14 @@ public class FindCommandParserTest {
             // single space between keywords
             FindCommand findCommand = parser.parse(" n/alice n/benson");
             Predicate<Person> pred = findCommand.getPredicate();
-            assertEquals(pred.test(alice), true);
-            assertEquals(pred.test(benson), true);
+            assertTrue(pred.test(alice));
+            assertTrue(pred.test(benson));
 
             // multiple whitespaces between keywords
             FindCommand findCommand2 = parser.parse(" n/  \n alice \n \t n/benson  \t");
             Predicate<Person> pred2 = findCommand2.getPredicate();
-            assertEquals(pred2.test(alice), true);
-            assertEquals(pred2.test(benson), true);
+            assertTrue(pred2.test(alice));
+            assertTrue(pred2.test(benson));
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
         }
@@ -117,14 +118,14 @@ public class FindCommandParserTest {
             // single space between keywords
             FindCommand findCommand = parser.parse(" a/14/02/2024 a/20/03/2024");
             Predicate<Person> pred = findCommand.getPredicate();
-            assertEquals(pred.test(alice), true);
-            assertEquals(pred.test(benson), true);
+            assertTrue(pred.test(alice));
+            assertTrue(pred.test(benson));
 
             // multiple whitespaces between keywords
             FindCommand findCommand2 = parser.parse(" a/  \n 14/02/2024 \n \t a/20/03/2024  \t");
             Predicate<Person> pred2 = findCommand2.getPredicate();
-            assertEquals(pred2.test(alice), true);
-            assertEquals(pred2.test(benson), true);
+            assertTrue(pred2.test(alice));
+            assertTrue(pred2.test(benson));
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
         }
