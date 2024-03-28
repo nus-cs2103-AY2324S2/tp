@@ -4,7 +4,7 @@ title: User Guide
 nav_order : 2
 ---
 # Nursing Address Book (NAB)
-Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use. 
+Nursing Address Book (NAB) is a desktop application tailored for ward nurses, optimizing patient contact management via a Command Line Interface (CLI) while incorporating a Graphical User Interface (GUI) for ease of use.
 Designed for efficiency, NAB enables quick access to patient records, streamlined contact management, and simplified logging of care details, proving to be a valuable tool for fast typists and those who prefer the precision of CLI operations.
 
 ## Table of Contents
@@ -117,7 +117,7 @@ Format: `list`, `list INDEX`
 
 * INDEX: Must be a positive integer not larger than the number of patients in the list.
 
-Example command: 
+Example command:
 
 `list`
 ```
@@ -127,7 +127,7 @@ Here are the details of the 2 patients in your contact book:
 2. Jane Doe
 ```
 
-Example command: 
+Example command:
 
 `list 2`
 ```
