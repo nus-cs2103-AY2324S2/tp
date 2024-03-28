@@ -13,6 +13,7 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String DEFAULT_NUMBER = "000";
     public final String value;
 
     /**
@@ -27,6 +28,13 @@ public class Phone {
     }
 
     /**
+     * Constructs a {@code Phone}.
+     */
+    public Phone() {
+        value = DEFAULT_NUMBER;
+    }
+
+    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
@@ -35,7 +43,7 @@ public class Phone {
 
     @Override
     public String toString() {
-        return value;
+        return value.equals(DEFAULT_NUMBER) ? "NIL" : value;
     }
 
     @Override
