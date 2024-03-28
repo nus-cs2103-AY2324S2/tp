@@ -5,58 +5,82 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalCourseMates.ALICE;
+import static seedu.address.testutil.TypicalCourseMates.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ContactList;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyGroupList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.coursemate.CourseMate;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupNotFoundException;
+import seedu.address.model.skill.Skill;
+import seedu.address.testutil.CourseMateBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullCourseMate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_courseMateAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingCourseMateAdded modelStub = new ModelStubAcceptingCourseMateAdded();
+        CourseMate validCourseMate = new CourseMateBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validCourseMate).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(AddCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCourseMate), modelStub.courseMatesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateCourseMate_throwsCommandException() {
+        CourseMate validCourseMate = new CourseMateBuilder().build();
+        AddCommand addCommand = new AddCommand(validCourseMate);
+        ModelStub modelStub = new ModelStubWithCourseMate(validCourseMate);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_COURSE_MATE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_courseMateNewSkillWarning_addSuccessful() throws Exception {
+        ModelStubAcceptingCourseMateAdded modelStub = new ModelStubAcceptingCourseMateAdded();
+
+        CommandResult commandResult = new AddCommand(BOB).execute(modelStub);
+
+        Set<Skill> newSkills = new HashSet<>();
+        newSkills.add(new Skill("Java"));
+        newSkills.add(new Skill("C++"));
+
+        assertEquals(AddCommand.messageNewSkill(newSkills) + AddCommand.MESSAGE_SUCCESS,
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(BOB), modelStub.courseMatesAdded);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        CourseMate alice = new CourseMateBuilder().withName("Alice").build();
+        CourseMate bob = new CourseMateBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -73,7 +97,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different courseMate -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -109,95 +133,191 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getContactListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setContactListFilePath(Path contactListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addCourseMate(CourseMate courseMate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setContactList(ReadOnlyContactList contactList) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyContactList getContactList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasCourseMate(CourseMate courseMate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteCourseMate(CourseMate target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setCourseMate(CourseMate target, CourseMate editedCourseMate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the user prefs' contact list file path.
+         */
+        @Override
+        public Path getGroupListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Sets the user prefs' contact list file path.
+         *
+         * @param groupListFilePath
+         */
+        @Override
+        public void setGroupListFilePath(Path groupListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Replaces contact list data with the data in {@code groupList}.
+         *
+         * @param groupList
+         */
+        @Override
+        public void setGroupList(ReadOnlyGroupList groupList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the GroupList
+         */
+        @Override
+        public ReadOnlyGroupList getGroupList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public List<CourseMate> findCourseMate(QueryableCourseMate queryableCourseMate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void addGroup(Group group) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteGroup(Group target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Group findGroup(Name name) throws GroupNotFoundException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGroup(Group target, Group editedGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<CourseMate> getFilteredCourseMateList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredCourseMateList(Predicate<CourseMate> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Group> getFilteredGroupList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredGroupList(Predicate<Group> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public CourseMate getRecentlyProcessedCourseMate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecentlyProcessedCourseMate(CourseMate courseMate) {
+            // does nothing
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single courseMate.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithCourseMate extends ModelStub {
+        private final CourseMate courseMate;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithCourseMate(CourseMate courseMate) {
+            requireNonNull(courseMate);
+            this.courseMate = courseMate;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasCourseMate(CourseMate courseMate) {
+            requireNonNull(courseMate);
+            return this.courseMate.isSameCourseMate(courseMate);
+        }
+
+        @Override
+        public ReadOnlyContactList getContactList() {
+            List<CourseMate> courseMateList = new ArrayList<>();
+            courseMateList.add(courseMate);
+            ContactList returnContactList = new ContactList();
+            returnContactList.setCourseMates(courseMateList);
+            return returnContactList;
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the courseMate being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingCourseMateAdded extends ModelStub {
+        final ArrayList<CourseMate> courseMatesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasCourseMate(CourseMate courseMate) {
+            requireNonNull(courseMate);
+            return courseMatesAdded.stream().anyMatch(courseMate::isSameCourseMate);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addCourseMate(CourseMate courseMate) {
+            requireNonNull(courseMate);
+            courseMatesAdded.add(courseMate);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyContactList getContactList() {
+            return new ContactList();
         }
     }
 

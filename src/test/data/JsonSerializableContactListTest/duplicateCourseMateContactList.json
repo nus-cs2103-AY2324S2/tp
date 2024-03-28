@@ -1,0 +1,19 @@
+{
+  "courseMates": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "telegramHandle": "alice",
+    "rating": "5",
+    "skills" : [ {
+      "important" : false,
+      "skillName" : "Java"
+    } ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "rating": "5",
+    "telegramHandle": "alice"
+  } ]
+}

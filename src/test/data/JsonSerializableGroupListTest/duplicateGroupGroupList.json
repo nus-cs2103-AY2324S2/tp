@@ -1,0 +1,21 @@
+{
+  "groups" : [ {
+    "name" : "group 1",
+    "members" : [ ],
+    "telegramChat": "https://t.me/+AAAAAEQ1J9J9J9J9J9J9J9"
+  }, {
+    "name" : "group 1",
+    "members" : [ {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "telegramHandle": "alexyeoh",
+      "rating": "5",
+      "skills" : [ {
+        "important" : false,
+        "skillName" : "friends"
+      } ]
+    } ],
+    "telegramChat": "https://t.me/+AAAAAEQ1J9J9J9J9J9J9J9"
+  } ]
+}

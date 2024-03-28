@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":Logic" as Logic LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+participant ":CourseMateDetailPanel" as CourseMateDetailPanel UI_COLOR
+
+[-> MainWindow : executeCommand(commandText)
+activate MainWindow
+
+MainWindow -> Logic : execute(commandText)
+activate Logic
+
+create CommandResult
+Logic -> CommandResult
+activate CommandResult
+
+CommandResult --> Logic
+deactivate CommandResult
+
+Logic --> MainWindow: commandResult
+deactivate Logic
+
+MainWindow -> CommandResult: isShowCourseMate()
+activate CommandResult
+
+CommandResult --> MainWindow
+deactivate CommandResult
+
+opt isShowCourseMate() is true
+
+MainWindow -> Logic: getRecentlyProcessedCourseMate()
+activate Logic
+
+Logic --> MainWindow: courseMate
+deactivate Logic
+
+MainWindow -> CourseMateDetailPanel: loadCourseMate(courseMate)
+activate CourseMateDetailPanel
+
+CourseMateDetailPanel --> MainWindow
+deactivate CourseMateDetailPanel
+
+end
+
+@enduml

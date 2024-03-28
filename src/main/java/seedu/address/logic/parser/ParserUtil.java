@@ -9,11 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.coursemate.Email;
+import seedu.address.model.coursemate.Name;
+import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.QueryableCourseMate;
+import seedu.address.model.coursemate.Rating;
+import seedu.address.model.coursemate.TelegramHandle;
+import seedu.address.model.group.TelegramChat;
+import seedu.address.model.skill.Skill;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -27,12 +30,20 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    private static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (trimmedIndex.isEmpty() || trimmedIndex.charAt(0) != '#' || trimmedIndex.equals("#")) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+
+        if (trimmedIndex.equals("##")) {
+            return Index.fromOneBased(0);
+        }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex.substring(1))) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex.substring(1)));
     }
 
     /**
@@ -66,21 +77,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -96,29 +92,95 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String skill} into a {@code Skill}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code skill} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Skill parseSkill(String skill) throws ParseException {
+        requireNonNull(skill);
+        String trimmedSkill = skill.trim();
+        if (!Skill.isValidSkill(trimmedSkill)) {
+            throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Skill(trimmedSkill);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> skills} into a {@code Set<Skill>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Skill> parseSkills(Collection<String> skills) throws ParseException {
+        requireNonNull(skills);
+        final Set<Skill> skillSet = new HashSet<>();
+        for (String skillName : skills) {
+            skillSet.add(parseSkill(skillName));
         }
-        return tagSet;
+        return skillSet;
+    }
+
+    /**
+     * Parses {@code String label} into a {@code QueryableCourseMate}.
+     */
+    public static QueryableCourseMate parseQueryableCourseMate(String label) throws ParseException {
+        requireNonNull(label);
+        String trimmedLabel = label.trim();
+
+        if (trimmedLabel.isEmpty()) {
+            throw new ParseException("the query cannot be empty");
+        }
+
+        if (trimmedLabel.charAt(0) == '#') {
+            return new QueryableCourseMate(parseIndex(trimmedLabel));
+        } else {
+            return new QueryableCourseMate(parseName(trimmedLabel));
+        }
+    }
+    /**
+     * Parses {@code String labels} into a {@code Set<QueryableCourseMate>}.
+     */
+    public static Set<QueryableCourseMate> parseQueryableCourseMates(Collection<String> labels)
+            throws ParseException {
+        requireNonNull(labels);
+        final Set<QueryableCourseMate> courseMateSet = new HashSet<>();
+        for (String courseMateName : labels) {
+            courseMateSet.add(parseQueryableCourseMate(courseMateName));
+        }
+        return courseMateSet;
+    }
+
+    /**
+     * Parses a {@code String telegramChat} into a {@code TelegramChat}.
+     */
+    public static TelegramChat parseTelegramChat(String telegramChat) throws ParseException {
+        requireNonNull(telegramChat);
+        String trimmedTelegramChat = telegramChat.trim();
+        if (!TelegramChat.isValidTelegramChat(trimmedTelegramChat)) {
+            throw new ParseException(TelegramChat.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramChat(trimmedTelegramChat);
+    }
+
+    /**
+     * Parses a {@code String telegramHandle} into a {@code TelegramHandle}.
+     */
+    public static TelegramHandle parseTelegramHandle(String telegramHandle) throws ParseException {
+        requireNonNull(telegramHandle);
+        String trimmedTelegramHandle = telegramHandle.trim();
+        if (!TelegramHandle.isValidTelegramHandle(trimmedTelegramHandle)) {
+            throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
+        }
+        return new TelegramHandle(trimmedTelegramHandle);
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 }

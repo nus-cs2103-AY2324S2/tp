@@ -1,14 +1,13 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COURSE_MATE_NAME;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalCourseMates.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -23,15 +22,17 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.GroupList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.coursemate.CourseMate;
+import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonGroupListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CourseMateBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -45,10 +46,13 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonContactListStorage contactListStorage =
+                new JsonContactListStorage(temporaryFolder.resolve("contactList.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonGroupListStorage groupListStorage =
+                new JsonGroupListStorage(temporaryFolder.resolve("groupList.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, groupListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -60,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String deleteCommand = "delete #9";
+        assertCommandException(deleteCommand, MESSAGE_INVALID_COURSE_MATE_NAME);
     }
 
     @Test
@@ -83,8 +87,30 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredCourseMateList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredCourseMateList().remove(0));
+    }
+
+    @Test
+    public void getFilteredGroupList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredGroupList().remove(0));
+    }
+
+    @Test
+    public void getRecentlyProcessedCourseMate_newLogicManager_returnsNull() {
+        assertEquals(null, logic.getRecentlyProcessedCourseMate());
+    }
+
+    @Test
+    public void getRecentlyProcessedCourseMate_setToAmy_returnsAmy() {
+        model.setRecentlyProcessedCourseMate(AMY);
+        assertEquals(AMY, logic.getRecentlyProcessedCourseMate());
+    }
+
+    @Test
+    public void setRecentlyProcessedCourseMate_setToAmy_returnsAmy() {
+        logic.setRecentlyProcessedCourseMate(AMY);
+        assertEquals(AMY, logic.getRecentlyProcessedCourseMate());
     }
 
     /**
@@ -123,7 +149,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getContactList(), new UserPrefs(), new GroupList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,10 +175,10 @@ public class LogicManagerTest {
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");
 
-        // Inject LogicManager with an AddressBookStorage that throws the IOException e when saving
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(prefPath) {
+        // Inject LogicManager with an ContactListStorage that throws the IOException e when saving
+        JsonContactListStorage contactListStorage = new JsonContactListStorage(prefPath) {
             @Override
-            public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath)
+            public void saveContactList(ReadOnlyContactList contactList, Path filePath)
                     throws IOException {
                 throw e;
             }
@@ -160,16 +186,18 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonGroupListStorage groupListStorage =
+                new JsonGroupListStorage(temporaryFolder.resolve("ExceptionGroupList.json"));
+        StorageManager storage = new StorageManager(contactListStorage, userPrefsStorage, groupListStorage);
 
         logic = new LogicManager(model, storage);
 
-        // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        // Triggers the saveContactList method by executing an add command
+        String addCommand = AddCommand.COMMAND_WORD + " " + VALID_NAME_AMY + " " + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY;
+        CourseMate expectedCourseMate = new CourseMateBuilder(AMY).withSkills().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addCourseMate(expectedCourseMate);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

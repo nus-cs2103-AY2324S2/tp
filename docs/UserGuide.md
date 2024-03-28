@@ -1,12 +1,11 @@
----
-layout: page
-title: User Guide
----
+# MatchMate User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Matchmate is a **desktop app to create groups among their friends / acquaintances,
+as well as to allow students to find balanced groups with diverse skillsets out of their own contact list.** 
+It is optimized for Command Line Interface space(CLI) while still having the benefits of a Graphical User Interface (GUI). 
 
-* Table of Contents
-{:toc}
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,11 +13,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `matchmate.jar`
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your app.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar matchmate.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -26,10 +25,10 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
    Some example commands you can try:
 
    * `list` : Lists all contacts.
+   
+   * `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`: Adds a contact named `John Doe` to the contact list.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete #3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -41,105 +40,229 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<box type="info" seamless>
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `add NAME [-p PHONE_NUMBER]` can be used as `add John Doe -p 8762318` or as `add John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. `[-s SKILL]…​` can be used as ` ` (i.e. 0 times), `-s C++`, `-s C++ -s Python` etc.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
+</box>
 
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a courseMate: `add`
 
-Adds a person to the address book.
+Adds a contact to the contact list. A name will be required, and all other information will be optional.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Parameters:
+- `NAME`: Name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol , and words cannot start with the hyphen (-) character.
+- `PHONE_NUMBER` (optional): Phone number of the contact. Accepts strings with numeric characters only.
+- `EMAIL` (optional): Email of the contact. Accepts any strings without spaces.
+- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character. 
+
+<box type="tip" seamless>
+
+**Tip:** A courseMate can have any number of skills (including 0)
+</box>
+
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+- `add John Doe`
+- `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
 
-Shows a list of all persons in the address book.
+### Listing all courseMates : `list`
+
+Lists all contacts in the contact list.
 
 Format: `list`
 
-### Editing a person : `edit`
+Expected output:
+- `Message: Listed all contacts`
 
-Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Editing a courseMate : `edit`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Edits an existing contact with a given name. This command supports changing the name, phone number and email.
+
+Format: `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]`
+
+Parameters:
+- `COURSEMATE`: Name of the existing contact or aliases (substrings or in hashtag (#) notation).
+- `NEW_NAME` (optional): New name of the contact. It can be any string except that it cannot start with the hashtag (#) symbol, and words cannot start with the hyphen (-) character.
+- `NEW_PHONE_NUMBER` (optional): New phone number of the contact. Accepts strings with numeric characters only.
+- `NEW_EMAIL` (optional): New email of the contact. Accepts any strings without spaces.
+    
+<box type="tip" seamless>
+
+**Tip:**
+
+Instead of supplying a full name to identify an existing contact, you can use the following shortcuts:
+- `#1`, `#2`, …, `#n` (where n is the number of contacts currently displayed in the contact list panel) – `#k` references the k-th contact currently displayed in the contact list panel.
+
+
+- `##` – References the contact currently displayed in the detailed view panel.
+
+
+- A substring of the name instead of the full name.
+    - In the event of multiple matches (the substring appears in multiple contacts), you will receive the following message: `There are x course mates with similar names.
+      Retry the command by specifying the index of the contact in the list, example: #1.` and the list of matching contacts will be displayed in the contact list panel.
+    - No side effects will be made by the current command.
+    - You should retry the command by finding the contact on the list and using the hashtag notation (`#`) to identify the contact.
+
+  Example:
+    - You have the following contacts listed in the contact list panel:
+
+      `#1 Benson`
+
+      `#2 Ben`
+
+      Typing `edit Ben` will display a warning message for having multiple matches.
+    - Case 1 Edit Benson:
+        - Type  `edit Benson ...` or just its substring `edit Bens ...`
+        - Alternatively, you can use the alias `edit #1 ...`
+    - Case 2 Edit Ben:
+        - Type `edit #2 ...` as you must specify its index in the list.
+</box>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- `edit John Doe -n Joe Schmo`
+- `edit #1 -n Joe Schmo`
+- `edit John -p 98765432 -e johndoe@gmail.com`
 
-### Locating persons by name: `find`
+### Add a skill to a contact : `add-skill`
+Adds a list of skills to a contact.
 
-Finds persons whose names contain any of the given keywords.
+Format: `add-skill COURSENAME [-s SKILL]...`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Parameters:
+- `COURSENAME`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
+- `SKILL` (zero or multiple allowed): Skill(s) of the courseMate. Accepts any strings, except that words cannot start with the hyphen (-) character.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `add-skill John Doe -s C++ -s Leadership`
+- `add-skill ##`
 
-### Deleting a person : `delete`
+  This command does nothing but it will be executed successfully.
+  
+### Delete a skill from a contact  : `delete-skill`
+Deletes a list of skills from a contact.
 
-Deletes the specified person from the address book.
+Format: `delete-skill COURSEMATE [-s SKILL]...`
 
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameters:
+- `COURSEMATE`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
+- `SKILL`: (zero or multiple allowed): Skill(s) of the courseMate. These must be existing skills that the contact contains.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `delete-skill John Doe -s C++ -s Leadership`
+- `delete-skill ##`
+
+    This command does nothing but it will be executed successfully.
+
+### Search contacts with a keyword: `find`
+
+Searches contacts that include a matching keyword, in their name or skills. More relevant fields can be supported in the future.
+
+To match a contact’s skill, the keyword should match exactly with the skill. To match a contact’s name, the keyword can be a case-insensitive substring of the name.
+
+Format: `find KEYWORD`
+
+Parameters:
+- `KEYWORD`: The keyword of the search. Accepts any strings.
+
+Examples:
+- `find John`
+- `find C++`
+- `find CS2103T G18`
+
+### Deleting a contact : `delete`
+
+Deletes a contact with a given name.
+
+Format: `delete COURSEMATE`
+
+Parameters:
+- `COURSEMATE`: Name of the existing coursemate. Accepts aliases (substrings or in hashtag (#) notation).
+
+Examples:
+- `delete ##`
+- `delete John`
+
+### Create group project: `create-group`
+
+Creates a group project. You can specify the coursemates in the group when creating the group, or choose to add them later.
+
+Format: `create-group GROUP_NAME [-cm COURSEMATE]`
+
+Parameters:
+- `GROUP_NAME`: The group name. Accepts any strings, except that words cannot start with the hyphen (-) character.
+- `COURSEMATE` (zero or multiple allowed): Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
+
+Examples:
+- `create-group CS2103T G18`
+- `create-group CS2103T G18 -cm John -cm #2`
+
+### Add coursemates to group: `add-member`
+Adds some team members to an existing group.
+
+Format: `add-member GROUP_NAME [-cm COURSEMATE]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `COURSEMATE`: Name of the existing coursemates to be added to the group. Accepts aliases (substrings or in hashtag (#) notation).
+
+Examples:
+- `add-member CS2103T G18 -cm Ivan -cm #1`
+- `add-member CS2103T G18 -cm ##`
+
+<box type="tip" seamless>
+
+**Tip:** Different from coursemate names, group names must be an exact match.
+</box>
+
+### Delete coursemates from group: `delete-member`
+
+Deletes some team members from an existing group.
+
+Format: `delete-member GROUP_NAME [-cm COURSEMATE]...`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+- `COURSEMATE`: Name of the existing coursemates to be deleted from the group. Accepts aliases (substrings or in hashtag (#) notation).
+
+Examples:
+- `delete-member CS2103T G18 -cm Ivan -cm #1`
+- `delete-member CS2103T G18 -cm ##`
+
+### Delete a group: `delete-group`
+Deletes a group.
+
+Format: `delete-group GROUP_NAME`
+
+Example: `delete-group CS2103T G18`
+
+Parameters:
+- `GROUP_NAME`: Name of the existing group.
+
 
 ### Clearing all entries : `clear`
 
@@ -153,29 +276,28 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Save and load the state of app
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Load the saved data when starting the app. Save the state of coursemates and groups every time it is updated via adding or editing. This should run automatically on start and subsequently after a command that alters the state of the app (e.g. add, edit).
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MatchMate data are saved automatically as a JSON file `[JAR file location]/data/matchmate.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
+<box type="warning" seamless>
 
-### Archiving data files `[coming in v2.0]`
+**Caution:**
+If your changes to the data file makes its format invalid, MatchMate will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the MatchMate to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</box>
 
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MatchMate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,12 +309,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+Action     | Format, Examples
+-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Add coursemate**    | `add NAME [-p PHONE_NUMBER] [-e EMAIL] [-s SKILL]…​` <br> e.g., `add John Doe -p 87654321 -e johndoe@example.com -s Leadership -s C++`
+**Add group member**    |   `add-member GROUP_NAME [-cm COURSEMATE]...` <br> e.g., `add-member CS2103T G18 -cm Ivan -cm ##`
+**Add skill**   |   ` add-skill COURSEMATE [-s SKILL]...` <br> e.g., `add-skill John Doe -s C++ -s Leadership`
+**Clear**  | `clear`
+**Create group**    |   `create-group GROUP_NAME [-cm COURSEMATE]` <br> e.g., `create-group CS2103T G18 -cm John -cm #2`
+**Delete coursemate**  | `delete COURSEMATE` <br> e.g., `delete John`
+**Delete group**    | `delete-group GROUP_NAME` <br> e.g., `delete-group CS2103T G18`
+**Delete group member**    |   `delete-member GROUP_NAME [-cm COURSEMATE]` <br> e.g., `delete-member CS2103T G18 -cm Ivan -cm #1`
+**Delete skill** | `delete-skill COURSEMATE [-s SKILL]...` <br> e.g., `delete-skill John Doe -s C++ -s Leadership `
+**Edit coursemate**   | `edit COURSEMATE [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL]…​`<br> e.g.,`edit John -p 98765432 -e johndoe@gmail.com`
+**Find**   | `find KEYWORD`<br> e.g., `find John`
+**List**   | `list`
+**Help**   | `help`

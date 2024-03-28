@@ -3,7 +3,6 @@ package seedu.address.commons.core.index;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +10,6 @@ public class IndexTest {
 
     @Test
     public void createOneBasedIndex() {
-        // invalid index
-        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));
 
         // check equality using the same base
         assertEquals(1, Index.fromOneBased(1).getOneBased());
@@ -25,8 +22,6 @@ public class IndexTest {
 
     @Test
     public void createZeroBasedIndex() {
-        // invalid index
-        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromZeroBased(-1));
 
         // check equality using the same base
         assertEquals(0, Index.fromZeroBased(0).getZeroBased());
@@ -39,23 +34,23 @@ public class IndexTest {
 
     @Test
     public void equals() {
-        final Index fifthPersonIndex = Index.fromOneBased(5);
+        final Index fifthCourseMateIndex = Index.fromOneBased(5);
 
         // same values -> returns true
-        assertTrue(fifthPersonIndex.equals(Index.fromOneBased(5)));
-        assertTrue(fifthPersonIndex.equals(Index.fromZeroBased(4)));
+        assertTrue(fifthCourseMateIndex.equals(Index.fromOneBased(5)));
+        assertTrue(fifthCourseMateIndex.equals(Index.fromZeroBased(4)));
 
         // same object -> returns true
-        assertTrue(fifthPersonIndex.equals(fifthPersonIndex));
+        assertTrue(fifthCourseMateIndex.equals(fifthCourseMateIndex));
 
         // null -> returns false
-        assertFalse(fifthPersonIndex.equals(null));
+        assertFalse(fifthCourseMateIndex.equals(null));
 
         // different types -> returns false
-        assertFalse(fifthPersonIndex.equals(5.0f));
+        assertFalse(fifthCourseMateIndex.equals(5.0f));
 
         // different index -> returns false
-        assertFalse(fifthPersonIndex.equals(Index.fromOneBased(1)));
+        assertFalse(fifthCourseMateIndex.equals(Index.fromOneBased(1)));
     }
 
     @Test

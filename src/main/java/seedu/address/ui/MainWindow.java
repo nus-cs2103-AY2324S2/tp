@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.coursemate.CourseMate;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,7 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CourseMateListPanel courseMateListPanel;
+    private CourseMateDetailPanel courseMateDetailPanel;
+    private GroupListPanel groupListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +45,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane courseMateListPanelPlaceholder;
+
+    @FXML
+    private StackPane courseMateDetailPanelPlaceholder;
+
+    @FXML
+    private StackPane groupListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,13 +119,21 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        courseMateListPanel = new CourseMateListPanel(logic.getFilteredCourseMateList(),
+                this::handleCourseMateListSelect);
+        courseMateListPanelPlaceholder.getChildren().add(courseMateListPanel.getRoot());
+
+        courseMateDetailPanel = new CourseMateDetailPanel(logic.getFilteredCourseMateList().get(0));
+        logic.setRecentlyProcessedCourseMate(logic.getFilteredCourseMateList().get(0));
+        courseMateDetailPanelPlaceholder.getChildren().add(courseMateDetailPanel.getRoot());
+
+        groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
+        groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getContactListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -163,8 +180,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public CourseMateListPanel getCourseMateListPanel() {
+        return courseMateListPanel;
     }
 
     /**
@@ -186,11 +203,23 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowCourseMate()) {
+                courseMateDetailPanel.loadCourseMate(logic.getRecentlyProcessedCourseMate());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Handles selection change in the course mate list panel.
+     */
+    public void handleCourseMateListSelect(CourseMate courseMate) {
+        logic.setRecentlyProcessedCourseMate(courseMate);
+        courseMateDetailPanel.loadCourseMate(courseMate);
     }
 }

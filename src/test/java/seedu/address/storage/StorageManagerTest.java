@@ -2,7 +2,8 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCourseMates.getTypicalContactList;
+import static seedu.address.testutil.TypicalGroups.getTypicalGroupList;
 
 import java.nio.file.Path;
 
@@ -11,8 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ContactList;
+import seedu.address.model.GroupList;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyGroupList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +27,10 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonContactListStorage contactListStorage = new JsonContactListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonGroupListStorage groupListStorage = new JsonGroupListStorage(getTempFilePath("groups"));
+        storageManager = new StorageManager(contactListStorage, userPrefsStorage, groupListStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +52,38 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void contactListReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonContactListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonContactListStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ContactList original = getTypicalContactList();
+        storageManager.saveContactList(original);
+        ReadOnlyContactList retrieved = storageManager.readContactList().get();
+        assertEquals(original, new ContactList(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getContactListFilePath() {
+        assertNotNull(storageManager.getContactListFilePath());
     }
 
+    @Test
+    public void groupListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonGroupListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonGroupListStorageTest} class.
+         */
+        GroupList original = getTypicalGroupList();
+        storageManager.saveGroupList(original);
+        ReadOnlyGroupList retrieved = storageManager.readGroupList().get();
+        assertEquals(original, new GroupList(retrieved));
+    }
+
+    @Test
+    public void getGroupListFilePath() {
+        assertNotNull(storageManager.getGroupListFilePath());
+    }
 }

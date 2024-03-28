@@ -1,0 +1,40 @@
+@startuml
+'!include style.puml
+
+skinparam FontColor #FFFFFF
+skinparam FontSize 15
+skinparam FontName Arial
+
+skinparam arrowThickness 1.1
+
+skinparam ArrowFontStyle bold
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+
+class "EventHandler<KeyEvent>" as KeyEventHandler <<interface>>
+
+class "EventHandler<PressEvent>" as PressEventHandler <<interface>>
+
+CourseMateListClickHandler .up.|> KeyEventHandler
+
+CourseMateListPressHandler .up.|> PressEventHandler
+
+
+class "ListView<CourseMate>" as ListView
+
+ListView "0..1" <-up-> "*" CourseMateListClickHandler
+
+ListView "0..1" <-up-> "*" CourseMateListPressHandler
+
+CourseMateListSelectHandler "0..1" <-up- "*" CourseMateListClickHandler
+
+CourseMateListSelectHandler "0..1" <-up- "*" CourseMateListPressHandler
+
+@enduml
