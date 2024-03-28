@@ -19,15 +19,12 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindStarsLessThanCommand;
-import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
-import seedu.address.model.student.StarsLessThanPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
@@ -75,7 +72,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " name " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -91,18 +88,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
-    @Test
-    public void parseCommand_findtag() throws Exception {
-        FindTagCommand cmd = (FindTagCommand) parser.parseCommand(FindTagCommand.COMMAND_WORD + " fren");
-        assertEquals(new FindTagCommand("fren"), cmd);
-    }
-
-    @Test
-    public void parseCommand_findStarsLessThan() throws Exception {
-        FindStarsLessThanCommand command = (FindStarsLessThanCommand) parser.parseCommand(
-                FindStarsLessThanCommand.COMMAND_WORD + " 2");
-        assertEquals(new FindStarsLessThanCommand(new StarsLessThanPredicate(2)), command);
-    }
     @Test
     public void parseCommand_sort() throws Exception {
         SortCommand command = (SortCommand) parser.parseCommand(

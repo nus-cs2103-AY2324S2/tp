@@ -34,7 +34,7 @@ You can reach us at the email `e0959970@u.nus.edu`
 
 <img src="images/r-laksh.png" height="200px">
 
-[[github](http://github.com/r-laksh)] 
+[[github](http://github.com/r-laksh)]
 [[portfolio](team/r-laksh.md)]
 
 * Role: Developer

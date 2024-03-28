@@ -316,6 +316,37 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Student Comments
+
+#### Feature Proposal
+
+This feature is an extension of the 'Stars' feature. When a TA gives a student stars, they can also leave a comment to explain why the Student received them. Each instance of a user giving stars (with optional comments) can be stored by Student.
+
+![Proposed Class diagram](images\StarCommentModelClassDiagram.png).
+
+#### Command Format
+
+Users will be able to add comments to a student by using the `star` command:
+
+Usage: `star INDEX s/STARS [c/COMMENT]`
+
+the `edit` command will also be extended to allow users to edit the comments.
+
+Usage: `edit INDEX ...c/INDEX2 COMMENT...`
+
+The command will edit the comment at the student with index `INDEX` with comment index `INDEX2`. 
+
+#### UI Modifications
+
+**Alternative 1**
+* Users will be able to view the comments they have left for each student in a separate **window**. The components of the window will track changes to the student comments in the model.
+
+**Alternative 2**
+* Users will be able to view the comments they have left for each student in a separate display in the same window. 
+
+
+![Proposed UI](images\StarCommentUiClassDiagram.png).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -401,8 +432,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  TA requests to add a student in the list
-2. TA includes the relevant student's info 
+1. TA requests to add a student in the list
+2. TA includes the relevant student's info
 3. ClassMonitor adds the student
 
     Use case ends.
@@ -410,9 +441,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. TA did not follow the correct format as stated in the instructions.
-  * 2a1. ClassMonitor shows an error message. 
+* 2a1. ClassMonitor shows an error message.
 
-    Use case ends.
+  Use case ends.
 
 **Use case: Add a tag to a student**
 
@@ -527,13 +558,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  All user operations should be completed within 100 milliseconds.
 5.  The project must adhere to a bi-weekly iterative development schedule, ensuring continuous delivery or improvement of a working product every two weeks.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS 
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Course**: A course with a program and syllabus. e.g. CS2030S
 * **Tutorial Group (TG)**: A group of students from a particular course. e.g. G13
 * **Teaching Assistant (TA)**: A tutor attached to class

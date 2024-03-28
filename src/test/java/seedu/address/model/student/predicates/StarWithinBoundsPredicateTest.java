@@ -1,4 +1,4 @@
-package seedu.address.model.student;
+package seedu.address.model.student.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,18 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.StudentBuilder;
 
-public class StarsLessThanPredicateTest {
+public class StarWithinBoundsPredicateTest {
     @Test
     public void equals() {
 
-        StarsLessThanPredicate firstPredicate = new StarsLessThanPredicate(1);
-        StarsLessThanPredicate secondPredicate = new StarsLessThanPredicate(2);
+        StarWithinBoundsPredicate firstPredicate = new StarWithinBoundsPredicate("<", 1);
+        StarWithinBoundsPredicate secondPredicate = new StarWithinBoundsPredicate("<", 2);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        StarsLessThanPredicate firstPredicateCopy = new StarsLessThanPredicate(1);
+        StarWithinBoundsPredicate firstPredicateCopy = new StarWithinBoundsPredicate("<", 1);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -33,21 +33,21 @@ public class StarsLessThanPredicateTest {
     }
 
     @Test
-    public void test_starsLessThan_returnsTrue() {
-        StarsLessThanPredicate predicate = new StarsLessThanPredicate(1);
+    public void test_starWithinBounds_returnsTrue() {
+        StarWithinBoundsPredicate predicate = new StarWithinBoundsPredicate("<", 1);
         assertTrue(predicate.test(new StudentBuilder().withStar(0).build()));
     }
 
     @Test
-    public void test_starsLessThan_returnsFalse() {
-        StarsLessThanPredicate predicate = new StarsLessThanPredicate(1);
+    public void test_starWithinBounds_returnsFalse() {
+        StarWithinBoundsPredicate predicate = new StarWithinBoundsPredicate("<", 1);
         assertFalse(predicate.test(new StudentBuilder().withStar(1).build()));
     }
 
     @Test
     public void toStringMethod() {
-        StarsLessThanPredicate predicate = new StarsLessThanPredicate(1);
-        String expected = StarsLessThanPredicate.class.getCanonicalName() + "{upper bound: " + "=1}";
+        StarWithinBoundsPredicate predicate = new StarWithinBoundsPredicate("<", 1);
+        String expected = StarWithinBoundsPredicate.class.getCanonicalName() + "{value" + "=1}";
         assertEquals(expected, predicate.toString());
     }
 }

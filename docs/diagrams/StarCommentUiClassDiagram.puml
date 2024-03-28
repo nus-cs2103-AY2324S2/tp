@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+' style.uml hides all class members, hence we show them using
+' the following commands
+show members
+hide empty members
+skinparam ClassAttributeFontColor #FFFFFF
+
+package UI <<Rectangle>>{
+    Class "<<interface>>\nUi" as Ui
+    Class "{abstract}\nUiPart" as UiPart
+    Class UiManager
+    Class MainWindow
+    Class CommentWindow
+    Class StarCommentCard
+    class "Other window\ncomponents" as Others #0f401c
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+Ui -[hidden]left-> UiPart
+Others -[hidden]left-> UiPart
+
+UiManager .up.|> Ui
+UiManager -down-> "1" MainWindow
+
+MainWindow -down-> "*" CommentWindow
+MainWindow -down-> Others
+CommentWindow -down-> "*" StarCommentCard
+
+MainWindow -up-|> UiPart
+CommentWindow -up-|> UiPart
+StarCommentCard -up-|> UiPart
+
+UiManager -right-> Logic
+MainWindow -right-> Logic
+
+CommentWindow ..> Model
+StarCommentCard .right.> Model
+
+@enduml
