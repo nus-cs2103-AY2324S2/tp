@@ -25,6 +25,9 @@ public class SuggestMateCommand extends Command {
             + "Parameters: NAME (cannot be empty and must already exist)\n"
             + "Example: " + COMMAND_WORD + "CS2103T";
 
+    public static final String MESSAGE_NO_UNCOMPLETED_SKILLS = "All required skills have already been fulfilled. "
+            + "Consider adding what skills you're looking for?";
+
     private final Name groupName;
 
     public SuggestMateCommand(Name groupName) {
@@ -42,13 +45,13 @@ public class SuggestMateCommand extends Command {
             Set<Skill> uncompletedSkills = group.uncompletedSkills();
 
             if (uncompletedSkills.isEmpty()) {
-                // return "all required skills have already been fulfilled. consider adding what skills you're looking for?"
+                return new CommandResult(MESSAGE_NO_UNCOMPLETED_SKILLS);
             }
 
             HasRequiredSkillsPredicate predicate = new HasRequiredSkillsPredicate(memberList, uncompletedSkills);
             model.updateFilteredCourseMateList(predicate);
             return new CommandResult(
-                    String.format(Messages.MESSAGE_GROUPS_LISTED_OVERVIEW, model.getFilteredGroupList().size()));
+                    String.format(Messages.MESSAGE_COURSE_MATES_LISTED_OVERVIEW, model.getFilteredCourseMateList().size()));
         } catch (GroupNotFoundException exception) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_NAME, exception);
         }
