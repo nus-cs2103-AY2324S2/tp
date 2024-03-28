@@ -28,7 +28,7 @@ Designed for efficiency, NAB enables quick access to patient records, streamline
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar addressbook`.jar.<br>
+4. Open a command terminal, For Windows users, search for `cmd` in the Start menu and run it as an administrator if necessary. Use the `cd` command to navigate to the folder where you placed the jar file. Run the application by executing `java -jar nab.jar`.<br>
    Shortly, a GUI resembling the following should display, including some sample input to get you started:<br>
    ![Ui](images/Ui.png)
    <br>
