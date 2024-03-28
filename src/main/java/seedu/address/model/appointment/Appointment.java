@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Person;
 
 /**
  * Appointment class that describes an appointment
@@ -68,7 +69,7 @@ public class Appointment {
      * @param appointmentDate Date to check validity of
      * @return boolean if appointment is valid or not
      */
-    private boolean isValidAppointment(AppointmentDate appointmentDate) {
+    public boolean isValidAppointment(AppointmentDate appointmentDate) {
         AppointmentDate currentDate = new AppointmentDate(LocalDate.now());
         return appointmentDate.compareTo(currentDate) > -1;
     }
@@ -115,6 +116,18 @@ public class Appointment {
                 && appt.getDoctorNric().equals(this.getDoctorNric())
                 && appt.getPatientNric().equals(this.getPatientNric())
                 && appt.getAppointmentDate().equals(this.getAppointmentDate());
+    }
+
+    /**
+     * Checks if the given {@code Person} is associated with this appointment either as a doctor or a patient.
+     *
+     * @param person The {@code Person} to check if associated with this appointment.
+     * @return {@code true} if the person's NRIC matches either the doctor's NRIC or the patient's NRIC,
+     *         {@code false} otherwise.
+     */
+    public boolean appointmentContainsPerson(Person person) {
+        return person.getNric().equals(this.doctorNric)
+                || person.getNric().equals(this.patientNric);
     }
 
     @Override

@@ -126,11 +126,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code AddressBook} and removes all appointments
+     * which involve Person {@code key}, both patient and doctor.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
+        List<Appointment> appointmentsToDelete = getAppointmentByPerson(key);
+        appointmentsToDelete.forEach(appointments::remove);
         persons.remove(key);
+    }
+
+    public List<Appointment> getAppointmentByPerson(Person person) {
+        return appointments.contains(person);
     }
 
     public void addAppointment(Appointment appointment) {
