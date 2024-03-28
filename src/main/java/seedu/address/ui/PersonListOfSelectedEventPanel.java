@@ -18,7 +18,6 @@ import seedu.address.model.person.Person;
  */
 public class PersonListOfSelectedEventPanel extends UiPart<Region> {
     private static final String FXML = "PersonListOfSelectedEventPanel.fxml";
-
     private final Logger logger = LogsCenter.getLogger(PersonListOfSelectedEventPanel.class);
 
     @FXML
