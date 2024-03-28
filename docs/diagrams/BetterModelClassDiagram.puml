@@ -20,4 +20,6 @@ Person *--> Email
 Person *--> Address
 Person *--> Grade
 Person *--> Subject
+Person *--> Attendance
+Person *--> Payment
 @enduml
