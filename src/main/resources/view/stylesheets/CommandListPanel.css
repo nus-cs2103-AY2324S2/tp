@@ -1,8 +1,12 @@
 .command-container {
-    -fx-background-color: #6b6a6a; /* Light grey background */
+    -fx-background-color: #1190fd; /* Light grey background */
     -fx-padding: 5 8 5 8;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
+}
+
+.list-view .label {
+    -fx-text-fill: white;
 }
 
 .command-label {
@@ -13,6 +17,7 @@
 
 .description-label {
     -fx-font-size: 12px;
+    -fx-text-fill: black;
     -fx-padding: 5 0 5 5;
 }
 

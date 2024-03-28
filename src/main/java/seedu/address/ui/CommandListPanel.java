@@ -32,6 +32,9 @@ public class CommandListPanel extends UiPart<Region> {
         loadCommands();
     }
 
+    /**
+     * Populates the command list view with a set of predefined commands.
+     */
     private void loadCommands() {
         ObservableList<CommandInfo> commandList = FXCollections.observableArrayList(
                 new CommandInfo("list", "Lists all contact"),
@@ -45,7 +48,8 @@ public class CommandListPanel extends UiPart<Region> {
                 new CommandInfo("view", "Views all consultations"),
                 new CommandInfo("update", "Updates a consultation"),
                 new CommandInfo("cancel", "Cancels a consultation"),
-                new CommandInfo("search", "Search a consultation")
+                new CommandInfo("search", "Search a consultation"),
+                new CommandInfo("theme", "Changes the current theme")
         );
 
         commandListView.setItems(commandList);
@@ -53,7 +57,8 @@ public class CommandListPanel extends UiPart<Region> {
     }
 
     /**
-     * Initalizes the CommandListPanel object.
+     * Initializes the command list panel by loading its CSS stylesheet.
+     * If the stylesheet cannot be found, a warning is logged.
      */
     @FXML
     public void initialize() {
@@ -73,7 +78,7 @@ public class CommandListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code CommandInfo}.
      */
-    class CommandListViewCell extends ListCell<CommandInfo> {
+    static class CommandListViewCell extends ListCell<CommandInfo> {
         @Override
         protected void updateItem(CommandInfo commandInfo, boolean empty) {
             super.updateItem(commandInfo, empty);
