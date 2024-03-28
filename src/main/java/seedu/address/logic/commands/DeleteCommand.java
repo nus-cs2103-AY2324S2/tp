@@ -35,6 +35,16 @@ public class DeleteCommand extends Command {
     private final UniqueId uid;
 
     /**
+     * Null constructor for DeleteCommand
+     */
+    public DeleteCommand() {
+        this.targetIndex = null;
+        this.targetName = null;
+        this.uid = null;
+    }
+
+
+    /**
      * Constructor for index-based deletion
      *
      * @param targetIndex index of the employee in the filtered employee list to
@@ -112,7 +122,7 @@ public class DeleteCommand extends Command {
      * @return the result of the command
      * @throws CommandException if the employee is not found
      */
-    private CommandResult deleteByName(Model model) throws CommandException {
+    CommandResult deleteByName(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
         List<Employee> employeesWithTargetName = new ArrayList<>();
 
@@ -175,7 +185,11 @@ public class DeleteCommand extends Command {
                 && otherDeleteCommand.uid != null
                 && uid.equals(otherDeleteCommand.uid);
 
-        return isIndexEqual || isUidEqual;
+        boolean isNameEqual = targetName != null
+                && otherDeleteCommand.targetName != null
+                && targetName.equalsIgnoreCase(otherDeleteCommand.targetName);
+
+        return isIndexEqual || isUidEqual || isNameEqual;
     }
 
     @Override

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,8 @@ public class FilterCommandTest {
     @Test
     public void execute_validFilter_success() {
         Employee testEmployee = new EmployeeBuilder().withName("Alice").build();
-        ModelStub modelStub = new ModelStubWithEmployee(testEmployee);
+
+        ModelStub modelStub = new ModelStubWithEmployee(Collections.singletonList(testEmployee));
 
         Predicate<Employee> predicate = employee -> employee.getName().equals(testEmployee.getName());
         FilterCommand filterCommand = new FilterCommand(predicate, "Name: Alice");

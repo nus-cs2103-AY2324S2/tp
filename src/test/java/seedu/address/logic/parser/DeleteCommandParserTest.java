@@ -30,13 +30,25 @@ public class DeleteCommandParserTest {
     }
 
     @Test
+    public void parse_validName_returnsDeleteCommand() {
+        String validName = "John Doe";
+        DeleteCommand expectedCommand = new DeleteCommand(validName);
+        assertParseSuccess(parser, validName, expectedCommand);
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_emptyArgs_throwsParseException() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_specialCharacterArgs_throwsParseException() {
+        assertParseFailure(parser, "$", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -46,7 +58,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_missingUid_throwsParseException() {
-        assertParseFailure(parser, "uid", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "uid/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -59,6 +71,33 @@ public class DeleteCommandParserTest {
         assertParseSuccess(parser, "uid/" + validUid, expectedCommand);
     }
 
+    @Test
+    public void parseDeleteByUniqueId_invalidUidFormat_throwsParseException() {
+        DeleteCommandParser parser = new DeleteCommandParser();
+
+        // UID format without digits
+        assertThrows(ParseException.class, () -> parser.parse("uid/abc"));
+
+        // UID format with special characters
+        assertThrows(ParseException.class, () -> parser.parse("uid/123!@#"));
+
+        // No UID after the prefix
+        assertThrows(ParseException.class, () -> parser.parse("uid/"));
+    }
+
+    @Test
+    public void parseDeleteByName_invalidNameFormat_throwsParseException() {
+        DeleteCommandParser parser = new DeleteCommandParser();
+
+        // Name with numbers
+        assertThrows(ParseException.class, () -> parser.parse("John Doe1"));
+
+        // Name with special characters
+        assertThrows(ParseException.class, () -> parser.parse("John@Doe"));
+
+        // Empty string after trim
+        assertThrows(ParseException.class, () -> parser.parse("   "));
+    }
 
     @Test
     public void parse_invalidUid_throwsParseException() {

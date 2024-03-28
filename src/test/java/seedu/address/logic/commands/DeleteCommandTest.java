@@ -11,17 +11,31 @@ import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelStubWithEmployee;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.employee.Address;
+import seedu.address.model.employee.Email;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.employee.Name;
+import seedu.address.model.employee.Phone;
+import seedu.address.model.employee.Role;
+import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -122,6 +136,101 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_invalidUid_throwsParseException() {
+        UniqueId invalidUid = new UniqueId("-1");
+        DeleteCommand deleteCommand = new DeleteCommand(invalidUid);
+
+        assertThrows(CommandException.class, () -> deleteCommand.execute(model));
+    }
+
+    @Test
+    void execute_noTargetIndexNameOrUid_throwsCommandException() {
+        // Arrange
+        ModelStubWithEmployee model = new ModelStubWithEmployee(new ArrayList<>());
+        DeleteCommand deleteCommand = new DeleteCommand();
+
+        assertThrows(CommandException.class, () -> deleteCommand.execute(model));
+    }
+
+    @Test
+    void deleteByName_multipleEmployeesWithSameName_throwsCommandException() {
+        // Arrange
+        Name name = new Name("John Doe");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("123 Main Street");
+        Team team = new Team("A");
+        Role role = new Role("Developer");
+        Set<Tag> tags = new HashSet<>();
+        UniqueId uid1 = new UniqueId("1");
+        UniqueId uid2 = new UniqueId("2");
+
+        Employee employee1 = new Employee(name, phone, email, address, team, role, tags, uid1);
+        Employee employee2 = new Employee(name, phone, email, address, team, role, tags, uid2);
+
+        ModelStubWithEmployee model = new ModelStubWithEmployee(Arrays.asList(employee1, employee2));
+
+        DeleteCommand deleteCommand = new DeleteCommand(name.fullName);
+
+        // Act and Assert
+        assertThrows(CommandException.class, () -> deleteCommand.deleteByName(model));
+    }
+
+    @Test
+    public void equals_differentTypesOfDeletionCommands() {
+        DeleteCommand deleteByIndexCommand = new DeleteCommand(INDEX_FIRST_EMPLOYEE);
+        DeleteCommand deleteByNameCommand = new DeleteCommand("John Doe");
+        DeleteCommand deleteByUidCommand = new DeleteCommand(new UniqueId("1"));
+
+        // Different types of DeleteCommand should not be equal
+        assertFalse(deleteByIndexCommand.equals(deleteByNameCommand));
+        assertFalse(deleteByIndexCommand.equals(deleteByUidCommand));
+        assertFalse(deleteByNameCommand.equals(deleteByUidCommand));
+    }
+
+    @Test
+    public void execute_emptyName_throwsCommandException() {
+        String emptyName = "";
+        DeleteCommand deleteCommand = new DeleteCommand(emptyName);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
+    @Test
+    public void equals_nullNameAndUid() {
+        DeleteCommand deleteByNameCommand = new DeleteCommand((String) null);
+        DeleteCommand deleteByUidCommand = new DeleteCommand((UniqueId) null);
+
+        // A DeleteCommand with null name or UID should not be equal to any other DeleteCommand
+        assertFalse(deleteByNameCommand.equals(new DeleteCommand("John Doe")));
+        assertFalse(deleteByUidCommand.equals(new DeleteCommand(new UniqueId("1"))));
+
+        // A DeleteCommand with null name or UID should be equal to itself
+        assertTrue(deleteByNameCommand.equals(deleteByNameCommand));
+        assertTrue(deleteByUidCommand.equals(deleteByUidCommand));
+    }
+
+    @Test
+    public void equals_sameNameDifferentCase() {
+        DeleteCommand deleteCommandLowercase = new DeleteCommand("john doe");
+        DeleteCommand deleteCommandUppercase = new DeleteCommand("JOHN DOE");
+
+        // Commands with the same name in different cases should be considered equal
+        assertTrue(deleteCommandLowercase.equals(deleteCommandUppercase));
+    }
+
+    // Ensure that the DeleteCommand with a targetName correctly identifies an empty string as an invalid targetName
+    @Test
+    public void execute_nullOrEmptyName_throwsCommandException() {
+        DeleteCommand deleteCommandWithNullName = new DeleteCommand((String) null);
+        DeleteCommand deleteCommandWithEmptyName = new DeleteCommand("");
+
+        assertThrows(CommandException.class, () -> deleteCommandWithNullName.execute(model));
+        assertThrows(CommandException.class, () -> deleteCommandWithEmptyName.execute(model));
+    }
+
 
     @Test
     public void equals() {

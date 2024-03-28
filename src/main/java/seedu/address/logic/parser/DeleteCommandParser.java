@@ -35,8 +35,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Index index = ParserUtil.parseIndex(trimmedArgs);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
-            // If parsing the index fails, rethrow the exception with a message specific to DeleteCommand
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            // If parsing the index fails, try to parse as a name
+            return parseDeleteByName(trimmedArgs);
         }
     }
 
@@ -54,5 +54,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
         UniqueId uid = new UniqueId(splitArgs[1]);
         return new DeleteCommand(uid);
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand
+     * and returns a DeleteCommand object for execution.
+     * @param name Name of the employee to be deleted
+     * @return DeleteCommand object for execution
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private DeleteCommand parseDeleteByName(String name) throws ParseException {
+        if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
+        return new DeleteCommand(name);
     }
 }
