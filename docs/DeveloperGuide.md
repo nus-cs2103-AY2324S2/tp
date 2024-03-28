@@ -281,14 +281,14 @@ The add interview mechanism is facilitated by `AddInterviewCommand`. They all ex
 `interviewer` phone number, `date` of interview, `startTime` as well as `endTime`. An `Interview` is created then added to the list. 
 AddInterviewCommand implements the following operations:
 
-* `AddInterviewCommand#excute()`  —  Adds the encapsulated `Interview` to the list.
+* `AddInterviewCommand#execute()`  —  Adds the encapsulated `Interview` to the list.
 
 The above `excute` operation utilises `ModelManager#updateFilteredPersonList()` implemented from the Model interface to obtain the list of `applicant` and `interviewer` phone numbers.
-This is followed by checking the correctness of the phone numbers before creating an `Interview` object to be added into the interview list. The operation `excute` then utilises
+This is followed by checking the validity of the phone numbers before creating an `Interview` object to be added into the interview list. The operation `excute` then utilises
 `ModelManager#addInterview()` implemented from the Model to add the `Interview` to the list. The operation `excute` also utilises `ModelManager#sortInterview()` to the `interview` objects by `date`, `startTime` and `endTime`.
 
 The following class diagram summarizes the organisation of the `AddInterviewCommand`:
-
+<puml src="diagrams/add-interviews/AddInterviewCommandClass.puml"/>
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time and executes `add_applicant n/Wesley p/81159858 e/ywesley16@gmail.com`. An applicant `Wesley` is initialised.
@@ -306,6 +306,8 @@ Note:
 * When incorrect phone numbers are entered, it will result in a `CommandException` indicating which phone number is incorrect.
 
 The following sequence diagram shows demonstrates step 3:
+
+<puml src="diagrams/add-interviews/AddInterviewCommandSequence.puml"/>
 
 #### Design considerations:
 

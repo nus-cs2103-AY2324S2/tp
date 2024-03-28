@@ -31,8 +31,8 @@
       <FlowPane fx:id="tags" />
       <FlowPane fx:id="status" />
       <Label fx:id="phone" prefHeight="19.0" prefWidth="110.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" prefHeight="27.0" prefWidth="109.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="remark" prefHeight="27.0" prefWidth="183.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$remark" />
+      <Label fx:id="email" prefHeight="27.0" prefWidth="200.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="remark" prefHeight="27.0" prefWidth="200.0" style="-fx-font-size: 18;" styleClass="cell_small_label" text="\$remark" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
