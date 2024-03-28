@@ -41,10 +41,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOBMAINTAINER;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddMaintainerCommand;
-import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Commission;
@@ -54,8 +55,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Skill;
 import seedu.address.testutil.MaintainerBuilder;
-
-import java.util.ArrayList;
 
 public class AddMaintainerCommandParserTest {
     private AddMaintainerCommandParser parser = new AddMaintainerCommandParser();

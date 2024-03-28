@@ -42,10 +42,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOBSTAFF;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddStaffCommand;
-import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -55,9 +56,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Salary;
 import seedu.address.model.person.Staff;
 import seedu.address.testutil.StaffBuilder;
-
-import java.util.ArrayList;
-
 
 public class AddStaffCommandParserTest {
     private AddStaffCommandParser parser = new AddStaffCommandParser();

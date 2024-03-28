@@ -41,9 +41,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.BOBSUPPLIER;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.messages.Messages;
 import seedu.address.model.person.Address;
@@ -54,8 +55,6 @@ import seedu.address.model.person.Price;
 import seedu.address.model.person.Product;
 import seedu.address.model.person.Supplier;
 import seedu.address.testutil.SupplierBuilder;
-
-import java.util.ArrayList;
 
 public class AddSupplierCommandParserTest {
     private AddSupplierCommandParser parser = new AddSupplierCommandParser();
