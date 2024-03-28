@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -46,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_NOTE + "NOTE]"
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT]"
             + "[" + PREFIX_TAG + "TAG] ...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -55,7 +57,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -103,7 +104,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Note updatedNote = personToEdit.getNote();
+        Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Appointment> updatedAppointments = editPersonDescriptor
                 .getAppointments().orElse(personToEdit.getAppointments());
@@ -170,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointments);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, note, tags, appointments);
         }
 
         public void setName(Name name) {
@@ -207,6 +208,10 @@ public class EditCommand extends Command {
 
         public void setNote(Note note) {
             this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
         }
 
         /**
@@ -257,6 +262,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(note, otherEditPersonDescriptor.note)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(appointments, otherEditPersonDescriptor.appointments);
         }
@@ -268,6 +274,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("note", note)
                     .add("appointments", appointments)
                     .add("tags", tags)
                     .toString();
