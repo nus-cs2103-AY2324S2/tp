@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,17 +12,21 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Meeting> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,13 +39,14 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -75,7 +81,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -111,10 +117,19 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Meeting Related =============================================================================
+    @Override
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -123,9 +138,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
     }
 
     @Override
@@ -143,6 +169,35 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    // =========== Meeting Instance Accessors =============================================================
+    @Override
+    public void deleteAllMeetingsForClient(Index clientIndex) {
+        Person targetClient = filteredPersons.get(clientIndex.getZeroBased());
+        targetClient.setMeetings(new ArrayList<Meeting>());
+    }
+
+    @Override
+    public void deleteSpecificMeetingForClient(Index clientIndex, Index meetingIndex) {
+        Person targetClient = addressBook.getPersonList().get(clientIndex.getZeroBased());
+        ArrayList<Meeting> targetClientMeetings = targetClient.getMeetings();
+        Meeting targetMeeting = targetClientMeetings.get(meetingIndex.getZeroBased());
+        addressBook.deleteMeeting(targetMeeting);
+        targetClientMeetings.remove(meetingIndex.getZeroBased());
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasMeeting(meeting);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        addressBook.setMeeting(target, editedMeeting);
     }
 
 }

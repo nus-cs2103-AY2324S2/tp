@@ -35,6 +35,10 @@ public class ArgumentMultimap {
         argMultimap.put(prefix, argValues);
     }
 
+    public Map<Prefix, List<String>> getMap() {
+        return this.argMultimap;
+    }
+
     /**
      * Returns the last value of {@code prefix}.
      */

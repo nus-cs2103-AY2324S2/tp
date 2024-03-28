@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -14,6 +16,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
@@ -27,6 +30,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
 
+    private ArrayList<Meeting> meetings;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -36,6 +41,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        meetings = new ArrayList<>();
     }
 
     /**
@@ -88,7 +94,16 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
-
+    /**
+     * Adds a meeting to the person that we are building.
+     */
+    public PersonBuilder withMeeting(Meeting meeting) {
+        this.meetings.add(meeting);
+        return this;
+    }
+    /**
+     * Builds the person with the meetings.
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }

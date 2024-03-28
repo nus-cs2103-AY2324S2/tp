@@ -17,6 +17,11 @@
     -fx-opacity: 1;
 }
 
+.title_label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #FFFFFF;
+}
+
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
@@ -329,6 +334,10 @@
 }
 
 #filterField, #personListPanel, #personWebpage {
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+}
+
+#filterField, #meetingListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

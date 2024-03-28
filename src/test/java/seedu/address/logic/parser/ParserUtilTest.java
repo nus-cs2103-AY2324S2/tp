@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -192,5 +193,29 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseClientIndex_validValue() throws Exception {
+        Index expectedIndex = Index.fromOneBased(1);
+        assertEquals(expectedIndex, ParserUtil.parseClientIndex("1"));
+    }
+
+    @Test
+    public void parseMeetingIndex_validValue() throws Exception {
+        Index expectedIndex = Index.fromOneBased(1);
+        assertEquals(expectedIndex, ParserUtil.parseMeetingIndex("1"));
+    }
+
+    @Test
+    public void parseClientIndex_invalidValue() throws Exception {
+        Index expectedIndex = Index.fromOneBased(1);
+        assertThrows(ParseException.class, () -> ParserUtil.parseClientIndex("-1"));
+    }
+
+    @Test
+    public void parseMeetingIndex_invalidValue() throws Exception {
+        Index expectedIndex = Index.fromOneBased(1);
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeetingIndex("-1"));
     }
 }

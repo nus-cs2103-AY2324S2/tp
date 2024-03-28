@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +11,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -34,6 +38,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -121,4 +126,53 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String description} into a {@code String}.
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Meeting.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDescription;
+    }
+
+    /**
+     * Parses {@code String oneBasedIndex} into a {@code Index}.
+     */
+    public static Index parseClientIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code String oneBasedIndex} into a {@code Index}.
+     */
+    public static Index parseMeetingIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+        * Parses a {@code String dateTime} into a {@code LocalDateTime}.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        if (!Meeting.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(Meeting.MESSAGE_INVALID_DATE_TIME);
+        }
+        LocalDateTime parsedDateTime = LocalDateTime.parse(trimmedDateTime, formatter);
+        return parsedDateTime;
+    }
+
 }

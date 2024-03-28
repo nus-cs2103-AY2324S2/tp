@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Jerome Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaejayrome.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jaejayrome)]
+[[portfolio](team/timothy)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Model
 
-### Jane Doe
+### Timothy Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/timothysashimi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/timothysashimi)]
+[[portfolio](team/timothy)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: UI
 
-### Johnny Doe
+### Kenneth Seet
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/itstrueitstrueitsrealitsreal.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/itstrueitstrueitsrealitsreal)] [[portfolio](team/kenneth.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Project Management
 
-### Jean Doe
+### Teo Hong Rui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sethteo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sethteo)]
+[[portfolio](team/hongrui.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: UI
 
-### James Doe
+### Chew Zi Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chewbum.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chewbum)]
+[[portfolio](team/timothy)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: Model

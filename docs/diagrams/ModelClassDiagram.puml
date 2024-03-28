@@ -14,6 +14,8 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
+Class UniqueMeetingList
+Class Meeting
 Class Address
 Class Email
 Class Name
@@ -42,6 +44,10 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" Meeting
+
+AddressBook *--> "1" UniqueMeetingList
+UniqueMeetingList --> "~* all" Meeting
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -50,5 +56,33 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+Person "1" -- "0..*" Meeting
+' AddMeetingCommand Class and its relation to Meeting
+Class AddMeetingCommand {
+    +execute(): CommandResult
+}
+
+' ViewMeetingCommand Class and its relation to Meeting
+Class ViewMeetingCommand {
+    +execute(): CommandResult
+}
+
+' EditMeetingCommand Class and its relation to Meeting
+Class EditMeetingCommand {
+    +execute(): CommandResult
+}
+
+' DeleteMeetingCommand Class and its relation to Meeting
+Class DeleteMeetingCommand {
+    +execute(): CommandResult
+}
+
+AddMeetingCommand ..up> Meeting : creates
+ViewMeetingCommand ..up> Meeting : views
+EditMeetingCommand ..up> Meeting : edits
+DeleteMeetingCommand ..up> Meeting : deletes
+
+
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Meeting
 @enduml
