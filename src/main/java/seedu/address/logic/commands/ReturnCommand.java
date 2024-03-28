@@ -27,7 +27,7 @@ public class ReturnCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_BOOKLIST + "Likes to swim.";
 
-    public static final String MESSAGE_RETURN_BOOK_SUCCESS = "Removed book from Person: %1$s";
+    public static final String MESSAGE_RETURN_BOOK_SUCCESS = "Removed book: %1$s from Person: %2$s";
 
     private final Index index;
     private final Book book;
@@ -68,16 +68,17 @@ public class ReturnCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.addBook(book);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(book, editedPerson));
     }
 
     /**
      * Generates a command execution success message when book title is successfully removed
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_RETURN_BOOK_SUCCESS, personToEdit);
+    private String generateSuccessMessage(Book book, Person personToEdit) {
+        return String.format(MESSAGE_RETURN_BOOK_SUCCESS, book, personToEdit);
     }
 
     @Override
