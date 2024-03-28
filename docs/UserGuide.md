@@ -1,4 +1,7 @@
-# Using FriendFolio
+---
+layout: page
+title: Using FriendFolio
+---
 
 ***Welcome to FriendFolio!***
 
@@ -30,31 +33,32 @@ In essence, this user guide isn't just a manual – it's your key to unlocking t
 
 ***A Quick Overview***
 
-FriendFolio is a **desktop CLI(Command Line Interface)-optimized app with intuitive GUI(Graphical User Interface) elements** for managing contacts which can **track both your finances and your friends’ availabilities**, with a singular focus to **eliminate or minimize the number of times users are left stumped** on splitting a bill between friends.
+FriendFolio is a **desktop CLI (Command Line Interface)-optimized app** with intuitive GUI (Graphical User Interface) elements for managing contacts which can **track both your finances** and your **friends’ availabilities**, with a singular focus of streamlining student life by simplifying tasks like splitting bills between friends, ensuring users can effortlessly manage their finances and social engagements.
 
 **Table of Contents:**
 
-1. Getting Started
-2. Useful Features
+1. [Getting Started](#getting-started)
+2. [Useful Features](#features)
     1. Dashboard (Coming Soon)
     2. Finding Availabilities (Coming Soon)
     3. Commands
-        1. `help` command
-        2. `add` command
-        3. `list` command
-        4. `edit` command
-        5. `find` command
-        6. `delete` command
-        7. `clear` command
-        8. `exit` command
-        9. `remark` command
-        10. `filter` command
-    4. Saving Data Files
-    5. Editing Data Files
+        1. [`Help` Command](#viewing-help-help)
+        2. [`Add` Command](#adding-a-person-add)
+        3. [`List` Command](#listing-all-persons-list)
+        4. [`Edit` Command](#editing-a-person-edit)
+        5. [`Find` Command](#locating-persons-by-name-find)
+        6. [`Delete` Command](#deleting-a-person-delete)
+        7. [`Split` Command](#splitting-an-amount-owed-split)
+        8. [`Sort` Command](#sorting-contacts-sort)
+        9. [`Clear` Command](#clearing-all-entries-clear)
+        10. [`Exit` Command](#exiting-the-program-exit)
+
+    4. [Saving Data Files](#saving-the-data)
+    5. [Editing Data Files](#editing-the-data-file)
     6. Exporting Data (Coming soon)
-3. FAQs
-4. Known Issues
-5. Command Summary
+3. [FAQs](#faq)
+4. [Known Issues](#known-issues)
+5. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -83,17 +87,6 @@ FriendFolio is a **desktop CLI(Command Line Interface)-optimized app with intuit
     * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
-
-- [Help Command](#viewing-help-help)
-- [Add Command](#adding-a-person-add)
-- [List Command](#listing-all-persons-list)
-- [Edit Command](#editing-a-person-edit)
-- [Find Command](#locating-persons-by-name-find)
-- [Delete Command](#deleting-a-person-delete)
-- [Split Command](#splitting-an-amount-owed-split)
-- [Sort Command](#sorting-contacts-sort)
-- [Clear Command](#clearing-all-entries-clear)
-- [Exit Command](#exiting-the-program-exit)
 
 --------------------------------------------------------------------------------------------------------------------
 
