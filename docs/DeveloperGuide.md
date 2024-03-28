@@ -239,6 +239,36 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Sorting contact list
+
+This feature allows users to sort their addressbook based on various information, namely, name, company
+name, interview time, salary and priority. This feature leverages on the built-in `ObservableList` provided by JavaFX.
+The sorting is done by creating classes that implements the Comparator<T> interface.
+* `PersonCompanyNameComparator.java`
+* `PersonInterviewTimeComparator.java`
+* `PersonNameComparator.java`
+* `PersonPriorityComparator.java`
+* `PersonSalaryComparator.java`
+
+These comparators are referenced in the `SortCommandParser`. In the `SortCommandParser` each comparator will be assigned
+a static integer based on the CLI Syntax from the userInput. The string is that parsed and assigned an integer from 
+**1 - 4** which are pre-assigned to a comparator.
+
+#### Overview of SortCommand
+![sort_overview_2.png](images%2Fsort_overview_2.png)<br>
+Based on the image above:
+* Step 1: User inputs `sort pri/` which calls the `execute()` function in the `LogicManager` object.
+  * `pri/` is an added CLI Syntax to refer to priority which is an added attribute to `Person` class.
+* Step 2: `LogicManager` calls the `parseCommand()` function in `AddressBookParser` object which interprets the `sort`
+<br> command word and creates a `SortCommandParser` object.
+* Step 3: The `SortCommandParser` object then parses `pri/` and create the `SortCommand` object.
+  * `SortCommand` constructor takes in an **Integer**  and `SortCommandParser` already pre-assigns `pri/` to 0.
+* Step 4: `LogicManager` then executes the command.
+* Step 5: `SortCommand` will call `updateSortedPersonList()` from the `Model` object which has a reference to the
+`AddressBook` which contains the `UniquePersonList` object. The `UniquePersonList` then sorts it based on the
+comparator.
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -262,33 +292,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* computing professionals looking for job openings
+* has a need to manage a significant number of company contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: User will be able to manage and schedule interview contacts, timings and job listings from a 
+centralised location. Also manage contacts faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                     | I want to …​                                     | So that I can…​                                                    |
+|----------|-----------------------------|--------------------------------------------------|--------------------------------------------------------------------|
+| `* * *`  | Computer science job seeker | delete features                                  | delete information where necessary                                 |
+| `* * *`  | Computer science job seeker | add contact information of interviewer / company | contact the interviewer / company                                  |
+| `* * *`  | Computer science job seeker | add salary range                                 | check the salary range of the job                                  |
+| `* * *`  | Computer science job seeker | add company name                                 | check which company the job is from                                |
+| `* * *`  | Computer science job seeker | add interview time                               | check what is the interview time                                   |
+| `* *`    | Computer science job seeker | add programming language(s) related to the job   | identify which programming language(s) is/are required for the job |
+| `* *`    | Computer science job seeker | add job responsibilities                         | check what are the job responsibilities for the job                |
+| `* *`    | Computer science job seeker | categorise job postings according to industry    | filter information based on the different types of industries      |
+| `*`      | Computer science job seeker | receive notifications when I get a new interview | stay up-to-date with the interview offers and attend them          |
+| `*`      | Computer science job seeker | track the status of my job application           | follow up with any actions when necessary                          |
+| `*`      | Computer science job seeker | receive reminders for my interview timings       | be reminded about the interview                                    |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+
+---
 
 **Use case: Delete a person**
 
@@ -313,20 +351,110 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+---
+
+**Use case: Add a Contact with Detailed Information**
+
+**MSS**
+
+1. The user decides to add a new contact to their address book.
+2. The user inputs the add command followed by the contact's details in the format: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]….
+3. CCBot validates the input details.
+4. CCBot adds the new contact to the address book, assigning it a unique identifier within the system.
+5. CCBot displays a confirmation message to the user indicating the successful addition of the new contact.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the user enters invalid details (e.g., incorrect format, missing mandatory fields like name or phone number):
+   * 3a1. CCBot shows an error message indicating the validation failure and the correct format of the command.
+
+      Use case resumes at step 2.
+*a. At any time, User chooses to cancel the addition.
+    *a1.  CCBot requests to confirm cancellation
+    *a2. User confirms the cancellation
+    Use case ends.
+---
+
+**Use case: Add Salary Range to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the salary or salary range info to their address book.
+2. User inputs the 'add' command with the salary detail in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the salary information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the salary detail is invalid:
+   * 3a1. CCBot shows an error message indicating the validation failure and the correct format of the command.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Add the Company’s Name to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the company’s name info to their address book.
+2. User inputs the 'add' command with the company’s name in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the company’s name information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the company’s name is bigger than 100 characters:
+   * 3a1. CCBot shows an error message indicating the validation failure and the limit characters number.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: Add Programming Language to a Contact**
+
+**MSS**
+
+1. The user decides to add a new contact with the programming language  info to their address book.
+2. User inputs the 'add' command with the programming language detail in the correct format.
+3. System validates the salary format and range.
+4. System adds or updates the programming language information for the contact and displays a success message.
+
+      Use case ends.
+
+**Extensions**
+
+* 3a. If the  programming language detail is invalid:
+   * 3a1. CCBot shows an error message indicating the validation failure and an error message about the format or character limit.
+
+      Use case resumes at step 2.
+
+---
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  User Interface should be intuitive enough for users to easily add interview dates and salaries.
+5.  System should be able to cater to various date formats given by users.
+6.  System should be able to handle a minimum of 100 contacts
 
 *{More to be added}*
 
 ### Glossary
 
+* **Computer Science job seeker** : Student / Unemployed / Working adult seeking employment opportunities in the field of Computer Science
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Private contact detail**: A contact detail that is not meant to be shared with others 
 
 --------------------------------------------------------------------------------------------------------------------
 

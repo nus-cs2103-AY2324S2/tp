@@ -18,6 +18,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_INVALID_SORT_COMMAND_INDEX = "Invalid sort command index";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -43,8 +44,18 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
+                .append("; Interview Date and Time: ")
+                .append(person.getDateTime())
+                .append("; Salary: ")
+                .append(person.getSalary())
+                .append("$")
+                .append(person.getInfo())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Programming Languages: ");
+        person.getProgrammingLanguages().forEach(builder::append);
+        builder.append("; Priority: ")
+                .append(person.getPriority());
         return builder.toString();
     }
 
