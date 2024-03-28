@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDICES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.List;
@@ -25,13 +24,15 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a note to a person identified by the index number used in the displayed person list.\n"
+            + "Note may only contain alphanumeric characters basic punctuation "
+            + "(periods, commas, exclamation marks, question marks)\n"
             + "Parameters:"
-            + PREFIX_INDICES + "INDEX (must be a positive integer) "
+            + " INDEX (must be a positive integer) "
             + PREFIX_NOTE + "NOTE\n"
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_INDICES + "1 "
-            + PREFIX_NOTE + "Asked a question regarding test cases";
+            + "1 "
+            + PREFIX_NOTE + "Asked a question regarding test cases.";
 
     public static final String MESSAGE_SUCCESS = "New note added to %1$s.\nNote: %2$s";
     private static final Logger logger = Logger.getLogger(AddNoteCommand.class.getName());

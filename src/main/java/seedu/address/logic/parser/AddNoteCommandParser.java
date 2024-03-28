@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDICES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.stream.Stream;
@@ -22,16 +22,23 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddNoteCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_INDICES, PREFIX_NOTE);
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDICES, PREFIX_NOTE)
-                || !argMultimap.getPreamble().isEmpty()) {
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE);
+
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_INDICES, PREFIX_NOTE);
-
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDICES).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NOTE);
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
 
         return new AddNoteCommand(index, note);
