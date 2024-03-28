@@ -32,7 +32,7 @@ public class OrderTest {
         assertTrue(order.equals(order));
 
         // same values -> returns true
-        Order orderCopy = new Order(order.getDate(), order.getRemark(), order.getStatus());
+        Order orderCopy = new Order(order.getDate(), order.getRemark());
         assertTrue(order.equals(orderCopy));
 
         // different types -> returns false
@@ -47,10 +47,6 @@ public class OrderTest {
 
         // different remark -> returns false
         differentOrder = new Order(new Date("2010-01-01"), order.getRemark());
-        assertFalse(order.equals(differentOrder));
-
-        // different status -> returns false
-        differentOrder = new Order(order.getDate(), order.getRemark(), new Status("Arrived"));
         assertFalse(order.equals(differentOrder));
     }
 

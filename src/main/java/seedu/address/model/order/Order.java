@@ -8,7 +8,6 @@ import static java.util.Objects.requireNonNull;
 public class Order {
     private final Date arrivalDate;
     private final Remark remark;
-    private final Status status;
 
     /**
      * Constructs a {@code Order}.
@@ -22,23 +21,6 @@ public class Order {
 
         this.arrivalDate = arrivalDate;
         this.remark = remark;
-        this.status = new Status("Pending");
-    }
-
-    /**
-     * Constructs a {@code Order}.
-     *
-     * @param arrivalDate a valid date of the order.
-     * @param remark a valid remark of the order.
-     * @param status a valid status of the order.
-     */
-    public Order(Date arrivalDate, Remark remark, Status status) {
-        requireNonNull(arrivalDate);
-        requireNonNull(remark);
-
-        this.arrivalDate = arrivalDate;
-        this.remark = remark;
-        this.status = status;
     }
 
     public Date getDate() {
@@ -47,10 +29,6 @@ public class Order {
 
     public Remark getRemark() {
         return remark;
-    }
-
-    public Status getStatus() {
-        return status;
     }
 
     @Override
@@ -65,20 +43,19 @@ public class Order {
         }
 
         Order otherOrder = (Order) other;
-        return arrivalDate.equals(otherOrder.arrivalDate) && remark.equals(otherOrder.remark)
-                && status.equals(otherOrder.status);
+        return arrivalDate.equals(otherOrder.arrivalDate) && remark.equals(otherOrder.remark);
     }
 
     @Override
     public int hashCode() {
-        return arrivalDate.hashCode() + remark.hashCode() + status.hashCode();
+        return arrivalDate.hashCode() + remark.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return String.format("[%s (by: %s, status: %s)]", remark, arrivalDate, status);
+        return String.format("[%s (by: %s)]", remark, arrivalDate);
     }
 
 }
