@@ -18,6 +18,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Grade
 Person *--> Attendance
 Person *--> Payment
 @enduml
