@@ -336,6 +336,12 @@ Let's start off with knowing how you can add an internship entry with all the re
   * A **positive integer** refers to 1, 2, 3, …​
 * The field `LOCATION_ENUM` accepts only the following inputs: `remote`, `local`, `overseas`
 
+**Successful Output After Executing Add:** <br>
+![success-add](images/add/add-success.png)
+
+**Unsuccessful Output After Executing Add:** <br>
+![success-add](images/add/add-failure.png)
+
 <div markdown="span" class="alert alert-info">
 ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to add an internship entry !
 </div>
@@ -357,13 +363,20 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list of internship entries at point of deletion.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+**Successful Output After Executing Delete:** <br>
+![success-delete](images/delete/delete-success.png)
+
+**Unsuccessful Output After Executing Delete:** <br>
+![success-failure](images/delete/delete-failure.png)
+
 <div markdown="span" class="alert alert-info">
 ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to delete an internship entry !
 </div>
 
+
 <div markdown="span" class="alert alert-danger">
 ⚠️ **Common errors:** <br>
-1. If no field prefixes are specified or if there are errors, the command will be rejected with error message: `Invalid Command Prefix!`
+1. If there are errors, the command will be rejected. Refer to the error message for the correct format to use!
 </div>
 
 ### Listing all internships: `list`
