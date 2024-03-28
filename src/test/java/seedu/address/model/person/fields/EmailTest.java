@@ -83,23 +83,23 @@ public class EmailTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
+    public void of_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Email.of((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsIllegalArgumentException() {
+    public void of_invalidValue_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> Email.of(INVALID_EMAIL));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void of_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, Email.of(VALID_EMAIL));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+    public void of_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, Email.of(emailWithWhitespace));
@@ -110,10 +110,13 @@ public class EmailTest {
         Email email = new Email("valid@email");
 
         // same values -> returns true
-        assertTrue(email.equals(new Email("valid@email")));
+        Email email2 = new Email("valid@email");
+        assertTrue(email.equals(email2));
+        assertEquals(email.hashCode(), email2.hashCode());
 
         // same object -> returns true
         assertTrue(email.equals(email));
+        assertEquals(email.hashCode(), email.hashCode());
 
         // null -> returns false
         assertFalse(email.equals(null));
@@ -122,6 +125,8 @@ public class EmailTest {
         assertFalse(email.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(email.equals(new Email("other.valid@email")));
+        Email otherEmail = new Email("other.valid@email");
+        assertFalse(email.equals(otherEmail));
     }
+
 }

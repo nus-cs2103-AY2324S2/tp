@@ -49,12 +49,15 @@ public class AppParametersTest {
     @Test
     public void equals() {
         AppParameters appParameters = new AppParameters();
+        AppParameters appParameters2 = new AppParameters();
 
         // same values -> returns true
-        assertTrue(appParameters.equals(new AppParameters()));
+        assertTrue(appParameters.equals(appParameters2));
+        assertEquals(appParameters.hashCode(), appParameters2.hashCode());
 
         // same object -> returns true
         assertTrue(appParameters.equals(appParameters));
+        assertEquals(appParameters.hashCode(), appParameters.hashCode());
 
         // null -> returns false
         assertFalse(appParameters.equals(null));
@@ -86,4 +89,5 @@ public class AppParametersTest {
             return Collections.unmodifiableMap(namedParameters);
         }
     }
+
 }

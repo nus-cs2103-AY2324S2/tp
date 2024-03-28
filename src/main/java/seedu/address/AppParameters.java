@@ -15,6 +15,7 @@ import seedu.address.commons.util.ToStringBuilder;
  * Represents the parsed command-line parameters given to the application.
  */
 public class AppParameters {
+
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
 
     private Path configPath;
@@ -61,7 +62,7 @@ public class AppParameters {
 
     @Override
     public int hashCode() {
-        return configPath.hashCode();
+        return Objects.hash(configPath); // supports null values
     }
 
     @Override
@@ -70,4 +71,5 @@ public class AppParameters {
                 .add("configPath", configPath)
                 .toString();
     }
+
 }

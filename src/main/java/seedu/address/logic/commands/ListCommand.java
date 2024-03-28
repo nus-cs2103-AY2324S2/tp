@@ -21,4 +21,5 @@ public class ListCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return MESSAGE_SUCCESS;
     }
+
 }

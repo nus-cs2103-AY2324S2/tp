@@ -10,18 +10,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.asset.Asset;
-import seedu.address.model.exceptions.AddressBookUndoException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the address-book level.
+ * Saves states between modifications to allow undo/redo.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
-    private final UniquePersonList persons = new UniquePersonList();
+
     @JsonIgnore
-    private final Stack<UniquePersonList> undoList = new Stack<>();
+    public static final String MESSAGE_UNDO_STACK_EMPTY = "There are no previous AddressBook states to return to.";
+    @JsonIgnore
+    public static final String MESSAGE_REDO_STACK_EMPTY = "There are no previous undo commands to reverse.";
+    @JsonIgnore
+    private final Stack<UniquePersonList> undoStack = new Stack<>();
+    @JsonIgnore
+    private final Stack<UniquePersonList> redoStack = new Stack<>();
+
+    private final UniquePersonList persons = new UniquePersonList();
 
     public AddressBook() {
     }
@@ -33,33 +42,63 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPersons(toBeCopied.getPersonList());
     }
 
-    //// list overwrite operations
+    //// undo & redo operations
+
+    /**
+     * Makes a copy of persons, and stores it into {@code stack}.
+     */
+    private void savePersonsTo(Stack<UniquePersonList> stack) {
+        UniquePersonList savedList = new UniquePersonList();
+        savedList.setPersons(persons);
+        stack.add(savedList);
+    }
 
     /**
      * Makes a copy of persons, and stores it in personsList.
      */
     private void save() {
-        UniquePersonList savedList = new UniquePersonList();
-        savedList.setPersons(persons);
-        undoList.add(savedList);
+        redoStack.clear();
+        savePersonsTo(undoStack);
     }
 
     /**
      * Returns true if there are states to reverse to.
      */
     public boolean canUndo() {
-        return !undoList.empty();
+        return !undoStack.empty();
     }
 
     /**
      * Undoes the latest change to address book.
      */
     public void undo() {
-        if (undoList.empty()) {
-            throw new AddressBookUndoException();
+        if (undoStack.empty()) {
+            throw new AddressBookException(MESSAGE_UNDO_STACK_EMPTY);
         }
-        persons.setPersons(undoList.pop());
+        savePersonsTo(redoStack);
+        persons.setPersons(undoStack.pop());
     }
+
+    /**
+     * Returns true if there are undo states to reverse.
+     */
+    public boolean canRedo() {
+        return !redoStack.empty();
+    }
+
+    /**
+     * Reverses the latest undo command.
+     * Does not reverse if a modifying command is executed after undo command.
+     */
+    public void redo() {
+        if (redoStack.empty()) {
+            throw new AddressBookException(MESSAGE_REDO_STACK_EMPTY);
+        }
+        savePersonsTo(undoStack);
+        persons.setPersons(redoStack.pop());
+    }
+
+    //// list overwrite operations
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -173,4 +212,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

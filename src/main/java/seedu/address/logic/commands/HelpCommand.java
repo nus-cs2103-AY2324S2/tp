@@ -17,4 +17,5 @@ public class HelpCommand extends Command {
     public String execute(Model model) {
         return Messages.MESSAGE_SHOWING_HELP;
     }
+
 }

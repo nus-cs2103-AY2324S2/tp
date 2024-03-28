@@ -18,6 +18,7 @@ import seedu.address.model.person.Person;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -94,6 +95,16 @@ public class ModelManager implements Model {
     @Override
     public void undo() {
         addressBook.undo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return addressBook.canRedo();
+    }
+
+    @Override
+    public void redo() {
+        addressBook.redo();
     }
 
     @Override

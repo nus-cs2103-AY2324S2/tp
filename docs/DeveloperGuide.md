@@ -151,47 +151,51 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Undo/Redo feature
 
-#### Proposed Implementation
+The undo/redo mechanism is implemented within `AddressBook.java` by saving the entire `persons` list. It uses an undo and a redo stack to maintain the history. Additionally, it implements the following operations:
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+* `AddressBook#save()` — Copies the current `persons` list into the `undoStack`.
+* `AddressBook#undo()` — Restores the previous `persons` list state from the `undoStack`.
+* `AddressBook#redo()` — Restores a previously undone `persons` list state from the `redoStack`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`save()` is used within the `AddressBook` class methods, saving only when the persons list is about to be modified. `save()` is set to be private to prevent potential misuse from other classes, and Law of Demeter violations.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+`undo` and `redo` are exposed in the `Model` interface as `Model#undo()`, `Model#redo()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `persons` list will be initialized with the initial address book state (State 0), with the `undoStack` and `redoStack` empty.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls several other functions until it calls `save()`. This causes the state of the `persons` list **before** the `delete 5` command is executed (State 0) to be saved into the `undoStack`. The 5th person is then removed from the `persons` list (State 1).
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `save()`, causing another `persons` list state (State 1) to be saved into the `undoStack`, before adding the person (State 2).
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, or if the command does not modify `persons` list, it will not call `save()`, so the `persons` list state will not be saved into the `undoStack`.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will:
+1. Copy the `persons` list (State 2) into the `redoStack`.
+2. Pop the latest `persons` list state (State 1) from the `undoStack`.
+3. Copy this popped state (State 1) into the `persons` list.
+
+Notice that the states are copied into the `persons` list instead of replacing it, resulting in the exact same object being used. This is to prevent synchronization issues and to reduce coupling with the GUI, allowing the GUI to use this same list object throughout the program's life.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+**Note:** If the `undoStack` is empty, then there are no previous `persons` list states to restore. The `undo` command uses `Model#canUndo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </box>
 
@@ -209,40 +213,98 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redo()`, which will:
+1. Copy the `persons` list into the `undoStack`.
+2. Pop the latest `persons` list state from the `redoStack`.
+3. Copy this popped state into the `persons` list.
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `redoStack` is empty, then there are no previously undone `persons` list states to restore. The `redo` command uses `Model#canRedo()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the `persons` list, such as `list`, will usually not call `AddressBook#save()`, `Model#undo()` or `Model#redo()`. Thus, the `undoStack` and `redoStack` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `AddressBook#save()`.
+Since there are still states in the `redoStack`, all states in the `redoStack` will be removed.
+
+Reason: It no longer makes sense to redo the `add n/David …​` command and ignore the `clear` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command (excluding undo & redo):
 
-<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
+<puml src="diagrams/SaveActivityDiagram.puml" width="250" />
 
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (selected choice):** Save the entire address book as objects.
+    * Pros:
+      * Easy to implement.
+      * Unlikely to have bugs.
+    * Cons:
+      * May have performance issues in terms of memory usage.
+</li>
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Save the entire address book into storage as JSON files.
+    * Pros:
+      * Saves history between different program launches.
+    * Cons:
+      * May have performance issues with many storage accesses.
+      * Increases coupling as `Model` will now need a reference to `Storage`.
+</li>
 
-_{more aspects and alternatives to be added}_
+* **Alternative 3:** Save the entire address book as a JSON `String` in RAM.
+    * Pros:
+      * Reduces memory footprint as only 1 String is used as compared to a many objects per Person.
+      * Faster than JSON files as there are no accesses to storage.
+    * Cons:
+      * May have performance issues as it has to be deserialized each time.
+</li>
+
+* **Alternative 4:** Each command implements their own specific `undo()` and `redo()` methods
+    * Pros:
+      * Will use less memory (e.g. for `delete`, just save the person being deleted).
+      * Best performance.
+    * Cons:
+      * We must ensure that the implementation of each individual `undo` command is correct.
+        This would be especially difficult for commands that modify multiple people at once (e.g. `asset` editing commands)
+</li>
+
+**Aspect: Data structure used to store undo & redo states:**
+
+* **Alternative 1 (selected choice):** 2 Stacks.
+    * Pros:
+      * Easy to implement.
+      * Simple data structure.
+      * Easy to clear all redo states.
+    * Cons:
+      * May have performance issues if many redo states are cleared at once.
+</li>
+
+* **Alternative 2:** ArrayList, using pointers for current state and redo limit.
+    * Pros:
+      * Redo states no longer have to be cleared, as they are tracked by pointers and can be replaced at indexes as needed.
+    * Cons:
+      * Harder to implement.
+      * `add()` and `set()` have to be used appropriately to prevent synchronization issues.
+      * Pointers have to be carefully implemented.
+</li>
+
+* **Alternative 3:** LinkedList.
+    * Pros:
+      * Fast in dropping many nodes after a specified index.
+      * Simple data structure.
+    * Cons:
+      * Time-consuming to implement: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index.
+        Hence a custom data structure would have to be used in order to quickly drop nodes after a certain index.
+        There would be no benefits of using a LinkedList here otherwise.
+</li>
 
 ### \[Proposed\] Data archiving
 

@@ -151,4 +151,5 @@ public class Person {
                 .add("assets", assets)
                 .toString();
     }
+
 }

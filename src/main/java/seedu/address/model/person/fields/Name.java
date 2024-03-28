@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Represents a Person's name in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValid(String)}
  */
 public class Name implements Field {
 

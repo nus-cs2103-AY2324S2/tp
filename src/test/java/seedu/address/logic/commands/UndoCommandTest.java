@@ -74,4 +74,5 @@ public class UndoCommandTest {
         // no more to undo
         assertCommandFailure(undoCommand, model, UndoCommand.MESSAGE_UNDO_EXCEPTION);
     }
+
 }

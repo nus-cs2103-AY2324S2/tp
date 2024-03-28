@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.exceptions.AddressBookUndoException;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -40,8 +40,20 @@ public class AddressBookTest {
     }
 
     @Test
-    public void undo_noUndoRemaining_throwsAddressBookUndoException() {
-        assertThrows(AddressBookUndoException.class, addressBook::undo);
+    public void undo_noUndoRemaining_throwsAddressBookException() {
+        assertThrows(AddressBookException.class, AddressBook.MESSAGE_UNDO_STACK_EMPTY, addressBook::undo);
+    }
+
+    @Test
+    public void redo_redoRemaining_success() {
+        addressBook.addPerson(ALICE);
+        addressBook.undo();
+        assertDoesNotThrow(addressBook::redo);
+    }
+
+    @Test
+    public void redo_noRedoRemaining_throwsAddressBookException() {
+        assertThrows(AddressBookException.class, AddressBook.MESSAGE_REDO_STACK_EMPTY, addressBook::redo);
     }
 
     @Test
@@ -94,6 +106,18 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        assertTrue(addressBook.equals(addressBook));
+        assertEquals(addressBook.hashCode(), addressBook.hashCode());
+
+        assertFalse(addressBook.equals(null));
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(ALICE);
+        assertFalse(addressBook.equals(addressBook2));
     }
 
     @Test

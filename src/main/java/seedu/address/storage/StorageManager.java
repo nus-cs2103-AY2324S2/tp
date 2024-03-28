@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -18,9 +17,10 @@ import seedu.address.storage.exceptions.StorageException;
  * Manages storage of AddressBook data in local storage.
  */
 public class StorageManager implements Storage {
+
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final AddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -84,25 +84,22 @@ public class StorageManager implements Storage {
      * address book.
      */
     @Override
-    public ReadOnlyAddressBook readInitialAddressBook() {
-        logger.info("Using data file : " + getAddressBookFilePath());
-
+    public ReadOnlyAddressBook readInitialAddressBook() throws DataLoadingException {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialAddressBook;
         try {
             addressBookOptional = readAddressBook();
             if (addressBookOptional.isEmpty()) {
                 logger.info("Creating a new data file " + getAddressBookFilePath()
                         + " populated with a sample AddressBook.");
             }
-            initialAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataLoadingException e) {
-            logger.warning("Data file at " + getAddressBookFilePath() + " could not be loaded."
-                    + " Will be starting with an empty AddressBook.");
-            initialAddressBook = new AddressBook();
+            String errorMessage = "Data file at " + getAddressBookFilePath() + " could not be loaded."
+                    + " Will be starting with an empty AddressBook.";
+            logger.warning(errorMessage);
+            throw new DataLoadingException(errorMessage);
         }
 
-        return initialAddressBook;
+        return addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
     }
 
 }
