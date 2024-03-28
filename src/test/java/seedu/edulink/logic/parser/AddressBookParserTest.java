@@ -21,10 +21,12 @@ import seedu.edulink.logic.commands.DeleteCommand;
 import seedu.edulink.logic.commands.EditCommand;
 import seedu.edulink.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edulink.logic.commands.ExitCommand;
+import seedu.edulink.logic.commands.ExportCommand;
 import seedu.edulink.logic.commands.FilterCommand;
 import seedu.edulink.logic.commands.FindCommand;
 import seedu.edulink.logic.commands.HelpCommand;
 import seedu.edulink.logic.commands.ListCommand;
+import seedu.edulink.logic.commands.UndoCommand;
 import seedu.edulink.logic.parser.exceptions.ParseException;
 import seedu.edulink.model.student.IdAndNameContainsQueryIdAndNamePredicate;
 import seedu.edulink.model.student.IdContainsQueryIdPredicate;
@@ -76,6 +78,11 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_export() throws Exception {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " f/test") instanceof ExportCommand);
+    }
+
+    @Test
     public void parseCommand_find() throws Exception {
         String queryName = "Oliver";
         String queryId = "A1234567X";
@@ -110,6 +117,12 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
     }
 
     @Test

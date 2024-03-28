@@ -3,6 +3,7 @@ package seedu.edulink.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.edulink.logic.commands.CommandTestUtil.VALID_ID_AMY;
 import static seedu.edulink.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.edulink.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.edulink.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -98,7 +99,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_nonExistentStudentIdUnfilteredList_throwsCommandException() {
-        Id nonExistentStudentId = new Id("A1234567Z");
+        Id nonExistentStudentId = new Id(VALID_ID_AMY);
         DeleteCommand deleteCommand = new DeleteCommand(nonExistentStudentId);
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_STUDENT_NOT_FOUND);
     }
@@ -162,7 +163,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethodForIndex() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";

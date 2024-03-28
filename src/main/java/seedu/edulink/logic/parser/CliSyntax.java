@@ -15,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_MAJOR = new Prefix("m/");
     public static final Prefix PREFIX_ID = new Prefix("id/");
     public static final Prefix PREFIX_INTAKE = new Prefix("in/");
+    public static final Prefix PREFIX_FILENAME = new Prefix("f/");
 }
