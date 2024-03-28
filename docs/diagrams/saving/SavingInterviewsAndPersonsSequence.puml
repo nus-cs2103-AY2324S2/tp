@@ -11,6 +11,7 @@ participant ":JsonSerializableAddressBook" as JsonSerializableAddressBook LOGIC_
 end box
 
 [-> LogicManager: execute(command)
+activate LogicManager
 
 LogicManager -> Model : getAddressBook()
 activate Model
