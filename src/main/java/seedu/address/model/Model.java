@@ -5,13 +5,16 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -35,27 +38,41 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' netconnect file path.
      */
-    Path getAddressBookFilePath();
+    Path getNetConnectFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' netconnect file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setNetConnectFilePath(Path netConnectFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces netconnect data with the data in {@code netConnect}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    void setNetConnect(ReadOnlyNetConnect netConnect);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns the NetConnect
+     */
+    ReadOnlyNetConnect getNetConnect();
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the netconnect.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same id as {@code Id} exists in
+     * the netconnect.
+     */
+    boolean hasId(Id id);
+
+    /**
+     * Returns the Person with the given {@code Id}.
+     */
+    Person getPersonById(Id id);
 
     /**
      * Deletes the given person.
@@ -72,16 +89,27 @@ public interface Model {
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Exports the data from the address book as a CSV file with the specified filename.
+     * Returns {@code true} if the export operation is successful, {@code false} otherwise.
+     */
+    boolean exportCsv(String filename);
 }

@@ -1,16 +1,18 @@
 ---
-layout: page
-title: "Tutorial: Adding a command"
+  layout: default.md
+  title: "Tutorial: Adding a command"
+  pageNav: 3
 ---
+
+# Tutorial: Adding a command
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
+This command allows users of the NetConnect application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
 We’ll assume that you have already set up the development environment as outlined in the Developer’s Guide.
-
 
 ## Create a new `remark` command
 
@@ -22,7 +24,7 @@ For now, let’s keep `RemarkCommand` as simple as possible and print some outpu
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
@@ -43,7 +45,7 @@ public class RemarkCommand extends Command {
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `NetConnectParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -57,13 +59,13 @@ Run `Main#main` and try out your new `RemarkCommand`. If everything went well, y
 
 While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw a `CommandException` to accurately reflect that our command is still a work in progress.
 
-![The relationship between RemarkCommand and Command](../images/add-remark/RemarkCommandClass.png)
+<puml src="../diagrams/add-remark/RemarkClass.puml" alt="The relationship between RemarkCommand and Command"/>
 
 Following the convention in other commands, we add relevant messages as constants and use them.
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
@@ -90,7 +92,7 @@ Let’s change `RemarkCommand` to parse input from the user.
 
 We start by modifying the constructor of `RemarkCommand` to accept an `Index` and a `String`. While we are at it, let’s change the error message to echo the values. While this is not a replacement for tests, it is an obvious way to tell if our code is functioning as intended.
 
-``` java
+```java
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 //...
 public class RemarkCommand extends Command {
@@ -142,13 +144,13 @@ Now let’s move on to writing a parser that will extract the index and remark f
 
 Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
-![The relationship between Parser and RemarkCommandParser](../images/add-remark/RemarkCommandParserClass.png)
+<puml src="../diagrams/add-remark/ParserClass.puml" alt="The relationship between Parser and RemarkCommandParser"/>
 
 Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.
 
 **`ArgumentTokenizer.java`:**
 
-``` java
+```java
 /**
  * Tokenizes an arguments string and returns an {@code ArgumentMultimap}
  * object that maps prefixes to their respective argument values. Only the
@@ -166,7 +168,7 @@ We can tell `ArgumentTokenizer#tokenize()` to look out for our new prefix `r/` a
 
 **`ArgumentMultimap.java`:**
 
-``` java
+```java
 /**
  * Returns the last value of {@code prefix}.
  */
@@ -181,7 +183,7 @@ This appears to be what we need to get a String of the remark. But what about th
 
 **`DeleteCommandParser.java`:**
 
-``` java
+```java
 Index index = ParserUtil.parseIndex(args);
 return new DeleteCommand(index);
 ```
@@ -192,7 +194,7 @@ Now that we have the know-how to extract the data that we need from the user’s
 
 **`RemarkCommandParser.java`:**
 
-``` java
+```java
 public RemarkCommand parse(String args) throws ParseException {
     requireNonNull(args);
     ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
@@ -212,11 +214,11 @@ public RemarkCommand parse(String args) throws ParseException {
 }
 ```
 
-<div markdown="span" class="alert alert-primary">
+<box type="info" seamless>
 
-:information_source: Don’t forget to update `AddressBookParser` to use our new `RemarkCommandParser`!
+Don’t forget to update `NetConnectParser` to use our new `RemarkCommandParser`!
 
-</div>
+</box>
 
 If you are stuck, check out the sample
 [here](https://github.com/se-edu/addressbook-level3/commit/dc6d5139d08f6403da0ec624ea32bd79a2ae0cbf#diff-8bf239e8e9529369b577701303ddd96af93178b4ed6735f91c2d8488b20c6b4a).
@@ -244,11 +246,10 @@ Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/s
 
 **`PersonCard.java`:**
 
-``` java
+```java
 @FXML
 private Label remark;
 ```
-
 
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
@@ -256,7 +257,7 @@ Then insert the following into [`main/resources/view/PersonListCard.fxml`](https
 
 **`PersonListCard.fxml`:**
 
-``` xml
+```xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
 ```
 
@@ -276,26 +277,25 @@ We change the constructor of `Person` to take a `Remark`. We will also need to d
 
 Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
 
-<div markdown="span" class="alert alert-primary">
+<box type="tip" seamless>
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
 
-</div>
+</box>
 
 Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998c37e65b92d35c91d28c7822cd139c2c0a5c) and check that you have got everything in order!
 
-
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+NetConnect stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
-<div markdown="span" class="alert alert-warning">
+<box type="warning" seamless>
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause AddressBook to default to an empty address book!
+You must delete NetConnect’s storage file located at `/data/netconnect.json` before running it! Not doing so will cause NetConnect to default to an empty address book!
 
-</div>
+</box>
 
 Check out [this commit](https://github.com/se-edu/addressbook-level3/commit/556cbd0e03ff224d7a68afba171ad2eb0ce56bbf)
 to see what the changes entail.
@@ -308,7 +308,7 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 
 **`PersonCard.java`:**
 
-``` java
+```java
 public PersonCard(Person person, int displayedIndex) {
     //...
     remark.setText(person.getRemark().value);
@@ -328,7 +328,7 @@ save it with `Model#setPerson()`.
 
 **`RemarkCommand.java`:**
 
-``` java
+```java
 //...
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
@@ -396,4 +396,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to NetConnect.

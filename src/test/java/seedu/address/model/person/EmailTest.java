@@ -80,7 +80,7 @@ public class EmailTest {
         assertFalse(email.equals(null));
 
         // different types -> returns false
-        assertFalse(email.equals(5.0f));
+        assertFalse(email.equals(0.5f));
 
         // different values -> returns false
         assertFalse(email.equals(new Email("other.valid@email")));

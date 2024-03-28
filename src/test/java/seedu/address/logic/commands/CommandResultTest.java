@@ -38,7 +38,6 @@ public class CommandResultTest {
     @Test
     public void hashcode() {
         CommandResult commandResult = new CommandResult("feedback");
-
         // same values -> returns same hashcode
         assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
 

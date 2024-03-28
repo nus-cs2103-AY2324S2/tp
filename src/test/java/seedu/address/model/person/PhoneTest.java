@@ -52,7 +52,7 @@ public class PhoneTest {
         assertFalse(phone.equals(null));
 
         // different types -> returns false
-        assertFalse(phone.equals(5.0f));
+        assertFalse(phone.equals(0.5f));
 
         // different values -> returns false
         assertFalse(phone.equals(new Phone("995")));

@@ -60,7 +60,7 @@ public class AppParametersTest {
         assertFalse(appParameters.equals(null));
 
         // different types -> returns false
-        assertFalse(appParameters.equals(5.0f));
+        assertFalse(appParameters.equals(0.5f));
 
         // different config path -> returns false
         AppParameters otherAppParameters = new AppParameters();
@@ -69,7 +69,7 @@ public class AppParametersTest {
     }
 
     private static class ParametersStub extends Application.Parameters {
-        private Map<String, String> namedParameters = new HashMap<>();
+        private final Map<String, String> namedParameters = new HashMap<>();
 
         @Override
         public List<String> getRaw() {
