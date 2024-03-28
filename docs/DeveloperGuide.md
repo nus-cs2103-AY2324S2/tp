@@ -162,13 +162,17 @@ This section describes some noteworthy details on how certain features are imple
 The `add` command allows users to add students' details into the list. 
 
 Given below is an example usage scenario of `add` command:
-* The user executes `add id/A0123456X n/John e/e0123456@u.nus.edu g/A gp/Group 1` command to add the student into the list. 
-* The `add` command calls `LogicManager#execute()`.
-* `LogicManager#execute()` would first invoke `AddressBookParser#parseCommand()`.
+
+Step 1. Assume the user has some existing students in the `UniquePersonList`.
+![AddState1](images/AddState1.png)
+
+Step 2. The user executes `add id/A0123456X n/John e/e0123456@u.nus.edu g/A` command to add the student into the list. 
+* The `add` command calls `LogicManager#execute()`. 
+* `LogicManager#execute()` would first invoke `AddressBookParser#parseCommand()`. 
 * `AddressBookParser#parseCommand()` will identifies the `add` command and calls `AddCommandParser#parse()` to parse the arguments accordingly.
 * `AddCommandParser#parse()` will return a `AddCommand` object which takes in a `Person` object. 
-* `LogicManager#execute()` invoke `AddCommand#execute()`.
-* Then, `model#addPerson` is called to add the person into the list.
+* `LogicManager#execute()` invoke `AddCommand#execute()`. Then, `model#addPerson` is called to add the person into the list.
+![AddState2](images/AddState2.png)
 
 Given below is the sequence diagram for `add` command:
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)

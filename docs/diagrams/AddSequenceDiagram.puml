@@ -14,7 +14,7 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add id/A0123456H n/John Doe e/e0456789@u.nus.edu g/A+")
+[-> LogicManager : execute("add id/A0123456X n/John e/e0123456@u.nus.edu g/A")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("add id/A0123456H n/John Doe e/e0456789@u.nus.edu g/A+")
