@@ -52,8 +52,7 @@
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       </HBox>
       <HBox spacing="5" alignment="TOP_LEFT">
-        <Label text="Note:" styleClass="cell_small_label" />
-        <Label fx:id="note" styleClass="cell_small_label" text="\$note" />
+        <Label fx:id="note" styleClass="cell_small_label" text="\$note"/>
       </HBox>
     </VBox>
   </GridPane>
