@@ -408,6 +408,16 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a person
+
+   1. Prerequisites: Open the application
+
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -425,10 +435,12 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### Saving data to JSON
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. _{ explain how the room number formatting requires dates }_
+   1. _{ tbc }_
 
 1. _{ more test cases …​ }_
