@@ -15,7 +15,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.attribute.Attribute;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -34,8 +36,10 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+        Attribute[] bensonCopyAttributes = BENSON.getAttributes().toArray(new Attribute[0]);
+        Person bensonCopy = new Person(bensonCopyAttributes);
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        assertEquals(bensonCopy, person.toModelType());
     }
 
     @Test

@@ -3,11 +3,16 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.relationship.Relationship;
+import seedu.address.model.person.relationship.RelationshipUtil;
+
+
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +21,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final RelationshipUtil relationships;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        relationships = new RelationshipUtil();
     }
 
     public AddressBook() {}
@@ -49,12 +56,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the relationship list with {@code relationships}.
+     * {@code relationships} must not contain duplicate relationships.
+     */
+    public void setRelationships(List<Relationship> relationships) {
+        this.relationships.setRelationships(relationships);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setRelationships(newData.getRelationshipList());
     }
 
     //// person-level operations
@@ -100,12 +115,38 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("relationships", relationships)
                 .toString();
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Relationship> getRelationshipList() {
+        return relationships.asUnmodifiableObservableList();
+    }
+
+    public void addRelationship(Relationship toAdd) {
+        relationships.addRelationship(toAdd);
+    }
+    public void deleteRelationship(Relationship toDelete) {
+        relationships.deleteRelationship(toDelete);
+    };
+    public boolean hasRelationship(Relationship toFind) {
+        return relationships.hasRelationship(toFind);
+    };
+    public boolean hasRelationshipWithDescriptor(Relationship toFind) {
+        return relationships.hasRelationshipWithDescriptor(toFind);
+    };
+    public String getExistingRelationship(Relationship toGet) {
+        return relationships.getExistingRelationship(toGet);
+    }
+
+    public void deleteRelationshipsOfPerson(UUID personUuid) {
+        relationships.deleteRelationshipsOfPerson(personUuid);
     }
 
     @Override
@@ -120,11 +161,42 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && relationships.equals(otherAddressBook.relationships);
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    public void deleteAttribute(String uuid, String attributeName) {
+        persons.deleteAttribute(uuid, attributeName);
+    }
+
+    public Person getPersonByUuid(UUID id) {
+        requireNonNull(id);
+        return persons.getPersonByUuid(id);
+    }
+
+    public UUID getFullUuid(String digits) {
+        requireNonNull(digits);
+        return persons.getFullUuid(digits);
+    }
+
+    /**
+     * Checks if the specified person identified by their UUID string has a particular attribute.
+     * This method requires both the UUID of the person and the name of the attribute to be non-null.
+     * It delegates the actual search to the {@code persons} data structure's {@code hasAttribute} method.
+     *
+     * @param uuidString The UUID of the person as a String. Must not be null.
+     * @param attributeName The name of the attribute to check for. Must not be null.
+     * @return {@code true} if the person has the specified attribute, {@code false} otherwise.
+     * @throws NullPointerException if either {@code uuidString} or {@code attributeName} is null.
+     */
+    public boolean hasAttribute(String uuidString, String attributeName) {
+        requireNonNull(uuidString);
+        requireNonNull(attributeName);
+        return persons.hasAttribute(uuidString, attributeName);
     }
 }

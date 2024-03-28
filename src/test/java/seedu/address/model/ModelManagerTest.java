@@ -7,21 +7,27 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.DOG;
+import static seedu.address.testutil.TypicalPersons.HOON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.relationship.Relationship;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
-
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
@@ -128,5 +134,132 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    void deleteAttribute_callsDeleteAttributeOnAddressBook() {
+        DOG.deleteAttribute("Name");
+        assertFalse(DOG.hasAttribute("Name"));
+    }
+
+    @Test
+    void getFullUuid_callsGetFullUuidOnAddressBook() {
+        modelManager.addPerson(ALICE);
+        UUID result = modelManager.getFullUuid(ALICE.getUuidString().substring(32, 36));
+        assertEquals(ALICE.getUuidString(), result.toString());
+    }
+
+    @Test
+    void getPersonByUuid_callsGetPersonByUuidOnAddressBook() {
+        modelManager.addPerson(HOON);
+        Person result = modelManager.getPersonByUuid(HOON.getUuid());
+        assertEquals(HOON, result);
+    }
+
+    @Test
+    void hasAttribute_callsHasAttributeOnAddressBook() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasAttribute(ALICE.getUuidString(), "Name"));
+    }
+
+    @Test
+    void deleteAttribute_test() {
+        modelManager.addPerson(HOON);
+        modelManager.deleteAttribute(HOON.getUuidString(), "Name");
+        assertFalse(HOON.hasAttribute("Name"));
+        HOON.setAttribute("Name", "Hoon Meier");
+    }
+
+    @Test
+    public void deleteRelationship_validRelationship_relationshipDeleted() {
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        modelManager.deleteRelationship(relationship);
+
+        assertFalse(modelManager.hasRelationship(relationship));
+    }
+
+    @Test
+    public void getExistingRelationship_validRelationship_relationshipReturned() {
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        modelManager.addRelationship(relationship);
+        String result = modelManager.getExistingRelationship(relationship);
+
+        assertEquals(relationship.toString(), result);
+    }
+
+    @Test
+    public void hasRelationshipWithDescriptor_validRelationship_trueReturned() {
+        // Create a new ModelManager
+        ModelManager modelManager = new ModelManager();
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Attribute[] attributes2 = new Attribute[]{name2};
+
+        // Adding dummy people for testing
+        Person person1 = new Person(attributes1);
+        Person person2 = new Person(attributes2);
+        UUID uuid11 = person1.getUuid();
+        UUID uuid22 = person2.getUuid();
+        // Create a test relationship
+        Relationship relationship = new Relationship(uuid11, uuid22, "family");
+
+        // Add the relationship to the model manager
+        modelManager.addRelationship(relationship);
+
+        // Check if the model manager has the relationship with the same descriptor
+        assertTrue(modelManager.hasRelationshipWithDescriptor(relationship));
+    }
+
+    @Test
+    public void setPerson_validPerson_personSet() {
+        // Create a ModelManager instance
+        ModelManager modelManager = new ModelManager();
+
+        // Create a person and add it to the ModelManager
+        Attribute name1 = new NameAttribute("Name", "John Doe");
+        Attribute[] attributes1 = new Attribute[]{name1};
+        Person person1 = new Person(attributes1);
+        modelManager.addPerson(person1);
+
+        // Create a new person with the same UUID but different attributes
+        Attribute name2 = new NameAttribute("Name", "Jane Doe");
+        Attribute[] attributes2 = new Attribute[]{name2};
+        Person editedPerson = new Person(attributes2);
+
+        // Set the person in the ModelManager
+        modelManager.setPerson(person1, editedPerson);
+    }
+
+    @Test
+    public void getFilteredRelationshipList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRelationshipList().remove(0));
     }
 }

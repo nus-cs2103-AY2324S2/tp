@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package "Person Management" #F4F6F6 {
+    abstract class Attribute {
+        - name: String
+        + Attribute(name: String)
+        + getValueAsString(): String
+        + getName(): String
+        + fromString(name: String, value: String): Attribute
+    }
+
+    class IntegerAttribute {
+        - value: int
+    }
+
+    class DateAttribute {
+        - value: LocalDate
+    }
+
+    class StringAttribute {
+        - value: String
+    }
+
+    IntegerAttribute --|> Attribute
+    DateAttribute --|> Attribute
+    StringAttribute --|> Attribute
+
+    class Person {
+        - uuid: UUID
+        - tags: Set<Tag>
+        - attributes: HashMap<String, Attribute>
+        + Person(Name, Phone, Email, Address, Set<Tag>)
+        + Person(Attribute[])
+        + Person(UUID, Name, Phone, Email, Address)
+        + Person(UUID, Attribute[])
+        + getUuid(): UUID
+        + getUuidString(): String
+        + hasAttribute(String): boolean
+        + getAttribute(String): Attribute
+        + updateAttribute(Attribute): void
+        + deleteAttribute(String): boolean
+        + equals(Object): boolean
+        + hashCode(): int
+        + toString(): String
+        + allAttributesAsString(): String
+        + getAttributes(): Set<Attribute>
+        + setAttribute(String, String): void
+    }
+
+    Attribute "0..*" <-- "1" Person
+}
+
+package "Storage" #F4F6F6 {
+    class JsonAdaptedPersonAttr {
+        - uuid: String
+        - attributes: List<JsonAdaptedAttribute>
+        + JsonAdaptedPersonAttr(String, List<JsonAdaptedAttribute>)
+        + JsonAdaptedPersonAttr(Person)
+        + toModelType(): Person
+        + getAttributes(): List<JsonAdaptedAttribute>
+    }
+
+    class JsonAdaptedAttribute {
+        + toModelType(): Attribute
+    }
+
+    JsonAdaptedPersonAttr --> "*" JsonAdaptedAttribute
+}
+
+package "UI" #F4F6F6 {
+    class PersonListPanel {
+        + update()
+    }
+
+    class PersonCard {
+        + display(Person)
+    }
+
+    PersonListPanel ..> PersonCard : displays
+}
+
+PersonListPanel ..> Person : updates based on
+PersonCard ..> Person : displays
+JsonAdaptedPersonAttr ..> Person : serializes/deserializes
+
+@enduml

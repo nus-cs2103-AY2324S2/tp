@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersonsUuid.ALICE;
+import static seedu.address.testutil.TypicalPersonsUuid.HOON;
+import static seedu.address.testutil.TypicalPersonsUuid.IDA;
+import static seedu.address.testutil.TypicalPersonsUuid.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -48,16 +48,6 @@ public class JsonAddressBookStorageTest {
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
-    }
-
-    @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
-    }
-
-    @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test

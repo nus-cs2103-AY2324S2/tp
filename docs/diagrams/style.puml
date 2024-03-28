@@ -33,6 +33,9 @@
 
 !define USER_COLOR #000000
 
+!define ATTRIBUTE_COLOR #FF0000
+!define RELATION_COLOR #000000
+
 skinparam Package {
     BackgroundColor #FFFFFF
     BorderThickness 1

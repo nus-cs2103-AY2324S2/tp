@@ -5,29 +5,34 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersonsUuid.ALICE_UUID;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddAttributeCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.relationship.AddRelationshipCommand;
+import seedu.address.logic.relationship.DeleteRelationshipCommand;
+import seedu.address.logic.relationship.EditRelationshipCommand;
+import seedu.address.logic.relationship.ListRelationshipTypesCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
 
 public class AddressBookParserTest {
 
@@ -35,9 +40,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Person person = new Person(new Attribute[0]);
+        person.updateAttribute(new NameAttribute("Name", "Amy Bee"));
+        AddCommand command = (AddCommand) parser.parseCommand(
+                AddCommand.COMMAND_WORD
+                        + " /Name Amy Bee");
+        HashMap<String, String> attributes = new HashMap<>();
+        attributes.put("Name", "Amy Bee");
+        assertEquals(new AddCommand(attributes), command);
     }
 
     @Test
@@ -49,17 +59,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                DeleteCommand.COMMAND_WORD + " " + ALICE_UUID);
+        assertEquals(new DeleteCommand(ALICE_UUID), command);
     }
 
     @Test
@@ -89,13 +90,57 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addAttribute() throws Exception {
+        String userInput = "addAttribute 4000 \\name John";
+        Command command = parser.parseCommand(userInput);
+
+        assertTrue(command instanceof AddAttributeCommand);
+    }
+
+    @Test
+    public void parseCommand_delAttribute() throws Exception {
+        String userInput = "deleteAttribute 4000 /name";
+        Command command = parser.parseCommand(userInput);
+
+        assertTrue(command instanceof DeleteAttributeCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
+                -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_editRelationship() throws Exception {
+        String userInput = "editRelation 1234 5678 family friend";
+        Command command = parser.parseCommand(userInput);
+        assertTrue(command instanceof EditRelationshipCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteRelationship() throws Exception {
+        String userInput = "deleteRelation 1234 5678 siblings";
+        Command command = parser.parseCommand(userInput);
+        assertTrue(command instanceof DeleteRelationshipCommand);
+    }
+
+    @Test
+    public void parseCommand_listRelationshipTypes() throws Exception {
+        Command command = parser.parseCommand(ListRelationshipTypesCommand.COMMAND_WORD);
+        assertTrue(command instanceof ListRelationshipTypesCommand);
+    }
+
+    @Test
+    public void parseCommand_addRelationship() throws Exception {
+        String userInput = "addRelation 1234 5678 housemates";
+        Command command = parser.parseCommand(userInput);
+        assertTrue(command instanceof AddRelationshipCommand);
     }
 }
