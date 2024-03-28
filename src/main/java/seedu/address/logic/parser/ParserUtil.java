@@ -148,14 +148,14 @@ public class ParserUtil {
     public static Author parseAuthor(String author) throws ParseException {
         requireNonNull(author);
         String trimmedAuthor = author.trim();
-        if (!Tag.isValidTagName(trimmedAuthor)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Author.isValidAuthorName(trimmedAuthor)) {
+            throw new ParseException(Author.MESSAGE_CONSTRAINTS);
         }
         return new Author(trimmedAuthor);
     }
 
     /**
-     * Parses a {@code List<String> authors} into a {@code String[]}.
+     * Parses a {@code List<String> authors} into a {@code Set<Author>}.
      */
     public static Set<Author> parseAuthors(Collection<String> authors) throws ParseException {
         requireNonNull(authors);
@@ -191,14 +191,14 @@ public class ParserUtil {
     public static Source parseSource(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
-        if (!Tag.isValidTagName(trimmedSource)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Source.isValidSourceName(trimmedSource)) {
+            throw new ParseException(Source.MESSAGE_CONSTRAINTS);
         }
         return new Source(trimmedSource);
     }
 
     /**
-     * Parses a {@code List<String> sources} into a {@code String[]}.
+     * Parses a {@code List<String> sources} into a {@code Set<Source>}.
      */
     public static Set<Source> parseSources(Collection<String> sources) throws ParseException {
         requireNonNull(sources);
