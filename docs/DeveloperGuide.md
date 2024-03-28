@@ -197,6 +197,37 @@ Step 4. `LogicManager` calls on `StarCommand.execute()`, which updates the addre
     * Pros: Able to edit the number of stars however one desires.
     * Cons: Command is not modularised, user have to calculate the number of stars themselves when updating.
 
+### Sorting Students
+
+#### Overview
+
+The sorting mechanism is facilitated by `SortCommand`, which is called by its `execute` method to sort the students
+based on one of its fields either in ascending or descending order
+
+* `SortCommandParser#parse()` — Parses the parameters of the sort command from its command-line String input.
+* `SortCommand#execute()` — Updates the `AddressBook` to display the sorted list.
+* 
+#### Feature Details
+
+Here is the activity diagram showing the process of the `Sort` command:
+
+Here is the sequence diagram showing how a sort operation goes through the `Logic`, `Model` and `Storage` components.
+
+![SortSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time and enters in command: `sort name desc`.
+
+Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
+
+Step 3. The `AddressBookParser` calls `SortCommandParser.parse()`, which returns a `SortCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If either the field `field` or sorting order `isAscending`, 
+then it will raise a parse error.
+
+</div>
+
+Step 4. `LogicManager` calls on `SortCommand.execute()`, which updates the addressbook with the new sorted list.
+=======
 ### Awarding Bolts to a Student
 
 #### Overview
@@ -239,7 +270,6 @@ Step 4. `LogicManager` calls on `BoltCommand.execute()`, which updates the addre
 * **Method 2:** Updates the number of bolts using `Edit` command.
     * Pros: Able to edit the number of bolts however one desires.
     * Cons: Command is not modularised, user have to calculate the number of bolts themselves when updating.
-
 
 ### \[Proposed\] Undo/redo feature
 
