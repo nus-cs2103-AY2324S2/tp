@@ -15,6 +15,8 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
+    public static final String COMMAND_WORD_ALT = "dp";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the NRIC number used in the displayed person list.\n"
             + "Parameters: NRIC (must be a existing NRIC in database)\n"
