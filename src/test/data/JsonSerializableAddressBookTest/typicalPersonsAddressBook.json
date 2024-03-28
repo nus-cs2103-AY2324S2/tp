@@ -111,5 +111,12 @@
       }
     ],
     "tags" : [ ]
+  } ],
+  "buyers" : [ {
+    "name" : "Ben Ten",
+    "phone" : "22222222",
+    "email" : "bob@example.com",
+    "housingType" : "Condominium",
+    "tags" : [ "friend", "husband" ]
   } ]
 }

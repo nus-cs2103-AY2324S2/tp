@@ -1,5 +1,7 @@
 package seedu.address.model.house;
 
+import seedu.address.commons.util.ToStringBuilder;
+
 /**
  * Represents a landed house.
  */
@@ -23,6 +25,8 @@ public class Landed extends House {
      */
     @Override
     public String toString() {
-        return "Landed House: " + super.toString();
+        ToStringBuilder builder = new ToStringBuilder(this);
+        // For now, it just appends the super class's toString method.
+        return "Landed House: " + builder.toString() + ", " + super.toString();
     }
 }

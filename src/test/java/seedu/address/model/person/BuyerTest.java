@@ -22,7 +22,7 @@ public class BuyerTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person buyer = new BuyerBuilder().build();
+        Buyer buyer = new BuyerBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> buyer.getTags().remove(0));
     }
 
@@ -97,7 +97,7 @@ public class BuyerTest {
     @Test
     public void toStringMethod() {
         String expected = Buyer.class.getCanonicalName() + "{name=" + ALI.getName() + ", phone=" + ALI.getPhone()
-                + ", email=" + ALI.getEmail() + ", housing type=" + ALI.getHousingType()
+                + ", email=" + ALI.getEmail() + ", housingType=" + ALI.getHousingType()
                 + ", tags=" + ALI.getTags() + "}";
         assertEquals(expected, ALI.toString());
     }

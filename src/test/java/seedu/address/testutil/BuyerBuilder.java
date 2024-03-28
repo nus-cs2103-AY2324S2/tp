@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -41,7 +40,7 @@ public class BuyerBuilder {
     /**
      * Initializes the BuyerBuilder with the data of {@code personToCopy}
      */
-    public BuyerBuilder(Person personToCopy) { //TODO: need to figure this out if need Person or Buyer only)
+    public BuyerBuilder(Buyer personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
@@ -50,7 +49,7 @@ public class BuyerBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Buyer} that we are building.
      */
     public BuyerBuilder withName(String name) {
         this.name = new Name(name);
@@ -58,7 +57,7 @@ public class BuyerBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Buyer} that we are building.
      */
     public BuyerBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -66,7 +65,7 @@ public class BuyerBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Buyer} that we are building.
      */
     public BuyerBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -74,7 +73,7 @@ public class BuyerBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Buyer} that we are building.
      */
     public BuyerBuilder withHousingType(String housingType) {
         this.housingType = housingType;
@@ -89,7 +88,7 @@ public class BuyerBuilder {
         return this;
     }
 
-    public Person build() {
+    public Buyer build() {
         return new Buyer(name, phone, email, housingType, tags);
     }
 }

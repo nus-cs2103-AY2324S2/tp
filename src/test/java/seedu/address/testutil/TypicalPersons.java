@@ -16,7 +16,9 @@ import static seedu.address.testutil.TypicalHouses.HOUSE3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.house.Block;
@@ -25,12 +27,12 @@ import seedu.address.model.house.NonLanded;
 import seedu.address.model.house.PostalCode;
 import seedu.address.model.house.Street;
 import seedu.address.model.house.UnitNumber;
+import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Seller;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
- * Currently, it has been replaced by sellers, need to add buyers too
  */
 public class TypicalPersons {
 
@@ -65,6 +67,8 @@ public class TypicalPersons {
             .withHousingType("HDB")
             .withEmail("heinz@example.com").withHouses(new NonLanded(new Block("10F"), new Level("21"),
                     new PostalCode("654326"), new Street("Orchard Street 5"), new UnitNumber("150"))).build();
+    public static final Buyer ALICE_BUYER = new BuyerBuilder().withName("George Best").withPhone("9482442")
+            .withEmail("heinz@example.com").withHousingType("HDB").build();
 
     // Manually added
     public static final Seller HOON_SELLER = new SellerBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -87,14 +91,15 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withHouses(HOUSE3).build();
 
-    public static final Person ALI = new BuyerBuilder().withName("Ali York")
+    // Manually added - Buyer's details found in {@code CommandTestUtil}
+    public static final Buyer ALI = new BuyerBuilder().withName("Ali York")
             .withPhone("82937163").withEmail("ali@gmail.com").withHousingType("HDB").withTags("friends").build();
-    public static final Person BEN = new BuyerBuilder().withName(VALID_NAME_BEN).withPhone(VALID_PHONE_BOB)
+    public static final Buyer BEN = new BuyerBuilder().withName(VALID_NAME_BEN).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withHousingType(VALID_HOUSING_TYPE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
-    // Manually added - Person's details found in {@code CommandTestUtil}
 
+    // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withPhone("94351253").withHousingType(VALID_HOUSING_TYPE_AMY)
@@ -103,9 +108,6 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB).withHousingType(VALID_HOUSING_TYPE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
-
-
-
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -119,11 +121,18 @@ public class TypicalPersons {
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
+
         return ab;
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE_SELLER, BENSON_SELLER,
-                CARL_SELLER, DANIEL_SELLER, ELLE_SELLER, FIONA_SELLER, GEORGE_SELLER));
+        List<Person> typicalPersons = Arrays.asList(ALICE_SELLER, BEN, BENSON_SELLER,
+                CARL_SELLER, DANIEL_SELLER, ELLE_SELLER, FIONA_SELLER, GEORGE_SELLER);
+
+        List<Person> sortedTypicalPersons = typicalPersons.stream()
+                .sorted(Comparator.comparing(person -> person.getName().toString()))
+                .collect(Collectors.toList());
+
+        return new ArrayList<>(sortedTypicalPersons);
     }
 }

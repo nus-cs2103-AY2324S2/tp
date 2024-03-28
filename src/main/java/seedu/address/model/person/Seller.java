@@ -40,6 +40,6 @@ public class Seller extends Person {
      * @return An ArrayList containing House objects.
      */
     public ArrayList<House> getHouses() {
-        return new ArrayList<>(houses); // Returns a copy of the houses list
+        return new ArrayList<>(houses);
     }
 }

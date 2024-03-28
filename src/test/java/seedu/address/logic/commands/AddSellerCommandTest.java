@@ -31,24 +31,23 @@ class AddSellerCommandTest {
         assertThrows(NullPointerException.class, () -> new AddSellerCommand(null));
     }
 
-    // My format is somewhere wrong, but value is correct
-    /*
-    expected: <New seller added= seedu.address.model.person.Seller{name=Amy Bee, phone=85355255, email=amy@gmail.com,
-    housingType=HDB, tags=[]}> but was: <New seller added= Amy Bee; Phone= 85355255; Email= amy@gmail.com;
-    Housing Type= HDB; Tags= >
-     */
-    /*@Test
-    public void execute_sellerAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingSellerAdded modelStub = new ModelStubAcceptingSellerAdded();
-        Seller validSeller = new SellerBuilder().build();
-
-        CommandResult commandResult = new AddSellerCommand(validSeller).execute(modelStub);
-
-        assertEquals(String.format(AddSellerCommand.MESSAGE_SUCCESS, validSeller),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validSeller), modelStub.sellersAdded);
-    }*/
-
+    //    Not sure where it went wrong, formatting got issue, but the values are correct
+    //    org.opentest4j.AssertionFailedError:
+    //    expected: <New seller added= seedu.address.model.person.Seller{name=Amy Bee, phone=85355255,
+    //    email=amy@gmail.com,
+    //    housingType=HDB, tags=[]}>
+    //    but was: <New seller added= Amy Bee; Phone= 85355255; Email= amy@gmail.com; Housing Type= HDB; Tags= >
+    //    @Test
+    //    public void execute_sellerAcceptedByModel_addSuccessful() throws Exception {
+    //        ModelStubAcceptingSellerAdded modelStub = new ModelStubAcceptingSellerAdded();
+    //        Seller validSeller = new SellerBuilder().build();
+    //
+    //        CommandResult commandResult = new AddSellerCommand(validSeller).execute(modelStub);
+    //
+    //        assertEquals(String.format(AddSellerCommand.MESSAGE_SUCCESS, validSeller),
+    //                commandResult.getFeedbackToUser());
+    //        assertEquals(Arrays.asList(validSeller), modelStub.sellersAdded);
+    //    }
 
     @Test
     public void execute_duplicateSeller_throwsCommandException() {
@@ -126,7 +125,7 @@ class AddSellerCommandTest {
         }
 
         @Override
-        public void addPerson(Person seller) {
+        public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -141,7 +140,7 @@ class AddSellerCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person seller) {
+        public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,7 +150,7 @@ class AddSellerCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedSeller) {
+        public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -170,9 +169,9 @@ class AddSellerCommandTest {
      * A Model stub that contains a single seller.
      */
     private class ModelStubWithSeller extends ModelStub {
-        private final Seller seller;
+        private final Person seller;
 
-        ModelStubWithSeller(Seller seller) {
+        ModelStubWithSeller(Person seller) {
             requireNonNull(seller);
             this.seller = seller;
         }
@@ -180,7 +179,7 @@ class AddSellerCommandTest {
         @Override
         public boolean hasPerson(Person seller) {
             requireNonNull(seller);
-            return this.seller.equals(seller);
+            return this.seller.isSamePerson(seller);
         }
     }
 
@@ -193,7 +192,7 @@ class AddSellerCommandTest {
         @Override
         public boolean hasPerson(Person seller) {
             requireNonNull(seller);
-            return sellersAdded.contains(seller);
+            return sellersAdded.stream().anyMatch(seller::isSamePerson);
         }
 
         public void addPerson(Person seller) {

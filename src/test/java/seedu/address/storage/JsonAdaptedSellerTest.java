@@ -25,7 +25,7 @@ public class JsonAdaptedSellerTest {
     private static final String VALID_NAME = BOB_SELLER.getName().toString();
     private static final String VALID_PHONE = BOB_SELLER.getPhone().toString();
     private static final String VALID_EMAIL = BOB_SELLER.getEmail().toString();
-    private static final String VALID_HOUSINGTYPE = BOB_SELLER.getHousingType();
+    private static final String VALID_HOUSING_TYPE = BOB_SELLER.getHousingType();
     private static final List<JsonAdaptedHouse> VALID_HOUSES = BOB_SELLER.getHouses().stream()
             .map(JsonAdaptedHouse::new)
             .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class JsonAdaptedSellerTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedSeller seller =
-                new JsonAdaptedSeller(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_HOUSINGTYPE,
+                new JsonAdaptedSeller(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_HOUSING_TYPE,
                         VALID_HOUSES, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
@@ -52,7 +52,7 @@ public class JsonAdaptedSellerTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedSeller seller = new JsonAdaptedSeller(null, VALID_PHONE, VALID_EMAIL,
-                VALID_HOUSINGTYPE, VALID_HOUSES, VALID_TAGS);
+                VALID_HOUSING_TYPE, VALID_HOUSES, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
     }
@@ -60,7 +60,7 @@ public class JsonAdaptedSellerTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedSeller seller =
-                new JsonAdaptedSeller(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_HOUSINGTYPE,
+                new JsonAdaptedSeller(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_HOUSING_TYPE,
                         VALID_HOUSES, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
@@ -69,7 +69,7 @@ public class JsonAdaptedSellerTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedSeller seller = new JsonAdaptedSeller(VALID_NAME, null, VALID_EMAIL,
-                VALID_HOUSINGTYPE, VALID_HOUSES, VALID_TAGS);
+                VALID_HOUSING_TYPE, VALID_HOUSES, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
     }
@@ -77,7 +77,7 @@ public class JsonAdaptedSellerTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedSeller seller =
-                new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_HOUSINGTYPE,
+                new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_HOUSING_TYPE,
                         VALID_HOUSES, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
@@ -86,7 +86,7 @@ public class JsonAdaptedSellerTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedSeller seller = new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, null,
-                VALID_HOUSINGTYPE, VALID_HOUSES, VALID_TAGS);
+                VALID_HOUSING_TYPE, VALID_HOUSES, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
     }
@@ -100,21 +100,21 @@ public class JsonAdaptedSellerTest {
         assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
     }
 
-    // I need to clarify this for the housing Type and house, for the time being, this test case will be commented.
-    /*@Test
-    public void toModelType_nullHousingType_throwsIllegalValueException() {
-        JsonAdaptedSeller seller = new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_HOUSES, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Housing Type");
-        assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
-    }*/
+    //    I need to clarify this for the housing Type and house, for the time being, this test case will be commented.
+    //    @Test
+    //    public void toModelType_nullHousingType_throwsIllegalValueException() {
+    //        JsonAdaptedSeller seller = new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
+    //                VALID_HOUSES, VALID_TAGS);
+    //        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Housing Type");
+    //        assertThrows(IllegalValueException.class, expectedMessage, seller::toModelType);
+    //    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedSeller seller =
-                new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_HOUSINGTYPE,
+                new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_HOUSING_TYPE,
                         VALID_HOUSES, invalidTags);
         assertThrows(IllegalValueException.class, seller::toModelType);
     }
@@ -124,7 +124,7 @@ public class JsonAdaptedSellerTest {
         List<JsonAdaptedHouse> invalidHouses = new ArrayList<>(VALID_HOUSES);
         invalidHouses.add(new JsonAdaptedHouse("NonLanded", "InvalidBlock", "InvalidLevel",
                 "123456", "Maple Street", "120A"));
-        JsonAdaptedSeller seller = new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_HOUSINGTYPE,
+        JsonAdaptedSeller seller = new JsonAdaptedSeller(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_HOUSING_TYPE,
                 invalidHouses, VALID_TAGS);
         assertThrows(IllegalValueException.class, seller::toModelType);
     }

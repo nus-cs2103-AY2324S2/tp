@@ -10,16 +10,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Person;
 
-
-
 /**
  * Jackson-friendly version of {@link Buyer}.
  */
 public class JsonAdaptedBuyer extends JsonAdaptedPerson {
 
-
     /**
-     * Constructs a {@code JsonAdaptedSeller}, extends from JsonAdaptedHouse.
+     * Constructs a {@code JsonAdaptedBuyer}, extends from JsonAdaptedPerson
      */
     @JsonCreator
     public JsonAdaptedBuyer(@JsonProperty("name") String name,
@@ -38,7 +35,7 @@ public class JsonAdaptedBuyer extends JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted seller object into the model's {@code Buyer} object.
+     * Converts this Jackson-friendly adapted buyer object into the model's {@code Buyer} object.
      */
     @Override
     public Buyer toModelType() throws IllegalValueException {

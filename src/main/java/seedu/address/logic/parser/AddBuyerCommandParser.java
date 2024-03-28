@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -45,9 +45,8 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
         String housingType = ParserUtil.parseHousing(argMultimap.getValue(PREFIX_HOUSING_TYPE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, housingType, tagList);
-
-        return new AddBuyerCommand(person);
+        Buyer buyer = new Buyer(name, phone, email, housingType, tagList);
+        return new AddBuyerCommand(buyer);
     }
 
     /**

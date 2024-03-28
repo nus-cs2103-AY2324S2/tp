@@ -96,13 +96,6 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         String updatedHouse = editPersonDescriptor.getHousingType().orElse(personToEdit.getHousingType());
-        /*
-        Street updatedStreet = editPersonDescriptor.getStreet().orElse(personToEdit.getStreet());
-        Level updatedLevel = editPersonDescriptor.getLevel().orElse(personToEdit.getLevel());
-        Block updatedBlock = editPersonDescriptor.getBlock().orElse(personToEdit.getBlock());
-        UnitNumber unitNumber = editPersonDescriptor.getUnitNumber().orElse(personToEdit.getUnitNumber());
-        PostalCode postalCode = editPersonDescriptor.getPostalCode().orElse(personToEdit.getPostalCode());
-        */
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedHouse,

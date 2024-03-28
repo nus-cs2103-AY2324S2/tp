@@ -45,13 +45,14 @@ public class AddBuyerCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateBuyer_throwsCommandException() {
         Person validPerson = new BuyerBuilder().build();
         AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validPerson);
         ModelStub modelStub = new ModelStubWithBuyer(validPerson);
-        assertThrows(CommandException.class, AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () ->
-                addBuyerCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
     }
+
     @Test
     public void equals() {
         Person ali = new BuyerBuilder().withName("Ali").build();

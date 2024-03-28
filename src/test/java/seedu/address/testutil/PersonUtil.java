@@ -71,17 +71,19 @@ public class PersonUtil {
             if (house instanceof NonLanded) {
                 NonLanded nonLanded = (NonLanded) house;
                 if (nonLanded.getBlock() != null) {
-                    sb.append(PREFIX_BLOCK + nonLanded.getBlock().value + " ");
+                    sb.append(PREFIX_BLOCK).append(nonLanded.getBlock().value).append(" ");
                 }
                 if (nonLanded.getLevel() != null) {
-                    sb.append(PREFIX_LEVEL + nonLanded.getLevel().value + " ");
+                    sb.append(PREFIX_LEVEL).append(nonLanded.getLevel().value).append(" ");
                 }
             }
             sb.append(PREFIX_UNITNUMBER + house.getUnitNumber().value + " ");
             sb.append(PREFIX_POSTALCODE + house.getPostalCode().value + " ");
 
         }
-        seller.getTags().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
+        seller.getTags().stream().forEach(
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        );
         return sb.toString().trim();
     }
 

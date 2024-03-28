@@ -45,8 +45,8 @@ public class AddSellerCommandParser implements Parser<AddSellerCommand> {
     public AddSellerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_HOUSING_TYPE, PREFIX_LEVEL,
-                        PREFIX_BLOCK, PREFIX_STREET, PREFIX_UNITNUMBER, PREFIX_POSTALCODE, PREFIX_TAG);
+                        PREFIX_HOUSING_TYPE, PREFIX_LEVEL, PREFIX_BLOCK, PREFIX_STREET,
+                        PREFIX_UNITNUMBER, PREFIX_POSTALCODE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_HOUSING_TYPE,
                 PREFIX_POSTALCODE, PREFIX_STREET, PREFIX_UNITNUMBER) || !argMultimap.getPreamble().isEmpty()) {
