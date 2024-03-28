@@ -3,7 +3,10 @@ package seedu.address.logic.parser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -26,6 +29,90 @@ public class ArgumentTokenizer {
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
         return extractArguments(argsString, positions);
+    }
+
+    /**
+     * Checks whether exist undetected prefix.
+     * @param argumentMultimap Argument string that we want to check for undetected prefix
+     * @param prefixes Prefixes that we accept
+     * @return array of undetected prefix string
+     */
+    public static ArrayList<String> checkUndetectedPrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        ArrayList<String> undetectedPrefixes = new ArrayList<>();
+
+        for (Prefix p : prefixes) {
+            if (!arePrefixesPresent(argumentMultimap, p)) {
+                String field = extractAlphabets(p.getPrefix());
+                undetectedPrefixes.add(field);
+            }
+        }
+        return undetectedPrefixes;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Checks whether exist unknown prefix.
+     * @param argsString Argument string that we want to check for unknown prefix
+     * @param prefixes Prefixes that we accept
+     * @return array of unknown prefix string
+     */
+    public static ArrayList<String> checkUnknownPrefix(String argsString, Prefix... prefixes) {
+        ArrayList<String> unknownPrefixes = new ArrayList<>();
+        Pattern pattern = Pattern.compile(";\\s*([^:]+)\\s*:");
+        Matcher matcher = pattern.matcher(argsString);
+
+        while (matcher.find()) {
+            String foundPrefix = matcher.group(0);
+            boolean isKnownPrefix = false;
+
+            for (Prefix p : prefixes) {
+                String expected = extractAlphabets(p.getPrefix());
+                String current = extractAlphabets(foundPrefix);
+                if (expected.equals(current)) {
+                    isKnownPrefix = true;
+                    break;
+                }
+            }
+
+            if (!isKnownPrefix) {
+                unknownPrefixes.add(extractAlphabets(foundPrefix));
+            }
+        }
+        return unknownPrefixes;
+    }
+
+    /**
+     * Extracts and concatenates all alphabetical substrings from the provided input string.
+     * Non-alphabetical characters are ignored, and separate alphabetical substrings are joined
+     * with a space character in the order they appear in the input.
+     *
+     * For example, given the input ";unknown:'", the method returns "unknown".
+     *
+     * @param input The input string from which to extract alphabetical substrings.
+     * @return A concatenated string of all alphabetical substrings found in the input,
+     *         separated by spaces if more than one substring is found. If no alphabetical
+     *         characters are present, an empty string is returned.
+     */
+    private static String extractAlphabets(String input) {
+        StringBuilder result = new StringBuilder();
+        Pattern pattern = Pattern.compile("[A-Za-z]+");
+        Matcher matcher = pattern.matcher(input);
+
+        while (matcher.find()) {
+            if (result.length() > 0) {
+                result.append(" ");
+            }
+            result.append(matcher.group());
+        }
+
+        return result.toString();
     }
 
     /**

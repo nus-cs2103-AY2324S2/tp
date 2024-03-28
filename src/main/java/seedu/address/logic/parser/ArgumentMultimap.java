@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.Messages;
+import seedu.address.logic.messages.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,5 +76,54 @@ public class ArgumentMultimap {
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    /**
+     * Checks that name prefix is not used more than once.
+     * @return True if there is duplicate name prefix.
+     */
+    public boolean hasDuplicateNamePrefix() {
+        Prefix[] duplicatedPrefixes = Stream.of(PREFIX_NAME).distinct()
+                .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
+                .toArray(Prefix[]::new);
+
+        if (duplicatedPrefixes.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ArgumentMultimap)) {
+            return false;
+        }
+
+        ArgumentMultimap otherArgumentMultimap = (ArgumentMultimap) other;
+        return argMultimap.equals(otherArgumentMultimap.argMultimap);
+    }
+
+    /**
+     * Returns a string implementation of Argument Multi Map
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ArgumentMultimap{");
+
+        for (Map.Entry<Prefix, List<String>> entry : argMultimap.entrySet()) {
+            sb.append(entry.getKey()).append("=").append(entry.getValue()).append(", ");
+        }
+
+        if (!argMultimap.isEmpty()) {
+            sb.setLength(sb.length() - 2);
+        }
+        sb.append("}");
+        return sb.toString();
     }
 }

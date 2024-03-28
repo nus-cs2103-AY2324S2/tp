@@ -11,7 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.Maintainer;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Staff;
+import seedu.address.model.person.Supplier;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,7 +24,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
@@ -31,7 +36,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
@@ -96,11 +101,13 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        commitAddressBook();
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        commitAddressBook();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -109,6 +116,37 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        commitAddressBook();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        addressBook.commit();
+        logger.fine("New commit on address book: " + addressBook + " and user prefs " + userPrefs);
+    }
+
+    @Override
+    public void undoAddressBook() {
+        addressBook.undo();
+        logger.fine("Previous commit is retrieved to address book: "
+                + addressBook + " and user prefs " + userPrefs);
+    }
+
+    @Override
+    public void redoAddressBook() {
+        addressBook.redo();
+        logger.fine("Recent commit is retrieved to address book: "
+                + addressBook + " and user prefs " + userPrefs);
+    }
+
+    @Override
+    public boolean canUndo() {
+        return addressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedo() {
+        return addressBook.canRedo();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -145,4 +183,103 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    /**
+     * Update the person list to display pinned contacts first.
+     */
+    public void updatePinnedPersonList() {
+        addressBook.updatePinnedList();
+    }
+
+    /**
+     * Find a general contact by their name.
+     * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
+     * @return Person that matches the name.
+     * @throws CommandException Handles invalid person message.
+     */
+    @Override
+    public Person findByName(Name targetName, String message) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName)) {
+                return person;
+            }
+        }
+        throw new CommandException(message);
+    }
+
+    /**
+     * Find the person by their name.
+     * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
+     * @return Person that matches the name.
+     * @throws CommandException Handles invalid person message.
+     */
+    @Override
+    public Person findPersonByName(Name targetName, String message) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName)) {
+                if (!(person instanceof Supplier) && !(person instanceof Staff)
+                        && !(person instanceof Maintainer)) {
+                    return person;
+                }
+            }
+        }
+        throw new CommandException(message);
+    }
+
+    /**
+     * Find the maintainer by their name.
+     * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
+     * @return Maintainer that matches the name.
+     * @throws CommandException Handles invalid maintainer message.
+     */
+    @Override
+    public Maintainer findMaintainerByName(Name targetName, String message) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName) && person instanceof Maintainer) {
+                return (Maintainer) person;
+            }
+        }
+        throw new CommandException(message);
+    }
+
+    /**
+     * Find the staff by their name.
+     * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
+     * @return Staff that matches the name.
+     * @throws CommandException Handles invalid staff message.
+     */
+    @Override
+    public Staff findStaffByName(Name targetName, String message) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName) && person instanceof Staff) {
+                return (Staff) person;
+            }
+        }
+        throw new CommandException(message);
+    }
+
+    /**
+     * Find the supplier by their name.
+     * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
+     * @return Supplier that matches the name.
+     * @throws CommandException Handles invalid supplier message.
+     */
+    @Override
+    public Supplier findSupplierByName(Name targetName, String message) throws CommandException {
+        for (Person person: this.addressBook.getPersonList()) {
+            Name name = person.getName();
+            if (name.equals(targetName) && person instanceof Supplier) {
+                return (Supplier) person;
+            }
+        }
+        throw new CommandException(message);
+    }
 }

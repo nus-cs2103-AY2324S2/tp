@@ -1,22 +1,29 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.messages.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMISSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMPLOYMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILL;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.messages.EditMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,55 +38,176 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        Index index;
+        Name name;
+        String fieldArgs;
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_FIELD);
+
+        boolean hasDuplicateNamePrefix = argMultimap.hasDuplicateNamePrefix();
+        if (hasDuplicateNamePrefix) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                    "Editing Pooch Contact name is not allowed!"));
+        }
+
+        // check for missing name
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_NAME,
+                    EditCommand.MESSAGE_USAGE));
+        }
+
+        // check for missing field
+        if (!arePrefixesPresent(argMultimap, PREFIX_FIELD)) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_MISSING_FIELD,
+                    EditCommand.MESSAGE_USAGE));
+        }
+
+        name = mapName(argMultimap);
+        fieldArgs = mapFields(argMultimap);
+
+        ArgumentMultimap fieldArgMultimap =
+                ArgumentTokenizer.tokenize(fieldArgs, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                        PREFIX_NAME, PREFIX_PRODUCT, PREFIX_PRICE, PREFIX_EMPLOYMENT, PREFIX_SALARY,
+                        PREFIX_SKILL, PREFIX_COMMISSION);
+
+        // check for invalid fields
+        checkEditFieldValidity(fieldArgMultimap);
+
+        fieldArgMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        EditPersonDescriptor editPersonDescriptor;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            editPersonDescriptor = editPersonDescription(fieldArgMultimap);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD, pe.getMessage()));
         }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditMessages.MESSAGE_EDIT_EMPTY_FIELD);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        Set<Tag> tags = new HashSet<>();
+        tags.add(new Tag("other"));
+        editPersonDescriptor.setTags(tags);
+
+        return new EditCommand(name, editPersonDescriptor);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Checks all invalid fields for person class.
+     * @param fieldArgMultimap The prefix to value mapping.
+     * @throws ParseException Throws when there exist invalid fields.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
+    public void checkEditFieldValidity(ArgumentMultimap fieldArgMultimap) throws ParseException {
+        ArrayList<String> invalidFields = new ArrayList<>();
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_NAME)) {
+            invalidFields.add("name");
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_PRODUCT)) {
+            invalidFields.add("product");
+        }
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_PRICE)) {
+            invalidFields.add("price");
+        }
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_EMPLOYMENT)) {
+            invalidFields.add("employment");
+        }
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_SALARY)) {
+            invalidFields.add("salary");
+        }
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_SKILL)) {
+            invalidFields.add("skill");
+        }
+        if (arePrefixesPresent(fieldArgMultimap, PREFIX_COMMISSION)) {
+            invalidFields.add("commission");
+        }
+        if (invalidFields.size() > 0) {
+            throw new ParseException(formatInvalidFieldString(invalidFields));
+        }
     }
 
+    /**
+     * Formats the string for invalid fields.
+     * @param invalidFields The exact invalid fields.
+     * @return A string that specifies the exact invalid fields.
+     */
+    public String formatInvalidFieldString(ArrayList<String> invalidFields) {
+        String formattedFieldString = "";
+        if (invalidFields.size() == 1) {
+            return String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact " + invalidFields.get(0) + " is not allowed for person");
+        }
+        for (int i = 0; i < invalidFields.size(); i++) {
+            if (i == invalidFields.size() - 2) {
+                formattedFieldString += invalidFields.get(i) + " and ";
+            } else if (i == invalidFields.size() - 1) {
+                formattedFieldString += invalidFields.get(i);
+            } else {
+                formattedFieldString += invalidFields.get(i) + ", ";
+            }
+        }
+        return String.format(EditMessages.MESSAGE_EDIT_INVALID_FIELD,
+                "Editing Pooch Contact " + formattedFieldString + " is not allowed for person");
+    }
+
+    /**
+     * Returns name value using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing name.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public Name mapName(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(EditMessages.MESSAGE_EDIT_INVALID_NAME, pe.getMessage()));
+        }
+    }
+
+    /**
+     * Returns field values using PREFIX.
+     * @param argMultimap Object that contains mapping of prefix to value.
+     * @return Returns object representing the respective fields.
+     * @throws ParseException Thrown when command is in invalid format.
+     */
+    public String mapFields(ArgumentMultimap argMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Edits the description of a Person.
+     *
+     * @param fieldArgMultimap The mapping of field arguments into different specific fields.
+     * @return EditPersonDescriptor that contains the new values from the user.
+     * @throws ParseException Indicates the invalid format that users might have entered.
+     */
+    private EditPersonDescriptor editPersonDescription(ArgumentMultimap fieldArgMultimap) throws ParseException {
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
+        if (fieldArgMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editPersonDescriptor.setPhone(ParserUtil.parsePhone(fieldArgMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (fieldArgMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(fieldArgMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (fieldArgMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(fieldArgMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+
+        return editPersonDescriptor;
+    }
 }

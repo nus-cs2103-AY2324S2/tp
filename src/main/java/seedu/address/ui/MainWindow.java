@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.messages.HelpMessages;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -25,6 +26,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final String TITLE = "Pooch Planner";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -34,6 +37,13 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private HelpDeleteWindow helpDeleteWindow;
+    private HelpEditWindow helpEditWindow;
+    private HelpSearchWindow helpSearchWindow;
+    private HelpAddWindow helpAddWindow;
+
+    @FXML
+    private StackPane titlePlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +76,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        helpDeleteWindow = new HelpDeleteWindow();
+        helpEditWindow = new HelpEditWindow();
+        helpSearchWindow = new HelpSearchWindow();
+        helpAddWindow = new HelpAddWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -139,11 +153,91 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
+    public void handleAllHelp(CommandResult commandResult) {
+        String userFeedback = commandResult.getFeedbackToUser();
+
+        Boolean isHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_HELP_MESSAGE);
+        Boolean isDeleteHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_DELETE_HELP_MESSAGE);
+        Boolean isEditHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_EDIT_HELP_MESSAGE);
+        Boolean isSearchHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_SEARCH_HELP_MESSAGE);
+        Boolean isAddHelpCommand = commandResult.isShowHelp()
+                && userFeedback.equals(HelpMessages.MESSAGES_SHOWING_ADD_HELP_MESSAGE);
+
+        if (isHelpCommand) {
+            handleHelp();
+        } else if (isDeleteHelpCommand) {
+            handleDeleteHelp();
+        } else if (isEditHelpCommand) {
+            handleEditHelp();
+        } else if (isSearchHelpCommand) {
+            handleSearchHelp();
+        } else if (isAddHelpCommand) {
+            handleAddHelp();
+        }
+
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the help delete window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleDeleteHelp() {
+        if (!helpDeleteWindow.isShowing()) {
+            helpDeleteWindow.show();
+        } else {
+            helpDeleteWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the help edit window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEditHelp() {
+        if (!helpEditWindow.isShowing()) {
+            helpEditWindow.show();
+        } else {
+            helpEditWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the help search window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSearchHelp() {
+        if (!helpSearchWindow.isShowing()) {
+            helpSearchWindow.show();
+        } else {
+            helpSearchWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the help search window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAddHelp() {
+        if (!helpAddWindow.isShowing()) {
+            helpAddWindow.show();
+        } else {
+            helpAddWindow.focus();
         }
     }
 
@@ -179,13 +273,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
+                handleAllHelp(commandResult);
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

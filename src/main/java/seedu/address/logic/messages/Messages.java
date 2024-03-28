@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package seedu.address.logic.messages;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,12 +12,16 @@ import seedu.address.model.person.Person;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command. Use command `/help` to see command list";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_FIELD_FORMAT = "Invalid field detected : %1$s";
+    public static final String MESSAGE_UNDETECTED_FIELD_FORMAT = "Undetected field detected : %1$s";
+    public static final String MESSAGE_COMMAND_FORMAT = "Follow this command format! \n%1$s";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
-                "Multiple values specified for the following single-valued field(s): ";
+            "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_EXTRA_FIELDS =
+            "%1$s does not contain the following field(s): %2$s";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -47,5 +51,4 @@ public class Messages {
         person.getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }
