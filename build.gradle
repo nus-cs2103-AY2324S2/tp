@@ -71,6 +71,10 @@ dependencies {
     testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
 }
 
+run {
+    enableAssertions = true
+}
+
 shadowJar {
     archiveFileName = 'TeachStack.jar'
 }
