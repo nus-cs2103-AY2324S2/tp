@@ -15,9 +15,10 @@ import scrolls.elder.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public abstract class Person {
+    private static final int PLACEHOLDER_ID = -1;
 
     // Identity fields
-    protected int id;
+    protected final int personId;
     protected final Name name;
     protected final Phone phone;
     protected final Email email;
@@ -35,6 +36,7 @@ public abstract class Person {
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Role role,
                   Optional<Name> pairedWithName, Optional<Integer> pairedWithId) {
         CollectionUtil.requireAllNonNull(name, phone, email, address, tags, role, pairedWithName, pairedWithId);
+        this.personId = PLACEHOLDER_ID;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,12 +47,23 @@ public abstract class Person {
         this.pairedWithId = pairedWithId;
     }
 
-    public int getId() {
-        return id;
+    /**
+     * Creates a person with the given ID and data of {@code p}.
+     */
+    public Person(int personId, Person p) {
+        this.personId = personId;
+        this.name = p.getName();
+        this.phone = p.getPhone();
+        this.email = p.getEmail();
+        this.address = p.getAddress();
+        this.tags.addAll(p.getTags());
+        this.role = p.getRole();
+        this.pairedWithName = p.getPairedWithName();
+        this.pairedWithId = p.getPairedWithId();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getPersonId() {
+        return personId;
     }
 
     public Name getName() {
@@ -102,7 +115,7 @@ public abstract class Person {
             return true;
         }
 
-        return otherPerson != null && otherPerson.getId() == this.getId();
+        return otherPerson != null && otherPerson.getPersonId() == this.getPersonId();
     }
 
     /**
@@ -116,6 +129,8 @@ public abstract class Person {
     public abstract boolean isBefriendee();
 
     public abstract Role getRole();
+
+    //// Overrides
 
     /**
      * Returns true if both persons have the same identity and data fields.
@@ -133,7 +148,7 @@ public abstract class Person {
         }
 
         Person otherPerson = (Person) other;
-        return id == otherPerson.id
+        return personId == otherPerson.personId
                 && name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
@@ -147,13 +162,13 @@ public abstract class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, name, phone, email, address, tags, role, pairedWithName, pairedWithId);
+        return Objects.hash(personId, name, phone, email, address, tags, role, pairedWithName, pairedWithId);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("id", id)
+                .add("id", personId)
                 .add("name", name)
                 .add("phone", phone)
                 .add("email", email)

@@ -2,7 +2,9 @@ package scrolls.elder.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +28,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -136,5 +139,41 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        formatter.setLenient(false); // to make sure that the date strictly follows the format "yyyy-MM-dd"
+        try {
+            return formatter.parse(trimmedDate);
+        } catch (java.text.ParseException e) {
+            throw new ParseException("Invalid date format. Expected format is yyyy-MM-dd.", e);
+        }
+    }
+
+    /**
+     * Parses a {@code String role} into an {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
+     */
+    public static Integer parseInt(String num) throws ParseException {
+        requireNonNull(num);
+
+        String trimmedNum = num.trim();
+        try {
+            return Integer.parseInt(trimmedNum);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid number format. Expected a number.", e);
+        }
     }
 }

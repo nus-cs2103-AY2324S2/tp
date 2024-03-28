@@ -13,16 +13,20 @@ import org.junit.jupiter.api.Test;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.model.Model;
 import scrolls.elder.model.ModelManager;
+import scrolls.elder.model.ReadOnlyPersonStore;
 import scrolls.elder.model.UserPrefs;
 import scrolls.elder.model.person.NameContainsKeywordsPredicate;
+import scrolls.elder.testutil.TypicalDatastore;
 import scrolls.elder.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
+    private final ReadOnlyPersonStore personStore = model.getDatastore().getPersonStore();
+    private final Model expectedModel = new ModelManager(TypicalDatastore.getTypicalDatastore(), new UserPrefs());
+    private final ReadOnlyPersonStore expectedPersonStore = expectedModel.getDatastore().getPersonStore();
 
     @Test
     public void equals() {
@@ -64,10 +68,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate, true, true);
-
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedPersonStore.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), personStore.getFilteredPersonList());
     }
 
     @Test
@@ -76,14 +79,16 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate, true, true);
 
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedPersonStore.updateFilteredPersonList(predicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalPersons.CARL, TypicalPersons.ELLE, TypicalPersons.FIONA),
-                model.getFilteredPersonList());
+                personStore.getFilteredPersonList());
     }
 
     @Test
     public void toStringMethod() {
+
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
         FindCommand findCommand = new FindCommand(predicate, true, true);
         String expected = FindCommand.class.getCanonicalName()
@@ -92,7 +97,6 @@ public class FindCommandTest {
                 + "searchVolunteer=true, "
                 + "searchBefriendee=true"
                 + "}";
-
         assertEquals(expected, findCommand.toString());
     }
 

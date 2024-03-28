@@ -21,14 +21,14 @@ import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.PersonFactory;
 import scrolls.elder.model.person.Phone;
 import scrolls.elder.model.person.Role;
-import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 
@@ -90,20 +90,13 @@ public class EditCommand extends Command {
         Optional<Name> pairedWithName = personToEdit.getPairedWithName();
         Optional<Integer> pairedWithId = personToEdit.getPairedWithId();
 
-        Person p;
-        if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    pairedWithName, pairedWithId);
-        } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    pairedWithName, pairedWithId);
-        }
-        p.setId(personToEdit.getId());
-        return p;
+        return PersonFactory.withIdFromParams(personToEdit.getPersonId(), updatedName, updatedPhone, updatedEmail,
+                updatedAddress, role, updatedTags,
+                pairedWithName, pairedWithId);
     }
 
     private static Person createEditedPair(Person editedPerson, Person originalPair) {
-        assert editedPerson != null;
+        requireNonNull(editedPerson);
 
         // Will check before calling this function that the editedPerson is paired
         Name updatedName = originalPair.getName();
@@ -113,24 +106,18 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = originalPair.getTags();
         Role role = originalPair.getRole();
         Optional<Name> updatedPairedWithName = Optional.of(editedPerson.getName());
-        Optional<Integer> updatedPairedWithID = Optional.of(editedPerson.getId());
+        Optional<Integer> updatedPairedWithID = Optional.of(editedPerson.getPersonId());
 
-        Person p;
-        if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    updatedPairedWithName, updatedPairedWithID);
-        } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    updatedPairedWithName, updatedPairedWithID);
-        }
-
-        p.setId(originalPair.getId());
-        return p;
+        return PersonFactory.withIdFromParams(editedPerson.getPersonId(), updatedName, updatedPhone, updatedEmail,
+                updatedAddress, role, updatedTags,
+                updatedPairedWithName, updatedPairedWithID);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        PersonStore store = model.getMutableDatastore().getMutablePersonStore();
 
         if (editPersonDescriptor.getRole().isEmpty()) {
             throw new CommandException(MESSAGE_NO_ROLE);
@@ -138,9 +125,9 @@ public class EditCommand extends Command {
 
         List<Person> lastShownList;
         if (editPersonDescriptor.getRole().get().isVolunteer()) {
-            lastShownList = model.getFilteredVolunteerList();
+            lastShownList = store.getFilteredVolunteerList();
         } else {
-            lastShownList = model.getFilteredBefriendeeList();
+            lastShownList = store.getFilteredBefriendeeList();
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -150,18 +137,18 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!personToEdit.isSamePerson(editedPerson) && store.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         if (editedPerson.isPaired()) {
-            Person pairedWith = model.getPersonFromID(editedPerson.getPairedWithId().get());
+            Person pairedWith = store.getPersonFromID(editedPerson.getPairedWithId().get());
             Person pairedWithUpdated = createEditedPair(editedPerson, pairedWith);
-            model.setPerson(pairedWith, pairedWithUpdated);
+            store.setPerson(pairedWith, pairedWithUpdated);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        store.setPerson(personToEdit, editedPerson);
+        store.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 

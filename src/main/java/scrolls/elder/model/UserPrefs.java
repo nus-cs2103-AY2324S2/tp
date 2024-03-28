@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import scrolls.elder.commons.core.GuiSettings;
 
 /**
@@ -14,7 +16,7 @@ import scrolls.elder.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path datastoreFilePath = Paths.get("data", "datastore.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setDatastoreFilePath(newUserPrefs.getDatastoreFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +49,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getDatastoreFilePath() {
+        return datastoreFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    @JsonProperty("datastoreFilePath")
+    public String getDatastoreFilePathString() {
+        return datastoreFilePath.toString();
+    }
+
+    public void setDatastoreFilePath(Path datastoreFilePath) {
+        requireNonNull(datastoreFilePath);
+        this.datastoreFilePath = datastoreFilePath;
     }
 
     @Override
@@ -69,19 +76,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs otherUserPrefs = (UserPrefs) other;
         return guiSettings.equals(otherUserPrefs.guiSettings)
-                && addressBookFilePath.equals(otherUserPrefs.addressBookFilePath);
+            && datastoreFilePath.equals(otherUserPrefs.datastoreFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, datastoreFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + datastoreFilePath);
         return sb.toString();
     }
 

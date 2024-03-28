@@ -10,6 +10,7 @@ import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.Person;
 import scrolls.elder.model.person.Role;
 
@@ -62,11 +63,13 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        PersonStore store = model.getMutableDatastore().getMutablePersonStore();
+
         List<Person> lastShownList;
         if (role.isVolunteer()) {
-            lastShownList = model.getFilteredVolunteerList();
+            lastShownList = store.getFilteredVolunteerList();
         } else {
-            lastShownList = model.getFilteredBefriendeeList();
+            lastShownList = store.getFilteredBefriendeeList();
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -80,7 +83,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(MESSAGE_DELETE_PERSON_ERROR + Messages.MESSAGE_CONTACT_PAIRED_BEFORE_DELETE);
         }
 
-        model.deletePerson(personToDelete);
+        store.removePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 

@@ -105,7 +105,7 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
     public Person getPersonFromID(int i) {
-        FilteredList<Person> listByID = internalList.filtered(person -> person.getId() == i);
+        FilteredList<Person> listByID = internalList.filtered(person -> person.getPersonId() == i);
         // TODO exception for duplicate id
         if (listByID.size() != 1) {
             System.out.println("List has duplicate id, should not be the case");

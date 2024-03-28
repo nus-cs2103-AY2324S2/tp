@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import scrolls.elder.commons.exceptions.DataLoadingException;
-import scrolls.elder.model.ReadOnlyAddressBook;
+import scrolls.elder.model.ReadOnlyDatastore;
 import scrolls.elder.model.ReadOnlyUserPrefs;
 import scrolls.elder.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends DatastoreStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getDatastoreFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyDatastore> readDatastore() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveDatastore(ReadOnlyDatastore datastore) throws IOException;
 
 }

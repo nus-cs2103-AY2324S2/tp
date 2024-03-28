@@ -11,14 +11,14 @@ import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.logic.commands.exceptions.CommandException;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.Address;
-import scrolls.elder.model.person.Befriendee;
 import scrolls.elder.model.person.Email;
 import scrolls.elder.model.person.Name;
 import scrolls.elder.model.person.Person;
+import scrolls.elder.model.person.PersonFactory;
 import scrolls.elder.model.person.Phone;
 import scrolls.elder.model.person.Role;
-import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.model.tag.Tag;
 
 /**
@@ -52,11 +52,35 @@ public class UnpairCommand extends Command {
         this.index1 = index1;
         this.index2 = index2;
     }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPairedPersonDescriptor}.
+     */
+    private static Person createEditedPairedPerson(Person personToEdit,
+                                                   Optional<Name> updatedPairName, Optional<Integer> updatedPairID) {
+        assert personToEdit != null;
+
+        int personId = personToEdit.getPersonId();
+        Name updatedName = personToEdit.getName();
+        Phone updatedPhone = personToEdit.getPhone();
+        Email updatedEmail = personToEdit.getEmail();
+        Address updatedAddress = personToEdit.getAddress();
+        Set<Tag> updatedTags = personToEdit.getTags();
+        Role role = personToEdit.getRole();
+
+        return PersonFactory.withIdFromParams(personId, updatedName, updatedPhone, updatedEmail, updatedAddress, role,
+                updatedTags, updatedPairName, updatedPairID);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownBList = model.getFilteredBefriendeeList();
-        List<Person> lastShownVList = model.getFilteredVolunteerList();
+
+        PersonStore store = model.getMutableDatastore().getMutablePersonStore();
+
+        List<Person> lastShownBList = store.getFilteredBefriendeeList();
+        List<Person> lastShownVList = store.getFilteredVolunteerList();
 
         if (index1.getZeroBased() >= lastShownBList.size() || index2.getZeroBased() >= lastShownVList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -79,17 +103,10 @@ public class UnpairCommand extends Command {
         // Unset the pairedWith attribute of the befriendee and volunteer
         Person newPerson1 = createEditedPairedPerson(personToUnpair1, Optional.empty(), Optional.empty());
         Person newPerson2 = createEditedPairedPerson(personToUnpair2, Optional.empty(), Optional.empty());
-        model.setPerson(personToUnpair1, newPerson1);
-        model.setPerson(personToUnpair2, newPerson2);
+        store.setPerson(personToUnpair1, newPerson1);
+        store.setPerson(personToUnpair2, newPerson2);
 
-        // TODO: REMOVE DEAD CODE
-        // No longer needed since we are using new Person objects
-        // personToUnpair1.setPairedWith(Optional.empty());
-        // personToUnpair2.setPairedWith(Optional.empty());
-        // model.setPerson(lastShownBList.get(index1.getZeroBased()), personToUnpair1);
-        // model.setPerson(lastShownVList.get(index2.getZeroBased()), personToUnpair2);
-
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        store.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL);
         return new CommandResult(
                 String.format(
                         MESSAGE_UNPAIR_SUCCESS, Messages.format(personToUnpair1), Messages.format(personToUnpair2)));
@@ -117,32 +134,5 @@ public class UnpairCommand extends Command {
                 .add("index1", index1)
                 .add("index2", index2)
                 .toString();
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPairedPersonDescriptor}.
-     */
-    private static Person createEditedPairedPerson(Person personToEdit,
-                                                   Optional<Name> updatedPairName, Optional<Integer> updatedPairID) {
-        assert personToEdit != null;
-
-        Name updatedName = personToEdit.getName();
-        Phone updatedPhone = personToEdit.getPhone();
-        Email updatedEmail = personToEdit.getEmail();
-        Address updatedAddress = personToEdit.getAddress();
-        Set<Tag> updatedTags = personToEdit.getTags();
-        Role role = personToEdit.getRole();
-
-        Person p;
-        if (role.isVolunteer()) {
-            p = new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    updatedPairName, updatedPairID);
-        } else {
-            p = new Befriendee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                    updatedPairName, updatedPairID);
-        }
-        p.setId(personToEdit.getId());
-        return p;
     }
 }

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import scrolls.elder.commons.util.ToStringBuilder;
 import scrolls.elder.logic.Messages;
 import scrolls.elder.model.Model;
+import scrolls.elder.model.PersonStore;
 import scrolls.elder.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -37,31 +38,29 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
+        PersonStore store = model.getMutableDatastore().getMutablePersonStore();
+
         if (searchVolunteer && searchBefriendee) {
-            model.updateFilteredPersonList(predicate);
+            store.updateFilteredPersonList(predicate);
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, store.getFilteredPersonList().size()));
 
         } else if (searchVolunteer) {
-            model.updateFilteredVolunteerList(predicate);
+            store.updateFilteredVolunteerList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW_WITH_ROLE,
-                            model.getFilteredVolunteerList().size(),
+                            store.getFilteredVolunteerList().size(),
                             "volunteer"));
 
-        } else if (searchBefriendee) {
-            model.updateFilteredBefriendeeList(predicate);
+        } else {
+            assert searchBefriendee : "searchBefriendee should be true.";
+            store.updateFilteredBefriendeeList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW_WITH_ROLE,
-                            model.getFilteredBefriendeeList().size(),
+                            store.getFilteredBefriendeeList().size(),
                             "befriendee"));
         }
 
-        assert false : "Invalid Find parameters, searchVolunteer, searchBefriendee cannot be false at the same time.";
-
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

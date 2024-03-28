@@ -3,26 +3,29 @@ package scrolls.elder.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import scrolls.elder.commons.core.GuiSettings;
 import scrolls.elder.model.person.Person;
 
 /**
- * The API of the Model component.
+ * The API of the Model component. Controls in-memory data of the application.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Person> PREDICATE_SHOW_ALL = unused -> true;
+
+    //// UserPrefs getters and setters
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -34,73 +37,33 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
+    //// Datastore getters and setters
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user prefs' datastore file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    Path getDatastoreFilePath();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user prefs' datastore file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setDatastoreFilePath(Path datastoreFilePath);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    //// Datastore getters and setters
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns a readonly view of the Datastore
      */
-    boolean hasPerson(Person person);
+    ReadOnlyDatastore getDatastore();
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Returns a mutable view of the Datastore
      */
-    void deletePerson(Person target);
+    Datastore getMutableDatastore();
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Replaces Datastore with the data in {@code datastore}.
      */
-    void addPerson(Person person);
+    void setDatastore(ReadOnlyDatastore datastore);
 
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    ObservableList<Person> getFilteredVolunteerList();
-
-    ObservableList<Person> getFilteredBefriendeeList();
-    Person getPersonFromID(int i);
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
-     * Befriendee list is not filtered.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredVolunteerList(Predicate<Person> predicate);
-
-    /**
-     * Updates the filter of the filtered befriendee list to filter by the given {@code predicate}.
-     * Volunteer list is not filtered.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredBefriendeeList(Predicate<Person> predicate);
 }
