@@ -232,13 +232,16 @@ The activity diagram below demonstrates this error handling process in more deta
 * Step 4. The `parse` command in `deleteCommandParser` return an instance of `deleteCommand`.
 * Step 5. The `LogicManager` calls the `execute` method in `deleteCommand`.
 * Step 6. The `execute` method in `deleteCommand` executes and calls `deletePerson` in model to remove doctor or patient from the system.
-* Step 7. Success message gets printed onto the results display to notify user.
-
+* Step 7. The `execute` method in `deleteCommand` also iterates through the `ObservableList<Appointments>` and retrieves all appointments that have the person to be deleted, and calls the `deleteAppointmentCommand` as well.
+* Step 8. Success message gets printed onto the results display to notify user.
 
 Why is this implemented this way?
 1. Making both `Doctor` and `Patient` class extend the `Person` class makes it easier to execute delete operations.
 2. `Doctor` and `Patient` all exhibit similar qualities, and thus can inherit from the `Person` superclass.
-3. Eliminates the need for seperate delete commands for doctor and patient.
+3. Eliminates the need for separate delete commands for doctor and patient.
+4. Since appointments are constructed with unique `Person` `Nric` fields, it does not make sense to have an appointment that does not have valid doctor or patient entries.
+5. As such, the solution that is inbuilt to deleting a `Person`, comes with the added functionality on the backend to delete all related `Appointment` entries as well.
+6. This results in a cleaner `Appointments` panel, and saves the user from the hassle of needing to delete unwanted `Appointment` entries one by one.
 
 ### Add a `Appointment`
 
