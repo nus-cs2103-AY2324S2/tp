@@ -79,6 +79,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103-F08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103-F08-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 
+![Indepth structure of UI Component](images/UiClassDiagramUpdated.png)
+The diagram above shows the classes that are associated to the `PersonListPanel` as well as the `MeetingListPanel` in order to generate the UI that we have.
+
 The `UI` component,
 
 - executes user commands using the `Logic` component.
@@ -130,8 +133,7 @@ The `Model` component,
   `UniquePersonList` and `UniqueMeetingList` objects respectively).
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores the currently 'selected' `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- stores a `UserPref` object that represents the user’s preferences. This is exposed to dd the 
-  outside as a `ReadOnlyUserPref` objects.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to dd the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -162,96 +164,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### [V1.3] Filter feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+**The `FilterCommand` is implemented as such:**
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `LogicManager`'s execute method is called with the command string which then calls the `parseCommand()` method of `AddressBookParser`
+- `AddressBookParser` then creates a `FilterCommandParser` which parses the user input and returns a `FilterCommand` 
+- The created `FilterCommand` is then executed by the `LogicManager`
+- `FilterCommand` filters the list of `Person` based on the tag provided by the user
+- `FilterCommand` creates a `CommandResult` object and returns it to `LogicManager`
+- `LogicManager` then passes `CommandResult` to `UI` who then displays the `Person` list filtered by the `Tag` provided
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**The `FilterCommandParser` is implemented as such:**
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+- Takes in a `String` input from the user
+- Splits the given `String` and checks if there is more than 1 string provided
+  - If more than 1 string was provided, throws `ParseException`
+- Parser then checks if an empty string was provided
+  - If yes, throws `ParseException`
+- If no exception was thrown, a `Tag` object is created which is then used to create a `FilterCommand` object
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How FilterCommandParser executes:**
 
-- **Alternative 1 (current choice):** Saves the entire address book.
+- **Alternative 1 (current choice):** Filters based on only one `Tag`
 
   - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
+  - Cons: Unable to search for clients who possess more than one `Tag`
 
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
- 
----
+- **Alternative 2:** Filters by multiple `Tag`
+  - Pros: Able to search for client with multiple `Tag`
+  - Cons: Error prone for a method used for a niche instance.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -283,125 +229,134 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                         | So that I can…​                            |
-| -------- |------------------------|--------------------------------------|--------------------------------------------|
-| `* * *`  | As a financial advisor | add new clients profiles to my list  | keep track of the clients under me         |
-| `* * *`  | As a financial advisor | edit the profiles of my clients      | keep their information up to date          |
-| `* * *`  | As a financial advisor | delete the clients under me          | remove clients that are no longer under me |
-| `* * *`  | As a financial advisor | view all my client profiles          | track all my clients in one place          |
-| `* * *`  | As a financial advisor | add client meetings                  | keep track of my schedule                  |
-| `* * *`  | As a financial advisor | update client meetings               | revise my schedule and alter for reasons   |
-| `* * *`  | As a financial advisor | view upcoming meetings               | so I can prepare for them accordingly      |
-| `* *`    | As a financial advisor | search my meetings by date or agenda | locate meetings with specific filters      |
-| `* *`    | As a financial advisor | filter my meetings by date           | so I can know the meetings of that day     |
-| `*`      | As a financial advisor | sort persons by name                 | locate a person easily                     |
+| Priority | As a …​                | I want to …​                         | So that I can…​                                              |
+|----------|------------------------|--------------------------------------|--------------------------------------------------------------|
+| `* * *`  | As a financial advisor | add new clients profiles to my list  | keep track of the clients under me                           |
+| `* * *`  | As a financial advisor | edit the profiles of my clients      | keep their information up to date                            |
+| `* * *`  | As a financial advisor | delete the clients under me          | remove clients that are no longer under me                   |
+| `* * *`  | As a financial advisor | view all my client profiles          | track all my clients in one place                            |
+| `* * *`  | As a financial advisor | filter client by their tags          | track clients with similar demographics                      |
+| `* * *`  | As a financial advisor | add client meetings                  | keep track of my schedule                                    |
+| `* * *`  | As a financial advisor | update client meetings               | revise my schedule and alter for reasons                     |
+| `* * *`  | As a financial advisor | view meetings with a specific client | so I can prepare for the meeting with the client accordingly |
+| `* *`    | As a financial advisor | search my meetings by date or agenda | locate meetings with specific filters                        |
+| `* *`    | As a financial advisor | filter my meetings by date           | so I can know the meetings of that day                       |
+| `*`      | As a financial advisor | sort persons by name                 | locate a person easily                                       |
 
 _{More to be added}_
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `targeted 
+(For all use cases below, the **System** is the `FinCliq` and the **Actor** is the `targeted 
 financial advisor`, unless specified otherwise)
 
-**Use case: Delete a person**
-
 **Use Case: Add New Client Profiles**
+
 **MSS:**
 1. Financial advisor requests to add a new client profile to their list.
-2. ClientCatalog adds the new client profile to the advisor's list.
-3. ClientCatalog confirms the successful addition of the client profile.
+2. FinCliq adds the new client profile to the advisor's list.
+3. FinCliq confirms the successful addition of the client profile.
    - Use case ends.
 
 **Extensions:**
 - 1a. The financial advisor does not provide necessary client information.
-   - 1a1. ClientCatalog detects missing information.
-   - 1a2. ClientCatalog prompts the financial advisor to provide the missing information.
+   - 1a1. FinCliq detects missing information.
+   - 1a2. FinCliq prompts the financial advisor to provide the missing information.
    - Use case resumes from step 1.
 - 1b. The financial advisor attempts to add a client profile that already exists.
-   - 1b1. ClientCatalog detects duplicate profile.
-   - 1b2. ClientCatalog notifies the financial advisor about the existing profile.
+   - 1b1. FinCliq detects duplicate profile.
+   - 1b2. FinCliq notifies the financial advisor about the existing profile.
    - Use case ends.
 
 **Use Case: Edit Client Profiles**
+
 **MSS:**
 1. Financial advisor requests to edit the profile of a client.
-2. ClientCatalog retrieves the client's profile for editing.
+2. FinCliq retrieves the client's profile for editing.
 3. Financial advisor updates the necessary information.
-4. ClientCatalog saves the changes to the client's profile.
-5. ClientCatalog confirms the successful update of the client's profile.
+4. FinCliq saves the changes to the client's profile.
+5. FinCliq confirms the successful update of the client's profile.
    - Use case ends.
 
 **Extensions:**
 - 1a. The financial advisor tries to edit a non-existent client profile.
-   - 1a1. ClientCatalog detects the absence of the client profile.
-   - 1a2. ClientCatalog notifies the financial advisor about the non-existence of the client profile.
+   - 1a1. FinCliq detects the absence of the client profile.
+   - 1a2. FinCliq notifies the financial advisor about the non-existence of the client profile.
    - Use case ends.
 - 1b. The financial advisor attempts to edit the profile with invalid information.
-   - 1b1. ClientCatalog detects invalid information.
-   - 1b2. ClientCatalog prompts the financial advisor to provide valid information.
+   - 1b1. FinCliq detects invalid information.
+   - 1b2. FinCliq prompts the financial advisor to provide valid information.
    - Use case resumes from step 3.
 
 **Use Case: Delete Clients**
+
 **MSS:**
 1. Financial advisor requests to delete a client from their list.
-2. ClientCatalog removes the specified client from the advisor's list.
-3. ClientCatalog confirms the successful deletion of the client.
+2. FinCliq removes the specified client from the advisor's list.
+3. FinCliq confirms the successful deletion of the client.
    - Use case ends.
 
 **Extensions:**
 - 1a. The financial advisor tries to delete a non-existent client.
-   - 1a1. ClientCatalog detects the absence of the client.
-   - 1a2. ClientCatalog notifies the financial advisor about the non-existence of the client.
+   - 1a1. FinCliq detects the absence of the client.
+   - 1a2. FinCliq notifies the financial advisor about the non-existence of the client.
    - Use case ends.
 
 **Use Case: View All Client Profiles**
+
 **MSS:**
 1. Financial advisor requests to view all client profiles.
-2. ClientCatalog retrieves and displays all client profiles associated with the advisor.
+2. FinCliq retrieves and displays all client profiles associated with the advisor.
    - Use case ends.
 
 **Use Case: Add Client Meetings**
+
 **MSS:**
 1. Financial advisor requests to add a meeting with a client to their schedule.
-2. MeetingScheduler schedules the meeting with the specified client.
-3. MeetingScheduler confirms the successful addition of the meeting to the advisor's schedule.
+2. FinCliq adds the meeting to the list of meeting as well as to the client's list of meetings
+3. FinCliq confirms the successful addition of the meeting
    - Use case ends.
+   
+**Extensions**
+- 1a. Financial Advisor tries to add a duplicate meeting
+  - 1a1. FinCliq detects the duplicate meeting entry
+  - 1a2. FinCliq notifies the financial advisor and does not add the meeting
+  - Use case ends
+- 1b. Financial Advisor tries to add meeting with date earlier than current date
+  - 1b1. FinCliq detects the invalid date
+  - 1b2. FinCliq informs financial advisor of the invalid date
+  - Use case ends
 
-**Use Case: View Upcoming Meetings**
+**Use Case: View A Specific Client Meetings**
+
 **MSS:**
 1. Financial advisor requests to view all upcoming meetings.
-2. MeetingScheduler retrieves and displays all upcoming meetings scheduled for the advisor.
+2. FinCliq retrieves and displays all upcoming meetings for that client.
    - Use case ends.
 
 **Use Case: Update existing Meetings**
+
 **MSS:**
 1. Financial advisor requests to update a specific meeting's details.
-2. MeetingScheduler retrieves and updates meeting's details.
-3. MeetingScheduler displays updated meeting to the advisor.
+2. FinCliq retrieves and updates meeting's details.
+3. FinCliq displays updated meeting to the advisor.
     - Use case ends.
 
-**Use Case: Search Meetings by Date or Agenda**
-**MSS:**
-1. Financial advisor requests to search for meetings based on date or agenda.
-2. MeetingScheduler filters meetings based on the specified date or agenda.
-3. MeetingScheduler displays the filtered meetings to the advisor.
-   - Use case ends.
+Use Case: Delete Meeting
 
-**Use Case: Filter Meetings by Date**
 **MSS:**
-1. Financial advisor requests to filter meetings by date.
-2. MeetingScheduler filters meetings based on the specified date.
-3. MeetingScheduler displays the filtered meetings to the advisor.
-   - Use case ends.
+1. Financial advisor requests to delete a specific client's meeting
+2. FinCliq retrieves and updates meeting's details
+3. FinCliq displays successful deletion message
+    - Use case ends
 
-**Use Case: Sort Persons by Name**
+Use Case: Filter Clients by Tag
+
 **MSS:**
-1. Financial advisor requests to sort persons by name.
-2. ClientCatalog sorts the list of persons alphabetically by name.
-3. ClientCatalog displays the sorted list to the financial advisor.
-   - Use case ends.
-
-_{More to be added}_
+1. Financial advisor requests to filter meetings by a tag by inputting the name of the tag.
+2. FinCliq filters clients based on the specified tag
+3. FinCliq displays the filtered clients to the financial advisor.
+    - Use case ends.
 
 ### Non-Functional Requirements
 

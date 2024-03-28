@@ -189,10 +189,6 @@ public class EditMeetingCommandTest {
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(targetClientIndex, targetMeetingIndex,
                 testMeeting.getDescription(), testMeeting.getDateTime());
 
-        System.out.println(JAMAL_WITH_MEETING.getMeetings());
-        System.out.println(meetingIndex);
-        System.out.println(testMeeting);
-
         String expectedMessage = EditMeetingCommand.MESSAGE_DUPLICATE_MEETING;
 
         assertCommandFailure(editMeetingCommand, model, expectedMessage);
