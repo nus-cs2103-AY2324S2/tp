@@ -72,11 +72,9 @@ public class AddScoreCommand extends Command {
         if (updatedScores.containsKey(selectedExam)) {
             throw new CommandException(MESSAGE_SCORE_EXISTS);
         }
-        try {
-            model.addExamScoreToPerson(personToEdit, selectedExam, score);
-        } catch (IllegalArgumentException e) {
-            throw new CommandException(e.getMessage());
-        }
+
+        model.addExamScoreToPerson(personToEdit, selectedExam, score);
+
         return new CommandResult(String.format("Added score %s for %s", score, personToEdit.getName()));
     }
 
