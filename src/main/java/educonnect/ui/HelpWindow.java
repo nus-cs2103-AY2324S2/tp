@@ -26,7 +26,6 @@ public class HelpWindow extends UiPart<Stage> {
             + "'find' - Finds students whose names contain any of the given keywords\n"
             + "'help' - Brings up the help page\n"
             + "'list' - Shows a list of all students in EduConnect\n"
-            + "'link' - Links a website URL to a student\n"
             + "'exit' - Exits the program\n";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

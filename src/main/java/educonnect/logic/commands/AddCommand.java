@@ -1,6 +1,7 @@
 package educonnect.logic.commands;
 
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,14 +25,16 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_STUDENT_ID + "STUDENT_ID "
-            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_TELEGRAM_HANDLE + "TELEGRAM_HANDLE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_LINK + "LINK"
             + "[" + PREFIX_TAG + "TAG]...\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_STUDENT_ID + "A1234567X "
             + PREFIX_TELEGRAM_HANDLE + "@john.doe "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_LINK + "https://github.com/johndoe/tp"
             + PREFIX_TAG + "tutorial-1 "
             + PREFIX_TAG + "high-ability";
 

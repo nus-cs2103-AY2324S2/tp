@@ -2,6 +2,7 @@ package educonnect.logic.parser;
 
 import static educonnect.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static educonnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static educonnect.logic.parser.CliSyntax.PREFIX_LINK;
 import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
@@ -16,12 +17,14 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_TUESDAY;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE_WEDNESDAY;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import educonnect.logic.commands.AddCommand;
 import educonnect.logic.parser.exceptions.ParseException;
 import educonnect.model.student.Email;
+import educonnect.model.student.Link;
 import educonnect.model.student.Name;
 import educonnect.model.student.Student;
 import educonnect.model.student.StudentId;
@@ -43,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_EMAIL,
-                        PREFIX_TELEGRAM_HANDLE, PREFIX_TAG, PREFIX_TIMETABLE);
+                        PREFIX_TELEGRAM_HANDLE, PREFIX_TAG, PREFIX_LINK, PREFIX_TIMETABLE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_TELEGRAM_HANDLE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -51,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_STUDENT_ID,
-                PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_TIMETABLE);
+                PREFIX_EMAIL, PREFIX_TELEGRAM_HANDLE, PREFIX_TIMETABLE, PREFIX_LINK);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -60,8 +63,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Timetable timetable =
                 ParserUtil.parseTimetable(tokenizeForTimetable(argMultimap.getValue(PREFIX_TIMETABLE).orElse("")));
+        Optional<String> linkValue = argMultimap.getValue(PREFIX_LINK);
+        Student student;
 
-        Student student = new Student(name, studentId, email, telegramHandle, tagList, timetable);
+        if (linkValue.isPresent()) {
+            Optional<Link> link = Optional.of(ParserUtil.parseLink(linkValue.get()));
+            student = new Student(name, studentId, email, telegramHandle, link, tagList, timetable);
+        } else {
+            student = new Student(name, studentId, email, telegramHandle, tagList, timetable);
+        }
 
         return new AddCommand(student);
     }

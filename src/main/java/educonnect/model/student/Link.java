@@ -1,6 +1,7 @@
 package educonnect.model.student;
 import static java.util.Objects.requireNonNull;
 
+
 /**
  * Represents a Student's link in EduConnect. This link is optional as some classes do not
  * have project links.
