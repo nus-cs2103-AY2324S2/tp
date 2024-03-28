@@ -1,58 +1,61 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+Together we made ````Moddie!``
 
 ## Project team
 
-### John Doe
+### Wong Kai Li
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/garywongkai.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/garywongkai)]
 [[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[Website](https://react-site-three.vercel.app)]
 
 * Role: Team Lead
+* Responsibilities: Testing
+
+### Alvis Low Yue Han
+
+<img src="images/beefsausagee.png" width="200px">
+
+[[github](https://github.com/beefsausagee)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Aw Joey
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/awjoey.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/AwJoey)] [[portfolio](https://awjoey26.wixsite.com/website)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Fu Ming Jun, Dominic
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dominicfumj.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/DominicFuMJ)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Wu Jinyan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/morninggloryyy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/Morninggloryyy)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer

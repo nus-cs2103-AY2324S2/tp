@@ -1,0 +1,18 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User uses find command;
+:Look through each
+  user in Storage;
+if () then ([keyword is found])
+    :display users
+    with keyword;
+else ([else])
+endif
+stop
+
+@enduml

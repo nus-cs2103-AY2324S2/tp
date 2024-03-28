@@ -11,6 +11,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ComboBox?>
+<?import seedu.address.model.person.Person?>
+<?import javafx.collections.FXCollections?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -45,14 +51,42 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-
         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
-
+        <StackPane fx:id="schedulePanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        <VBox VBox.vgrow="ALWAYS">
+          <ComboBox fx:id="personComboBox" promptText="Select up to 5 persons">
+            <cellFactory>
+              <PropertyValueFactory property="name"/>
+            </cellFactory>
+            <items>
+              <!-- Add items here -->
+            </items>
+          </ComboBox>
+          <TableView fx:id="scheduleTable" VBox.vgrow="ALWAYS">
+            <columns>
+              <TableColumn text="Name">
+                <cellValueFactory>
+                  <PropertyValueFactory property="schedName"/>
+                </cellValueFactory>
+              </TableColumn>
+              <TableColumn text="Start Time">
+                <cellValueFactory>
+                  <PropertyValueFactory property="startTime"/>
+                </cellValueFactory>
+              </TableColumn>
+              <TableColumn text="End Time">
+                <cellValueFactory>
+                  <PropertyValueFactory property="endTime"/>
+                </cellValueFactory>
+              </TableColumn>
+            </columns>
+          </TableView>
+        </VBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

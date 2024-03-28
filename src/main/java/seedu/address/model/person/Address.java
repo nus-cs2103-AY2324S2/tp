@@ -1,7 +1,8 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents a Person's address in the address book.
@@ -25,9 +26,13 @@ public class Address {
      * @param address A valid address.
      */
     public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        //requireNonNull(address);
+        if (Objects.equals(address, "")) {
+            value = "";
+        } else {
+            checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
+            value = address;
+        }
     }
 
     /**

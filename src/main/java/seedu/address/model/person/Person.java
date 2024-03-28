@@ -2,12 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,17 +26,41 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final ArrayList<Schedule> schedules = new ArrayList<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Set<Tag> tags, ArrayList<Schedule> schedules) {
+        requireAllNonNull(name, phone, email, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = new Address("");
+        if (!tags.isEmpty()) {
+            this.tags.addAll(tags);
+        }
+        if (!schedules.isEmpty()) {
+            this.schedules.addAll(schedules);
+        }
+    }
+
+    /**
+     * Overloaded constructor to consider if Schedule is empty
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Schedule> schedules) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        if (!tags.isEmpty()) {
+            this.tags.addAll(tags);
+        }
+        if (!schedules.isEmpty()) {
+            this.schedules.addAll(schedules);
+        }
     }
 
     public Name getName() {
@@ -59,6 +85,18 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public ArrayList<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void addSchedule(Schedule s) {
+        schedules.add(s);
+    }
+
+    public void deleteSchedule(Schedule s) {
+        schedules.remove(s);
     }
 
     /**
@@ -94,13 +132,30 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && schedules.equals(otherPerson.schedules);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
+    }
+
+    private String schedulesToString() {
+        StringBuilder schedulesList = new StringBuilder();
+
+        for (int i = 0; i < schedules.size(); i++) {
+            schedulesList.append(i + 1).append(". ");
+            schedulesList.append(schedules.get(i).toString());
+            schedulesList.append("\n");
+
+        }
+        String res = schedulesList.toString();
+        if (!res.isEmpty()) {
+            return res.substring(0, res.length() - 2);
+        }
+        return res;
     }
 
     @Override
@@ -111,6 +166,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("schedules", schedules.toString())
                 .toString();
     }
 

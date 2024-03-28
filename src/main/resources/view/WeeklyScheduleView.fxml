@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<VBox xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane xmlns="http://javafx.com/javafx"
+              fx:id="gridPane"
+              xmlns:fx="http://javafx.com/fxml"
+              styleClass="pane-with-border"
+              alignment="CENTER"
+              hgap="10" vgap="10">
+
+        <!-- Labels for the days of the week -->
+        <Label text="Monday" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label text="Tuesday" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Label text="Wednesday" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <Label text="Thursday" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+        <Label text="Friday" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+        <Label text="Saturday" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+        <Label text="Sunday" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+
+        <!-- ListViews to display schedules for each day -->
+        <ListView fx:id="mondayListView" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <ListView fx:id="tuesdayListView" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <ListView fx:id="wednesdayListView" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <ListView fx:id="thursdayListView" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+        <ListView fx:id="fridayListView" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+        <ListView fx:id="saturdayListView" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+        <ListView fx:id="sundayListView" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+    </GridPane>
+</VBox>
