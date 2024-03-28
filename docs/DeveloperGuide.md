@@ -339,6 +339,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 1b1-1b2 are repeated until the data entered is correct.
 
       Use case resumes from step 2.
+  
+* 1c. Connectify detects a similar contact name in the entered contact name.
+
+    * 1c1. Connectify warns the user that there is existing contacts with similar names.
+
+      Use case resumes from step 2.
+        
 
 **Use case: Delete a contact**
 
@@ -402,12 +409,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
-* 1c. The contact information to be updated is unchanged from the original.
-
-    * 1c1. Connectify shows an error message.
-
-      Use case ends.
-
 **Use case: Categorize contacts**
 
 **MSS**
@@ -425,19 +426,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Connectify shows an error message.
 
       Use case resumes at step 1.
-
-* 1b. The contact already has an existing category
-
-    * 1b1. Connectify informs the user the category that the contact currently is under and requests for confirmation
-      to update the current category to the newly given one.
-    * 1b2a. User confirms the update.
-        * 1b2a1. Connectify updates the current category of the given contact to the new one.
-
-          Use Case ends
-    * 1b2b. User cancels the update.
-        * 1b2b1. Connectify does not update the information.
-
-          Use case ends.
 
 **Use case: Tag contacts with their company's name**
 
@@ -459,23 +447,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The contact already has an existing company tag.
 
-    * 1b1. Connectify informs the user the company tag that the contact currently has and requests for confirmation
-      to update the current company tag to the newly given one.
-    * 1b2a. User confirms the update.
-      * 1b2a1. Connectify updates the current company tag of the given contact to the new one.
-      
-        Use Case ends
-    * 1b2b. User cancels the update.
-      * 1b2b1. Connectify does not update the information.
+    * 1b1. Connectify warns the user about the existing company tag and updates the company tag to the new one.
 
-        Use case ends.
+        Use Case ends
 
 **Use case: Add a meeting to a contact**
 
 **MSS**
 
 1.  User requests to add a meeting to a specific contact name.
-2.  Connectify adds the meeting details to the contact and the updated contact information is shown for the contact card.
+2.  Connectify adds the meeting details to the contact and displays the meeting details and the contact it has been added to.
 
     Use case ends.
 
@@ -490,16 +471,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The contact already has an existing meeting with the contact.
 
-    * 1b1. Connectify informs the user about the existing meeting details and requests for confirmation
-      to update the current meeting details to the new one.
-    * 1b2a. User confirms the update.
-        * 1b2a1. Connectify updates the current meeting details of the given contact to the new one.
+    * 1b1. Connectify warns user about the existing meeting details and updates the current meeting
+      details to the new one.
 
-          Use Case ends
-    * 1b2b. User cancels the update.
-        * 1b2b1. Connectify does not update the information.
-
-          Use case ends.
+      Use case ends
 
 **Use case: Assign priorities to contacts**
 
