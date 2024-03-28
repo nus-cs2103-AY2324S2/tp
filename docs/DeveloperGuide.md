@@ -146,7 +146,7 @@ The `Model` component,
 The `Storage` component,
 * can save both global participant list data in JSON format, and read it back into corresponding objects.
 * can save event list data in JSON format, and read it back into corresponding event objects.
-* can also save participant list data of a certain event in JSON format, and read them back into corresponding objects. 
+* can also save participant list data of all added events in JSON format, and read them back into corresponding objects. 
 * inherits from`AddressBookStorage` `EventBook Storage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
