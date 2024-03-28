@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all persons in address book who are marked as high priority.
+ * Finds and lists all persons with meetings in address book.
  */
 public class FindMeetingCommand extends Command {
 

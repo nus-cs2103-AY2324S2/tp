@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import seedu.address.logic.parser.ParserUtil;
 
 /**
- * Represents a Person's company name in the address book.
+ * Represents a Person's meeting object in the address book.
  * Guarantees: immutable; is always valid.
  */
 public class Meeting {
