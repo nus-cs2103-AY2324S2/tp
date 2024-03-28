@@ -12,7 +12,7 @@ import seedu.address.model.util.SampleDataUtil;
  * Seed the address book with sample data.
  */
 public class SeedDataCommand extends Command {
-    public static final String COMMAND_WORD = "seedData";
+    public static final String COMMAND_WORD = "seeddata";
     public static final String MESSAGE_SUCCESS = "Added new members from seed data into the address book successfully!";
     public static final String MESSAGE_FAILURE = "Every member from seed data already exist in the address book!";
 

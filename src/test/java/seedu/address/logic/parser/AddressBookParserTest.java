@@ -98,7 +98,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addpoints() throws Exception {
+    public void parseCommand_addPoints() throws Exception {
         final Name name = new Name("Alice");
         final Points points = new Points("50");
         String input = AddPointsCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + name.fullName + " " + PREFIX_POINTS
@@ -108,7 +108,17 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_addorder() throws Exception {
+    public void parseCommand_addMemPoints() throws Exception {
+        final Name name = new Name("Alice");
+        final int points = 50;
+        String input = AddPointsCommand.COMMAND_WORD + " " + PREFIX_NAME + " " + name.fullName + " " + PREFIX_POINTS
+                + " " + points;
+        AddPointsCommand command = (AddPointsCommand) parser.parseCommand(input);
+        assertEquals(new AddPointsCommand(name, new Points(Integer.toString(points))), command);
+    }
+
+    @Test
+    public void parseCommand_addOrder() throws Exception {
         AddOrderCommand command = (AddOrderCommand) parser.parseCommand("addorder n/Amy Bee o/Cupcakes x 1");
         NameContainsKeywordsPredicate namePred = new NameContainsKeywordsPredicate(Arrays.asList("Amy", "Bee"));
         Order order = new Order(VALID_ORDER_CUPCAKES, command.order.orderDateTime);

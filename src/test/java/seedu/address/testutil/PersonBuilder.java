@@ -6,7 +6,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Membership;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -24,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_MEMBERSHIP = "T1";
+    public static final String DEFAULT_MEMBERSHIP = "0";
 
     public static final String DEFAULT_POINTS = "0";
 
@@ -32,7 +32,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Membership membership;
+    private MembershipPoints membershipPoints;
     private Set<Tag> tags;
     private Points points;
     private ArrayList<Order> orders;
@@ -45,7 +45,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        membership = new Membership(DEFAULT_MEMBERSHIP);
+        membershipPoints = new MembershipPoints(DEFAULT_MEMBERSHIP);
         tags = new HashSet<>();
         points = new Points(DEFAULT_POINTS);
         orders = new ArrayList<>();
@@ -59,7 +59,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        membership = personToCopy.getMembership();
+        membershipPoints = personToCopy.getMembershipPoints();
         tags = new HashSet<>(personToCopy.getTags());
         points = personToCopy.getPoints();
         orders = new ArrayList<>(personToCopy.getOrders());
@@ -125,8 +125,8 @@ public class PersonBuilder {
      * Sets the {@code Membership} of the {@code Person} that we are building.
      */
 
-    public PersonBuilder withMembership(String membership) {
-        this.membership = new Membership(membership);
+    public PersonBuilder withMembershipPoints(String membershipPoints) {
+        this.membershipPoints = new MembershipPoints(membershipPoints);
         return this;
     }
 
@@ -141,7 +141,7 @@ public class PersonBuilder {
      * @return A new {@code Person} instance with attributes specified in the {@code PersonBuilder}.
      */
     public Person build() {
-        return new Person(name, phone, email, address, membership, tags, points, orders);
+        return new Person(name, phone, email, address, membershipPoints, tags, points, orders);
 
     }
 }

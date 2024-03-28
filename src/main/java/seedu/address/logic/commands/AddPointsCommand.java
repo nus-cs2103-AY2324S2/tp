@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -20,12 +21,12 @@ import seedu.address.model.person.Points;
  */
 public class AddPointsCommand extends Command {
     public static final String COMMAND_WORD = "addpoints";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds points to the person identified"
-            + "Parameters: NAME " + PREFIX_POINTS + "POINTS \n"
-            + "Example: " + COMMAND_WORD + " John Doe " + PREFIX_POINTS + "40";
+    public static final String MESSAGE_CONSTRAINTS = "Points added should be greater than 0.";
 
-    public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Points: %2$i";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds points to the person identified. "
+            + "Parameters: " + PREFIX_NAME + "NAME " + PREFIX_POINTS + "POINTS \n"
+            + "Example: " + COMMAND_WORD + " John Doe " + PREFIX_POINTS + "40";
     public static final String MESSAGE_ADDPOINTS_SUCCESS =
             "Added %1$s points to %2$s";
     private final Name name;
@@ -64,7 +65,7 @@ public class AddPointsCommand extends Command {
 
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getMembership(),
+                personToEdit.getAddress(), personToEdit.getMembershipPoints(),
                 personToEdit.getTags(), newPoints, personToEdit.getOrders());
 
         model.setPerson(personToEdit, editedPerson);

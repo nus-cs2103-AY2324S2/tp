@@ -25,7 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Membership;
+import seedu.address.model.person.MembershipPoints;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -45,10 +45,10 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Orders cannot be edited this way.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_NAME + "MEMBER_NAME] "
+            + "[" + PREFIX_PHONE + "MEMBER_PHONE] "
+            + "[" + PREFIX_EMAIL + "MEMBER_EMAIL] "
+            + "[" + PREFIX_ADDRESS + "MEMBER_ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]"
             + "[" + PREFIX_POINTS + "POINTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -107,12 +107,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Membership updatedMembership = personToEdit.getMembership(); // edit command does not allow editing remarks
+        MembershipPoints updatedMembershipPoints = personToEdit.getMembershipPoints();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Points updatedPoints = editPersonDescriptor.getPoints().orElse(personToEdit.getPoints());
         ArrayList<Order> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembership, updatedTags,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMembershipPoints, updatedTags,
                 updatedPoints, updatedOrders);
     }
 

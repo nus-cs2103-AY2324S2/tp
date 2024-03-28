@@ -57,15 +57,15 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        membership.setText(person.getMembership().value);
+        phone.setText("Contact no.: \t" + person.getPhone().value);
+        address.setText("Home Addr.: \t" + person.getAddress().value);
+        email.setText("Email Addr.: \t" + person.getEmail().value);
+        membership.setText("Membership Tier: \t" + person.getMembershipPoints().toString());
         orders.setText(buildOrderString(person.getOrders()));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        points.setText(String.valueOf(person.getPoints().value));
+        points.setText("Redeem Pts: \t" + String.valueOf(person.getPoints().value));
     }
 
     private static String buildOrderString(ArrayList<Order> orders) {

@@ -25,7 +25,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Membership membership;
+    private final MembershipPoints membershipPoints;
     private final Set<Tag> tags = new HashSet<>();
     private final Points points;
     private final ArrayList<Order> orders = new ArrayList<>();
@@ -33,14 +33,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Membership membership, Set<Tag> tags,
-                  Points points, ArrayList<Order> orders) {
-        requireAllNonNull(name, phone, email, address, membership, tags, points, orders);
+    public Person(Name name, Phone phone, Email email, Address address, MembershipPoints membershipPoints,
+                  Set<Tag> tags, Points points, ArrayList<Order> orders) {
+        requireAllNonNull(name, phone, email, address, membershipPoints, tags, points, orders);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.membership = membership;
+        this.membershipPoints = membershipPoints;
         this.tags.addAll(tags);
         this.points = points;
         this.orders.addAll(orders);
@@ -62,8 +62,8 @@ public class Person {
         return address;
     }
 
-    public Membership getMembership() {
-        return membership;
+    public MembershipPoints getMembershipPoints() {
+        return membershipPoints;
     }
 
     /**
@@ -129,7 +129,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && membership.equals(otherPerson.membership)
+                && membershipPoints.equals(otherPerson.membershipPoints)
                 && tags.equals(otherPerson.tags)
                 && points.equals(otherPerson.points)
                 && orders.equals(otherPerson.orders);
@@ -138,7 +138,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, membership, tags, points, orders);
+        return Objects.hash(name, phone, email, address, membershipPoints, tags, points, orders);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
-                .add("membership", membership)
+                .add("membership", membershipPoints)
                 .add("tags", tags)
                 .add("points", points)
                 .add("orders", orders)

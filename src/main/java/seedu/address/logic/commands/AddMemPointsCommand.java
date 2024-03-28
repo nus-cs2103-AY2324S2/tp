@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMSHIP_PTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -10,38 +10,37 @@ import java.util.Optional;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Membership;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a membership tier for a person to the address book.
+ * Adds membership points for a person in the address book.
  */
-public class AddMemshipCommand extends Command {
-    public static final String COMMAND_WORD = "addmship";
+public class AddMemPointsCommand extends Command {
+    public static final String COMMAND_WORD = "addmempts";
+
+    public static final String INVALID_COMMAND_FORMAT = "Invalid command format.";
+    public static final String MESSAGE_CONSTRAINTS = "Points to add must be a positive integer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Add membership tier of the person " + "identified "
+            + ": Add membership points to the person identified "
             + "by the name of the person in the listing. "
             + "Existing membership will be overwritten by the input.\n"
-            + "Parameters: NAME " + PREFIX_MEMSHIP + "[MEMBERSHIP_TIER]\n"
-            + "Example: " + COMMAND_WORD + " Alice "
-            + PREFIX_MEMSHIP + "T1";
-    public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added membership to Person: %1$s";
-    public static final String MESSAGE_DELETE_MEMBERSHIP_SUCCESS =
-          "Removed membership from Person: %1$s";
+            + "Parameters: n/MEMBER_NAME " + PREFIX_MEMSHIP_PTS + "[POINTS_TO_ADD]\n"
+            + "Example: " + COMMAND_WORD + " n/Alice "
+            + PREFIX_MEMSHIP_PTS + "T1";
+    public static final String MESSAGE_ADD_MEMBERSHIP_SUCCESS = "Added %1$d membership points to Person: %2$s";
     private final Name name;
-    private final String mship;
+    private final int pointsToAdd;
 
     /**
      * @param name of the person in the filtered person list to edit the remark
-     * @param mship of the person to be updated to
+     * @param pointsToAdd of the person to be updated to
      */
-    public AddMemshipCommand(Name name, String mship) {
-        requireAllNonNull(name, mship);
-
+    public AddMemPointsCommand(Name name, int pointsToAdd) {
+        requireAllNonNull(name, pointsToAdd);
         this.name = name;
-        this.mship = mship;
+        this.pointsToAdd = pointsToAdd;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -60,7 +59,7 @@ public class AddMemshipCommand extends Command {
 
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), new Membership((mship)),
+                personToEdit.getAddress(), personToEdit.getMembershipPoints().addPoints(pointsToAdd),
                 personToEdit.getTags(), personToEdit.getPoints(), personToEdit.getOrders());
 
         model.setPerson(personToEdit, editedPerson);
@@ -73,8 +72,7 @@ public class AddMemshipCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !mship.isEmpty() ? MESSAGE_ADD_MEMBERSHIP_SUCCESS : MESSAGE_DELETE_MEMBERSHIP_SUCCESS;
-        return String.format(message, personToEdit.getName());
+        return String.format(MESSAGE_ADD_MEMBERSHIP_SUCCESS, pointsToAdd, personToEdit.getName());
     }
 
     @Override
@@ -85,13 +83,13 @@ public class AddMemshipCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddMemshipCommand)) {
+        if (!(other instanceof AddMemPointsCommand)) {
             return false;
         }
 
         // state check
-        AddMemshipCommand e = (AddMemshipCommand) other;
+        AddMemPointsCommand e = (AddMemPointsCommand) other;
         return name.equals(e.name)
-                && mship.equals(e.mship);
+                && pointsToAdd == e.pointsToAdd;
     }
 }

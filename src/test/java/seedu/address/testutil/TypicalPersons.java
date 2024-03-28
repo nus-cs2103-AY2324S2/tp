@@ -32,24 +32,26 @@ public class TypicalPersons {
             .withOrders("Cupcake x 3@2007-12-03T10:15:30").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withMembership("T1")
+            .withEmail("johnd@example.com").withPhone("98765432").withMembershipPoints("10")
             .withTags("owesMoney", "friends").withPoints("70")
             .withOrders("Cookies x 5@2012-03-21T07:45:01", "Cupcake x 2@2014-12-11T13:01:02").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withMembership("T1").withPoints("0")
+            .withEmail("heinz@example.com").withAddress("wall street").withMembershipPoints("20").withPoints("0")
             .withOrders("Kaya Toast x 1@2024-01-01T07:00:00").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withMembership("T1").withTags("friends")
+            .withEmail("cornelia@example.com").withAddress("10th street").withMembershipPoints("30").withTags("friends")
             .withPoints("100").withOrders("Cheese Tart x 6@2023-06-30T23:23:23").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withMembership("T1").withPoints("50")
+            .withEmail("werner@example.com").withAddress("michegan ave").withMembershipPoints("100").withPoints("50")
             .withOrders("Chocolate Waffle x 1@2023-01-01T13:13:13",
                     "Peanut Butter Waffle x 1@2023-01-02T14:14:14",
                     "Kaya Waffle x 1@2023-01-03T15:15:15").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withMembership("T1").withPoints("20").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo").withMembershipPoints("110")
+            .withPoints("20").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withMembership("T1").withPoints("70").build();
+            .withEmail("anna@example.com").withAddress("4th street").withMembershipPoints("300")
+            .withPoints("70").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -59,10 +61,10 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withMembership(VALID_MSHIP_AMY)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withMembershipPoints(VALID_MSHIP_AMY)
             .withTags(VALID_TAG_FRIEND).withPoints(VALID_POINTS_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withMembership(VALID_MSHIP_BOB)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withMembershipPoints(VALID_MSHIP_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withPoints(VALID_POINTS_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
