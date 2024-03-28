@@ -132,6 +132,18 @@ public class Library implements ReadOnlyLibrary {
         return this.threshold.equals(threshold);
     }
 
+    public boolean hasBookInLibrary(Book book) {
+        return bookList.contains(book);
+    }
+
+    public Book popBookFromLibrary(Book book) {
+        if (hasBookInLibrary(book)) {
+            int i = bookList.indexOf(book);
+            return bookList.remove(i);
+        }
+        return null; //TODO assert non null when borrowing from library
+    }
+
     /**
      * Resets the existing data of this {@code Library} with {@code newData}.
      */

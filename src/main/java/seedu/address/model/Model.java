@@ -124,4 +124,15 @@ public interface Model {
      * Returns true if threshold of library is the same as {@code threshold}.
      */
     boolean hasThreshold(Threshold threshold);
+
+    /**
+     * Returns true if book is inside the library book list.
+     */
+    boolean hasBookInLibrary(Book book);
+
+    /**
+     * Returns the {@code book} if it is present in the library and removes it from the library book list.
+     * Returns null if book is not present in the library book list.
+     */
+    Book popBookFromLibrary(Book book);
 }

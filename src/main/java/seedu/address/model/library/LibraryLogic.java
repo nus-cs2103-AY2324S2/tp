@@ -124,8 +124,8 @@ public class LibraryLogic {
         return threshold;
     }
 
-    public boolean hasBooks() {
-        return availableBooks.size() > 0;
+    public boolean hasNoAvailableBooks() {
+        return availableBooks.isEmpty();
     }
 
     /**

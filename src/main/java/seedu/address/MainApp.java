@@ -104,7 +104,7 @@ public class MainApp extends Application {
         try {
             libraryLogic.loadLibraryFromFile();
             thresholdData = libraryLogic.getThreshold();
-            if (!libraryLogic.hasBooks()) {
+            if (libraryLogic.hasNoAvailableBooks()) {
                 logger.info("Creating a new library data file " + libraryLogic.getLibraryFilePath()
                         + " populated with a empty book list.");
                 //TODO Make sample book list
