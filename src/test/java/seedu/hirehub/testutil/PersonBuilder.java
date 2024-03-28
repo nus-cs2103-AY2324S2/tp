@@ -9,7 +9,6 @@ import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.person.Phone;
-import seedu.hirehub.model.person.Status;
 import seedu.hirehub.model.tag.Tag;
 import seedu.hirehub.model.util.SampleDataUtil;
 
@@ -22,14 +21,12 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_COUNTRY = "SG";
-    public static final String DEFAULT_STATUS = "PRESCREEN";
     public static final String DEFAULT_COMMENT = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Country country;
-    private Status status;
     private Comment comment;
     private Set<Tag> tags;
 
@@ -41,7 +38,6 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         country = new Country(DEFAULT_COUNTRY);
-        status = new Status(DEFAULT_STATUS);
         comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
     }
@@ -54,7 +50,6 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         country = personToCopy.getCountry();
-        status = personToCopy.getStatus();
         comment = personToCopy.getComment();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -108,14 +103,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withStatus(String status) {
-        this.status = new Status(status);
-        return this;
-    }
-
-    /**
      * Sets the {@code Comment} of the {@code Person} that we are building.
      */
     public PersonBuilder withComment(String comment) {
@@ -124,7 +111,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, country, status, comment, tags);
+        return new Person(name, phone, email, country, comment, tags);
     }
 
 }

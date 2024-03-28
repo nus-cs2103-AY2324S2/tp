@@ -1,18 +1,16 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
+    "name": "Pauline Alice",
     "phone": "94351253",
     "email": "alice@example.com",
     "country": "SG",
-    "status": "ACCEPTED",
     "comment": "",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com",
+    "email": "alice@example.com",
     "country": "SG",
-    "comment": "",
-    "status": "REJECTED"
+    "comment": ""
   } ]
 }

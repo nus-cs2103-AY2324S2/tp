@@ -23,7 +23,6 @@ public class Person {
 
     // Data fields
     private final Country country;
-    private final Status status;
     private final Comment comment;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -31,13 +30,12 @@ public class Person {
      * Every field must be present and not null.
      */
 
-    public Person(Name name, Phone phone, Email email, Country country, Status status, Comment comment, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, country, status, comment, tags);
+    public Person(Name name, Phone phone, Email email, Country country, Comment comment, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, country, comment, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.country = country;
-        this.status = status;
         this.comment = comment;
         this.tags.addAll(tags);
     }
@@ -51,7 +49,6 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.country = country;
-        this.status = new Status("PRESCREEN");
         this.comment = new Comment("");
         this.tags.addAll(tags);
     }
@@ -72,10 +69,6 @@ public class Person {
         return country;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
     public Comment getComment() {
         return comment;
     }
@@ -89,7 +82,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same email.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -98,7 +91,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
@@ -121,7 +114,6 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && country.equals(otherPerson.country)
-                && status.equals(otherPerson.status)
                 && comment.equals(otherPerson.comment)
                 && tags.equals(otherPerson.tags);
     }
@@ -129,7 +121,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, country, status, comment, tags);
+        return Objects.hash(name, phone, email, country, comment, tags);
     }
 
     @Override
@@ -139,7 +131,6 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("country", country)
-                .add("status", status)
                 .add("comment", comment)
                 .add("tags", tags)
                 .toString();

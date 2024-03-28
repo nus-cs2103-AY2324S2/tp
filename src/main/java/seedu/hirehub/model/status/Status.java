@@ -1,4 +1,4 @@
-package seedu.hirehub.model.person;
+package seedu.hirehub.model.status;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.hirehub.commons.util.AppUtil.checkArgument;

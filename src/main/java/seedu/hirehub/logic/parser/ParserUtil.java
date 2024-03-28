@@ -14,7 +14,7 @@ import seedu.hirehub.model.person.Country;
 import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
 import seedu.hirehub.model.person.Phone;
-import seedu.hirehub.model.person.Status;
+import seedu.hirehub.model.status.Status;
 import seedu.hirehub.model.tag.Tag;
 
 /**

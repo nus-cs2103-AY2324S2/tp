@@ -11,7 +11,6 @@ import seedu.hirehub.model.person.Email;
 import seedu.hirehub.model.person.Name;
 import seedu.hirehub.model.person.Person;
 import seedu.hirehub.model.person.Phone;
-import seedu.hirehub.model.person.Status;
 import seedu.hirehub.model.tag.Tag;
 
 /**
@@ -38,7 +37,6 @@ public class SearchPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setCountry(person.getCountry());
-        descriptor.setStatus(person.getStatus());
         descriptor.setComment(person.getComment());
         descriptor.setTags(person.getTags());
     }
@@ -72,14 +70,6 @@ public class SearchPersonDescriptorBuilder {
      */
     public SearchPersonDescriptorBuilder withCountry(String country) {
         descriptor.setCountry(new Country(country));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Status} of the {@code SearchPersonDescriptor} that we are building.
-     */
-    public SearchPersonDescriptorBuilder withStatus(String status) {
-        descriptor.setStatus(new Status(status));
         return this;
     }
 
