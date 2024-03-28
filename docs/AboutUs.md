@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,51 +11,43 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Sivakumar Aishvarya
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/s-aishvarya.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/S-Aishvarya)]
 
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Scheduling and tracking + Documentation + Commons
 
-### Jean Doe
+### Eugene Hirose
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vision-2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/Vision-2000)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing + UI + Logic
 
-### James Doe
+### Jeong Jaeho
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jeong-jaeho.png" width="200px">  
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/jeong-jaeho)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Team lead + Integration + Storage
+
+### Kim Junseo
+
+<img src="images/jskimdev.png" width="200px">
+
+[[github](https://github.com/jskimdev)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality + Model + JavaFX visuals
