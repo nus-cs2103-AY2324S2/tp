@@ -192,6 +192,54 @@ The sequence diagram below closely describes the interaction between the various
     * Pros: Better performance, since this only requires searching through the person list once.
     * Cons: The order of person list will be lost, since `Name` of a `Person` may be edited.
 
+### Add a `doctor`
+
+Adds a new `doctor` entry by indicating their `NRIC`, `Name`, `DoB`, and `Phone`.
+This command is implemented through the `AddDoctorCommand` class which extend the `Command` class.
+
+* Step 1. User enters an `adddoctor` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `addDoctorCommandParser`.
+* Step 3. The `parse` command in `addDoctorCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the doctor to added already exists in the system, a `DuplicatePersonException` is thrown`.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/AddDoctorActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `addDoctorCommandParser` return an instance of `addDoctorCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `addDoctorCommand`.
+* Step 6. The `execute` method in `addDoctorCommand` executes and calls `addDoctor` in model to add the new doctor into the system.
+* Step 7. Success message gets printed onto the results display to notify user.
+
+### Delete `doctor` or `patient`
+
+Deletes a `doctor` or `patient` entry by indicating their `Index`.
+This command is implemented through the `DeleteCommand` class which extend the `Command` class.
+
+* Step 1. User enters an `delete` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `deleteCommandParser`.
+* Step 3. The `parse` command in `deleteCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the provided `index` is invalid, a `CommandException` is thrown.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/DeletePersonActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `deleteCommandParser` return an instance of `deleteCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `deleteCommand`.
+* Step 6. The `execute` method in `deleteCommand` executes and calls `deletePerson` in model to remove doctor or patient from the system.
+* Step 7. Success message gets printed onto the results display to notify user.
+
+
+Why is this implemented this way?
+1. Making both `Doctor` and `Patient` class extend the `Person` class makes it easier to execute delete operations.
+2. `Doctor` and `Patient` all exhibit similar qualities, and thus can inherit from the `Person` superclass.
+3. Eliminates the need for seperate delete commands for doctor and patient.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
