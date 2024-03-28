@@ -16,16 +16,22 @@ import javafx.scene.layout.Region;
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
-
     @FXML
     private ListView<Student> studentListView;
-
     /**
-     * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StudentListPanel} with the given {@code ObservableList},
+     * and the default value of {@code showTimetable} option.
      */
     public StudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
         studentListView.setItems(studentList);
+        studentListView.setCellFactory(listView -> new StudentListViewCell());
+    }
+    public void showTimetable() {
+        studentListView.setCellFactory(listView -> new StudentListViewCell(true));
+    }
+
+    public void hideTimetable() {
         studentListView.setCellFactory(listView -> new StudentListViewCell());
     }
 
@@ -33,6 +39,14 @@ public class StudentListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
+        private boolean showTimetable;
+
+        public StudentListViewCell() {
+            this.showTimetable = false;
+        }
+        public StudentListViewCell(boolean showTimetable) {
+            this.showTimetable = showTimetable;
+        }
         @Override
         protected void updateItem(Student student, boolean empty) {
             super.updateItem(student, empty);
@@ -41,7 +55,7 @@ public class StudentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(student, getIndex() + 1, showTimetable).getRoot());
             }
         }
     }
