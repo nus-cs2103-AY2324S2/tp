@@ -21,7 +21,7 @@ public class CommandHistory {
     }
 
     /**
-     * Returns the instance of the CommandHistory.
+     * Returns the instance of the CommandHistory, creating a new instance if it does not exist.
      * @return the instance of the CommandHistory
      */
     public static CommandHistory getInstance() {
@@ -80,7 +80,15 @@ public class CommandHistory {
     }
 
     /**
-     * Returns the following command in the command history.
+     * Retrieves the next command in the command history.
+     * <p>
+     * This method returns the command that directly follows the current command in the command history.
+     * If this method reaches the end of the command history, or if there are no newer commands available,
+     * it returns an empty string.
+     * <p>
+     * Note: If called when there are no newer commands, this method logs an informational message and returns
+     * an empty string.
+     *
      * @return the following command in the command history
      */
     private String getFollowingCommand() {
@@ -95,7 +103,15 @@ public class CommandHistory {
         return "";
     }
     /**
-     * Returns the previous command in the command history.
+     * Retrieves the previous command in the command history.
+     * <p>
+     * This method returns the command that directly precedes the current command in the command history.
+     * If this method reaches the beginning of the command history, or if there are no older commands available,
+     * it returns an empty string.
+     * <p>
+     * Note: If called when there are no older commands, this method logs an informational message and returns
+     * an empty string.
+     *
      * @return the previous command in the command history
      */
     private String getPreviousCommand() {

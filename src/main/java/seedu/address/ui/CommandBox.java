@@ -33,7 +33,6 @@ public class CommandBox extends UiPart<Region> {
         this.autoCompleteExecutor = autoCompleteExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        commandTextField.setOnKeyPressed(this::handleArrowKeyPressed);
         commandTextField.setOnKeyPressed(this::handleKeyPressEvent);
     }
 
@@ -80,6 +79,10 @@ public class CommandBox extends UiPart<Region> {
         case TAB:
             handleTabKeyPressEvent(e);
             break;
+        case UP:
+            // Fallthrough
+        case DOWN:
+            handleArrowKeyPressed(e);
         default:
             break;
         }
