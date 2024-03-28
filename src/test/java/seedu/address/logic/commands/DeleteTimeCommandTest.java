@@ -56,6 +56,22 @@ public class DeleteTimeCommandTest {
         assertCommandFailure(deleteTimeCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
+    /**
+     * Edit filtered list where no free time was specified.
+     */
+    @Test
+    public void execute_emptyFreeTime_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_FIRST_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+
+        DeleteTimeCommand deleteTimeCommand = new DeleteTimeCommand(outOfBoundIndex,
+                new DeletePersonFreeTimeDescriptorBuilder().build());
+
+        assertCommandFailure(deleteTimeCommand, model, Messages.MESSAGE_NO_FREETIME_SPECIFIED);
+    }
+
     @Test
     public void equals() {
         final DeleteTimeCommand standardCommand = new DeleteTimeCommand(INDEX_FIRST_PERSON, DESC_DELETE_TIME_AMY);
