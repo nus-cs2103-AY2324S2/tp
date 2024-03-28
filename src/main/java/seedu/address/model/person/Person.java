@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.FreeTimeTag;
 
@@ -15,6 +18,8 @@ import seedu.address.model.tag.FreeTimeTag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    private static final Logger logger = LogsCenter.getLogger(Person.class);
+
 
     // Identity fields
     private final Name name;
@@ -42,26 +47,32 @@ public class Person {
     }
 
     public Name getName() {
+        logger.log(Level.INFO, "Retrieved person's name");
         return name;
     }
 
     public Phone getPhone() {
+        logger.log(Level.INFO, "Retrieved person's phone number");
         return phone;
     }
 
     public Email getEmail() {
+        logger.log(Level.INFO, "Retrieved person's email");
         return email;
     }
 
     public RoomNumber getRoomNumber() {
+        logger.log(Level.INFO, "Retrieved person's room number");
         return roomNumber;
     }
 
     public Telegram getTelegram() {
+        logger.log(Level.INFO, "Retrieved person's telegram");
         return telegram;
     }
 
     public Birthday getBirthday() {
+        logger.log(Level.INFO, "Retrieved person's birthday");
         return birthday;
     }
 
@@ -70,6 +81,7 @@ public class Person {
      * if modification is attempted.
      */
     public Set<FreeTimeTag> getTags() {
+        logger.log(Level.INFO, "Retrieved person's free time tags");
         return Collections.unmodifiableSet(tags);
     }
 
