@@ -158,6 +158,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+###  Grade parameter
+
+####  Implementation
+Grades  
+* are an attribute of every student
+* can vary from student to student, both in quantity of grades stored and test scores
+* of the form: [test name: grade] where
+  + test name is non empty
+  + the grade is a value from 0 to 100, representing the percentage gotten in the test rounded to the nearest whole number
+* are an optional parameter
+
+Grades can be added and edited with the add and edit command with the prefix `g/`.
+
+Given below are example usages scenario of how adding grades behaves.
+* The user executes `add n/David … g/ca1: 100` command to add a new student with one grade, with the test name being `ca1` and the score attained `100`
+* The user executes `add n/David … g/ca1: 100 g/ ca2: 50` command to add a new student with two grade, 
+with the first test name being `ca1` and the score attained `100` and the second test name being `ca2` and the score attained `50`
+* The user executes `add n/David …` command without any g/ prefixes, adding a new student with no grades, which is permissible.
+
+###  Timeslot parameter
+
+####  Implementation
+Timeslots
+* are an attribute of every student
+* of the form: [DayOfWeek StartTime-EndTime] where 
+    + The DayOfWeek is any day from Monday to Sunday.
+    + StartTime and EndTime include hours and optional minutes in 12-hour format
+    + Minutes, if included, should be separated from hours by a colon
+    + For example, 'Saturday 4pm-6pm', 'Tuesday 2:30pm-4:30pm'
+* are an optional parameter
+
+Timeslots can be added and edited with the add and edit command with the prefix `t/`.
+
+Given below are example usages scenario of how adding timeslots behaves.
+* The user executes `add n/David … t/Saturday 4pm-6pm` command to add a new student with one timeslot on Saturdays 4pm-6pm
+* The user executes `add n/David … t/Saturday 4pm-6pm t/Monday 11:30am-1:30pm` command to add a new student with two timeslots,
+  one timeslot on Saturdays 4pm-6pm and the other on Mondays 11:30am-1:30pm.
+* The user executes `add n/David …` command without any t/ prefixes, adding a new student with no timeslots, which is permissible.
+
+###  Filter feature
+
+####  Implementation
+
+The filter mechanism allows the user to filter through students based on their timeslots. 
+It is facilitated by `TimeslotsContainsKeywordsPredicate`, which extends `Predicate<Student>` with a list of keywords stored internally as `keywords`.
+Additionally, it implements the following operations:
+* `TimeslotsContainsKeywordsPredicate#test()` — Returns a boolean value for every student in the addressBook, 
+returning `true` if any of the student's timeslots matches the keywords, and `false` otherwise.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
