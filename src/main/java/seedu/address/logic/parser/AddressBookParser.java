@@ -104,7 +104,7 @@ public class AddressBookParser {
             return new FilterInterviewsByDateCommandParser().parse(arguments);
 
         case FilterPersonsByStatusCommand.COMMAND_WORD:
-                return new FilterPersonsByStatusCommandParser().parse(arguments);
+            return new FilterPersonsByStatusCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
