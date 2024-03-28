@@ -427,40 +427,49 @@ This section contains commands for managing groups in TutorsContactsPro.
 
 You can add a new group to TutorsContactsPro, so that you can keep track of the groups you currently teach.
 
-Format: `addgroup g/GROUP_NAME`
+format: `addgroup g/[GROUP NAME]`
 
 > ⚠️️ **Constraint:**
 > * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
 
+> ℹ️ **Information:**
+> * Adds a group with a given group name.
+> * Group names are unique.
+
+
 Examples:
-* `addgroup g/TUT01`
-  ![result for 'filter TU'](images/filterFeature.png)
+* `addgroup g/LAB12` Adds the group `LAB12`
+  
 
 ### <span id='feature-editgroup'> Adding a group: `editgroup` <span>
 
 You can edit an existing group in TutorsContactsPro, so that you can remain up to date with each group's information.
 
-Format: `editgroup g/GROUP_NAME tg/TELEGRAM_LINK`
+Format: format: `addgroup g/[GROUP NAME] tg/[TELEGRAM INVITE LINK]`
 
 > ⚠️️ **Constraint:**
 > * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
+> * The invite link must be a valid Telegram group invite link
 
-Examples:
-* `editgroup g/TUT01 tg/telegramexample.com`
-  ![result for 'filter TU'](images/filterFeature.png)
+> ℹ️ **Information:**
+> * Assigns a Telegram group invite link to a group with given group name.
+
+
+Examples
+* `editgroup g/LAB12 tg/https://t.me/abcdefg` Adds the specified link to group `LAB12`.
+  
 
 ### <span id='feature-deletegroup'> Deleting a group: `deletegroup` <span>
 
 You can delete an existing group in TutorsContactsPro, so that you can start a fresh for the next teaching semester.
 
-Format: `deletegroup g/GROUP_NAME`
+format: `deletegroup g/[GROUP NAME]`
 
 > ⚠️️ **Constraint:**
 > * `GROUP_NAME` must be in the correct format of `TUT/REC/LAB` + `2-digit number`
 
 Examples:
-* `deletegroup g/TUT01`
-  ![result for 'filter TU'](images/filterFeature.png)
+* `deletegroup g/LAB12` Deletes group `LAB12`.
 
 ### <span id='feature-mail'> Mail broadcast : `mail` <span>
 
