@@ -470,12 +470,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-**Use case: Assign priorities to contacts**
+**Use case: Assign high or medium priority to a contact**
 
 **MSS**
 
-1.  User requests to assign a specific contact with low/medium/high priority
-2.  Connectify adds the given priority to the contact and displays the full updated contact information
+1.  User requests to assign medium or high priority to a specific contact name.
+2.  Connectify adds the given priority to the contact and displays the full updated contact information.
 
     Use case ends.
 
@@ -490,17 +490,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The contact already has an existing priority label.
 
-    * 1b1. Connectify informs the user the priority label that the contact currently has and requests for confirmation
-      to update the current priority level to the newly given one.
-    * 1b2a. User confirms the update.
-        * 1b2a1. Connectify updates the current priority label of the given contact to the new one.
+    * 1b1. Connectify adds the priority level to the contact according to the new request and displays the full updated contact information.
 
-          Use Case ends
-    * 1b2b. User cancels the update.
-        * 1b2b1. Connectify does not update the information.
+        Use case ends.
 
-          Use case ends.
+**Use case: Remove priority from a contact**
 
+**MSS**
+
+1.  User requests to remove priority to a specific contact name.
+2.  Connectify removes priority from the contact and displays the full updated contact information.
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. The given contact name is not in the contact list.
+
+    * 1a1. Connectify shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The contact does not have an existing priority label.
+
+    * 1b1. Connectify again sets the priority level of the contact as none according to the new request and displays the full updated contact information.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
