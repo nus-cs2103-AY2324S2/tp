@@ -293,13 +293,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user              | edit the details that I’ve added                                                                          | my application will contain the most updated and accurate information                |
 | `* * *`  | user              | list all my contacts                                                                                      | remember whom I’ve met at a glance                                                   |
 | `* * *`  | user              | delete a contact                                                                                          | only keep those that are necessary                                                   |
+| `* * *`  | user              | undo my most recently added entry                                                                         | quickly delete that entry if I had made a mistake                                    |
 | `* *`    | computing student | categorise the people I meet into interns, recruiters, alumni, students, professors, employees and others | remember the people whom I’ve met and easily find them again                         |
 | `* *`    | computing student | search a contact using key word                                                                           | find the contact quickly                                                             |
+| `* *`    | user              | add a meeting with my contact                                                                             | know when to meet with the conatct                                                   |
+| `* *`    | user              | find all meetings                                                                                         | know who I will be meeting with                                                      |
 | `* *`    | user              | differentiate which companies my professional contacts are from                                           | know which company I am connecting with                                              |
+| `* *`    | user              | find my contacts by company                                                                               | easily find the contacts from the company I want                                     |
 | `* *`    | computing student | assign priority levels to my contacts                                                                     | prioritise certain contacts in my network who would be more beneficial for my career |
 | `*`      | computing student | filter my contacts by priority                                                                            | identify high-priority contacts at a glance                                          |
 | `*`      | user              | have a "favourites" or "star" feature for important contacts                                              | easily access them without scrolling through the entire list                         |
 | `*`      | user              | know the number of contacts quickly                                                                       | get a sensing of how many people are in my network                                   |
+| `*`      | user              | unstar a contact                                                                                          |                                                                                      |
+| `*`      | user              | remove priority from a contact                                                                            |                                                                                      |
 
 
 ### Use cases

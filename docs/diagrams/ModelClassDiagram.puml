@@ -39,7 +39,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList ----> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> "*" Email
@@ -48,6 +48,7 @@ Person *--> "*" Company
 Person *--> "*" Priority
 Person *--> "*" Tag
 Person *--> "*" Note
+Person : starred: Boolean
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
