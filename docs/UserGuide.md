@@ -75,7 +75,7 @@ Java is a versatile programming language used for developing various application
 1. Download the latest version of `FitBook.jar` from <a href="https://github.com/AY2324S2-CS2103T-T17-3/tp/releases" target="_blank">here</a>.
 
 1. Copy the file to the folder you want to use as the **home folder** for FitBook.
-   * FitBook will save all the data it needs this folder.
+   * FitBook will save all the data it needs in this folder.
 
 1. Double-click the `FitBook.jar` file to launch it.
     * If that doesn't work, try the steps found [here](#why-doesnt-fitbook-start-when-i-double-click).
