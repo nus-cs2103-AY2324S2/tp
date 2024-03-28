@@ -192,6 +192,26 @@ the name `Bob`, the command would be `find-n Bob`. This was rejected as it only 
 to a less flexible feature.
 
 
+
+### List in alphabetical order feature
+
+#### Implementation
+
+The list in alphabetical order feature is implemented by using the `ArrayList` and `Comparator` classes. `ArrayList` is used to manage the list of `Patients` while `Comparator` is used to compare the `fullName` of each `Patient`.
+
+The implementation of the `list` command works as follows.
+
+Upon the user's entering the `list` command, after checking that the list of patients is not empty, a list of all `Patients` is retrieved from the `Model` object and added to a separate `ArrayList`. From there, a `Comparator` is created that sorts the list of `Patients` using their `fullName`. Then, each element from the `ArrayList` is removed then added in the correct alphabetical order. Once this is completed, the `CommandResult` returns successfully and displays the correct output, a list of all patients in alphabetical order.
+
+The following sequence diagram shows the sequence of events when the 'list' command is typed by a user.
+
+<puml src="diagrams/ListSequenceDiagram.puml" alt="ListSequenceDiagram" />
+
+#### Design considerations
+
+The current design was chosen as the existing list of `Patients` in the `Model` object, `getFilteredPersonList()`, is an immutable object that necessitated the creation of an `ArrayList` object, though it may be inefficient.
+
+
 ### Delete All feature
 
 #### Implementation
