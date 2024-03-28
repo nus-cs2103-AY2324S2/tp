@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Remark;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -59,7 +60,7 @@ public class PersonTest {
 
     @Test
     public void removeOrder_orderIsPresent_orderRemovedSuccessfully() {
-        Order order = new Order(new Date("2020-01-01"), "100 chicken wings");
+        Order order = new Order(new Date("2020-01-01"), new Remark("100 chicken wings"));
         Person person = new PersonBuilder().withOrders(new ArrayList<>(List.of(order))).build();
 
         person.removeOrder(order);
@@ -69,9 +70,9 @@ public class PersonTest {
 
     @Test
     public void removeOrder_orderIsNotPresent_ordersListUnchanged() {
-        Order existingOrder = new Order(new Date("2020-01-01"), "100 chicken wings");
+        Order existingOrder = new Order(new Date("2020-01-01"), new Remark("100 chicken wings"));
         Person person = new PersonBuilder().withOrders(new ArrayList<>(List.of(existingOrder))).build();
-        Order nonExistingOrder = new Order(new Date("2020-02-01"), "200 chicken wings");
+        Order nonExistingOrder = new Order(new Date("2020-02-01"), new Remark("200 chicken wings"));
 
         person.removeOrder(nonExistingOrder);
 

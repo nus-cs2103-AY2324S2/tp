@@ -216,6 +216,15 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseRemark_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemark(null));
+    }
+
+    @Test
+    public void parseRemark_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemark(""));
+    }
+
     public void parseCsv_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCsv(null));
     }
