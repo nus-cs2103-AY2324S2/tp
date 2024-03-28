@@ -16,7 +16,7 @@ public class Outlet {
     /**
      * Constructs a {@code outletName}.
      *
-     * @param outletName A valid author name.
+     * @param outletName A valid outlet name.
      */
     public Outlet(String outletName) {
         requireNonNull(outletName);
