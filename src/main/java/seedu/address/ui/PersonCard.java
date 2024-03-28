@@ -56,8 +56,8 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         major.setText(person.getMajor().value);
         email.setText(person.getEmail().value);
-        star.setText(person.getStar().toString()); // need String representation
-        bolt.setText(person.getBolt().toString());
+        star.setText("⭐ " + person.getStar().toString() + "  "); //  \u2B50 is the Unicode for the star emoji
+        bolt.setText("⚡ " + person.getBolt().toString()); // \u26A1 is the Unicode for the high voltage sign (bolt emoji)
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
