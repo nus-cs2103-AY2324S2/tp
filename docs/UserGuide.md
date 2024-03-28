@@ -90,14 +90,13 @@ Show workers as a list. This can be used as “refresh” (e.g. after find comma
 
 Edits an existing employee in the address book.
 
-Format: `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG]`
+Format: `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`
 
 * Edits the person of the specified `ID`. The id refers to the 6-digits identity number. The id **must be 6 digits**: 240001, 240002...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, all the existing tags of the person will be removed.
-* You can remove all the person’s tags by typing `:tag` without
-    specifying any tags after it.
+* When editing tags, tag with corresponding index will be replaced.
+* You can remove all the person’s tags by typing `:tag -1`.
 
 Examples:
 *  `/edit 240001 :phone 91234567 :email: johndoe@example.com` Edits the phone number and email address of the person with id 240001 to be `91234567` and `johndoe@example.com` respectively.

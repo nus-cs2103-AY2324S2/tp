@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -45,10 +46,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] + [TAG_INDEX] + [NEW_TAG]\n"
             + "Example: " + COMMAND_WORD + " 240001 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_PHONE + " 91234567 "
+            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_TAG + " 1 friend";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -82,6 +84,8 @@ public class EditCommand extends Command {
         if (personToEdit == null) {
             throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_ID);
         }
+        editPersonDescriptor.setTags(personToEdit.getTags());
+        editPersonDescriptor.setUpdatedTags();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -146,6 +150,7 @@ public class EditCommand extends Command {
         private YearJoined yearJoined;
         private Address address;
         private Set<Tag> tags = new HashSet<>();
+        private Pair<Integer, String> updateTagInfo;
 
         public EditPersonDescriptor() {}
 
@@ -165,6 +170,7 @@ public class EditCommand extends Command {
             } else {
                 setTags(toCopy.tags);
             }
+            setUpdateTagInfo(toCopy.updateTagInfo);
         }
 
         /**
@@ -225,6 +231,37 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Stores tag info to be updated later.
+         * @param tagInfo A pair of index and new tag name.
+         */
+        public void setUpdateTagInfo(Pair<Integer, String> tagInfo) {
+            updateTagInfo = tagInfo;
+        }
+
+        /**
+         * Sets {@code tagInfo} to this object's {@code tags}.
+         */
+        public void setUpdatedTags() {
+            if (updateTagInfo == null) {
+                return;
+            }
+            if (updateTagInfo.getKey() > this.tags.size()) {
+                return;
+            }
+            if (updateTagInfo.getKey() == -1) {
+                this.tags = new HashSet<>();
+            } else {
+                Object[] newTags = tags.toArray();
+                newTags[updateTagInfo.getKey() - 1] = new Tag(updateTagInfo.getValue());
+                Tag[] tag = new Tag[tags.size()];
+                for (int i = 0; i < tags.size(); i++) {
+                    tag[i] = (Tag) newTags[i];
+                }
+                tags = Set.of(tag);
+            }
         }
 
         /**
