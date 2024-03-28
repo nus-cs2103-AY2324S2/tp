@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 /**
      * Contains integration tests (interaction with the Model) for {@code SortAscendingCommand}.
  */
-public class SortAscendingCommandTest {
+public class SortStarsAscendingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -28,9 +28,9 @@ public class SortAscendingCommandTest {
 
     @Test
     public void execute_sortAscending_success() {
-        SortAscendingCommand sortAscendingCommand = new SortAscendingCommand();
-        String expectedMessage = SortAscendingCommand.MESSAGE_SUCCESS;
-        CommandResult commandResult = sortAscendingCommand.execute(model);
+        SortStarsAscendingCommand sortStarsAscendingCommand = new SortStarsAscendingCommand();
+        String expectedMessage = SortStarsAscendingCommand.MESSAGE_SUCCESS;
+        CommandResult commandResult = sortStarsAscendingCommand.execute(model);
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         ObservableList<Person> lastShownList = model.getCorrectPersonList();
         assertTrue(isSortedByStarsAscending(lastShownList));
