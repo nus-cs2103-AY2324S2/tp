@@ -15,6 +15,7 @@ import seedu.edulink.logic.commands.DeleteCommand;
 import seedu.edulink.logic.commands.EditCommand;
 import seedu.edulink.logic.commands.ExitCommand;
 import seedu.edulink.logic.commands.ExportCommand;
+import seedu.edulink.logic.commands.FilterCommand;
 import seedu.edulink.logic.commands.FindCommand;
 import seedu.edulink.logic.commands.HelpCommand;
 import seedu.edulink.logic.commands.ListCommand;
@@ -70,6 +71,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

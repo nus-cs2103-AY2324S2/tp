@@ -6,8 +6,12 @@ import static seedu.edulink.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.edulink.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.edulink.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.edulink.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.edulink.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.edulink.testutil.Assert.assertThrows;
 import static seedu.edulink.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +22,7 @@ import seedu.edulink.logic.commands.EditCommand;
 import seedu.edulink.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.edulink.logic.commands.ExitCommand;
 import seedu.edulink.logic.commands.ExportCommand;
+import seedu.edulink.logic.commands.FilterCommand;
 import seedu.edulink.logic.commands.FindCommand;
 import seedu.edulink.logic.commands.HelpCommand;
 import seedu.edulink.logic.commands.ListCommand;
@@ -27,6 +32,8 @@ import seedu.edulink.model.student.IdAndNameContainsQueryIdAndNamePredicate;
 import seedu.edulink.model.student.IdContainsQueryIdPredicate;
 import seedu.edulink.model.student.NameContainsQueryNamePredicate;
 import seedu.edulink.model.student.Student;
+import seedu.edulink.model.student.TagsContainQueryTagsPredicate;
+import seedu.edulink.model.tag.Tag;
 import seedu.edulink.testutil.EditPersonDescriptorBuilder;
 import seedu.edulink.testutil.PersonBuilder;
 import seedu.edulink.testutil.PersonUtil;
@@ -79,15 +86,31 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         String queryName = "Oliver";
         String queryId = "A1234567X";
+
         FindCommand command = (FindCommand) parser.parseCommand(
             FindCommand.COMMAND_WORD + " " + PREFIX_NAME + queryName);
         assertEquals(new FindCommand(new NameContainsQueryNamePredicate(queryName)), command);
+
         command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " " + PREFIX_ID + queryId);
         assertEquals(new FindCommand(new IdContainsQueryIdPredicate(queryId)), command);
 
         command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " "
             + PREFIX_NAME + queryName + " " + PREFIX_ID + queryId);
         assertEquals(new FindCommand(new IdAndNameContainsQueryIdAndNamePredicate(queryId, queryName)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        Tag testTag1 = new Tag("TA");
+        Tag testTag2 = new Tag("Smart");
+        Set<Tag> queryTags = new HashSet<>();
+        queryTags.add(testTag1);
+        queryTags.add(testTag2);
+
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + PREFIX_TAG + testTag1.tagName
+                        + " " + PREFIX_TAG + testTag2.tagName);
+        assertEquals(new FilterCommand(new TagsContainQueryTagsPredicate(queryTags)), command);
     }
 
     @Test

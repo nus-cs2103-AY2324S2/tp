@@ -111,7 +111,7 @@ public class TagCommandTest {
             .withMajor("Computer Science").withIntake("2023")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends", "TopStudent").build();
+            .withTags("TA", "Smart", "friends", "TopStudent").build();
         expectedModel.setPerson(ALICE, resultStudent);
         assertCommandSuccess(tagCommand, model, String.format(MESSAGE_ADD_TAG_SUCCESS, tagList), expectedModel);
     }
