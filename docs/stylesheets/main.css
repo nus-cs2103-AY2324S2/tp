@@ -181,3 +181,11 @@ h3 {
   color: #FFFFFF;
   padding: 8px 8px 12px 8px;
 }
+
+<style>
+  .step {
+  }
+  .sub-step {
+    margin-left: 1.5em;
+  }
+</style>
