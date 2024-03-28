@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+Actor User as user USER_COLOR
+Participant ":Ui" as ui UI_COLOR
+Participant "logicManager:LogicManager" as logicManager LOGIC_COLOR
+Participant "addressBookParser:AddressBookParser" as addressBookParser MODEL_COLOR
+Participant ":EditCommandParser" as editCommandParser STORAGE_COLOR
+Participant ":EditCommand" as editCommand UI_COLOR
+Participant ":CommandResult" as commandResult LOGIC_COLOR
+
+user -[USER_COLOR]> ui : "edit 1 b/2000-01-01"
+activate ui UI_COLOR
+
+ref over logicManager, ui : process user input
+activate logicManager LOGIC_COLOR
+
+logicManager -[USER_COLOR]> addressBookParser : parseCommand("edit 1 b/2000-01-01")
+activate addressBookParser MODEL_COLOR
+
+addressBookParser -[USER_COLOR]> editCommandParser ** : EditCommandParser()
+activate editCommandParser STORAGE_COLOR
+
+editCommandParser -[USER_COLOR]> editCommandParser : parse(...)
+activate editCommandParser STORAGE_COLOR
+
+editCommandParser -[USER_COLOR]> editCommand ** : EditCommand(...)
+activate editCommand UI_COLOR
+
+editCommand -[USER_COLOR]-> editCommandParser : :EditCommand
+deactivate editCommand
+
+editCommandParser -[USER_COLOR]-> editCommandParser : :EditCommand
+deactivate editCommandParser
+
+editCommandParser -[USER_COLOR]-> addressBookParser : :EditCommand
+deactivate editCommandParser
+
+addressBookParser -[USER_COLOR]-> logicManager : :EditCommand
+deactivate addressBookParser
+
+logicManager -[USER_COLOR]> editCommand : execute(...)
+activate editCommand UI_COLOR
+
+editCommand -[USER_COLOR]> commandResult ** : CommandResult()
+activate commandResult LOGIC_COLOR
+
+commandResult -[USER_COLOR]-> editCommand : :CommandResult
+deactivate commandResult
+
+editCommand -[USER_COLOR]-> logicManager: :CommandResult
+deactivate editCommand
+
+ref over logicManager, ui : process command result
+deactivate logicManager
+
+ui -[USER_COLOR]-> user : "Edited Person: ..."
+deactivate ui
+
+@enduml

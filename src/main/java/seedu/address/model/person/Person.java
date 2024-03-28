@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,18 +24,25 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Birthday birthday;
+    private final Instrument instrument;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Attendance> attendances = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Instrument instrument,
+                  Set<Tag> tags, Set<Attendance> attendances) {
+        requireAllNonNull(name, phone, email, address, birthday, instrument, tags, attendances);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
+        this.instrument = instrument;
         this.tags.addAll(tags);
+        this.attendances.addAll(attendances);
     }
 
     public Name getName() {
@@ -53,6 +61,14 @@ public class Person {
         return address;
     }
 
+    public Birthday getBirthday() {
+        return birthday;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -60,6 +76,15 @@ public class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Attendance> getAttendances() {
+        return Collections.unmodifiableSet(attendances);
+    }
+
 
     /**
      * Returns true if both persons have the same name.
@@ -94,13 +119,16 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && birthday.equals(otherPerson.birthday)
+                && instrument.equals(otherPerson.instrument)
+                && tags.equals(otherPerson.tags)
+                && attendances.equals(otherPerson.attendances);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, birthday, instrument, tags, attendances);
     }
 
     @Override
@@ -110,7 +138,10 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("birthday", birthday)
+                .add("instrument", instrument)
                 .add("tags", tags)
+                .add("attendances", attendances)
                 .toString();
     }
 

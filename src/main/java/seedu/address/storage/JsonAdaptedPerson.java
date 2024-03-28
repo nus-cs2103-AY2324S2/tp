@@ -10,8 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Instrument;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -28,21 +31,32 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String birthday;
+    private final String instrument;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedAttendance> attendances = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("birthday") String birthday,
+                             @JsonProperty("instrument") String instrument,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("attendances") List<JsonAdaptedAttendance> attendances) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
+        this.instrument = instrument;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (attendances != null) {
+            this.attendances.addAll(attendances);
         }
     }
 
@@ -54,8 +68,13 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        birthday = source.getBirthday().value;
+        instrument = source.getInstrument().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        attendances.addAll(source.getAttendances().stream()
+                .map(JsonAdaptedAttendance::new)
                 .collect(Collectors.toList()));
     }
 
@@ -68,6 +87,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Attendance> personAttendances = new ArrayList<>();
+        for (JsonAdaptedAttendance attendance : attendances) {
+            personAttendances.add(attendance.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +126,30 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
+        if (instrument == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Instrument.class.getSimpleName()));
+        }
+        if (!Instrument.isValidInstrument(instrument)) {
+            throw new IllegalValueException(Instrument.MESSAGE_CONSTRAINTS);
+        }
+        final Instrument modelInstrument = new Instrument(instrument);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelInstrument,
+                modelTags, modelAttendances);
     }
 
 }

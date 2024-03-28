@@ -1,19 +1,28 @@
 #copyButton, #helpMessage {
-    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Product Sans";
+    -fx-text-fill: #1A5F68;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #D8EEF1;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #CCE4E8;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: #A7D3D9;
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: white;
+    -fx-padding: 15 30 15 30;
+}
+
+#helpMessageContainer > Label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Product Sans";
+    -fx-text-fill: black;
 }
