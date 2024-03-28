@@ -227,7 +227,7 @@ This command is implemented through the `DeleteCommand` class which extend the `
 
 The activity diagram below demonstrates this error handling process in more detail.
 
-<img src="images/QueryPersonActivityDiagram.png" width="800" />
+<img src="images/DeletePersonActivityDiagram.png" width="800" />
 
 * Step 4. The `parse` command in `deleteCommandParser` return an instance of `deleteCommand`.
 * Step 5. The `LogicManager` calls the `execute` method in `deleteCommand`.
@@ -314,7 +314,7 @@ This command is implemented through the `QueryDoctor` and `QueryPatient` classes
 
 The activity diagram below demonstrates this error handling process in more detail.
 
-<img src="images/DeletePersonActivityDiagram.png" width="800" />
+<img src="images/QueryPersonActivityDiagram.png" width="800" />
 
 * Step 4. The `parse` command in `queryDoctorCommandParser` or `queryDoctorCommandParser` return an instance of `queryPatientCommand` or `queryPatientCommand` respectively.
 * Step 5. The `LogicManager` calls the `execute` method in `queryDoctorCommandParser` or `queryDoctorCommandParser`.
