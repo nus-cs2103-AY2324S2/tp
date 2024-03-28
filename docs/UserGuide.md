@@ -38,7 +38,7 @@ We recommend that you navigate our User Guide in this order:
 
 After that, you would be ready to use CareerSync to manage your internship applications!
 
-## Introduction
+## Introduction To <span style="color: #f66a0a;">CareerSync</span>
 
 Applying for multiple internships can be a daunting task, especially when you have to keep track of all the different
 application statuses, contact details, and tasks to-do for each internship. Having to manage all these details can be
@@ -345,34 +345,27 @@ Format: `help`
 
 ### Adding an internship: `add`
 
-Adds an internship entry and all the relevant fields
+Let's start off with knowing how you can add an internship entry with all the relevant fields. Take a look at the format below!
 
-Format: `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​`
+**Format:** `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​` <br>
+This is the structure of an `add` command, specifying what you need to add an internship entry. 
 
 * The fields `COMPANY_NAME`, `DESCRIPTION`, `CONTACT_NAME` and `ROLE` allow the use of any text, number and/or spaces
 * The field `STATUS` accepts only the following inputs: `to_apply`, `ongoing`, `rejected`, `accepted`
 * The field `CONTACT_EMAIL` accepts only the format of `<email> @ domain.com`
-* The field `CONTACT_NUMBER` accepts only positive integers and it must be minimally 3 **positive integers** and above
+* The field `CONTACT_NUMBER` accepts only positive integers and it must be minimally 3 **positive** integers and above
   * A **positive integer** refers to 1, 2, 3, …​
 * The field `LOCATION_ENUM` accepts only the following inputs: `remote`, `local`, `overseas`
 
-Now, let us try to add an internship entry.
-
-<div markdown="span" class="alert alert-success">
-
-💡 **Try It Out:**<br>
-
-Key in the following command in the CLI: `add /com Tiktok /desc create new recommendation engine /status ongoing /poc jane yeo /email hr@tiktok.com
-/phone 90890301 /loc remote /role Software Intern`
-
-Successful output after adding the entry:<br>
-![After successfully adding](./images/tutorial/add.png)
-You can now see your new internship with the details you entered in the **Internship List Display!**
+<div markdown="span" class="alert alert-info">
+ℹ️ **Tip:** <br> Head over to the [Tutorial](#tutorial) and learn how to add an internship entry !
 </div>
 
-**Common errors:**
+<div markdown="span" class="alert alert-danger">
+⚠️ **Common errors:** <br>
 1. If no field prefixes are specified or if there are errors, the command will be rejected with error message:<br>
    `Invalid Command Prefix!` followed by the format to use and an example for you to refer to or try out
+</div>
 
 ### Deleting an internship: `delete`
 
