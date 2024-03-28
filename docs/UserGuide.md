@@ -214,11 +214,18 @@ Examples:
 ### <span id='feature-addgroup'> Adding a group: `filter` <span>
 Adds a tutorial/lab/recitation group to be assigned on students later.
 Format: `addgroup g/[GROUP NAME]`
-* Adds a group with a given group name
+* Adds a group with a given group name.
+* Group names are unique.
 * The group name must be prefixed by TUT/LAB/REC, followed by two digits.
 
+### <span id='feature-addgroup'> Editing a group: `filter` <span>
+Adds a tutorial/lab/recitation group to be assigned on students later.
+Format: `addgroup g/[GROUP NAME] tg/[TELEGRAM INVITE LINK]`
+* Assigns a Telegram group invite link to a group with given group name.
+* The invite link must be a valid Telegram group invite link
+
 Examples
-* `addgroup g/LAB12` Adds a lab numbered 12.
+* `editgroup g/LAB12 tg/https://t.me/abcdefg` Adds the specified link to group LAB12.
 
 ### <span id='feature-mail'> Mail broadcast : `mail` <span>
 
