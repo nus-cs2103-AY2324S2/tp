@@ -9,10 +9,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.util.Pair;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -192,5 +194,33 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseUpdatedTags_validInput_returnsPair() throws ParseException {
+        Optional<String> testString = Optional.of("1 Boss");
+        Pair<Integer, String> actualResult = ParserUtil.parseUpdatedTags(testString);
+        assertEquals(1, actualResult.getKey());
+        assertEquals("Boss", actualResult.getValue());
+    }
+
+    @Test
+    public void parseUpdatedTags_invalidIndex_throwsParseException() throws ParseException {
+        Optional<String> testString = Optional.of("-5 Boss");
+        assertThrows(ParseException.class, () -> ParserUtil.parseUpdatedTags(testString));
+    }
+
+    @Test
+    public void parseUpdatedTags_noNewTagName_throwsParseException() throws ParseException {
+        Optional<String> testString = Optional.of("-5");
+        assertThrows(ParseException.class, () -> ParserUtil.parseUpdatedTags(testString));
+    }
+
+    @Test
+    public void parseUpdatedTags_clearTags_returnsEmptyPair() throws ParseException {
+        Optional<String> testString = Optional.of("-1");
+        Pair<Integer, String> actualResult = ParserUtil.parseUpdatedTags(testString);
+        assertEquals(-1, actualResult.getKey());
+        assertEquals(null, actualResult.getValue());
     }
 }
