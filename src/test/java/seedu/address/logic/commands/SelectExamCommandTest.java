@@ -71,7 +71,9 @@ public class SelectExamCommandTest {
     @Test
     void toStringTest() {
         SelectExamCommand selectExamCommand = new SelectExamCommand(Index.fromZeroBased(1));
-        assertEquals("SelectExamCommand{targetIndex=1}", selectExamCommand.toString());
+        assertEquals("seedu.address.logic.commands.SelectExamCommand{targetIndex="
+                     + "seedu.address.commons.core.index.Index{zeroBasedIndex=1}}",
+                     selectExamCommand.toString());
     }
 
 }
