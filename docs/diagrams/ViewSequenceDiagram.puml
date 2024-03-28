@@ -1,0 +1,59 @@
+@startuml
+skinparam ArrowFontStyle plain
+skinparam FontColor White
+
+box "Logic" #C8C8FA
+participant "<color #white>:LogicManager</color>" as LogicManager #MediumBlue
+participant "<color #white>:AddressBookParser</color>" as AddressBookParser #MediumBlue
+participant "<color #white>:ViewCommandParser</color>" as ViewCommandParser #MediumBlue
+participant "<color #white>ac:ViewCommand</color>" as ViewCommand #MediumBlue
+participant "<color #white>r:CommandResult</color>" as CommandResult #MediumBlue
+end box
+
+[-> LogicManager : execute("add [ARGS]")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add [ARGS]")
+activate AddressBookParser
+
+create ViewCommandParser
+AddressBookParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+
+AddressBookParser -> ViewCommandParser : parse("[ARGS]")
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser :
+deactivate ViewCommand
+
+ViewCommandParser --> AddressBookParser : ac
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> AddressBookParser
+destroy ViewCommandParser
+
+AddressBookParser --> LogicManager : ac
+deactivate AddressBookParser
+
+LogicManager -> ViewCommand : execute(m)
+activate ViewCommand
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : r
+deactivate ViewCommand
+
+deactivate LogicManager
+@enduml
