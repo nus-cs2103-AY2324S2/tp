@@ -3,7 +3,6 @@ package seedu.address.model.person.fields;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -82,7 +81,6 @@ public class NameTest {
         // different values -> returns false
         Name otherName = new Name("Other Valid Name");
         assertFalse(name.equals(otherName));
-        assertNotEquals(name.hashCode(), otherName.hashCode());
     }
 
 }

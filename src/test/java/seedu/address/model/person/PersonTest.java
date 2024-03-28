@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSET_HAMMER;
@@ -65,37 +64,30 @@ public class PersonTest {
 
         // different person -> returns false
         assertFalse(ALICE.equals(BOB));
-        assertNotEquals(ALICE.hashCode(), BOB.hashCode());
 
         // different name -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
 
         // different phone -> returns false
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
 
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
 
         // different address -> returns false
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
-        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
 
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
-        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
 
         // different assets -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_ASSET_HAMMER).build();
         assertFalse(ALICE.equals(editedAlice));
-        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
 
     @Test

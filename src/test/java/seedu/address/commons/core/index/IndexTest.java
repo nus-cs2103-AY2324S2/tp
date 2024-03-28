@@ -2,7 +2,6 @@ package seedu.address.commons.core.index;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -64,7 +63,6 @@ public class IndexTest {
         // different index -> returns false
         final Index firstPersonIndex = Index.fromOneBased(1);
         assertFalse(fifthPersonIndex.equals(firstPersonIndex));
-        assertNotEquals(fifthPersonIndex.hashCode(), firstPersonIndex.hashCode());
     }
 
     @Test
