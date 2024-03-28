@@ -227,6 +227,49 @@ then it will raise a parse error.
 </div>
 
 Step 4. `LogicManager` calls on `SortCommand.execute()`, which updates the addressbook with the new sorted list.
+=======
+### Awarding Bolts to a Student
+
+#### Overview
+
+The bolt mechanism is facilitated by `BoltCommand`, which is called by its `execute` method to add bolts to a `Student`.
+
+* `BoltCommandParser#parse()` — Parses the parameters of the bolt command from its command-line String input.
+* `BoltCommand#execute()` — Updates the `AddressBook` with the added bolts.
+
+#### Feature Details
+
+Here is the activity diagram showing the process of the `bolt` command:
+
+![BoltActivityDiagram](images/BoltActivityDiagram.png)
+
+Here is the sequence diagram showing how a bolt operation goes through the `Logic`, `Model` and `Storage` components.
+
+![BoltSequenceDiagram](images/BoltCommandSequenceDiagram.png)
+
+Step 1. The user launches the application for the first time and enters in command: `bolt 1 b/2`.
+
+Step 2. The `LogicManager` calls on `AddressBookParser` to parse the String.
+
+Step 3. The `AddressBookParser` calls `BoltCommandParser.parse()`, which returns a `BoltCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the number of bolts is negative (i.e. < 1), then it will raise a parse error.
+
+</div>
+
+Step 4. `LogicManager` calls on `BoltCommand.execute()`, which updates the addressbook with the new number of bolts.
+
+#### Design considerations:
+
+**Aspect: How bolt executes:**
+
+* **Method 1:** Updates the number of bolts using `Bolt` command.
+    * Pros: Easy to implement, easy to use.
+    * Cons: Does not allow user to edit the number of bolts.
+
+* **Method 2:** Updates the number of bolts using `Edit` command.
+    * Pros: Able to edit the number of bolts however one desires.
+    * Cons: Command is not modularised, user have to calculate the number of bolts themselves when updating.
 
 ### \[Proposed\] Undo/redo feature
 
