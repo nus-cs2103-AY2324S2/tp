@@ -22,12 +22,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Remark;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class DeleteOrderCommandTest {
     private static final Date DATE_STUB = new Date("2020-01-01");
-    private static final String REMARK_STUB = "100 chicken wings";
+    private static final Remark REMARK_STUB = new Remark("100 chicken wings");
     private static final Order ORDER_STUB = new Order(DATE_STUB, REMARK_STUB);
     private static final ArrayList<Order> ORDERS_STUB = new ArrayList<>(List.of(ORDER_STUB));
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

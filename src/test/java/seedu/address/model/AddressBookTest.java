@@ -21,6 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.Date;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.Remark;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -88,7 +89,7 @@ public class AddressBookTest {
 
     @Test
     public void deleteOrder_orderExists_orderRemoved() {
-        Order order = new Order(new Date("2020-01-01"), "100 chicken wings");
+        Order order = new Order(new Date("2020-01-01"), new Remark("100 chicken wings"));
         Person personWithOrder = new PersonBuilder().withOrders(new ArrayList<>(List.of(order))).build();
         addressBook.addPerson(personWithOrder);
 
@@ -101,7 +102,7 @@ public class AddressBookTest {
 
     @Test
     public void getOrders_personExists_returnsCorrectOrders() {
-        Order order = new Order(new Date("2020-01-01"), "100 chicken wings");
+        Order order = new Order(new Date("2020-01-01"), new Remark("100 chicken wings"));
         Person personWithOrder = new PersonBuilder(ALICE).withOrders(new ArrayList<>(List.of(order))).build();
         addressBook.addPerson(personWithOrder);
 
