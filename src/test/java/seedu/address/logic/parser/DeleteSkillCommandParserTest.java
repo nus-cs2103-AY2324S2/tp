@@ -101,7 +101,7 @@ public class DeleteSkillCommandParserTest {
         DeleteSkillDescriptor descriptor = new DeleteSkillDescriptorBuilder().withSkills().build();
         DeleteSkillCommand expectedCommand = new DeleteSkillCommand(new QueryableCourseMate(targetIndex), descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, userInput, DeleteSkillCommand.MESSAGE_NOT_EDITED);
     }
 
 
