@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -32,6 +33,18 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /**
+     * Retrieves the last viewed {@link Person} instance.
+     * <p>
+     * This method returns an {@link Optional} which will be empty if no person has
+     * been viewed last, or will contain a reference to the {@link Person} object
+     * that was last viewed.
+     *
+     * @return an {@link Optional} containing the last viewed {@link Person} if such
+     *     a person exists, or an empty {@link Optional} if no person has been viewed last.
+     */
+    Optional<Person> getLastViewedPerson();
 
     /**
      * Returns the user prefs' address book file path.

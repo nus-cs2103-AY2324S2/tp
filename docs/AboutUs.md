@@ -1,7 +1,9 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
@@ -9,51 +11,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Tejas Garrepally
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/g-tejas.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[homepage](http://www.gtejas.com)]
+[[github](https://github.com/g-tejas)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role:
 
-### Jane Doe
+### Gautham Kailash
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kailashgautham.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.kailashgautham.com)]
+[[github](http://github.com/kailashgautham)]
+[[portfolio](team/kailashgautham.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: TBC
+* Responsibilities: TBC
 
-### Johnny Doe
+### Ivan Ang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hiivan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[homepage](https://www.ivan-ang.com)]
+[[github](https://github.com/hiivan)]
+[[portfolio](team/ivan.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: TBC
+* Responsibilities: TBC
 
-### Jean Doe
+### Axel Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teojunda.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/teojunda)]
+[[portfolio](team/teojunda.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Ng Yu Soon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yusoonz.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yusoonz)]
+[[portfolio](team/ngyusoon.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: TBC

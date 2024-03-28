@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "dc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
@@ -42,7 +42,16 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+        assert !model.hasPerson(personToDelete) : "Person should not exist after deletion";
+        updateLastViewedPersonIfNecessary(personToDelete, model);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    private void updateLastViewedPersonIfNecessary(Person personToDelete, Model model) {
+        model.getLastViewedPerson()
+                .filter(lastViewedPerson -> lastViewedPerson.equals(personToDelete))
+                .ifPresent(lastViewedPerson -> model.resetLastViewedPerson());
     }
 
     @Override

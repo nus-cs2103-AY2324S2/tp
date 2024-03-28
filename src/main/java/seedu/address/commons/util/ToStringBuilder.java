@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import java.util.Optional;
+
 /**
  * Builds a string representation of an object that is suitable as the return value of {@link Object#toString()}.
  */
@@ -35,6 +37,9 @@ public class ToStringBuilder {
      * @return A reference to this {@code ToStringBuilder} object, allowing method calls to be chained.
      */
     public ToStringBuilder add(String fieldName, Object fieldValue) {
+        if (fieldValue instanceof Optional<?>) {
+            fieldValue = ((Optional<?>) fieldValue).orElse(null);
+        }
         if (hasField) {
             stringBuilder.append(FIELD_SEPARATOR);
         }

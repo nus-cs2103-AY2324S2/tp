@@ -1,15 +1,19 @@
 ---
-layout: page
-title: Developer Guide
+  layout: default.md
+  title: "Developer Guide"
+  pageNav: 3
 ---
-* Table of Contents
-{:toc}
+
+# TA Toolkit Developer Guide
+
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,14 +25,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
-
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<puml src="diagrams/ArchitectureDiagram.puml" width="280"></puml>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -36,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-F14-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-F14-3/tp/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -51,9 +50,9 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `dc 1` to delete a person.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -62,7 +61,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<puml src="diagrams/ComponentManagers.puml" width="300" />
 
 The sections below give more details of each component.
 
@@ -70,7 +69,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -89,14 +88,16 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("dc 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
+<box type="info" seamless>
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+</box>
 
 How the `Logic` component works:
 
@@ -108,7 +109,7 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -117,7 +118,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
 
 The `Model` component,
@@ -127,18 +128,12 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -154,6 +149,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Edit a `Person`
+
+Edits the details of an existing `Person` identified by their `INDEX`in the displayed person list.
+The commands are implemented in the `EditCommand` class which extend the `Command` class.
+
+* Step 1. The `EditCommand` object's `execute()` method is called.
+* Step 2. The `INDEX` is checked to be within the valid range of the displayed person list. If the `INDEX` given is invalid (i.e., out of range), a `CommandException` is thrown.
+* Step 3. The `Person` at the given `INDEX` is referenced and `deletePerson()` is called to remove `originalPerson` from person list.
+* Step 4. The field(s) to be edited are checked.
+  * If there are no fields to be edited, a `CommandException` is thrown.
+  * If any of the edited fields are invalid, a `CommandException` is thrown.
+  * If the edited person is the same as the original person, a `CommandException` is thrown`.
+  * If any of `Email`, `Phone`, `Telegram`, `Github` fields are duplicates with any existing person in person list, a `CommandException` is thrown.
+* Step 5. The model object's `addPerson()` method is called. The input parameter is the `editedPerson` with the edited details.
+* Step 6. The `Person` field(s) are edited.
+
+The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to edit a person.
+
+<puml src="diagrams/EditCommandActivityDiagram.puml" />
+
+The sequence diagram below also shows the interaction between the various components during the execution of the `EditCommand`.
+
+<puml src="diagrams/EditCommandSequenceDiagram.puml" />
+
+#### Design considerations:
+
+**Aspect: How editing a Person works:**
+
+* **Alternative 1 (current choice):** Removes the `originalPerson` and adds the `editedPerson`.
+    * Pros: Retains the sorted order of Persons by `Name` in the person list.
+    * Cons: May have performance issues in terms of time complexity since it requires 2 operations (`deletePerson()` and `addPerson`).
+
+* **Alternative 2:** Directly update the fields in the `originalPerson`
+    * Pros: Better performance, since this only requires searching through the person list once.
+    * Cons: The order of person list will be lost, since `Name` of a `Person` may be edited.
+
+### View a `Person`
+
+Views the details of an existing `Person` identified by their `INDEX`in the displayed person list.
+The commands are implemented in the `ViewCommand` class which extend the `Command` class.
+
+* Step 1. The `ViewCommand` object's `execute()` method is called.
+* Step 2. The `INDEX` is checked to be within the valid range of the displayed person list. If the `INDEX` given is invalid (i.e., out of range), a `CommandException` is thrown.
+* Step 3. The `Person` at the given `INDEX` is referenced and then displayed to the user.
+
+The diagram below describes this behaviour concisely. It shows how a user’s command is processed and what message is ultimately shown if they decide to view a person.
+
+<puml src="diagrams/ViewCommandActivityDiagram.puml" />
+
+The sequence diagram below also shows the interaction between the various components during the execution of the `ViewCommand`.
+
+<puml src="diagrams/ViewCommandSequenceDiagram.puml" />
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -171,58 +221,67 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `dc 5` command to delete the 5th person in the address book. The `dc` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `dc 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `ac n/David …​` to add a new person. The `ac` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<box type="info" seamless>
 
-</div>
+**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</box>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+
+<box type="info" seamless>
+
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
-</div>
+</box>
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<box type="info" seamless>
 
-</div>
+**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
 
 Similarly, how an undo operation goes through the `Model` component is shown below:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
+<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
 The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<box type="info" seamless>
 
-</div>
+**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+</box>
 
-![UndoRedoState4](images/UndoRedoState4.png)
+Step 5. The user then decides to execute the command `ls`. Commands that do not modify the address book, such as `ls`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+
+<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
 #### Design considerations:
 
@@ -234,7 +293,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `dc`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -262,56 +321,338 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is a CS2103T TA in NUS School of Computing
+* has a need to manage a significant number of contacts over different communication channels
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
+* prefers to use a separate app that is made to manage student contacts efficiently
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* TA Toolkit is a desktop app that helps the user manage a large number of student contacts
+across different communication channels efficiently. It is optimised for use via a Command
+Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI)
+* It categorises contacts into their tutorial group, allowing for easier management of contacts
+* It allows the user to add, delete, edit, find and view student contacts
+* Users are able to take notes on specific students and keep track of tasks associated to students
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                  | So that I can…​                                          |
+|----------|---------|-----------------------------------------------|----------------------------------------------------------|
+| `* * *`  | TA      | add a student contact                         | keep track of my students when I need to                 |
+| `* * *`  | TA      | delete a student contact                      | remove students from the database if they drop the class |
+| `* * *`  | TA      | view all student contacts                     | see a list of all my students                            |
+| `* *`    | TA      | view a students' detailed information         | see all the information related to a student             |
+| `* *`    | TA      | edit a student contact                        | update a students’s details should they change           |
+| `* *`    | TA      | assign student to project team                | organise students according to their project team        |
+| `* *`    | TA      | take notes on students                        | keep track of their strengths and weaknesses             |
+| `* *`    | TA      | delete notes on students                      | remove notes that are no longer relevant                 |
+| `*`      | TA      | mark student as absent for a specific class   | be aware of who is missing lessons                       |
+| `*`      | TA      | unmark student as absent for a specific class | correct mistakes in attendance marking                   |
+| `* `     | TA      | view all student contacts for a project team  | see a list of students in a project team                 |
+| `* `     | TA      | view summary of all students attendance       | get a quick overview of class attendance                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TA Toolkit` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Adding a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User enters command to add a student
+2. TA Toolkit adds the student to the list of students
+3. TA Toolkit displays a success message along with the student’s contact details
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The add student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
 
-  Use case ends.
+      Use case resumes at step 1.
 
-* 3a. The given index is invalid.
+* 2a. Student already exists in the list of students.
+    * 2a1. TA Toolkit shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+      Use case ends.
 
-      Use case resumes at step 2.
+---
+
+**Use case: UC02 - Deleting a student**
+
+**MSS**
+
+1. User enters command to delete a student
+2. TA Toolkit requests for confirmation
+3. User confirms
+4. TA Toolkit deletes the student’s contact and displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. TA Toolkit does not contain the student specified
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The User chooses to cancel the deletion of the student
+    * 3a1. TA Toolkit cancels the deletion
+
+      Use case ends.
+
+---
+
+**Use case: UC03 - Update a student**
+
+**MSS**
+
+1. User enters the command to update a student’s details
+2. TA Toolkit modifies the values that user intended to replace
+3. TA Toolkit displays a success message along with the student’s updated contact details
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The update student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. Student does not exist in the list of students.
+    * 2a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC04 - Viewing students overview**
+
+**MSS**
+
+1. User requests to view all student
+2. TA Toolkit shows a list of all members
+3. TA Toolkit displays a success message
+
+    Use case ends.
+
+---
+
+**Use case: UC05 - View a student detailed**
+
+**MSS**
+
+1. User requests to view the detailed information of a student
+2. TA Toolkit shows the detailed information of the student
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The view student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC06 - Assign student to project team**
+
+**MSS**
+
+1. User requests to assign student to project team
+2. TA Toolkit adds the project team tag to the student
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The group student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2b. The student is already assigned a project team tag.
+    * 2b1. TA Toolkit shows a message asking whether to replace or keep the existing tag.
+        * 2b1a. User decides to replace the existing tag.
+            * 2b1a1. TA Toolkit removes the current project team tag from the student.
+
+              Use case resumes at step 2.
+
+        * 2b1b. User decides to keep the existing tag.
+
+          Use case ends.
+
+---
+
+**Use case: UC07 - Add note on student**
+
+**MSS**
+
+1. User requests to add a note regarding a student
+2. TA Toolkit adds the note to the student’s list of notes
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The add note command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC08 - Delete note on student**
+
+**MSS**
+
+1. User requests to delete a note regarding a student
+2. TA Toolkit removes the note from the student’s list of notes
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The delete note command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The note requested to be deleted is invalid.
+    * 2a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC09 - Mark student as absent from a specific class**
+
+**MSS**
+
+1. Use requests to mark student as absent for a class
+2. TA Toolkit marks the student as absent for that class
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The mark student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC10 - Unmark student as absent for a class**
+
+**MSS**
+
+1. User requests to mark student as absent for a class
+2. TA Toolkit marks the student as absent for that class
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The unmark student command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested student is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The requested student is not currently marked as absent for the class.
+    * 2a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC11 - View all students by project team tag**
+
+**MSS**
+
+1. User requests to view all students with a specified project team tag
+2. TA Toolkit displays a list of all members with that project team tag
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The view student by tag command format is invalid.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The requested tag is invalid.
+    * 1b1. TA Toolkit shows an error message.
+
+      Use case resumes at step 1.
+
+---
+
+**Use case: UC12 - View summary of students attendance**
+
+**MSS**
+
+1. User requests to view a summary of all students attendance
+2. TA Toolkit displays a summary of all students attendance
+3. TA Toolkit displays a success message
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no students in storage.
+    * 1a1. TA Toolkit shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
@@ -319,25 +660,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  All functions within the application must provide responses to user queries within a timeframe of 2 seconds.
+5.  The applications does not support concurrent usage by multiple users.
+6.  The application does not offer support for languages aside from English.
+7.  The application should be able to handle most common user input errors and provide meaningful error messages.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **CLI**: Command Line Interface: A way of interacting with a computer program where the user issues commands to the
+program in the form of successive lines of text (command lines). It emphasises text-based user interaction over graphical user interfaces.
+* **TA**: Teaching Assistant
+* **OOP**: Object-Oriented Programming
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<box type="info" seamless>
+
+**Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-</div>
+</box>
 
 ### Launch and shutdown
 
@@ -360,15 +710,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `ls` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `dc 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `dc 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `dc`, `dc x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

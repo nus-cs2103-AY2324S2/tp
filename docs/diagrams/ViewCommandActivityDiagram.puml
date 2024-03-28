@@ -1,0 +1,23 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User enters command to view a Person;
+
+if () then ([command is invalid])
+    :Show error message\nfor invalid command;
+else ([else])
+        if () then ([no field is entered])
+            :Show error message\nindicating no fields\nenteredfor viewing;
+            else ([else])
+                if () then ([index given is invalid])
+                    :Show error message indicating\ninvalid index;
+                    else ([else])
+                        :Show success message\nwith person's information;
+                    endif;
+                endif;
+            endif;
+
+stop
+@enduml

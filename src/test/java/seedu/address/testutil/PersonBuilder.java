@@ -1,15 +1,16 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Optional;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.person.ClassGroup;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.person.Telegram;
 
 /**
  * A utility class to help with building Person objects.
@@ -19,23 +20,31 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TELEGRAM = "@amybee";
+    public static final String DEFAULT_GITHUB = "amybee";
+    public static final String DEFAULT_CLASS_GROUP = "B01";
 
     private Name name;
-    private Phone phone;
+    private Optional<Phone> phone;
     private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private ClassGroup classGroup;
+    private Optional<Telegram> telegram;
+    private Optional<Github> github;
+    private Notes notes;
+    private Attendance attendance;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        phone = Optional.of(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        github = Optional.of(new Github(DEFAULT_GITHUB));
+        telegram = Optional.of(new Telegram(DEFAULT_TELEGRAM));
+        classGroup = new ClassGroup(DEFAULT_CLASS_GROUP);
+        notes = new Notes();
+        attendance = new Attendance();
     }
 
     /**
@@ -45,8 +54,11 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        github = personToCopy.getGithub();
+        telegram = personToCopy.getTelegram();
+        classGroup = personToCopy.getClassGroup();
+        notes = personToCopy.getNotes();
+        attendance = personToCopy.getAttendance();
     }
 
     /**
@@ -58,26 +70,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Optional.of(new Phone(phone));
         return this;
     }
 
@@ -90,7 +86,30 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, classGroup, email, phone, telegram, github);
     }
 
+    /**
+     * Sets the {@code ClassGroup} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withClassGroup(String classGroup) {
+        this.classGroup = new ClassGroup(classGroup);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = Optional.of(new Telegram(telegram));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Github} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGithub(String github) {
+        this.github = Optional.of(new Github(github));
+        return this;
+    }
 }
