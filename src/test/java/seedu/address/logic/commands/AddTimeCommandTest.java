@@ -20,7 +20,7 @@ import seedu.address.logic.commands.AddTimeCommand.EditPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.testutil.EditPersonFreeTimeDescriptorBuilder;
+import seedu.address.testutil.AddPersonFreeTimeDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddTimeCommand.
@@ -32,7 +32,7 @@ public class AddTimeCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonFreeTimeDescriptorBuilder()
+        EditPersonDescriptor descriptor = new AddPersonFreeTimeDescriptorBuilder()
                 .withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build();
         AddTimeCommand addTimeCommand = new AddTimeCommand(outOfBoundIndex, descriptor);
 
@@ -51,7 +51,7 @@ public class AddTimeCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         AddTimeCommand addTimeCommand = new AddTimeCommand(outOfBoundIndex,
-                new EditPersonFreeTimeDescriptorBuilder().withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build());
+                new AddPersonFreeTimeDescriptorBuilder().withFreeTimeTags(VALID_FREE_TIME_TAG_BOB).build());
 
         assertCommandFailure(addTimeCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
