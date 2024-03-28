@@ -59,12 +59,10 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleArrowKeyPressed(KeyEvent event) {
-        if (event.getCode().toString().equals("UP") || event.getCode().toString().equals("DOWN")) {
-            String direction = event.getCode().toString();
-            CommandHistory commandHistory = CommandHistory.getInstance();
-            String previousCommand = commandHistory.getCommandHistory(direction);
-            commandTextField.setText(previousCommand);
-        }
+        String direction = event.getCode().toString();
+        CommandHistory commandHistory = CommandHistory.getInstance();
+        String previousCommand = commandHistory.getCommandHistory(direction);
+        commandTextField.setText(previousCommand);
     }
 
     /**
