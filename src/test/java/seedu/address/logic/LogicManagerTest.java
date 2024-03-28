@@ -132,16 +132,6 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that the exception is thrown and that the result message is correct.
-     * @see #assertCommandFailure(String, Class, String, Model)
-     */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPayBack(), new UserPrefs());
-        assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
-    }
-
-    /**
      * Executes the command and confirms that
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
