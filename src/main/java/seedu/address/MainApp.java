@@ -34,7 +34,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, false);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -146,7 +146,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Reads the filepath stored within a {@cide Storage} object and returns a {@code ReadOnlyAddressBook}.
+     * Reads the filepath stored within a {@code Storage} object and returns a {@code ReadOnlyAddressBook}.
      *
      * @param storage the storage object.
      * @return a read-only address book.
