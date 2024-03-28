@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REPLACED;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddAliasCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -24,7 +23,7 @@ public class AddAliasCommandParser implements Parser<AddAliasCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_ALIAS, PREFIX_REPLACED);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ALIAS) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAliasCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ALIAS);

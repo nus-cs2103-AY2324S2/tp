@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REPLACED;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,6 +17,14 @@ public class AddAliasCommand extends Command {
     public static final String COMMAND_WORD = "alias";
 
     public static final String MESSAGE_SUCCESS = "New Alias added: %1$s";
+
+    public static final String MESSAGE_USAGE = AddAliasCommand.COMMAND_WORD + ": Adds an Alias to the system.\n"
+            + "Parameters: "
+            + PREFIX_ALIAS + "{new alias} "
+            + PREFIX_REPLACED + "{command to replace}\n"
+            + "Example usage: " + COMMAND_WORD + " "
+            + PREFIX_ALIAS + "dark"
+            + PREFIX_REPLACED + "theme -bg dark";
 
     private final String alias;
     private final String toReplace;
