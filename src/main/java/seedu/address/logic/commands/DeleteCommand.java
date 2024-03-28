@@ -17,21 +17,21 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "/remove";
+    public static final String COMMAND_WORD = "/delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the person identified by the id number provided.\n"
+            + ": Deletes the person identified by the id number provided.\n"
             + "Parameters: ID (must be a positive 6-digit number)\n"
             + "Example: " + COMMAND_WORD + " 240001";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Removed Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Id id;
 
     /**
-     * Creates a DeleteCommand to remove the worker by specific ID.
+     * Creates a DeleteCommand to delete the worker by specific ID.
      *
-     * @param id ID of the worker to be removed.
+     * @param id ID of the worker to be deleted.
      */
     public DeleteCommand(Id id) {
         requireNonNull(id);
@@ -43,18 +43,18 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        Person personToRemove = lastShownList
+        Person personToDelete = lastShownList
                 .stream()
                 .filter(person -> person.getId().value == (this.id.value))
                 .findFirst()
                 .orElse(null);
 
-        if (personToRemove == null) {
+        if (personToDelete == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID);
         }
 
-        model.deletePerson(personToRemove);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToRemove)));
+        model.deletePerson(personToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
     @Override
