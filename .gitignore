@@ -14,10 +14,21 @@ src/main/resources/docs/
 /preferences.json
 /*.log.*
 hs_err_pid[0-9]*.log
+/addressbookdata/
 
 # Test sandbox files
 src/test/data/sandbox/
+src/test/data/ExportCommandTest/addressbookdata/
+src/test/data/ExportCommandTest/filteredAddressBook.json
 
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+docs/_markbind/logs/
+
+# Markbind generated files
+_markbind/
+
+#VSCode files
+.vscode/
+bin/

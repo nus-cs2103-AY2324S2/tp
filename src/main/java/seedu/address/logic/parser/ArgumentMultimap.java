@@ -70,9 +70,20 @@ public class ArgumentMultimap {
         Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct()
                 .filter(prefix -> argMultimap.containsKey(prefix) && argMultimap.get(prefix).size() > 1)
                 .toArray(Prefix[]::new);
-
         if (duplicatedPrefixes.length > 0) {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
+    }
+
+    /**
+     * Returns true if the ArgumentMultimap contains a single prefix-argument pair and an empty preamble.
+     */
+    public boolean verifySinglePrefix() {
+        return argMultimap.size() == 2 && containsPreamble() && getPreamble().isEmpty()
+               || argMultimap.size() == 1 && !containsPreamble();
+    }
+
+    private boolean containsPreamble() {
+        return argMultimap.containsKey(new Prefix(""));
     }
 }

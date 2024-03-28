@@ -4,27 +4,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddExamCommand;
+import seedu.address.logic.commands.AddScoreCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteExamCommand;
+import seedu.address.logic.commands.DeleteShownCommand;
+import seedu.address.logic.commands.DeselectExamCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportCommand;
+import seedu.address.logic.commands.ImportExamCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonDetailContainsKeywordPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -35,7 +43,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
+        Person person = new PersonBuilder().withTags(VALID_TAG_STUDENT).build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
@@ -68,12 +76,14 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
+
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String prefix = "n/";
+        String parameter = "Johan";
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + prefix + parameter);
+        assertEquals(new FindCommand(new PersonDetailContainsKeywordPredicate(PREFIX_NAME, parameter)), command);
     }
 
     @Test
@@ -89,9 +99,60 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_copy() throws Exception {
+        assertTrue(parser.parseCommand("copy") instanceof CopyCommand);
+        assertTrue(parser.parseCommand("copy 3") instanceof CopyCommand);
+    }
+
+    @Test
+    public void parseCommand_export() throws Exception {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD) instanceof ExportCommand);
+    }
+
+    @Test
+    public void parseCommand_import() throws Exception {
+        assertTrue(parser.parseCommand("import i/src.csv") instanceof ImportCommand);
+    }
+
+    @Test
+    public void parseCommand_importExam() throws Exception {
+        assertTrue(parser.parseCommand("importExam i/src.csv") instanceof ImportExamCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteShown() throws Exception {
+        assertTrue(parser.parseCommand("deleteshown") instanceof DeleteShownCommand);
+    }
+
+    @Test
+    public void parseCommand_selectExam() throws Exception {
+        assertTrue(parser.parseCommand("selectExam 1") instanceof SelectExamCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parseCommand(""));
+    }
+
+    @Test
+    void parseCommand_addExam() throws Exception {
+        assertTrue(parser.parseCommand("addExam n/Midterm s/100") instanceof AddExamCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteExam() throws Exception {
+        assertTrue(parser.parseCommand("deleteExam 1") instanceof DeleteExamCommand);
+    }
+
+    @Test
+    public void parseCommand_deselectExam() throws Exception {
+        assertTrue(parser.parseCommand("deselectExam") instanceof DeselectExamCommand);
+    }
+
+    @Test
+    public void parseCommand_addScore() throws Exception {
+        assertTrue(parser.parseCommand("addScore 1 s/100") instanceof AddScoreCommand);
     }
 
     @Test

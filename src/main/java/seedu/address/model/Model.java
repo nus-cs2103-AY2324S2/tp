@@ -3,9 +3,12 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Score;
 
 /**
  * The API of the Model component.
@@ -76,6 +79,23 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Adds an exam score to the given person {@code target},
+     * maintains immutability. A new person is set into the list with the exam score added
+     * @param target The person to add the exam score to.
+     * @param exam The exam to add the score to.
+     * @param score The score to add.
+     */
+    void addExamScoreToPerson(Person target, Exam exam, Score score);
+
+    /**
+     * Removes an exam from the given person {@code target},
+     * maintains immutability. A new person is set into the list with the exam removed
+     * @param target The person to remove the exam from.
+     * @param exam The exam to remove.
+     */
+    void removeExamScoreFromPerson(Person target, Exam exam);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -84,4 +104,40 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if an exam with the same identity as {@code exam} exists in the address book.
+     */
+    boolean hasExam(Exam exam);
+
+    /**
+     * Deletes the given exam.
+     * The exam must exist in the address book.
+     */
+    void deleteExam(Exam target);
+
+    /**
+     * Adds the given exam.
+     * {@code exam} must not already exist in the address book.
+     */
+    void addExam(Exam exam);
+
+    /**
+     * Selects the given exam.
+     * The exam must exist in the address book.
+     */
+    void selectExam(Exam target);
+
+    /**
+     * Deselects the selected exam.
+     */
+    void deselectExam();
+
+    /**
+     * Returns the selected exam.
+     */
+    ObservableValue<Exam> getSelectedExam();
+
+    /** Returns an unmodifiable view of the filtered exam list */
+    ObservableList<Exam> getExamList();
 }

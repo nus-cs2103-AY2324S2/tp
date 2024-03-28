@@ -7,8 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MATRIC_NUMBER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REFLECTION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDIO_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -52,6 +55,18 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different matriculation number -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMatric(VALID_MATRIC_NUMBER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different reflection -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withReflection(VALID_REFLECTION_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different studio -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withStudio(VALID_STUDIO_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -65,7 +80,11 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", tags="
-                + editPersonDescriptor.getTags().orElse(null) + "}";
+                + editPersonDescriptor.getMatric().orElse(null) + ", matriculation number="
+                + editPersonDescriptor.getReflection().orElse(null) + ", reflection="
+                + editPersonDescriptor.getStudio().orElse(null) + ", studio="
+                + editPersonDescriptor.getTags().orElse(null) + ", scores="
+                + editPersonDescriptor.getScores().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

@@ -5,8 +5,12 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDE
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.MATRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.REFLECTION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.STUDIO_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STUDENT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -46,8 +50,10 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+                new JsonAddressBookStorage(temporaryFolder.resolve("avengersassemble.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
+                temporaryFolder.resolve("userPrefs.json"));
+
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -85,6 +91,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getExamList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getExamList().remove(0));
     }
 
     /**
@@ -166,8 +177,8 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + MATRIC_DESC_AMY + REFLECTION_DESC_AMY + STUDIO_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withTags(VALID_TAG_STUDENT).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
