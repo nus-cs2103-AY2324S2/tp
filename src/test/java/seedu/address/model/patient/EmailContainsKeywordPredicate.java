@@ -6,9 +6,10 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.patient.Patient;
 
 /**
- * Tests that a {@code Patient}'s {@code Email} matches a part of the keywords given.
+ * Tests that a {@code Person}'s {@code Email} matches a part of the keywords given.
  */
 public class EmailContainsKeywordPredicate implements Predicate<Patient> {
     private final List<String> keywords;
