@@ -134,16 +134,6 @@ public class RelationshipUtil {
      * @return An {@link ArrayList<String>} containing the relationship descriptors in the order
      *         encountered from the origin to the target. If no path exists, returns an empty list.
      */
-    /**
-     * Searches for a path of family relationships between two entities identified by their UUIDs,
-     * specifically considering only those relationships that are instances of FamilyRelationship.
-     * Utilizes a breadth-first search (BFS) strategy to navigate through the relationships tracker.
-     *
-     * @param origin The UUID of the entity from which to start the search.
-     * @param target The UUID of the entity to find a path to, using only family relationships.
-     * @return An {@link ArrayList<String>} listing the family relationship descriptors from the origin
-     *         to the target, in order encountered. Returns an empty list if no such path exists.
-     */
     public ArrayList<String> anySearchDescriptors(UUID origin, UUID target) {
         ArrayList<String> result = new ArrayList<>();
         HashSet<UUID> visited = new HashSet<>();
@@ -183,7 +173,16 @@ public class RelationshipUtil {
         }
         return result;
     }
-
+    /**
+     * Searches for a path of family relationships between two entities identified by their UUIDs,
+     * specifically considering only those relationships that are instances of FamilyRelationship.
+     * Utilizes a breadth-first search (BFS) strategy to navigate through the relationships tracker.
+     *
+     * @param origin The UUID of the entity from which to start the search.
+     * @param target The UUID of the entity to find a path to, using only family relationships.
+     * @return An {@link ArrayList<String>} listing the family relationship descriptors from the origin
+     *         to the target, in order encountered. Returns an empty list if no such path exists.
+     */
     public ArrayList<String> familySearchDescriptors(UUID origin, UUID target) {
         ArrayList<String> result = new ArrayList<>();
         HashSet<UUID> visited = new HashSet<>();
