@@ -158,6 +158,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Edit feature
+
+#### Current Implementation
+
+The edit mechanism was previously based on the index of the contact in the shown list of contacts,
+but is now fitted to serve our new key identifier of an employee, namely the ID.
+In addition, the ID of an employee now cannot be edited by any means (intuitive logic of unique ID),
+hence any ID changes would mean that the employee needs to be deleted and added again with their new ID and information.
+
+<puml src="diagrams/EditCommandFlow.puml" alt="EditCommandFlow" />
+
+#### Kept changes from previous implementation
+- Optional to edit all fields, at least 1 field is enough
+- Fields can be entered in any order
+
+#### Pros of ID as key
+- Ensure that random employee details are not edited by accident
+- Every edit command is now more purposeful as if ID is not found, edit does not go through
+
+#### Cons of ID as key
+- Slightly slower to type in than index
+- Slightly slower to execute if employee list shown is huge
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
