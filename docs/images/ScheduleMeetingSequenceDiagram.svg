@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="762px" preserveAspectRatio="none" style="width:1252px;height:762px;background:#FFFFFF;" version="1.1" viewBox="0 0 1252 762" width="1252px" zoomAndPan="magnify"><defs/><g><rect fill="#C8C8FA" height="743.7109" style="stroke:#181818;stroke-width:0.5;" width="725" x="62" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="35" x="405" y="19.4951">Logic</text><rect fill="#F97181" height="743.7109" style="stroke:#181818;stroke-width:0.5;" width="190" x="1056" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="39" x="1129.5" y="19.4951">Model</text><rect fill="#FFFFFF" height="646.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="125" y="91.3125"/><rect fill="#FFFFFF" height="291.2344" style="stroke:#181818;stroke-width:1.0;" width="10" x="305" y="121.6641"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="145.6641"/><rect fill="#FFFFFF" height="143.5703" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="208.625"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="694" y="289.2344"/><rect fill="#FFFFFF" height="250.1094" style="stroke:#181818;stroke-width:1.0;" width="10" x="694" y="443.25"/><rect fill="#FFFFFF" height="41.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="699" y="525.9531"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="473.6016"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="604.6563"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="649.0078"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="1193" y="232.625"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="130" x2="130" y1="58.9609" y2="755.7109"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="310" x2="310" y1="58.9609" y2="755.7109"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="503" x2="503" y1="160.9688" y2="755.7109"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="699" x2="699" y1="304.5391" y2="755.7109"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1102" x2="1102" y1="58.9609" y2="755.7109"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1198" x2="1198" y1="247.9297" y2="755.7109"/><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="108" x="76" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="83" y="47.8848">:LogicManager</text><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="144" x="238" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="245" y="47.8848">:AddressBookParser</text><rect fill="#9D0012" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="1070" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="1081" y="47.8848">:Model</text><rect fill="#FFFFFF" height="646.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="125" y="91.3125"/><rect fill="#FFFFFF" height="291.2344" style="stroke:#181818;stroke-width:1.0;" width="10" x="305" y="121.6641"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="145.6641"/><rect fill="#FFFFFF" height="143.5703" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="208.625"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="694" y="289.2344"/><rect fill="#FFFFFF" height="250.1094" style="stroke:#181818;stroke-width:1.0;" width="10" x="694" y="443.25"/><rect fill="#FFFFFF" height="41.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="699" y="525.9531"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="473.6016"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="604.6563"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1097" y="649.0078"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="1193" y="232.625"/><polygon fill="#181818" points="113,87.3125,123,91.3125,113,95.3125,117,91.3125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="0" x2="119" y1="91.3125" y2="91.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106" x="9.5" y="86.4561">execute(schedule)</text><polygon fill="#181818" points="293,117.6641,303,121.6641,293,125.6641,297,121.6641" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="135" x2="299" y1="121.6641" y2="121.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="151" x="144.5" y="116.8076">parseCommand(schedule)</text><polygon fill="#181818" points="400,131.6641,410,135.6641,400,139.6641,404,135.6641" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="406" y1="135.6641" y2="135.6641"/><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="183" x="412" y="129.6641"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="169" x="419" y="151.1973">:ScheduleCommandParser</text><polygon fill="#181818" points="326,174.2734,316,178.2734,326,182.2734,322,178.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="320" x2="502.5" y1="178.2734" y2="178.2734"/><polygon fill="#181818" points="486.5,204.625,496.5,208.625,486.5,212.625,490.5,208.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="492.5" y1="208.625" y2="208.625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="356.25" y="203.7686">parse(arguments)</text><polygon fill="#181818" points="1152,218.625,1162,222.625,1152,226.625,1156,222.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="508.5" x2="1158" y1="222.625" y2="222.625"/><rect fill="#9D0012" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="68" x="1164" y="216.625"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="1171" y="238.1582">:Meeting</text><polygon fill="#181818" points="519.5,261.2344,509.5,265.2344,519.5,269.2344,515.5,265.2344" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="513.5" x2="1197" y1="265.2344" y2="265.2344"/><polygon fill="#181818" points="613,275.2344,623,279.2344,613,283.2344,617,279.2344" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="508.5" x2="619" y1="279.2344" y2="279.2344"/><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="148" x="625" y="273.2344"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="632" y="294.7676">s:ScheduleCommand</text><polygon fill="#181818" points="519.5,317.8438,509.5,321.8438,519.5,325.8438,515.5,321.8438" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="513.5" x2="698" y1="321.8438" y2="321.8438"/><polygon fill="#181818" points="326,348.1953,316,352.1953,326,356.1953,322,352.1953" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="320" x2="502.5" y1="352.1953" y2="352.1953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="405.75" y="347.3389">s</text><line style="stroke:#A80036;stroke-width:2.0;" x1="494.5" x2="512.5" y1="373.5469" y2="391.5469"/><line style="stroke:#A80036;stroke-width:2.0;" x1="494.5" x2="512.5" y1="391.5469" y2="373.5469"/><polygon fill="#181818" points="146,408.8984,136,412.8984,146,416.8984,142,412.8984" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="140" x2="309" y1="412.8984" y2="412.8984"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="219" y="408.042">s</text><polygon fill="#181818" points="682,439.25,692,443.25,682,447.25,686,443.25" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="135" x2="688" y1="443.25" y2="443.25"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="387.5" y="438.3936">execute()</text><polygon fill="#181818" points="1085,469.6016,1095,473.6016,1085,477.6016,1089,473.6016" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="704" x2="1091" y1="473.6016" y2="473.6016"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="131" x="835" y="468.7451">getFilteredPersonList()</text><polygon fill="#181818" points="715,483.6016,705,487.6016,715,491.6016,711,487.6016" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="709" x2="1101" y1="487.6016" y2="487.6016"/><line style="stroke:#181818;stroke-width:1.0;" x1="704" x2="751" y1="512.9531" y2="512.9531"/><line style="stroke:#181818;stroke-width:1.0;" x1="751" x2="751" y1="512.9531" y2="525.9531"/><line style="stroke:#181818;stroke-width:1.0;" x1="710" x2="751" y1="525.9531" y2="525.9531"/><polygon fill="#181818" points="720,521.9531,710,525.9531,720,529.9531,716,525.9531" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="252" x="716" y="508.0967">createEditedPerson(personToEdit, meeting)</text><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="709" x2="751" y1="566.3047" y2="566.3047"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="751" x2="751" y1="566.3047" y2="579.3047"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="704" x2="751" y1="579.3047" y2="579.3047"/><polygon fill="#181818" points="714,575.3047,704,579.3047,714,583.3047,710,579.3047" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="76" x="716" y="561.4482">editedPerson</text><polygon fill="#181818" points="1085,600.6563,1095,604.6563,1085,608.6563,1089,604.6563" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="704" x2="1091" y1="604.6563" y2="604.6563"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="227" x="787" y="599.7998">setPerson(personToEdit, editedPerson)</text><polygon fill="#181818" points="715,614.6563,705,618.6563,715,622.6563,711,618.6563" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="709" x2="1101" y1="618.6563" y2="618.6563"/><polygon fill="#181818" points="1085,645.0078,1095,649.0078,1085,653.0078,1089,649.0078" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="704" x2="1091" y1="649.0078" y2="649.0078"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="374" x="713.5" y="644.1514">updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)</text><polygon fill="#181818" points="715,659.0078,705,663.0078,715,667.0078,711,663.0078" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="709" x2="1101" y1="663.0078" y2="663.0078"/><polygon fill="#181818" points="146,689.3594,136,693.3594,146,697.3594,142,693.3594" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="140" x2="698" y1="693.3594" y2="693.3594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="32" x="401" y="688.5029">result</text><line style="stroke:#A80036;stroke-width:2.0;" x1="690" x2="708" y1="714.7109" y2="732.7109"/><line style="stroke:#A80036;stroke-width:2.0;" x1="690" x2="708" y1="732.7109" y2="714.7109"/><polygon fill="#181818" points="11,733.7109,1,737.7109,11,741.7109,7,737.7109" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="5" x2="129" y1="737.7109" y2="737.7109"/><!--MD5=[de086017d32d0b181443280e4d24bcab]
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Meeting" as Meeting MODEL_COLOR
+end box
+[-> LogicManager : execute(schedule)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(schedule)
+activate AddressBookParser
+
+create ScheduleCommandParser
+AddressBookParser -> ScheduleCommandParser
+activate ScheduleCommandParser
+
+ScheduleCommandParser -> AddressBookParser
+deactivate ScheduleCommandParser
+
+AddressBookParser -> ScheduleCommandParser : parse(arguments)
+activate ScheduleCommandParser
+
+create Meeting
+ScheduleCommandParser -> Meeting
+activate Meeting
+
+Meeting - -> ScheduleCommandParser
+deactivate Meeting
+
+create ScheduleCommand
+ScheduleCommandParser -> ScheduleCommand
+activate ScheduleCommand
+
+ScheduleCommand - -> ScheduleCommandParser
+deactivate ScheduleCommand
+
+ScheduleCommandParser - -> AddressBookParser : s
+deactivate ScheduleCommandParser
+ScheduleCommandParser -[hidden]-> AddressBookParser : s
+destroy ScheduleCommandParser
+
+AddressBookParser - -> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ScheduleCommand : execute()
+activate ScheduleCommand
+
+ScheduleCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model - -> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> ScheduleCommand : createEditedPerson(personToEdit, meeting)
+activate ScheduleCommand
+
+ScheduleCommand - -> ScheduleCommand : editedPerson
+deactivate ScheduleCommand
+
+ScheduleCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model - -> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model - -> ScheduleCommand
+deactivate Model
+
+ScheduleCommand - -> LogicManager : result
+deactivate ScheduleCommand
+ScheduleCommand -[hidden]-> LogicManager : result
+destroy ScheduleCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+skinparam Package {
+    BackgroundColor #FFFFFF
+    BorderThickness 1
+    FontSize 16
+}
+
+skinparam Class {
+    FontColor #FFFFFF
+    FontSize 15
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam ArrowFontStyle bold
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam ArrowFontStyle plain
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager #3333C4
+participant ":AddressBookParser" as AddressBookParser #3333C4
+participant ":ScheduleCommandParser" as ScheduleCommandParser #3333C4
+participant "s:ScheduleCommand" as ScheduleCommand #3333C4
+end box
+
+box Model #F97181
+participant ":Model" as Model #9D0012
+participant ":Meeting" as Meeting #9D0012
+end box
+[-> LogicManager : execute(schedule)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(schedule)
+activate AddressBookParser
+
+create ScheduleCommandParser
+AddressBookParser -> ScheduleCommandParser
+activate ScheduleCommandParser
+
+ScheduleCommandParser -> AddressBookParser
+deactivate ScheduleCommandParser
+
+AddressBookParser -> ScheduleCommandParser : parse(arguments)
+activate ScheduleCommandParser
+
+create Meeting
+ScheduleCommandParser -> Meeting
+activate Meeting
+
+Meeting - -> ScheduleCommandParser
+deactivate Meeting
+
+create ScheduleCommand
+ScheduleCommandParser -> ScheduleCommand
+activate ScheduleCommand
+
+ScheduleCommand - -> ScheduleCommandParser
+deactivate ScheduleCommand
+
+ScheduleCommandParser - -> AddressBookParser : s
+deactivate ScheduleCommandParser
+ScheduleCommandParser -[hidden]-> AddressBookParser : s
+destroy ScheduleCommandParser
+
+AddressBookParser - -> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ScheduleCommand : execute()
+activate ScheduleCommand
+
+ScheduleCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model - -> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> ScheduleCommand : createEditedPerson(personToEdit, meeting)
+activate ScheduleCommand
+
+ScheduleCommand - -> ScheduleCommand : editedPerson
+deactivate ScheduleCommand
+
+ScheduleCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model - -> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model - -> ScheduleCommand
+deactivate Model
+
+ScheduleCommand - -> LogicManager : result
+deactivate ScheduleCommand
+ScheduleCommand -[hidden]-> LogicManager : result
+destroy ScheduleCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: SG
+--></g></svg>

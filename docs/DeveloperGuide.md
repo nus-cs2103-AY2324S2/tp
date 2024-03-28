@@ -170,6 +170,32 @@ sequence diagram shows the interactions within `Model` when editing a person.
 
 ![EditSequenceDiagram-Model](images/EditSequenceDiagram-Model.png)
 
+### Meeting Scheduling
+
+`Person` class has an `Optional<Meeting>` field which will hold a `Meeting` object that contains the meeting details if a meeting is scheduled with the person. Otherwise, it will hold an `Optional.empty()` to represent no meeting is scheduled with the person.
+
+The supported meeting details are:
+- Start date time
+- End date time
+- Remarks
+
+#### Schedule Command
+
+The `schedule` command is implemented to allow users to schedule meetings within the application. The command follows a sequence of interactions similar to the other commands. The part to highlight is `ScheduleCommandParser#parse(String)`  creates a `Meeting` object containing the parsed meeting details and it is then passed to `ScheduleCommand`.
+
+The following sequence diagram shows how a schedule meeting operation goes through the `Logic` component:
+![Schedule Meeting Sequence Diagram](images/ScheduleMeetingSequenceDiagram.svg)
+
+#### Unschedule Command
+The `unschedule` command is designed to provide users with the capability to remove previously scheduled meetings. The primary action is the removal of the Meeting object from the specified person's record in the Model.
+
+The execution flow of the `unschedule` command is similar to the one shown for `schedule` command (refer to the sequence diagram for `ScheduleCommand` shown above), with the main difference being the `personToEdit` will have their meeting field set to `Optional.empty()`.
+
+#### Design Choice
+The implementation of the `schedule` and `unschedule` command are in this manner to maintain consistency with the existing command structure.
+
+For the schedule command, in the case where a person already has a meeting scheduled, the schedule command will result in an error, instead of overwriting the existing meeting details. This behavior is chosen over the alternative of overwriting the existing meeting details to guard against accidental data loss.
+
 ### Remark Feature
 
 Users are able to add a `Remark` to a `Person` in FINDvisor to note down some information about a `Person`.
