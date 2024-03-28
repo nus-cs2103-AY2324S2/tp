@@ -19,7 +19,7 @@ import seedu.address.model.person.Staff;
  */
 public class AddStaffCommand extends Command {
 
-    public static final String COMMAND_WORD = "/pooch-staff";
+    public static final String COMMAND_WORD = "/add-staff";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the address book. "
             + "Parameters: "

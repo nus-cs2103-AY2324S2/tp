@@ -739,7 +739,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The contact to be edited must exist and should have been added as a `Person` type. You can run the following command to add in a contact to edit: 
       ```
-      /pooch-add ; name : Person1 ; phone : 98883888 ; address : Pooch Street 32 ; email : impooch@gmail.com
+      /add-person ; name : Person1 ; phone : 98883888 ; address : Pooch Street 32 ; email : impooch@gmail.com
       ```
    1. Test case: `/edit ; name : Person1 ; field : { phone : 99820520}`<br>
       Expected: The phone field of contact named 'Person1' is edited to `99820520`. Details of the edited contact shown in the status message.
@@ -754,7 +754,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The contact to be edited must exist and should have been added as a `Staff` type. You can run the following command to add in a contact to edit: 
       ```
-      /pooch-staff ; name : Staff1 ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time
+      /add-staff ; name : Staff1 ; phone : 98765435 ; address : Poochie Street 21 ; email : ilovecatstoo@gmail.com ; salary : $50/hr ; employment : part-time
       ```
    1. Test case: `/edit-staff ; name : Staff1 ; field : { phone : 99820520}`<br>
       Expected: The phone field of contact named 'Staff1' is edited to `99820520`. Details of the edited contact shown in the status message.
@@ -772,7 +772,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The contact to be edited must exist and should have been added as a `Supplier` type. You can run the following command to add in a contact to edit: 
       ```
-      /pooch-supplier ; name : Supplier1 ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag
+      /add-supplier ; name : Supplier1 ; phone : 98673098 ; address : Meow Street 24 ; email : ilovewombatstoo@gmail.com ; product : kibble ; price : $98/bag
       ```
    1. Test case: `/edit-supplier ; name : Supplier1 ; field : { phone : 9994555}`<br>
       Expected: The phone field of contact named 'Supplier1' is edited to `9994555`. Details of the edited contact shown in the status message.
@@ -790,7 +790,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The contact to be edited must exist and should have been added as a `Maintainer` type. You can run the following command to add in a contact to edit: 
       ```
-      /pooch-maintainer ; name : Maintainer1  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr
+      /add-maintainer ; name : Maintainer1  ; phone : 98765435 ; address : Poochie Street 24 ; email : ihelppooches@gmail.com ; skill : trainer ; commission : $60/hr
       ```
    1. Test case: `/edit-maintainer ; name : Maintainer1 ; field : { phone : 84444555}`<br>
       Expected: The phone field of contact named 'Maintainer1' is edited to `84444555`. Details of the edited contact shown in the status message.
@@ -810,7 +810,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: only **one** contact with the name **_Poochie_** should exist in PoochPlanner. If not, run the following command to ensure add **_Poochie_** into PoochPlanner.
       ```
-      /pooch-add ; name : Poochie ; phone : 98883888 ; address : Pooch Street 32 ; email : impoochie@gmail.com
+      /add-person ; name : Poochie ; phone : 98883888 ; address : Pooch Street 32 ; email : impoochie@gmail.com
       ```
 
    1. Test case: `/delete ; name : Poochie`<br>
@@ -833,7 +833,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: only **one** contact with the name **_Poochie_** should exist in PoochPlanner. If not, run the following command to ensure add **_Poochie_** into PoochPlanner.
       ```
-      /pooch-add ; name : Poochie ; phone : 98883888 ; address : Pooch Street 32 ; email : impoochie@gmail.com
+      /add-person ; name : Poochie ; phone : 98883888 ; address : Pooch Street 32 ; email : impoochie@gmail.com
       ```
 
    1. Test case: `/rate ; name : Poochie ; rating : 5`<br>
