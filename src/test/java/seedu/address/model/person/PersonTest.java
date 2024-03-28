@@ -12,8 +12,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.order.Order;
+import seedu.address.testutil.OrderBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -22,6 +27,7 @@ public class PersonTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getOrders().remove(0));
     }
 
     @Test
@@ -49,6 +55,20 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
+    }
+
+    @Test
+    public void isSameTestWithOrder() {
+        PersonBuilder personBuilder = new PersonBuilder();
+        Person person = personBuilder.build();
+        OrderBuilder orderBuilder = new OrderBuilder();
+        Order order = orderBuilder.build();
+        Set<Order> setOfOrders = new HashSet<>();
+        setOfOrders.add(order);
+
+        Person editedAlice = new Person(person.getName(), person.getPhone(),
+                person.getEmail(), person.getAddress(), person.getTags(), setOfOrders);
+        assertTrue(person.isSamePerson(editedAlice));
     }
 
     @Test
@@ -88,12 +108,14 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
     }
 
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
-                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
+                + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags()
+                + ", orders=" + ALICE.getOrders() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

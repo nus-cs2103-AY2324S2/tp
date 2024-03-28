@@ -13,15 +13,18 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.clients.AddCommand;
+import seedu.address.logic.commands.clients.ClearCommand;
+import seedu.address.logic.commands.clients.DeleteCommand;
+import seedu.address.logic.commands.clients.EditCommand;
+import seedu.address.logic.commands.clients.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.clients.ExitCommand;
+import seedu.address.logic.commands.clients.FindCommand;
+import seedu.address.logic.commands.clients.HelpCommand;
+import seedu.address.logic.commands.clients.ListCommand;
+import seedu.address.logic.commands.orders.AddOrderCommand;
+import seedu.address.logic.commands.orders.DeleteOrderCommand;
+import seedu.address.logic.commands.orders.ViewOrdersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -89,9 +92,33 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_createOrder() throws Exception {
+        String remarks = " d/1xRoses";
+        String cost = " c/100";
+        String date = " by/10-10-2024 00:00";
+        assertTrue(parser.parseCommand(AddOrderCommand.COMMAND_WORD + " 1"
+                + remarks + cost + date) instanceof AddOrderCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteOrder() throws Exception {
+        // OrderBuilder builder = new OrderBuilder();
+        // OrderId orderId = builder.build().getOrderId();
+        assertTrue(
+                parser.parseCommand(DeleteOrderCommand.COMMAND_WORD + " 1")
+                        instanceof DeleteOrderCommand);
+    }
+
+    @Test
+    public void parseCommand_viewOrders() throws Exception {
+        assertTrue(parser.parseCommand(ViewOrdersCommand.COMMAND_WORD) instanceof ViewOrdersCommand);
+        assertTrue(parser.parseCommand(ViewOrdersCommand.COMMAND_WORD + " 3") instanceof ViewOrdersCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

@@ -1,10 +1,11 @@
-title: "AB-3"
+title: "BookKeeper"
 theme: minima
 
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
   - AboutUs.md
+  - README.md
 
 markdown: kramdown
 

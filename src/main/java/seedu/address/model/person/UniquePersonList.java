@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -17,7 +18,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
@@ -27,6 +28,9 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Order> internalOrderList = FXCollections.observableArrayList();
+    private final ObservableList<Order> internalUnmodifiableOrderList =
+            FXCollections.unmodifiableObservableList(internalOrderList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -69,6 +73,31 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     *
+     * @param target       person to be removed.
+     * @param editedPerson person to be added.
+     * @param order        order to be removed.
+     */
+    public void setPersonAndDeleteOrder(Person target, Person editedPerson, Order order) {
+        setPerson(target, editedPerson);
+        internalOrderList.remove(order);
+    }
+
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     *
+     * @param target       person to be removed.
+     * @param editedPerson person to be added.
+     * @param order        order to be added.
+     */
+    public void setPersonAndAddOrder(Person target, Person editedPerson, Order order) {
+        setPerson(target, editedPerson);
+        internalOrderList.add(order);
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
@@ -77,6 +106,7 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+        internalOrderList.removeAll(toRemove.getOrdersList());
     }
 
     public void setPersons(UniquePersonList replacement) {
@@ -95,13 +125,26 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+        internalOrderList.setAll(asUnmodifiableObservableListOrders());
     }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<Order> asUnmodifiableObservableListOrders() {
+        for (Person person : internalList) {
+            internalOrderList.addAll(person.getOrdersList());
+        }
+        return internalUnmodifiableOrderList;
     }
 
     @Override

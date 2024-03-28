@@ -430,5 +430,8 @@
     <!-- Checks that every public class, enumeration and interface has a header comment. -->
     <module name="MissingJavadocType"/>
 
+      <!-- Other Javadoc checks -->
+      <module name="JavadocStyleCheck"/>
+
   </module>
 </module>

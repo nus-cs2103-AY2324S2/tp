@@ -20,6 +20,16 @@ Class Name
 Class Phone
 Class Tag
 
+Class OrderList
+Class Order
+Class OrderId
+Class OrderDate
+Class Deadline
+Class Price
+Class Description
+Class Status
+Class ClientId
+
 Class I #FFFFFF
 }
 
@@ -43,12 +53,24 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
-Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+
+AddressBook *--> "1" OrderList
+
+
+OrderList --> "~* all" Order
+Order -[hidden]up->Name
+Order *--> OrderId
+Order *--> OrderDate
+Order *--> Deadline
+Order *--> Price
+Order *--> Description
+Order *--> Status
+Order *--> ClientId
 
 ModelManager --> "~* filtered" Person
 @enduml

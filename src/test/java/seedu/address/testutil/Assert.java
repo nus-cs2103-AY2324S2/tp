@@ -31,4 +31,19 @@ public class Assert {
         Throwable thrownException = Assertions.assertThrows(expectedType, executable);
         Assertions.assertEquals(expectedMessage, thrownException.getMessage());
     }
+
+    /**
+     * Asserts that executing the {@code executable} throws an exception of the {@code expectedType}.
+     *
+     * @param expectedType The class of the Exception expected to be thrown.
+     * @param executable The executable code block that is expected to throw the exception.
+     */
+    public static void assertThrowsExactly(Class<? extends Throwable>
+                                                   expectedType, Executable executable, String expectedMessage) {
+        Throwable thrownException = Assertions.assertThrows(expectedType, executable);
+        Assertions.assertTrue(expectedType.isInstance(thrownException),
+                "Expected thrown exception to be exactly of type "
+                + expectedType.getSimpleName()
+                + " but was " + thrownException.getClass().getSimpleName());
+    }
 }
