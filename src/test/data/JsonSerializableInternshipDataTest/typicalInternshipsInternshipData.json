@@ -1,0 +1,60 @@
+{
+  "_comment": "InternshipData save file which contains the same Internship values as in TypicalInternships#getTypicalInternshipData()",
+  "internships" : [ {
+    "companyName" : "Microsoft",
+    "contactName" : "Alice Pauline",
+    "contactEmail" : "alice@example.com",
+    "contactNumber" : "94351253",
+    "location" : "remote",
+    "status" : "ongoing",
+    "description" : "Use Figma to design User-friendly web interfaces",
+    "role" : "Frontend Engineer",
+    "remark" : "",
+    "taskList" : [ {
+      "task" : "Submit Documents",
+      "deadline" : {
+        "deadline" : "11/01/2011"
+      },
+      "isDeadlineSet" : true
+    }, {
+      "task" : "Submit Resume",
+      "deadline" : null,
+      "isDeadlineSet" : false
+    } ],
+    "applicationStatus": "ONGOING"
+  }, {
+    "companyName" : "Google",
+    "contactName" : "Benson Meier",
+    "contactEmail" : "benson@example.com",
+    "contactNumber" : "98765432",
+    "location" : "local",
+    "status" : "pending",
+    "description" : "Write REST APIs for services",
+    "role" : "Backend Engineer",
+    "remark" : "",
+    "taskList" : [{
+      "task" : "Submit documents",
+      "deadline" : null,
+      "isDeadlineSet" : false
+    } ],
+    "applicationStatus": "PENDING"
+  }, {
+    "companyName" : "OpenAI",
+    "contactName" : "Carl Kurz",
+    "contactEmail" : "carl@google.com",
+    "contactNumber" : "95352563",
+    "location" : "overseas",
+    "status" : "rejected",
+    "description" : "Enter prompts into ChatGPT",
+    "role" : "Prompt Engineer",
+    "remark" : "",
+    "taskList" : [{
+      "task" : "Submit Resume",
+      "deadline" : {
+        "deadline": "13/03/2033"
+      },
+      "isDeadlineSet" : true
+    } ],
+    "applicationStatus": "REJECTED"
+  } ]
+}

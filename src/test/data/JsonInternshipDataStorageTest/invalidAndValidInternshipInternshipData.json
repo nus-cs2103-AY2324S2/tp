@@ -1,0 +1,21 @@
+{
+  "internships" : [ {
+    "companyName" : "Valid Company",
+    "contactName" : "Valid Name",
+    "contactEmail" : "alice@example.com",
+    "contactNumber" : "94351253",
+    "location" : "remote",
+    "status" : "ongoing",
+    "description" : "Use Figma to design User-friendly web interfaces",
+    "role" : "Frontend Engineer"
+  }, {
+    "companyName" : "Internship with invalid contactEmail",
+    "contactName" : "Benson Meier",
+    "contactEmail" : "invalid@email!3e",
+    "contactNumber" : "98765432",
+    "location" : "local",
+    "status" : "pending",
+    "description" : "Write REST APIs for services",
+    "role" : "Backend Engineer"
+  } ]
+}

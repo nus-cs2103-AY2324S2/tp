@@ -1,0 +1,12 @@
+{
+  "internships" : [ {
+    "companyName" : "Internship with invalid contactName",
+    "contactName" : "Invalid Contact Name!",
+    "contactEmail" : "invalid@email!3e",
+    "contactNumber" : "98765432",
+    "location" : "local",
+    "status" : "pending",
+    "description" : "Write REST APIs for services",
+    "role" : "Backend Engineer"
+  } ]
+}

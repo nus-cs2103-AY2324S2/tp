@@ -5,55 +5,53 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `cs2103t_w11_1[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Loh Jun Heng Donovan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/captainkeqing.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/CaptainKeqing)]
+[[portfolio](team/captainkeqing.md)]
 
-* Role: Project Advisor
+* Role: Code Quality Manager
 
-### Jane Doe
+### Hariprasath S/O R Mohan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hm33-stu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/HM33-Stu)]
+[[portfolio](team/hm33-stu.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation, Deliverables and Deadlines
 
-### Johnny Doe
+### Wei Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lws49.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/LWS49)]
+[[portfolio](team/lws49.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Tech Lead, Scheduling and Tracking
 
-### Jean Doe
+### Boh Jie Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jieqiboh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jieqiboh)]
+[[portfolio](team/jieqiboh)]
 
 * Role: Developer
-* Responsibilities: UI
+
+
+### Rajendran Ramesh Babu Manoj Narender
+
+<img src="images/theman-oj10.png" width="200px">
+
+[[github](http://github.com/theman-oj10)]
+[[portfolio](team/theman-oj10.md)]
+
+* Role: Integration, Testing

@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package Storage as StoragePackage {
+
+package "UserPrefs Storage" #F4F6F6{
+Class "<<interface>>\nInternshipUserPrefsStorage" as InternshipUserPrefsStorage
+Class JsonInternshipUserPrefsStorage
+}
+
+Class "<<interface>>\nStorage" as Storage
+Class InternshipStorageManager
+
+package "InternshipData Storage" #F4F6F6{
+Class "<<interface>>\nInternshipDataStorage" as InternshipDataStorage
+Class JsonInternshipDataStorage
+Class JsonSerializableInternshipData
+Class JsonAdaptedInternship
+}
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
+
+InternshipStorageManager .up.|> Storage
+InternshipStorageManager -up-> "1" InternshipUserPrefsStorage
+InternshipStorageManager -up-> "1" InternshipDataStorage
+
+Storage -left-|> InternshipUserPrefsStorage
+Storage -right-|> InternshipDataStorage
+
+JsonInternshipUserPrefsStorage .up.|> InternshipUserPrefsStorage
+JsonInternshipDataStorage .up.|> InternshipDataStorage
+JsonInternshipDataStorage ..> JsonSerializableInternshipData
+JsonSerializableInternshipData --> "*" JsonAdaptedInternship
+
+@enduml

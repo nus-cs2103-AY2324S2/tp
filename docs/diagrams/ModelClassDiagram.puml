@@ -5,50 +5,57 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
-Class UserPrefs
+Class "<<interface>>\nReadOnlyInternshipData" as ReadOnlyInternshipData
+Class "<<interface>>\nReadOnlyInternshipUserPrefs" as ReadOnlyInternshipUserPrefs
+Class "<<interface>>\nInternshipModel" as InternshipModel
+Class InternshipData
+Class InternshipModelManager
+Class InternshipUserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueInternshipList
+Class Internship
+Class ApplicationStatus
+Class CompanyName
+Class ContactName
+Class ContactNumber
+Class ContactEmail
+Class Description
+Class Location
+Class Role
 
 Class I #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> InternshipModel
 
-AddressBook .up.|> ReadOnlyAddressBook
+InternshipData .up.|> ReadOnlyInternshipData
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+InternshipModelManager .up.|> InternshipModel
+InternshipModel .right.> ReadOnlyInternshipUserPrefs
+InternshipModel .left.> ReadOnlyInternshipData
+InternshipModelManager -left-> "1" InternshipData
+InternshipModelManager -right-> "1" InternshipUserPrefs
+InternshipUserPrefs .up.|> ReadOnlyInternshipUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+InternshipData *--> "1" UniqueInternshipList
+InternshipModelManager --> "~* filtered" Internship
+UniqueInternshipList --> "~* all" Internship
+Internship *--> ApplicationStatus
+Internship *--> CompanyName
+Internship *--> ContactName
+Internship *--> ContactNumber
+Internship *--> ContactEmail
+Internship *--> Description
+Internship *--> Location
+Internship *--> Role
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Internship -[hidden]up--> I
+UniqueInternshipList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+CompanyName -[hidden]right-> ContactNumber
+ContactNumber -[hidden]right-> Description
+Description -[hidden]right-> Role
 
-ModelManager --> "~* filtered" Person
+
 @enduml
