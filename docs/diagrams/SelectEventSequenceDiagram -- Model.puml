@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":EventBook" as EventBook MODEL_COLOR
+participant "personsOfSelectedEvent:UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+[-> Model : selectEvent(eventToSelect)
+activate Model
+
+Model -> EventBook : selectEvent(eventToSelect)
+activate EventBook
+
+EventBook -> UniquePersonList : setPersons(eventToSelect.getPersonList())
+activate UniquePersonList
+UniquePersonList --> EventBook
+deactivate UniquePersonList
+EventBook --> Model :
+deactivate EventBook
+
+[<-- Model
+deactivate Model
+
+@enduml

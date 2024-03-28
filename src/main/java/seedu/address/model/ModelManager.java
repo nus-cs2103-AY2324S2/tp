@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,8 +21,11 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final EventBook eventBook;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Person> filteredPersonsOfSelectedEvent;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -31,8 +36,11 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
+        this.eventBook = new EventBook();
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredEvents = new FilteredList<>(this.eventBook.getEventList());
+        filteredPersonsOfSelectedEvent = new FilteredList<>(this.eventBook.getPersonsOfSelectedEventList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -143,6 +151,96 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    //=========== EventBook ================================================================================
+
+    @Override
+    public void setEventBook(ReadOnlyEventBook eventBook) {
+        this.eventBook.resetData(eventBook);
+    }
+
+    @Override
+    public ReadOnlyEventBook getEventBook() {
+        return eventBook;
+    }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return eventBook.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        eventBook.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        eventBook.addEvent(event);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        eventBook.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public boolean isAnEventSelected() {
+        return eventBook.isAnEventSelected();
+    }
+
+    @Override
+    public boolean isSameSelectedEvent(Event event) {
+        requireNonNull(event);
+        return eventBook.isSameSelectedEvent(event);
+    }
+
+    @Override
+    public void selectEvent(Event event) {
+        eventBook.selectEvent(event);
+    }
+
+    @Override
+    public void deselectEvent() {
+        eventBook.deselectEvent();
+    }
+
+    @Override
+    public boolean isPersonInSelectedEvent(Person person) {
+        requireNonNull(person);
+        return eventBook.isPersonInSelectedEvent(person);
+    }
+
+    @Override
+    public void addPersonToSelectedEvent(Person person) {
+        requireNonNull(person);
+        eventBook.addPersonToSelectedEvent(person);
+    }
+
+    @Override
+    public void deletePersonFromSelectedEvent(Person person) {
+        requireNonNull(person);
+        eventBook.deletePersonFromSelectedEvent(person);
+    }
+
+    //=========== Filtered Event List and Person List of Selected Event Accessors ====================================
+
+    @Override
+    public ObservableValue<Event> getSelectedEvent() {
+        return eventBook.getSelectedEvent();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public ObservableList<Person> getFilteredPersonListOfSelectedEvent() {
+        return filteredPersonsOfSelectedEvent;
     }
 
 }

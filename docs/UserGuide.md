@@ -1,12 +1,15 @@
 ---
-layout: page
-title: User Guide
+layout: default.md
+title: "User Guide"
+pageNav: 3
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# Eventy User Guide
 
-* Table of Contents
-{:toc}
+Eventy is a contact management application, tailored specifically for student event organizers, offers a new standard of streamlined and automated contact organization. It serves as your single source of truth for storing, managing, and retrieving all contact-related information.
+
+<!-- * Table of Contents -->
+<page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,100 +17,174 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `eventy.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your Eventy.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eventy.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+5. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Creating an event: `addev`
 
-**:information_source: Notes about the command format:**<br>
+**Format:** `addev ev/ <event name>`
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+**Description:**
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Adds a new event with the specified name for the Event List.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+<box type="warning" seamless>
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+**Caution:**
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* `<event name>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
+* Adding an event with a name that already exists, regardless of case, is **not allowed.**
+  </box>
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
+**Examples:**
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+- `addev ev/ Orientation camp` adds a new event with the name `Orientation camp`.
 
 
-### Adding a person: `add`
+### Deleting an event: `delev`
 
-Adds a person to the address book.
+**Format:** `delev <index>`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Description:**
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Deletes an event and all its relevant information with its index in the event list.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+<box type="warning" seamless>
 
-### Listing all persons : `list`
+**Caution:**
 
-Shows a list of all persons in the address book.
+* `<index>` should be **numeric** and **non-empty**.
+  </box>
 
-Format: `list`
+**Examples:**
 
-### Editing a person : `edit`
+- `delev 1` deletes the 1st event in the displayed list.
 
-Edits an existing person in the address book.
+### Adding participant and their information to the global participant list: `addp`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+**Format:** `addp n/ <participant name> p/ <phone number> e/ <email> a/ <address> t/ <tags>`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+**Description:**
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Adds a new participant to the app, allowing them to be added to an event later.
+
+**Caution:**
+
+* `<participant name>` should be **alphabetic**, **non-empty** and **not longer than 64 characters**.
+* `<phone number>` should be **numeric**, **non-empty** and **not longer than 15 digits**.
+* `<email>` should be **alphanumeric**, **non-empty** and **not longer than 64 characters**.
+
+**Examples:**
+
+- `addp n/David p/98987676 e/david@example.com a/ NUS t/ student` adds a participant named `David`
+  with the phone number `98987676` and email of `david@example.com` to the displayed contacts list.
+
+### Selecting an event: `sel`
+
+**Format:** `sel <event index>`
+
+**Description:**
+
+Selects an event from the event list by the event index.
+
+<box type="warning" seamless>
+
+**Caution:**
+
+* `<event index>` should be an **integer** no larger than the number of events in the event list.
+</box>
+
+**Examples:**
+
+- `sel 3` selects the 3rd event.
+
+### Deselecting an event: `desel`
+
+**Format:** `desel`
+
+**Description:**
+
+Deselects the selected event and returns to the global participant list.
+
+**Examples:**
+
+- After `select 3` which selects the event with index `3`, `desel` deselects the event indexed `3`.
+
+### Deleting a participant from the global participant list or an event participant list: `delp`
+
+**Format:** `delp <index>`
+
+**Description:**
+
+- If **no event is selected**, this deletes the participant from both the **global participant list** and **all the
+  events** he/she is in by **his/her index in the global participant list**.
+- If **an event is selected**, this only removes the participant from the event by **his/her index in the
+  event participant list**.
+
+<box type="warning" seamless>
+
+**Caution:**
+
+* `<index>` should be an **integer**.
+* A participant's `<index>` in an event participant list can be **different** from that in the global participant list.
+* `<index>` should be no larger than the number of participants in the global participant list if no event is selected.
+* `<index>` should be no larger than the number of participants in the event participant list if an event is selected.
+</box>
+
+**Examples:**
+
+- When no event is selected, `delp 9` deletes the 9th participant completely.
+- `delp 9` after `sel 3` removes the 9th participant from the 3rd event's participant list.
+
+### Edit existing participant: `editp`
+
+**Format:** `editp <participant index> n/ <participant name> p/ <phone number> e/ <email>`
+
+**Description:**
+
+Updates the contact information of a participant in the app.
+
+**Caution:**
+
+* `<participant index>` should be within valid range of global participants
+
+**Examples:**
+
+- `editp 5 n/ Max p/ 00000000 e/ test@gmail.com` Edits contact details of participant indexed 5.
+  
+### Invite person to selected event: `inv`
+
+**Format:** `inv <participant index>`
+
+**Description:**
+
+Invite participants from the global participant list to the selected event.
+
+**Caution:**
+
+* `<participant index>` should be within valid range of global participants
+* Duplicate participants is **not allowed.**
+
+**Examples:**
+
+- `inv 5` Adds participant indexed 5 to selected event.
+  
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
 
 ### Locating persons by name: `find`
 
@@ -115,7 +192,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -127,49 +204,25 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Viewing help : `help`
 
-Deletes the specified person from the address book.
+Shows a message explaining how to access the help page.
 
-Format: `delete INDEX`
+![help message](images/helpMessage.png)
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `help`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### Listing all persons : `list`
 
-### Clearing all entries : `clear`
+Shows a list of all persons in the address book.
 
-Clears all entries from the address book.
-
-Format: `clear`
+Format: `list`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -187,12 +240,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action                                      | Format, Examples                                                                                                      |
+|---------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| **Add Event**                               | `addev ev/ <event name>` <br> e.g., `addev ev/ Orientation camp`                                                      |
+| **Delete Event**                            | `delev <index>` <br> e.g., `delev 1`                                                                                  |
+| **Add Participant**                         | `addp n/ <participant name> p/ <phone number> e/ <email>` <br> e.g., `addp n/ David p/ 98987676 e/ david@example.com` |
+| **Selecting Event**                         | `sel <event index>` <br> e.g., `sel                                                                                   |
+| **Deselecting Event**                       | `desel` deselect the current selected event                                                                           |
+| **Deleting a participant from global list** | `del 3` delete the 3rd participant from the global participant list                                                   |
+| **Deleting a participant from an event**    | `del 3` delete the 3rd participant from event list of selected event                                                  |
+| **Edit existing participant**               | `editp 5 n/ Max p/ 00000000 e/ test@gmail.com` Edits contact details of participant indexed 5                         |
+| **Invite person to selected event**         | `inv 5` Adds participant indexed 5 to selected event                                                                  |
+| **Locating persons by name**                | `find John` returns `john` and `John Doe`                                                                             |
+| **Clear all entries**                       | `clear` clear all entries from eventy                                                                                 |
+| **Viewing help**                            | `help` Shows a message explaining how to access the help page                                                         |
+| **Listing all persons**                     | `list` Shows a list of all persons in the address book.                                                               |
+| **Exiting the program**                     | `exit` Exits the program                                                                                              |

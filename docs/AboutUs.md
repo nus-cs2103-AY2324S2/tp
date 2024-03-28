@@ -1,59 +1,46 @@
----
-layout: page
-title: About Us
----
+# About Us
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are the developer team of event management app Eventy, based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 ## Project team
 
-### John Doe
+### Nigel Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/apzure.png" width="200px" height="250px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Apzure)]
 
-* Role: Project Advisor
+* Roles: Team Lead and Scheduling and Tracking, in charge of Model
 
-### Jane Doe
+### Han Taeweon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/taeewonnn.png" width="200px" height="250px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/taeewonnn)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Roles: Documentation, Deliverables and Deadlines, Git Expert
 
-### Johnny Doe
+### Max Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/myang2020.png" width="200px" height="250px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/myang2020)]
 
-* Role: Developer
-* Responsibilities: Data
+* Roles: Testing, in charge of Logic
 
-### Jean Doe
+### Liu Yifan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nusliuyifan.png" width="200px" height="250px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nusliuyifan)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Roles: Integration, in charge of Storage
 
-### James Doe
+### Yichao Song
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chocoragdoll.png" width="200px" height="250px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ChocoRagdoll)]
 
-* Role: Developer
-* Responsibilities: UI
+* Roles: Code Quality, in charge of UI
+

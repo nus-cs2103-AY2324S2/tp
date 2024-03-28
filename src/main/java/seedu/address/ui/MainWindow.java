@@ -31,7 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private EventListPanel eventListPanel;
     private PersonListPanel personListPanel;
+    private PersonListOfSelectedEventPanel personListOfSelectedEventPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane eventListPanelPlaceholder;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane personListOfSelectedEventPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +121,13 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        eventListPanel = new EventListPanel(logic.getFilteredEventList(), logic.getSelectedEvent());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
+        personListOfSelectedEventPanel = new PersonListOfSelectedEventPanel(logic.getSelectedEvent(),
+                logic.getFilteredPersonListOfSelectedEvent());
+        personListOfSelectedEventPanelPlaceholder.getChildren().add(personListOfSelectedEventPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -161,6 +176,10 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    public EventListPanel getEventListPanel() {
+        return eventListPanel;
     }
 
     public PersonListPanel getPersonListPanel() {
