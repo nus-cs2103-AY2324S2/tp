@@ -106,6 +106,7 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+        internalOrderList.removeAll(toRemove.getOrdersList());
     }
 
     public void setPersons(UniquePersonList replacement) {
