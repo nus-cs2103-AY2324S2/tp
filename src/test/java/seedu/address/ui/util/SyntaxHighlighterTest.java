@@ -78,7 +78,7 @@ class SyntaxHighlighterTest {
                 Text text = (Text) node;
                 String content = text.getText();
                 assertEquals(
-                        isUtilLabel(content) || isCommandWord(content),
+                        content.endsWith(":") && (isUtilLabel(content) || isCommandWord(content)),
                         text.getStyleClass().contains(BOLD_STYLE_CLASS)
                 );
             }

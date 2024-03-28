@@ -55,8 +55,7 @@ public class SyntaxHighlighter {
      * Generates a rich-text line with error formatting applied.
      */
     private TextFlow generateErrorLine(String errorMessage) {
-        Text errorText = new Text(errorMessage);
-        errorText.getStyleClass().addAll(styleClasses);
+        Text errorText = generateDefaultStyleText(errorMessage);
         errorText.getStyleClass().addAll(ERROR_STYLE_CLASS, BOLD_STYLE_CLASS);
 
         return new TextFlow(errorText);
@@ -66,8 +65,7 @@ public class SyntaxHighlighter {
      * Generates a rich-text line with success formatting applied.
      */
     private TextFlow generateSuccessLine(String successMessage) {
-        Text successText = new Text(successMessage);
-        successText.getStyleClass().addAll(styleClasses);
+        Text successText = generateDefaultStyleText(successMessage);
         successText.getStyleClass().addAll(SUCCESS_STYLE_CLASS, BOLD_STYLE_CLASS);
 
         return new TextFlow(successText);
@@ -94,18 +92,34 @@ public class SyntaxHighlighter {
      * Generates a rich-text word with formatting applied.
      */
     private Text generateGenericWord(String word) {
-        Text wordText = new Text(word);
-        wordText.getStyleClass().addAll(styleClasses);
+        Text wordText = generateDefaultStyleText(word);
+
+        if (word.isBlank()) {
+            return wordText;
+        }
 
         // Bold keywords
-        if (isUtilLabel(word) || isCommandWord(word)) {
+        if (isKeyword(word)) {
             wordText.getStyleClass().add(BOLD_STYLE_CLASS);
         }
 
         return wordText;
     }
 
-    private static Text generateSingleSpace() {
-        return new Text(" ");
+    /**
+     * Generates rich-text with the default styles applied to it, from a piece of text.
+     */
+    private Text generateDefaultStyleText(String text) {
+        Text styledText = new Text(text);
+        styledText.getStyleClass().addAll(styleClasses);
+        return styledText;
+    }
+
+    private Text generateSingleSpace() {
+        return generateDefaultStyleText(" ");
+    }
+
+    private boolean isKeyword(String text) {
+        return text.endsWith(":") && (isUtilLabel(text) || isCommandWord(text));
     }
 }
