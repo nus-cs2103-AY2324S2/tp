@@ -178,6 +178,59 @@ public class DeleteCommandTest {
         assertThrows(CommandException.class, () -> deleteCommand.deleteByName(model));
     }
 
+    @Test
+    public void equals_differentTypesOfDeletionCommands() {
+        DeleteCommand deleteByIndexCommand = new DeleteCommand(INDEX_FIRST_EMPLOYEE);
+        DeleteCommand deleteByNameCommand = new DeleteCommand("John Doe");
+        DeleteCommand deleteByUidCommand = new DeleteCommand(new UniqueId("1"));
+
+        // Different types of DeleteCommand should not be equal
+        assertFalse(deleteByIndexCommand.equals(deleteByNameCommand));
+        assertFalse(deleteByIndexCommand.equals(deleteByUidCommand));
+        assertFalse(deleteByNameCommand.equals(deleteByUidCommand));
+    }
+
+    @Test
+    public void execute_emptyName_throwsCommandException() {
+        String emptyName = "";
+        DeleteCommand deleteCommand = new DeleteCommand(emptyName);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+    }
+
+    @Test
+    public void equals_nullNameAndUid() {
+        DeleteCommand deleteByNameCommand = new DeleteCommand((String) null);
+        DeleteCommand deleteByUidCommand = new DeleteCommand((UniqueId) null);
+
+        // A DeleteCommand with null name or UID should not be equal to any other DeleteCommand
+        assertFalse(deleteByNameCommand.equals(new DeleteCommand("John Doe")));
+        assertFalse(deleteByUidCommand.equals(new DeleteCommand(new UniqueId("1"))));
+
+        // A DeleteCommand with null name or UID should be equal to itself
+        assertTrue(deleteByNameCommand.equals(deleteByNameCommand));
+        assertTrue(deleteByUidCommand.equals(deleteByUidCommand));
+    }
+
+    @Test
+    public void equals_sameNameDifferentCase() {
+        DeleteCommand deleteCommandLowercase = new DeleteCommand("john doe");
+        DeleteCommand deleteCommandUppercase = new DeleteCommand("JOHN DOE");
+
+        // Commands with the same name in different cases should be considered equal
+        assertTrue(deleteCommandLowercase.equals(deleteCommandUppercase));
+    }
+
+    // Ensure that the DeleteCommand with a targetName correctly identifies an empty string as an invalid targetName
+    @Test
+    public void execute_nullOrEmptyName_throwsCommandException() {
+        DeleteCommand deleteCommandWithNullName = new DeleteCommand((String) null);
+        DeleteCommand deleteCommandWithEmptyName = new DeleteCommand("");
+
+        assertThrows(CommandException.class, () -> deleteCommandWithNullName.execute(model));
+        assertThrows(CommandException.class, () -> deleteCommandWithEmptyName.execute(model));
+    }
+
 
     @Test
     public void equals() {

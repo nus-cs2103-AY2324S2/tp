@@ -187,7 +187,7 @@ public class DeleteCommand extends Command {
 
         boolean isNameEqual = targetName != null
                 && otherDeleteCommand.targetName != null
-                && targetName.equals(otherDeleteCommand.targetName);
+                && targetName.equalsIgnoreCase(otherDeleteCommand.targetName);
 
         return isIndexEqual || isUidEqual || isNameEqual;
     }
