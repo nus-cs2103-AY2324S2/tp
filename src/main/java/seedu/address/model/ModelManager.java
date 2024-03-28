@@ -28,8 +28,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    private List<Order> temporarySortedOrders = new ArrayList<>();
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -157,9 +155,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<Order> getSortedOrders(Person person) {
-        requireNonNull(person);
-        List<Order> sortedOrders = new ArrayList<>(person.getOrders());
+    public List<Order> getSortedOrders(Person target) {
+        List<Order> sortedOrders = getOrders(target);
         sortedOrders.sort(Comparator.comparing(Order::getDate));
         return Collections.unmodifiableList(sortedOrders);
     }
