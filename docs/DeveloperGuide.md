@@ -214,7 +214,7 @@ This section describes some noteworthy details on how certain features are imple
      - As the projects in the list have unique name, we don't need to worry about returning the wrong project
    - Else the project is successfully deleted
 
-![Interactions Inside the Logic Component for the `delete task ui /in Duke` Command](images/DeleteTaskSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete task ui /in Duke` Command](images/DeleteProjectSequenceDiagram.png)
 
 ### Deleting a task
 
@@ -231,7 +231,7 @@ This section describes some noteworthy details on how certain features are imple
         - The check is done by using `Person::hasTask`
     - Else the task is successfully deleted
 
-![Interactions Inside the Logic Component for the `delete project Duke` Command](images/DeleteProjectSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete project Duke` Command](images/DeleteTaskSequenceDiagram.png)
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
