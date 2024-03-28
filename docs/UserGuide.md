@@ -325,10 +325,9 @@ Format: `help`
 
 ### Adding an internship: `add`
 
-Let's start off with knowing how you can add an internship entry with all the relevant fields. Take a look at the format below!
+Let's start off with knowing how you can add an internship entry with all the relevant fields. <br> Take a look at the format below!
 
 **Format:** `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​` <br>
-This is the structure of an `add` command, specifying what you need to add an internship entry. 
 
 * The fields `COMPANY_NAME`, `DESCRIPTION`, `CONTACT_NAME` and `ROLE` allow the use of any text, number and/or spaces
 * The field `STATUS` accepts only the following inputs: `to_apply`, `ongoing`, `rejected`, `accepted`
@@ -341,10 +340,11 @@ This is the structure of an `add` command, specifying what you need to add an in
 ℹ️ **Tip:** <br> Head over to the [Tutorial](#tutorial) and learn how to add an internship entry !
 </div>
 
+
 <div markdown="span" class="alert alert-danger">
 ⚠️ **Common errors:** <br>
-1. If no field prefixes are specified or if there are errors, the command will be rejected with error message:<br>
-   `Invalid Command Prefix!` followed by the format to use and an example for you to refer to or try out
+1. If no field prefixes are specified or if there are errors, the command will be rejected with error message: `Invalid Command Prefix!` <br>
+Refer to the format and example displayed along with this message, to help you rectify your errors!
 </div>
 
 ### Deleting an internship: `delete`
@@ -357,15 +357,13 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed list of internship entries at point of deletion.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-success">
+  <div markdown="span" class="alert alert-info">
+ℹ️ **Tip:** <br> Head over to the [Tutorial](#tutorial) and learn how to delete an internship entry !
+</div>
 
-💡 **Try It Out:**<br>
-
-Key in the following command in the CLI: `delete 2`
-
-Successful output after deleting the entry:<br>
-![After successfully deleting](./images/tutorial/delete.png)
-The Facebook internship entry has been removed, and is no longer present in your database.
+<div markdown="span" class="alert alert-danger">
+⚠️ **Common errors:** <br>
+1. If no field prefixes are specified or if there are errors, the command will be rejected with error message: `Invalid Command Prefix!`
 </div>
 
 ### Listing all internships: `list`
