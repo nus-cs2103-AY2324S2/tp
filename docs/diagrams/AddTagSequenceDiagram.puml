@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTagCommandParser" as AddTagCommandParser LOGIC_COLOR
+participant ":ParseUtil" as ParseUtil LOGIC_COLOR
+participant "a:AddTagCommand" as AddTagCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addtag 1 t/validTag1 t/validTag2")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addtag 1 t/validTag1 t/validTag2")
+activate AddressBookParser
+
+create AddTagCommandParser
+AddressBookParser -> AddTagCommandParser
+activate AddTagCommandParser
+
+AddTagCommandParser --> AddressBookParser
+deactivate AddTagCommandParser
+
+AddressBookParser -> AddTagCommandParser : parse("addtag 1 t/validTag1 t/validTag2")
+activate AddTagCommandParser
+
+AddTagCommandParser -> ParseUtil : parseIndex("1")
+activate ParseUtil
+
+ParseUtil --> AddTagCommandParser : index
+deactivate ParseUtil
+
+AddTagCommandParser -> ParseUtil : parseTags("t/validTag1 t/validTag2")
+activate ParseUtil
+
+ParseUtil --> AddTagCommandParser : tagSet
+deactivate ParseUtil
+
+create AddTagCommand
+AddTagCommandParser -> AddTagCommand : addTagCommand(index, tagSet)
+activate AddTagCommand
+
+AddTagCommand --> AddTagCommandParser : a
+deactivate AddTagCommand
+
+AddTagCommandParser --> AddressBookParser : a
+deactivate AddTagCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+destroy AddTagCommandParser
+
+LogicManager -> AddTagCommand : execute(m)
+activate AddTagCommand
+
+
+AddTagCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> AddTagCommand
+deactivate Model
+
+AddTagCommand -> AddTagCommand : addTagsToPerson(personFilteredByIndex, tagSet)
+activate AddTagCommand
+
+AddTagCommand --> AddTagCommand : personWithAddedTags
+deactivate AddTagCommand
+
+AddTagCommand -> Model : setPerson(personFilteredByIndex, personWithAddedTags)
+activate Model
+
+Model --> AddTagCommand
+deactivate Model
+
+AddTagCommand -> Model: updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model --> AddTagCommand
+deactivate Model
+
+AddTagCommand --> LogicManager: commandResult(successMessage)
+deactivate AddTagCommand
+@enduml

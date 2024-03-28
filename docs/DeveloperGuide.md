@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -225,6 +225,28 @@ The following sequence diagram below shows how `Model` and `LogicManger` compone
 
 #### Proposed Changes
 Include `Person` meetings as a search field. A user can supply a given date and will return all `Person` that have a meeting starting or ending on the specified date.
+
+### AddTag Feature
+This feature allows users to add `tags` to a `person` within the contact list, without the need to use the `edit` command.
+
+This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively.
+
+The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`, if not it will throw an exception according to the error.
+
+The following sequence diagram shows how `AddTag` interacts with `Logic`.
+
+![AddTagSequenceDiagram](images/AddTagSequenceDiagram.svg)
+
+1. The user keys in `addtags 1 t/validTag1 t/validTag2` to add 2 valid tags to the `person` at the first `index`.
+2. The `AddTagCommandParser` validates `index` and `tags`, then returns a new `AddTagCommand` with the corresponding index and set of tags.
+3. The `LogicManager` then executes the `AddTagCommand`.
+4. The `AddTagCommand` finds the `Person` to add tags to using `Index` and creates a new `Person` with the added tags.
+5. `AddTagCommand` then calls the `setPerson(person, personWithAddedTags)` method to set the old `Person` to the newly created `Person`.
+6. `AddTagCommand` then calls `updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` to update `UI` to display the person with the newly added `Tags`.
+7. `CommandResult` is then returned to `LogicManager`.
+
+#### Proposed future improvement
+Allow users to add tags to multiple people at once.
 
 ### \[Proposed\] Undo/redo feature
 
