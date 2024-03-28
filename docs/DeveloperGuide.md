@@ -398,26 +398,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add a contact.
 2. User specifies details of the contact.
-3. System adds the contact.
-
-Use case ends.
+3. AB3 adds the contact.<br>
+   Use case ends.
 
 **Extensions**
 
-2a. System detects user input is invalid. <br>
-&emsp;2a1. System displays and error message. <br>
-&emsp;2a2. User enters new input. <br>
-&emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
-&emsp;Use case resumes from step 2.
+<div class="step">2a. AB3 detects user input is invalid.</div>
+<div class="sub-step">2a1. AB3 displays an error message.</div>
+<div class="sub-step">2a2. User enters new input.</div>
+<div class="sub-step">Steps 2a1-2a2 are repeated until user input is valid.</div>
+<div class="sub-step">Use case resumes from step 3.</div>
 
 --- {.dotted}
 
 **Use case: UC2 - List contacts**
 **MSS**
 1. User requests to list contacts.
-2. System displays all contacts.
-
-Use case ends.
+2. AB3 displays all contacts.<br>
+   Use case ends.
 
 --- {.dotted}
 
@@ -425,17 +423,16 @@ Use case ends.
 **MSS**
 1. User requests to search contacts.
 2. User specifies details to search by.
-3. System displays all matching contacts.
-
-Use case ends.
+3. AB3 displays all matching contacts.<br>
+   Use case ends.
 
 **Extensions**
 
-2a. System detects user input is invalid. <br>
-&emsp;2a1. System displays and error message. <br>
-&emsp;2a2. User enters new input. <br>
-&emsp;Steps 2a1-2a2 are repeated until user input is valid. <br>
-&emsp;Use case resumes from step 2. 
+<div class="step">2a. AB3 detects user input is invalid.</div>
+<div class="sub-step">2a1. AB3 displays an error message.</div>
+<div class="sub-step">2a2. User enters new input.</div>
+<div class="sub-step">Steps 2a1-2a2 are repeated until user input is valid.</div>
+<div class="sub-step">Use case resumes from step 3.</div>
 
 --- {.dotted}
 
@@ -444,19 +441,18 @@ Use case ends.
 1. User !!lists contacts(UC2)!!.
 2. User requests to edit a contact.
 3. User specifies the index of the contact and details to edit.
-4. System updates the contact.
-
-Use case ends.
+4. AB3 updates the contact.<br>
+   Use case ends.
 
 **Extensions**
 
-1a. System displays no contacts. <br>
-&emsp;Use case ends. <br>
-3a. System detects user input is invalid. <br>
-&emsp;3a1. System displays and error message. <br>
-&emsp;3a2. User enters new input. <br>
-&emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
-&emsp;Use case resumes from step 3. <br>
+<div class="step">1a. AB3 displays no contacts.</div>
+<div class="sub-step">Use case ends.</div>
+<div class="step">3a. AB3 detects user input is invalid.</div>
+<div class="sub-step">3a1. AB3 displays an error message.</div>
+<div class="sub-step">3a2. User enters new input.</div>
+<div class="sub-step">Steps 3a1-3a2 are repeated until user input is valid.</div>
+<div class="sub-step">Use case resumes from step 4.</div>
 
 --- {.dotted}
 
@@ -465,17 +461,31 @@ Use case ends.
 1. User !!lists contacts(UC2)!!.
 2. User requests to delete a contact.
 3. User specifies the index of the contact to delete.
-4. System deletes the contact.
-
-Use case ends.
+4. AB3 deletes the contact.<br>
+   Use case ends.
 
 **Extensions**
 
-3a. System detects user input is invalid. <br>
-&emsp;3a1. System displays and error message. <br>
-&emsp;3a2. User enters new input. <br>
-&emsp;Steps 3a1-3a2 are repeated until user input is valid. <br>
-&emsp;Use case resumes from step 3. <br>
+<div class="step">3a. AB3 detects user input is invalid.</div>
+<div class="sub-step">3a1. AB3 displays an error message.</div>
+<div class="sub-step">3a2. User enters new input.</div>
+<div class="sub-step">Steps 3a1-3a2 are repeated until user input is valid.</div>
+<div class="sub-step">Use case resumes from step 4.</div>
+
+--- {.dotted}
+
+**Use case: UC6 - Add person to json file directly**
+**MSS**
+1. User adds a new person to the json file.
+2. User runs the application.
+3. AB3 reads the json file and shows the updated contact list.<br>
+   Use case ends.
+
+**Extensions**
+
+<div class="step">2a. AB3 detects that the json file is invalid.</div>
+<div class="sub-step">2a1. AB3 displays a warning and loads an empty address book.</div>
+<div class="sub-step">Use case ends.</div>
 
 ---
 
