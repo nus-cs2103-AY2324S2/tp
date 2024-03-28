@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ARTICLETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OUTLET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -36,8 +37,8 @@ public class EditArticleCommandParser {
     public EditArticleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_SOURCE,
-                        PREFIX_ARTICLETAG, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_SOURCE,
+                        PREFIX_ARTICLETAG, PREFIX_OUTLET, PREFIX_PUBLICATION_DATE, PREFIX_STATUS);
 
         Index index;
 
@@ -62,6 +63,9 @@ public class EditArticleCommandParser {
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             editArticleDescriptor.setStatus((Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
                     .get()));
+        }
+        if (argMultimap.getValue(PREFIX_OUTLET).isPresent()) {
+            editArticleDescriptor.setOutlet(ParserUtil.parseOutlet(argMultimap.getValue(PREFIX_OUTLET).get()));
         }
 
         parseAuthorsForEdit(argMultimap.getAllValues(PREFIX_AUTHOR)).ifPresent(editArticleDescriptor::setAuthors);

@@ -33,9 +33,9 @@ public class AddArticleCommandParser implements Parser<AddArticleCommand> {
      */
     public AddArticleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_SOURCE, PREFIX_OUTLET,
-                        PREFIX_PUBLICATION_DATE, PREFIX_ARTICLETAG, PREFIX_STATUS);
-        //Temporarily reinstate source requirement
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_SOURCE, PREFIX_ARTICLETAG,
+                        PREFIX_OUTLET, PREFIX_PUBLICATION_DATE, PREFIX_STATUS);
+        //TODO: REMOVE PUBLICATION DATE REQUIREMENT
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_PUBLICATION_DATE, PREFIX_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddArticleCommand.MESSAGE_USAGE));

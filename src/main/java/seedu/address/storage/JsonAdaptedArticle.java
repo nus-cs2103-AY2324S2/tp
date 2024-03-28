@@ -46,7 +46,7 @@ public class JsonAdaptedArticle {
                               @JsonProperty("authors") List<JsonAdaptedAuthor> authors,
                               @JsonProperty("sources") List<JsonAdaptedSource> sources,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("outlet") Outlet outlet,
+                              @JsonProperty("outlet") String outlet,
                               @JsonProperty("publicationDate") LocalDateTime publicationDate,
                               @JsonProperty("status") Article.Status status) {
         this.title = title;
@@ -59,7 +59,7 @@ public class JsonAdaptedArticle {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.outlet = outlet.outletName;
+        this.outlet = outlet;
         this.publicationDate = publicationDate;
         this.status = status;
     }
