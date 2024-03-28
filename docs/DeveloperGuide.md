@@ -273,7 +273,53 @@ The following sequence diagram illustrates step 4:
     * Pros: Greater flexibility in setting statuses.
     * Cons: Possible performance issues when updating multi-statuses, as well as graphical design overhead when choosing how to sort and render multiple statuses.
 
-_{more aspects and alternatives to be added}_
+
+### Add Interview Feature
+#### Implementation
+
+The add interview mechanism is facilitated by `AddInterviewCommand`. They all extend the `Command` with fields called `description`, `applicant` phone number, 
+`interviewer` phone number, `date` of interview, `startTime` as well as `endTime`. An `Interview` is created then added to the list. 
+AddInterviewCommand implements the following operations:
+
+* `AddInterviewCommand#excute()`  —  Adds the encapsulated `Interview` to the list.
+
+The above `excute` operation utilises `ModelManager#updateFilteredPersonList()` implemented from the Model interface to obtain the list of `applicant` and `interviewer` phone numbers.
+This is followed by checking the correctness of the phone numbers before creating an `Interview` object to be added into the interview list. The operation `excute` then utilises
+`ModelManager#addInterview()` implemented from the Model to add the `Interview` to the list. The operation `excute` also utilises `ModelManager#sortInterview()` to the `interview` objects by `date`, `startTime` and `endTime`.
+
+The following class diagram summarizes the organisation of the `AddInterviewCommand`:
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time and executes `add_applicant n/Wesley p/81159858 e/ywesley16@gmail.com`. An applicant `Wesley` is initialised.
+
+Step 2. The user executes `add_interviewer n/Yash p/98362254 e/yashwit@u.nus.edu`. An interviewer `Yash` is initialised.
+
+Step 3. The user executes `add_interview desc/technical interview date/2024-03-28 st/10:00 et/11:00 a/81159858 i/98362254`. The `add_interview` command calls the `AddInterviewCommandParser#parse()`,
+creating a new `AddInterviewCommand` object initialised with the respective fields. When the `AddInterviewCommand#excute()` is called, a check is conducted to determine whether the `Interview` is already scheduled.
+This is then followed by creating `Interview` object and adding it into the list. The list of interviews will then be sorted. The GUI will display the interviews under the interview column.
+
+Note:
+
+* The command expects all arguments to be filled and will result in `ParseException` indicating invalid command format otherwise.
+* When a duplicate interview is entered, it will result in a `CommandException` indicating a duplicate interview has been entered.
+* When incorrect phone numbers are entered, it will result in a `CommandException` indicating which phone number is incorrect.
+
+The following sequence diagram shows demonstrates step 3:
+
+#### Design considerations:
+
+**Aspect: How interviews are added:**
+
+* **Alternative 1(current choice):** Creates the `Interview` inside `AddInterviewCommand`.  
+    * Pros: Easier to implement and straight forward.
+    * Cons: Exposes the fields and tedious to recreate `Interview`.
+
+* **Alternative 2:** `Interview` is created under `AddInterviewCommandParser`.
+    * Pros: Better encapsulation.
+    * Cons: Harder to conduct the necessary checks for validity for phone numbers.
+
+{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
