@@ -196,17 +196,14 @@ public class ModelManager implements Model {
         userPrefs.setTheme(theme);
     }
 
-<<<<<<< HEAD
     public Alias getAlias() {
         return userPrefs.getAliases();
     }
 
     public void addAlias(String alias, String toReplace) {
         userPrefs.addAlias(alias, toReplace);
-=======
+    }
     public Theme getTheme() {
         return userPrefs.getTheme();
->>>>>>> master
     }
-
 }
