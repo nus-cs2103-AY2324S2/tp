@@ -24,18 +24,17 @@ import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.FreeTimeTag;
 
 /**
- * Adds a free time to an existing person in the address book.
+ * Deletes a free time to an existing person in the address book.
  */
-public class AddTimeCommand extends Command {
+public class DeleteTimeCommand extends Command {
 
-    public static final String COMMAND_WORD = "addTime";
+    public static final String COMMAND_WORD = "deleteTime";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a free time to the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a free time to the person identified "
             + "by the index number used in the displayed person list. "
             + PREFIX_FREETIMETAG + "Mon:1300-1400";
 
-    public static final String MESSAGE_ADD_FREETIME_SUCCESS = "Added free time to person: %1$s";
-    public static final String MORE_THAN_ONE_FREETIME = "Only one free time can be added a time.";
+    public static final String MESSAGE_DELETE_FREETIME_SUCCESS = "Deleted free time to person: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -44,7 +43,7 @@ public class AddTimeCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public AddTimeCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public DeleteTimeCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -66,7 +65,7 @@ public class AddTimeCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_FREETIME_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_DELETE_FREETIME_SUCCESS, Messages.format(editedPerson)));
     }
 
     /**
@@ -91,73 +90,20 @@ public class AddTimeCommand extends Command {
 
         Set<FreeTimeTag> updatedTags = new HashSet<>();
 
-        boolean added = false;
-
-        if (freeTimeTags.size() == 0) {
-            updatedTags.add(freeTimeTag);
-            added = true;
-        } else {
+        if (freeTimeTags.size() > 0) {
             String trimmedFreeTimeTag = freeTimeTag.toString().substring(1, freeTimeTag.toString().length() - 1);
             String day = trimmedFreeTimeTag.substring(0, 3);
-            Integer dayNum = 1;
-            if (day.equals("Tue")) {
-                dayNum = 2;
-            } else if (day.equals("Wed")) {
-                dayNum = 3;
-            } else if (day.equals("Thu")) {
-                dayNum = 4;
-            } else if (day.equals("Fri")) {
-                dayNum = 5;
-            } else if (day.equals("Sat")) {
-                dayNum = 6;
-            } else {
-                dayNum = 7;
-            }
             Integer newStart = Integer.parseInt(trimmedFreeTimeTag.substring(4, 8));
             Integer newEnd = Integer.parseInt(trimmedFreeTimeTag.substring(9, 13));
 
             for (FreeTimeTag tag : freeTimeTags) {
                 String trimmedTag = tag.toString().substring(1, tag.toString().length() - 1);
-                Integer currDayNum = 1;
-                if (trimmedTag.substring(0, 3).equals("Tue")) {
-                    currDayNum = 2;
-                } else if (trimmedTag.substring(0, 3).equals("Wed")) {
-                    currDayNum = 3;
-                } else if (trimmedTag.substring(0, 3).equals("Thu")) {
-                    currDayNum = 4;
-                } else if (trimmedTag.substring(0, 3).equals("Fri")) {
-                    currDayNum = 5;
-                } else if (trimmedTag.substring(0, 3).equals("Sat")) {
-                    currDayNum = 6;
-                } else {
-                    currDayNum = 7;
-                }
-                if (!trimmedTag.substring(0, 3).equals(day)) {
-                    if ((currDayNum < dayNum) && (!added)) {
-                        updatedTags.add(freeTimeTag);
-                        added = true;
-                    }
+                Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
+                Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
+
+                if (!(trimmedTag.substring(0, 3).equals(day)) || !(newStart.equals(currentStart))
+                        || !(newEnd.equals(currentEnd))) {
                     updatedTags.add(tag);
-
-                } else {
-                    Integer currentStart = Integer.parseInt(trimmedTag.substring(4, 8));
-                    Integer currentEnd = Integer.parseInt(trimmedTag.substring(9, 13));
-
-                    if (currentStart > newStart) {
-                        updatedTags.add(tag);
-                    } else if (currentStart.equals(newStart)) {
-                        updatedTags.add(tag);
-                        if (!added) {
-                            updatedTags.add(freeTimeTag);
-                            added = true;
-                        }
-                    } else {
-                        updatedTags.add(tag);
-                        if (!added) {
-                            updatedTags.add(freeTimeTag);
-                            added = true;
-                        }
-                    }
                 }
             }
         }
@@ -180,13 +126,13 @@ public class AddTimeCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddTimeCommand)) {
+        if (!(other instanceof DeleteTimeCommand)) {
             return false;
         }
 
-        AddTimeCommand otherAddTimeCommand = (AddTimeCommand) other;
-        return index.equals(otherAddTimeCommand.index)
-                && editPersonDescriptor.equals(otherAddTimeCommand.editPersonDescriptor);
+        DeleteTimeCommand otherDeleteTimeCommand = (DeleteTimeCommand) other;
+        return index.equals(otherDeleteTimeCommand.index)
+                && editPersonDescriptor.equals(otherDeleteTimeCommand.editPersonDescriptor);
     }
 
     @Override
