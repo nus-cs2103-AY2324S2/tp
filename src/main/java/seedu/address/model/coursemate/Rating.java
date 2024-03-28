@@ -49,8 +49,11 @@ public class Rating {
             // when rating is a non-integer string (though this would not happen)
             ratingValue = 0;
         }
+        assert ratingValue <= 5 : "Rating is over 5!";
 
-        if (0 < ratingValue && ratingValue < 6) {
+        if (ratingValue == 0) {
+            return "";
+        } else {
             StringBuilder ratingText = new StringBuilder("");
             for (int i = 0; i < 5; i++) {
                 if (i < ratingValue) {
@@ -62,8 +65,6 @@ public class Rating {
                 }
             }
             return ratingText.toString();
-        } else {
-            return "";
         }
     }
 
