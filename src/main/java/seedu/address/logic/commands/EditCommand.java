@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
-import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TIMESLOT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,188 +24,186 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
+import seedu.address.model.timeslots.Timeslots;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a single detail of the person identified "
-            + "by the index number used in the displayed person list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a single detail of the student identified "
+            + "by the index number used in the displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + OPTION_PRINT_NAME + "] or "
             + "[" + OPTION_PRINT_PHONE + "] or "
             + "[" + OPTION_PRINT_EMAIL + "] or "
             + "[" + OPTION_PRINT_ADDRESS + "] or "
-            + "[" + OPTION_PRINT_TAG + "] or "
+            + "[" + OPTION_PRINT_TIMESLOT + "] or "
             + "[" + OPTION_PRINT_GRADE + "]\n"
             + "Example: " + COMMAND_WORD + " 1 " + OPTION_PRINT_EMAIL;
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_EDITED_BUT_MORE_THAN_ONE =
             "Please ensure that only one field is edited at most.";
-
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     private final boolean isPrintNameRequested;
     private final boolean isPrintPhoneRequested;
     private final boolean isPrintEmailRequested;
     private final boolean isPrintAddressRequested;
-    private final boolean isPrintTagRequested;
+    private final boolean isPrintTimeslotRequested;
     private final boolean isPrintGradeRequested;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the student in the filtered student list to edit
+     * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, boolean isPrintNameRequested,
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor, boolean isPrintNameRequested,
             boolean isPrintPhoneRequested, boolean isPrintEmailRequested, boolean isPrintAddressRequested,
-                       boolean isPrintTagRequested, boolean isPrintGradeRequested) {
+                       boolean isPrintTimeslotRequested, boolean isPrintGradeRequested) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
         this.isPrintNameRequested = isPrintNameRequested;
         this.isPrintPhoneRequested = isPrintPhoneRequested;
         this.isPrintEmailRequested = isPrintEmailRequested;
         this.isPrintAddressRequested = isPrintAddressRequested;
-        this.isPrintTagRequested = isPrintTagRequested;
+        this.isPrintTimeslotRequested = isPrintTimeslotRequested;
         this.isPrintGradeRequested = isPrintGradeRequested;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (isPrintNameRequested) {
-            return new CommandResult(getPersonName(model, index));
+            return new CommandResult(getStudentName(model, index));
         } else if (isPrintPhoneRequested) {
-            return new CommandResult(getPersonPhone(model, index));
+            return new CommandResult(getStudentPhone(model, index));
         } else if (isPrintEmailRequested) {
-            return new CommandResult(getPersonEmail(model, index));
+            return new CommandResult(getStudentEmail(model, index));
         } else if (isPrintAddressRequested) {
-            return new CommandResult(getPersonAddress(model, index));
-        } else if (isPrintTagRequested) {
-            return new CommandResult(getPersonTag(model, index));
+            return new CommandResult(getStudentAddress(model, index));
+        } else if (isPrintTimeslotRequested) {
+            return new CommandResult(getStudentTimeslot(model, index));
         } else if (isPrintGradeRequested) {
-            return new CommandResult(getPersonGrade(model, index));
+            return new CommandResult(getStudentGrade(model, index));
         }
 
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, Messages.format(editedStudent)));
     }
 
-    private String getPersonName(Model model, Index index) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+    private String getStudentName(Model model, Index index) throws CommandException {
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
-        return person.getName().fullName;
+        Student student = lastShownList.get(index.getZeroBased());
+        return student.getName().fullName;
     }
-    private String getPersonPhone(Model model, Index index) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+    private String getStudentPhone(Model model, Index index) throws CommandException {
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
-        return person.getPhone().value;
+        Student student = lastShownList.get(index.getZeroBased());
+        return student.getPhone().value;
     }
-    private String getPersonEmail(Model model, Index index) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+    private String getStudentEmail(Model model, Index index) throws CommandException {
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
-        return person.getEmail().value;
+        Student student = lastShownList.get(index.getZeroBased());
+        return student.getEmail().value;
     }
-    private String getPersonAddress(Model model, Index index) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+    private String getStudentAddress(Model model, Index index) throws CommandException {
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
-        return person.getAddress().value;
+        Student student = lastShownList.get(index.getZeroBased());
+        return student.getAddress().value;
     }
-    private String getPersonTag(Model model, Index index) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+    private String getStudentTimeslot(Model model, Index index) throws CommandException {
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
-        Set<Tag> tags = person.getTags();
+        Student student = lastShownList.get(index.getZeroBased());
+        Set<Timeslots> timeslots = student.getTimeslots();
 
-        // Remove curly braces from tags and join them into a comma-separated string
-        String tagString = tags.stream()
-                .map(tag -> tag.toString().replaceAll("[\\[\\]]", "").trim())
+        // Remove curly braces from timeslots and join them into a comma-separated string
+        String timeslotString = timeslots.stream()
+                .map(timeslot -> timeslot.toString().replaceAll("[\\[\\]]", "").trim())
                 .collect(Collectors.joining(", "));
 
-        return tagString;
+        return timeslotString;
     }
 
-
-    private String getPersonGrade(Model model, Index index) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+    private String getStudentGrade(Model model, Index index) throws CommandException {
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person person = lastShownList.get(index.getZeroBased());
-        return person.getGrades().toString();
+        Student student = lastShownList.get(index.getZeroBased());
+        return student.getGrades().toString();
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Grade> updatedGrades = editPersonDescriptor.getGrades().orElse(personToEdit.getGrades());
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Set<Timeslots> updatedTimeslots = editStudentDescriptor.getTimeslots().orElse(studentToEdit.getTimeslots());
+        Set<Grade> updatedGrades = editStudentDescriptor.getGrades().orElse(studentToEdit.getGrades());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGrades);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTimeslots, updatedGrades);
     }
 
     @Override
@@ -221,41 +219,41 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editStudentDescriptor.equals(otherEditCommand.editStudentDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editStudentDescriptor", editStudentDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<Timeslots> timeslots;
         private Set<Grade> grades;
 
-        public EditPersonDescriptor() {}
+        public EditStudentDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code timeslots} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setTimeslots(toCopy.timeslots);
             setGrades(toCopy.grades);
         }
 
@@ -263,7 +261,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, grades);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, timeslots, grades);
         }
 
         /**
@@ -284,7 +282,7 @@ public class EditCommand extends Command {
             if (address != null) {
                 editedFieldCount++;
             }
-            if (tags != null) {
+            if (timeslots != null) {
                 editedFieldCount++;
             }
             if (grades != null) {
@@ -327,20 +325,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code timeslots} to this object's {@code timeslots}.
+         * A defensive copy of {@code timeslots} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTimeslots(Set<Timeslots> timeslots) {
+            this.timeslots = (timeslots != null) ? new HashSet<>(timeslots) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable timeslot set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code timeslots} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Timeslots>> getTimeslots() {
+            return (timeslots != null) ? Optional.of(Collections.unmodifiableSet(timeslots)) : Optional.empty();
         }
 
         /**
@@ -367,16 +365,16 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            EditStudentDescriptor otherEditStudentDescriptor = (EditStudentDescriptor) other;
+            return Objects.equals(name, otherEditStudentDescriptor.name)
+                    && Objects.equals(phone, otherEditStudentDescriptor.phone)
+                    && Objects.equals(email, otherEditStudentDescriptor.email)
+                    && Objects.equals(address, otherEditStudentDescriptor.address)
+                    && Objects.equals(timeslots, otherEditStudentDescriptor.timeslots);
         }
 
         @Override
@@ -386,7 +384,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("tags", tags)
+                    .add("timeslots", timeslots)
                     .add("grades", grades)
                     .toString();
         }

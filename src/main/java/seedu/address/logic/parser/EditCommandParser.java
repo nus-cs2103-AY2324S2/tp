@@ -7,13 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_GRADE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_NAME;
 import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_PHONE;
-import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TAG;
+import static seedu.address.logic.parser.CliSyntax.OPTION_PRINT_TIMESLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE_EDIT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_EDIT;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -23,10 +23,10 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.timeslots.Timeslots;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -41,39 +41,39 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
-                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT,
+                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TIMESLOT_EDIT, PREFIX_GRADE_EDIT,
                 OPTION_PRINT_NAME, OPTION_PRINT_PHONE, OPTION_PRINT_EMAIL,
-                OPTION_PRINT_ADDRESS, OPTION_PRINT_TAG, OPTION_PRINT_GRADE);
+                OPTION_PRINT_ADDRESS, OPTION_PRINT_TIMESLOT, OPTION_PRINT_GRADE);
 
         // Check if any option to print is requested
         if (argMultimap.getValue(OPTION_PRINT_NAME).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditCommand(index, new EditCommand.EditPersonDescriptor(),
+            return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
                     true, false, false,
                     false, false, false);
         } else if (argMultimap.getValue(OPTION_PRINT_PHONE).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditCommand(index, new EditCommand.EditPersonDescriptor(),
+            return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
                     false, true, false,
                     false, false, false);
         } else if (argMultimap.getValue(OPTION_PRINT_EMAIL).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditCommand(index, new EditCommand.EditPersonDescriptor(),
+            return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
                     false, false, true,
                     false, false, false);
         } else if (argMultimap.getValue(OPTION_PRINT_ADDRESS).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditCommand(index, new EditCommand.EditPersonDescriptor(),
+            return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
                     false, false,
                     false, true, false, false);
-        } else if (argMultimap.getValue(OPTION_PRINT_TAG).isPresent()) {
+        } else if (argMultimap.getValue(OPTION_PRINT_TIMESLOT).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditCommand(index, new EditCommand.EditPersonDescriptor(),
+            return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
                     false, false, false,
                     false, true, false);
         } else if (argMultimap.getValue(OPTION_PRINT_GRADE).isPresent()) {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new EditCommand(index, new EditCommand.EditPersonDescriptor(),
+            return new EditCommand(index, new EditCommand.EditStudentDescriptor(),
                     false, false, false,
                     false, false, true);
         }
@@ -86,74 +86,70 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME_EDIT, PREFIX_PHONE_EDIT,
-                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TAG_EDIT, PREFIX_GRADE_EDIT);
+                PREFIX_EMAIL_EDIT, PREFIX_ADDRESS_EDIT, PREFIX_TIMESLOT_EDIT, PREFIX_GRADE_EDIT);
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME_EDIT).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME_EDIT).get()));
+            editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME_EDIT).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE_EDIT).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE_EDIT).get()));
+            editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE_EDIT).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL_EDIT).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL_EDIT).get()));
+            editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL_EDIT).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS_EDIT).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
+            editStudentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS_EDIT).get()));
         }
-
-        // Check if PREFIX_TAG_EDIT is present before parsing multiple tags
-        if (argMultimap.getValue(PREFIX_TAG_EDIT).isPresent()) {
-            parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG_EDIT))
-                    .ifPresent(editPersonDescriptor::setTags);
+        // Check if PREFIX_TIMESLOT_EDIT is present before parsing multiple timeslots
+        if (argMultimap.getValue(PREFIX_TIMESLOT_EDIT).isPresent()) {
+            parseTimeslotsForEdit(argMultimap.getAllValues(PREFIX_TIMESLOT_EDIT))
+                    .ifPresent(editStudentDescriptor::setTimeslots);
         }
-
         // Check if PREFIX_GRADE_EDIT is present before parsing multiple grades
         if (argMultimap.getValue(PREFIX_GRADE_EDIT).isPresent()) {
             parseGradesForEdit(argMultimap.getAllValues(PREFIX_GRADE_EDIT))
-                    .ifPresent(editPersonDescriptor::setGrades);
+                    .ifPresent(editStudentDescriptor::setGrades);
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if (!editPersonDescriptor.isSingleFieldEdited()) {
+        if (!editStudentDescriptor.isSingleFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_EDITED_BUT_MORE_THAN_ONE);
         }
 
-        return new EditCommand(index, editPersonDescriptor, false, false, false, false, false, false);
+        return new EditCommand(index, editStudentDescriptor, false, false, false, false, false, false);
     }
 
-
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> timeslots} into a {@code Set<Timeslot>} if {@code timeslots} is non-empty.
+     * If {@code timeslots} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Timeslot>} containing zero timeslots.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Timeslots>> parseTimeslotsForEdit(Collection<String> timeslots) throws ParseException {
+        assert timeslots != null;
 
-        if (tags.isEmpty()) {
+        if (timeslots.isEmpty()) {
             return Optional.empty();
         }
 
-        Set<Tag> tagSet = new HashSet<>();
-        for (String tagString : tags) {
-            // Remove leading and trailing whitespace
-            String trimmedTagString = tagString.trim();
+        Set<Timeslots> timeslotSet = new HashSet<>();
+        for (String timeslotString : timeslots) {
+            String trimmedTimeslotString = timeslotString.trim();
             // Remove leading and trailing curly braces if present
-            if (trimmedTagString.startsWith("[[") && trimmedTagString.endsWith("]]")) {
-                trimmedTagString = trimmedTagString.substring(2, trimmedTagString.length() - 2);
+            if (trimmedTimeslotString.startsWith("[[") && trimmedTimeslotString.endsWith("]]")) {
+                trimmedTimeslotString = trimmedTimeslotString.substring(2, trimmedTimeslotString.length() - 2);
             }
-            // Split by commas to handle multiple tags
-            String[] tagArray = trimmedTagString.split(",");
-            for (String tag : tagArray) {
-                tagSet.add(new Tag(tag.trim()));
+            // Split by commas to handle multiple timeslots
+            String[] timeslotArray = trimmedTimeslotString.split(",");
+            for (String timeslot : timeslotArray) {
+                timeslotSet.add(new Timeslots(timeslot.trim()));
             }
         }
 
-        return Optional.of(tagSet);
+        return Optional.of(timeslotSet);
     }
 
 

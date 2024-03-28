@@ -52,10 +52,12 @@ TutorTrack is a **desktop app for managing contacts, optimized for use via a  Li
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TIMESLOTS]` can be used as `n/John Doe t/Saturday 4pm-6pm` or as `n/John Doe`.
+* e.g `n/NAME [g/GRADE]` can be used as `n/John Doe g/ca1: 100` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TIMESLOTS]…​` can be used as ` ` (i.e. 0 times), `t/Saturday 4pm-6pm`, `t/Saturday 4pm-6pm t/Monday 4pm-6pm` etc.
+* e.g. `[g/GRADE]…​` can be used as ` ` (i.e. 0 times), `g/ca1: 100`, `g/ca1: 100 g/ca1: 99` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -79,16 +81,16 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TIMESLOTS]…​ [g/GRADE]…​`
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of timeslots or grades(including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Saturday 5pm-7pm g/ca1: 2`
 
 ### Listing all persons : `list`
 
@@ -129,6 +131,21 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Filtering students by timeslots: `filter`
+
+Filters students whose timeslots contain any of the given keywords.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `saturday` will match `Saturday`
+* The order of the keywords does not matter. e.g. `Saturday Monday` will match `Monday Saturday`
+* Only the timeslots are searched.
+* The search functionality allow for partial matches e.g. `Sat` will match `Saturday`
+
+Examples:
+* `filter Sat` returns all students with `Saturday` in their timeslot
+* `filter Saturday Sunday` returns all students with `Saturday` or `Sunday` in their timeslot<br>
 
 ### Deleting a person : `delete`
 
