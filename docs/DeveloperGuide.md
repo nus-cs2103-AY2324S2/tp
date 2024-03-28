@@ -486,7 +486,7 @@ students.
 1. Setting a course 
     
    1. Test case: `setcrs CS2103`<br>
-      Enter setcrs followed by a whitespace, followed by a course code in the format "XX1234Y", where X and Y can be any letter
-      in upper or lower case, and 1234 can be any 4 digit number. Y is optional
+      Enter setcrs followed by a whitespace, followed by a course code in the format `XXYYYYZ`, where `X` and `Z` can be any letter
+      in upper or lower case, `YYYY` can be any 4 digit number and `Z` is optional.
       Expected: The main window's title is set as the course code provided
 
