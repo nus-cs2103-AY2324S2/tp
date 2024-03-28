@@ -33,7 +33,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateSortedPersonListByField(field, isAscending);
+        model.updateSortedStudentListByField(field, isAscending);
         return new CommandResult(String.format(MESSAGE_SUCCESS, field, isAscending ? "ascending" : "descending"));
     }
 
