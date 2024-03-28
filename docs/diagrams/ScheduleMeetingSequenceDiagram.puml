@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ScheduleCommandParser" as ScheduleCommandParser LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Meeting" as Meeting MODEL_COLOR
+end box
+[-> LogicManager : execute(schedule)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(schedule)
+activate AddressBookParser
+
+create ScheduleCommandParser
+AddressBookParser -> ScheduleCommandParser
+activate ScheduleCommandParser
+
+ScheduleCommandParser -> AddressBookParser
+deactivate ScheduleCommandParser
+
+AddressBookParser -> ScheduleCommandParser : parse(arguments)
+activate ScheduleCommandParser
+
+create Meeting
+ScheduleCommandParser -> Meeting
+activate Meeting
+
+Meeting --> ScheduleCommandParser
+deactivate Meeting
+
+create ScheduleCommand
+ScheduleCommandParser -> ScheduleCommand
+activate ScheduleCommand
+
+ScheduleCommand --> ScheduleCommandParser
+deactivate ScheduleCommand
+
+ScheduleCommandParser --> AddressBookParser : s
+deactivate ScheduleCommandParser
+ScheduleCommandParser -[hidden]-> AddressBookParser : s
+destroy ScheduleCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ScheduleCommand : execute()
+activate ScheduleCommand
+
+ScheduleCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> ScheduleCommand : createEditedPerson(personToEdit, meeting)
+activate ScheduleCommand
+
+ScheduleCommand --> ScheduleCommand : editedPerson
+deactivate ScheduleCommand
+
+ScheduleCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> ScheduleCommand
+deactivate Model
+
+ScheduleCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model --> ScheduleCommand
+deactivate Model
+
+ScheduleCommand --> LogicManager : result
+deactivate ScheduleCommand
+ScheduleCommand -[hidden]-> LogicManager : result
+destroy ScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
