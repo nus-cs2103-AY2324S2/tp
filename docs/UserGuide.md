@@ -86,9 +86,12 @@ Format: `add n/NAME id/STUDENT_ID p/PRIMARY_ PHONE_NUMBER [, SECONDARY_PHONE_NUM
 **Tip:** A student can have any number of tags (including 0)
 </box>
 
+* The `ID` refers to the alphanumeric string on the left of Name
+* The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
+
 Examples:
-* `add n/John Doe id/2023001 p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
-* `add n/Kumar Prabhat id/20414001 p/1234567890, 9876543210 e/john.doe@example.com`
+* `add n/John Doe id/A0265901E p/1234567890, 9876543210 e/john.doe@example.com, jdoe@example.com i/2023 m/Computer Science p/CS2103 Tut  g/A+ t/Honors`
+* `add n/Kumar Prabhat id/A0041400M p/1234567890, 9876543210 e/john.doe@example.com`
 
 ### Listing all students : `list`
 
@@ -100,7 +103,7 @@ Format: `list`
 
 Edits an existing student in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [id/ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -112,6 +115,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+
 
 ### Search students by name or ID: `find`
 
@@ -127,7 +131,7 @@ Formats:
 * The search is case-insensitive. e.g `john` will match `John`, `a1234567x` will match `A1234567X`
 * Only the name or student id is queried.
 * The search by name supports partial word matching, but must be in chronological order e.g. `John` will match `Jonathan`. And `nathan` will not match with `Jonathan`.
-* The search by ID supports partial word matching, but must be in chronological order e.g. `A123` will match `A1234567X`. And `2345` will not match with `A1234567X`.
+* The search by ID supports partial word matching, does not need to be in chronological order e.g. `A123` will match `A1234567X`. And `2345` will match with `A1234567X`.
 * When querying student through name with multiple keywords, only names that match all will be returned.
   e.g. `Hans Bo` will return `Hans Bober`, `Hans Bober` and not `Hans Mayer`
 * When searching by both id and name, only ids and names that match both will be returned. 
@@ -137,9 +141,11 @@ Examples:
 * `find n/John` returns `john`, `John Doe`, `Johnathan`
 * `find n/John` returns `john`, `John Doe`, `Johnathan`
 * `find n/alex david` returns `Alex David`
-* `find id/A1234567X` returns a student with ID `A12345678X`
-* `find id/A123` returns entries with IDs starting with `A123`
-* `find id/A1234567X n/John Doe` returns a student `John Doe` with ID `A12345678X`
+* `find id/A1234567X` returns a person with ID `A12345678X`
+* `find id/A123` returns entries with IDs with `A123`
+* `find id/A1234567X n/John Doe` returns a person `John Doe` with ID `A12345678X`
+
+
 
 ### Deleting a student : `delete`
 
@@ -173,6 +179,20 @@ Format: `filter t/TAG [t/TAG] …​`
 Examples:
 * `filter t/CS2103T` will display only people that have been tagged with `CS2103T`.
 * `filter t/CS2103T t/TA` wil display only people that have been tagged with `CS2103T` and `TA`.
+
+### Tagging a student : `tag`
+
+Tags the specified student from the address book.
+
+Format: `tag id/ID t/TAG t/TAG`
+
+* Tags the student with id `ID`.
+* The `ID` refers to the alphanumeric string on the left of Name
+* The `ID` must start with an alphabet followed by 7 digits and ending with an alphabet e.g A0265901E
+* `TAGS` can be alphabetic without spaces and multiple tags can be specified
+
+Examples:
+* `tag id/A0257418E t/Sincere t/Good`
 
 ### Clearing all entries : `clear`
 

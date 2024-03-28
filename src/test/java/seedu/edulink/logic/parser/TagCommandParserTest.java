@@ -21,7 +21,7 @@ public class TagCommandParserTest {
         Set<Tag> expectedTags = new HashSet<>();
         expectedTags.add(new Tag("topstudent"));
 
-        assertParseSuccess(parser, " i/A9014616L t/topstudent",
+        assertParseSuccess(parser, " id/A9014616L t/topstudent",
             new TagCommand(new Id("A9014616L"), expectedTags));
     }
 
@@ -31,25 +31,25 @@ public class TagCommandParserTest {
         expectedTags.add(new Tag("topstudent"));
         expectedTags.add(new Tag("potentialTA"));
 
-        assertParseSuccess(parser, " i/A9014616L t/topstudent t/potentialTA",
+        assertParseSuccess(parser, " id/A9014616L t/topstudent t/potentialTA",
             new TagCommand(new Id("A9014616L"), expectedTags));
     }
 
     @Test
     public void parse_invalidTag_throwsParseException() {
-        assertParseFailure(parser, " i/A9014616L t/top student",
+        assertParseFailure(parser, " id/A9014616L t/top student",
             Tag.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidId_throwsParseException() {
-        assertParseFailure(parser, " i/A9016L t/topstudent",
+        assertParseFailure(parser, " id/A9016L t/topstudent",
             Id.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidIdTag_throwsParseException() {
-        assertParseFailure(parser, " i/A9016L t/top student",
+        assertParseFailure(parser, " id/A9016L t/top student",
             Id.MESSAGE_CONSTRAINTS);
     }
 

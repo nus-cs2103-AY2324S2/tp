@@ -158,6 +158,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature 
+
+The find feature has been purposefully designed to allow for searches with Student ID, Name, or both. Searching using a name returns only the individuals whose name is an ordered super string of the search term. 
+Searching using student ID returns only the Individuals whose Student ID is a super string of the search id, disregarding ordering. Searching by name and id returns only the individuals who satisfy the two search values. 
+
+#### Proposed Implementation
+
+Below is a representing class diagram of the feature. 
+
+<puml src="diagrams/find/FindClassDiagram.puml" alt="UML Class Diagram - Find"/>
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
