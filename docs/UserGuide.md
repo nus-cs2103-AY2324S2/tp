@@ -7,7 +7,7 @@ Welcome to <span style="color: #f66a0a;">CareerSync</span>'s  User Guide! <span 
 is an **internship application manager designed to simplify the management of internship applications**. It is designed to help you **keep track of all your
 internship applications in one place**, so that you can focus on preparing for your interviews and securing your dream internship.
 
-CareerSync features a sleek and user-friendly interface primarily driven by command inputs through **Command Line Interface (CLI)**. 
+CareerSync features a sleek and user-friendly interface primarily driven by command inputs through **[Command Line Interface (CLI)](#glossary)**. 
 For those who are **proficient typists**, CareerSync facilitates quicker completion of internship applications 
 compared to conventional GUI-based applications. If you are a NUS Computer Science student who is looking to apply for
 many internships, CareerSync is practically made just for you!
@@ -19,7 +19,7 @@ internship applications, our guide will ensure that you can use CareerSync to it
 ### What do I need to know for this User Guide?
 This user guide is designed to be approachable for beginners, requiring no previous familiarity with administrative tools
 or command interfaces, and is self-sufficient. Our [Quick Start](#quick-start) section will guide you through the installation
-of all the necessary tools, even if you have never used a CLI before.
+of all the necessary tools, even if you have never used a [CLI](#glossary) before.
 
 ### How to use this User Guide?
 This user guide is split into these primary sections: [Quick Start](#quick-start), [Interface Overview](#interface-overview), [Tutorial](#tutorial), 
@@ -149,9 +149,9 @@ For the restrictions on what is accepted for each field, kindly refer to [Fields
 9. `CONTACT_NUMBER` - The phone number of the contact person.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Tutorial
 This section would guide you through the basic commands of <span style="color: #f66a0a;">CareerSync</span>, and how to use them.
-
 
 ### Clearing sample internship entries: `clear`
 
@@ -289,6 +289,7 @@ ________________________________________________________________________________
 | [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]` |
 | [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear` |
 | [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         |`find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]`|
+| [sort](#sorting-internships-by-fields-sort)   | Sorts the Internships by fields.         | `sort FIELD ORDER` |
 | [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit` |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -316,7 +317,7 @@ ________________________________________________________________________________
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -473,7 +474,8 @@ Finds internship entries whose specified fields contains the keywords.
 * Internship matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hewlett Song` will return `Hewlett Packard`, `Song Fa`
 
-<div markdown="span" class="alert alert-success">
+** screenshots to be updated
+<div markdown="span" class="alert alert-success"> 
 
 💡 **Try It Out:**<br>
 
@@ -495,6 +497,41 @@ This will filter the list of internships to show only those with both status `TO
 `At least one field prefix and keyword must be specified to be searched.`
 2. MODE must be present, and be either `withall` or `withany`. If not, the command will be rejected with error message:<br>
 `Invalid mode specified. Please specify either 'withall' or 'withany'.`
+
+### Sorting internships by fields: `sort`
+
+Sorts the internships by the specified field in ascending or descending order.
+
+**Format:** `sort FIELD ORDER`
+
+* FIELD is the field to sort by. It is case-sensitive. The list of valid fields can be found [here](#field-summary).
+    * `/status` sorts the internships by status in the order of `TO_APPLY` -> `ONGOING` -> `PENDING` -> `ACCEPTED` -> `REJECTED`.
+* ORDER is either 'asc' or 'desc'.
+    * `asc` sorts the internships in ascending order.
+    * `desc` sorts the internships in descending order.
+
+<div markdown="span" class="alert alert-success">
+
+💡 **Try It Out:**<br>
+
+1. Input:<br>
+   `sort /com asc`<br>
+   ![Before filtering by all to_apply and remote](./images/find/find-before.png)<br>
+This will sort the list of internships by company name in ascending order.
+
+2. Successful Output after sorting:<br>
+   ![After successfully filtering by all to_apply and remote](./images/find/findToApplyRemote-after.png)<br><br>
+
+3. Other examples:<br>
+   i.`sort /status desc` returns internships sorted in the following order: `TO_APPLY` -> `ONGOING` -> `PENDING` -> `ACCEPTED` -> `REJECTED`<br>
+   ii.`sort /phone asc` returns internships sorted in ascending order of phone numbers.
+</div>
+
+**Common errors:** * error messages to be updated
+1. If no field prefixes are specified to sort by, the command will be rejected with error message:<br>
+   `At least one field prefix and keyword must be specified to be searched.`
+2. ORDER must be present, and be either `asc` or `desc`. If not, the command will be rejected with error message:<br>
+   `Invalid mode specified. Please specify either 'withall' or 'withany'.`
 
 ### Clearing all internships: `clear`
 
@@ -548,19 +585,33 @@ After every command that changes the data, <span style="color: #f66a0a;">CareerS
 **The solution** is to delete the `preferences.json` file from the folder where you installed the application. Then, run the application again.
 
 --------------------------------------------------------------------------------------------------------------------
+## Command Summary
+
+| Action                                        | Description                              | Format                                                                                                                                                                      |
+|-----------------------------------------------|------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [add](#adding-an-entry-add)                   | Adds an Internship.                      | `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE`                         |
+| [delete](#deleting-an-internship-delete)      | Removes a Internship.                    | `delete INDEX`                                                                                                                                                              |
+| [list](#listing-all-internships-list)         | Removes a Internship.                    | `list`                                                                                                                                                                      |
+| [edit](#editing-an-internship-edit)           | Modifies an existing Internship.         | `edit INDEX [/com COMPANY_NAME] [/poc CONTACT_NAME] [/email CONTACT_EMAIL] [/phone CONTACT_NUMBER] [/loc LOCATION_ENUM] [/status STATUS] [/desc DESCRIPTION] [/role ROLE`   |
+| [addremark](#adding-a-remark-addremark)       | Adds a remark to an existing Internship. | `addremark INDEX [/remark REMARK]`                                                                                                                                          |
+| [clear](#clearing-all-internships-clear)      | Removes all Internships from the deck.   | `clear`                                                                                                                                                                     |
+| [find](#finding-internships-by-keywords-find) | Finds an Internship by keywords.         | `find MODE [/com COMPANY_NAME_KEYWORDS] [/poc CONTACT_NAME_KEYWORDS] [/loc LOCATION_KEYWORDS] [/status STATUS_KEYWORDS] [/desc DESCRIPTION_KEYWORDS] [/role ROLE_KEYWORDS]` |
+| [exit](#exiting-the-program-exit)             | Exits and closes the application.        | `exit`                                                                                                                                                                      |
+
+
 
 ## Field Summary
 
-| Prefix  | Description                        | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|---------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| /com    | Company Name                       | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| /desc   | Description of Internship          | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| /status | Status of Application              | to_apply, ongoing, rejected, accepted                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| /poc    | Name of Person of Contact          | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| /email  | Email of Person of Contact         | Valid-Format: local-part@domain <br> Domain has: <br> 1. The local-part should only contain alphanumeric characters and these special characters: "!#$%&'*+-/=?^_`{ \|}~". It may start or end with any special characters. <br> 2. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| /phone  | Contact Number of Person of Contact| At least 3 numbers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| /loc    | Location of Internship             | remote, local, overseas                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| /role   | Role for the Internship            | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Field Name | Description                        | Valid Inputs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|------------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `/com`      | Company Name                       | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `/desc`     | Description of Internship          | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `/status`    | Status of Application              | to_apply, ongoing, rejected, accepted                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `/poc`       | Name of Person of Contact          | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `/email`     | Email of Person of Contact         | Valid-Format: local-part@domain <br> Domain has: <br> 1. The local-part should only contain alphanumeric characters and these special characters: "!#$%&'*+-/=?^_`{ \|}~". It may start or end with any special characters. <br> 2. The domain name is made up of domain labels separated by periods. The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| `/phone`     | Contact Number of Person of Contact| At least 3 numbers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `/loc`       | Location of Internship             | remote, local, overseas                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `/role`      | Role for the Internship            | Any Text, Numbers or Spaces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Glossary
 
