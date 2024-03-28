@@ -1,0 +1,174 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Logic {
++execute(String): CommandResult
++getAddressBook(): ReadOnlyAddressBook
++getFilteredPersonList(): ObservableList<Person>
++getAddressBookFilePath(): Path
++getGuiSettings(): GuiSettings
++setGuiSettings(GuiSettings)
+}
+
+interface ReadOnlyAddressBook {
++getPersonList(): ObservableList<Person>
+}
+
+interface ReadOnlyUserPrefs {
++getGuiSettings(): GuiSettings
++getAddressBookFilePath(): Path
+}
+
+interface Model {
++PREDICATE_SHOW_ALL_PERSONS: Predicate<Person>
+
++hasPerson(Person): boolean
++deletePerson(Person)
++addPerson(Person)
++removePerson(Person)
++getPersonList(): ObservableList<Person>
++setPerson(target: Person, editedPerson: Person)
+}
+
+interface Storage  {
++readUserPrefs(): Optional<UserPrefs>
++saveUserPrefs(ReadOnlyUserPrefs)
++getAddressBookFilePath(): Path
++readAddressBook():Optional<ReadOnlyAddressBook>
+saveAddressBook(ReadOnlyAddressBook)
+}
+
+class ModelManager {
+-logger: Logger
+-addressBook: AddressBook
+-userPrefs: UserPrefs
+-filteredPersons: FilteredList<Person>
+}
+
+class UserPrefs {
+-guiSettings: GuiSettings
+-addressBookFilePath: Path
+
++resetData(ReadOnlyUserPrefs)
++setGuiSettings(GuiSettings)
++setAddressBookFilePath(Path)
++getAddressBookFilePath(): Path
+}
+
+class AddressBook {
+-persons: UniquePersonList
+
++setPersons(List<Person>)
++resetData(ReadOnlyAddressBook)
++addPerson(Person)
++hasPerson(Person): boolean
++setPerson(target: Person, editedPerson: Person)
+}
+
+Model <|.. ModelManager
+ReadOnlyUserPrefs <|.. UserPrefs
+ReadOnlyAddressBook <|.. AddressBook
+
+
+class Person {
+-name: Name
+-phone: Phone
+-email: Email
+-roomNumber: RoomNumber
+-telegram: Telegram
+-birthday: Birthday
+-dorm: Dorm
+
++isSamePerson(Person): boolean
++equals(Object): boolean
+}
+
+class FreeTime {
+-day: String
+-startTime: String
+-endTime: String
+}
+
+class CommandException extends Exception {
+}
+
+abstract class Command {
+}
+
+class AddCommand extends Command {
+}
+
+class ClearCommand extends Command {
+}
+
+class CommandResult extends Command {
+}
+
+class DeleteCommand extends Command {
+}
+
+class EditCommand extends Command {
+}
+
+class ExitCommand extends Command {
+}
+
+class FindCommand extends Command {
+}
+
+class HelpCommand extends Command {
+}
+
+class ListCommand extends Command {
+}
+
+class ParseException extends Exception {
+}
+
+class AddCommandParser implements Parser {
+}
+
+class AddressBookParser {
+}
+
+class ArgumentMultimap {
+}
+
+class ArgumentTokenizer {
+}
+
+class CliSyntax {
+}
+
+class DeleteCommandParser implements Parser {
+}
+
+class EditCommandParser implements Parser {
+}
+
+class FindCommandParser implements Parser {
+}
+
+interface Parser<T extends Command> {
+}
+
+class ParserUtil {
+}
+
+class Prefix {
+}
+
+interface Logic {
+}
+
+class LogicManager implements Logic {
+}
+
+class Messages {
+}
+
+AddressBook "1" *-- "*" Person : contains
+Person "1" *-- "*" FreeTime
+
+
+@enduml
