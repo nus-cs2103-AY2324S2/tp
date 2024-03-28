@@ -69,4 +69,7 @@ shadowJar {
     archiveFileName = 'immuniMate.jar'
 }
 
+run {
+    enableAssertions = true
+}
 defaultTasks 'clean', 'test'
