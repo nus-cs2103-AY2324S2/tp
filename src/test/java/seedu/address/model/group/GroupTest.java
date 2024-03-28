@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalGroups.SAMPLE_GROUP_NAME_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_1;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_MEMBER_SET_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_1;
+import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_2;
 import static seedu.address.testutil.TypicalGroups.SAMPLE_SKILL_LIST_4;
 
 import org.junit.jupiter.api.Test;
@@ -26,28 +27,27 @@ public class GroupTest {
         assertThrows(RuntimeException.class, () -> new Group(null, null));
         assertThrows(RuntimeException.class, () -> new Group(null, SAMPLE_MEMBER_SET_1));
         assertThrows(RuntimeException.class, () -> new Group(SAMPLE_GROUP_NAME_1, null));
-        assertThrows(RuntimeException.class, () -> new Group(null));
     }
 
     @Test
     public void equals_differentGroupsWithSameName_isSameGroupButNotEquals() {
-        Group group1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
-        Group group2 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_2);
+        Group group1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
+        Group group2 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_2, SAMPLE_SKILL_LIST_2);
         assertTrue(group1.isSameGroup(group2));
         assertNotEquals(group1, group2);
     }
 
     @Test
     public void equals_sameGroupsWithDifferentObjects_isSameGroupAndEquals() {
-        Group group1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
-        Group group2 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
+        Group group1 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
+        Group group2 = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
         assertTrue(group1.isSameGroup(group2));
         assertEquals(group1, group2);
     }
 
     @Test
     public void toString_validGroup_doesNotThrow() {
-        Group group = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1);
+        Group group = new Group(SAMPLE_GROUP_NAME_1, SAMPLE_MEMBER_SET_1, SAMPLE_SKILL_LIST_1);
         assertDoesNotThrow(group::toString);
     }
 
