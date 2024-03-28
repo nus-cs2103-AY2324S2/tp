@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.YearJoined;
 
 /**
  * The API of the Model component.
@@ -37,20 +38,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getPayBackFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setPayBackFilePath(Path payBackFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code payBack}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setPayBack(ReadOnlyPayBack payBack);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the PayBack */
+    ReadOnlyPayBack getPayBack();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -75,6 +76,11 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns the last id on the given year.
+     */
+    int getLastIdOnYear(YearJoined yearJoined);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

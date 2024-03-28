@@ -5,9 +5,11 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.YearJoined;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,14 +18,18 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
+    public static final int DEFAULT_ID = 240001;
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_YEAR_JOINED = "2024";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    private Id id;
     private Name name;
     private Phone phone;
     private Email email;
+    private YearJoined yearJoined;
     private Address address;
     private Set<Tag> tags;
 
@@ -31,9 +37,11 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
+        id = new Id(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        yearJoined = new YearJoined(DEFAULT_YEAR_JOINED);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -42,10 +50,12 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        id = personToCopy.getId();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        yearJoined = personToCopy.getYearJoined();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -89,8 +99,33 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code YearJoined} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withYearJoined(String year) {
+        this.yearJoined = new YearJoined(year);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Id} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withId(Integer id) {
+        this.id = new Id(id);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(id, name, phone, email, address, yearJoined, tags);
+    }
+
+    /**
+     * Return id of the employee.
+     *
+     * @return integer representation of id.
+     */
+    public int getIdValue() {
+        return this.id.value;
     }
 
 }

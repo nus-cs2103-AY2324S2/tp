@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `/delete 240001`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -68,13 +68,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -85,15 +85,15 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("/delete 240001")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `/delete 240001` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -115,7 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -136,7 +136,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -147,7 +147,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,42 +262,136 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* is a company manager
+* has a need to manage a significant number of employees
+* is required to handle a multitude of financial transactions (such as salary crediting, loans, etc)
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage employee information more efficiently and clearly than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​             | I want to …​                                | So that I can…​                                                      |
+| -------- |---------------------|---------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | New Company Manager | read the instructions of the program        | Learn or remember the lists of commands or methods to use the system |
+| `* * *`  | Company Manager     | add a new employee                          | ensure they are officially recorded                                  |
+| `* * *`  | Company Manager     | remove/delete a employee                    | have an updated list of employees when they leave the company        |
+| `* * *`  | Company Manager     | find a employee by ID, name, phone or email | retrieve details of employee(s) without looking entire workers       |
+| `* *`    | Company Manager     | edit information of a employee              | rectify any incorrect inputs entered into the system                 |
+| `* *`    | Company Manager     | list entire employees                       | see entire employees                                                 |
+| `*`      | Company Manager     | create a tag to employee                    | recognize all types of attention                                     |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PayBack` and the **Actor** is the `Company Manager`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new employee**
+
+**MSS**
+
+1.  User requests to add a new employee
+2.  User enters the name, phone number, email, and optionally, year joined
+3.  PayBack adds the new employee to the employee list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The fields other than the year joined are not specified.
+
+    * 2a1. PayBack shows an error message.
+    
+      Use case resumes at Step 2.
+
+* 2b. The parameters are not specified in the correct order.
+
+    * 2b1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2c. Some parameters are specified, some are not.
+
+    * 2c1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2d. The information entered is not in the correct format.
+
+    * 2d1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+**Use case: Remove a person**
+
+**MSS**
+
+1. User requests to remove an employee
+2. User enters employee ID
+3. Payback displays details of the employee for confirmation
+4. User confirms removal of employee
+
+   Use case ends.
+
+**Extension**
+
+* 2a. Employee ID entered is invalid.
+
+  * 2a1. Payback shows an error message.
+    
+    Use case resumes at Step 2.
+
+* 4a. User cancels the removal of employee.
+
+  * 4a1. Payback acknowledges the cancellation.
+    
+    Use case ends.
+
+**Use case: Tag a person**
+
+**MSS**
+
+1. User requests to tag an employee
+2. User enters employee id and tags
+3. Payback displays details of the employee and tags to be added for confirmation
+4. User confirms tagging of employee
+
+   Use case ends.
+
+**Extension**
+
+* 2a. Employee ID entered is invalid.
+
+  * 2a1. Payback shows an error message.
+  
+    Use case resumes at step 2.
+  
+* 2b. Tag parameter(s) is/are not specified.
+
+  * 2b1. Payback shows an error message.
+    
+    Use case resumes at step 2.
+
+* 4a. User cancels tagging of employee.
+
+  * 4a1. Payback acknowledges the cancellation.
+    
+    Use case ends.
+  
+
+
+
+**Use case: Find a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+2.  PayBack shows a list of employees
+3.  User requests to find a specific employee in the list
+4.  PayBack finds the employee
 
     Use case ends.
 
@@ -307,26 +401,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given entered format is incorrect.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PayBack shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+* 3b. There are no employees found.
+
+    * 3b1. PayBack shows a not found message.
+
+      Use case resumes at Step 2.
+
+**Use case: List entire employees**
+
+**MSS**
+
+1.  User requests to list employees
+2.  PayBack shows a list of employees
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Edit an employee**
+
+**MSS**
+
+1.  User requests to edit an employee's information
+2.  User enters the employee's ID and fields that need to be updated
+3.  PayBack changes the employee's information accordingly
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The ID is invalid.
+    * 2a1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The system should provide real-time access to employee information with response times not exceeding 2 seconds for any query.
+5.  The app should have an intuitive user interface, allowing users to easily navigate and perform tasks without extensive training.
 
 ### Glossary
 
+* **Actor**: A user or any other system that interacts with the system being described
+* **API**: Abbreviation for Application Programming Interface, a set of rules and protocols that allows different software applications to communicate with each other
+* **Aspect**: A particular feature or consideration that needs to be taken into account when designing or implementing a system
+* **CLI**: Abbreviation for Command Line Interface, a text-based interface used for entering commands to interact with the application
+* **DevOps**: A set of practices that combines software development (Dev) and IT operations (Ops), aimed at shortening the systems development life cycle and providing continuous delivery with high software quality
+* **GUI**: Abbreviation for Graphical User Interface, a type of user interface that allows users to interact with the application through graphical icons and visual indicators, as opposed to text-based interfaces like command-line interfaces (CLI)
+* **JSON**: Abbreviation for JavaScript Object Notation, a lightweight data-interchange format that uses key-value pairs
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **MSS**: Abbreviation for Main Success Scenario, the main flow of events in a use case
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Tag**: A label or identifier associated with a particular record or entity in the application
+* **UI**: Abbreviation for User Interface, refers to the interface through which users interact with the application
 
 --------------------------------------------------------------------------------------------------------------------
 
