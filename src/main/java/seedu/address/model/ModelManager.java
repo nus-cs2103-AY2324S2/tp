@@ -116,7 +116,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-
+    @Override
+    public void removeExamFromPerson(Person person, Exam exam) {
+        Person newPerson = person.removeExam(exam);
+        setPerson(person, newPerson);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -163,6 +167,12 @@ public class ModelManager implements Model {
     @Override
     public void deleteExam(Exam target) {
         addressBook.removeExam(target);
+        for (Person person : addressBook.getPersonList()) {
+            removeExamFromPerson(person, target);
+        }
+        if (selectedExam.getValue() != null && selectedExam.getValue().equals(target)) {
+            deselectExam();
+        }
     }
 
     @Override

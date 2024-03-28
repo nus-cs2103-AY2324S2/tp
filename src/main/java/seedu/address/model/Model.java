@@ -78,6 +78,14 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Removes an exam from the given person {@code target},
+     * maintains immutability. A new person is set into the list with the exam removed
+     * @param target The person to remove the exam from.
+     * @param exam The exam to remove.
+     */
+    void removeExamFromPerson(Person target, Exam exam);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
