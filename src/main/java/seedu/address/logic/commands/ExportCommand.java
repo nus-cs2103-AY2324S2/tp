@@ -39,7 +39,7 @@ public class ExportCommand extends Command {
     private String fileName;
 
     /**
-     * 
+     *
      * @param fileName name of file where contacts are to be saved
      */
     public ExportCommand(String fileName) {
