@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyArticleBook;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
 import seedu.address.model.tag.Tag;
 
@@ -21,8 +22,8 @@ public class SampleArticleDataUtil {
     public static Article[] getSampleArticles() {
         return new Article[]{
             new Article("The epitome of pain and suffering by NUS CS students.", getAuthorSet("Alice", "Bob"),
-                    LocalDateTime.now(), getSourceSet("NUS Computing Club"), getTagSet("Student Life"),
-                    Status.PUBLISHED)
+                    getSourceSet("NUS Computing Club"), getTagSet("Student Life"), getOutletSet("SOC News Bulletin"),
+                    LocalDateTime.now(), Status.PUBLISHED)
         };
     }
 
@@ -58,6 +59,15 @@ public class SampleArticleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns an outlet set containing the list of strings given.
+     */
+    public static Set<Outlet> getOutletSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Outlet::new)
                 .collect(Collectors.toSet());
     }
 }

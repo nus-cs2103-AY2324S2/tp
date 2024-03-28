@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
 import seedu.address.model.tag.Tag;
 
@@ -26,6 +27,7 @@ public class JsonAdaptedArticle {
     private final LocalDateTime publicationDate;
     private final List<JsonAdaptedSource> sources = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedOutlet> outlets = new ArrayList<>();
     private final Article.Status status;
 
     /**
@@ -33,29 +35,34 @@ public class JsonAdaptedArticle {
      *
      * @param title
      * @param authors
-     * @param publicationDate
      * @param sources
      * @param tags
+     * @param outlets
+     * @param publicationDate
      * @param status
      */
     @JsonCreator
     public JsonAdaptedArticle(@JsonProperty("title") String title,
                               @JsonProperty("authors") List<JsonAdaptedAuthor> authors,
-                              @JsonProperty("publicationDate") LocalDateTime publicationDate,
                               @JsonProperty("sources") List<JsonAdaptedSource> sources,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("outlets") List<JsonAdaptedOutlet> outlets,
+                              @JsonProperty("publicationDate") LocalDateTime publicationDate,
                               @JsonProperty("status") Article.Status status) {
         this.title = title;
         if (authors != null) {
             this.authors.addAll(authors);
         }
-        this.publicationDate = publicationDate;
         if (sources != null) {
             this.sources.addAll(sources);
         }
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        if (outlets != null) {
+            this.outlets.addAll(outlets);
+        }
+        this.publicationDate = publicationDate;
         this.status = status;
     }
     /**
@@ -67,13 +74,16 @@ public class JsonAdaptedArticle {
         authors.addAll(sourceArticle.getAuthors().stream()
                 .map(JsonAdaptedAuthor::new)
                 .collect(Collectors.toList()));
-        publicationDate = sourceArticle.getPublicationDate();
         sources.addAll(sourceArticle.getSources().stream()
                 .map(JsonAdaptedSource::new)
                 .collect(Collectors.toList()));
         tags.addAll(sourceArticle.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        outlets.addAll(sourceArticle.getOutlets().stream()
+                .map(JsonAdaptedOutlet::new)
+                .collect(Collectors.toList()));
+        publicationDate = sourceArticle.getPublicationDate();
         status = sourceArticle.getStatus();
     }
 
@@ -102,6 +112,10 @@ public class JsonAdaptedArticle {
         for (JsonAdaptedSource source : sources) {
             articleSources.add(source.toModelType());
         }
+        final List<Outlet> articleOutlets = new ArrayList<>();
+        for (JsonAdaptedOutlet outlet : outlets) {
+            articleOutlets.add(outlet.toModelType());
+        }
 
         final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
 
@@ -109,6 +123,8 @@ public class JsonAdaptedArticle {
 
         final Set<Tag> modelTags = new HashSet<>(articleTags);
 
-        return new Article(title, modelAuthors, publicationDate, modelSources, modelTags, status);
+        final Set<Outlet> modelOutlets = new HashSet<>(articleOutlets);
+
+        return new Article(title, modelAuthors, modelSources, modelTags, modelOutlets, publicationDate, status);
     }
 }
