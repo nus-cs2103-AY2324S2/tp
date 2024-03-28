@@ -14,8 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.layout.Pane?>
-<fx:root minHeight="800" minWidth="1200" onCloseRequest="#handleExit" title="Dook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="800" minWidth="1200" onCloseRequest="#handleExit" title="Dook"
+         type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -35,6 +35,7 @@
           </Menu>
         </MenuBar>
 
+          <!-- Person List Card FXML -->
         <HBox VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" minWidth="390" prefHeight="600" prefWidth="390" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <HBox alignment="CENTER_LEFT" spacing="5" styleClass="title-bar">
@@ -56,6 +57,7 @@
                      <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
                   </HBox.margin>
           </VBox>
+            <!-- Booking List Card and Panel FXML -->
           <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <VBox fx:id="bookingList" minWidth="350" prefHeight="600" prefWidth="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="5" styleClass="title-bar">
@@ -81,6 +83,8 @@
                         <Insets top="5.0" />
                      </VBox.margin>
             </VBox>
+
+              <!-- Result Display FXML -->
             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="200" prefHeight="200" styleClass="pane-with-border" VBox.vgrow="NEVER">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
@@ -90,6 +94,7 @@
                      </VBox.margin>
             </StackPane>
 
+              <!-- Command Box FXML -->
             <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
               <padding>
                 <Insets bottom="5" left="10" top="5" />
@@ -102,46 +107,10 @@
                      <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                   </HBox.margin>
           </VBox>
-            <VBox>
-                <VBox fx:id="commandList" minWidth="300.0" prefHeight="150.0" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <HBox alignment="TOP_LEFT" spacing="5" styleClass="title-bar">
-                        <StackPane styleClass="icon-container">
-                            <ImageView fitHeight="35" fitWidth="35" preserveRatio="true">
-                                <Image url="@/images/terminal_icon.png" />
-                            </ImageView>
-                        </StackPane>
-                        <Label styleClass="title-label" text="Commands">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin></Label>
-                        <VBox.margin>
-                           <Insets top="10.0" />
-                        </VBox.margin>
-                    </HBox>
-                    <StackPane fx:id="commandListPanelPlaceholder">
-                        <padding>
-                            <Insets bottom="8.0" left="10.0" right="8.0" top="10.0" />
-                        </padding>
-                    </StackPane>
-                    <HBox.margin>
-                        <Insets bottom="8.0" right="10.0" top="5.0" />
-                    </HBox.margin>
-                     <VBox.margin>
-                        <Insets right="10.0" top="10.0" />
-                     </VBox.margin>
-                </VBox>
-                <StackPane fx:id="calendar" minWidth="300.0" prefHeight="100" prefWidth="300.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets bottom="8.0" left="10.0" right="8.0" top="10.0" />
-                    </padding>
-                     <VBox.margin>
-                        <Insets bottom="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                </StackPane>
-            </VBox>
         </HBox>
         <StackPane fx:id="statusbarPlaceholder" />
       </VBox>
     </Scene>
   </scene>
 </fx:root>
+
