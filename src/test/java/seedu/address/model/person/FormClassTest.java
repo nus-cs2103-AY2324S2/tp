@@ -50,4 +50,11 @@ public class FormClassTest {
         // different values -> returns false
         assertFalse(formClass.equals(new FormClass("6 B")));
     }
+
+    @Test
+    public void hashCodeTest() {
+        FormClass formClass = new FormClass("00001");
+
+        assertTrue(formClass.hashCode() == new FormClass("00001").hashCode());
+    }
 }
