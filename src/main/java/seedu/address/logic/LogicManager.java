@@ -5,6 +5,7 @@ import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -15,6 +16,7 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Loan;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -84,5 +86,20 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Loan> getLoanList() {
+        return model.getLoanList();
+    }
+
+    @Override
+    public void setIsLoansTab(boolean isLoansTab) {
+        model.setIsLoansTab(isLoansTab);
+    }
+
+    @Override
+    public BooleanProperty getIsLoansTab() {
+        return model.getIsLoansTab();
     }
 }

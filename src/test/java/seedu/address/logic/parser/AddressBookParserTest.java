@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -13,15 +14,18 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteLoanCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkLoanCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -86,6 +90,22 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteLoan() throws Exception {
+        DeleteLoanCommand ddlc = (DeleteLoanCommand) parser.parseCommand(DeleteLoanCommand.COMMAND_WORD
+                + " 1 " + PREFIX_LOAN_INDEX + "2");
+        DeleteLoanCommand test = new DeleteLoanCommand(INDEX_FIRST_PERSON, Index.fromOneBased(2));
+        assertEquals(test, ddlc);
+    }
+
+    @Test
+    public void parseCommand_markLoan() throws Exception {
+        MarkLoanCommand markLoanCommand = (MarkLoanCommand) parser.parseCommand(MarkLoanCommand.COMMAND_WORD
+                + " 1 " + PREFIX_LOAN_INDEX + "2");
+        MarkLoanCommand test = new MarkLoanCommand(INDEX_FIRST_PERSON, Index.fromOneBased(2));
+        assertEquals(test, markLoanCommand);
     }
 
     @Test

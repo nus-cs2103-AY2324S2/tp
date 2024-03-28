@@ -1,16 +1,22 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Loan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -120,5 +126,38 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String value}, {@code String startDate},
+     * {@code String returnDate} into a {@code LinkLoanCommand.LinkLoanDescriptor}.
+     */
+    public static LinkLoanDescriptor parseLoan(String value, String startDate, String returnDate)
+            throws ParseException {
+        requireAllNonNull(value, startDate, returnDate);
+        String trimmedValue = value.trim();
+        String trimmedStartDate = startDate.trim();
+        String trimmedReturnDate = returnDate.trim();
+        float convertedValue;
+        Date convertedStartDate;
+        Date convertedReturnDate;
+        try {
+            convertedValue = Float.parseFloat(trimmedValue);
+            convertedStartDate = DateUtil.parse(trimmedStartDate);
+            convertedReturnDate = DateUtil.parse(trimmedReturnDate);
+        } catch (IllegalValueException i) {
+            // This is caught when the formatter is unable to parse the date correctly
+            throw new ParseException(Loan.DATE_CONSTRAINTS);
+        } catch (NumberFormatException n) {
+            // Ths is caught when the formatter is unable to parse the value correctly
+            throw new ParseException(Loan.VALUE_CONSTRAINTS);
+        }
+        if (!Loan.isValidValue(convertedValue)) {
+            throw new ParseException(Loan.VALUE_CONSTRAINTS);
+        }
+        if (!Loan.isValidDates(convertedStartDate, convertedReturnDate)) {
+            throw new ParseException(Loan.DATE_CONSTRAINTS);
+        }
+        return new LinkLoanDescriptor(convertedValue, convertedStartDate, convertedReturnDate);
     }
 }

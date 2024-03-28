@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.commands.LinkLoanCommand.LinkLoanDescriptor;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,6 +21,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final LoanRecords loanRecords;
 
     // Data fields
     private final Address address;
@@ -28,13 +30,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, LoanRecords loanRecords) {
+        requireAllNonNull(name, phone, email, address, tags, loanRecords);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.loanRecords = loanRecords;
     }
 
     public Name getName() {
@@ -53,12 +57,28 @@ public class Person {
         return address;
     }
 
+    public Analytics getAnalytics() {
+        return Analytics.getAnalytics(loanRecords);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public LoanRecords getLoanRecords() {
+        return loanRecords;
+    }
+
+    /**
+     * Links a loan to this person with the given {@code loanDescription}
+     * by adding it to the loan records.
+     */
+    public void linkLoan(LinkLoanDescriptor loanDescription) {
+        loanRecords.addLoan(loanDescription);
     }
 
     /**
@@ -94,13 +114,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && loanRecords.equals(otherPerson.loanRecords);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, loanRecords);
     }
 
     @Override
