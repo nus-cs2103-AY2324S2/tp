@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -139,8 +142,23 @@ public class ModelManager implements Model {
 
     @Override
     public List<Order> getOrders(Person target) {
-        addressBook.getOrders(target);
-        return target.getOrders();
+        requireNonNull(target);
+
+        return new ArrayList<>(target.getOrders());
+    }
+
+    @Override
+    public void deleteOrder(Person target, Order order) {
+        requireNonNull(target);
+        requireNonNull(order);
+        addressBook.deleteOrder(target, order);
+    }
+
+    @Override
+    public List<Order> getSortedOrders(Person target) {
+        List<Order> sortedOrders = getOrders(target);
+        sortedOrders.sort(Comparator.comparing(Order::getDate));
+        return Collections.unmodifiableList(sortedOrders);
     }
 
     @Override
