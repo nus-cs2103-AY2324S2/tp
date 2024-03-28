@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
+participant "d:AddEventCommand" as AddEventCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addev ev/party")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addev ev/party")
+activate AddressBookParser
+
+create AddEventCommandParser
+AddressBookParser -> AddEventCommandParser
+activate AddEventCommandParser
+
+AddEventCommandParser --> AddressBookParser
+deactivate AddEventCommandParser
+
+AddressBookParser -> AddEventCommandParser : parse("party")
+activate AddEventCommandParser
+
+create AddEventCommand
+AddEventCommandParser -> AddEventCommand
+activate AddEventCommand
+
+AddEventCommand --> AddEventCommandParser :
+deactivate AddEventCommand
+
+AddEventCommandParser --> AddressBookParser : d
+deactivate AddEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEventCommandParser -[hidden]-> AddressBookParser
+destroy AddEventCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> AddEventCommand : execute(m)
+activate AddEventCommand
+
+AddEventCommand -> Model
+activate Model
+Model --> AddEventCommand
+deactivate Model
+
+
+create CommandResult
+AddEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddEventCommand
+deactivate CommandResult
+
+AddEventCommand --> LogicManager : r
+deactivate AddEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
