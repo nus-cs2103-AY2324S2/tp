@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.appointment.Appointment;
 
 /**
@@ -35,6 +36,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label hasAttended;
     @FXML
     private Label appointmentDescription;
+    @FXML
+    private Label feedbackScore;
 
     /**
      * Creates a {@code AppointmentCode} with the given {@code Appointment} to display.
@@ -46,8 +49,31 @@ public class AppointmentCard extends UiPart<Region> {
         appointmentId.setText(appointment.getAppointmentId() + ". ");
         //TODO: replace student id with student name
         name.setText("StudentId: " + Integer.toString(appointment.getStudentId()));
-        appointmentDateTime.setText(appointment.getAppointmentDateTime().toString().replace("T", " "));
-        hasAttended.setText(Boolean.toString(appointment.getAttendedStatus()));
-        appointmentDescription.setText(appointment.getAppointmentDescription());
+
+        String formattedDateTime = DateUtil.formatDateTime(appointment.getAppointmentDateTime());
+        appointmentDateTime.setText("Appointment Time: " + formattedDateTime);
+
+        String attendedString = "Attended: ";
+        if (appointment.getAttendedStatus()) {
+            attendedString += "Y";
+        } else {
+            attendedString += "N";
+        }
+        hasAttended.setText(attendedString);
+
+        appointmentDescription.managedProperty().bind(appointmentDescription.visibleProperty());
+        if (!appointment.getAppointmentDescription().isEmpty()) {
+            appointmentDescription.setText("Description: " + appointment.getAppointmentDescription());
+        } else {
+            appointmentDescription.setVisible(false);
+        }
+
+        // This line of code ensures that if it's not visible, it doesn't take up any space in the layout
+        feedbackScore.managedProperty().bind(feedbackScore.visibleProperty());
+        if (appointment.getFeedbackScore() != null) {
+            feedbackScore.setText("Score: " + appointment.getFeedbackScore().toString());
+        } else {
+            feedbackScore.setVisible(false);
+        }
     }
 }

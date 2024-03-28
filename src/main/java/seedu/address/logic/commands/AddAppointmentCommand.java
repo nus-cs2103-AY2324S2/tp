@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDBACK_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -24,12 +25,15 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_PATIENT_ID + "PATIENT_ID "
             + PREFIX_DATETIME + "DATETIME "
             + PREFIX_ATTEND + "ATTEND "
+            + PREFIX_FEEDBACK_SCORE + "FEEDBACK_SCORE "
             + PREFIX_APPOINTMENT_DESCRIPTION + "APPOINTMENT DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PATIENT_ID + "1 "
             + PREFIX_DATETIME + "2024-03-18 09:00 "
             + PREFIX_ATTEND + "false "
-            + PREFIX_APPOINTMENT_DESCRIPTION + "This is a new appointment"; //TODO: remove after case log is implemented
+            + PREFIX_FEEDBACK_SCORE + "5 "
+            + PREFIX_APPOINTMENT_DESCRIPTION + "This is a new appointment";
+
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =

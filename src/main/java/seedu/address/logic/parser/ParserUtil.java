@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -122,11 +122,8 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
 
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime localDateTime;
-        try {
-            localDateTime = LocalDateTime.parse(trimmedDateTime, format);
-        } catch (Exception e) {
+        LocalDateTime localDateTime = DateUtil.parseDateTime(trimmedDateTime);
+        if (localDateTime == null) {
             throw new ParseException(Messages.MESSAGE_INVALID_DATE_TIME);
         }
         return localDateTime;
@@ -164,6 +161,27 @@ public class ParserUtil {
             return "";
         }
         return description.trim();
+    }
+
+    /**
+     * Parses a {@code String feedbackScore} into an {@code Integer} and ensures that it is a valid number and is
+     * between 1 and 5 (inclusive).
+     *
+     * @throws ParseException
+     */
+    public static Integer parseFeedbackScore(String feedbackScore) throws ParseException {
+        if (feedbackScore.isEmpty()) {
+            return null;
+        }
+        String trimmedFeedbackScore = feedbackScore.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedFeedbackScore)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_FEEDBACK_SCORE);
+        }
+        int feedbackScoreInt = Integer.parseInt(trimmedFeedbackScore);
+        if (feedbackScoreInt < 1 || feedbackScoreInt > 5) {
+            throw new ParseException(Messages.MESSAGE_INVALID_FEEDBACK_SCORE);
+        }
+        return Integer.parseInt(trimmedFeedbackScore);
     }
 
     /**

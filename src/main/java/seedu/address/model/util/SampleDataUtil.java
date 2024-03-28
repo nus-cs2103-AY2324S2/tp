@@ -40,13 +40,13 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointments() {
         return new Appointment[]{
             new Appointment(1, LocalDateTime.of(2021, 10, 10, 10, 10),
-                        1, "First appointment", true),
+                        1, "First appointment", true, 1),
             new Appointment(2, LocalDateTime.of(2021, 10, 10, 10, 10),
-                        2, "Second appointment", false),
+                        2, "Second appointment", false, 3),
             new Appointment(3, LocalDateTime.of(2021, 10, 10, 10, 10),
-                        3, "Third appointment", true),
+                        3, "Third appointment", true, 5),
             new Appointment(4, LocalDateTime.of(2021, 10, 30, 10, 10),
-                        1, "Fourth appointment", false),
+                        1, "Fourth appointment", false, 4),
         };
     }
 

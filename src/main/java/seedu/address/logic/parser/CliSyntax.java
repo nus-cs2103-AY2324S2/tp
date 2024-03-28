@@ -18,5 +18,6 @@ public class CliSyntax {
     //TODO: remove after case log is implemented
     public static final Prefix PREFIX_APPOINTMENT_DESCRIPTION = new Prefix("ad/");
     public static final Prefix PREFIX_APPOINTMENT_ID = new Prefix("aid/");
+    public static final Prefix PREFIX_FEEDBACK_SCORE = new Prefix("s/");
 
 }

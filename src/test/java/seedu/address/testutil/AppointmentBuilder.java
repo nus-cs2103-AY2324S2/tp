@@ -17,6 +17,7 @@ public class AppointmentBuilder {
     public static final String DEFAULT_APPOINTMENT_DESCRIPTION = "Appointment Description";
 
     public static final boolean DEFAULT_HAS_ATTENDED = false;
+    public static final Integer DEFAULT_FEEDBACK_SCORE = null;
 
     private int appointmentId;
     private LocalDateTime appointmentDateTime;
@@ -26,6 +27,7 @@ public class AppointmentBuilder {
     private String appointmentDescription;
 
     private boolean hasAttended;
+    private Integer feedbackScore;
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
@@ -36,6 +38,7 @@ public class AppointmentBuilder {
         studentId = DEFAULT_STUDENT_ID;
         appointmentDescription = DEFAULT_APPOINTMENT_DESCRIPTION;
         hasAttended = DEFAULT_HAS_ATTENDED;
+        feedbackScore = DEFAULT_FEEDBACK_SCORE;
     }
 
     /**
@@ -47,6 +50,7 @@ public class AppointmentBuilder {
         studentId = appointmentToCopy.getStudentId();
         appointmentDescription = appointmentToCopy.getAppointmentDescription();
         hasAttended = appointmentToCopy.getAttendedStatus();
+        feedbackScore = appointmentToCopy.getFeedbackScore();
     }
 
     /**
@@ -89,8 +93,20 @@ public class AppointmentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code feedbackScore} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withFeedbackScore(Integer feedbackScore) {
+        this.feedbackScore = feedbackScore;
+        return this;
+    }
+
+    /**
+     * Builds an (@code Appointment)
+     */
     public Appointment build() {
-        return new Appointment(appointmentId, appointmentDateTime, studentId, appointmentDescription, hasAttended);
+        return new Appointment(appointmentId, appointmentDateTime, studentId, appointmentDescription, hasAttended,
+                               feedbackScore);
     }
 
 }
