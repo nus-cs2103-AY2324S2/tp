@@ -4,8 +4,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -24,13 +27,12 @@ public class SortCommandParser implements Parser<SortCommand> {
         String[] words = trimmedArgs.split("\\s+");
 
         if (words.length != 2) {
-            throw new ParseException("Incorrect number of arguments. Expected format: sort <field> <asc/desc>");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
         String field = words[0];
         if (!VALID_FIELDS.contains(field)) {
-            throw new ParseException("Invalid field: " + field
-                    + ". Valid fields are: " + String.join(", ", VALID_FIELDS));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
         String direction = words[1].toLowerCase();
@@ -45,8 +47,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         case "desc":
             return false;
         default:
-            throw new ParseException("Invalid direction: " + direction
-                    + ". Use 'asc' for ascending or 'desc' for descending.");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
     }
 }
