@@ -155,6 +155,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a `Patient`
+
+Adds a new `Patient` entry by indicating their `NRIC`, `Name`, `DoB`, and `Phone`.
+This command is implemented through the `AddPatientCommand` class which extend the `Command` class.
+
+* Step 1. User enters an `addpatient` command.
+* Step 2. The `AddressBookParser` will call `parseCommand` on the user's input string and return an instance of `addPatientCommandParser`.
+* Step 3. The `parse` command in `addPatientCommandParser` calls `ParserUtil` to create instances of objects for each of the fields.
+    * If there are any missing fields, a `CommandException` is thrown.
+    * If input arguments does not match contraints for the fields, a `IllegalArgumentException` is thrown.
+    * If the patient to added already exists in the system, a `DuplicatePersonException` is thrown`.
+
+The activity diagram below demonstrates this error handling process in more detail.
+
+<img src="images/AddPatientActivityDiagram.png" width="800" />
+
+* Step 4. The `parse` command in `addPatientCommandParser` return an instance of `addPatientCommand`.
+* Step 5. The `LogicManager` calls the `execute` method in `addPatientCommand`.
+* Step 6. The `execute` method in `addPatientCommand` executes and calls `addPerson` in model to add the new patient into the system.
+* Step 7. Success message gets printed onto the results display to notify user.
+
+The sequence diagram below closely describes the interaction between the various components during the execution of the `AddPatientCommand`.
+
+<img src="images/AddPatientSequenceDiagram.png" width="800" />
+
+#### Design considerations:
+
+**Aspect: How editing a Person works:**
+
+* **Alternative 1 (current choice):** Removes the `originalPerson` and adds the `editedPerson`.
+    * Pros: Retains the sorted order of Persons by `Name` in the person list.
+    * Cons: May have performance issues in terms of time complexity since it requires 2 operations (`deletePerson()` and `addPerson`).
+
+* **Alternative 2:** Directly update the fields in the `originalPerson`
+    * Pros: Better performance, since this only requires searching through the person list once.
+    * Cons: The order of person list will be lost, since `Name` of a `Person` may be edited.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
