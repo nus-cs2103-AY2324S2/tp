@@ -1,0 +1,66 @@
+.background {
+    -fx-background-color: #EFBC9B; /* Light peach color for background */
+    background-color: #EFBC9B;
+}
+
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #9CAFAA; /* Muted green for text */
+    -fx-opacity: 0.9;
+}
+
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #9CAFAA; /* Muted green for bright labels, more pronounced */
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #9CAFAA; /* Muted green for headers */
+    -fx-opacity: 1;
+}
+
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-background-color: #FBF3D5; /* Soft yellow for text field backgrounds */
+    -fx-text-fill: #000000; /* Muted green for text */
+}
+
+.list-cell .label {
+    -fx-text-fill: #000000; /* Muted green for text */
+}
+
+.list-cell {
+    -fx-background-color: #FBF3D5; /* Soft yellow for normal state */
+    -fx-text-fill: #000000; /* Muted green for contrast */
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:filled:selected, .list-cell:filled:selected #cardPane {
+    -fx-background-color: #D6DAC8; /* Muted green for the selected item */
+    -fx-text-fill: #000000; /* Muted green for contrast when selected */
+}
+
+.list-cell:filled:even {
+    -fx-background-color: #FBF3D5; /* Soft yellow for even rows, for variety */
+    -fx-text-fill: #000000; /* Muted green for contrast */
+}
+
+.list-cell:filled:odd {
+    -fx-background-color: #EFBC9B; /* Light peach, to differentiate odd rows */
+    -fx-text-fill: #000000; /* Muted green for contrast */
+}
+
+.result-display, .text-area {
+    -fx-background-color: #FBF3D5; /* Soft yellow background for consistency */
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13pt;
+    -fx-text-fill: #000000; /* Muted green for good contrast */
+}
