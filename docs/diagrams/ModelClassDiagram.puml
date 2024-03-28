@@ -13,12 +13,14 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class UniqueCcaList
 Class Person
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
+Class Cca
 
 Class I #FFFFFF
 }
@@ -36,18 +38,22 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+AddressBook *--> "1" UniqueCcaList
 UniquePersonList --> "~* all" Person
+UniqueCcaList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" Cca
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Phone -[hidden]right-> Cca
+Cca -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person

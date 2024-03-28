@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -37,6 +39,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getCcas().stream().forEach(
+            c -> sb.append(PREFIX_CCA + c.ccaName + " ")
+        );
         return sb.toString();
     }
 
@@ -54,7 +59,17 @@ public class PersonUtil {
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
+                sb.append(PREFIX_TAG);
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        sb.append(" ");
+        if (descriptor.getCcas().isPresent()) {
+            Set<Cca> tags = descriptor.getCcas().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_CCA);
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_CCA).append(s.ccaName).append(" "));
             }
         }
         return sb.toString();

@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -111,6 +112,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String CCA} into a {@code CCA}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code CCA} is invalid.
+     */
+    public static Cca parseCca(String ccaString) throws ParseException {
+        requireNonNull(ccaString);
+        String trimmedCca = ccaString.trim();
+        if (!Cca.isValidCcaName(trimmedCca)) {
+            throw new ParseException(Cca.MESSAGE_CONSTRAINTS);
+        }
+        return new Cca(trimmedCca);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -120,5 +136,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> CCAs} into a {@code Set<CCA>}.
+     */
+    public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
+        requireNonNull(ccas);
+        final Set<Cca> ccaSet = new HashSet<>();
+        for (String ccaName : ccas) {
+            ccaSet.add(parseCca(ccaName));
+        }
+        return ccaSet;
     }
 }
