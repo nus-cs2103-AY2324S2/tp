@@ -208,6 +208,24 @@ Additionally, it implements the following operations:
 returning `true` if any of the student's timeslots matches the keywords, and `false` otherwise.
 
 
+### Improved Edit Functionality
+
+#### Implementation
+The proposed enhancement aims to improve the current edit functionality within our system. 
+Currently, when a user performs an edit operation, all existing values associated with the specified parameter (e.g., grade or class) are wiped out and replaced with the new value provided by the user. 
+This behavior can be problematic as it doesn't allow users to make incremental changes or maintain existing data while editing. 
+Therefore, the proposed implementation focuses on changing the edit behavior to only modify one parameter at a time while retaining the previous values for other parameters.
+
+How the feature is implemented (or is going to be implemented).
+* Single-Parameter Editing: The enhanced edit command will allow users to edit one parameter at a time. For example, instead of wiping out all grade values and replacing them with a new set of grades, the user can now edit individual grades or classes separately.
+* Retain Previous Values: When a user initiates an edit operation, the system will display the current value of the parameter being edited. This value will be shown in the text area, allowing users to modify it based on the existing data. This approach aligns with the assumption that edits typically involve minor adjustments or updates rather than complete replacements.
+
+Why it is implemented this way?
+The enhancement aims to improve user experience by enabling incremental edits and preserving previous values, facilitating more accurate and efficient changes. This approach also enhances data integrity and accuracy, aligning with best practices in user interface design to minimize errors and data loss during edits.
+
+Alternatives considered.
+* Alternative 1 was batch editing, allowing users to modify multiple parameters simultaneously. However, this could lead to confusion and data conflicts, especially with complex data. It might also need extra validation for data consistency.
+* Alternative 2 involved a confirmation prompt before editing, informing users of potential data replacement. While transparent, it doesn't solve the issue of preserving data during edits.
 
 ### \[Proposed\] Undo/redo feature
 
