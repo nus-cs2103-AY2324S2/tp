@@ -7,15 +7,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import javafx.util.StringConverter;
-import javafx.util.converter.DefaultStringConverter;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
@@ -60,7 +55,6 @@ public class DisplayTable extends UiPart<Region> {
         data = displayPerson.getFieldDescriptions();
 
         field.setCellValueFactory(new PropertyValueFactory<>("field"));
-        field.setCellFactory(e -> new CustomCell());
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
 
         table.setEditable(true);
@@ -91,14 +85,8 @@ public class DisplayTable extends UiPart<Region> {
             this.description = new FieldDescription(DESCRIPTION_FIELD, person.getDescription().toString());
         }
 
-        public DisplayPerson() {
-            this(null);
-            System.out.println("LOL");
-        }
-
         private ObservableList<FieldDescription> getFieldDescriptions() {
-            return FXCollections.observableArrayList(
-                    name, email, phone, address, description);
+            return FXCollections.observableArrayList(name, email, phone, address, description);
         }
 
         public static class FieldDescription {
@@ -126,47 +114,6 @@ public class DisplayTable extends UiPart<Region> {
             public String getDescriptionProperty() {
                 return descriptionProperty.get();
             }
-        }
-    }
-
-    private static class CustomCell extends TextFieldTableCell<DisplayPerson.FieldDescription, String> {
-        public CustomCell() {
-            this.setConverter(new DefaultStringConverter());
-            this.setAlignment(Pos.CENTER_LEFT);
-        }
-
-        @Override
-        public void updateItem(String item, boolean empty) {
-
-            // Use this to check if the
-            super.updateItem(item, empty);
-
-            if (item == null || empty) {
-                setText(null);
-                return;
-            }
-
-            if (!isEmpty()) {
-                if (item.equals("error")) {
-                    this.setTextFill(Color.RED);
-                    setText(item);
-                } else {
-                    this.setTextFill(Color.BLACK);
-                    setText(item);
-                }
-            }
-        }
-    }
-    private class FieldDescriptionConverter extends StringConverter<DisplayPerson.FieldDescription> {
-
-        @Override
-        public String toString(DisplayPerson.FieldDescription fieldDescription) {
-            return fieldDescription.toString();
-        }
-
-        @Override
-        public DisplayPerson.FieldDescription fromString(String string) {
-            return new DisplayPerson.FieldDescription(string, string);
         }
     }
 }
