@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNCLEAR_COMMAND;
+import static seedu.address.logic.Messages.MESSAGE_UNEXPECTED_ARGUMENT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.List;
@@ -49,9 +50,9 @@ public class AddressBookParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput Full user input string.
+     * @return The command based on the user input.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -90,23 +91,39 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            ensureNoArgument(command, arguments);
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            ensureNoArgument(command, arguments);
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
+            ensureNoArgument(command, arguments);
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            ensureNoArgument(command, arguments);
             return new HelpCommand();
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Ensures that no arguments are provided for the command.
+     * @param command The command word.
+     * @param arguments The arguments provided.
+     * @throws ParseException If arguments are provided.
+     */
+    private void ensureNoArgument(String command, String arguments) throws ParseException {
+        if (!arguments.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_UNEXPECTED_ARGUMENT, command));
         }
     }
 }
