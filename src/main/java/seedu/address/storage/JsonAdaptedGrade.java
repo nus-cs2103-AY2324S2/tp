@@ -34,7 +34,7 @@ class JsonAdaptedGrade {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Grade} object.
+     * Converts this Jackson-friendly adapted grade object into the model's {@code Grade} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted grade.
      */
