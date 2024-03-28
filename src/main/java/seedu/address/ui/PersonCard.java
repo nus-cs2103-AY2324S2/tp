@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -39,6 +41,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private FlowPane subjectWithGrade;
+    @FXML
+    private Label attendance;
+    @FXML
+    private Label payment;
+    @FXML
+    private FlowPane dateTimes;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +62,17 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        subjectWithGrade.getChildren().add(new Label(person.getSubject().value));
+        subjectWithGrade.getChildren().add(new Label(person.getGrade().value));
+        attendance.setText(person.getAttendance().value);
+        payment.setText(person.getPayment().value);
+        dateTimes.setHgap(5);
+        person.getDateTimes().stream()
+                .sorted(Comparator.comparing(dateTime -> dateTime.value))
+                .forEach(dateTime -> dateTimes.getChildren()
+                        .add(new Label(LocalDateTime.parse(dateTime.value,
+                                        DateTimeFormatter.ofPattern("uuuu-MM-dd HHmm"))
+                                .format(DateTimeFormatter.ofPattern("MMM d uuuu h:mma")))));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

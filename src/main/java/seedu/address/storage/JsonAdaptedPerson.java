@@ -11,10 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Payment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +33,11 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String grade;
+    private final String subject;
+    private final String attendance;
+    private final String payment;
+    private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,11 +46,21 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("grade") String grade, @JsonProperty("subject") String subject,
+            @JsonProperty("attendance") String attendance, @JsonProperty("payment") String payment,
+            @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTimes,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.grade = grade;
+        this.subject = subject;
+        this.attendance = attendance;
+        this.payment = payment;
+        if (tags != null) {
+            this.dateTimes.addAll(dateTimes);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +74,13 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        grade = source.getGrade().value;
+        subject = source.getSubject().value;
+        attendance = source.getAttendance().value;
+        payment = source.getPayment().value;
+        dateTimes.addAll(source.getDateTimes().stream()
+                .map(JsonAdaptedDateTime::new)
+                .collect(Collectors.toList()));
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -68,6 +95,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<DateTime> personDateTimes = new ArrayList<>();
+        for (JsonAdaptedDateTime dateTime : dateTimes) {
+            personDateTimes.add(dateTime.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +134,44 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (grade == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
+        }
+        if (!Grade.isValidGrade(grade)) {
+            throw new IllegalValueException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        final Grade modelGrade = new Grade(grade);
+
+        if (subject == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subject.class.getSimpleName()));
+        }
+        if (!Subject.isValidSubject(subject)) {
+            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        final Subject modelSubject = new Subject(subject);
+
+        if (attendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
+        }
+        if (!Attendance.isValidAttendance(attendance)) {
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        final Attendance modelAttendance = new Attendance(attendance);
+
+        if (payment == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Payment.class.getSimpleName()));
+        }
+        if (!Payment.isValidPayment(payment)) {
+            throw new IllegalValueException(Payment.MESSAGE_CONSTRAINTS);
+        }
+        final Payment modelPayment = new Payment(payment);
+
+        final Set<DateTime> modelDateTimes = new HashSet<>(personDateTimes);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGrade, modelSubject,
+                modelAttendance, modelPayment, modelDateTimes, modelTags);
     }
 
 }

@@ -4,11 +4,21 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "grade": "A",
+    "subject": "English",
+    "attendance": "Present",
+    "payment": "Paid",
+    "dateTimes": [ "2024-03-02 1800" ],
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "grade": "A",
+    "subject": "Maths",
+    "attendance": "Present",
+    "payment": "Not Paid",
+    "dateTimes": [ "2024-03-21 1800" ],
     "address": "4th street"
   } ]
 }
