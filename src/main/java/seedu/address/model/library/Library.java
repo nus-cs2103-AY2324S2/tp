@@ -138,6 +138,11 @@ public class Library implements ReadOnlyLibrary {
         return bookList.contains(book);
     }
 
+    /**
+     * Removes {@code book} from library book list.
+     * @param book book to be removed from library
+     * @return returns the book removed from library
+     */
     public Book popBookFromLibrary(Book book) {
         if (hasBookInLibrary(book)) {
             int i = bookList.indexOf(book);

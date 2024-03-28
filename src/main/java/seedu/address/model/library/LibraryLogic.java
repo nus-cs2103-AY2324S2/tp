@@ -95,7 +95,8 @@ public class LibraryLogic {
             if (!isInteger(line.trim())) {
                 throw new IllegalValueException("Error loading threshold from file: Bad threshold input");
             }
-            threshold = new Threshold(Integer.parseInt(line));
+            int i = Integer.parseInt(line);
+            threshold = new Threshold(i);
 
             // load rest as books
             while ((line = reader.readLine()) != null) {
@@ -139,7 +140,7 @@ public class LibraryLogic {
     public void saveBooksToFile(ReadOnlyLibrary library) throws IOException {
         createFileIfNotExists();
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            writer.println(threshold.toString());
+             writer.println(library.getThreshold());
             for (Book availableBook : library.getBookList()) {
                 writer.println(availableBook);
             }
