@@ -515,14 +515,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  AddressBook shows the list of people, ordering them from the nearest to the farthest upcoming appointment based on date.
 
 **Extensions**
-* 2a. Client name does not exist.
-    * 2a1. The system shows an error message.
-      Use case resumes at step 1.
-* 2b. The system found more than 1 matching name.
-    * 2b1. The system lists all matching clients' name with their ID code and other details for identification.
-    * 2b2. User enters the ID code shown from the list.
-      Steps 2b1-2b2 are repeated until the data entered are valid.
-      Use case resumes at step 2.
+* 1a. No clients with any upcoming info
+  * 1ai. The system would show a blank list.
+    Use case resumes at step 1. 
+
 
 ### Non-Functional Requirements
 
