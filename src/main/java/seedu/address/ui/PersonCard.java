@@ -54,7 +54,13 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        efficiency.setText(person.getEfficiency().value);
+        efficiency.setText(person.getEfficiency().value + "%");
+        double efficiencyValue = Double.parseDouble(person.getEfficiency().value);
+        if (efficiencyValue < 80 && efficiencyValue > 20) {
+            efficiency.setStyle("-fx-text-fill: yellow;");
+        } else if (efficiencyValue <= 20) {
+            efficiency.setStyle("-fx-text-fill: red;");
+        }
         Label departmentLabel = new Label(person.getDepartment().department);
         departmentLabel.setStyle("-fx-background-color: #3e7b91;");
         tags.getChildren().add(departmentLabel);
