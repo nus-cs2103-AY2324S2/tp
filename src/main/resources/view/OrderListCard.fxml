@@ -23,7 +23,7 @@
             </HBox>
             <Label fx:id="orderDate" styleClass="cell_small_label" text="\$orderDate"/>
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline"/>
-            <Label fx:id="amount" styleClass="cell_small_label" text="\$amount"/>
+            <Label fx:id="price" styleClass="cell_small_label" text="\$price"/>
             <Label fx:id="remark" styleClass="cell_small_label" text="\$remark"/>
             <Label fx:id="status" styleClass="cell_small_label" text="\$status"/>
         </VBox>

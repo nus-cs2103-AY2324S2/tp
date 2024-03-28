@@ -13,11 +13,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.orders.AddOrderCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 
@@ -49,18 +49,18 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         OrderDate orderDate = new OrderDate(DateTimeUtil.getCurrentTime());
         Deadline deadline;
         Remark remark;
-        Amount amount;
+        Price price;
         try {
             deadline = new Deadline(argMultimap.getValue(PREFIX_BY).get());
             remark = new Remark(argMultimap.getValue(PREFIX_DETAILS).get());
-            amount = new Amount(argMultimap.getValue(PREFIX_PRICE).get());
+            price = new Price(argMultimap.getValue(PREFIX_PRICE).get());
         } catch (NoSuchElementException error) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddOrderCommand.MESSAGE_USAGE), error);
         }
 
         Status status = new Status("pending");
-        Order order = new Order(orderId, orderDate, deadline, amount, remark, status);
+        Order order = new Order(orderId, orderDate, deadline, price, remark, status);
         return new AddOrderCommand(index, order);
     }
 

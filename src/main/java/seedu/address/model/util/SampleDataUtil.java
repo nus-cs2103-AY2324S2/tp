@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.order.Amount;
 import seedu.address.model.order.Deadline;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Price;
 import seedu.address.model.order.Remark;
 import seedu.address.model.order.Status;
 import seedu.address.model.person.Address;
@@ -28,18 +28,18 @@ public class SampleDataUtil {
         Set<Order> s1 = Set.of(
                 new Order(new OrderId("69c25c8d-9e34-4d9d-8bad-e378f203ae73"),
                         new OrderDate("01-03-2024 23:59"), new Deadline("01-03-2024 23:59"),
-                        new Amount("50"), new Remark("No remark"), new Status("PENDING")),
+                        new Price("50"), new Remark("No remark"), new Status("PENDING")),
                 new Order(new OrderId("b7d063c5-f803-4f75-b2ad-777ec679b75e"),
                         new OrderDate("10-02-2024 11:33"), new Deadline("14-02-2024 10:59"),
-                        new Amount("20"), new Remark("No remark"), new Status("PENDING")));
+                        new Price("20"), new Remark("No remark"), new Status("PENDING")));
 
         Set<Order> s2 = Set.of(
                 new Order(new OrderId("fc64826c-369b-4f45-97c0-f98e2edfa006"),
                         new OrderDate("10-10-2024 01:50"), new Deadline("15-10-2024 13:50"),
-                        new Amount("30"), new Remark("No remark"), new Status("CANCELED")),
+                        new Price("30"), new Remark("No remark"), new Status("CANCELED")),
                 new Order(new OrderId("cd7e3cb4-c310-4692-ba68-a779f6e09d68"),
                         new OrderDate("10-02-2024 11:33"), new Deadline("14-02-2024 10:59"),
-                        new Amount("20"), new Remark("No remark"), new Status("PENDING")));
+                        new Price("20"), new Remark("No remark"), new Status("PENDING")));
 
         Person p1 = new Person(new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),

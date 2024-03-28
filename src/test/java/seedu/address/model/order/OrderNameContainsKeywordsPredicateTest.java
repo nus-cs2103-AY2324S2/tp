@@ -47,7 +47,7 @@ public class OrderNameContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         OrderNameContainsKeywordsPredicate predicate = new OrderNameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new OrderBuilder(ROSES).withAmount("200").build()));
+        assertFalse(predicate.test(new OrderBuilder(ROSES).withPrice("200").build()));
     }
 
     @Test

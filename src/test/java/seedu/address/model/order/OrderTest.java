@@ -30,8 +30,8 @@ class OrderTest {
         // EditedRoses
         Order editedRoses;
 
-        // different amount -> returns false
-        editedRoses = new OrderBuilder(ROSES).withAmount("200").build();
+        // different price -> returns false
+        editedRoses = new OrderBuilder(ROSES).withPrice("200").build();
         assertNotEquals(ROSES, editedRoses);
 
         // different deadline -> returns false
@@ -73,7 +73,7 @@ class OrderTest {
                 + "{orderId=" + ROSES.getOrderId()
                 + ", orderDate=" + ROSES.getOrderDate()
                 + ", deadline=" + ROSES.getDeadline()
-                + ", amount=" + ROSES.getAmount()
+                + ", price=" + ROSES.getPrice()
                 + ", remark=" + ROSES.getRemark()
                 + ", status=" + ROSES.getStatus()
                 + "}";
