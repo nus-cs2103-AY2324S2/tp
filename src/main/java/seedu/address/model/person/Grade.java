@@ -10,8 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should only contain a single letter from A to D, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[A-C][+-]?|D|-";
+            "Grade should contain one from this grading system:\n"
+                    + "[A+, A, A-, B+, B, B-, C+, C, D+, D, F, -], and it should not be blank.";
+    public static final String VALIDATION_REGEX = "[A-B][+-]?|[C-D][+]?|F|-";
     public final String value;
 
     /**
@@ -37,6 +38,10 @@ public class Grade {
      */
     public static boolean isValidGrade(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public boolean isEmpty() {
+        return this.equals(new Grade());
     }
 
     @Override
