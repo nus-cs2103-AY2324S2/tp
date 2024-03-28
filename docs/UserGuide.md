@@ -200,7 +200,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Marking a person : `mark`
+### Marking a person as favourite: `mark`
 
 Marks the specified person from the contacts as favourite.
 
@@ -214,7 +214,7 @@ Examples:
 * `list` followed by `mark 2` marks the 2nd person in the contacts.
 * `find Betsy` followed by `mark 1` marks the 1st person in the results of the `find` command.
 
-### Unmarking a person : `unmark`
+### Unmarking a person as favourite: `unmark`
 
 Unmarks the specified person from the contacts as favourite.
 
