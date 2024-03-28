@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ "friends" ]
@@ -15,6 +16,7 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ "owesMoney", "friends" ]
@@ -24,6 +26,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ ]
@@ -33,6 +36,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ "friends" ]
@@ -42,6 +46,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ ]
@@ -51,6 +56,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ ]
@@ -60,6 +66,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "company": "",
+    "meeting": "",
     "priority": "",
     "starred": false,
     "tags" : [ ]

@@ -46,10 +46,10 @@ public class StarCommandTest {
 
         assertTrue(contactToStar != null); // Assert that the contact is found initially
 
-        String expectedMessage = "Nice! I have starred this contact:\n" + contactToStar.getName() + " ★";
+        String expectedMessage = "Nice! You have starred this contact:\n" + contactToStar.getName() + " ★";
         Person expectedStarredContact = new Person(contactToStar.getName(), contactToStar.getPhone(),
                 contactToStar.getEmail(), contactToStar.getAddress(), contactToStar.getCompany(),
-                contactToStar.getPriority(), true, contactToStar.getTags());
+                contactToStar.getMeeting(), contactToStar.getPriority(), true, contactToStar.getTags());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(contactToStar, expectedStarredContact);
@@ -72,7 +72,7 @@ public class StarCommandTest {
 
         // Assert
         Person starredPerson = model.getFilteredPersonList().get(0);
-        assertEquals("Nice! I have starred this contact:\nAlex Tan ★", commandResult.getFeedbackToUser());
+        assertEquals("Nice! You have starred this contact:\nAlex Tan ★", commandResult.getFeedbackToUser());
         assertEquals(contactName, starredPerson.getName().fullName);
         assertEquals(true, starredPerson.isStarred());
     }

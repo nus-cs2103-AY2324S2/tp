@@ -45,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label company;
     @FXML
+    private Label meeting;
+    @FXML
     private Circle priorityDot;
 
     /**
@@ -64,6 +66,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         setCompany();
+        setMeeting();
 
         String priorityValue = person.getPriority().value;
         if ("high".equals(priorityValue)) {
@@ -84,6 +87,15 @@ public class PersonCard extends UiPart<Region> {
             company.setVisible(true);
         } else {
             company.setPrefHeight(0.0);
+        }
+    }
+
+    private void setMeeting() {
+        if (person.getMeeting() != null) {
+            meeting.setText(person.getMeeting().toString());
+            meeting.setVisible(true);
+        } else {
+            meeting.setPrefHeight(0.0);
         }
     }
 
