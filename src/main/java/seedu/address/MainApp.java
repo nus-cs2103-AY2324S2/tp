@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
@@ -33,6 +34,8 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
+    public static final Version VERSION = new Version(1, 3, 0, true);
+
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private Ui ui;
@@ -43,7 +46,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AssetBook-3 ]===========================");
+        logger.info("=============================[ Initializing AssetBook ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -163,14 +166,14 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AssetBook-3");
+        logger.info("Starting AssetBook " + MainApp.VERSION);
         ui.start(primaryStage);
         ui.showMessage(initialWelcomeMessage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Asset Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
