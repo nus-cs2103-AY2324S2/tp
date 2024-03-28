@@ -39,6 +39,41 @@ public class NameTest {
     }
 
     @Test
+    public void compareTo() {
+        Name fname = new Name("Alice");
+        Name sname = new Name("Bob");
+        Name tname = new Name("Charlie");
+
+
+        // same values -> returns 0
+        assertTrue(fname.compareTo(fname) == 0);
+        assertTrue(sname.compareTo(sname) == 0);
+        assertTrue(tname.compareTo(tname) == 0);
+        assertFalse(fname.compareTo(sname) == 0);
+        assertFalse(sname.compareTo(tname) == 0);
+        assertFalse(tname.compareTo(fname) == 0);
+
+        // Name object where method is invoked upon with lower lexicographical ordering
+        // than the Name object passed in as argument -> returns negative value
+        assertTrue(fname.compareTo(sname) < 0);
+        assertTrue(sname.compareTo(tname) < 0);
+        assertTrue(fname.compareTo(tname) < 0);
+        assertFalse(sname.compareTo(fname) < 0);
+        assertFalse(tname.compareTo(sname) < 0);
+        assertFalse(tname.compareTo(fname) < 0);
+
+        // Name object where method is invoked upon with higher lexicographical ordering
+        // than the Name object passed in as argument -> returns positive value
+        assertTrue(sname.compareTo(fname) > 0);
+        assertTrue(tname.compareTo(sname) > 0);
+        assertTrue(tname.compareTo(fname) > 0);
+        assertFalse(fname.compareTo(sname) > 0);
+        assertFalse(sname.compareTo(tname) > 0);
+        assertFalse(fname.compareTo(tname) > 0);
+
+    }
+
+    @Test
     public void equals() {
         Name name = new Name("Valid Name");
 

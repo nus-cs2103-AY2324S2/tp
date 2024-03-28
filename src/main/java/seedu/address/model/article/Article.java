@@ -92,11 +92,11 @@ public class Article {
             return true;
 
         /*
-         * Same authors may have many drafts of same article. If it is not draft and has same title and authors,
+         * If it is not draft and has same title as another article,
          * consider it as same article
         */
         } else if (otherArticle.getStatus() != Status.DRAFT && this.getStatus() != Status.DRAFT
-                && otherArticle.getTitle().equals(this.title) && otherArticle.getAuthors() == this.authors) {
+                && otherArticle.getTitle().equals(this.title)) {
             return true;
         } else {
             return false;

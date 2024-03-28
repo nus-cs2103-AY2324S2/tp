@@ -94,6 +94,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sorts the persons in the address book by the attribute derived from a given prefix.
+     */
+    public void sortAddressBook(String prefix) {
+        persons.sortPersons(prefix);
+    }
+
     //// util methods
 
     @Override
