@@ -12,6 +12,7 @@ Class Email
 Class Name
 Class TelegramHandle
 Class Tag
+Class Link
 Class Timetable
 Class Day
 Class Period
@@ -26,6 +27,7 @@ Student -[hidden]up-> HiddenOutside
 Student *--> Name
 Student *--> StudentId
 Student *--> Email
+Student *--> Link
 Student *--> TelegramHandle
 Student *--> "*" Tag
 Student *--> Timetable
