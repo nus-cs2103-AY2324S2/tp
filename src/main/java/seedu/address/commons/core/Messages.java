@@ -21,10 +21,10 @@ public class Messages {
     public static final String MESSAGE_EMPTY_BOOKLIST_FIELD = "Person is currently not borrowing any books!";
     public static final String MESSAGE_BOOK_DOES_NOT_EXIST = "Person does not have this book borrowed currently!";
     public static final String MESSAGE_FILLED_BOOKLIST_FIELD = "Person has reached his maximum borrowing limit!";
-
     // Merit Score
     public static final String MESSAGE_INSUFFICIENT_MERIT_SCORE = "User's has insufficient Merit Score."
             + "\nMerit Score threshold is set at: %s";
+    public static final String MESSAGE_BOOK_NOT_IN_LIBRARY = "Book: %s is not available in the library.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.

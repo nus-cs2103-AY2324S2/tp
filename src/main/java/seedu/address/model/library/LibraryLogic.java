@@ -39,8 +39,9 @@ public class LibraryLogic {
      * Constructs a LibraryLogic object with default file path
      */
     public LibraryLogic() {
-        this.filePath = "./library.txt";
+        this.filePath = "data\\library.txt";
         this.availableBooks = new ArrayList<>();
+        this.threshold = new Threshold();
     }
 
     /**
@@ -125,8 +126,8 @@ public class LibraryLogic {
         return threshold;
     }
 
-    public boolean hasBooks() {
-        return availableBooks.size() > 0;
+    public boolean hasNoAvailableBooks() {
+        return availableBooks.isEmpty();
     }
 
     /**
@@ -138,7 +139,7 @@ public class LibraryLogic {
     public void saveBooksToFile(ReadOnlyLibrary library) throws IOException {
         createFileIfNotExists();
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            writer.println(threshold);
+            writer.println(threshold.toString());
             for (Book availableBook : library.getBookList()) {
                 writer.println(availableBook);
             }

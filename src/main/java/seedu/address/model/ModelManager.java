@@ -174,6 +174,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasBookInLibrary(Book book) {
+        return library.hasBookInLibrary(book);
+    }
+
+    @Override
+    public Book popBookFromLibrary(Book book) {
+        return library.popBookFromLibrary(book);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
