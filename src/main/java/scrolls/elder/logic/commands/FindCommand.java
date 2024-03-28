@@ -22,16 +22,17 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
-    private final Boolean searchVolunteer;
-    private final Boolean searchBefriendee;
+    private final Boolean isSearchingVolunteer;
+    private final Boolean isSearchingBefriendee;
 
     /**
      * Creates a FindCommand to find the specified {@code NameContainsKeywordsPredicate}
      */
-    public FindCommand(NameContainsKeywordsPredicate predicate, Boolean searchVolunteer, Boolean searchBefriendee) {
+    public FindCommand(NameContainsKeywordsPredicate predicate,
+                       Boolean isSearchingVolunteer, Boolean isSearchingBefriendee) {
         this.predicate = predicate;
-        this.searchBefriendee = searchBefriendee;
-        this.searchVolunteer = searchVolunteer;
+        this.isSearchingBefriendee = isSearchingBefriendee;
+        this.isSearchingVolunteer = isSearchingVolunteer;
     }
 
     @Override
@@ -40,12 +41,15 @@ public class FindCommand extends Command {
 
         PersonStore store = model.getMutableDatastore().getMutablePersonStore();
 
-        if (searchVolunteer && searchBefriendee) {
+        assert (isSearchingVolunteer || isSearchingBefriendee)
+                : "At least one or both isSearchingVolunteer and isSearchingBefriendee should be true.";
+
+        if (isSearchingVolunteer && isSearchingBefriendee) {
             store.updateFilteredPersonList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, store.getFilteredPersonList().size()));
 
-        } else if (searchVolunteer) {
+        } else if (isSearchingVolunteer) {
             store.updateFilteredVolunteerList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW_WITH_ROLE,
@@ -53,7 +57,6 @@ public class FindCommand extends Command {
                             "volunteer"));
 
         } else {
-            assert searchBefriendee : "searchBefriendee should be true.";
             store.updateFilteredBefriendeeList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW_WITH_ROLE,
@@ -76,16 +79,16 @@ public class FindCommand extends Command {
 
         FindCommand otherFindCommand = (FindCommand) other;
         return predicate.equals(otherFindCommand.predicate)
-                && searchVolunteer.equals(otherFindCommand.searchVolunteer)
-                && searchBefriendee.equals(otherFindCommand.searchBefriendee);
+                && isSearchingVolunteer.equals(otherFindCommand.isSearchingVolunteer)
+                && isSearchingBefriendee.equals(otherFindCommand.isSearchingBefriendee);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("predicate", predicate)
-                .add("searchVolunteer", searchVolunteer)
-                .add("searchBefriendee", searchBefriendee)
+                .add("isSearchingVolunteer", isSearchingVolunteer)
+                .add("isSearchingBefriendee", isSearchingBefriendee)
                 .toString();
     }
 }

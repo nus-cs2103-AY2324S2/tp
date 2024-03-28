@@ -94,8 +94,8 @@ public class FindCommandTest {
         String expected = FindCommand.class.getCanonicalName()
                 + "{"
                 + "predicate=" + predicate + ", "
-                + "searchVolunteer=true, "
-                + "searchBefriendee=true"
+                + "isSearchingVolunteer=true, "
+                + "isSearchingBefriendee=true"
                 + "}";
         assertEquals(expected, findCommand.toString());
     }

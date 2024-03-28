@@ -15,9 +15,9 @@ import scrolls.elder.model.person.NameContainsKeywordsPredicate;
 public class FindCommandParser implements Parser<FindCommand> {
 
     enum FindType {
-        VOLUNTEER_ONLY,
-        BEFRIENDEE_ONLY,
-        BOTH
+        SEARCH_VOLUNTEER_ONLY,
+        SEARCH_BEFRIENDEE_ONLY,
+        SEARCH_BOTH
     }
 
 
@@ -45,13 +45,15 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] newNameKeywords = newTrimmedArgs.split("\\s+");
 
-        if (findType.equals(FindType.BOTH)) {
+        if (findType.equals(FindType.SEARCH_BOTH)) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(newNameKeywords)),
                     true, true);
-        } else if (findType.equals(FindType.VOLUNTEER_ONLY)) {
+        } else if (findType.equals(FindType.SEARCH_VOLUNTEER_ONLY)) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(newNameKeywords)),
                     true, false);
         } else {
+            assert findType.equals(FindType.SEARCH_BEFRIENDEE_ONLY);
+
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(newNameKeywords)),
                     false, true);
         }
@@ -59,8 +61,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     private static FindType parseForRoles(String[] nameKeywords) throws ParseException {
-        boolean searchVolunteer = false;
-        boolean searchBefriendee = false;
+        boolean isSearchingVolunteer = false;
+        boolean isSearchingBefriendee = false;
 
         // If both Volunteer and Befriendee roles are present, show error.
         if (Arrays.stream(nameKeywords).anyMatch(string -> string.equals(PREFIX_ROLE + "volunteer"))
@@ -70,21 +72,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (Arrays.stream(nameKeywords).anyMatch(string -> string.equals(PREFIX_ROLE + "volunteer"))) {
-            searchVolunteer = true;
-            searchBefriendee = false;
+            isSearchingVolunteer = true;
+            isSearchingBefriendee = false;
         }
 
         if (Arrays.stream(nameKeywords).anyMatch(string -> string.equals(PREFIX_ROLE + "befriendee"))) {
-            searchBefriendee = true;
-            searchVolunteer = false;
+            isSearchingBefriendee = true;
+            isSearchingVolunteer = false;
         }
 
-        if (searchVolunteer) {
-            return FindType.VOLUNTEER_ONLY;
-        } else if (searchBefriendee) {
-            return FindType.BEFRIENDEE_ONLY;
+        if (isSearchingVolunteer) {
+            return FindType.SEARCH_VOLUNTEER_ONLY;
+        } else if (isSearchingBefriendee) {
+            return FindType.SEARCH_BEFRIENDEE_ONLY;
         } else {
-            return FindType.BOTH;
+            return FindType.SEARCH_BOTH;
         }
 
     }
