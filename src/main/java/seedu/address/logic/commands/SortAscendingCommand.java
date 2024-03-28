@@ -14,12 +14,12 @@ import seedu.address.model.Model;
 public class SortAscendingCommand extends Command {
 
     public static final String COMMAND_WORD = "sortStarsAscending";
-    public static final String MESSAGE_SUCCESS = "Sorted all persons";
+    public static final String MESSAGE_SUCCESS = "Sorted all students";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateSortedPersonListSortAscending();
+        model.updateSortedStudentListSortAscending();
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

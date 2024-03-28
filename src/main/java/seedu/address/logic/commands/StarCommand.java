@@ -10,8 +10,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Star;
+import seedu.address.model.student.Star;
+import seedu.address.model.student.Student;
 
 /**
  * Adds a star to a student in the address book.
@@ -21,21 +21,21 @@ public class StarCommand extends Command {
 
     public static final String COMMAND_WORD = "star";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the student identified "
+            + "by the index number used in the last student listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_STAR + "[STAR]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STAR + "3";
 
-    public static final String MESSAGE_ADD_STAR_SUCCESS = "Added stars to Person: %1$s";
+    public static final String MESSAGE_ADD_STAR_SUCCESS = "Added stars to Student: %1$s";
 
     private final Index index; // Index to give star
     private final Star star; // Number of stars given
 
     /**
-     * @param index of the person in the filtered person list to give the star.
+     * @param index of the student in the filtered student list to give the star.
      * @param star number of stars given to student.
      */
     public StarCommand(Index index, Star star) {
@@ -47,23 +47,23 @@ public class StarCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException { // executes the starring
-        List<Person> lastShownList = model.getCorrectPersonList(); // get the list of persons
+        List<Student> lastShownList = model.getCorrectStudentList(); // get the list of students
 
         if (index.getZeroBased() >= lastShownList.size()) { // if index out of range
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased()); // get Person indexed
-        Star starToEdit = personToEdit.getStar(); // return the stars
-        Star editedStar = new Star(starToEdit.numOfStars + this.star.numOfStars); // new Star to be added
+        Student studentToEdit = lastShownList.get(index.getZeroBased()); // get Student indexed
+        Star starToEdit = studentToEdit.getStar(); // return the stars
+        Star edittedStar = new Star(starToEdit.numOfStars + this.star.numOfStars); // new Star to be added
 
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getMajor(), editedStar, personToEdit.getBolt(), personToEdit.getTags());
+        Student editedStudent = new Student(
+                studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+                studentToEdit.getMajor(), edittedStar, studentToEdit.getBolt(), studentToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_STAR_SUCCESS, Messages.format(editedPerson)));
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_ADD_STAR_SUCCESS, Messages.format(editedStudent)));
     }
 
     @Override

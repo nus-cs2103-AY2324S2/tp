@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.BoltCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Bolt;
+import seedu.address.model.student.Bolt;
 
 /**
  * Parses input arguments and creates a new EditCommand object

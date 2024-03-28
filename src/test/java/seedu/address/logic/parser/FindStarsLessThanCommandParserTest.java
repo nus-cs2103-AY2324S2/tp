@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindStarsLessThanCommand;
-import seedu.address.model.person.StarsLessThanPredicate;
+import seedu.address.model.student.StarsLessThanPredicate;
 
 public class FindStarsLessThanCommandParserTest {
     private FindStarsLessThanCommandParser parser = new FindStarsLessThanCommandParser();
