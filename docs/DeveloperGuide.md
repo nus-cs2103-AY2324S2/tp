@@ -186,9 +186,6 @@ The `schedule` command is implemented to allow users to schedule meetings within
 The following sequence diagram shows how a schedule meeting operation goes through the `Logic` component:
 ![Schedule Meeting Sequence Diagram](images/ScheduleMeetingSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ScheduleCommandParser` and `ScheduleCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
-</div>
-
 #### Unschedule Command
 The `unschedule` command is designed to provide users with the capability to remove previously scheduled meetings. The primary action is the removal of the Meeting object from the specified person's record in the Model.
 
