@@ -46,11 +46,11 @@ public class InterviewCard extends UiPart<Region> {
         super(FXML);
         this.interview = interview;
         id.setText(displayedIndex + ". ");
-        applicantNamePhone.setText("Applicant:   " + interview.getApplicant().getName().toString());
+        applicantNamePhone.setText("Interview with " + interview.getApplicant().getName().toString());
         interviewerNamePhone.setText("Interviewer: " + interview.getInterviewer().getName().toString());
-        date.setText(interview.getDate().toString());
-        startEndTime.setText(interview.getStartTime().toString() + " ~ " + interview.getEndTime().toString());
-        description.setText(interview.getDescription());
+        date.setText("Date: " + interview.getDate().toString());
+        startEndTime.setText(interview.getStartTime().toString() + "-" + interview.getEndTime().toString());
+        description.setText("Description: " + interview.getDescription());
     }
 
     @Override

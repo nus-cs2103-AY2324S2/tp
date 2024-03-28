@@ -178,7 +178,7 @@ The above `execute` operations utilise `ModelManager#updateFilteredPersonList()`
 
 The following class diagram summarizes the organisation of the `FindCommand` variant classes.
 
-<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram" width="550"/>
+<puml src="diagrams/find/FindCommandClass.puml" alt="FindCommandClassDiagram"/>
 
 Given below is an example usage scenario and how the find mechanism behaves at each step. All 3 variants behave in the same way, just with their keywords being of different types.
 
@@ -199,7 +199,7 @@ Step 2. The user executes `find_name` command to find a person with the name Rya
 <br>
 The following sequence diagram shows how a find operation, specifically `find_name`, goes through the `Logic` component. `find_phone` and `find_email` also behave in a similar way.
 
-<puml src="diagrams/FindSequenceDiagram-Logic.puml" alt="FindSequenceDiagram-Logic" width="550"/>
+<puml src="diagrams/find/FindSequenceDiagram-Logic.puml" alt="FindSequenceDiagram-Logic"/>
 
 
 #### Design considerations:
@@ -233,7 +233,7 @@ The applicant/interviewer status mechanism is facilitated by `AddApplicantStatus
 
 The following class diagram shows the structure of `AddApplicantStatusCommand`, `AddInterviewerStatusCommand`, `ApplicantStatus`, `InterviewerStatus`:
 
-<puml src="diagrams/add-status/StatusCommandClasses.puml" width="250"/>
+<puml src="diagrams/add-status/StatusCommandClasses.puml"/>
 
 Given below is an example usage scenario and how the applicant/interviewer status mechanism behaves at each step.
 
@@ -259,7 +259,7 @@ Step 4. The user now decides that she wants to edit `Yash`'s status to "complete
 
 The following sequence diagram illustrates step 4:
 
-<puml src="diagrams/add-status/StatusCommandSequence.puml" width="250"/>
+<puml src="diagrams/add-status/StatusCommandSequence.puml"/>
 
 #### Design considerations:
 
