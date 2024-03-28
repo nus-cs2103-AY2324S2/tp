@@ -1,0 +1,17 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters bolt command;
+if () then ([else])
+  :Error:Invalid command format;
+  stop
+( [Student index and number of bolts to award provided]) elseif () then ([else])
+  :Error: Invalid Student index;
+  stop
+else ( [Student index is in valid range of Student List])
+endif
+  :Bolt Command successfully executes.
+Student is awarded the number of bolts.;
+stop
+
+@enduml
