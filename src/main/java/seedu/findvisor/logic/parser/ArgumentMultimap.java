@@ -75,4 +75,17 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Verifies that no value associated with the given {@code prefix} in the {@code argMultimap} is blank.
+     * A {@code prefix} value is blank if it is empty or has only whitespace.
+     * @throws ParseException if any of the values associated with the {@code prefix}
+     */
+    public void verifyNoBlankPrefixValueFor(Prefix prefix) throws ParseException {
+        List<String> prefixValues = argMultimap.get(prefix);
+        boolean hasBlankPrefixValue = prefixValues.stream().anyMatch(String::isBlank);
+        if (hasBlankPrefixValue) {
+            throw new ParseException(String.format(Messages.MESSAGE_EMPTY_FIELD, prefix.getPrefix()));
+        }
+    }
 }

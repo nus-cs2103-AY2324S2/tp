@@ -8,7 +8,8 @@
       "start" : "",
       "end" : "",
       "remark" : ""
-    }
+    },
+    "remark": ""
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf242",
@@ -18,6 +19,7 @@
       "start" : "",
       "end" : "",
       "remark" : ""
-    }
+    },
+    "remark": ""
   } ]
 }

@@ -7,12 +7,14 @@ import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.findvisor.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.findvisor.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.findvisor.commons.core.index.Index;
 import seedu.findvisor.logic.commands.exceptions.CommandException;
@@ -21,6 +23,8 @@ import seedu.findvisor.model.Model;
 import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
+import seedu.findvisor.model.tag.Tag;
+import seedu.findvisor.model.util.SampleDataUtil;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -38,9 +42,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_TAG_FINANCIAL_PLAN = "PRUTravellerProtect";
     public static final String VALID_MEETING_REMARK = "Meeting with someone";
     public static final String VALID_MEETING_START_STR = "12-02-2024T12:00";
     public static final String VALID_MEETING_END_STR = "12-02-2024T13:00";
+    public static final String REMARK = "Wants to migrate to England";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,12 +59,24 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_SET = " " + PREFIX_TAG + VALID_TAG_FRIEND + " "
+            + PREFIX_TAG + VALID_TAG_FINANCIAL_PLAN;
+    public static final String REMARK_DESC = " " + PREFIX_REMARK + REMARK;
+
+    public static final String EMPTY_NAME_DESC = " " + PREFIX_NAME;
+    public static final String EMPTY_PHONE_DESC = " " + PREFIX_PHONE;
+    public static final String EMPTY_EMAIL_DESC = " " + PREFIX_EMAIL;
+    public static final String EMPTY_ADDRESS_DESC = " " + PREFIX_ADDRESS;
+    public static final String EMPTY_TAG_DESC = " " + PREFIX_TAG;
+    public static final String INCOMPLETE_TAG_DESC = " " + PREFIX_TAG + " " + PREFIX_TAG + "friends";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC_SPACE = " " + PREFIX_TAG + "hub by"; // ' ' not allowed in tags
+    public static final String INVALID_TAG_DESC_EMPTY = " " + PREFIX_TAG + ""; // empty tag not allowed
     public static final String INVALID_MEETING_REMARK = "INVALID MEETING REMARK".repeat(100);
     public static final String INVALID_MEETING_START_STR = "INVALID MEETING START";
     public static final String INVALID_MEETING_END_STR = "INVALID MEETING END";
@@ -70,6 +89,10 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String[] ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS = {VALID_TAG_FRIEND, VALID_TAG_FINANCIAL_PLAN};
+    public static final String[] ARRAY_OF_SINGLE_VALID_TAG_STRING = {VALID_TAG_FINANCIAL_PLAN};
+    public static final Set<Tag> SET_OF_VALID_TAGS = SampleDataUtil.getTagSet(ARRAY_OF_MULTIPLE_VALID_TAG_STRINGS);
+    public static final Set<Tag> SET_OF_VALID_TAG = SampleDataUtil.getTagSet(ARRAY_OF_SINGLE_VALID_TAG_STRING);
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 

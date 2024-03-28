@@ -22,6 +22,7 @@ import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Name;
 import seedu.findvisor.model.person.Person;
 import seedu.findvisor.model.person.Phone;
+import seedu.findvisor.model.person.Remark;
 import seedu.findvisor.model.tag.Tag;
 
 /**
@@ -98,8 +99,9 @@ public class ScheduleCommand extends Command {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
+        Optional<Remark> remark = personToEdit.getRemark();
 
-        return new Person(name, phone, email, address, tags, Optional.of(meeting));
+        return new Person(name, phone, email, address, tags, Optional.of(meeting), remark);
     }
 
     @Override

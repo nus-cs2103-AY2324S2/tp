@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -195,6 +195,84 @@ The execution flow of the `unschedule` command is similar to the one shown for `
 The implementation of the `schedule` and `unschedule` command are in this manner to maintain consistency with the existing command structure.
 
 For the schedule command, in the case where a person already has a meeting scheduled, the schedule command will result in an error, instead of overwriting the existing meeting details. This behavior is chosen over the alternative of overwriting the existing meeting details to guard against accidental data loss.
+
+### Remark Feature
+
+Users are able to add a `Remark` to a `Person` in FINDvisor to note down some information about a `Person`.
+
+The remark feature is implemented through creating a `RemarkCommand`, which updates the `Remark` of a `Person`.
+A separate command is used to support the remark feature to separate the logic of the personal particulars of a `Person` from the `Remark`.
+
+`Remark` is implemented with the use of the `Optional` generic class (i.e. `Optional<Remark>`) as it is an optional attribute of a `Person`.
+While it is possible to determine an empty `Remark` through its value, the `Optional` generic class provides a better abstraction for when a `Remark` is empty.
+
+When a user passes a parameter that is either empty or consists exclusively of whitespace, the `Remark` attribute of a `Person` would be updated to `Optional.empty()`.
+This is equivalent to a user removing the previous `Remark` of a `Person`.
+
+The following sequence diagram shows how the remark value is parsed through the `Logic` component:
+
+![RemarkSequenceDiagram-Logic](images/RemarkSequenceDiagram-Logic.svg)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar for `LogicManager` does not end after the `RemarkCommand` is returned. The above diagram is only meant to highlight the parsing for `Remark` which is why the sequence diagram ends here.
+</div>
+
+#### Proposed Changes
+
+A proposed change to the current remark feature is to allow users to have remarks added as an optional field for `AddCommand` and `EditCommand` for the convenience of users.
+The `RemarkCommand` can remain for users  to only update the `Remark` of a `Person`.
+
+### Find Persons by field feature
+This feature allows users to search for a specific `Person` field based on the user-supplied string, all `Person` that contains the specified search string in the specified field will be displayed to the user. The find mechanism is facilitated by `FindCommand` and `FindCommandParser` that extends `Command` and `Parser` respectively. Note that `FindCommandParser` implements `FindCommand#parse(String)` which checks if there is only one parameter supplied by the user which corresponds to the `Person` field to be searched.
+
+The current supported `Person` fields that can be searched are:
+- Name
+- Address
+- Phone
+- Email
+- Tags
+
+The following sequence diagram below shows how `Model` and `LogicManger` components interact with the find feature. Below are the definitions used in the sequence diagram:
+- `find`: `find n/John`
+- `argument`: `n/John`
+- `value`: `John`
+
+![FindSequenceDiagram-Model](images/FindSequenceDiagram.svg)
+
+1. The user executes `find n/John` to find all `Person` with `Name` containing `John`.
+2. The `FindCommandParser` checks that only one parameter is present in the user input. This parameter is used to indicate which `Person` field to search for.
+3. When called upon to parse the value of the parameter specified by the user, the `FindCommandParser` creates an `XYZPredicate` that encapsulates the user search string e.g. `John` (`XYZ` is a placeholder for the specific `Person` field e.g. `NameContainsKeywordPredicate`).
+4. All `XYZPredicate` classes (e.g.`NameContainsKeywordPredicate`, `EmailContainsKeywordPredicate`) inherit from `Predicate<Person>` interface so that they can be treated similarly where possible e.g, during testing.
+5. A new `FindCommand` instance is created by `FindCommandParser` and is executed by `LogicManger`.
+6. `FindCommand` will call `Model#updateFilteredPersonList(XYZPredicate)` to update the `UI` and display all `Person` that has `Name` containing `John`.
+7. The result of the command execution is encapsulated as a `CommandResult` object which is returned back to `LogicManager`.
+
+#### Proposed Changes
+Include `Person` meetings as a search field. A user can supply a given date and will return all `Person` that have a meeting starting or ending on the specified date.
+
+### AddTag Feature
+This feature allows users to add `tags` to a `person` within the contact list, without the need to use the `edit` command.
+
+This feature is implemented through the `AddTagCommand` and the `AddTagCommandParser` which extends `Command` and `Parser` respectively.
+
+The `AddTagCommandParser` takes in an `index` and the `tags` to add to a person. If both are supplied and valid, they are passed into the `AddTagCommand`, if not it will throw an exception according to the error.
+
+The following sequence diagram shows how `AddTag` interacts with `Logic`.
+
+![AddTagSequenceDiagram](images/AddTagSequenceDiagram.svg)
+
+1. The user keys in `addtags 1 t/validTag1 t/validTag2` to add 2 valid tags to the `person` at the first `index`.
+2. The `AddTagCommandParser` validates `index` and `tags`, then returns a new `AddTagCommand` with the corresponding index and set of tags.
+3. The `LogicManager` then executes the `AddTagCommand`.
+4. The `AddTagCommand` finds the `Person` to add tags to using `Index` and creates a new `Person` with the added tags.
+5. `AddTagCommand` then calls the `setPerson(person, personWithAddedTags)` method to set the old `Person` to the newly created `Person`.
+6. `AddTagCommand` then calls `updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` to update `UI` to display the person with the newly added `Tags`.
+7. `CommandResult` is then returned to `LogicManager`.
+
+#### Proposed future improvement
+Allow users to add tags to multiple people at once.
 
 ### \[Proposed\] Undo/redo feature
 
