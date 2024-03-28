@@ -31,6 +31,12 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
   * [Deleting a student: `delete`](#feature-delete)
 
+  * [Adding a group: `addgroup`](#feature-addgroup)
+
+  * [Editing a group: `editgroup`](#feature-editgroup)
+
+  * [Deleting a group: `deletegroup`](#feature-deletegroup)
+
   * [Mail broadcast: `mail`](#feature-mail)
 
   * [Clearing all entries: `clear`](#feature-clear)
@@ -208,6 +214,30 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the major book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### <span id='feature-addgroup'> Adding a group: `addgroup` <span>
+Adds a tutorial/lab/recitation group to be assigned on students later.
+Format: `addgroup g/[GROUP NAME]`
+* Adds a group with a given group name.
+* Group names are unique.
+* The group name must be prefixed by TUT/LAB/REC, followed by two digits.
+
+### <span id='feature-editgroup'> Editing a group: `editgroup` <span>
+Adds a tutorial/lab/recitation group to be assigned on students later.
+Format: `addgroup g/[GROUP NAME] tg/[TELEGRAM INVITE LINK]`
+* Assigns a Telegram group invite link to a group with given group name.
+* The invite link must be a valid Telegram group invite link
+
+Examples
+* `editgroup g/LAB12 tg/https://t.me/abcdefg` Adds the specified link to group LAB12.
+
+### <span id='feature-deletegroup'> Deleting a group: `deletegroup` <span>
+Adds a tutorial/lab/recitation group to be assigned on students later.
+Format: `deletegroup g/[GROUP NAME]`
+* Adds a group with a given group name.
+
+Examples
+* `deletegroup g/LAB12` Deletes group LAB12.
 
 ### <span id='feature-mail'> Mail broadcast : `mail` <span>
 
