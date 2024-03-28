@@ -519,15 +519,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1ai. The system would show a blank list.
     Use case resumes at step 1. 
 
-**Extensions**
-* 2a. Client name does not exist.
-    * 2a1. The system shows an error message.
-      Use case resumes at step 1.
-* 2b. The system found more than 1 matching name.
-    * 2b1. The system lists all matching clients' name with their ID code and other details for identification.
-    * 2b2. User enters the ID code shown from the list.
-      Steps 2b1-2b2 are repeated until the data entered are valid.
-      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
