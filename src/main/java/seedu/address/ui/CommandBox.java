@@ -83,6 +83,7 @@ public class CommandBox extends UiPart<Region> {
             // Fallthrough
         case DOWN:
             handleArrowKeyPressed(e);
+            break;
         default:
             break;
         }
