@@ -143,7 +143,7 @@ public class Library implements ReadOnlyLibrary {
             int i = bookList.indexOf(book);
             return bookList.remove(i);
         }
-        return null; //TODO assert non null when borrowing from library
+        return null;
     }
 
     /**

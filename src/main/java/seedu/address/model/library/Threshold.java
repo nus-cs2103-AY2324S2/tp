@@ -24,10 +24,6 @@ public class Threshold {
         this.threshold = -3;
     }
 
-    public int getLimit() {
-        return threshold;
-    }
-
     public boolean isLessThanOrEqualTo(MeritScore meritScore) {
         return threshold <= meritScore.getMeritScoreInt();
     }
@@ -39,7 +35,7 @@ public class Threshold {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Index)) {
+        if (!(other instanceof Threshold)) {
             return false;
         }
 

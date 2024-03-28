@@ -180,7 +180,7 @@ public class ModelManager implements Model {
 
     @Override
     public Book popBookFromLibrary(Book book) {
-        return popBookFromLibrary(book);
+        return library.popBookFromLibrary(book);
     }
 
     @Override
