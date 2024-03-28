@@ -1,0 +1,56 @@
+@startuml
+skinparam ArrowFontStyle plain
+hide footbox
+skinparam sequenceMessageAlign center
+
+box "<color #white> Logic </color>" #C8C8FA
+participant "<color #white> :LogicManager </color>" as LM #3333C4
+participant "<color #white> :AddressBookParser </color>" as ABP #3333C4
+participant "<color #white> :FindTagCommandParser </color>" as FCP #3333C4
+participant "<color #white> ftc:FindTagCommand </color>" as ftc #3333C4
+participant "<color #white> r:CommandResult </color>" as r #3333C4
+end box
+
+box "<color #white> Model </color>" #F97181
+participant "<color #white> m:Model </color>" as m #9D0012
+end box
+
+box "<color #white> Storage </color>" #E41F36
+participant "<color #white> :Storage </color>" as S #9D0012
+end box
+
+[-> LM: execute("find-tag[TAG]")
+activate LM
+LM -> ABP : parseCommand("find-tag [TAG]")
+activate ABP
+create FCP
+ABP -> FCP ++
+
+create ftc
+FCP -> ftc ++
+ftc --> FCP --
+FCP --> ABP : ftc
+deactivate FCP
+destroy FCP
+
+ABP --> LM : ftc
+deactivate ABP
+
+LM -> ftc : execute(m)
+activate ftc
+ftc -> m ++ : updateFilteredClientList(predicate)
+m --> ftc -- : ucl
+
+create r
+ftc -> r ++
+r --> ftc --
+ftc --> LM -- : r
+
+LM -> m ++ : getAddressBook()
+m --> LM -- : ab
+
+LM -> S ++ : saveAddressBook(ab)
+S -> LM --
+
+[<- LM --
+@enduml
