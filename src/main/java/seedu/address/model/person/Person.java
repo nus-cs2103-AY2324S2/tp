@@ -136,7 +136,6 @@ public class Person {
      */
     public boolean hasTask(Task task) {
         for (Task t : taskList) {
-            System.out.println(task.getName().fullName);
             if (t.equals(task)) {
                 return true;
             }

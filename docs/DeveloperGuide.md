@@ -203,7 +203,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-1. The AddressBookParser parses the command string given by the user, and looks for the command word "delete project". Then AddProjectCommandParser parse function is called.
+1. The AddressBookParser parses the command string given by the user, and looks for the command word "delete project". Then DeleteProjectCommandParser parse function is called.
 2. If the PROJECT_NAME is an empty string, an exception is thrown, else the deleteProjectCommand execution function is called.
 3. The `DeleteProjectCommand` class is responsible for adding a project to the project list.
    - The constructor of the class takes in a project of type Project.
@@ -214,8 +214,24 @@ This section describes some noteworthy details on how certain features are imple
      - As the projects in the list have unique name, we don't need to worry about returning the wrong project
    - Else the project is successfully deleted
 
-![Interactions Inside the Logic Component for the `delete project Duke` Command](images/DeleteProjectSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete task ui /in Duke` Command](images/DeleteProjectSequenceDiagram.png)
 
+### Deleting a task
+
+#### Implementation
+
+1. The AddressBookParser parses the command string given by the user, and looks for the command word "delete task". Then DeleteTaskCommandParser parse function is called.
+2. If the PROJECT_NAME or TASK_NAME is an empty string, an exception is thrown, else the deleteTaskCommand execution function is called.
+3. The `DeleteTaskCommand` class is responsible for deleting a task within a project.
+    - The constructor of the class takes in a project of type Project and a task of type Task.
+    - If the project doesn't exist within the project list, then an exception is thrown
+        - The check is done by using `java.util.stream.Stream.anyMatch(Predicate<? super Person> predicate)`
+        - The predicate used is implemented at `seedu.address.model.person.Person.isSamePerson(Person otherProject)` which checks if the two projects are the same using their names
+    - If the task doesn't exist within the project, then an exception is thrown 
+        - The check is done by using `Person::hasTask`
+    - Else the task is successfully deleted
+
+![Interactions Inside the Logic Component for the `delete project Duke` Command](images/DeleteTaskSequenceDiagram.png)
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
