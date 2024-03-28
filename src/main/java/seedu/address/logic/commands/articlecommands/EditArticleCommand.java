@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.article.Article;
 import seedu.address.model.article.Article.Status;
 import seedu.address.model.article.Author;
+import seedu.address.model.article.Outlet;
 import seedu.address.model.article.Source;
 import seedu.address.model.tag.Tag;
 
@@ -92,14 +93,15 @@ public class EditArticleCommand extends ArticleCommand {
 
         String title = editArticleDescriptor.getTitle().orElse(articleToEdit.getTitle());
         Set<Author> authors = editArticleDescriptor.getAuthors().orElse(articleToEdit.getAuthors());
-        LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
-                .orElse(articleToEdit.getPublicationDate());
         Set<Source> sources = editArticleDescriptor.getSources().orElse(articleToEdit.getSources());
         Set<Tag> tags = editArticleDescriptor.getTags().orElse(articleToEdit.getTags());
+        Set<Outlet> outlets = editArticleDescriptor.getOutlets().orElse(articleToEdit.getOutlets());
+        LocalDateTime publicationDate = editArticleDescriptor.getPublicationDate()
+                .orElse(articleToEdit.getPublicationDate());
         Status status = editArticleDescriptor.getStatus().orElse(articleToEdit.getStatus());
 
-        return new Article(title, authors, publicationDate,
-                sources, tags, status); // Include all article attributes here.
+        return new Article(title, authors, sources, tags,
+                outlets, publicationDate, status); // Include all article attributes here.
     }
 
     @Override
@@ -134,9 +136,10 @@ public class EditArticleCommand extends ArticleCommand {
 
         private String title;
         private Set<Author> authors;
-        private LocalDateTime publicationDate;
         private Set<Source> sources;
         private Set<Tag> tags;
+        private Set<Outlet> outlets;
+        private LocalDateTime publicationDate;
         private Status status;
 
         public EditArticleDescriptor() {}
@@ -147,9 +150,10 @@ public class EditArticleCommand extends ArticleCommand {
         public EditArticleDescriptor(EditArticleDescriptor toCopy) {
             setTitle(toCopy.title);
             setAuthors(toCopy.authors);
-            setPublicationDate(toCopy.publicationDate);
             setSources(toCopy.sources);
             setTags(toCopy.tags);
+            setOutlets(toCopy.outlets);
+            setPublicationDate(toCopy.publicationDate);
             setStatus(toCopy.status);
         }
 
@@ -157,7 +161,7 @@ public class EditArticleCommand extends ArticleCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, authors, publicationDate, sources, tags, status);
+            return CollectionUtil.isAnyNonNull(title, authors, sources, outlets, publicationDate, tags, status);
         }
 
         public void setTitle(String title) {
@@ -200,6 +204,13 @@ public class EditArticleCommand extends ArticleCommand {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setOutlets(Set<Outlet> outlets) {
+            this.outlets = (outlets != null) ? new HashSet<>(outlets) : null;
+        }
+
+        public Optional<Set<Outlet>> getOutlets() {
+            return (outlets != null) ? Optional.of(Collections.unmodifiableSet(outlets)) : Optional.empty();
+        }
         public void setStatus(Status status) {
             this.status = status;
         }
@@ -224,8 +235,9 @@ public class EditArticleCommand extends ArticleCommand {
             // Add more equality checks for article attributes below here.
             return Objects.equals(title, otherEditArticleDescriptor.title)
                     && Objects.equals(authors, otherEditArticleDescriptor.authors)
-                    && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
                     && Objects.equals(sources, otherEditArticleDescriptor.sources)
+                    && Objects.equals(outlets, otherEditArticleDescriptor.outlets)
+                    && Objects.equals(publicationDate, otherEditArticleDescriptor.publicationDate)
                     && Objects.equals(tags, otherEditArticleDescriptor.tags)
                     && Objects.equals(status, otherEditArticleDescriptor.status);
         }
