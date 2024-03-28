@@ -284,6 +284,30 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Meeting
+
+Meeting is feature that allows the user to keep track of any events they may have with the particular contact. It contains the description of the meeting event with the date and time it would occur.
+
+#### Implementation
+
+Meeting contains two attributes ```MeetingDescription``` and ```MeetingDateTime``` class. ```MeetingDescription``` 
+is used to handle any valid description of the meeting with only alphanumeric values, while the ```MeetingDateTime```
+is used to handle any valid date time values. Each of this meeting are stored in a list data class ```MeetingList``` that
+contains each of the meetings related to each other stored in an ```ObservableList```. The ``` MeetingManager ``` is 
+used to manage any operations that require viewing or sorting of meetings from the ```MeetingList``` class.
+
+#### Design considerations:
+
+**Aspect: How the meetings are stored :**
+
+* **Alternative 1 (current choice):** Store meetings in an ObservableList.
+    * Pros: Better segregation of the OOP functionalities, and good integration with the UI ListView.
+    * Cons: Larger code complexity.
+
+* **Alternative 2:** Store meetings in a Set.
+    * Pros: Easier implementation.
+    * Cons: There is an efficiency gap as each element has to be placed into a list before it can be shown to the UI ListView.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
