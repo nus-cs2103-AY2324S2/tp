@@ -1,0 +1,106 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(\
+"add n/John Tan s/A0123456A \n\
+e/e0123456@u.nus.edu h/@john.tan \n\
+c/mon: 13-15, 15-17 tue: 12-14 thu: 12-18 \n\
+t/TUT-1 t/strong")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\
+"add n/John Tan s/A0123456A \n\
+e/e0123456@u.nus.edu h/@john.tan \n\
+c/mon: 13-15, 15-17 tue: 12-14 thu: 12-18 \n\
+t/TUT-1 t/strong")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse(\
+"n/John Tan s/A0123456A \n\
+e/e0123456@u.nus.edu h/@john.tan \n\
+c/mon: 13-15, 15-17 tue: 12-14 thu: 12-18 \n\
+t/TUT-1 t/strong")
+activate AddCommandParser
+
+AddCommandParser -> AddCommandParser : tokenizeForTimetable("c/mon: 13-15, 15-17 tue: 12-14 thu: 12-18")
+activate AddCommandParser
+
+deactivate AddCommandParser
+
+AddCommandParser -> ParserUtil : \
+parseName("John Tan") \n\
+parseStudentId("A0123456A") \n\
+parseEmail("e0123456@u.nus.edu") \n\
+parseTelegramHandle("@john.tan") \n\
+parseTags({"TUT-1", "strong"}) \n\
+parseTimetable({"13-15, 15-17", "12-14" , " ", "12-18", " "})
+activate ParserUtil
+
+ParserUtil --> AddCommandParser : name, studentId, email, handle, tags, timetable
+deactivate ParserUtil
+
+AddCommandParser -> Model : new Student(name, studentId, email, handle, tags, timetable)
+activate Model
+
+Model --> AddCommandParser : student
+deactivate Model
+
+create AddCommand
+AddCommandParser -> AddCommand : student
+activate AddCommand
+
+AddCommand --> AddCommandParser :
+deactivate AddCommand
+
+AddCommandParser --> AddressBookParser : d
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute(m)
+activate AddCommand
+
+AddCommand -> Model : addPerson(student)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : r
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

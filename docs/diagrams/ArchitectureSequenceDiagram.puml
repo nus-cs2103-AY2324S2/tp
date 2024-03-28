@@ -8,13 +8,13 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "delete 1"
+user -[USER_COLOR]> ui : "edit 1 s/A0123456X"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("delete 1")
+ui -[UI_COLOR]> logic : execute("edit 1 s/A0123456X")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+logic -[LOGIC_COLOR]> model : editPerson({index: 1, newId: "A0123456X"})
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic

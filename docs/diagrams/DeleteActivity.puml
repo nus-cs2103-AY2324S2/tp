@@ -1,0 +1,21 @@
+@startuml
+start
+:User uses "delete" command;
+
+if () then([No unique identifier])
+    : Educonnect throws\n no unique identifer used;
+else ([else])
+    if () then([Multiple unique identifiers])
+        : Educonnect throws\n multiple unique used;
+    else ([else])
+        if () then([No student with\n unique identifier])
+            : Educonnect throws\n no student found;
+        else ([Student with unique\n identifier found])
+            : Educonnect deletes student\n with the unique identifier;
+        endif;
+    endif;
+endif;
+
+stop
+@enduml
+
