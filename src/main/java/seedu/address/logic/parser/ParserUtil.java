@@ -6,10 +6,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.commons.core.Theme;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.EndTime;

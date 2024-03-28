@@ -23,6 +23,7 @@ public class CancelCommandParserTest {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelCommand.MESSAGE_USAGE));
 
         // Test with a numeric value padded with invalid characters, which should also fail
-        assertParseFailure(parser, "1 some invalid text", String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 some invalid text",
+                           String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelCommand.MESSAGE_USAGE));
     }
 }

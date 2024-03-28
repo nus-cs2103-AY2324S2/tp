@@ -1,6 +1,8 @@
 package seedu.address.model.booking;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,5 +44,18 @@ public class EndTimeTest {
 
         // different values -> returns false
         assertFalse(endTime.equals(new EndTime("2024-03-20 12:00")));
+    }
+
+    @Test
+    public void hashCode_test() {
+        EndTime endTime1 = new EndTime("2024-12-31 18:00");
+        EndTime endTime2 = new EndTime("2024-12-31 18:00");
+        EndTime endTime3 = new EndTime("2024-12-31 19:00");
+
+        // Same end times should have the same hash code
+        assertEquals(endTime1.hashCode(), endTime2.hashCode());
+
+        // Different end times should ideally have different hash codes
+        assertNotEquals(endTime1.hashCode(), endTime3.hashCode());
     }
 }

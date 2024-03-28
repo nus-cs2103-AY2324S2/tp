@@ -15,6 +15,7 @@ public class ThemeCommandParserTest {
     public void parse_noThemeSpecified_throwsParseException() {
         // Test for completely missing -bg argument
         String noThemeSpecified = "";
-        assertParseFailure(parser, noThemeSpecified, String.format(MESSAGE_INVALID_COMMAND_FORMAT, ThemeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, noThemeSpecified,
+                           String.format(MESSAGE_INVALID_COMMAND_FORMAT, ThemeCommand.MESSAGE_USAGE));
     }
 }

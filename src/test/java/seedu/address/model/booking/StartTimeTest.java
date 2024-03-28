@@ -1,6 +1,8 @@
 package seedu.address.model.booking;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,5 +44,18 @@ public class StartTimeTest {
 
         // different values -> returns false
         assertFalse(startTime.equals(new StartTime("2024-03-20 12:00")));
+    }
+
+    @Test
+    public void hashCode_test() {
+        StartTime startTime1 = new StartTime("2024-03-19 12:00");
+        StartTime startTime2 = new StartTime("2024-03-19 12:00");
+        StartTime startTime3 = new StartTime("2024-03-20 12:00");
+
+        // Same start times should have the same hash code
+        assertEquals(startTime1.hashCode(), startTime2.hashCode());
+
+        // Different start times should ideally have different hash codes
+        assertNotEquals(startTime1.hashCode(), startTime3.hashCode());
     }
 }

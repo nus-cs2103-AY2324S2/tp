@@ -1,6 +1,8 @@
 package seedu.address.model.booking;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -46,5 +48,18 @@ public class DescriptionTest {
 
         // different values -> returns false
         assertFalse(description.equals(new Name("Other Valid Name")));
+    }
+
+    @Test
+    public void hashCode_test() {
+        Description description1 = new Description("Meeting");
+        Description description2 = new Description("Meeting");
+        Description description3 = new Description("Appointment");
+
+        // Same descriptions should have the same hash code
+        assertEquals(description1.hashCode(), description2.hashCode());
+
+        // Different descriptions should ideally have different hash codes
+        assertNotEquals(description1.hashCode(), description3.hashCode());
     }
 }
