@@ -1,11 +1,15 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.TAG_INVALID_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -135,6 +139,31 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns a pair of valid index and new tag name.
+     * @param tag Specific tag name to be updated.
+     * @return A pair of valid index and tag name.
+     * @throws ParseException Alerts users for invalid input.
+     */
+    public static Pair<Integer, String> parseUpdatedTags(Optional<String> tag) throws ParseException {
+        requireNonNull(tag);
+        String[] tagInfo = tag.get().split("\\s+", 2);
+        if (Integer.valueOf(tagInfo[0]) < -1) {
+            throw new ParseException(TAG_INVALID_INDEX);
+        }
+        if (Integer.valueOf(tagInfo[0]) == -1) {
+            return new Pair<>(Integer.valueOf(tagInfo[0]), null);
+        }
+        if (tagInfo.length <= 1) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+        if (!Tag.isValidTagName(tagInfo[1])) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        } else {
+            return new Pair<>(Integer.valueOf(tagInfo[0]), tagInfo[1]);
+        }
     }
 
     /**
