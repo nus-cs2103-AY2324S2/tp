@@ -18,6 +18,8 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class Attendance
+Class Payment
 Class Tag
 Class Grade
 Class Subject
@@ -45,6 +47,8 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Attendance
+Person *--> Payment
 Person *--> "*" Tag
 Person *-> Grade
 Person *-> Subject
@@ -61,6 +65,8 @@ UniquePersonList -[hidden]right-> I
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> Attendance
+Attendance -[hidden]right-> Payment
 
 ModelManager --> "~* filtered" Person
 @enduml
