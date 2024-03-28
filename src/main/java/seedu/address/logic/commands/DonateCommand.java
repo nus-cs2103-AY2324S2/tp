@@ -66,6 +66,7 @@ public class DonateCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // todo later : add the bookTitle to the storage of library.
+        model.addBook(book);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
