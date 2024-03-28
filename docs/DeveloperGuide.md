@@ -275,6 +275,49 @@ The following sequence diagram illustrates step 4:
 
 _{more aspects and alternatives to be added}_
 
+### Saving of interviews/person feature
+
+#### Implementation
+The interview and person saving mechanism in the application is powered through the coordination of seven key components:
+`JsonSerializableAddressBook`, `JsonAdaptedStorageBook` `JsonAdaptedPerson`, `JsonAdaptedTag`, `JsonAdaptedInterview`, `LogicManager`, and `StorageManager`.
+
+The `LogicManager` triggers data persistence post-command execution by invoking `StorageManager`'s `saveAddressBook` function
+which in turn triggers `JsonAddressBookStorage`'s saveAddressBook command. 
+This process generates a new `JsonSerializableAddressBook` object, encapsulating lists for both persons and 
+interviews. 
+
+The `Model` class harbors an `addressBook` with distinct 
+lists (`UniquePersonList` and `UniqueInterviewList`) for storing `Person` 
+and `Interview` entities. During the serialization phase, these entities are transformed into 
+JSON format, utilizing `JsonAdaptedPerson` and `JsonAdaptedInterview` for accurate mapping.
+
+Each `JsonAdaptedPerson` retains `Person` attributes as `@JsonProperty` and encapsulates tags 
+as `JsonAdaptedTag` collections. Likewise, `JsonAdaptedInterview` conserves `Interview` attributes, 
+additionally incorporating applicant and interviewer information as `JsonAdaptedPerson` instances.
+
+The following sequence diagrams shows illustrates a simplified version of the above process.
+
+<puml src="diagrams/saving/SavingInterviewsAndPersonsSequence.puml" width="250"/>
+
+#### Design considerations:
+
+**Aspect: How interviews/persons are stored:**
+
+Converting person and interview data to JSON format facilitates easy data storage, retrieval, and 
+manipulation. JSON, being lightweight and text-based, is highly compatible across different systems,
+making data sharing and application scaling more efficient. It also supports hierarchical data structures,
+which is useful for representing complex data relationships. JSON's human-readable format simplifies
+debugging and development processes, enhancing overall productivity.
+
+* **Alternative 1(current choice)**: Save interviews/persons in JSON format.
+    * Pros: Human-readable format simplifies debugging and development processes, compatible with web APIs and databases.
+
+    * Cons: Harder to implement for a beginner developer.
+  
+*  **Alternative 2:** Save interview/person directly as strings.
+    * Pros: Easy to implement.
+    * Cons: Does not follow existing format, needs to reformat how saving for persons is done which could be very time-consuming, may not be compatible with exisitng APIs and databases.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
