@@ -160,6 +160,45 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Filter Command Implementation
+
+The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
+
+- `FilterCommandParser` parses the user input and creates a `FilterCommand` object with a specific predicate that encapsulates the filtering logic.
+- `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` is then called to filter the list of employees according to the given criteria.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user executes `filter t/ developer`, intending to view only employees tagged as developers. The input is parsed by `FilterCommandParser`, which creates a `FilterCommand` with a predicate that checks the tags of each employee.
+
+Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeList(predicate)`, where `predicate` is the condition that an employee's tags must include "developer".
+
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
+- **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
+### Show All Command Implementation
+
+The `ShowAllCommand` is a simple feature designed to reset any filters applied and show the complete list of employees.
+
+- `ShowAllCommand` directly interacts with the `Model` to reset the filtered employee list to show all employees.
+- It calls `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that always returns true, ensuring all employees are displayed.
+
+Given below is how the show all mechanism operates:
+
+Step 1. After various filter commands, the user decides to view all employees and executes `showAll`. This command creates a `ShowAllCommand` object.
+
+Step 2. `ShowAllCommand` executes and invokes `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that evaluates to true for all employees, effectively clearing any active filters.
+
+
+#### Design Considerations
+
+- **Why this design:** The implementation provides a straightforward and intuitive way to revert any filters and view the complete list of employees. It follows the existing command structure and integrates seamlessly with the model.
+- **Alternatives considered:** An alternative could have been to maintain a separate list for the unfiltered state and toggle between filtered and unfiltered lists. However, this was deemed unnecessary and potentially confusing, as the single list approach with dynamic predicates is simpler and more consistent with the rest of the application's design.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
