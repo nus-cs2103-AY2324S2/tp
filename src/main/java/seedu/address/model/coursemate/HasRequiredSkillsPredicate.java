@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.skill.Skill;
 
 /**
@@ -56,13 +55,5 @@ public class HasRequiredSkillsPredicate implements Predicate<CourseMate> {
         HasRequiredSkillsPredicate otherHasRequiredSkillsPredicate = (HasRequiredSkillsPredicate) other;
         return memberList.equals(otherHasRequiredSkillsPredicate.memberList)
                 && requiredSkills.equals(otherHasRequiredSkillsPredicate.requiredSkills);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("memberList", memberList)
-                .add("requiredSkills", requiredSkills)
-                .toString();
     }
 }

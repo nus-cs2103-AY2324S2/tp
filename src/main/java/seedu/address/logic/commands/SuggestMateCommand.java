@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -79,12 +78,5 @@ public class SuggestMateCommand extends Command {
 
         SuggestMateCommand otherSuggestMateCommand = (SuggestMateCommand) other;
         return groupName.equals(otherSuggestMateCommand.groupName);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("predicate", groupName)
-                .toString();
     }
 }
