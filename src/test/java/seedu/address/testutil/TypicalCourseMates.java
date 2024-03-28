@@ -24,35 +24,43 @@ public class TypicalCourseMates {
             .withEmail("a@example.com")
             .withPhone("32183127")
             .withSkills("JS")
-            .withTelegramHandle("").build();
+            .withTelegramHandle("")
+            .withRating("0").build();
     public static final CourseMate ALICE = new CourseMateBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withSkills("Java")
-            .withTelegramHandle("alicep").build();
+            .withTelegramHandle("alicep")
+            .withRating("0").build();
     public static final CourseMate BENSON = new CourseMateBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withSkills("React")
-            .withTelegramHandle("bensonm").build();
+            .withTelegramHandle("bensonm")
+            .withRating("5").build();
     public static final CourseMate CARL = new CourseMateBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com")
-            .withTelegramHandle("carlk").build();
+            .withTelegramHandle("carlk")
+            .withRating("4").build();
     public static final CourseMate DANIEL = new CourseMateBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withSkills("C")
-            .withTelegramHandle("danielm").build();
+            .withTelegramHandle("danielm")
+            .withRating("3").build();
     public static final CourseMate ELLE = new CourseMateBuilder().withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
-            .withTelegramHandle("ellem").build();
+            .withTelegramHandle("ellem")
+            .withRating("5").build();
     public static final CourseMate FIONA = new CourseMateBuilder().withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
-            .withTelegramHandle("").build();
+            .withTelegramHandle("")
+            .withRating("4").build();
     public static final CourseMate GEORGE = new CourseMateBuilder().withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com")
-            .withTelegramHandle("").build();
+            .withTelegramHandle("")
+            .withRating("0").build();
 
     // Manually added
     public static final CourseMate HOON = new CourseMateBuilder().withName("Hoon Meier").withPhone("8482424")

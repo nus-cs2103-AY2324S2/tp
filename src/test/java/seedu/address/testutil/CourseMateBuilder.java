@@ -7,6 +7,7 @@ import seedu.address.model.coursemate.CourseMate;
 import seedu.address.model.coursemate.Email;
 import seedu.address.model.coursemate.Name;
 import seedu.address.model.coursemate.Phone;
+import seedu.address.model.coursemate.Rating;
 import seedu.address.model.coursemate.TelegramHandle;
 import seedu.address.model.skill.Skill;
 import seedu.address.model.util.SampleDataUtil;
@@ -25,6 +26,7 @@ public class CourseMateBuilder {
     private Phone phone;
     private Email email;
     private TelegramHandle telegramHandle;
+    private Rating rating;
     private Set<Skill> skills;
 
     /**
@@ -36,6 +38,7 @@ public class CourseMateBuilder {
         email = new Email(DEFAULT_EMAIL);
         telegramHandle = null;
         skills = new HashSet<>();
+        rating = new Rating("0");
     }
 
     /**
@@ -46,6 +49,7 @@ public class CourseMateBuilder {
         phone = courseMateToCopy.getPhone();
         email = courseMateToCopy.getEmail();
         telegramHandle = courseMateToCopy.getTelegramHandle();
+        rating = courseMateToCopy.getRating();
         skills = new HashSet<>(courseMateToCopy.getSkills());
     }
 
@@ -109,8 +113,16 @@ public class CourseMateBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code CourseMate} that we are building.
+     */
+    public CourseMateBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
     public CourseMate build() {
-        return new CourseMate(name, phone, email, telegramHandle, skills);
+        return new CourseMate(name, phone, email, telegramHandle, skills, rating);
     }
 
 }
