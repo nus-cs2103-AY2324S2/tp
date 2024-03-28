@@ -314,7 +314,7 @@ The implementation will include the following key components:
 2. **Executing Search Queries**: The application will search through the list of appointments stored in the database and identify appointments that match the specified criteria.
 3. **Presenting Search Results**: The matched appointments will be presented to the user in a clear and organized manner, displaying relevant details such as appointment time, date, and associated patient information.
 
-## Example Usage Scenario
+#### Example Usage Scenario
 
 1. **Context**: User wants to find an appointment with a specific NRIC, date, and start time.
 2. **User Input**: The user enters the command `findAppt i/S1234567A d/2024-03-23 from/11:00`.
@@ -330,13 +330,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <puml src="diagrams/FindApptActivityDiagram.puml" alt="FindApptActivityDiagram" width="250" />
 
-### Design Considerations
+#### Design Considerations
 
-### User Experience
+##### User Experience
 - **Feedback Mechanism**: Provide feedback to the user during the search process to indicate progress and inform them of any issues encountered.
 - **Support for Multiple Criteria**: Allow users to specify multiple search criteria (e.g., any combination of NRIC, date, start time) to enable more precise searches.
 
-### Error Handling
+##### Error Handling
 - **Invalid Input Handling**: Implement robust error handling mechanisms to handle cases where users provide invalid or incomplete search criteria.
 - **No Matching Results**: Handle scenarios where no appointments match the specified criteria gracefully, providing informative feedback to the user.
 
