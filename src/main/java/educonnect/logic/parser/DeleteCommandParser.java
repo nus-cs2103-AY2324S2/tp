@@ -6,6 +6,7 @@ import static educonnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static educonnect.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static educonnect.logic.parser.CliSyntax.PREFIX_TELEGRAM_HANDLE;
+import static educonnect.logic.parser.CliSyntax.PREFIX_TIMETABLE;
 
 import java.util.stream.Stream;
 
@@ -27,17 +28,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_STUDENT_ID, PREFIX_EMAIL,
-                        PREFIX_TELEGRAM_HANDLE, PREFIX_TAG);
+                        PREFIX_TELEGRAM_HANDLE, PREFIX_TAG, PREFIX_TIMETABLE);
 
         // No prefixes used
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_STUDENT_ID, PREFIX_EMAIL,
-                PREFIX_TELEGRAM_HANDLE, PREFIX_TAG)) {
+                PREFIX_TELEGRAM_HANDLE, PREFIX_TAG, PREFIX_TIMETABLE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteCommand.MESSAGE_USAGE));
         }
 
         // Non-unique identifiers present
-        if (areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)) {
+        if (areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_TIMETABLE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteCommand.NO_UNIQUE_IDENTIFIER_MESSAGE));
         }
@@ -57,12 +58,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         if (argMultimap.getValue(PREFIX_STUDENT_ID).isPresent()) {
             deletePersonDescriptor.setStudentId(
                     ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get()));
-        }
-        if (argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).isPresent()) {
             deletePersonDescriptor.setTelegramHandle(
                     ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_TELEGRAM_HANDLE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             deletePersonDescriptor.setEmail(
                     ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
