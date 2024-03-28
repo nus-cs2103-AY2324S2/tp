@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -8,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -49,36 +51,53 @@ public class FindCommandParser implements Parser<FindCommand> {
     private Predicate<Person> predicateBuilder(ArgumentMultimap argMultimap, Prefix... prefixes) throws ParseException {
         Predicate<Person> predicate = null;
         for (Prefix prefix : prefixes) {
-            String keywords = argMultimap.getValue(prefix).orElse("").trim();
-            if (!keywords.isEmpty()) {
-                switch (prefix.toString()) {
-                case "n/":
-                    if (predicate == null) {
-                        predicate = new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+")));
-                    } else {
-                        predicate = predicate.or(
-                            new NameContainsKeywordsPredicate(Arrays.asList(keywords.split("\\s+"))));
-                    }
-                    break;
-                case "a/":
-                    if (predicate == null) {
-                        predicate = new AvailableAtDatePredicate(Arrays.asList(keywords.split("\\s+")));
-                    } else {
-                        predicate = predicate.or(new AvailableAtDatePredicate(Arrays.asList(keywords.split("\\s+"))));
-                    }
-                    break;
-                default:
-                    throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            List<String> keywordList = argMultimap.getAllValues(prefix);
+            for (String keywords : keywordList) {
+                keywords = keywords.trim();
+                if (!keywords.isEmpty()) {
+                    predicate = buildPredicate(predicate, keywords, prefix);
                 }
             }
-        };
-
+        }
         if (predicate == null) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        return predicate;
+    }
+
+    /**
+     * Builds and returns a predicate based on the given predicate, keyword, and prefix.
+     *
+     * @param predicate The base predicate to build upon, can be null if no predicate exists yet.
+     * @param keyword   The keyword used for filtering.
+     * @param prefix    The prefix indicating the type of filter (e.g., "n/" for name, "a/" for available date).
+     * @return A predicate based on the given parameters.
+     * @throws ParseException If the prefix is invalid.
+     */
+    private Predicate<Person> buildPredicate(Predicate<Person> predicate, String keyword,
+                                             Prefix prefix) throws ParseException {
+        switch (prefix.toString()) {
+        case "n/":
+            if (predicate == null) {
+                predicate = new NameContainsKeywordsPredicate(Arrays.asList(keyword.split("\\s+")));
+            } else {
+                predicate = predicate.or(
+                        new NameContainsKeywordsPredicate(Arrays.asList(keyword.split("\\s+"))));
+            }
+            break;
+        case "a/":
+            if (predicate == null) {
+                predicate = new AvailableAtDatePredicate(Arrays.asList(keyword.split("\\s+")));
+            } else {
+                predicate = predicate.or(new AvailableAtDatePredicate(Arrays.asList(keyword.split("\\s+"))));
+            }
+            break;
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
         return predicate;
     }
 
