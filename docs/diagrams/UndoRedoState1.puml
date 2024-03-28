@@ -6,18 +6,11 @@ skinparam ClassBackgroundColor #FFFFAA
 
 title After command "delete 5"
 
-package States <<rectangle>> {
-    class State1 as "<u>ab0:AddressBook</u>"
-    class State2 as "<u>ab1:AddressBook</u>"
-    class State3 as "<u>ab2:AddressBook</u>"
+rectangle AddressBook {
+    class "undoStack\n----\nState 0" as undoStack
+    class "persons list\n----\nState 1" as persons
+    class "redoStack\n----" as redoStack
 }
-
-State1 -[hidden]right-> State2
-State2 -[hidden]right-> State3
-
-hide State3
-
-class Pointer as "Current State" #FFFFFF
-
-Pointer -up-> State2
+undoStack -[hidden]right- persons
+persons -[hidden]right- redoStack
 @end

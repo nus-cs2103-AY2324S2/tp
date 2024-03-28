@@ -2,15 +2,20 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.model.util.SampleDataUtil.getSampleAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
@@ -20,12 +25,19 @@ public class StorageManagerTest {
     @TempDir
     public Path testFolder;
 
+    private Path ab;
+    private Path prefs;
+    private JsonAddressBookStorage addressBookStorage;
+    private JsonUserPrefsStorage userPrefsStorage;
+
     private StorageManager storageManager;
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        ab = getTempFilePath("ab");
+        prefs = getTempFilePath("prefs");
+        addressBookStorage = new JsonAddressBookStorage(ab);
+        userPrefsStorage = new JsonUserPrefsStorage(prefs);
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
 
@@ -63,6 +75,30 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void readInitialAddressBook_noDataFile_sampleAddressBook() throws DataLoadingException {
+        addressBookStorage = new JsonAddressBookStorage(Paths.get("unavailable"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        ReadOnlyAddressBook retrieved = storageManager.readInitialAddressBook();
+        assertEquals(getSampleAddressBook(), retrieved);
+    }
+
+    @Test
+    public void readInitialAddressBook_corruptedDataFile_throwsDataLoadingException() {
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage) {
+            @Override
+            public Optional<ReadOnlyAddressBook> readAddressBook() throws DataLoadingException {
+                throw new DataLoadingException("");
+            }
+        };
+        assertThrows(DataLoadingException.class, () -> storageManager.readInitialAddressBook());
     }
 
 }

@@ -1,198 +1,324 @@
 ---
-layout: page
-title: User Guide
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# AssetBook-3 User Guide
 
-* Table of Contents
-{:toc}
+---
 
---------------------------------------------------------------------------------------------------------------------
+## Introduction
 
-## Quick start
+Welcome **logistics managers**! If you are someone who 
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Manages logistics and inventory in a professional capacity,
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Is a fast typist, tired of shuffling back and forth between your mouse and keyboard,
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Is feeling swamped by the tedium of contact management on traditional office software...
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+*Rejoice because AssetBook-3 is here!*<br><br> 
+AssetBook-3 helps to streamline the task of **tracking contacts and which logistical assets they are in charge of**, 
+making your management tasks smoother than ever.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+AssetBook-3 is designed to:
 
-   * `list` : Lists all contacts.
++ **Digitally Organize Your Contacts**<br> Say goodbye to scattered contacts; now, have them all organized and accessible in one place.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
++ **Effortlessly Track All Your Assets**<br> Keep tabs on who is responsible for every piece of equipment and every item in your inventory.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
++ **Maximize Your Operational Efficiency**<br> Our application, combined with your swift keyboard skills, turns the chore of contact management into a seamless and satisfying process!
 
-   * `clear` : Deletes all contacts.
+---
 
-   * `exit` : Exits the app.
+## Using this Guide
 
-1. Refer to the [Features](#features) below for details of each command.
+This user guide contains all information needed to use AssetBook-3.
+A [glossary](#glossary) is provided in case you encounter any unfamiliar terms.
 
---------------------------------------------------------------------------------------------------------------------
+#### New Users
+
+If this your first time using AssetBook-3, head over to the [quick start](#quick-start) to learn how to set up the application. 
+After which, you can have a look at the [features](#features) of AssetBook-3, or simply follow this guide in order.
+
+#### Experienced Users
+
+If you are looking to refresh your memory, you can utilise the [table of contents](#table-of-contents) 
+or skip to the [command summary](#command-summary).
+
+<box type="info" seamless>
+    Look out for icons like this, which may contain addition information, tips and warnings.
+</box>
+
+<box type="tip" seamless>
+    Use the sidebar to the right to immediately jump to any section from anywhere on this page.
+</box>
+
+---
+
+<!-- * Table of Contents -->
+## Table of Contents
++ [Introduction](#assetbook-3-user-guide)
++ [Using this Guide](#using-this-guide)
++ [Table of Contents](#table-of-contents)
++ [Quick Start](#quick-start)
+  + [Setting Up](#setting-up)
+  + [Navigating the GUI](#navigating-the-gui)
+  + [Tutorials](#tutorials)
++ [Navigating the GUI](#navigating-the-gui)
++ [Features](#features)
+  + [Adding a Contact](#adding-a-contact-add)
+  + [Deleting a Contact](#deleting-a-contact-delete)
+  + [Editing a Contact](#editing-a-contact-edit)
+  + [Editing an Asset](#editing-an-asset-asset)
+  + [Finding Contacts](#finding-contacts-find)
+  + [Undoing Commands](#undoing-commands-undo)
+  + [Exiting the Application](#exiting-the-application-exit)
++ [Frequently Asked Questions](#faq)
++ [Known Issues](#known-issues)
++ [Command Summary](#command-summary)
++ [Glossary](#glossary)
+
+---{.double}
+
+## Quick Start
+
+### Setting Up
+
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) installed on your Computer.
+
+2. Download the latest `assetbook-3.jar` from [here](https://github.com/AY2324S2-CS2103T-W12-3/tp/releases).
+
+3. Move the file into the folder where you want AssetBook-3 to store the contact information. New users may simply
+   create a folder on their desktop, then drag and drop `assetbook-3.jar` inside.
+
+4. Double-click on the `jar` file and a GUI as shown in the following section should appear. 
+   Note that the app contains some sample data when launched for the first time. 
+
+<box type="tip" seamless>
+    Having trouble? Check the <a href="{{ baseUrl }}/UserGuide.html#faq">FAQ</a> section for resolutions to common problems.
+</box>
+
+### Navigating the GUI
+
+Here are the components of the GUI.
+
+> Placeholder for annotated screenshot of the GUI
+
+1. **Command Input Box**
+2. **Command Output Box**
+3. **Contacts List**
+4. **Contact Details**
+5. **Tags**
+6. **Assets**
+
+---
+
+### Tutorials
+
+This section provides a walkthrough of common actions performed in AssetBook-3.
+All actions are performed through typing a command into the **command input box**.
+For detailed documentation of all available commands, refer to the [features](#features) section.
+
+#### Adding your first Contact
+
+#### Editing your Contact 
+
+#### Editing Assets
+
+#### Searching for Contacts
+
+#### Deleting Contacts
+
+---{.double}
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<box type="info" seamless>
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+**Notes about the command format**
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items followed by `...` indicates that it can be entered multiple times (or zero times).<br>
+  e.g. `[t/TAG]...` can be used as `t/friend`, `t/friend t/colleague` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
+</box>
 
-### Viewing help : `help`
+<box type="warning" seamless>
 
-Shows a message explaning how to access the help page.
+**If you are using a PDF version of this document**, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
-![help message](images/helpMessage.png)
+</box>
 
-Format: `help`
+--------------------------------------------------------------------------------------------------------------------
 
+### Adding a Contact: `add`
 
-### Adding a person: `add`
+Adds a new contact to the system, with 0 or more assets associated with the contact.
 
-Adds a person to the address book.
+Format: `add n/NAME p/PHONE e/EMAIL o/OFFICE [t/TAG]... [a/ASSET]...`
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+<box type="tip" seamless>
+A person can have any number of tags and assets (including 0)
+</box>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+#### Examples
+* Add a new contact associated with the asset `L293D`: `add n/John Doe e/johndoe@example.com o/574 Ang Mo Kio Ave 10 p/12345678 a/L293D`
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+#### Options
+`NAME`
+* Name of the contact.
+* Case sensitive, i.e. john doe ≠ John Doe.
+* Leading and trailing spaces are automatically removed.
+* Multiple people with the same name are allowed.
 
-### Listing all persons : `list`
+`PHONE`
+* Phone number of the contact.
+* Only digits are allowed.
+* Any number of digits are allowed.
+* 
+`EMAIL`
+* Email of the contact.
+* Must have ‘@’.
 
-Shows a list of all persons in the address book.
+`OFFICE`
+* Office address of the contact.
 
-Format: `list`
+`TAG`
+* Tag(s) to categorize the contact into.
 
-### Editing a person : `edit`
+`ASSET`
+* Asset(s) associated with contact.
+* Contact can be created first without assets, then assets can be added later using the Edit command.
+* Case sensitive, i.e. NUS ≠ nus.
+* Assets must have unique names. If the asset already exists in the database, the existing asset will be linked instead of a new asset.
+* Multiple assets can be specified. For example, a valid option is `a/asset1 a/asset2 a/asset3`.
 
-Edits an existing person in the address book.
+--------------------------------------------------------------------------------------------------------------------
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Deleting a Contact: `delete`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Delete a contact from the system by specifying its index.
 
 Format: `delete INDEX`
+* `INDEX` refers to the unique contact index shown in the GUI.
+* The asset(s) associated with the contact will not be deleted.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+#### Examples
+`delete 1` deletes the contact with index `1`.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+--------------------------------------------------------------------------------------------------------------------
 
-### Clearing all entries : `clear`
+### Editing a Contact: `edit`
 
-Clears all entries from the address book.
+Edit existing contacts without recreating them.
 
-Format: `clear`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [o/OFFICE] [t/TAG]... [a/ASSET]...`
 
-### Exiting the program : `exit`
+Example: `edit 1 e/newemail@example.com` edits the contact with id `1`, changing its email to `newemail@example.com`.
 
-Exits the program.
+* Edits the contact with the specified `INDEX`. `INDEX` refers to the unique contact index shown in the GUI.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing assets, the existing assets of the person will be removed i.e adding of assets is not cumulative.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* You can remove all the person’s assets by typing `a/` without specifying any assets after it.
+
+### Editing an Asset: `asset`
+
+Edit existing assets without recreating them.
+
+Format: `asset old/OLD_ASSET_NAME new/NEW_ASSET_NAME`
+
+Example: `asset old/hammer new/screwdriver` edits the asset `hammer`, changing its name to `screwdriver`.
+
+* The asset will be renamed for all contacts linked to it.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Finding Contacts: `find`
+
+Finds contacts whose names, tags or assets contain any of the given keywords.
+
+Format: `find KEYWORD [KEYWORD]...`
+
+Example: `find John` searches all contact names, tags and assets for the keyword `John`.
+
+* At least one keyword must be provided.
+* Keywords are case-insensitive.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Undoing Commands: `undo`
+
+Undoes the last modifying command.
+
+Format: `undo`
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Exiting the Application: `exit`
+
+Exits the application. Equivalent to pressing the cross in the top right corner.
 
 Format: `exit`
 
-### Saving the data
+--------------------------------------------------------------------------------------------------------------------
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### Saving the data file
+
+AssetBook-3's data is saved automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AssetBook-3's data are saved automatically as a JSON file `[JAR file location]/data/assetbook.json`.<br>Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
-</div>
+<box type="warning" seamless>
 
-### Archiving data files `[coming in v2.0]`
+**Caution:**
+If your changes to the data file makes its format invalid, AssetBook-3 will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the AssetBook-3 to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</box>
 
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
+---{.double}
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and replace the JSON data file it creates with the JSON file from your previous AssetBook-3 home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known Issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
++ **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
---------------------------------------------------------------------------------------------------------------------
+---{.double}
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+Action           | Format                                                                        | Example
+-----------------|-------------------------------------------------------------------------------|--- 
+**Add**          | `add n/NAME p/PHONE e/EMAIL o/OFFICE [t/TAG]... [a/ASSET]...`                 | `add n/John Doe e/johndoe@example.com p/+12345678 a/L293D`
+**Delete**       | `delete INDEX`                                                                | `delete 1`
+**Edit contact** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [o/OFFICE] [t/TAG]... [a/ASSET]...`  | `edit 1 e/newemail@example.com`
+**Edit asset**   | `asset old/OLD_ASSET_NAME new/NEW_ASSET_NAME`                                 | `asset old/hammer new/screwdriver`
+**Find**         | `find KEYWORD [KEYWORD]...`                                                   | `find John`
+**Undo**         | `undo`                                                                        | `undo`
+**Exit**         | `exit`                                                                        | `exit`
+
+---{.double}
+
+## Glossary
+

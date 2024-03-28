@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.fields.Prefix;
 
 /**
  * Container for user visible messages.
@@ -18,6 +18,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+
+    public static final String MESSAGE_SHOWING_HELP = "Opened help window.";
+    public static final String MESSAGE_EXITING = "Exiting Address Book as requested ...";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -43,8 +46,10 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Address: ")
                 .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Tags: ")
+                .append(person.getTags())
+                .append("; Assets: ")
+                .append(person.getAssets());
         return builder.toString();
     }
 

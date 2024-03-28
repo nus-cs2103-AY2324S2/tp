@@ -1,32 +1,37 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
+import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
+import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.util.ArgumentMultimap;
+import seedu.address.logic.util.ArgumentTokenizer;
+import seedu.address.logic.util.ParserUtil;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Assets;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -43,7 +48,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_ASSET + "ASSET]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -68,7 +74,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public String execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -85,7 +91,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
     }
 
     /**
@@ -99,9 +105,81 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Tags updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Assets updatedAssets = editPersonDescriptor.getAssets().orElse(personToEdit.getAssets());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedAssets);
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * and returns an EditCommand object for execution.
+     * @throws IllegalArgumentException if the user input does not conform the expected format
+     */
+    public static EditCommand of(String args) throws IllegalArgumentException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ASSET);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IllegalArgumentException ie) {
+            throw new IllegalArgumentException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), ie);
+        }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editPersonDescriptor.setName(Name.of(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editPersonDescriptor.setPhone(Phone.of(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setEmail(Email.of(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor.setAddress(Address.of(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseAssetsForEdit(argMultimap.getAllValues(PREFIX_ASSET)).ifPresent(editPersonDescriptor::setAssets);
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new IllegalArgumentException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private static Optional<Tags> parseTagsForEdit(Collection<String> tags) {
+        requireNonNull(tags);
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(Tags.of(tagSet));
+    }
+
+    private static Optional<Assets> parseAssetsForEdit(Collection<String> assets) {
+        requireNonNull(assets);
+
+        if (assets.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> assetSet = assets.size() == 1 && assets.contains("") ? Collections.emptySet() : assets;
+        return Optional.of(Assets.of(assetSet));
     }
 
     @Override
@@ -137,7 +215,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Tags tags;
+        private Assets assets;
 
         public EditPersonDescriptor() {}
 
@@ -151,13 +230,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setAssets(toCopy.assets);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, assets);
         }
 
         public void setName(Name name) {
@@ -192,21 +272,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Tags tags) {
+            this.tags = tags;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tags> getTags() {
+            return Optional.ofNullable(tags);
+        }
+
+        public void setAssets(Assets assets) {
+            this.assets = assets;
+        }
+
+        public Optional<Assets> getAssets() {
+            return Optional.ofNullable(assets);
         }
 
         @Override
@@ -225,7 +304,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(assets, otherEditPersonDescriptor.assets);
         }
 
         @Override
@@ -236,7 +316,9 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("assets", assets)
                     .toString();
         }
     }
+
 }

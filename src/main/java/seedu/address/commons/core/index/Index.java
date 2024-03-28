@@ -1,5 +1,7 @@
 package seedu.address.commons.core.index;
 
+import java.util.Objects;
+
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
@@ -11,7 +13,8 @@ import seedu.address.commons.util.ToStringBuilder;
  * convert it back to an int if the index will not be passed to a different component again.
  */
 public class Index {
-    private int zeroBasedIndex;
+
+    private final int zeroBasedIndex;
 
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
@@ -63,7 +66,13 @@ public class Index {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(zeroBasedIndex);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this).add("zeroBasedIndex", zeroBasedIndex).toString();
     }
+
 }

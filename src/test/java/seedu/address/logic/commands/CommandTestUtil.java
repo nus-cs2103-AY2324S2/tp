@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Assets.PREFIX_ASSET;
+import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
+import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonMatchesKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_ASSET_HAMMER = "hammer";
+    public static final String VALID_ASSET_AIRCON = "aircon";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,12 +50,15 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String ASSET_DESC_HAMMER = " " + PREFIX_ASSET + VALID_ASSET_HAMMER;
+    public static final String ASSET_DESC_AIRCON = " " + PREFIX_ASSET + VALID_ASSET_AIRCON;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_ASSET_DESC = " " + PREFIX_ASSET; // asset name not allowed to be empty
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -63,36 +69,28 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND)
+                .withAssets(VALID_ASSET_HAMMER).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withAssets(VALID_ASSET_HAMMER, VALID_ASSET_AIRCON).build();
     }
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned command result matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            String result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
-    }
-
-    /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
-     * that takes a string {@code expectedMessage}.
-     */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -119,10 +117,45 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = person.getName().toString().split("\\s+");
+        model.updateFilteredPersonList(new PersonMatchesKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
+     * equals to {@code expectedCommand}.
+     */
+    public static void assertParseSuccess(FactoryFunction commandFactoryMethod, String userInput,
+                                          Command expectedCommand) {
+        try {
+            Command command = commandFactoryMethod.apply(userInput);
+            assertEquals(expectedCommand, command);
+        } catch (IllegalArgumentException ie) {
+            throw new IllegalArgumentException("Invalid userInput.", ie);
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
+     * equals to {@code expectedMessage}.
+     */
+    public static void assertParseFailure(FactoryFunction commandFactoryMethod,
+                                          String userInput, String expectedMessage) {
+        try {
+            commandFactoryMethod.apply(userInput);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (IllegalArgumentException ie) {
+            assertEquals(expectedMessage, ie.getMessage());
+        }
+    }
+
+    /**
+     * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful.
+     */
+    public static void assertParseFailure(FactoryFunction commandFactoryMethod, String userInput) {
+        assertThrows(IllegalArgumentException.class, () -> commandFactoryMethod.apply(userInput));
     }
 
 }

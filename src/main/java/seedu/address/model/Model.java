@@ -5,12 +5,15 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.asset.Asset;
+import seedu.address.model.exceptions.AddressBookException;
 import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -53,6 +56,26 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Returns true if there are states to reverse to.
+     */
+    boolean canUndo();
+
+    /**
+     * Undoes the latest change to address book.
+     */
+    void undo() throws AddressBookException;
+
+    /**
+     * Returns true if there are undo states to reverse.
+     */
+    boolean canRedo();
+
+    /**
+     * Reverses the latest undo command.
+     */
+    void redo() throws AddressBookException;
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
@@ -84,4 +107,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if an asset with the same identity as {@code asset} exists in the address book.
+     */
+    boolean hasAsset(Asset asset);
+
+    /**
+     * Changes the target asset into the editedAsset.
+     */
+    void editAsset(Asset target, Asset editedAsset);
+
 }

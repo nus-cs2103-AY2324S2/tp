@@ -3,13 +3,50 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ASSET_DESC_AIRCON;
+import static seedu.address.logic.commands.CommandTestUtil.ASSET_DESC_HAMMER;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSET_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSET_AIRCON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSET_HAMMER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.assertParseFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertParseSuccess;
+import static seedu.address.model.person.fields.Address.PREFIX_ADDRESS;
+import static seedu.address.model.person.fields.Email.PREFIX_EMAIL;
+import static seedu.address.model.person.fields.Name.PREFIX_NAME;
+import static seedu.address.model.person.fields.Phone.PREFIX_PHONE;
+import static seedu.address.model.person.fields.Tags.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +59,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.asset.Asset;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -37,11 +75,11 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        String commandResult = new AddCommand(validPerson).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+                commandResult);
+        assertEquals(List.of(validPerson), modelStub.personsAdded);
     }
 
     @Test
@@ -54,6 +92,209 @@ public class AddCommandTest {
     }
 
     @Test
+    public void of_allFieldsPresent_success() {
+        // whitespace only preamble
+        Person expectedPerson = new PersonBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND)
+                .withAssets(VALID_ASSET_AIRCON)
+                .build();
+        assertParseSuccess(AddCommand::of, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND
+                + ASSET_DESC_AIRCON, new AddCommand(expectedPerson));
+
+
+        // multiple tags - all accepted
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withAssets()
+                .build();
+        assertParseSuccess(AddCommand::of,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                new AddCommand(expectedPersonMultipleTags));
+
+        // multiple assets - all accepted
+        Person expectedPersonMultipleAssets = new PersonBuilder(BOB)
+                .withTags()
+                .withAssets(VALID_ASSET_AIRCON, VALID_ASSET_HAMMER)
+                .build();
+        assertParseSuccess(AddCommand::of,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER,
+                new AddCommand(expectedPersonMultipleAssets));
+
+        // multiple tags assets - all accepted
+        Person expectedPersonMultipleTagsAndAssets = new PersonBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withAssets(VALID_ASSET_AIRCON, VALID_ASSET_HAMMER)
+                .build();
+        assertParseSuccess(AddCommand::of,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + TAG_DESC_FRIEND + TAG_DESC_HUSBAND
+                        + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER,
+                new AddCommand(expectedPersonMultipleTagsAndAssets));
+    }
+
+    @Test
+    public void of_repeatedNonTagValue_failure() {
+        String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND;
+
+        // multiple names
+        assertParseFailure(AddCommand::of, NAME_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+
+        // multiple phones
+        assertParseFailure(AddCommand::of, PHONE_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+
+        // multiple emails
+        assertParseFailure(AddCommand::of, EMAIL_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+
+        // multiple addresses
+        assertParseFailure(AddCommand::of, ADDRESS_DESC_AMY + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+
+        // multiple fields repeated
+        assertParseFailure(AddCommand::of,
+                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
+                        + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+
+        // invalid value followed by valid value
+
+        // invalid name
+        assertParseFailure(AddCommand::of, INVALID_NAME_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+
+        // invalid email
+        assertParseFailure(AddCommand::of, INVALID_EMAIL_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+
+        // invalid phone
+        assertParseFailure(AddCommand::of, INVALID_PHONE_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+
+        // invalid address
+        assertParseFailure(AddCommand::of, INVALID_ADDRESS_DESC + validExpectedPersonString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+
+        // valid value followed by invalid value
+
+        // invalid name
+        assertParseFailure(AddCommand::of, validExpectedPersonString + INVALID_NAME_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
+
+        // invalid email
+        assertParseFailure(AddCommand::of, validExpectedPersonString + INVALID_EMAIL_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
+
+        // invalid phone
+        assertParseFailure(AddCommand::of, validExpectedPersonString + INVALID_PHONE_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+
+        // invalid address
+        assertParseFailure(AddCommand::of, validExpectedPersonString + INVALID_ADDRESS_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_ADDRESS));
+    }
+
+    @Test
+    public void of_emptyValue_failure() {
+        // Empty name
+        assertParseFailure(AddCommand::of, " " + PREFIX_NAME + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // Empty phone
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + " " + PREFIX_PHONE + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // Empty Email
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + " " + PREFIX_EMAIL + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // Empty Tag
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + " " + PREFIX_TAG + ASSET_DESC_HAMMER);
+
+    }
+
+    @Test
+    public void of_parametersInDifferentOrder_success() {
+        Person expectedPerson = new PersonBuilder(AMY).withTags().withAssets().build();
+        assertParseSuccess(AddCommand::of, EMAIL_DESC_AMY + PHONE_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void of_optionalFieldsMissing_success() {
+        // zero tags
+        Person expectedPerson = new PersonBuilder(AMY).withTags().withAssets().build();
+        assertParseSuccess(AddCommand::of, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+                new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void of_compulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+
+        // missing name prefix
+        assertParseFailure(AddCommand::of, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                expectedMessage);
+
+        // missing phone prefix
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                expectedMessage);
+
+        // missing email prefix
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
+                expectedMessage);
+
+        // missing address prefix
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
+                expectedMessage);
+
+        // all prefixes missing
+        assertParseFailure(AddCommand::of, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
+                expectedMessage);
+    }
+
+    @Test
+    public void of_invalidValue_failure() {
+        // invalid name
+        assertParseFailure(AddCommand::of, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // invalid phone
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // invalid email
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // invalid address
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // invalid tag
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INVALID_TAG_DESC + VALID_TAG_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER);
+
+        // invalid asset
+        assertParseFailure(AddCommand::of, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + VALID_TAG_HUSBAND + VALID_TAG_FRIEND + INVALID_ASSET_DESC + ASSET_DESC_HAMMER);
+
+        // two invalid values, only first invalid value reported
+        assertParseFailure(AddCommand::of, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC);
+
+        // non-empty preamble
+        assertParseFailure(AddCommand::of, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ASSET_DESC_AIRCON + ASSET_DESC_HAMMER,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
@@ -61,11 +302,11 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // different types -> returns false
         assertFalse(addAliceCommand.equals(1));
@@ -87,7 +328,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -134,6 +375,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean canUndo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -157,12 +418,22 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasAsset(Asset asset) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editAsset(Asset target, Asset editedAsset) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -180,7 +451,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private static class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override

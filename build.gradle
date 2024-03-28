@@ -66,7 +66,15 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'assetbook-3.jar'
+}
+
+run {
+    enableAssertions = true
+}
+
+runShadow {
+    enableAssertions = false
 }
 
 defaultTasks 'clean', 'test'

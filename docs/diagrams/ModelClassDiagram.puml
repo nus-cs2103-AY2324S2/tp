@@ -13,12 +13,16 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+
 Class Person
 Class Address
 Class Email
 Class Name
 Class Phone
+Class Tags
 Class Tag
+Class Assets
+Class Asset
 
 Class I #FFFFFF
 }
@@ -41,10 +45,12 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> Tags
+Person *--> Assets
+Tags *--> "*" Tag
+Assets *--> "*" Asset
 
 Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

@@ -2,13 +2,19 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.asset.Asset;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Assets;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Tags;
 
 /**
  * Represents a Person in the address book.
@@ -23,18 +29,33 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tags tags;
+    private final Assets assets;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Tags tags, Assets assets) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tags = tags;
+        this.assets = assets;
+    }
+
+    @JsonCreator
+    private Person(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                   @JsonProperty("email") String email, @JsonProperty("address") String address,
+                   @JsonProperty("tags") String[] tagNames, @JsonProperty("assets") String[] assetNames) {
+        requireAllNonNull(name, phone, email, address, tagNames);
+        this.name = new Name(name);
+        this.phone = new Phone(phone);
+        this.email = new Email(email);
+        this.address = new Address(address);
+        this.tags = new Tags(tagNames);
+        this.assets = new Assets(assetNames);
     }
 
     public Name getName() {
@@ -53,12 +74,12 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tags getTags() {
+        return tags;
+    }
+
+    public Assets getAssets() {
+        return assets;
     }
 
     /**
@@ -72,6 +93,21 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if person has asset.
+     */
+    public boolean hasAsset(Asset asset) {
+        return assets.contains(asset);
+    }
+
+    /**
+     * Edits target to editedAsset in assets
+     */
+    public Person editAsset(Asset target, Asset editedAsset) {
+        return new Person(name, phone, email, address, tags,
+                assets.edit(target, editedAsset));
     }
 
     /**
@@ -94,13 +130,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && assets.equals(otherPerson.assets);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, assets);
     }
 
     @Override
@@ -111,6 +148,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
+                .add("assets", assets)
                 .toString();
     }
 

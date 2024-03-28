@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,7 +16,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.exceptions.AddressBookException;
+import seedu.address.model.person.PersonMatchesKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -73,6 +75,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void canUndo_undoRemaining_returnTrue() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.canUndo());
+    }
+
+    @Test
+    public void canUndo_noUndoRemaining_returnFalse() {
+        assertFalse(modelManager.canUndo());
+    }
+
+    @Test
+    public void undo_undoRemaining_success() {
+        modelManager.addPerson(ALICE);
+        assertDoesNotThrow(() -> modelManager.undo());
+    }
+
+    @Test
+    public void undo_noUndoRemaining_throwsAddressBookUndoException() {
+        assertThrows(AddressBookException.class, () -> modelManager.undo());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
@@ -117,8 +141,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = ALICE.getName().toString().split("\\s+");
+        modelManager.updateFilteredPersonList(new PersonMatchesKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
