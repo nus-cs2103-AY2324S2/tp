@@ -21,10 +21,6 @@ checkstyle {
 }
 
 test {
-    forkEvery = 1
-}
-
-test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
