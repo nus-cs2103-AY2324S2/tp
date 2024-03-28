@@ -55,7 +55,7 @@ public class TypicalPersons {
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withMajor("Business")
-            .withStar(0).build();
+            .withStar(3).build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
@@ -67,7 +67,7 @@ public class TypicalPersons {
             .withPhone("9482442")
             .withEmail("anna@example.com")
             .withMajor("Math")
-            .withStar(0).build();
+            .withStar(5).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder()
