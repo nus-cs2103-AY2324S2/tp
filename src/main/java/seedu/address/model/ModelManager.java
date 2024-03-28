@@ -195,4 +195,8 @@ public class ModelManager implements Model {
         userPrefs.setTheme(theme);
     }
 
+    public Theme getTheme() {
+        return userPrefs.getTheme();
+    }
+
 }

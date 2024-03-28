@@ -48,4 +48,5 @@ public class RatingTest {
         // different values -> returns false
         assertFalse(rating.equals(new Rating(0)));
     }
+
 }
