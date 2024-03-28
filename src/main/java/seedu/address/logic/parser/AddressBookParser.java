@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NUSNET;
 
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -34,7 +35,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern NUSNET_ID_FORMAT = Pattern.compile("nn/(.*)");
+    private static final Pattern NUSNET_ID_FORMAT = Pattern.compile(PREFIX_NUSNET.getPrefix() + "(.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
     private static final String COMMAND_WORD_GROUP = "commandWord";
     private static final String ARGUMENTS_GROUP = "arguments";
