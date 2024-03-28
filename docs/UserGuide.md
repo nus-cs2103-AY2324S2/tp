@@ -111,7 +111,6 @@ Corresponding appointments for the specified patient will be deleted too.
 Format: `deletePatient NRIC` <br/>
 Shorthand: `dp NRIC`
 
->>>>>>> master
 * Deletes the patient with specified `NRIC`.
 * The NRIC **must exist within database**.
 
