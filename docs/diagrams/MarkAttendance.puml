@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+Actor User as user USER_COLOR
+Participant ":Ui" as ui UI_COLOR
+Participant "logicManager:LogicManager" as logicManager LOGIC_COLOR
+Participant "addressBookParser:AddressBookParser" as addressBookParser MODEL_COLOR
+Participant ":AttendanceCommandParser" as attendanceCommandParser STORAGE_COLOR
+Participant ":AttendanceCommand" as attendanceCommand UI_COLOR
+Participant ":CommandResult" as commandResult LOGIC_COLOR
+
+user -[USER_COLOR]> ui : "att 1 2 d/2024-02-12"
+activate ui UI_COLOR
+
+ref over logicManager, ui : process user input
+activate logicManager LOGIC_COLOR
+
+logicManager -[USER_COLOR]> addressBookParser : parseCommand("att 1 2 d/2024-02-12")
+activate addressBookParser MODEL_COLOR
+
+addressBookParser -[USER_COLOR]> attendanceCommandParser ** : AttendanceCommandParser()
+activate attendanceCommandParser STORAGE_COLOR
+
+attendanceCommandParser -[USER_COLOR]> attendanceCommandParser : parse(...)
+activate attendanceCommandParser STORAGE_COLOR
+
+attendanceCommandParser -[USER_COLOR]> attendanceCommand ** : AttendanceCommand(...)
+activate attendanceCommand UI_COLOR
+
+attendanceCommand -[USER_COLOR]-> attendanceCommandParser : :AttendanceCommand
+deactivate attendanceCommand
+
+attendanceCommandParser -[USER_COLOR]-> attendanceCommandParser : :AttendanceCommand
+deactivate attendanceCommandParser
+
+attendanceCommandParser -[USER_COLOR]-> addressBookParser : :AttendanceCommand
+deactivate attendanceCommandParser
+
+addressBookParser -[USER_COLOR]-> logicManager : :AttendanceCommand
+deactivate addressBookParser
+
+logicManager -[USER_COLOR]> attendanceCommand : execute(...)
+activate attendanceCommand UI_COLOR
+
+attendanceCommand -[USER_COLOR]> commandResult ** : CommandResult()
+activate commandResult LOGIC_COLOR
+
+commandResult -[USER_COLOR]-> attendanceCommand : :CommandResult
+deactivate commandResult
+
+attendanceCommand -[USER_COLOR]-> logicManager: :CommandResult
+deactivate attendanceCommand
+
+ref over logicManager, ui : process command result
+deactivate logicManager
+
+ui -[USER_COLOR]-> user : "Edited Persons: [...]"
+deactivate ui
+
+@enduml

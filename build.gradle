@@ -66,7 +66,9 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveBaseName = 'BandBook'
+    archiveVersion = 'v1.2'
+    archiveClassifier = ''
 }
 
 defaultTasks 'clean', 'test'
