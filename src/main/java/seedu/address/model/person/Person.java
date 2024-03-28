@@ -2,13 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.Optional;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.project.Task;
 
 /**
  * Represents a Person in the address book.
@@ -18,60 +18,86 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
 
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final List<Task> taskList;
 
     /**
-     * Every field must be present and not null.
+     * Constructs a Person object with empty taskList
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name) {
+        requireAllNonNull(name);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        List<Task> taskList = new ArrayList<>();
+        this.taskList = taskList;
+    }
+
+    /**
+     * Adds task to the Person object
+     */
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    /**
+     * Removes task from the Person object
+     */
+    public void removeTask(Task task) {
+        int i = 0;
+        for (Task t : taskList) {
+            if (t.equals(task)) {
+                taskList.remove(i);
+                break;
+            }
+            i += 1;
+        }
+    }
+
+    /**
+     * @param taskName name to be matched with the tasks listed in my project
+     * @return task in the project with the matching taskName
+     */
+    public Task findTask(Name taskName) {
+        Optional<Task> foundTask = taskList.stream()
+                .filter(task -> task.getName().toString().equals(taskName.toString()))
+                .findFirst();
+        return foundTask.get();
     }
 
     public Name getName() {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public List<Task> getDoneTasks() {
+        ArrayList<Task> tmp = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getStatus() == "Complete") {
+                tmp.add(task);
+            }
+        }
+        return tmp;
     }
 
-    public Email getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
+    public List<Task> getUndoneTasks() {
+        ArrayList<Task> tmp = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.getStatus() == "Incomplete") {
+                tmp.add(task);
+            }
+        }
+        return tmp;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
-    /**
-     * Returns true if both persons have the same name.
+     * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Person otherProject) {
+        if (otherProject == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherProject != null
+                && otherProject.getName().equals(getName());
     }
 
     /**
@@ -90,28 +116,31 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+        return name.equals(otherPerson.name);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phone", phone)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+                .add("name", name).toString();
+    }
+
+    /**
+     * Returns true if the Person has a task that is equal to the specified task
+     */
+    public boolean hasTask(Task task) {
+        for (Task t : taskList) {
+            if (t.equals(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

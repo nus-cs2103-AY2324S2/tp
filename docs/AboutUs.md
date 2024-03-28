@@ -9,51 +9,42 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Lin Shuang Shuang
 
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
+<img src="images/lin-shuang-shuang.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
-### Johnny Doe
+### Ananya Shahi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ananya21.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/ananya21)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
-### Jean Doe
 
-<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Thitipat Chaiyakul
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+<img src="images/thitipatc.png" width="200px">
 
-### James Doe
+[[github](http://github.com/ThitipatC)]
 
-<img src="images/johndoe.png" width="200px">
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+### Pawirunsiri Thanakorn (Modem)
 
-* Role: Developer
-* Responsibilities: UI
+<img src="images/modembcc.png" width="200px">
+
+[[github](http://github.com/modembcc)]
+
+<!-- [[portfolio](team/johndoe.md)] -->
+
+- Role: Developer
+- Responsibilities: UI
