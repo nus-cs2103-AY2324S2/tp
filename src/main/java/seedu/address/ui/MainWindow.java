@@ -2,7 +2,10 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.logging.Logger;
+
+import com.google.zxing.WriterException;
 
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -206,8 +209,10 @@ public class MainWindow extends UiPart<Stage> {
                 }
             });
             paymentWindow.show();
-        } catch (Exception e) {
+        } catch (IOException | WriterException e) {
             logger.info("An error occurred while trying to set up PaymentWindow: " + e.getMessage());
+            resultDisplay.setFeedbackToUser("An error occurred while trying to set up PaymentWindow!");
+            throw new RuntimeException(e.getMessage());
         }
     }
 

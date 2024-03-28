@@ -6,9 +6,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
 
@@ -26,8 +24,7 @@ public class QrGenerator {
     private static final int QR_SIZE = 400;
     private static final int LOGO_HEIGHT = QR_SIZE / 6;
     private static final Color PAYNOW_COLOR = Color.decode("#7a1b78");
-    private static final String LOGO_PATH = Paths.get(
-            "src", "main", "resources", "images", "paynowlogo.png").toString();
+    private static final String LOGO_PATH = "images/paynowlogo.png";
 
     private static void overlayLogo(Graphics2D graphics) throws IOException {
         Image logo = getLogo();
@@ -37,7 +34,7 @@ public class QrGenerator {
     }
 
     private static Image getLogo() throws IOException {
-        BufferedImage originalLogo = ImageIO.read(new File(LOGO_PATH));
+        BufferedImage originalLogo = ImageIO.read(ClassLoader.getSystemResourceAsStream(LOGO_PATH));
         float scale = (float) LOGO_HEIGHT / originalLogo.getHeight();
         return originalLogo.getScaledInstance(
                 (int) (originalLogo.getWidth() * scale),
