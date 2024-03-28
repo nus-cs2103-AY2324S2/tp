@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -19,10 +20,11 @@ public class ModelStubWithEmployee extends ModelStub {
      * Initializes a ModelStubWithEmployee with the given employee.
      * @param employee The employee to be added to the model.
      */
-    public ModelStubWithEmployee(Employee employee) {
-        requireNonNull(employee);
-        employees.add(employee);
+    public ModelStubWithEmployee(List<Employee> employeesList) {
+        requireNonNull(employeesList);
+        employees.addAll(employeesList);
     }
+
 
     @Override
     public boolean hasEmployee(Employee employee) {

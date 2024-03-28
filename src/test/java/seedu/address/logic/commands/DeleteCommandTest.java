@@ -15,13 +15,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelStubWithEmployee;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.employee.Employee;
-import seedu.address.model.employee.UniqueId;
+import seedu.address.model.employee.*;
+import seedu.address.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -122,6 +129,48 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_invalidUid_throwsParseException() {
+        UniqueId invalidUid = new UniqueId("-1");
+        DeleteCommand deleteCommand = new DeleteCommand(invalidUid);
+
+        assertThrows(CommandException.class, () -> deleteCommand.execute(model));
+    }
+
+    @Test
+    void execute_noTargetIndexNameOrUid_throwsCommandException() {
+        // Arrange
+        ModelStubWithEmployee model = new ModelStubWithEmployee(new ArrayList<>());
+        DeleteCommand deleteCommand = new DeleteCommand();
+
+        assertThrows(CommandException.class, () -> deleteCommand.execute(model));
+    }
+
+    @Test
+    void deleteByName_multipleEmployeesWithSameName_throwsCommandException() {
+        // Arrange
+        Name name = new Name("John Doe");
+        Phone phone = new Phone("12345678");
+        Email email = new Email("johndoe@example.com");
+        Address address = new Address("123 Main Street");
+        Team team = new Team("A");
+        Role role = new Role("Developer");
+        Set<Tag> tags = new HashSet<>();
+        UniqueId uid1 = new UniqueId("1");
+        UniqueId uid2 = new UniqueId("2");
+
+        Employee employee1 = new Employee(name, phone, email, address, team, role, tags, uid1);
+        Employee employee2 = new Employee(name, phone, email, address, team, role, tags, uid2);
+
+        ModelStubWithEmployee model = new ModelStubWithEmployee(Arrays.asList(employee1, employee2));
+
+        DeleteCommand deleteCommand = new DeleteCommand(name.fullName);
+
+        // Act and Assert
+        assertThrows(CommandException.class, () -> deleteCommand.deleteByName(model));
+    }
+
 
     @Test
     public void equals() {
