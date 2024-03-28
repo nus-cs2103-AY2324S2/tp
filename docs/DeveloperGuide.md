@@ -158,6 +158,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Updating last met feature
+The last met feature allows users to keep track and update their last interaction with their clients.
+
+#### Implementation
+
+The updating of last met command is facilitated by the `LastMetCommandParser` class which is created by the `AddressBookParser`.
+
+The `LastMetCommandParser#parse()` overrides `Parser#parse()` in the `Parser` interface.
+- `LastMetCommandParser#parse()` - Parses the input arguments by storing the prefixes of it respective values in a `ArgumentMultimap` object.
+- It will then convert the String input into a Date object before creating a new `LastMetCommand` object with the formatted date.
+
+The `LastMetCommand` object is then executed by the `Logic` component.
+
+The `LastMetCommand` object then communicates with the `Model` component to update the LastMet to the client. The `Model` component then updates the `Person` object with the new LastMet.
+- `Model#setPerson(Person, Person)` - Sets the client in the existing client list to the new `Person` object which has been edited by the `LastMetCommand#execute()` which contains the new LastMet.
+- `Model#setDisplayClient(Person)` - Updates the displayed client in the UI to the client that has been edited with the new LastMet.
+
+The method `LastMetCommand#execute()` returns a CommandResult object which contains the success message to be displayed to the user.
+
+The following object diagram illustrates the above:
+<puml src="diagrams/LastMetObjectDiagram.puml" width="600" />
+
+The following sequence diagram shows the lastmet operation:
+<puml src="diagrams/LastMetSequenceDiagram.puml" width="900" />
+
 ### Add policy feature
 The add policy feature allows users to add a policy to a client. The policy is stored in the `Policy` class, which contains the policy details such as policy name, policy id. The `Policy` class is then added to the `PolicyList` object stored within the `Person` object in the `Model` component.
 
