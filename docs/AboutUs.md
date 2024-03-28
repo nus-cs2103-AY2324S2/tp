@@ -5,55 +5,51 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach the original AB3 team at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Camille Chin Rui Bin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/camille-readbean.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/camille-readbean)]
 
-* Role: Project Advisor
+* Role: Team lead
+* Responsibilities: Documentation, Testing, Code quality, Deliverables and deadlines, Integration, Scheduling and tracking
 
-### Jane Doe
+### Giselle Tan Yi Xi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/giselletan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/GiselleTan)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team lead
+* Responsibilities: Documentation, Testing, Code quality, Deliverables and deadlines, Integration, Scheduling and tracking
 
-### Johnny Doe
+### Kin Wei Qi Vanessa
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vannykin.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/vannykin)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team lead
+* Responsibilities: Documentation, Testing, Code quality, Deliverables and deadlines, Integration, Scheduling and tracking
 
-### Jean Doe
+### Koo Shu Jun, Theodore
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/theodorekooo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/TheodoreKooo)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team lead
+* Responsibilities: Documentation, Testing, Code quality, Deliverables and deadlines, Integration, Scheduling and tracking
 
-### James Doe
+### Vatsal Vitosh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vatsalvitosh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/VatsalVitosh)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Team lead
+* Responsibilities: Documentation, Testing, Code quality, Deliverables and deadlines, Integration, Scheduling and tracking

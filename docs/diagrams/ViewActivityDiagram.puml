@@ -1,0 +1,18 @@
+@startuml
+start
+:User requests to view client at index;
+:AddressBookParser parses command;
+:ViewCommandParser parses command;
+
+if () then ([Index is not an Integer or <= 0])
+:Invalid command error;
+([else]) elseif () then ([no clients])
+:Invalid client index error;
+([else]) elseif () then ([Index >= 1 and Index <= number of clients])
+:Display client information;
+else ([else])
+:Invalid client index error;
+endif
+
+stop
+@enduml

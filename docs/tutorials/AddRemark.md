@@ -227,7 +227,7 @@ Now that we have all the information that we need, let’s lay the groundwork fo
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.client`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -324,7 +324,7 @@ After the previous step, we notice a peculiar regression — we went from di
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
 In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
-save it with `Model#setPerson()`.
+save it with `Model#setClient()`.
 
 **`RemarkCommand.java`:**
 
@@ -346,7 +346,7 @@ save it with `Model#setPerson()`.
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), remark, personToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setClient(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedPerson));
