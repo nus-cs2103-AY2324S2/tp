@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// import java.util.Collections;
-// import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -26,11 +26,11 @@ public class SelectExamCommandTest {
         UserPrefs userPrefs = new UserPrefs();
         Model model = new ModelManager(addressBook, userPrefs);
 
-        SelectExamCommand command = new SelectExamCommand("Midterm");
+        SelectExamCommand command = new SelectExamCommand(Index.fromOneBased(1));
 
         CommandResult result = command.execute(model);
 
-        assertEquals(String.format(SelectExamCommand.MESSAGE_SUCCESS, exam), result.getFeedbackToUser());
+        assertEquals(String.format(SelectExamCommand.MESSAGE_SELECT_EXAM_SUCCESS, exam), result.getFeedbackToUser());
     }
 
     @Test
@@ -41,25 +41,39 @@ public class SelectExamCommandTest {
         UserPrefs userPrefs = new UserPrefs();
         Model model = new ModelManager(addressBook, userPrefs);
 
-        SelectExamCommand command = new SelectExamCommand("Final");
+        SelectExamCommand command = new SelectExamCommand(Index.fromOneBased(2));
 
         assertThrows(CommandException.class, () -> command.execute(model));
     }
 
     @Test
-    public void equals_sameValues_returnsTrue() {
-        SelectExamCommand command1 = new SelectExamCommand("Midterm");
-        SelectExamCommand command2 = new SelectExamCommand("Midterm");
+    void equals() {
+        SelectExamCommand selectExamCommand1 = new SelectExamCommand(Index.fromZeroBased(1));
+        SelectExamCommand selectExamCommand2 = new SelectExamCommand(Index.fromZeroBased(1));
+        SelectExamCommand selectExamCommand3 = new SelectExamCommand(Index.fromZeroBased(2));
 
-        assertEquals(command1, command2);
+        // same object -> returns true
+        assertTrue(selectExamCommand1.equals(selectExamCommand1));
+
+        // same values -> returns true
+        assertTrue(selectExamCommand1.equals(selectExamCommand2));
+
+        // different types -> returns false
+        assertFalse(selectExamCommand1.equals(1));
+
+        // null -> returns false
+        assertFalse(selectExamCommand1.equals(null));
+
+        // different index -> returns false
+        assertFalse(selectExamCommand1.equals(selectExamCommand3));
     }
 
     @Test
-    public void equals_differentValues_returnsFalse() {
-        SelectExamCommand command1 = new SelectExamCommand("Midterm");
-        SelectExamCommand command2 = new SelectExamCommand("Final");
-
-        assertNotEquals(command1, command2);
+    void toStringTest() {
+        SelectExamCommand selectExamCommand = new SelectExamCommand(Index.fromZeroBased(1));
+        assertEquals("seedu.address.logic.commands.SelectExamCommand{targetIndex="
+                     + "seedu.address.commons.core.index.Index{zeroBasedIndex=1}}",
+                     selectExamCommand.toString());
     }
 
 }

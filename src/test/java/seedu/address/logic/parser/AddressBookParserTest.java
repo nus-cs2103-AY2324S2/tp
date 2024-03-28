@@ -25,6 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ImportExamCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonDetailContainsKeywordPredicate;
@@ -117,6 +118,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteShown() throws Exception {
         assertTrue(parser.parseCommand("deleteshown") instanceof DeleteShownCommand);
+    }
+
+    @Test
+    public void parseCommand_selectExam() throws Exception {
+        assertTrue(parser.parseCommand("selectExam 1") instanceof SelectExamCommand);
     }
 
     @Test
