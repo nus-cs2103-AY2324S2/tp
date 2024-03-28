@@ -46,7 +46,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -116,5 +116,18 @@ public class DeleteCommandTest {
         model.updateFilteredPersonList(p -> false);
 
         assertTrue(model.getFilteredPersonList().isEmpty());
+    }
+
+
+    @Test
+    public void getCommandWord() {
+        Command command = new DeleteCommand(INDEX_FIRST_PERSON);
+        assertEquals(DeleteCommand.COMMAND_WORD, command.getCommandWord());
+    }
+
+    @Test
+    public void getMessageUsage() {
+        Command command = new DeleteCommand(INDEX_FIRST_PERSON);
+        assertEquals(DeleteCommand.MESSAGE_USAGE, command.getMessageUsage());
     }
 }

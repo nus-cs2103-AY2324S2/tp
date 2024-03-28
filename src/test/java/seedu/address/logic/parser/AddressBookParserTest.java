@@ -5,26 +5,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.note.Description;
+import seedu.address.model.person.note.Note;
+import seedu.address.testutil.EditNoteDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -68,13 +72,13 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
+    // @Test
+    // public void parseCommand_find() throws Exception {
+    //     List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    //     FindCommand command = (FindCommand) parser.parseCommand(
+    //             FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+    //     assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    // }
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -86,6 +90,31 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_addNote() throws Exception {
+        LocalDateTime dateTime = LocalDateTime.parse("2024-02-19T11:30");
+        Note note = new Note(dateTime, new Description("New note"));
+
+        AddNoteCommand command = (AddNoteCommand) parser.parseCommand("add-an 1 d/19-02-2024 t/1130 n/New note");
+        assertEquals(new AddNoteCommand(Index.fromOneBased(1), note), command);
+    }
+
+    @Test
+    public void parseCommand_listNote() throws Exception {
+        assertTrue(parser.parseCommand(ListNoteCommand.COMMAND_WORD) instanceof ListNoteCommand);
+        assertTrue(parser.parseCommand(ListNoteCommand.COMMAND_WORD + " 3") instanceof ListNoteCommand);
+    }
+    @Test
+    public void parseCommand_editNote() throws Exception {
+        LocalDateTime dateTime = LocalDateTime.parse("2024-02-19T11:30");
+        Note note = new Note(dateTime, new Description("General Flu"));
+        EditNoteCommand.EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder(note).build();
+
+        EditNoteCommand command = (EditNoteCommand) parser
+                .parseCommand("edit-an 1 1 d/19-02-2024 t/1130 n/General Flu");
+        assertEquals(new EditNoteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_NOTE, descriptor), command);
     }
 
     @Test

@@ -3,10 +3,28 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+**HealthSync** helps optimize clinical efficiency with a keyboard-driven system for doctors to manage patient records, notes, medical certificates, and medication dispensing, all in one streamlined interface, enhancing care quality and focus in a busy clinical setting. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* Table of Contents
-{:toc}
+# Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Help](#viewing-help--help)
+  - [Add patient medical record](#adding-a-patient-medical-record-add)
+  - [Listing all patient medical records](#listing-all-patient-medical-records--list)
+  - [Editing a patient medical record](#editing-a-patient-medical-record--edit)
+  - [Deleting a patient medical record](#deleting-a-patient-medical-record--delete)
+  - [Listing all appointment notes](#listing-all-appointment-notes-list-an)
+  - [Locating patient(s) medical record](#locating-a-patient-medical-record--find)
+  - [Adding an appointment note](#adding-an-appointment-note-add-an)
+  - [Editing an appointment note](#editing-an-appointment-note-edit-an)
+  - [Deleting an appointment note](#deleting-an-appointment-note--delete-an)
+  - [Clearing all entries](#clearing-all-entries--clear)
+  - [Exiting the program](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,11 +32,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `healthsync.jar` from [here](https://github.com/AY2324S2-CS2103-F09-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your HealthSync.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar healthsync.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -64,83 +82,202 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 </div>
 
 ### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a comprehensive list of available commands within the application, assisting users in navigating and utilizing Healthsync effectively for managing patient medical and appointment records.
 
 Format: `help`
 
+- This command does not require any parameters.
+- Upon execution, it presents a list of commands along with their formats, example usages, and descriptions.
 
-### Adding a person: `add`
+Example:
 
-Adds a person to the address book.
+- Entering `help` in Healthsync will produce a list of commands as shown above, guiding users through the process of managing patient records and appointments within the system.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### Adding a patient medical record: `add`
+
+Adds a patient medical record to the system.
+
+Format: `add ic/NRIC n/NAME [g/GENDER] b/BIRTHDATE p/PHONE_NUMBER e/EMAIL [d/DRUG_ALLERGY] [i/ILLNESS_CATEGORY]...`
+
+* `NRIC` must be an alphanumeric and it must follow Singapore's NRIC format
+* `NAME` can contain an alphanumeric, spaces, special characters.
+* `GENDER` M, F or exclude from the command for 'Prefer not to say' option.
+* `PHONE_NUMBER` should be in valid Singapore phone number format. 
+Must start with 6, 8, or 9 and be followed by seven additional digits, 
+with no spaces or other characters.
+* `BIRTHDATE` must be in the form of DD-MM-YYYY and must not be in the future.
+* `EMAIL` should be of the format 'local-part@domain'.
+* `DRUG_ALLERGY` can contain alphanumerics, spaces and special characters.
+* `ILLNESS_CATEGORY` could be of the following options - Infectious Disease, Chronic Conditions, Autoimmune Disorders, 
+Genetic Disorders, Mental Health Disorders, Neurological Disorders, Metabolic Disorder, Nutritional Deficiencies, 
+Environmental Illnesses, Degenerative Diseases or Others.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add ic/S9974944F n/John Doe p/91234567 g/M b/11-11-1990 d/Paracetamol Allergy i/Infectious Disease` Adds a new 
+patient record with nric of `S9974944F` name of `John Doe`, phone no. of `+65 91234567`, gender of `Male`, 
+birthdate of `11-11-1990`, allergy of `Paracetamol Allergy`, and an illness of `Infectious Disease`.
+### Listing all patient medical records : `list`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
+Displays the list of patients in the application. Each row of patients displays a basic details of the patients 
+(e.g. name, gender, age, illness, phone number)
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a patient medical record : `edit`
 
-Edits an existing person in the address book.
+Edits a particular patient medical record. Users can select which particular detail to be updated.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit PATIENT_
+INDEX [n/NAME] [p/PHONE_NUMBER] [g/GENDER] [b/BIRTHDATE] [d/DRUG_ALLERGIES] [i/ILLNESS_CATEGORY]...`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Edit should have atleast one parameter / detail to update. Also nric is not allowed be edited remake the record 
+if new nric is needed.
+</div>
 
+* Edits the medical record at the specified `PATIENT_INDEX`. The index refers to the index number shown in the 
+displayed patient medical record list. The index **must be a positive integer** 1, 2, 3, …​
+* `NAME` can contain an alphanumeric, spaces, special characters.
+* `PHONE_NUMBER` should be in valid Singapore phone number format.
+  Must start with 6, 8, or 9 and be followed by seven additional digits,
+  with no spaces or other characters.
+* `GENDER` M, F or exclude from the command for 'Prefer not to say' option. `\g` with empty argument to remove any gender
+specification and make it 'Prefer not to say'.
+* `BIRTHDATE` must be in the form of DD-MM-YYYY and must not be in the future.
+* `DRUG_ALLERGY` can contain alphanumerics, spaces and special characters. `\d` with empty argument to remove any allergy
+previously written.
+* `ILLNESS_CATEGORY` could be of the following options - Infectious Disease, Chronic Conditions, Autoimmune Disorders,
+  Genetic Disorders, Mental Health Disorders, Neurological Disorders, Metabolic Disorder, Nutritional Deficiencies,
+  Environmental Illnesses, Degenerative Diseases or Others. a single `\i` with empty argument would remove 
+all illness category associated with the medical record.
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 n/Cindy Tan p/94505333 g/F b/11-11-1991 d/Antibiotic Allergy i/Genetic Disorders` Edit the whole patient 
+medical record that has the `PATIENT_INDEX` of 1.
+*  `edit 1 g/M b/11-07-1999` Edits patient medical record that has the `PATIENT_INDEX` of 1 to have a gender of 
+`M` and birthdate of `11-07-1999`.
 
-### Locating persons by name: `find`
+[//]: # (### Locating persons by name: `find`)
 
-Finds persons whose names contain any of the given keywords.
+[//]: # ()
+[//]: # (Finds persons whose names contain any of the given keywords.)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+[//]: # (Format: `find KEYWORD [MORE_KEYWORDS]`)
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+[//]: # ()
+[//]: # (* The search is case-insensitive. e.g `hans` will match `Hans`)
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+[//]: # (* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`)
 
-### Deleting a person : `delete`
+[//]: # (* Only the name is searched.)
 
-Deletes the specified person from the address book.
+[//]: # (* Only full words will be matched e.g. `Han` will not match `Hans`)
 
-Format: `delete INDEX`
+[//]: # (* Persons matching at least one keyword will be returned &#40;i.e. `OR` search&#41;.)
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+[//]: # (  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (* `find John` returns `john` and `John Doe`)
+
+[//]: # (* `find alex david` returns `Alex Yeoh`, `David Li`<br>)
+
+[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
+
+### Deleting a patient medical record : `delete`
+
+Deletes a particular patient's medical records.
+
+Format: `delete PATIENT_INDEX`
+
+* Deletes the patient medical record at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+### Locating a patient medical record : `find`
 
+Finds patient whose details contain any of the given keywords.
+
+Format: `find [ic/NRIC] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [b/BIRTHDATE] [i/ILLNESS_CATEGORY] 
+[d/DRUG_ALLERGIES]`
+
+* Users can search by NRIC, name, phone number, email, gender, birthdate, illness category, and drug allergy.
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched e.g. `Han` will not match to `Hans`
+* Patients matching at least one keyword for a specific parameter will be returned (i.e. `OR` search). e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Multiple search parameters can be combined to narrow down search results (i.e. `AND` search). e.g. `n/Taylor g/m` will return male patients named Taylor
+
+Examples:
+* `find n/John` returns `john` and `John Doe`
+* `find d/paracetamol i/infectious disease` returns all patients with paracetamol allergy and infectious disease
+
+### Listing all appointment notes: `list-an`
+
+Shows a list of all appointment notes.
+
+Format: `list-an`
+
+### Listing a particular patients' appointment notes: `list-an`
+
+Shows a list a particular patients' appointment notes.
+
+Format: `list-an PATIENT_INDEX`
+
+* Lists all appointment notes at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list-an 1`
+
+### Adding an appointment note: `add-an`
+
+Adds an appointment note to a patient. Please note that the time parameter is in 24-hour format.
+
+Format: `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of appointment record (including 0)
+</div>``
+
+Examples:
+* `add-an 1 d/19-02-2024 t/1130 n/General Flu`
+* `add-an 1 d/30-12-2023 t/2100 n/Headache`
+
+### Editing an appointment note: `edit-an`
+
+Edits an appointment note to a patient. Please note that the time parameter is in 24-hour format.
+
+Format: `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`
+
+* Edits the appointment record at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
+* `edit-an 1 2 d/30-12-2023 t/2100 n/Stomach Virus`
+
+### Deleting an appointment note : `delete-an`
+
+Deletes the specified appointment note from a patient.
+
+Format: `delete-an PATIENT_INDEX INDEX`
+
+* Deletes the appointment record at the specified `INDEX` for given patient from `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
+* The patient index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list-an` followed by `delete-an 1 2` deletes the 2nd appointment note from the 1st patient.
+
+``
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -155,15 +292,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HealthSync data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+HealthSync data are saved automatically as a JSON file `[JAR file location]/data/HealthSync.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, HealthSync will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the HealthSync to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -175,7 +312,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HealthSync home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,10 +326,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
+**Add Patient Medical Record** | `add ic/NRIC n/NAME p/PHONE_NUMBER [g/GENDER] b/BIRTHDATE i/ILLNESS_CATEGORY [d/DRUG_ALLERGIES]` <br> e.g. `add ic/S9974944F n/John Doe p/91234567 g/Male b/11-11-1990 i/Infectious Disease d/Paracetamol Allergy`
+**List All Patient Medical Records** | `list`
+**Edit Patient Medical Record** | `edit PATIENT_INDEX [ic/NRIC] [n/NAME] [p/PHONE_NUMBER] [g/GENDER] [b/BIRTHDATE] [i/ILLNESS_CATEGORY] [d/DRUG_ALLERGIES]` <br> e.g. `edit 1 g/Male b/11-07-1999`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List All Appointment Notes** | `list-an`
+**List A Patient's Appointment Notes** | `list-an PATIENT_INDEX` <br> e.g., `list-an 1`
+**Add Appointment Note** | `add-an PATIENT_INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `add-an 1 d/30-12-2023 t/2100 n/Headache`
+**Edit Appointment Note** | `edit-an PATIENT_INDEX INDEX d/DD-MM-YYYY t/HHMM n/NOTE`<br> e.g., `edit-an 1 1 d/19-02-2024 t/1230 n/General Flu`
+**Delete Appointment Note** | `delete-an PATIENT_INDEX INDEX`<br> e.g., `delete-an 1 2`
 **List** | `list`
 **Help** | `help`
+**Clear** | `clear`

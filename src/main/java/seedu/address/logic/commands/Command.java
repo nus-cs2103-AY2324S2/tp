@@ -4,7 +4,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Represents a command with hidden internal logic and the ability to be executed.
+ * Represents a command with hidden internal logic and the ability to be
+ * executed.
  */
 public abstract class Command {
 
@@ -16,5 +17,19 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException;
+
+    /**
+     * Returns the command word of the command.
+     *
+     * @return Command word of the command.
+     */
+    public abstract String getCommandWord();
+
+    /**
+     * Returns the usage message of the command.
+     *
+     * @return Usage message of the command.
+     */
+    public abstract String getMessageUsage();
 
 }

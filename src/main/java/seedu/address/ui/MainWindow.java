@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +46,14 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane noteListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,8 +115,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Initialize both PersonListPanel and NoteListPanel
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
+
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        noteListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -166,6 +175,11 @@ public class MainWindow extends UiPart<Stage> {
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
+
+    public NoteListPanel getNoteListPanel() {
+        return noteListPanel;
+    }
+
 
     /**
      * Executes the command and returns the result.

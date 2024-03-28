@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Rayson Chia
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/raysonchia.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](http://github.com/raysonchia)]
+[[portfolio](team/raysonchia.md)]
+
+- Role: Developer
+- Responsibilities: Developer
+
+### Rick Koh
+
+<img src="images/rickkoh.png" width="200px">
+
+[[github](http://github.com/rickkoh)]
+[[portfolio](team/rickkoh.md)]
+
+- Role: QA, Developer
+- Responsibilities: Developer
+
+### Aum Sebin
+
+<img src="images/sebin0817.png" width="200px">
+
+[[github](http://github.com/sebin0817)]
+[[portfolio](team/sebin.md)]
+
+- Role: Developer
+- Responsibilities: Developer
+
+### Jm San Diego ⚡️
+
+<img src="images/jmsandiegoo.png" width="200px">
+
+[[github](http://github.com/jmsandiegoo)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Developer
+- Responsibilities: Developer
 
-### Jane Doe
+### Joe Kawai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joenus.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/joenus)]
+[[portfolio](team/joe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+- Role: Team Lead, Developer
+- Responsibilities: Developer

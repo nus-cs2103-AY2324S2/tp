@@ -1,26 +1,22 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s field matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+abstract class ContainsKeywordsPredicate implements Predicate<Person> {
+    protected final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public ContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
-    @Override
-    public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
-    }
+    public abstract boolean test(Person person);
 
     @Override
     public boolean equals(Object other) {

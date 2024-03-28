@@ -1,46 +1,89 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "nric": "S1234567A",
     "name" : "Alice Pauline",
+    "gender": "F",
+    "birthdate": "01-02-2000",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tags" : [ "friends" ]
+    "drugAllergy": "No allergy",
+    "illnesses" : [ "Infectious Disease" ],
+    "notes" : [ {
+      "dateTime" : "2024-02-19T21:30:00",
+      "description" : "General Flu"
+    }, {
+      "dateTime" : "2024-02-28T08:30:00",
+      "description" : "Headache"
+    } ]
   }, {
+    "nric": "S1234567B",
     "name" : "Benson Meier",
+    "gender": "M",
+    "birthDate": "01-03-1999",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "drugAllergy": "Penicillin",
+    "illnesses" : [ "Infectious Disease" ],
+    "notes" : [ {
+      "dateTime" : "2024-02-20T15:30:00",
+      "description" : "Joint pain assessment"
+    }, {
+      "dateTime" : "2024-04-04T10:30:00",
+      "description" : "Post-surgery checkup"
+    }, {
+      "dateTime" : "2024-05-19T17:00:00",
+      "description" : "Sports injury follow-up"
+    } ]
   }, {
+    "nric": "T1234567A",
     "name" : "Carl Kurz",
+    "gender": "Prefer not to say",
+    "birthDate": "04-10-1998",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tags" : [ ]
+    "drugAllergy": "No allergy",
+    "illnesses" : [ ],
+    "notes" : [ ]
   }, {
+    "nric": "T1234567B",
     "name" : "Daniel Meier",
+    "gender": "M",
+    "birthDate": "02-06-2001",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tags" : [ "friends" ]
+    "drugAllergy": "Antibiotics",
+    "illnesses" : [ "Chronic Condition" ],
+    "notes" : [ ]
   }, {
+    "nric": "T1234567C",
     "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tags" : [ ]
+    "gender": "F",
+    "birthDate": "03-02-1997",
+    "phone": "94822245",
+    "email": "werner@example.com",
+    "drugAllergy": "No allergy",
+    "illnesses" : [ ],
+    "notes" : [ ]
   }, {
+    "nric": "F1234567A",
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "gender": "F",
+    "birthDate": "03-06-1996",
+    "phone" : "94824277",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tags" : [ ]
+    "drugAllergy": "No allergy",
+    "illnesses" : [ ],
+    "notes" : [ ]
   }, {
+    "nric": "F1234567B",
     "name" : "George Best",
-    "phone" : "9482442",
+    "gender": "M",
+    "birthDate": "01-03-2002",
+    "phone" : "94824423",
     "email" : "anna@example.com",
-    "address" : "4th street",
-    "tags" : [ ]
+    "drugAllergy" : "No allergy",
+    "illnesses" : [ "Genetic Disorder" ],
+    "notes" : [ ]
   } ]
 }

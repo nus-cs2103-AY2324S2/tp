@@ -1,11 +1,14 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DRUG_ALLERGY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -13,11 +16,13 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -47,7 +52,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
+                temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -61,7 +67,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_INDEX);
     }
 
     @Test
@@ -85,6 +91,41 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook_retrieveAddressBook_containsExpectedData() {
+        ReadOnlyAddressBook readOnlyAddressBook = logic.getAddressBook();
+        assertEquals(model.getAddressBook(), readOnlyAddressBook);
+    }
+
+    @Test
+    public void getFilteredNoteList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredNoteList().remove(0));
+    }
+
+    @Test
+    public void getAddressBookFilePath_checkPath_matchesModel() {
+        Path expectedPath = Paths.get("dummy/path/addressBook.json");
+        model.setAddressBookFilePath(expectedPath);
+        Path actualPath = logic.getAddressBookFilePath();
+        assertEquals(expectedPath, actualPath);
+    }
+
+    @Test
+    public void getGuiSettings_checkSettings_matchesModel() {
+        GuiSettings expectedSettings = new GuiSettings(1, 2, 1024, 768);
+        model.setGuiSettings(expectedSettings);
+        GuiSettings actualSettings = logic.getGuiSettings();
+        assertEquals(expectedSettings, actualSettings);
+    }
+
+    @Test
+    public void setGuiSettings_checkSettings_effectInModel() {
+        GuiSettings newSettings = new GuiSettings(1.5, 3, 1280, 720);
+        logic.setGuiSettings(newSettings);
+        GuiSettings modelSettings = model.getGuiSettings();
+        assertEquals(newSettings, modelSettings);
     }
 
     /**
@@ -165,9 +206,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NRIC_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
+                + BIRTHDATE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + DRUG_ALLERGY_DESC_AMY;
+        Person expectedPerson = new PersonBuilder(AMY).withIllnesses().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
