@@ -79,7 +79,8 @@ public class PersonCard extends UiPart<Region> {
                 String line = lines[i];
                 if (line.length() > maxLineLength) {
                     // Truncate the line and add an ellipsis
-                    truncatedNoteBuilder.append("            ").append(line.substring(0, maxLineLength)).append("...\n");
+                    truncatedNoteBuilder.append("            ")
+                            .append(line.substring(0, maxLineLength)).append("...\n");
                 } else {
                     truncatedNoteBuilder.append("            ").append(line).append("\n");
                 }
