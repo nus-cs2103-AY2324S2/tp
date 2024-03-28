@@ -93,9 +93,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTag(VALID_TAG_BOB)
                 .withGroups(VALID_GROUP_HUSBAND, VALID_GROUP_FRIEND).build();
-        DESC_AMY_GROUP = new GroupPersonDescriptorBuilder().withNusId(VALID_NUSID_AMY).withTag(VALID_TAG_AMY)
+        DESC_AMY_GROUP = new GroupPersonDescriptorBuilder().withTag(VALID_TAG_AMY)
                 .withGroups(VALID_GROUP_HUSBAND).build();
-        DESC_BOB_GROUP = new GroupPersonDescriptorBuilder().withNusId(VALID_NUSID_BOB).withTag(VALID_TAG_BOB)
+        DESC_BOB_GROUP = new GroupPersonDescriptorBuilder().withTag(VALID_TAG_BOB)
                 .withGroups(VALID_GROUP_FRIEND).build();
     }
 
@@ -114,8 +114,6 @@ public class CommandTestUtil {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
-
-
 
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
