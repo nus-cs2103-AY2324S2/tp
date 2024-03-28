@@ -30,5 +30,4 @@ student1 -[hidden]right-> student2
 uniquePersonList -down-> student1
 uniquePersonList -down-> student2
 
-
 @enduml
