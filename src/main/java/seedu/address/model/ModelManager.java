@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.messages.EditMessages;
 import seedu.address.model.person.Maintainer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -192,29 +191,32 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Find the person by their name.
+     * Find a general contact by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Person that matches the name.
+     * @throws CommandException Handles invalid person message.
      */
     @Override
-    public Person findByName(Name targetName) {
+    public Person findByName(Name targetName, String message) throws CommandException {
         for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName)) {
                 return person;
             }
         }
-        return null;
+        throw new CommandException(message);
     }
 
     /**
      * Find the person by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Person that matches the name.
      * @throws CommandException Handles invalid person message.
      */
     @Override
-    public Person findPersonByName(Name targetName) throws CommandException {
+    public Person findPersonByName(Name targetName, String message) throws CommandException {
         for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName)) {
@@ -224,57 +226,60 @@ public class ModelManager implements Model {
                 }
             }
         }
-        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_PERSON);
+        throw new CommandException(message);
     }
 
     /**
      * Find the maintainer by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Maintainer that matches the name.
      * @throws CommandException Handles invalid maintainer message.
      */
     @Override
-    public Maintainer findMaintainerByName(Name targetName) throws CommandException {
+    public Maintainer findMaintainerByName(Name targetName, String message) throws CommandException {
         for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Maintainer) {
                 return (Maintainer) person;
             }
         }
-        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_MAINTAINER);
+        throw new CommandException(message);
     }
 
     /**
      * Find the staff by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Staff that matches the name.
      * @throws CommandException Handles invalid staff message.
      */
     @Override
-    public Staff findStaffByName(Name targetName) throws CommandException {
+    public Staff findStaffByName(Name targetName, String message) throws CommandException {
         for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Staff) {
                 return (Staff) person;
             }
         }
-        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_STAFF);
+        throw new CommandException(message);
     }
 
     /**
      * Find the supplier by their name.
      * @param targetName Refers to the name identifier.
+     * @param message Refers to the exception message for the specific command.
      * @return Supplier that matches the name.
      * @throws CommandException Handles invalid supplier message.
      */
     @Override
-    public Supplier findSupplierByName(Name targetName) throws CommandException {
+    public Supplier findSupplierByName(Name targetName, String message) throws CommandException {
         for (Person person: this.addressBook.getPersonList()) {
             Name name = person.getName();
             if (name.equals(targetName) && person instanceof Supplier) {
                 return (Supplier) person;
             }
         }
-        throw new CommandException(EditMessages.MESSAGE_INVALID_EDIT_SUPPLIER);
+        throw new CommandException(message);
     }
 }

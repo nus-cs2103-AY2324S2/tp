@@ -76,8 +76,8 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        String noteContent = argMultimap.getValue(PREFIX_NOTE).orElse("");
-        Note note = noteContent.equals("") ? new Note(noteContent) : ParserUtil.parseNote(noteContent);
+        String noteContent = argMultimap.getValue(PREFIX_NOTE).orElse("No note here");
+        Note note = noteContent.equals("No note here") ? new Note(noteContent) : ParserUtil.parseNote(noteContent);
         Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
         Tag tag = new Tag("staff");
         Set<Tag> tags = new HashSet<>();

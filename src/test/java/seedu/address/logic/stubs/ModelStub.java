@@ -89,27 +89,27 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Person findByName(Name targetName) {
+    public Person findByName(Name targetName, String message) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Person findPersonByName(Name targetName) {
+    public Person findPersonByName(Name targetName, String message) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Maintainer findMaintainerByName(Name targetName) {
+    public Maintainer findMaintainerByName(Name targetName, String message) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Supplier findSupplierByName(Name targetName) {
+    public Supplier findSupplierByName(Name targetName, String message) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Staff findStaffByName(Name targetName) {
+    public Staff findStaffByName(Name targetName, String message) {
         throw new AssertionError("This method should not be called.");
     }
 

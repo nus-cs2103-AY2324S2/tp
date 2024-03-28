@@ -38,8 +38,10 @@ public class PinCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person personToPin = model.findByName(name);
+        Person personToPin = model.findByName(name, PinMessages.MESSAGE_PIN_NAME_NOT_FOUND);
+
         personToPin.toPin();
+
         model.updatePinnedPersonList();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
