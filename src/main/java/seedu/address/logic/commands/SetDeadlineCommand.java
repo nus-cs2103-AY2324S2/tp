@@ -16,7 +16,7 @@ public class SetDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "add deadline";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "DEADLINE /to TASK_NAME /in PROJECT_NAME";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " DEADLINE /to TASK_NAME /in PROJECT_NAME";
 
     public static final String MESSAGE_SUCCESS = "The task %1$s has been set with the following deadline %2$s.";
 
@@ -71,6 +71,23 @@ public class SetDeadlineCommand extends Command {
         deadlineTask.setDeadline(deadline);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(deadlineTask), deadline));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SetDeadlineCommand)) {
+            return false;
+        }
+
+        SetDeadlineCommand otherSetDeadlineCommand = (SetDeadlineCommand) other;
+        return project.equals(otherSetDeadlineCommand.project)
+                && task.equals(otherSetDeadlineCommand.task)
+                && deadline.equals(otherSetDeadlineCommand.deadline);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -20,10 +21,11 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Task;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddTaskCommandTest {
 
-    private Person taskProject = new Person(new Name("default"));
+    private Person taskProject = new PersonBuilder().build();
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -53,9 +55,16 @@ public class AddTaskCommandTest {
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
+    @Test
+    public void toStringMethod() {
+        Task duke = new Task("Duke");
+        AddTaskCommand addTaskCommand = new AddTaskCommand(duke, taskProject);
+        String expected = AddTaskCommand.class.getCanonicalName() + "{toAdd=" + duke + "}";
+        assertEquals(expected, addTaskCommand.toString());
+    }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override

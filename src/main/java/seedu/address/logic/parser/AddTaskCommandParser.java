@@ -10,20 +10,21 @@ import seedu.address.model.project.Task;
 
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddTaskCommand object
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
+     * and returns an AddTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
         try {
             if (!args.contains(" /to ")) { // Check if the input correctly uses "/to"
-                throw new ParseException("Whoops! When referring to another field like a project,"
-                        + " always remember to put /to instead of just to. ");
+                throw new ParseException(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddTaskCommand.MESSAGE_USAGE));
             }
             String taskName = args.split(" /to")[0];
             String projectName = args.split("/to ")[1];
