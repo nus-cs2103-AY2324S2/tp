@@ -151,13 +151,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+The following sequence diagram shows how a `find David` command is executed.
+
+<puml src="diagrams/FindSequenceDiagram.puml" alt="Interactions between components for the `find David` Command" />
+<br><br>
+
 ### Undo/Redo feature
 
 The undo/redo mechanism is implemented within `AddressBook.java` by saving the entire `persons` list. It uses an undo and a redo stack to maintain the history. Additionally, it implements the following operations:
 
-* `AddressBook#save()` — Copies the current `persons` list into the `undoStack`.
-* `AddressBook#undo()` — Restores the previous `persons` list state from the `undoStack`.
-* `AddressBook#redo()` — Restores a previously undone `persons` list state from the `redoStack`.
+* `AddressBook#save()` — Copies the current `persons` list into the `undoStack`.
+* `AddressBook#undo()` — Restores the previous `persons` list state from the `undoStack`.
+* `AddressBook#redo()` — Restores a previously undone `persons` list state from the `redoStack`.
 
 `save()` is used within the `AddressBook` class methods, saving only when the persons list is about to be modified. `save()` is set to be private to prevent potential misuse from other classes, and Law of Demeter violations.
 
@@ -173,7 +180,7 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the add
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `save()`, causing another `persons` list state (State 1) to be saved into the `undoStack`, before adding the person (State 2).
+Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `save()`, causing another `persons` list state (State 1) to be saved into the `undoStack`, before adding the person (State 2).
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -213,7 +220,7 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redo()`, which will:
+The `redo` command does the opposite — it calls `Model#redo()`, which will:
 1. Copy the `persons` list into the `undoStack`.
 2. Pop the latest `persons` list state from the `redoStack`.
 3. Copy this popped state into the `persons` list.
@@ -231,13 +238,14 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 Step 6. The user executes `clear`, which calls `AddressBook#save()`.
 Since there are still states in the `redoStack`, all states in the `redoStack` will be removed.
 
-Reason: It no longer makes sense to redo the `add n/David …​` command and ignore the `clear` command. This is the behavior that most modern desktop applications follow.
+Reason: It no longer makes sense to redo the `add n/David ...` command and ignore the `clear` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
 The following activity diagram summarizes what happens when a user executes a new command (excluding undo & redo):
 
 <puml src="diagrams/SaveActivityDiagram.puml" width="250" />
+<br><br>
 
 #### Design considerations:
 
@@ -358,7 +366,7 @@ Therefore, the application aims to deliver the following:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority  | As a …        | I want to …                                                       | So that I can …                                                                     |
+| Priority  | As a ...        | I want to ...                                                       | So that I can ...                                                                     |
 |-----------|---------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 | `* * *`   | user          | add new contacts and assets                                       | keep track of these details                                                         |
 | `* * `    | user          | add tags to contacts                                              | categorize them according to my preferences and workflow                            |
@@ -539,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Person-In-Charge(PIC)**: A contact responsible for an asset
 * **Point-of-Contact(PoC)**: A contact representing a responsible entity like a department or external business
-* **Tag**: User added information associated to a contact e.g. `retired`, `temp staff`, …
+* **Tag**: User added information associated to a contact e.g. `retired`, `temp staff`, ...
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -569,7 +577,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases ... }_
 
 ### Deleting a person
 
@@ -586,12 +594,13 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases ... }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+</li>
 
-1. _{ more test cases …​ }_
+1. _{ more test cases ... }_
