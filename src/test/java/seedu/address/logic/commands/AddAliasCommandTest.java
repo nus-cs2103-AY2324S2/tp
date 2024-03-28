@@ -185,6 +185,11 @@ public class AddAliasCommandTest {
         public Alias getAlias() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Theme getTheme() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
 
