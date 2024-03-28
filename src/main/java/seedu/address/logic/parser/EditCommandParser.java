@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -38,10 +39,13 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOMNUMBER,
                         PREFIX_TELEGRAM, PREFIX_BIRTHDAY, PREFIX_FREETIMETAG);
 
-        Index index;
+        Set <Index> index = new HashSet<>();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            String[] indices = argMultimap.getPreamble().trim().split("\\s+");
+            for (String i : indices) {
+                index.add(ParserUtil.parseIndex(i.trim()));
+            }
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -52,22 +56,40 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            if (index.size() > 1) {
+                throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "NAME"));
+            }
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            if (index.size() > 1) {
+                throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "PHONE"));
+            }
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            if (index.size() > 1) {
+                throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "EMAIL"));
+            }
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ROOMNUMBER).isPresent()) {
+            if (index.size() > 1) {
+                throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "ROOM NUMBER"));
+            }
             editPersonDescriptor.setRoomNumber(ParserUtil.parseRoomNumber(argMultimap
                     .getValue(PREFIX_ROOMNUMBER).get()));
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            if (index.size() > 1) {
+                throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "TELEGRAM"));
+            }
             editPersonDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
+            if (index.size() > 1) {
+                throw new ParseException(String.format(EditCommand.MESSAGE_MULTIEDIT_FAIL, "BIRTHDAY"));
+            }
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
 
