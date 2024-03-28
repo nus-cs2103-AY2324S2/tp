@@ -2,9 +2,6 @@ package seedu.teachstack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-import java.util.Optional;
-
 import seedu.teachstack.commons.util.ToStringBuilder;
 import seedu.teachstack.logic.Messages;
 import seedu.teachstack.logic.commands.exceptions.CommandException;
@@ -36,17 +33,13 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getAddressBook().getPersonList();
+        Person personToView = model.getPerson(targetId);
 
-        Optional<Person> person = lastShownList.stream()
-                .filter(p -> p.getStudentId().equals(targetId))
-                .findFirst();
-
-        if (!person.isPresent()) {
+        if (personToView == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_STUDENT_ID);
         }
 
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(person.get())));
+        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
     }
 
     @Override

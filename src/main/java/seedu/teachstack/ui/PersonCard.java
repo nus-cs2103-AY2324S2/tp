@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.teachstack.model.person.Person;
 
 /**
@@ -38,6 +39,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label grade;
 
+    @FXML
+    private Label weakLabel;
+
     private DesktopInterface mockDesktop;
 
     private boolean emailAlertShown;
@@ -55,6 +59,14 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         grade.setText(person.getGrade().value);
         email.setText(person.getEmail().value);
+
+        if (person.getGrade() != null && person.isWeak()) {
+            weakLabel.setText("Weak");
+            weakLabel.setTextFill(Color.RED);
+        } else {
+            weakLabel.setVisible(false); // If grade is not below threshold, don't display anything
+        }
+
         person.getGroups().stream()
                 .sorted(Comparator.comparing(group -> group.groupName))
                 .forEach(group -> groups.getChildren().add(new Label(group.groupName)));

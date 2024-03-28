@@ -7,7 +7,6 @@ import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.teachstack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.teachstack.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.teachstack.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.teachstack.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.teachstack.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.teachstack.testutil.TypicalStudentIds.ID_FIRST_PERSON;
 import static seedu.teachstack.testutil.TypicalStudentIds.ID_SECOND_PERSON;
@@ -31,9 +30,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        StudentId id = personToDelete.getStudentId();
-        DeleteCommand deleteCommand = new DeleteCommand(id);
+        Person personToDelete = model.getPerson(ID_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(ID_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(personToDelete));
@@ -56,7 +54,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToDelete = model.getPerson(ID_FIRST_PERSON);
         StudentId id = personToDelete.getStudentId();
 
         DeleteCommand deleteCommand = new DeleteCommand(id);
@@ -75,7 +73,7 @@ public class DeleteCommandTest {
     public void execute_invalidIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personToDelete = model.getPerson(ID_SECOND_PERSON);
         StudentId outOfBoundId = personToDelete.getStudentId();
 
         // ensures that outOfBoundId is still in bounds of address book list
