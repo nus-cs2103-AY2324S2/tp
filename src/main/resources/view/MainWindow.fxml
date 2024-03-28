@@ -11,10 +11,12 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="InternHub App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/jayme_logo.png" />
   </icons>
   <scene>
     <Scene>
@@ -46,12 +48,27 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <SplitPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="300" prefWidth="400" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+
+          <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="475" maxWidth="475">
+            <content>
+              <VBox styleClass="pane-with-border" VBox.vgrow="ALWAYS" prefWidth="475" >
+                <VBox VBox.vgrow="NEVER" fx:id="viewPanelPlaceholder" spacing="20">
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                </VBox>
+              </VBox>
+            </content>
+          </ScrollPane>
+
+        </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
