@@ -26,6 +26,7 @@ public class Library implements ReadOnlyLibrary {
 
     private ArrayList<Book> bookList;
     private Threshold threshold;
+    private LibraryLogic libraryLogic;
 
     /**
      * Construct an empty library.
@@ -33,6 +34,17 @@ public class Library implements ReadOnlyLibrary {
     public Library() {
         bookList = new ArrayList<>();
         threshold = new Threshold();
+        libraryLogic = new LibraryLogic();
+    }
+
+    /**
+     * Construct a library with the specified list of books and threshold.
+     *
+     * @param toBeCopied The read only library from data.
+     */
+    public Library(ReadOnlyLibrary toBeCopied) {
+        this();
+        resetData(toBeCopied);
     }
 
     /**
@@ -61,16 +73,6 @@ public class Library implements ReadOnlyLibrary {
     public Library(ArrayList<Book> bookList, Threshold threshold) {
         this.bookList = bookList;
         this.threshold = threshold;
-    }
-
-    /**
-     * Construct a library with the specified list of books and threshold.
-     *
-     * @param readOnlyLibrary The read only library from data.
-     */
-    public Library(ReadOnlyLibrary readOnlyLibrary) {
-        this.bookList = readOnlyLibrary.getBookList();
-        threshold = readOnlyLibrary.getThreshold();
     }
 
     public void addBook(Book book) {
