@@ -38,4 +38,18 @@ public interface ReadOnlyPersonStore {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered volunteer list to filter by the given {@code predicate}.
+     * Befriendee list is not filtered.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVolunteerList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered befriendee list to filter by the given {@code predicate}.
+     * Volunteer list is not filtered.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBefriendeeList(Predicate<Person> predicate);
 }

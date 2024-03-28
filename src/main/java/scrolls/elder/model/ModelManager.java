@@ -88,7 +88,8 @@ public class ModelManager implements Model {
         datastore.resetData(d);
     }
 
-    //=========== Overrides =============================================================
+
+    //=========== Overrides ================================================================================
 
     @Override
     public boolean equals(Object other) {

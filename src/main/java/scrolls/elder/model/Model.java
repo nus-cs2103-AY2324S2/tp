@@ -65,4 +65,5 @@ public interface Model {
      * Replaces Datastore with the data in {@code datastore}.
      */
     void setDatastore(ReadOnlyDatastore datastore);
+
 }
