@@ -46,6 +46,6 @@ public class AppointmentCard extends UiPart<Region> {
         doctorNric.setText(appointment.getDoctorNric().nric);
         patientNric.setText(appointment.getPatientNric().nric);
         appointmentDate.setText(appointment.getAppointmentDate().toString());
-//        appointmentId.setText(appointment.getAppointmentId().appointmentId);
+        //appointmentId.setText(appointment.getAppointmentId().appointmentId);
     }
 }
