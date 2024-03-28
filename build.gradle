@@ -71,4 +71,8 @@ shadowJar {
     archiveFileName = 'healthsync.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
