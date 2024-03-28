@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyLibrary;
 import seedu.address.model.book.Book;
 
 /**
@@ -134,11 +135,11 @@ public class LibraryLogic {
      * @param library the list of books to be saved
      * @throws IOException if an I/O error occurs while saving the books
      */
-    public void saveBooksToFile(ArrayList<Book> library) throws IOException {
+    public void saveBooksToFile(ReadOnlyLibrary library) throws IOException {
         createFileIfNotExists();
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             writer.println(threshold);
-            for (Book availableBook : library) {
+            for (Book availableBook : library.getBookList()) {
                 writer.println(availableBook);
             }
         } catch (IOException e) {

@@ -6,6 +6,9 @@ import seedu.address.logic.commands.LimitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.library.Threshold;
 
+/**
+ * Parses input arguments and creates a new LimitCommand object
+ */
 public class LimitCommandParser implements Parser<LimitCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the LimitCommand
