@@ -10,6 +10,8 @@ keep track of your genetic information. Gene-nie acts as your personal autobiogr
 your family tree and history.
 </p>
 
+## Table of Contents
+
 <details>
 <summary>&nbsp TABLE OF CONTENTS </summary>
 
@@ -66,7 +68,7 @@ your family tree and history.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features---viewing-person-profiles) below for details of each command.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -218,18 +220,49 @@ Examples:
 
 ## Features: Managing Person Relationships
 
+### Listing all relationships : `listRelation`
+
+Shows a list of all current relationships in the address book.
+
+Format: `listRelation`
+
 ### Adding a relationship : `addRelation`
 
-Adds a relationship between two people in the address book.
+Adds a roleless relationship between two people in the address book.
 
 Format: `addRelation UUID1 UUID2 RELATIONSHIP_TYPE`
 
-* Adds the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
+* Adds the roleless relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
 * The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
 * The `UUID1` and `UUID2` **must be valid UUIDs**.
 * The `RELATIONSHIP_TYPE` is case-sensitive and matches the relationship type name exactly.
 * If the relationship already exists, the command will not have any effect.
 * If either persons do not exist, the command will not have any effect.
+
+Examples:
+* `addRelation 12db 34ab friend` adds the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
+
+Adds a role-based relationship between two people in the address book.
+
+Format: `addRelation ROLE1 UUID1 ROLE2 UUID2 RELATIONSHIP_TYPE`
+
+* Adds the role-based relationship between the person with the specified `UUID1` and `ROLE1` and the person with the specified `UUID2` and `ROLE2`.
+* The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
+* The `UUID1` and `UUID2` **must be valid UUIDs**.
+* The `ROLE_1` and `ROLE_2` are case-sensitive and match the role name exactly.
+* The `RELATIONSHIP_TYPE` is case-sensitive and matches the relationship type name exactly.
+* If the relationship already exists, the command will not have any effect.
+* If either persons do not exist, the command will not have any effect.
+
+Examples:
+* `addRelation parent 12db child 34ab bioparents` adds the relation bioparents between the person with the UUID 12db and the person with the UUID 34ab with the roles parent and child respectively.
+
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution:** <br>
+* The `RELATIONSHIP_TYPE` "family" is not allowed. The address book will throw an error asking the user to be more specific about the family relation. 
+* The correct way to do this is to enter the exact family relation (bioparents, siblings or spouses) as the `R`ELATIONSHIP_TYPE`.
+</div>
 
 ### Editing a relationship : `editRelation`
 
