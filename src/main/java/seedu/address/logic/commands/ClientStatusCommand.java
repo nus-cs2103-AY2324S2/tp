@@ -95,7 +95,8 @@ public class ClientStatusCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether the policy is added to or removed from
+     * Generates a command execution success message based on whether the {@code ClientStatus} is upgraded, downgraded,
+     * or reset.
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
