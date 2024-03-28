@@ -155,12 +155,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+#### Implementation
+
+The `add` command allows users to add students' details into the list. 
+
+Given below is an example usage scenario of `add` command:
+* The user executes `add id/A0123456X n/John e/e0123456@u.nus.edu g/A gp/Group 1` command to add the student into the list. 
+* The `add` command calls `LogicManager#execute()`.
+* `LogicManager#execute()` would first invoke `AddressBookParser#parseCommand()`.
+* `AddressBookParser#parseCommand()` will identifies the `add` command and calls `AddCommandParser#parse()` to parse the arguments accordingly.
+* `AddCommandParser#parse()` will return a `AddCommand` object which takes in a `Person` object. 
+* `LogicManager#execute()` invoke `AddCommand#execute()`.
+* Then, `model#addPerson` is called to add the person into the list.
+
+Given below is the sequence diagram for `add` command:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: Whether to restrict to the context of NUS**
+* **Alternative 1 (current choice):** The `student_id` and `email` must be in the format of `A0123456X` and `e0123456@u.nus.edu`. 
+  * Pros: Aligns with the target users who are CS instructors in NUS. 
+  * Cons: Restrictive to users who are not instructors in NUS.
+  
+* **Alternative 2:** Allow any other format for `student_id` and valid format for `email`.
+  * Pros: Can accommodate users from other universities, not only NUS.
+  * Cons: Validation may be more complex as need to account for a wider range of possible inputs.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
 * `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
