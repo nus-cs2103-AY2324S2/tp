@@ -1,0 +1,20 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User enters command to query doctor or patient;
+
+
+if () then ([missing required fields])
+    :Show error message\nfor missing required fields;
+else ([else])
+    :Search Doctor/Patient from person list;
+    :Update the 'person' panel\nin the GUI to display the list;
+    :Show success message\nwith removed doctor/patient information;
+endif
+
+
+stop
+@enduml

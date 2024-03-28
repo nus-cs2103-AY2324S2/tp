@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -34,6 +36,16 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Check if list contains person with the nric in question.
+     * @param nricToCheck String nric in questions
+     * @return boolean indicating if person is in list
+     */
+    public boolean containsNric(String nricToCheck) {
+        requireNonNull(nricToCheck);
+        return internalList.stream().anyMatch(x -> x.getNric().equals(new Nric(nricToCheck)));
     }
 
     /**
@@ -146,5 +158,17 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    public Person getPersonByNric(Nric nricObj) {
+        ArrayList<Person> personList = new ArrayList<Person>(internalList);
+
+        for (Person p : personList) {
+            if (p.getNric().equals(nricObj)) {
+                return p;
+            }
+        }
+
+        throw new PersonNotFoundException();
     }
 }

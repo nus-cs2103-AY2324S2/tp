@@ -1,0 +1,10 @@
+{
+  "persons": [],
+  "appointments" : [ {
+    "doctorNric" : "S1234567B",
+    "patientNric" : "S1234567A",
+    "appointmentDate" : "2024-04-09",
+    "appointmentId" : "a45750422"
+  }
+  ]
+}

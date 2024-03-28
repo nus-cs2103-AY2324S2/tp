@@ -9,51 +9,54 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Zhiyang Lu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/alfaloo.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](www.linkedin.com/in/zhiyanglu)]
+[[github](https://github.com/alfaloo)]
+[[portfolio](https://github.com/alfaloo/CV/blob/main/Zhiyang_Lu_Resume.pdf)]
 
-* Role: Project Advisor
+* Role: Deliverables and Deadline / Integration
+* Responsibilities: Ensure project deliverables are done on time and in the right format. In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-### Jane Doe
+### Cheng-Yu Dong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/officialchengyud.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/officialchengyud)]
+[[portfolio](www.linkedin.com/in/dongchengyu)]
 
-### Johnny Doe
+* Role: Code Quality / Integration
+* Responsibilities: Looks after code quality, ensures adherence to coding standards, etc. In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-<img src="images/johndoe.png" width="200px">
+### Lim Jia Wei
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+<img src="images/kappaccinoh.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Data
+[[github](http://github.com/Kappaccinoh)] [[portfolio](https://www.linkedin.com/in/jia-wei-lim-747037181/)]
 
-### Jean Doe
+* Role: Scheduling / Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time. In charge of defining, assigning, and tracking project tasks.
 
-<img src="images/johndoe.png" width="200px">
+### Archit Goswami
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/ararchch.png" width="200px">
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+[[github](http://github.com/ararchch)]
+[[portfolio](https://www.linkedin.com/in/architgos)]
 
-### James Doe
+* Role: Team Lead, Documentation
+* Responsibilities: Coordinating with team members, ensuring code is well documented.
 
-<img src="images/johndoe.png" width="200px">
+### Eugene Luke Sim Ek Jin
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/alteqa.png" width="200px">
 
-* Role: Developer
-* Responsibilities: UI
+[[github](http://github.com/alteqa)]
+[[portfolio](https://www.linkedin.com/in/eugene-sim-866677188/)]
+
+* Role: Documentation, Testing, Intellij / Github Expert
+* Responsibilities: Ensures the testing of the project is done properly and on time. Responsible for the quality of various project documents. 
+* Helps other team member with matters related to Intellij, Github and Sourcetree tool.

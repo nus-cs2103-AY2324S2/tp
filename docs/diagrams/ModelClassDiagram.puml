@@ -13,12 +13,23 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueAppointmentList
+
+Class "{Abstract}\nPerson" as Person
+Class Patient
+Class Doctor
+
+Class Appointment
+Class AppointmentDate
+Class AppointmentID
+
+Class Type
+Class NRIC
 Class Name
+Class DoB
 Class Phone
-Class Tag
+
+Class "<<enumeration>>\nType\n\nPatient\nDoctor"
 
 Class I #FFFFFF
 }
@@ -36,19 +47,22 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueAppointmentList
+UniquePersonList ---> "~* all" Person
+UniqueAppointmentList -down--> "~* all" Appointment
+Person *---> Type
+Person *---> NRIC
+Person *---> Name
+Person *---> DoB
+Person *---> Phone
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
+Doctor .right.|> Person
+Patient .--|> Person
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Appointment *--> AppointmentDate
+Appointment *--> AppointmentID
+Appointment *--> "2(Patient & Doctor)" NRIC
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Appointment
 @enduml

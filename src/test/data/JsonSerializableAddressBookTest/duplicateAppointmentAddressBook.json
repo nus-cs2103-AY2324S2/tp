@@ -1,0 +1,27 @@
+{
+  "persons": [ {
+    "type": "PATIENT",
+    "name": "Alice Pauline",
+    "nric": "S1234567A",
+    "phone": "94351253",
+    "dob": "2003-03-24"
+  }, {
+    "type": "DOCTOR",
+    "name": "Benson Chew",
+    "nric": "S1234567B",
+    "phone": "94351254",
+    "dob": "2000-03-24"
+  }],
+  "appointments" : [ {
+    "doctorNric" : "S1234567B",
+    "patientNric" : "S1234567A",
+    "appointmentDate" : "2024-04-09",
+    "appointmentId" : "a45750422"
+  }, {
+    "doctorNric" : "S1234567B",
+    "patientNric" : "S1234567A",
+    "appointmentDate" : "2024-04-09",
+    "appointmentId" : "a45750422"
+  }
+  ]
+}

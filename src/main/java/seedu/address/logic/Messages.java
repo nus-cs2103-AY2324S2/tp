@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,9 +16,13 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
+                "The appointment index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+
+    public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -36,16 +41,31 @@ public class Messages {
      */
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
+        builder.append("; NRIC: ")
+                .append(person.getNric())
+                .append("; Name: ")
+                .append(person.getName())
+                .append("; DoB: ")
+                .append(person.getDoB())
                 .append("; Phone: ")
                 .append(person.getPhone())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append(";");
         return builder.toString();
     }
 
+    /**
+     * Formats appointment for display in result box
+     * @param appointment the appointment in question
+     * @return String formatted string as per requirements
+     */
+    public static String format(Appointment appointment) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Date: ")
+                .append(appointment.getAppointmentDate())
+                .append("; Doctor: ")
+                .append(appointment.getDoctorNric())
+                .append("; Patient: ")
+                .append(appointment.getPatientNric());
+        return builder.toString();
+    }
 }

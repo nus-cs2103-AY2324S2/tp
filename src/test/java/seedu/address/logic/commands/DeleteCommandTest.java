@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Type;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,9 +32,11 @@ public class DeleteCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        String deleteMessage = (personToDelete.getType() == Type.PATIENT
+                ? DeleteCommand.MESSAGE_DELETE_PATIENT_SUCCESS
+                : DeleteCommand.MESSAGE_DELETE_DOCTOR_SUCCESS);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String expectedMessage = String.format(deleteMessage, Messages.format(personToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -56,8 +59,10 @@ public class DeleteCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                Messages.format(personToDelete));
+        String deleteMessage = (personToDelete.getType() == Type.PATIENT
+                ? DeleteCommand.MESSAGE_DELETE_PATIENT_SUCCESS
+                : DeleteCommand.MESSAGE_DELETE_DOCTOR_SUCCESS);
+        String expectedMessage = String.format(deleteMessage, Messages.format(personToDelete));
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
