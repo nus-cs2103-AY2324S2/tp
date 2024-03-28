@@ -100,4 +100,15 @@ public interface Model {
      */
     List<Order> getOrders(Person person);
 
+    /**
+     * Deletes an order from a person.
+     */
+    void deleteOrder(Person person, Order order);
+
+    /**
+     * Gets the sorted orders for a person.
+     */
+    List<Order> getSortedOrders(Person person);
+
+
 }

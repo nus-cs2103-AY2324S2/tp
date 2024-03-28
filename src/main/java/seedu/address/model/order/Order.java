@@ -23,6 +23,7 @@ public class Order {
         this.remark = remark;
     }
 
+
     public Date getDate() {
         return arrivalDate;
     }
