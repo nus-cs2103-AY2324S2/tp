@@ -325,7 +325,8 @@ Format: `help`
 
 ### Adding an internship: `add`
 
-Let's start off with knowing how you can add an internship entry with all the relevant fields. <br> Take a look at the format below!
+With any internship manager, it is important to know how to add an internship entry with all the relevant fields. <br>
+This command lets you add an internship entry easily!
 
 **Format:** `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​` <br>
 
@@ -349,13 +350,14 @@ Let's start off with knowing how you can add an internship entry with all the re
 
 <div markdown="span" class="alert alert-danger">
 ⚠️ **Common errors:** <br>
-1. If no field prefixes are specified or if there are errors, the command will be rejected with error message: `Invalid Command Prefix!` <br>
+1. If no field prefixes are specified or if there are errors, the command will be rejected with error message seen above.
 Refer to the format and example displayed along with this message, to help you rectify your errors!
 </div>
 
 ### Deleting an internship: `delete`
 
-Deletes the internship entry with the corresponding index (based on the displayed list at point of deletion)
+With any internship manager, it is important to know how to delete an internship entry with all the relevant fields. <br>
+This command lets you delete the internship entry with the corresponding index (based on the displayed list at point of deletion)
 
 Format: `delete INDEX`
 
@@ -373,10 +375,10 @@ Format: `delete INDEX`
 ℹ️ **Tip:** Head over to the [Tutorial](#tutorial) and learn how to delete an internship entry !
 </div>
 
-
 <div markdown="span" class="alert alert-danger">
 ⚠️ **Common errors:** <br>
-1. If there are errors, the command will be rejected. Refer to the error message for the correct format to use!
+1. If a positive integer or an integer not used in the current window/list is entered, the command will be rejected. 
+Refer to the error message displayed for the correct format to use!
 </div>
 
 ### Listing all internships: `list`
