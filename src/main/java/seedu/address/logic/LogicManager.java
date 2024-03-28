@@ -72,6 +72,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Person getSelectedPerson() {
+        return model.getSelectedPerson();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -84,5 +89,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Person> getSortedAndFilteredPersonList() {
+        return model.getSortedPersonList();
     }
 }

@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UPCOMING_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UPCOMING_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -83,20 +87,24 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_allFieldsSpecifiedHasSelectedPerson_success() {
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.updateSelectedPerson(personToEdit);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.updateSelectedPerson(editedPerson);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
+                true);
+
+        assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -153,6 +161,11 @@ public class EditCommandTest {
         // same values -> returns true
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditPersonDescriptor editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withUpcoming(VALID_UPCOMING_BOB).build();
+        EditPersonDescriptor editedDescriptorLastContact = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withLastContact(VALID_LAST_CONTACT_BOB).build();
+
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -169,6 +182,32 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+
+        // different upcoming -> returns false
+        assertFalse(DESC_AMY.equals(editedDescriptor));
+
+        // different upcoming, same other fields -> returns false
+        editedDescriptor = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withUpcoming(VALID_UPCOMING_BOB).build();
+        assertFalse(DESC_AMY.equals(editedDescriptor));
+
+        // same upcoming, different other fields -> returns false
+        editedDescriptor = new EditPersonDescriptorBuilder(DESC_BOB)
+                .withUpcoming(VALID_UPCOMING_AMY).build();
+        assertFalse(DESC_AMY.equals(editedDescriptor));
+
+        // different lastcontact -> return false
+        assertFalse(DESC_AMY.equals(editedDescriptorLastContact));
+
+        // different lastcontact, same other fields -> return false
+        editedDescriptorLastContact = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withLastContact(VALID_LAST_CONTACT_BOB).build();
+        assertFalse(DESC_AMY.equals(editedDescriptorLastContact));
+
+        // same lastcontact -> return true
+        editedDescriptorLastContact = new EditPersonDescriptorBuilder(DESC_AMY)
+                .withLastContact(VALID_LAST_CONTACT_AMY).build();
+        assertTrue(DESC_AMY.equals(editedDescriptorLastContact));
     }
 
     @Test

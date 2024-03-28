@@ -9,14 +9,20 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagsCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTagsAndCommand;
+import seedu.address.logic.commands.FindTagsOrCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LastContactCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.UpcomingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -43,7 +49,7 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
@@ -62,17 +68,35 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindTagsOrCommand.COMMAND_WORD:
+            return new FindTagsOrCommandParser().parse(arguments);
+
+        case FindTagsAndCommand.COMMAND_WORD:
+            return new FindTagsAndCommandParser().parse(arguments);
+
+        case AddTagsCommand.COMMAND_WORD:
+            return new AddTagsCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case UpcomingCommand.COMMAND_WORD:
+            return new UpcomingCommand();
+
+        case LastContactCommand.COMMAND_WORD:
+            return new LastContactCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();

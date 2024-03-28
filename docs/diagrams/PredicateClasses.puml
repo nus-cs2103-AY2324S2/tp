@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T4
+skinparam classBackgroundColor MODEL_COLOR
+
+package "Predicate classes" {
+Class "<<interface>>\nPredicate" as Predicate
+Class "IsSamePersonPredicate"
+Class "NameContainsKeywordsPredicate"
+Class "TagsOrFoundPredicate"
+Class "TagsAndFoundPredicate"
+Class "HasLastContactedPredicate"
+}
+
+Class "SelectCommand"
+Class "FindCommand"
+Class "FindTagsOrCommand"
+Class "FindTagsAndCommand"
+Class "LastContactCommand"
+
+SelectCommand ..> IsSamePersonPredicate : <<create>>
+FindCommand --> NameContainsKeywordsPredicate
+IsSamePersonPredicate .up.|> Predicate
+NameContainsKeywordsPredicate .up.|> Predicate
+FindTagsOrCommand --> TagsOrFoundPredicate
+FindTagsAndCommand --> TagsAndFoundPredicate
+LastContactCommand --> HasLastContactedPredicate
+TagsOrFoundPredicate ..|> Predicate
+TagsAndFoundPredicate ..|> Predicate
+HasLastContactedPredicate ..|> Predicate
+@enduml

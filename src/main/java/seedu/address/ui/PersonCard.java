@@ -35,11 +35,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
     private FlowPane tags;
+    @FXML
+    private Label upcoming;
+    @FXML
+    private Label lastcontact;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,10 +50,26 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (person.hasUpcoming()) {
+            upcoming.setVisible(true);
+            upcoming.setManaged(true);
+            upcoming.setText("Upcoming: " + person.getUpcoming().toString());
+        } else {
+            upcoming.setVisible(false);
+            upcoming.setManaged(false);
+        }
+
+        if (person.hasLastcontact()) {
+            lastcontact.setVisible(true);
+            lastcontact.setManaged(true);
+            lastcontact.setText("Last contacted: " + person.getLastcontact().toString());
+        } else {
+            lastcontact.setVisible(false);
+            lastcontact.setManaged(false);
+        }
     }
 }

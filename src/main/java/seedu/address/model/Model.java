@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -84,4 +85,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns the selected person to view the profile. */
+    Person getSelectedPerson();
+
+    /**
+     * Updates the person to be selected to {@code person}.
+     * @throws NullPointerException if {@code person} is null.
+     */
+    void updateSelectedPerson(Person person);
+
+    void sortFilteredPersonList(Comparator<Person> comparator);
+
+    ObservableList<Person> getSortedPersonList();
+
+    void setToInitialList();
 }

@@ -1,59 +1,54 @@
 ---
-layout: page
-title: About Us
+  layout: default.md
+  title: "About Us"
 ---
+
+# About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Sim Han Kiong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/simhankiong.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/SimHanKiong)]
+[[portfolio](team/simhankiong.md)]
+[[email](e0957654@u.nus.edu)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Code quality
 
-### Johnny Doe
+### Tan Yun Chao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanyunchao.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanyunchao)]
+[[portfolio](team/tanyunchao.md)]
+[[email](tanyunchao@u.nus.edu)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer, Git expert
+* Responsibilities: Integration
 
-### Jean Doe
+### Tiong Chuan Yao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/colex2000.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Colex2000)]
+[[portfolio](team/tiongchuanyao.md)]
+[[email](tiongchuanyao@u.nus.edu)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing + Scheduling and tracking
+
+### Tan Zi Yang
+
+<img src="images/ziyang27.png" width="200px">
+
+[[github](http://github.com/ziyang27)]
+[[portfolio](team/tanziyang.md)]
+[[email](tan.ziyang@u.nus.edu)]
+
+* Role: Developer
+* Responsibilities: Documentation + Deliverables and deadlines
