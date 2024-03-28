@@ -36,7 +36,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyPatientList patientList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(patientList, userPrefs);
 
-        logger.fine("Initializing with address book: " + patientList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with patientList book: " + patientList + " and user prefs " + userPrefs);
 
         this.patientList = new PatientList(patientList);
         this.appointmentList = new AppointmentList();
