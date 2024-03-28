@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.article.Article;
 
 /**
- * An UI component that displays information of an {@code Article}.
+ * A UI component that displays information of an {@code Article}.
  */
 public class ArticleCard extends UiPart<Region> {
 
@@ -37,9 +37,9 @@ public class ArticleCard extends UiPart<Region> {
     @FXML
     private FlowPane sources;
     @FXML
-    private Label publicationDate;
+    private FlowPane tags;
     @FXML
-    private Label category;
+    private Label publicationDate;
     @FXML
     private Label status;
 
@@ -52,14 +52,18 @@ public class ArticleCard extends UiPart<Region> {
         this.article = article;
         id.setText(displayedIndex + ". ");
         title.setText(article.getTitle());
-        Arrays.stream(article.getAuthors())
-                .sorted()
-                .forEach(author -> authors.getChildren().add(new Label(author)));
-        Arrays.stream(article.getSources())
-                .sorted()
-                .forEach(source -> sources.getChildren().add(new Label(source)));
+
+        article.getAuthors().stream()
+                .sorted(Comparator.comparing(author -> author.authorName))
+                .forEach(author -> authors.getChildren().add(new Label(author.authorName)));
+        article.getSources().stream()
+                .sorted(Comparator.comparing(source -> source.sourceName))
+                .forEach(source -> sources.getChildren().add(new Label(source.sourceName)));
+        article.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
         publicationDate.setText(article.getPublicationDateAsString());
-        category.setText(article.getCategory());
         status.setText(article.getStatus().toString());
     }
 }

@@ -27,10 +27,12 @@
         </Label>
         <Label fx:id="title" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="authors" />
-      <FlowPane fx:id="sources" />
+      <VBox spacing="3">
+        <FlowPane fx:id="authors"/>
+        <FlowPane fx:id="sources"/>
+        <FlowPane fx:id="tags"/>
+      </VBox>
       <Label fx:id="publicationDate" styleClass="cell_small_label" text="\$publicationDate" />
-      <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
     </VBox>
   </GridPane>

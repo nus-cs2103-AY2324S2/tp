@@ -1,22 +1,31 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.article.Article;
+import seedu.address.model.article.Author;
+import seedu.address.model.article.Source;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Article}.
  */
 public class JsonAdaptedArticle {
     private final String title;
-    private final String[] authors;
+    private final List<JsonAdaptedAuthor> authors = new ArrayList<>();
+    //Should be able to be null
     private final LocalDateTime publicationDate;
-    private final String[] sources;
-    private final String category;
+    private final List<JsonAdaptedSource> sources = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Article.Status status;
 
     /**
@@ -26,19 +35,27 @@ public class JsonAdaptedArticle {
      * @param authors
      * @param publicationDate
      * @param sources
-     * @param category
+     * @param tags
      * @param status
      */
     @JsonCreator
-    public JsonAdaptedArticle(@JsonProperty("title") String title, @JsonProperty("authors") String[] authors,
+    public JsonAdaptedArticle(@JsonProperty("title") String title,
+                              @JsonProperty("authors") List<JsonAdaptedAuthor> authors,
                               @JsonProperty("publicationDate") LocalDateTime publicationDate,
-                              @JsonProperty("sources") String[] sources, @JsonProperty("category") String category,
+                              @JsonProperty("sources") List<JsonAdaptedSource> sources,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("status") Article.Status status) {
         this.title = title;
-        this.authors = authors;
+        if (authors != null) {
+            this.authors.addAll(authors);
+        }
         this.publicationDate = publicationDate;
-        this.sources = sources;
-        this.category = category;
+        if (sources != null) {
+            this.sources.addAll(sources);
+        }
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
         this.status = status;
     }
     /**
@@ -47,10 +64,16 @@ public class JsonAdaptedArticle {
      */
     public JsonAdaptedArticle(Article sourceArticle) {
         title = sourceArticle.getTitle();
-        authors = sourceArticle.getAuthors();
+        authors.addAll(sourceArticle.getAuthors().stream()
+                .map(JsonAdaptedAuthor::new)
+                .collect(Collectors.toList()));
         publicationDate = sourceArticle.getPublicationDate();
-        sources = sourceArticle.getSources();
-        category = sourceArticle.getCategory();
+        sources.addAll(sourceArticle.getSources().stream()
+                .map(JsonAdaptedSource::new)
+                .collect(Collectors.toList()));
+        tags.addAll(sourceArticle.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
         status = sourceArticle.getStatus();
     }
 
@@ -60,21 +83,33 @@ public class JsonAdaptedArticle {
      * @throws IllegalValueException if data constraints are violated
      */
     public Article toModelType() throws IllegalValueException {
+        final List<Tag> articleTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tags) {
+            articleTags.add(tag.toModelType());
+        }
+        final List<Author> articleAuthors = new ArrayList<>();
+        for (JsonAdaptedAuthor author : authors) {
+            articleAuthors.add(author.toModelType());
+        }
+        final List<Source> articleSources = new ArrayList<>();
+        for (JsonAdaptedSource source : sources) {
+            articleSources.add(source.toModelType());
+        }
+
         if (title == null) {
             throw new IllegalValueException("The title is missing");
         }
-        if (authors == null || authors.length == 0) {
-            throw new IllegalValueException("The author[s] is/are invalid");
-        }
+
+        final Set<Author> modelAuthors = new HashSet<>(articleAuthors);
+
         if (publicationDate == null) {
             throw new IllegalValueException("The publication date is invalid");
         }
-        if (sources == null || sources.length == 0) {
-            throw new IllegalValueException("The source is invalid");
-        }
-        if (category == null) {
-            throw new IllegalValueException("The categories are invalid");
-        }
-        return new Article(title, authors, publicationDate, sources, category, status);
+
+        final Set<Source> modelSources = new HashSet<>(articleSources);
+
+        final Set<Tag> modelTags = new HashSet<>(articleTags);
+
+        return new Article(title, modelAuthors, publicationDate, modelSources, modelTags, status);
     }
 }

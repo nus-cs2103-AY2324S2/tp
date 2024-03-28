@@ -1,6 +1,5 @@
 package seedu.address.logic;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -57,27 +56,16 @@ public class Messages {
      * Formats the {@code article} for display to the user.
      */
     public static String format(Article article) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         final StringBuilder builder = new StringBuilder();
         builder.append(article.getTitle())
-                .append("; Authors: ");
-        for (int i = 0; i < article.getAuthors().length; i++) {
-            builder.append(article.getAuthors()[i]);
-            if (i < article.getAuthors().length - 1) {
-                builder.append(", ");
-            }
-        }
-        builder.append("; Publication Date: ")
+                .append("; Authors: ")
+                .append(article.getAuthors())
+                .append("; Publication Date: ")
                 .append(article.getPublicationDateAsString())
-                .append("; Source: ");
-        for (int i = 0; i < article.getSources().length; i++) {
-            builder.append(article.getSources()[i]);
-            if (i < article.getSources().length - 1) {
-                builder.append(", ");
-            }
-        }
-        builder.append("; Category: ")
-                .append(article.getCategory())
+                .append("; Sources: ")
+                .append(article.getSources())
+                .append("; Tags: ")
+                .append(article.getTags())
                 .append("; Status: ")
                 .append(article.getStatus());
         return builder.toString();

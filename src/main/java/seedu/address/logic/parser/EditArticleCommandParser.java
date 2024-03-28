@@ -2,22 +2,27 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ARTICLETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PUBLICATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.articlecommands.EditArticleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.article.Article;
+import seedu.address.model.article.Author;
+import seedu.address.model.article.Source;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditArticleCommand object
@@ -33,7 +38,7 @@ public class EditArticleCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PUBLICATION_DATE, PREFIX_SOURCE,
-                        PREFIX_CATEGORY, PREFIX_STATUS);
+                        PREFIX_ARTICLETAG, PREFIX_STATUS);
 
         Index index;
 
@@ -44,7 +49,7 @@ public class EditArticleCommandParser {
                     pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TITLE, PREFIX_PUBLICATION_DATE, PREFIX_CATEGORY, PREFIX_STATUS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TITLE, PREFIX_PUBLICATION_DATE, PREFIX_STATUS);
 
         EditArticleCommand.EditArticleDescriptor editArticleDescriptor = new EditArticleCommand.EditArticleDescriptor();
 
@@ -55,16 +60,14 @@ public class EditArticleCommandParser {
             editArticleDescriptor.setPublicationDate(ParserUtil.parsePublicationDate(argMultimap
                     .getValue(PREFIX_PUBLICATION_DATE).get()));
         }
-        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            editArticleDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
-        }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             editArticleDescriptor.setStatus((Article.Status) ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS)
                     .get()));
         }
 
         parseAuthorsForEdit(argMultimap.getAllValues(PREFIX_AUTHOR)).ifPresent(editArticleDescriptor::setAuthors);
-        parseSourcesForEdit(argMultimap.getAllValues(PREFIX_SOURCE)).ifPresent(editArticleDescriptor::setSource);
+        parseSourcesForEdit(argMultimap.getAllValues(PREFIX_SOURCE)).ifPresent(editArticleDescriptor::setSources);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editArticleDescriptor::setTags);
 
         if (!editArticleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -73,30 +76,34 @@ public class EditArticleCommandParser {
         return new EditArticleCommand(index, editArticleDescriptor);
     }
 
-    private Optional<String[]> parseAuthorsForEdit(List<String> authors) throws ParseException {
+    private Optional<Set<Author>> parseAuthorsForEdit(Collection<String> authors) throws ParseException {
         assert authors != null;
 
-        for (String author : authors) {
-            if (author.isEmpty()) {
-                return Optional.empty();
-            }
+        if (authors.isEmpty()) {
+            return Optional.empty();
         }
-        List<String> authorSet = authors;
-        authorSet = authorSet.size() == 1 && authorSet.contains("") ? Collections.emptyList() : authorSet;
+        Collection<String> authorSet = authors.size() == 1 && authors.contains("") ? Collections.emptySet() : authors;
         return Optional.of(ParserUtil.parseAuthors(authorSet));
     }
 
-    private Optional<String[]> parseSourcesForEdit(List<String> sources) throws ParseException {
+    private Optional<Set<Source>> parseSourcesForEdit(Collection<String> sources) throws ParseException {
         assert sources != null;
 
-        for (String source : sources) {
-            if (source.isEmpty()) {
-                return Optional.empty();
-            }
+        if (sources.isEmpty()) {
+            return Optional.empty();
         }
-        List<String> sourceSet = sources;
-        sourceSet = sourceSet.size() == 1 && sourceSet.contains("") ? Collections.emptyList() : sourceSet;
+        Collection<String> sourceSet = sources.size() == 1 && sources.contains("") ? Collections.emptySet() : sources;
         return Optional.of(ParserUtil.parseSources(sourceSet));
+    }
+
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
 }
