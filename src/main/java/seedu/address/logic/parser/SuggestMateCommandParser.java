@@ -1,14 +1,15 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COURSEMATE;
 
 import seedu.address.logic.commands.SuggestMateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.coursemate.HasRequiredSkillsPredicate;
 import seedu.address.model.coursemate.Name;
 
+/**
+ * Parses input arguments and creates a new {@code SuggestMateCommand} object.
+ */
 public class SuggestMateCommandParser implements Parser<SuggestMateCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SuggestMateCommand
@@ -19,13 +20,7 @@ public class SuggestMateCommandParser implements Parser<SuggestMateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_COURSEMATE);
 
-        try {
-            Name groupName = ParserUtil.parseName(argMultiMap.getPreamble());
-            return new SuggestMateCommand(groupName);
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SuggestMateCommand.MESSAGE_USAGE));
-        }
-
+        Name groupName = ParserUtil.parseName(argMultiMap.getPreamble());
+        return new SuggestMateCommand(groupName);
     }
 }

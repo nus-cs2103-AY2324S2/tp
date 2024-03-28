@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.skill.Skill;
 
@@ -15,6 +14,12 @@ import seedu.address.model.skill.Skill;
 public class HasRequiredSkillsPredicate implements Predicate<CourseMate> {
     public final List<CourseMate> memberList;
     public final Set<Skill> requiredSkills;
+
+    /**
+     * Public constructor for HasRequiredSkillsPredicate
+     * @param memberList - The list of members to be rejected by the predicate
+     * @param requiredSkills - The list of uncompleted skills needed by the group
+     */
     public HasRequiredSkillsPredicate(List<CourseMate> memberList, Set<Skill> requiredSkills) {
         this.memberList = memberList;
         this.requiredSkills = requiredSkills;
