@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the following emails `simkianseng28@gmail.com`, `bensonang36@gmail.com`, `ho.xu.wen@gmail.com`, `ziyitay1@gmail.com`, `kangyow4@gmail.com`.
 
-## Project team
+## Project Team
 
-### John Doe
+### Sim Kian Seng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/simkianseng.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/SimKianSeng)]
+[[portfolio](team/simkianseng)]
 
-* Role: Project Advisor
+- Role: Team Lead/ Developer
+- Responsibilities: In charge of project coordination, documentation
 
-### Jane Doe
+### Benson Ang Wei Kiat
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benson15912.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Benson15912)]
+[[portfolio](team/benson15912)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: In charge of components integration
 
-### Johnny Doe
+### Ho Xu Wen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xuwen-ho.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/xuwen-ho)]
+[[portfolio](team/xuwen-ho)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: In charge of deliverables, deadlines and UI
 
-### Jean Doe
+### Tay Zi Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tayziyi.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tayziyi)]
+[[portfolio](team/tayziyi)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: In charge of coding quality
 
-### James Doe
+### Yow Siao Kang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yowsiaokang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/YowSiaoKang)]
+[[portfolio](team/yowsiaokang)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Developer
+- Responsibilities: In charge of testing

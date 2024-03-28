@@ -1,5 +1,8 @@
 package seedu.address.logic;
 
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION;
+import static seedu.address.logic.Messages.MESSAGE_CONFIRMATION_CANCELLED;
+
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
@@ -33,6 +36,8 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final AddressBookParser addressBookParser;
 
+    private Command prevCommand;
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -43,12 +48,27 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText, boolean isConfirmation) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        if (isConfirmation) {
+            if (commandText.equalsIgnoreCase("y")) {
+                commandResult = prevCommand.execute(model);
+            } else {
+                commandResult = new CommandResult(MESSAGE_CONFIRMATION_CANCELLED);
+            }
+        } else {
+            Command command = addressBookParser.parseCommand(commandText);
+            prevCommand = command;
+
+            Confirmation confirmation = new Confirmation(command);
+            if (!confirmation.isToProceed()) {
+                return new CommandResult(MESSAGE_CONFIRMATION, true, false, false);
+            }
+
+            commandResult = command.execute(model);
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());

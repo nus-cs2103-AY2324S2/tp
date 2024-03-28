@@ -15,9 +15,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.AvailableAtDatePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -80,6 +82,24 @@ public class FindCommandTest {
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
+    }
+
+    @Test
+    public void execute_multipleAttributes_multiplePersonsFound() {
+        try {
+            String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+            NameContainsKeywordsPredicate predicate1 = preparePredicate("Kurz");
+            AvailableAtDatePredicate predicate2 = new AvailableAtDatePredicate(Arrays.asList("25/05/2024"));
+            // test parser too
+            FindCommand command1 = new FindCommandParser().parse(" n/Kurz a/25/05/2024");
+            FindCommand command2 = new FindCommandParser().parse(" a/25/05/2024 n/Kurz");
+            expectedModel.updateFilteredPersonList(predicate1.or(predicate2));
+            assertCommandSuccess(command1, model, expectedMessage, expectedModel);
+            assertCommandSuccess(command2, model, expectedMessage, expectedModel);
+            assertEquals(Arrays.asList(CARL, ELLE), model.getFilteredPersonList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

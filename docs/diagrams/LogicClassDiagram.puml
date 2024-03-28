@@ -15,6 +15,7 @@ Class "{abstract}\nCommand" as Command
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
+Class Confirmation
 }
 
 package Model {
@@ -43,5 +44,6 @@ note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
+LogicManager .down.> Confirmation
 Command .up.> CommandResult : <<create>>
 @enduml
