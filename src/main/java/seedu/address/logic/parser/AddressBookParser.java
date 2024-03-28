@@ -9,14 +9,24 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CompanyCommand;
+import seedu.address.logic.commands.CountCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterHighPriorityCommand;
+import seedu.address.logic.commands.FilterMedPriorityCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindCompanyCommand;
+import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.PriorityCommand;
+import seedu.address.logic.commands.StarCommand;
+import seedu.address.logic.commands.UnstarCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,8 +75,35 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case FilterHighPriorityCommand.COMMAND_WORD:
+            return new FilterHighPriorityCommand();
+
+        case FilterMedPriorityCommand.COMMAND_WORD:
+            return new FilterMedPriorityCommand();
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindCompanyCommand.COMMAND_WORD:
+            return new FindCompanyCommandParser().parse(arguments);
+
+        case CompanyCommand.COMMAND_WORD:
+            return new CompanyCommandParser().parse(arguments);
+
+        case PriorityCommand.COMMAND_WORD_HIGH:
+            return new PriorityCommandParser("high").parse(arguments);
+
+        case PriorityCommand.COMMAND_WORD_MED:
+            return new PriorityCommandParser("med").parse(arguments);
+
+        case PriorityCommand.COMMAND_WORD_NONE:
+            return new PriorityCommandParser("").parse(arguments);
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
+
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -76,6 +113,15 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case CountCommand.COMMAND_WORD:
+            return new CountCommand();
+
+        case StarCommand.COMMAND_WORD:
+            return new StarCommandParser().parse(arguments);
+
+        case UnstarCommand.COMMAND_WORD:
+            return new UnstarCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

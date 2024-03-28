@@ -10,11 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.AddMeetingCommandParser;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +32,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String company;
+    private final String meeting;
+    private final String priority;
+    private Boolean starred;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,11 +44,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("company") String company, @JsonProperty("meeting") String meeting,
+                             @JsonProperty("priority") String priority, @JsonProperty("starred") Boolean starred,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.company = company;
+        this.meeting = meeting;
+        this.priority = priority;
+        this.starred = starred;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +68,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        company = source.getCompany().value;
+        meeting = source.getMeeting().toString();
+        priority = source.getPriority().value;
+        starred = source.isStarred();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +120,25 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-    }
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+        }
+        final Company modelCompany = new Company(company);
 
+        if (meeting == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Meeting.class.getSimpleName()));
+        }
+        String[] details = AddMeetingCommandParser.parseDetails(meeting);
+        final Meeting modelMeeting = new Meeting(details[0], details[1], details[2], details[3]);
+
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
+        }
+        final Priority modelPriority = new Priority(priority);
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                          modelCompany, modelMeeting, modelPriority, starred, modelTags);
+    }
 }

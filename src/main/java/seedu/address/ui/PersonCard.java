@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +42,12 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label company;
+    @FXML
+    private Label meeting;
+    @FXML
+    private Circle priorityDot;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -48,12 +56,47 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        if (person.isStarred()) {
+            name.setText(person.getName().fullName + " ★");
+        } else {
+            name.setText(person.getName().fullName);
+        }
+
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        setCompany();
+        setMeeting();
+
+        String priorityValue = person.getPriority().value;
+        if ("high".equals(priorityValue)) {
+            priorityDot.setFill(Color.RED);
+        } else if ("med".equals(priorityValue)) {
+            priorityDot.setFill(Color.ORANGE);
+        } else {
+            priorityDot.setVisible(false);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
+    private void setCompany() {
+        if (!person.getCompany().value.equals("")) {
+            company.setText(person.getCompany().value);
+            company.setVisible(true);
+        } else {
+            company.setPrefHeight(0.0);
+        }
+    }
+
+    private void setMeeting() {
+        if (person.getMeeting() != null) {
+            meeting.setText(person.getMeeting().toString());
+            meeting.setVisible(true);
+        } else {
+            meeting.setPrefHeight(0.0);
+        }
+    }
+
 }
