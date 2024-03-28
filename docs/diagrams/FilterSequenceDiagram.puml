@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StaffConnectParser" as StaffConnectParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant "p:Predicate" as Predicate LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("filter f/Computing")
+activate LogicManager
+
+LogicManager -> StaffConnectParser : parseCommand("filter f/Computing")
+activate StaffConnectParser
+
+create FilterCommandParser
+StaffConnectParser -> FilterCommandParser
+activate FilterCommandParser
+
+FilterCommandParser --> StaffConnectParser
+deactivate FilterCommandParser
+
+StaffConnectParser -> FilterCommandParser : parse("f/Computing")
+activate FilterCommandParser
+
+create FilterCommand
+FilterCommandParser -> FilterCommand
+activate FilterCommand
+FilterCommand -> FilterCommand : setPersonPredicate()
+activate FilterCommand
+
+create Predicate
+FilterCommand -> Predicate
+activate Predicate
+Predicate --> FilterCommand
+deactivate Predicate
+
+FilterCommand --> FilterCommand
+deactivate FilterCommand
+
+FilterCommand --> FilterCommandParser :
+deactivate FilterCommand
+
+FilterCommandParser --> StaffConnectParser : f
+deactivate FilterCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommandParser -[hidden]-> StaffConnectParser
+destroy FilterCommandParser
+
+StaffConnectParser --> LogicManager : f
+deactivate StaffConnectParser
+
+LogicManager -> FilterCommand : execute(m)
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredPersonList(p)
+activate Model
+
+Model --> FilterCommand
+deactivate Model
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand
+deactivate CommandResult
+
+FilterCommand --> LogicManager : r
+deactivate FilterCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml
