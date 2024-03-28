@@ -177,6 +177,7 @@ This section describes some noteworthy details on how certain features are imple
   the `Student`.
   * The arguments for the `Timetable` object can be broken down into its respective day and the period that day contains.
   * The day is indicated by its respective prefix as well, the format is `{DAY_3_LETTERS}:`, e.g. `"mon:"` or `"fri:"`.
+  * The period follows this format `{HOUR-HOUR}`, in a 24-hour clock, i.e. 0-23.
   * E.g. an accepted `String` is `"mon: 13-15, 15-17 tue: 12-14 thu: 12-18"`
 * Below shows the sequence diagram when <u>adding</u> a student.
 
@@ -197,6 +198,11 @@ outputted to the user.
     list if ran after the `find` command, then returns the earliest 1-hour slot available for the week.
   * `slot t/TUT-1 d/2` - EduConnect will first filter and return a list of students with the tag `TUT-1`, then return
     the earliest 2-hour slot available for the week.
+* The command's execution will iterate through the selected list of students, accessing each `Timetable` object's 
+  list of `Day` objects.
+  * Each `Day` object will look for valid `Period` that does not overlap with its own list of `Period` objects.
+  * The series of valid `Period` and `Day` will be collected from each `Timetable` of each `Student`.
+  * Common slots across all `Timetable` will then be filtered out and returned.
 
 _{more functionality to be implemented in later versions}_
 
