@@ -8,21 +8,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.testutil.PersonBuilder;
 
-public class EmailContainsKeywordPredicateTest {
+public class PersonEmailPredicateTest {
 
     @Test
     public void equals() {
         String firstPredicateKeyword = "example1@example.com";
         String secondPredicateKeyword = "example2@example.com";
 
-        EmailContainsKeywordPredicate firstPredicate = new EmailContainsKeywordPredicate(firstPredicateKeyword);
-        EmailContainsKeywordPredicate secondPredicate = new EmailContainsKeywordPredicate(secondPredicateKeyword);
+        PersonEmailPredicate firstPredicate = new PersonEmailPredicate(firstPredicateKeyword);
+        PersonEmailPredicate secondPredicate = new PersonEmailPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EmailContainsKeywordPredicate firstPredicateCopy = new EmailContainsKeywordPredicate(firstPredicateKeyword);
+        PersonEmailPredicate firstPredicateCopy = new PersonEmailPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,40 +38,49 @@ public class EmailContainsKeywordPredicateTest {
     @Test
     public void test_emailContainsKeyword_returnsTrue() {
         // Exact match
-        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate("example@example.com");
+        PersonEmailPredicate predicate = new PersonEmailPredicate("example@example.com");
         assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
 
         // Substring match
-        predicate = new EmailContainsKeywordPredicate("example");
+        predicate = new PersonEmailPredicate("example");
         assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
 
         // Mixed-case keyword
-        predicate = new EmailContainsKeywordPredicate("EXAmple@example.COM");
+        predicate = new PersonEmailPredicate("EXAmple@example.COM");
         assertTrue(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
     }
 
     @Test
     public void test_emailDoesNotContainsKeyword_returnsFalse() {
         // Non-matching keyword
-        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate("example@example.com");
+        PersonEmailPredicate predicate = new PersonEmailPredicate("example@example.com");
         assertFalse(predicate.test(new PersonBuilder().withEmail("123@example.com").build()));
 
         // Substring keyword
-        predicate = new EmailContainsKeywordPredicate("com@example.com");
+        predicate = new PersonEmailPredicate("com@example.com");
         assertFalse(predicate.test(new PersonBuilder().withEmail("example@example.com").build()));
 
         // Keywords match phone, but does not match email
-        predicate = new EmailContainsKeywordPredicate("91002921");
+        predicate = new PersonEmailPredicate("91002921");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("91002921")
                 .withEmail("alice@email.com").withAddress("MainStreet").build()));
     }
 
     @Test
+    public void testGetPredicateDescription() {
+        String keyword = "example@example.com";
+        PersonEmailPredicate predicate = new PersonEmailPredicate(keyword);
+
+        String expected = String.format("Email = \"%1$s\"", keyword);
+        assertEquals(expected, predicate.getPredicateDescription());
+    }
+
+    @Test
     public void toStringMethod() {
         String keyword = "example@example.com";
-        EmailContainsKeywordPredicate predicate = new EmailContainsKeywordPredicate(keyword);
+        PersonEmailPredicate predicate = new PersonEmailPredicate(keyword);
 
-        String expected = EmailContainsKeywordPredicate.class.getCanonicalName() + "{email=" + keyword + "}";
+        String expected = PersonEmailPredicate.class.getCanonicalName() + "{email=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
 }

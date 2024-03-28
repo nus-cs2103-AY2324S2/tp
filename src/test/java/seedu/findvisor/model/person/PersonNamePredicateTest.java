@@ -9,21 +9,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.testutil.PersonBuilder;
 
-public class NameContainsKeywordPredicateTest {
+public class PersonNamePredicateTest {
 
     @Test
     public void equals() {
         String firstPredicateKeyword = "first";
         String secondPredicateKeyword = "first second";
 
-        NameContainsKeywordPredicate firstPredicate = new NameContainsKeywordPredicate(firstPredicateKeyword);
-        NameContainsKeywordPredicate secondPredicate = new NameContainsKeywordPredicate(secondPredicateKeyword);
+        PersonNamePredicate firstPredicate = new PersonNamePredicate(firstPredicateKeyword);
+        PersonNamePredicate secondPredicate = new PersonNamePredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordPredicate firstPredicateCopy = new NameContainsKeywordPredicate(firstPredicateKeyword);
+        PersonNamePredicate firstPredicateCopy = new PersonNamePredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,7 +39,7 @@ public class NameContainsKeywordPredicateTest {
     @Test
     public void test_nameEmpty_exceptionThrown() {
         // empty name -> exception thrown
-        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate(" ");
+        PersonNamePredicate predicate = new PersonNamePredicate(" ");
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             predicate.test(new PersonBuilder().withName("Alice").build());
         });
@@ -49,44 +49,53 @@ public class NameContainsKeywordPredicateTest {
     @Test
     public void test_nameContainsKeyword_returnsTrue() {
         // One keyword
-        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Alice");
+        PersonNamePredicate predicate = new PersonNamePredicate("Alice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Tan").build()));
 
         // Exact word
-        predicate = new NameContainsKeywordPredicate("Alice Tan Li Li");
+        predicate = new PersonNamePredicate("Alice Tan Li Li");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Tan Li Li").build()));
 
         // Name contains keyword
-        predicate = new NameContainsKeywordPredicate("Ali");
+        predicate = new PersonNamePredicate("Ali");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Mixed-case keyword
-        predicate = new NameContainsKeywordPredicate("aLIce");
+        predicate = new PersonNamePredicate("aLIce");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Yeoh").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeyword_returnsFalse() {
         // Non-matching keyword
-        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate("Carol");
+        PersonNamePredicate predicate = new PersonNamePredicate("Carol");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Tan").build()));
 
         // Reversed keyword
-        predicate = new NameContainsKeywordPredicate("Tan Alex");
+        predicate = new PersonNamePredicate("Tan Alex");
         assertFalse(predicate.test(new PersonBuilder().withName("Alex Tan").build()));
 
         // Keywords match phone, but does not match name
-        predicate = new NameContainsKeywordPredicate("91002921");
+        predicate = new PersonNamePredicate("91002921");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("91002921")
                 .withEmail("alice@email.com").withAddress("MainStreet").build()));
     }
 
     @Test
+    public void testGetPredicateDescription() {
+        String keyword = "Alice";
+        PersonNamePredicate predicate = new PersonNamePredicate(keyword);
+
+        String expected = String.format("Name = \"%1$s\"", keyword);
+        assertEquals(expected, predicate.getPredicateDescription());
+    }
+
+    @Test
     public void toStringMethod() {
         String keyword = "Alice";
-        NameContainsKeywordPredicate predicate = new NameContainsKeywordPredicate(keyword);
+        PersonNamePredicate predicate = new PersonNamePredicate(keyword);
 
-        String expected = NameContainsKeywordPredicate.class.getCanonicalName() + "{name=" + keyword + "}";
+        String expected = PersonNamePredicate.class.getCanonicalName() + "{name=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
 }

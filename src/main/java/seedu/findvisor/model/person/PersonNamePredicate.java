@@ -1,7 +1,5 @@
 package seedu.findvisor.model.person;
 
-import java.util.function.Predicate;
-
 import seedu.findvisor.commons.util.StringUtil;
 import seedu.findvisor.commons.util.ToStringBuilder;
 
@@ -9,7 +7,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * A predicate for evaluating if a {@link Person}'s name contains (case-insensitive) a given keyword.
  * This is used to filter for persons based on their name attribute.
  */
-public class NameContainsKeywordPredicate implements Predicate<Person> {
+public class PersonNamePredicate implements PersonPredicate {
     private final String keyword;
 
     /**
@@ -17,8 +15,17 @@ public class NameContainsKeywordPredicate implements Predicate<Person> {
      *
      * @param keyword The keyword to be used to lookup against the person's name. The match is case-insensitive.
      */
-    public NameContainsKeywordPredicate(String keyword) {
+    public PersonNamePredicate(String keyword) {
         this.keyword = keyword;
+    }
+
+    /**
+     * Returns the description of this predicate, indicating the name keyword criteria.
+     *
+     * @return A string describing the predicate
+     */
+    public String getPredicateDescription() {
+        return String.format("Name = \"%1$s\"", keyword);
     }
 
     @Override
@@ -33,11 +40,11 @@ public class NameContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordPredicate)) {
+        if (!(other instanceof PersonNamePredicate)) {
             return false;
         }
 
-        NameContainsKeywordPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordPredicate) other;
+        PersonNamePredicate otherNameContainsKeywordsPredicate = (PersonNamePredicate) other;
         return keyword.equals(otherNameContainsKeywordsPredicate.keyword);
     }
 

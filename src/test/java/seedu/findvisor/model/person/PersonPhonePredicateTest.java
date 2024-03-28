@@ -8,21 +8,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.testutil.PersonBuilder;
 
-public class PhoneContainsKeywordPredicateTest {
+public class PersonPhonePredicateTest {
 
     @Test
     public void equals() {
         String firstPredicateKeyword = "91234567";
         String secondPredicateKeyword = "84382123";
 
-        PhoneContainsKeywordPredicate firstPredicate = new PhoneContainsKeywordPredicate(firstPredicateKeyword);
-        PhoneContainsKeywordPredicate secondPredicate = new PhoneContainsKeywordPredicate(secondPredicateKeyword);
+        PersonPhonePredicate firstPredicate = new PersonPhonePredicate(firstPredicateKeyword);
+        PersonPhonePredicate secondPredicate = new PersonPhonePredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PhoneContainsKeywordPredicate firstPredicateCopy = new PhoneContainsKeywordPredicate(firstPredicateKeyword);
+        PersonPhonePredicate firstPredicateCopy = new PersonPhonePredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,25 +38,34 @@ public class PhoneContainsKeywordPredicateTest {
     @Test
     public void test_phoneContainsKeyword_returnsTrue() {
         // Exact match
-        PhoneContainsKeywordPredicate predicate = new PhoneContainsKeywordPredicate("91234567");
+        PersonPhonePredicate predicate = new PersonPhonePredicate("91234567");
         assertTrue(predicate.test(new PersonBuilder().withPhone("91234567").build()));
 
-        predicate = new PhoneContainsKeywordPredicate("9123");
+        predicate = new PersonPhonePredicate("9123");
         assertTrue(predicate.test(new PersonBuilder().withPhone("91234567").build()));
     }
 
     @Test
     public void test_phoneDoesNotContainsKeyword_returnsFalse() {
         // Non-matching keyword
-        PhoneContainsKeywordPredicate predicate = new PhoneContainsKeywordPredicate("91234567");
+        PersonPhonePredicate predicate = new PersonPhonePredicate("91234567");
         assertFalse(predicate.test(new PersonBuilder().withPhone("84382123").build()));
+    }
+
+    @Test
+    public void testGetPredicateDescription() {
+        String keyword = "91234567";
+        PersonPhonePredicate predicate = new PersonPhonePredicate(keyword);
+
+        String expected = String.format("Phone = \"%1$s\"", keyword);
+        assertEquals(expected, predicate.getPredicateDescription());
     }
 
     @Test
     public void toStringMethod() {
         String keyword = "91234567";
-        PhoneContainsKeywordPredicate predicate = new PhoneContainsKeywordPredicate(keyword);
-        String expected = PhoneContainsKeywordPredicate.class.getCanonicalName() + "{phone=" + keyword + "}";
+        PersonPhonePredicate predicate = new PersonPhonePredicate(keyword);
+        String expected = PersonPhonePredicate.class.getCanonicalName() + "{phone=" + keyword + "}";
         assertEquals(expected, predicate.toString());
     }
 }

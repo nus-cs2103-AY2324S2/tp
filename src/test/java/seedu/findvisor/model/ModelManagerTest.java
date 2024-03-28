@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.commons.core.GuiSettings;
-import seedu.findvisor.model.person.NameContainsKeywordPredicate;
+import seedu.findvisor.model.person.PersonNamePredicate;
 import seedu.findvisor.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -117,7 +117,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String keyword = ALICE.getName().fullName;
-        modelManager.updateFilteredPersonList(new NameContainsKeywordPredicate(keyword));
+        modelManager.updateFilteredPersonList(new PersonNamePredicate(keyword));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

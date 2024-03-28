@@ -29,11 +29,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.findvisor.logic.Messages;
 import seedu.findvisor.logic.commands.FindCommand;
-import seedu.findvisor.model.person.AddressContainsKeywordPredicate;
-import seedu.findvisor.model.person.EmailContainsKeywordPredicate;
-import seedu.findvisor.model.person.NameContainsKeywordPredicate;
-import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
-import seedu.findvisor.model.tag.TagsContainsKeywordsPredicate;
+import seedu.findvisor.model.person.PersonAddressPredicate;
+import seedu.findvisor.model.person.PersonEmailPredicate;
+import seedu.findvisor.model.person.PersonNamePredicate;
+import seedu.findvisor.model.person.PersonPhonePredicate;
+import seedu.findvisor.model.tag.PersonTagsPredicate;
 
 public class FindCommandParserTest {
 
@@ -49,7 +49,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // parse name
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordPredicate("Bob Choo"));
+                new FindCommand(new PersonNamePredicate("Bob Choo"));
         assertParseSuccess(parser, NAME_DESC_BOB, expectedFindCommand);
 
         // multiple whitespaces before and after name keyword
@@ -57,19 +57,19 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, paddedKeyword, expectedFindCommand);
 
         // parse email
-        expectedFindCommand = new FindCommand(new EmailContainsKeywordPredicate("amy@example.com"));
+        expectedFindCommand = new FindCommand(new PersonEmailPredicate("amy@example.com"));
         assertParseSuccess(parser, EMAIL_DESC_AMY, expectedFindCommand);
 
         // parse phone
-        expectedFindCommand = new FindCommand(new PhoneContainsKeywordPredicate("81234567"));
+        expectedFindCommand = new FindCommand(new PersonPhonePredicate("81234567"));
         assertParseSuccess(parser, PHONE_DESC_BOB, expectedFindCommand);
 
         // parse address
-        expectedFindCommand = new FindCommand(new AddressContainsKeywordPredicate("Block 123, Bobby Street 3"));
+        expectedFindCommand = new FindCommand(new PersonAddressPredicate("Block 123, Bobby Street 3"));
         assertParseSuccess(parser, ADDRESS_DESC_BOB, expectedFindCommand);
 
         // parse multiple tags
-        expectedFindCommand = new FindCommand(new TagsContainsKeywordsPredicate(
+        expectedFindCommand = new FindCommand(new PersonTagsPredicate(
                 Arrays.asList(new String[]{"friend", "husband"})));
         assertParseSuccess(parser, TAG_DESC_FRIEND + TAG_DESC_HUSBAND, expectedFindCommand);
     }

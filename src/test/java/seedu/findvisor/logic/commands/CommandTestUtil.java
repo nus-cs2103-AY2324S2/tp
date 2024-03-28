@@ -22,7 +22,7 @@ import seedu.findvisor.model.AddressBook;
 import seedu.findvisor.model.Model;
 import seedu.findvisor.model.person.Meeting;
 import seedu.findvisor.model.person.Person;
-import seedu.findvisor.model.person.PhoneContainsKeywordPredicate;
+import seedu.findvisor.model.person.PersonPhonePredicate;
 import seedu.findvisor.model.tag.Tag;
 import seedu.findvisor.model.util.SampleDataUtil;
 import seedu.findvisor.testutil.EditPersonDescriptorBuilder;
@@ -181,7 +181,7 @@ public class CommandTestUtil {
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         // Use person's phone to identify
         String phone = person.getPhone().value;
-        model.updateFilteredPersonList(new PhoneContainsKeywordPredicate(phone));
+        model.updateFilteredPersonList(new PersonPhonePredicate(phone));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

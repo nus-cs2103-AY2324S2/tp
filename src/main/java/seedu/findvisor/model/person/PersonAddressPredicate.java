@@ -1,7 +1,5 @@
 package seedu.findvisor.model.person;
 
-import java.util.function.Predicate;
-
 import seedu.findvisor.commons.util.StringUtil;
 import seedu.findvisor.commons.util.ToStringBuilder;
 
@@ -9,7 +7,7 @@ import seedu.findvisor.commons.util.ToStringBuilder;
  * A predicate for evaluating if a {@link Person}'s address contains (case-insensitive) a given keyword.
  * This is used to filter for persons based on their address attribute.
  */
-public class AddressContainsKeywordPredicate implements Predicate<Person> {
+public class PersonAddressPredicate implements PersonPredicate {
     private final String keyword;
 
     /**
@@ -17,8 +15,17 @@ public class AddressContainsKeywordPredicate implements Predicate<Person> {
      *
      * @param keyword The keyword to be matched against the person's address. The match is case-insensitive.
      */
-    public AddressContainsKeywordPredicate(String keyword) {
+    public PersonAddressPredicate(String keyword) {
         this.keyword = keyword;
+    }
+
+    /**
+     * Returns the description of this predicate, indicating the address keyword criteria.
+     *
+     * @return A string describing the predicate
+     */
+    public String getPredicateDescription() {
+        return String.format("Address = \"%1$s\"", keyword);
     }
 
     @Override
@@ -33,11 +40,11 @@ public class AddressContainsKeywordPredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressContainsKeywordPredicate)) {
+        if (!(other instanceof PersonAddressPredicate)) {
             return false;
         }
 
-        AddressContainsKeywordPredicate otherAddressContainsKeywordsPredicate = (AddressContainsKeywordPredicate) other;
+        PersonAddressPredicate otherAddressContainsKeywordsPredicate = (PersonAddressPredicate) other;
         return keyword.equals(otherAddressContainsKeywordsPredicate.keyword);
     }
 
