@@ -107,10 +107,12 @@ public class LogStore implements ReadOnlyLogStore {
      * Adds an existing log to the store.
      * For the case where existing logs are read from storage.
      */
-    public void addLogWithId(Log l) {
-        logs.put(l.getLogId(), l);
-        if (l.getLogId() > logIdSequence) {
-            logIdSequence = l.getLogId() + 1;
+    public void addLogWithId(Log newLog) {
+        requireNonNull(newLog);
+
+        logs.put(newLog.getLogId(), newLog);
+        if (newLog.getLogId() >= logIdSequence) {
+            logIdSequence = newLog.getLogId() + 1;
         }
     }
 
@@ -145,8 +147,8 @@ public class LogStore implements ReadOnlyLogStore {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("logs", logs)
-                .toString();
+            .add("logs", logList)
+            .toString();
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import scrolls.elder.commons.core.GuiSettings;
-import scrolls.elder.model.person.Volunteer;
 import scrolls.elder.testutil.Assert;
 import scrolls.elder.testutil.TypicalPersons;
 
@@ -71,8 +70,7 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         Datastore datastore = new Datastore();
-        // We use ID = -1 as it will ultimately be replaced by the ID generator
-        datastore.getMutablePersonStore().addPerson(new Volunteer(-1, TypicalPersons.ALICE));
+        datastore.getMutablePersonStore().addPerson(TypicalPersons.AMY);
         Datastore differentDatastore = new Datastore();
         UserPrefs userPrefs = new UserPrefs();
 

@@ -133,7 +133,7 @@ public class PersonStore implements ReadOnlyPersonStore {
      */
     public void addPersonWithId(Person p) {
         persons.add(p);
-        if (p.getPersonId() > personIdSequence) {
+        if (p.getPersonId() >= personIdSequence) {
             personIdSequence = p.getPersonId() + 1;
         }
     }
