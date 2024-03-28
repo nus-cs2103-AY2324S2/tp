@@ -42,6 +42,9 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
+            commandExecutor.execute(commandText);
+            commandTextField.setText("");
+
             int index = extractIndex(commandText);
 
             CommandResult result = commandExecutor.execute(commandText);
