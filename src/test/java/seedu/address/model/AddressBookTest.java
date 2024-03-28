@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -106,6 +107,19 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        assertTrue(addressBook.equals(addressBook));
+        assertEquals(addressBook.hashCode(), addressBook.hashCode());
+
+        assertFalse(addressBook.equals(null));
+
+        AddressBook addressBook2 = new AddressBook();
+        addressBook2.addPerson(ALICE);
+        assertFalse(addressBook.equals(addressBook2));
+        assertNotEquals(addressBook.hashCode(), addressBook2.hashCode());
     }
 
     @Test
