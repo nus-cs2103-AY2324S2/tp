@@ -72,7 +72,13 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `DetailListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Both `DetailListPanel` and `PersonListPanel` are UI elements that depict a scrollable list containing a collection of `DetailCard` and `PersonCard` respectively. 
+
+`PersonCard` strictly represents a UI element depicting a `Person` object as found in the `Model` component. 
+
+`DetailCard` represents a general UI element that contains a header and a body (both using the JavaFx `Label` element) that can contain information of an individual `Person` object or a collection of information. The information that can be displayed using a `DetailCard` UI element is not strictly enforced like in `PersonCard`, which allows for more flexibility when choosing what information to display in the `DetailListPanel`.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -154,6 +160,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Managing appointments
+
+#### Implementation
+
+One of the features of TutorRec is the capability of adding appointments to a user. They are added as a field (`/ap`) when doing an `add` or `edit` command, so something similar to:
+
+- `edit 1 /ap 12:00-13:00 MON` will edit the person on index 1 to have an appointment on Monday from 12:00 to 13:00
+
+The example shown below will describe the process for an appointment given during an `add` command, though the process is similar to that of an `edit` command.
+
+![AddSequenceDiagramAppointment](images/AddSequenceDiagramAppointment.png)
+
+![AddSequenceDiagramRefFrame](images/AddSequenceDiagramRefFrame.png)
+
+It can be seen here that each appointment, after being parsed, will be added to the list of appointments to each person.
+
+Note that certain details, such as other fields in a `Person` have been omitted for brevity.
+
+### Listing Students
+
+#### Implementation
+
+TutorRec is also able to list all current students in the address book. Note that the command `list` does not modify the address book. Additionally, it does not take in any extra parameters. It can be simply called as follows:
+
+- `list` will show all current students in the address book in the `PersonListPanel`
+
+The example shown below will describe the process for listing all students during the `list` command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -262,13 +298,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* busy home tutor
+* has a need to manage a large number of students
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: provides easy access to client info and organizes it in an efficient and readable way for day-to-day use, optimized for tutors that prefer CLI.
 
 
 ### User stories
@@ -277,27 +314,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`  | new home tutor                                   | have adding information be intuitive and logical         | use the app without hassle                 |
+| `* *`  | new user                                       | have a quick start guide              | learn how to use the app                                                                      |
+| `* *`  | new home tutor                                       | follow a set syllabus for my clients                |                                    |
+| `* *`  | new home tutor                                   | be able to quickly create a student’s profile with their relevant information          | |
+| `* *`    | new home tutor                                      | track the performance of my students   | prove to their parents that they are improving and my effectiveness as a tutor                |
+| `* * *`     | new home tutor | track all my appointments          | reduce the chance I forget or double book myself                                               |
+| `* *`      | new home tutor | keep track of my finances–such as which client has paid me for my work over a month | reduce my stress when it comes to keeping track of who has paid me for my work, and so forth. |
+| `* *`      | busy home tutor | seamlessly create new tasks | quickly and efficiently set up my daily routine |
+| `* *` | busy home tutor | be reminded about my upcoming appointments for the day | not accidentally forget |
+| `* *` | returning home tutor | re-implementation of more information in a large amount to be easy | add information en masse without stress |
+| `* *` | home tutor with clients who are nearing exam season | properly ensure that they are improving as planned, and also allow them to set benchmarks that I can remember | |
+| `* *` | busy home tutor | block certain times out for lunch and dinner | not accidentally overwrite those times with an additional client |
+| `* * *` | experienced home tutor | delete students I am no longer teaching on TutorRec | unclutter my interface |
+| `* * *` | experienced home tutor | update student information and details | ensure accurate records are maintained |
+| `* * *` | passionate home tutor | TutorRec to keep notes for each student | tailor my teaching style accordingly |
+| `* *` | experienced home tutor with many students | ability to categorise students by skill level, subject or group (p1, p2, p3…) | quickly locate their information when needed |
+| `* *` | experienced home tutor | flexibility to choose what to teach my students (custom lessons) | personalise each lesson for different students |
+| `* *` | experienced home tutor | easily identify students with weak performance | focus on weaker students |
+| `* *` | experienced home tutor | view a student’s records for the length of time I have tutored them | |
+| `* *` | experienced home tutor | get some insights and analytics on a student’s performance over time | further refine my teaching methods accordingly |
+| `* *` | busy home tutor | quickly reschedule my appointments with my clients | fit my ever-changing schedule, preventing a large amount of hassle |
+| `* *` | tutor who just received a new wave of clients | separate my old and new clients | keep the interface orderly and easy-to-follow |
+| `* * *` | busy home tutor | make quick notes about my students | keep track of information specific to each client |
+| `* *` | assignment-ridden home tutor | note cancellations in my schedule due to increased workload from my end | my schedule is accurate to reality |
+| `* *` | wary home tutor | backup and import data | safeguard myself against potential data corruption and/or physical destruction of my devices |
+| `* *` | home tutor with a new device | quickly transfer data from one device to another | prevent the pain of having to input previous data manually |
+| `* *` | online tutor | organize sessions with students in a different country and automatically convert dates and times to my time zone | |
+| `* *` | online home tutor | keep Zoom links with sessions and other information about the student in one place | |
+| `* *` | online home tutor with students who are abroad | convert time at a glance | be on time for my student’s lessons |
+| `* * *` | home tutor who just moved abroad | remove previous clients I cannot tutor due to the distance gap | keep my schedule clean |
+| `* *` | home tutor who just moved abroad | ways of tagging my students | keep track of different needs arising due to cultural differences |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TutorRec` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list students
+2.  TutorRec shows a list of students
+3.  User requests to delete a specific student in the list
+4.  TutorRec deletes the student
 
     Use case ends.
 
@@ -309,19 +371,256 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TutorRec shows an error message.
 
       Use case resumes at step 2.
+
+
+**Use case: Viewing appointments**
+
+**MSS**
+
+1. User requests to view current appointments for the day
+2. TutorRec shows a list of appointments for the day
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    Use case ends.
+
+* 1b. User inputs an invalid day format as an input.
+    
+    * 1b1. TutorRec shows an error message.
+
+    Use case ends.
+
+
+**Use case: Sorting students**
+
+**MSS**
+
+1. User requests to view students of a particular category
+2. TutorRec shows a filtered list containing only students with this category
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    Use case ends.
+
+* 1b. The given category does not have any students assigned to it.
+
+    * 1b1. TutorRec shows an empty list.
+
+    Use case ends.
+
+* 1c. User inputs an invalid category.
+    
+    * 1c1. TutorRec shows an error message.
+
+    Use case ends.
+
+
+**Use case: Editing a student's details**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User requests to edit the details of a specific  student in the list
+4. TutorRec updates the details of this student
+5. TutorRec displays the updated information of this student
+   
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User inputs a field that does not exist (e.g. adding a nonexistent /q field).
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 2.
+
+
+**Use case: Finding a student**
+
+**MSS**
+
+1. User requests to list all students with a particular name
+2. TutorRec displays a reduced list containing all students that meet the criteria of the name requested
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    
+    Use case ends.
+
+* 1b. No students exist with the given name.
+
+    * 1b1. TutorRec displays an empty list.
+    
+        Use case ends.
+
+**Use case: Checking improvements of a student**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User updates a specific student's grades for a given test
+4. TutorRec updates the grades for this student
+5. TutorRec displays that the student's grades has been updated
+6. User requests to view a list of a specific student's grades
+7. TutorRec displays a history of this student's grades
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. An invalid score is listed as the input.
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 2.
+
+* 6a. The given index is invalid.
+
+    * 6a1. TutorRec shows an error message.
+        
+        Use case resumes at step 2.
+
+* 6b. The student has no grades saved.
+
+    * 6b1. TutorRec displays nothing.
+
+        Use case resumes at step 2.
+
+**Use case: Updating payment status**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User chooses to mark a specific student as having made their payment
+4. TutorRec updates the payment status of this student to be complete
+5. User chooses to mark a specific as not having made their payment
+6. TutorRec updates the payment status of this student to be incomplete
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The student selected already has had their payment marked as made.
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 2.
+
+* 5a. The given index is invalid.
+
+    * 5a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 5b. The student selected already has had their payment marked as made.
+
+    * 5b1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Creating an appointment**
+
+**MSS**
+
+1. User requests to list students
+2. TutorRec displays a list of students
+3. User sets a specific student to have an appointment at a particular time and date
+4. TutorRec updates details about this student
+5. TutorRec displays details of appointment to user
+
+    End of use case.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TutorRec shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Insufficient information is given to make an appointment.
+
+    * 3b1. TutorRec shows an error message.
+
+        Use case resumes at step 2.
+
+* 3c. The time and date inputted by the user clashes with an existing appointment previously made by the user.
+
+    * 3c1. TutorRec shows an error message.
+    * 3c2. TutorRec displays information of student which has an appointment that resulted in the timing clash, and the date and time of this appointment.
+
+        Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+1.  TutorRec should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  TutorRec should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  TutorRec is not required to handle multiple users (i.e. multi-user product); it is a single-user product.
+5.  TutorRec needs to be developed in a breadth-first incremental manner, with weekly updates.
+6.  TutorRec's data should be stored locally and should be in a human editable text file.
+7.  TutorRec should not use a DBMS to store data.
+8.  TutorRec should work without requiring an installer.
+9.  TutorRec should be packaged into a single JAR file for releases. 
+10. TutorRec's JAR files should not exceed 100MB.
+11. The development of TutorRec should follow the Object-oriented paradigm.
+12. TutorRec should be able to respond within three seconds.
+13. TutorRec should be designed to function offline.
+14. TutorRec should not require additional hardware beyond standard computing devices (e.g., desktops, laptops, tablets) commonly availabe to users.
 
 ### Glossary
 

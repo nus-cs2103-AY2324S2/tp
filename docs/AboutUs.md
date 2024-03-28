@@ -9,51 +9,51 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chin Zhe Ning
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/biinnnggggg.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/biinnnggggg)]
 
-* Role: Project Advisor
+* Roles: Documentation, In charge of `Logic`
+* Responsibilities: looks after quality of various project documents, diagrams and the `Logic` component
+### Jonathan Chong
 
-### Jane Doe
+<img src="images/jonchong98.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/jonchong98)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Roles: User Interface design and implementation
+* Responsibilities: creating UI mockups and implementing design into product
 
-* Role: Team Lead
-* Responsibilities: UI
 
-### Johnny Doe
+### Darylgolden
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darylgolden.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/darylgolden)]
 
-* Role: Developer
-* Responsibilities: Data
+* Roles: Git expert, Testing, Integration
+* Responsibilities: helps other team member with Git matters, ensures
+  the testing of the project is timely and done properly, In charge of
+  versioning of the code, maintaining the code repository, integrating
+  various parts of the software to create a whole.
 
-### Jean Doe
+### Aidan Goh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/topkec.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/TopKec)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Code Quality, In charge of `Model` package
+* Responsibilities: looks after code quality, ensures adherence to coding
+standards, etc., looks after quality of `Model` package
 
-### James Doe
+### Tan Qin Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tanqinyong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/tanqinyong)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role:  Scheduling and Tracking
+* Responsibilities: in charge of defining, assigning and tracking of tasks
