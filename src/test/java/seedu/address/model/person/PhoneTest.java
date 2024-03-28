@@ -57,4 +57,13 @@ public class PhoneTest {
         // different values -> returns false
         assertFalse(phone.equals(new Phone("995")));
     }
+
+    @Test
+    public void isSingaporeanNumber() {
+        assertTrue(new Phone("81236212").isSingaporeanNumber());
+        assertTrue(new Phone("97312382").isSingaporeanNumber());
+        assertFalse(new Phone("7234127").isSingaporeanNumber());
+        assertFalse(new Phone("88462").isSingaporeanNumber());
+        assertFalse(new Phone("943214").isSingaporeanNumber());
+    }
 }

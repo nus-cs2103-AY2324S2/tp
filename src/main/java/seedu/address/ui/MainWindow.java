@@ -1,6 +1,11 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
 import java.util.logging.Logger;
+
+import com.google.zxing.WriterException;
 
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -16,9 +21,12 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ResetDebtCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -30,10 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final Double PERSON_LIST_RATIO = 0.25;
     private static final Integer MINIMUM_HEIGHT = 700;
     private static final Integer MINIMUM_WIDTH = 700;
-    private Image logo = new Image(this.getClass().getResourceAsStream("/images/friendfolio_logo.png"));
-
     private final Logger logger = LogsCenter.getLogger(getClass());
-
+    private Image logo = new Image(this.getClass().getResourceAsStream("/images/friendfolio_logo.png"));
     private Stage primaryStage;
     private Logic logic;
 
@@ -41,6 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PaymentWindow paymentWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -59,7 +66,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private ImageView logoImage;
-
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -181,6 +187,33 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        if (paymentWindow != null) {
+            paymentWindow.hide();
+        }
+    }
+
+    @FXML
+    private void handlePayment(Person person) {
+        requireNonNull(person);
+        if (paymentWindow != null) {
+            paymentWindow.hide();
+        }
+        try {
+            paymentWindow = new PaymentWindow(person, () -> {
+                paymentWindow.hide();
+                paymentWindow = null;
+                try {
+                    execute(new ResetDebtCommand(person));
+                } catch (CommandException e) {
+                    return;
+                }
+            });
+            paymentWindow.show();
+        } catch (IOException | WriterException e) {
+            logger.info("An error occurred while trying to set up PaymentWindow: " + e.getMessage());
+            resultDisplay.setFeedbackToUser("An error occurred while trying to set up PaymentWindow!");
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -195,17 +228,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
+            handleCommandResult(commandResult);
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -214,4 +237,33 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private CommandResult execute(Command command) throws CommandException {
+        try {
+            CommandResult commandResult = logic.execute(command);
+            handleCommandResult(commandResult);
+            return commandResult;
+        } catch (CommandException e) {
+            logger.info("An error occurred while executing command: " + command);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+
+    private void handleCommandResult(CommandResult commandResult) {
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+        if (commandResult.isShowHelp()) {
+            handleHelp();
+        }
+
+        if (commandResult.isExit()) {
+            handleExit();
+        }
+
+        if (commandResult.isShowPayment()) {
+            assert (commandResult.getPersonToPay() != null);
+            handlePayment(commandResult.getPersonToPay());
+        }
+    }
 }
