@@ -10,6 +10,8 @@ keep track of your genetic information. Gene-nie acts as your personal autobiogr
 your family tree and history.
 </p>
 
+## Table of Contents
+
 <details>
 <summary>&nbsp TABLE OF CONTENTS </summary>
 
@@ -66,7 +68,7 @@ your family tree and history.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features---viewing-person-profiles) below for details of each command.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -103,7 +105,7 @@ your family tree and history.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features: Viewing Person Profiles
+## Features - Viewing Person Profiles
 
 ### Listing all persons : `list`
 
@@ -111,7 +113,7 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
-## Features: Managing Person Profiles
+## Features - Managing Person Profiles
 
 ### Adding a person: `add`
 
@@ -216,20 +218,52 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features: Managing Person Relationships
+## Features - Managing Person Relationships
+
+### Listing all relationship types : `listRelations`
+
+Shows a list of all current relationshipTypes in the address book.
+
+Format: `listRelations`
 
 ### Adding a relationship : `addRelation`
 
-Adds a relationship between two people in the address book.
+Adds a roleless relationship between two people in the address book.
 
 Format: `addRelation UUID1 UUID2 RELATIONSHIP_TYPE`
 
-* Adds the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
+* Adds the roleless relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
 * The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
 * The `UUID1` and `UUID2` **must be valid UUIDs**.
-* The `RELATIONSHIP_TYPE` is case-sensitive and matches the relationship type name exactly.
+* The `RELATIONSHIP_TYPE` **must be a String**.
 * If the relationship already exists, the command will not have any effect.
 * If either persons do not exist, the command will not have any effect.
+* If the `RELATIONSHIP_TYPE` does not exist, it will be added to the existing list of relationTypes.
+
+Examples:
+* `addRelation 12db 34ab friend` adds the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
+
+Adds a role-based relationship between two people in the address book.
+
+Format: `addRelation ROLE1 UUID1 ROLE2 UUID2 RELATIONSHIP_TYPE`
+
+* Adds the role-based relationship between the person with the specified `UUID1` and `ROLE1` and the person with the specified `UUID2` and `ROLE2`.
+* The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
+* The `UUID1` and `UUID2` **must be valid UUIDs**.
+* The `RELATIONSHIP_TYPE`, `ROLE1` and `ROLE2` **must be Strings**.
+* If the relationship already exists, the command will not have any effect.
+* If either persons do not exist, the command will not have any effect.
+* If the `RELATIONSHIP_TYPE` does not exist, it will be added to the existing list of relationTypes.
+
+Examples:
+* `addRelation parent 12db child 34ab bioparents` adds the relation bioparents between the person with the UUID 12db and the person with the UUID 34ab with the roles parent and child respectively.
+
+<div markdown="block" class="alert alert-warning">
+
+**:exclamation: Caution:** <br>
+* The `RELATIONSHIP_TYPE` "family" is not allowed. The address book will throw an error asking the user to be more specific about the family relation. 
+* The correct way to do this is to enter the exact family relation (bioparents, siblings or spouses) as the `RELATIONSHIP_TYPE`.
+</div>
 
 ### Editing a relationship : `editRelation`
 
@@ -240,11 +274,12 @@ Format: `editRelation UUID1 UUID2 OLD_RELATIONSHIP_TYPE NEW_RELATIONSHIP_TYPE`
 * Edits the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
 * The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
 * The `UUID1` and `UUID2` **must be valid UUIDs**.
-* The `OLD_RELATIONSHIP_TYPE` and `NEW_RELATIONSHIP_TYPE` are case-sensitive and match the relationship type name exactly.
+* The `OLD_RELATIONSHIP_TYPE`,`NEW_RELATIONSHIP_TYPE`, `ROLE1` and `ROLE2` **must be Strings**.
 * If the relationship to be edited from does not exist, the command will not have any effect.
 * If the relationship to be edited to already exists, the command will not have any effect.
 * If either persons do not exist, the command will not have any effect.
 * If either relationship types do not exist, the command will not have any effect.
+* If the `NEW_RELATIONSHIP_TYPE` does not exist, it will be added to the existing list of relationTypes.
 
 Examples:
 * `editRelation 12db 34ab friend family` edits the relation between the person with the UUID 12db and the person with the UUID 34ab from friend to be family.
@@ -258,12 +293,21 @@ Format: `deleteRelation UUID1 UUID2 RELATIONSHIP_TYPE`
 * Deletes the relationship between the person with the specified `UUID1` and the person with the specified `UUID2`.
 * The `UUID1` and `UUID2` refer to the unique identifiers of the persons shown in the displayed person list.
 * The `UUID1` and `UUID2` **must be valid UUIDs**.
-* The `RELATIONSHIP_TYPE` is case-sensitive and matches the relationship type name exactly.
+* The `OLD_RELATIONSHIP_TYPE`,`NEW_RELATIONSHIP_TYPE`, `ROLE1` and `ROLE2` **must be Strings**.
 * If the specified relationship to be deleted does not exist, the command will not have any effect.
 * If either persons do not exist, the command will not have any effect.
 
 Examples:
 * `deleteRelation 12db 34ab friend` deletes the relation friend between the person with the UUID 12db and the person with the UUID 34ab.
+
+Deletes the relationType from the list of existing relationTypes.
+
+Format: `deleteRelation RELATIONSHIP_TYPE`
+
+* Deletes the specific `RELATIONSHIP_TYPE` from the list of existing relationTypes.
+* The `RELATIONSHIP_TYPE` **must be a String**.
+* If the specified `RELATIONSHIP_TYPE` does not exist, the command will not have any effect.
+* If an existing relationship uses the specified `RELATIONSHIP_TYPE`, the command will not have any effect.
 
 ### Finding Relationship between Entities: `anySearch`
 
@@ -288,7 +332,7 @@ else `No Relationship Found` will be returned
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features: Clearing All Persons
+## Features - Clearing All Persons
 
 ### Clearing all entries : `clear`
 
