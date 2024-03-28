@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,6 +155,71 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Developed\] Applicant class OOP modeling
+#### Why it is implemented that way
+By extending `Person`, the `ModelManager` and `AddressBook` classes can remain the same handling person
+(as observed in the diagram in Model component). Since `Applicant` is also a person with additional fields, it makes
+sense for the model to have `Applicant` class extend `Person` and composing of classes like `Role` and `Stage` which are
+the new details we are tracking.
+Similarly, a `JsonAdaptedApplicant` extends `JsonAdaptedPerson` to achieve
+the same effect in `Storage` component.
+
+### \[Developed\] Add applicant feature
+The add applicant feature allows users to add applicants with the following details: `Name`, `Phone`, `Email`,
+`Address`, `Role`, `Tag`, `Note` and `Date`. 
+
+#### How the feature is implemented
+* The add applicant is designed in mind with how the `Applicant` class extends `Person` class 
+to maximize the benefits of inheritance.
+* In the add applicant command and parser, the applicant is parse to into `addPerson()` as `Applicant`.  
+* In the `JsonAdaptedPerson` class, subtype declarators are used to declare the inheritance relationship between person 
+and applicant, hence it can store and differentiate applicants from person when retrieved.   
+* There is also an input checker reminding users to not declare `/stage` (if they did) as newly added applicants are 
+assumed to be at the `'initial_application'` stage.
+* Instance check are done for `Applicant` at `personListPanel` to ensure the applicant card gets displayed and
+`JsonSerializableAddressBook` class to ensure the person objects that are `Applicant` are casted accordingly.  
+
+
+![AddApplicantSequenceDiagram.png](images%2FAddApplicantSequenceDiagram.png)
+
+
+### \[Developed\] Edit_Applicant feature
+The edit_applicant functionality allows users to edit applicants' details. The details that can be edited include `Name`, `Phone`, `Email`, `Address`, `Stage`, `Role` and `Tag`.
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+### \[Developed\] Note feature
+* The `note` command gives users the ability to add notes to applicants. There is also an option to add a timestamp to the note to date it.
+* Arguments for this command is `note`, `index`, and `date`, where `note` is the note content, `index` being which applicant in the list to add to, and `date` to specify whether the timestamp should be added.
+* An example usage of the command is `note 1 /note Buy groceries /date true`
+
+This feature is implemented by first adding an additional `Note` property to the `Person` model, as illustrated by the UML diagram below:
+![ModelClassDiagram](images/ModelClassDiagram.png)
+
+* This allows the `Note` property to be stored in the `Person` model for further manipulation during program runtime.
+* Then, the `storage` component is modified to also include the `Note` property, so that when the program saves the applicant, the `Note` will also be saved into `addressbook.json`
+
+* The following class diagram shows the design of the `Note` command:
+![NoteCommand](images/NoteCommand.png)
+
+* As mentioned earlier, the `Note` command has an optional `date` that can be attached to a `note`.
+* In the class diagram above, the toggle for adding the `date` is stored as a boolean `withDate`.
+* When `withDate` is set to true, a date `String` is then generated when `generateDate()` is called.
+* The reason for not saving the `date` as an actual date related data type is due to the fact that it will always default to the current timestamp when the note is added.
+* For convenience and to avoid the need to cast date datatype, the actual `date` for the note is stored as a `String`, which can be directly saved into `.json` files.
+
+#### Design considerations:
+
+**Aspect: How Note dates are stored:**
+
+* **Alternative 1 (current choice):** Simply stored as a `String`.
+    * Pros: Straightforward and easy.
+    * Cons: Is not searchable/sortable unlike actual date datatype.
+
+* **Alternative 2:** Store date with proper date datatype.
+    * Pros: Can be searchable/sortable in the future if the need arises.
+    * Cons: Takes more time to implement as it needs to be added to Model, Storage, and `NoteCommand` needs to be modified.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -260,44 +325,155 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: HR officer for tech-related startup
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+* Managing contacts for three main types of external liaisons:
+  * potential hires
+  * hiring agencies
+  * legal consultants
+*  Reduce time spent on searching for relevant contacts for liaisons.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: Essential (needed for basic functionality) - `Essential`, Typical (common needs) - `Typical`, Novel (good to have but not a need) - `Novel`, Out of Scope (not needed) - `Out of Scope`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| As a/an ...                      | I can ...                                                                                                                                                                | So that ...                                                                                          | Priority (Essential, Typical, Novel, Out of Scope) |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| User                             | add new contacts                                                                                                                                                         |                                                                                                      | Essential                                          |
+| User                             | delete existing contacts                                                                                                                                                 |                                                                                                      | Essential                                          |
+| User                             | view existing contacts                                                                                                                                                   |                                                                                                      | Essential                                          |
+| HR professional                  | manage all my work contacts in one place,                                                                                                                                | I can efficiently communicate with applicants                                                        | Essential                                          |
+| User                             | update existing contacts                                                                                                                                                 |                                                                                                      | Typical                                            |
+| User                             | purge all curent data                                                                                                                                                    | I can get rid of sample/experimental data I while exploring the app                                  | Typical                                            |
+| HR Recruiter                     | filter through my contact list based on what stage of the hiring process the applicants are in                                                                           | I can contact those who are shortlisted                                                              | Typical                                            |
+| HR Recruiter                     | add tags to contacts to specify which roles they are applying for                                                                                                        | I can keep them organized                                                                            | Typical                                            |
+| HR personnel                     | add notes or comments to individual contact entries                                                                                                                      | I can keep track of important additional information/interactions                                    | Typical                                            |
+| experienced HR professional      | filter and identify candidates by tags                                                                                                                                   | I can follow up with them promptly                                                                   | Typical                                            |
+| User                             | search through my contacts based on specific criteria                                                                                                                    | I can quickly find any information I need                                                            | Typical                                            |
+| HR Recruiter                     | extract contacts into a separate address book                                                                                                                            | I can import them to the company database easily                                                     | Typical                                            |
+| HR Recruiter                     | upload images to set profile pictures for my contacts                                                                                                                    | I can identify them when face to face                                                                | Typical                                            |
+| first-time user                  | have an intuitive experience and can quickly understand its features and functionalities                                                                                 | I can start using it effectively without wasting time                                                | Typical                                            |
+| first-time user                  | can find clear instructions on how to use HRConnect                                                                                                                      | I can easily start managing my contacts using HRConnect                                              | Typical                                            |
+| HR Recruiter                     | Create new contacts with templates based on person (employees, intern, interviewee etc.)                                                                                 |                                                                                                      | Novel                                              |
+| long-time user                   | create shortcuts for tasks                                                                                                                                               | I can save time on frequenty used functions                                                          | Novel                                              |
+| User                             | receive notifications or reminders from HRConnect                                                                                                                        | I can be kept up to date with upcoming interviews, deadlines or follow-up tasks                      | Novel                                              |
+| User                             | can conduct background checks on potential hires directly within HRConnect                                                                                               | I can find out the suitability of a candidate easily                                                 | Novel                                              |
+| first-time user                  | easily import my data                                                                                                                                                    | it won't be intimidating and I won't give up on using it after my first use                          | Novel                                              |
+| HR personnel                     | sync any information changes across different devices                                                                                                                    | I can update information efficiently and ensure that all data is up to date for my coworkers as well | Novel                                              |
+| long-time user.                  | archive/hide unused contacts                                                                                                                                             | I am not distracted by irrelevant data                                                               | Novel                                              |
+| HR Recruiter                     | create custom automated processes for repetitive tasks                                                                                                                   | I can save time on such tasks                                                                        | Novel                                              |
+| potential user exploring the app | see the app populated with sample data                                                                                                                                   | I can easily see the benefits of the app when frequently used                                        | Novel                                              |
+| HR personnel                     | keep track of the status of job applications or recruitment processes for each candidate                                                                                 | I can monitor progress and follow up as needed                                                       | Novel                                              |
+| User                             | track the status of each potential hire in the recruitment process                                                                                                       | I can take action as needed                                                                          | Novel                                              |
+| User                             | conduct surveys and collect feedback from specific groups within my contacts                                                                                             | I can easily conduct surveys as needed                                                               | Novel                                              |
+| first-time user                  | access a brief tutorial on how to navigate HRConnect                                                                                                                     | I can quickly familiarize myself with its features and functions                                     | Out of scope                                       |
+| User                             | generate reports or analytics on hiring activities such as time-to-fill metrics, source of hire, and diversity statistics                                                | I can easily access such information as needed                                                       | Out of scope                                       |
+| User                             | integrate HRConnect with other HR systems or tools such as applicant tracking systems or payroll software                                                                | data exchange and workflows can be streamlined                                                       | Out of scope                                       |
+| User                             | schedule and conduct virtual interviews directly within HRConnect, including video conferencing and interview notes                                                      |                                                                                                      | Out of scope                                       |
+| User                             | track and manage employee referrals and incentives programs within HRConnect, including tracking referral bonuses and monitoring the effectiveness of referral campaigns |                                                                                                      | Out of scope                                       |
+| User                             | generate customizable offer letters and employment contracts directly within HRConnect, including integrating e-signature solutions                                      | I can perform these tasks more efficiently                                                           | Out of scope                                       |
+| User                             | create and manage employee development plans with HRConnect                                                                                                              |                                                                                                      | Out of scope                                       |
+| User                             | create and manage succession plans with HRConnect, including identifying high-potential employees, mapping career paths and planning for leadership transitions          |                                                                                                      | Out of scope                                       |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HRConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an applicant**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to add a specific contact to the list
+4.  HRConnect adds the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given format is invalid.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3b. The unnecessary fields given.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+  
+* 3c. The contact details have been added before.
+
+    * 3b1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Clear**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to clear the list
+4.  HRConnect deletes all entries in list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+**Use case: Add comment to contact**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to add a comment to a specific person in the list
+4.  HRConnect adds comment to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given Application ID is invalid.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The comment is empty.
+
+    * 3b1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3c. The comment is a duplicate of a previous comment assigned to the same contact.
+
+    * 3c1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Delete a contact**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to delete a specific contact on the list
+4.  HRConnect deletes the person
 
     Use case ends.
 
@@ -309,24 +485,187 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HRConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to edit a specific person's details in the list
+4.  HRConnect edits the details belonging to the person
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index of the person is invalid.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given format of the command is invalid.
+
+    * 3b1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Export contacts**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to export contacts into a separate address book section.
+4.  HRConnect exports the specified range of contacts to the designated page.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+
+* 3a. The given format of the command is invalid.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given range is invalid.
+
+    * 3b1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Filter Tag**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to filter through the contact list based on what stage the interviewee is in
+4.  HRConnect returns entries only for interviewees in that particular stage.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+
+* 3a. The given format of the command is invalid.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The tag does not exist.
+
+    * 3b1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: Find keyword**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to find entries that match the keyword in the list
+4.  HRConnect returns entries that match the keyword
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+
+**Use case: List**
+
+**MSS**
+
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+
+**Use case: Add tag**
+
+**MSS**
+
+1.  User requests to list of contacts
+2.  HRConnect shows a list of contacts
+3.  User requests to add specific tags to specific contacts for easy filtering later.
+4.  HRConnect adds the specified tag to the designated contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+* 3a. The application ID does not exist.
+
+    * 3a1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The tag does not exist.
+
+    * 3b1. HRConnect shows an error message.
+
+      Use case resumes at step 2.
+
+  Use case ends
+
+
+
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Searches, additions, and updates to contacts should be processed within 2 seconds under normal operational conditions.
+5. HRConnect should feature an intuitive user interface for easy management of contacts without prior training.
+6. The system should provide clear error messages and guidance for correcting invalid inputs.
+7. User data, including contacts, notes, and tags, must be securely handled both in transit and at rest.
+8. The system should be designed to scale horizontally to accommodate growing numbers of users and contacts.
+9. It should maintain performance and usability as data volume and number of concurrent users increase.
+10. HRConnect should be available 24/7 with a target uptime of 99.9%, excluding scheduled maintenance.
+11. It should include mechanisms for data backup and recovery to prevent data loss.
+12. The system should be compatible with major operating systems (Windows, macOS, Linux) and browsers (Chrome, Firefox, Safari).
+13. The application should be built using modular, well-documented code to facilitate maintenance and future updates.
+14. It should allow for the easy addition of new features without significant restructuring of the existing codebase.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Time-to-fill**: The time taken to find and hire a new candidate
 
 --------------------------------------------------------------------------------------------------------------------
 

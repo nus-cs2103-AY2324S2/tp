@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Yong Yu Sian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ys112.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ys112)]
+[[portfolio](team/ys112.md)]
 
-* Role: Project Advisor
+* Role: Software Engineer
+* Responsibilities: Deliverables and deadlines, Integration
 
-### Jane Doe
+### Yuv Bindal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuvbindal.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/YuvBindal)]
+[[portfolio](team/yuvbindal.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Software Engineer
+* Responsibilities: Testing
 
-### Johnny Doe
+### Lee Xin En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/xinen26.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/xinen26)]
+[[portfolio](team/xinen26.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Software Engineer
+* Responsibilities: Scheduling and tracking
 
-### Jean Doe
+### Ho Wei Herng, Christopher
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chrisho1341.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ChrisHo1341)]
+[[portfolio](team/chrisho1341.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Software Engineer
+* Responsibilities: Documentation and code quality
 
-### James Doe
+### Li Haoquan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lihaoquan.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lihaoquan)]
+[[portfolio](team/lihaoquan.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Software Engineer
+* Responsibilities: Integration, UI

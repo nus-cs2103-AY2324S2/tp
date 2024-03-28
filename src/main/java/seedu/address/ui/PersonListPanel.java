@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.person.Person;
 
 /**
@@ -40,6 +41,11 @@ public class PersonListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
+                return;
+            }
+
+            if (person instanceof Applicant) {
+                setGraphic(new ApplicantCard((Applicant) person, getIndex() + 1).getRoot());
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }

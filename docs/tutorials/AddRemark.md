@@ -3,16 +3,16 @@ layout: page
 title: "Tutorial: Adding a command"
 ---
 
-Let's walk you through the implementation of a new command — `remark`.
+Let's walk you through the implementation of a new command — `note`.
 
 This command allows users of the AddressBook application to add optional remarks to people in their address book and edit it if required. The command should have the following format:
 
-`remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
+`note INDEX r/REMARK` (e.g., `note 2 r/Likes baseball`)
 
 We’ll assume that you have already set up the development environment as outlined in the Developer’s Guide.
 
 
-## Create a new `remark` command
+## Create a new `note` command
 
 Looking in the `logic.command` package, you will notice that each existing command have their own class. All the commands inherit from the abstract class `Command` which means that they must override `execute()`. Each `Command` returns an instance of `CommandResult` upon success and `CommandResult#feedbackToUser` is printed to the `ResultDisplay`.
 
@@ -28,22 +28,22 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the note of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "note";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult("Hello from remark");
+        return new CommandResult("Hello from note");
     }
 }
 ```
 
 ### Hook `RemarkCommand` into the application
 
-Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `remark` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
+Now that we have our `RemarkCommand` ready to be executed, we need to update `AddressBookParser#parseCommand()` to recognize the `note` keyword. Add the new command to the `switch` block by creating a new `case` that returns a new instance of `RemarkCommand`.
 
 You can refer to the changes in this [diff](https://github.com/se-edu/addressbook-level3/commit/35eb7286f18a029d39cb7a29df8f172a001e4fd8#diff-399c284cb892c20b7c04a69116fcff6ccc0666c5230a1db8e4a9145def8fa4ee).
 
@@ -51,13 +51,13 @@ You can refer to the changes in this [diff](https://github.com/se-edu/addressboo
 
 Run `Main#main` and try out your new `RemarkCommand`. If everything went well, you should see something like this:
 
-![Output displayed](../images/add-remark/RemarkHello.png)
+![Output displayed](../images/add-note/RemarkHello.png)
 
 ## Change `RemarkCommand` to throw an exception
 
 While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw a `CommandException` to accurately reflect that our command is still a work in progress.
 
-![The relationship between RemarkCommand and Command](../images/add-remark/RemarkCommandClass.png)
+![The relationship between RemarkCommand and Command](../images/add-note/RemarkCommandClass.png)
 
 Following the convention in other commands, we add relevant messages as constants and use them.
 
@@ -65,9 +65,9 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the person identified "
+            + ": Edits the note of the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
+            + "Existing note will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -98,22 +98,22 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
     private final Index index;
-    private final String remark;
+    private final String note;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the person in the filtered person list to edit the note
+     * @param note of the person to be updated to
      */
-    public RemarkCommand(Index index, String remark) {
-        requireAllNonNull(index, remark);
+    public RemarkCommand(Index index, String note) {
+        requireAllNonNull(index, note);
 
         this.index = index;
-        this.remark = remark;
+        this.note = note;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         throw new CommandException(
-                String.format(MESSAGE_ARGUMENTS, index.getOneBased(), remark));
+                String.format(MESSAGE_ARGUMENTS, index.getOneBased(), note));
     }
 
     @Override
@@ -129,7 +129,7 @@ public class RemarkCommand extends Command {
 
         RemarkCommand e = (RemarkCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+                && note.equals(e.note);
     }
 }
 ```
@@ -138,11 +138,11 @@ Your code should look something like [this](https://github.com/se-edu/addressboo
 
 ### Parse user input
 
-Now let’s move on to writing a parser that will extract the index and remark from the input provided by the user.
+Now let’s move on to writing a parser that will extract the index and note from the input provided by the user.
 
 Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
-![The relationship between Parser and RemarkCommandParser](../images/add-remark/RemarkCommandParserClass.png)
+![The relationship between Parser and RemarkCommandParser](../images/add-note/RemarkCommandParserClass.png)
 
 Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.
 
@@ -177,7 +177,7 @@ public Optional<String> getValue(Prefix prefix) {
 }
 ```
 
-This appears to be what we need to get a String of the remark. But what about the Index? Let's take a quick peek at existing `Command` that uses an index to see how it is done.
+This appears to be what we need to get a String of the note. But what about the Index? Let's take a quick peek at existing `Command` that uses an index to see how it is done.
 
 **`DeleteCommandParser.java`:**
 
@@ -206,9 +206,9 @@ public RemarkCommand parse(String args) throws ParseException {
             RemarkCommand.MESSAGE_USAGE), ive);
     }
 
-    String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+    String note = argMultimap.getValue(PREFIX_REMARK).orElse("");
 
-    return new RemarkCommand(index, remark);
+    return new RemarkCommand(index, note);
 }
 ```
 
@@ -223,7 +223,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a note given to a person.
 
 ### Add a new `Remark` class
 
@@ -236,7 +236,7 @@ validation.
 
 Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark` class instead of plain `String`. These should be relatively simple changes.
 
-## Add a placeholder element for remark to the UI
+## Add a placeholder element for note to the UI
 
 Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
 
@@ -246,7 +246,7 @@ Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/s
 
 ``` java
 @FXML
-private Label remark;
+private Label note;
 ```
 
 
@@ -257,12 +257,12 @@ Then insert the following into [`main/resources/view/PersonListCard.fxml`](https
 **`PersonListCard.fxml`:**
 
 ``` xml
-<Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+<Label fx:id="note" styleClass="cell_small_label" text="\$note" />
 ```
 
 That’s it! Fire up the application again and you should see something like this:
 
-![$remark shows up in each entry](../images/add-remark/$Remark.png)
+![$note shows up in each entry](../images/add-note/$Remark.png)
 
 ## Modify `Person` to support a `Remark` field
 
@@ -311,11 +311,11 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 ``` java
 public PersonCard(Person person, int displayedIndex) {
     //...
-    remark.setText(person.getRemark().value);
+    note.setText(person.getRemark().value);
 }
 ```
 
-![The remark label is bound properly!](../images/add-remark/RemarkBound.png)
+![The note label is bound properly!](../images/add-note/RemarkBound.png)
 
 ## Putting everything together
 
@@ -330,8 +330,8 @@ save it with `Model#setPerson()`.
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added note to Person: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed note from Person: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -344,7 +344,7 @@ save it with `Model#setPerson()`.
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+                personToEdit.getAddress(), note, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -354,16 +354,16 @@ save it with `Model#setPerson()`.
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the note is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !note.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, personToEdit);
     }
 ```
 
-![Congratulations!](../images/add-remark/RemarkComplete.png)
+![Congratulations!](../images/add-note/RemarkComplete.png)
 
 ## Writing tests
 
@@ -380,13 +380,13 @@ The goal is to write effective and efficient tests to ensure that `RemarkCommand
 The convention for test names is `methodName_testScenario_expectedResult`. An example would be
 `execute_filteredList_success`.
 
-Let’s create a test for `RemarkCommand#execute()` to test that adding a remark works. On `IntelliJ IDEA` you can bring up the context menu and choose to `Go To` \> `Test` or use the appropriate keyboard shortcut.
+Let’s create a test for `RemarkCommand#execute()` to test that adding a note works. On `IntelliJ IDEA` you can bring up the context menu and choose to `Go To` \> `Test` or use the appropriate keyboard shortcut.
 
-![Using the context menu to jump to tests](../images/add-remark/ContextMenu.png)
+![Using the context menu to jump to tests](../images/add-note/ContextMenu.png)
 
 Then, create a test for the `execute` method.
 
-![Creating a test for `execute`.](../images/add-remark/CreateTest.png)
+![Creating a test for `execute`.](../images/add-note/CreateTest.png)
 
 Following convention, let’s change the name of the generated method to `execute_addRemarkUnfilteredList_success`.
 

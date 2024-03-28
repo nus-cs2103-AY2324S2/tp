@@ -9,9 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.applicant.Role;
+import seedu.address.model.applicant.Stage;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -96,6 +99,56 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String role} into an {@code Role}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code role} is invalid.
+     */
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String trimmedRole = role.trim();
+        return new Role(trimmedRole);
+    }
+
+    /**
+     * Parses a {@code String stage} into an {@code Stage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code stage} is invalid.
+     */
+
+    public static Stage parseStage(String stage) throws ParseException {
+        requireNonNull(stage);
+        String trimmedStage = stage;
+        return new Stage(trimmedStage);
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        if (note.isEmpty()) {
+            return new Note("");
+        }
+        String trimmedNote = note;
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String noteWithDate} into an {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static String parseNoteWithDate(String noteWithDate) throws ParseException {
+        requireNonNull(noteWithDate);
+        return noteWithDate;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +173,15 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Ensures that {@code String fileName} is not null
+     *
+     * @throws ParseException
+     */
+    public static String parseFileName(String fileName) throws ParseException {
+        requireNonNull(fileName);
+        return fileName;
     }
 }
