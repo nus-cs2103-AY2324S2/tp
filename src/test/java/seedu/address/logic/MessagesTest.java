@@ -48,8 +48,6 @@ class MessagesTest {
                 + "; Doctor: "
                 + a.getDoctorNric()
                 + "; Patient: "
-                + a.getPatientNric()
-                + "; ID: "
-                + a.getAppointmentId());
+                + a.getPatientNric());
     }
 }
