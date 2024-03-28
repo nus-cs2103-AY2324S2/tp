@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +32,12 @@ public class AddCommandIntegrationTest {
         Person validPerson = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+
+        try {
+            new AddCommand(validPerson).execute(expectedModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
 
         assertCommandSuccess(new AddCommand(validPerson), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),

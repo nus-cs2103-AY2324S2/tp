@@ -42,6 +42,8 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem toggleDisplayMenuItem;
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
@@ -74,6 +76,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(toggleDisplayMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -163,6 +166,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Toggles the display.
+     */
+    @FXML
+    private void handleToggleDisplay() {
+        personListPanel.toggleDisplay();
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -184,6 +195,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isToggleDisplay()) {
+                handleToggleDisplay();
             }
 
             return commandResult;

@@ -20,8 +20,9 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadAndWriteUserPrefs;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -38,6 +39,8 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+
+        System.out.println(modelStub.personsAdded);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
@@ -89,12 +92,12 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
+        public void setUserPrefsIsSample(ReadAndWriteUserPrefs userPrefs, boolean status) {
+            // throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public UserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,7 +128,8 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
+            // AddressBook is now reset upon first contact entry.
+            // throw new AssertionError("This method should not be called.");
         }
 
         @Override

@@ -26,13 +26,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
+        this.userPrefs = userPrefs;
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -43,13 +43,16 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public void setUserPrefsIsSample(ReadAndWriteUserPrefs userPrefs, boolean status) {
+        userPrefs.setIsSample(status);
+    }
+
+    public ReadAndWriteUserPrefs getReadAndWriteUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
+    public UserPrefs getUserPrefs() {
         return userPrefs;
     }
 
