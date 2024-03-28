@@ -62,7 +62,7 @@ public class AppParameters {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(configPath); // supports null values
+        return Objects.hash(configPath); // supports null values
     }
 
     @Override

@@ -25,4 +25,5 @@ public class UndoCommand extends Command {
         model.undo();
         return MESSAGE_SUCCESS;
     }
+
 }

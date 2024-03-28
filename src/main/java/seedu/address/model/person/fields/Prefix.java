@@ -5,6 +5,7 @@ package seedu.address.model.person.fields;
  * E.g. 't/' in 'add James t/ friend'.
  */
 public class Prefix {
+
     private final String prefix;
 
     public Prefix(String prefix) {
@@ -39,4 +40,5 @@ public class Prefix {
         Prefix otherPrefix = (Prefix) other;
         return prefix.equals(otherPrefix.prefix);
     }
+
 }

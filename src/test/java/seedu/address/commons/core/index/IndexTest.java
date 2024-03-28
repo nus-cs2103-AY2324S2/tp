@@ -2,6 +2,7 @@ package seedu.address.commons.core.index;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,11 +43,17 @@ public class IndexTest {
         final Index fifthPersonIndex = Index.fromOneBased(5);
 
         // same values -> returns true
-        assertTrue(fifthPersonIndex.equals(Index.fromOneBased(5)));
-        assertTrue(fifthPersonIndex.equals(Index.fromZeroBased(4)));
+        final Index fifthPersonIndex2 = Index.fromOneBased(5);
+        assertTrue(fifthPersonIndex.equals(fifthPersonIndex2));
+        assertEquals(fifthPersonIndex.hashCode(), fifthPersonIndex2.hashCode());
+
+        final Index fifthPersonIndex3 = Index.fromZeroBased(4);
+        assertTrue(fifthPersonIndex.equals(fifthPersonIndex3));
+        assertEquals(fifthPersonIndex.hashCode(), fifthPersonIndex3.hashCode());
 
         // same object -> returns true
         assertTrue(fifthPersonIndex.equals(fifthPersonIndex));
+        assertEquals(fifthPersonIndex.hashCode(), fifthPersonIndex.hashCode());
 
         // null -> returns false
         assertFalse(fifthPersonIndex.equals(null));
@@ -55,7 +62,9 @@ public class IndexTest {
         assertFalse(fifthPersonIndex.equals(5.0f));
 
         // different index -> returns false
-        assertFalse(fifthPersonIndex.equals(Index.fromOneBased(1)));
+        final Index firstPersonIndex = Index.fromOneBased(1);
+        assertFalse(fifthPersonIndex.equals(firstPersonIndex));
+        assertNotEquals(fifthPersonIndex.hashCode(), firstPersonIndex.hashCode());
     }
 
     @Test

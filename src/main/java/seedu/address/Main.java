@@ -22,6 +22,7 @@ import seedu.address.commons.core.LogsCenter;
  * to be the entry point of the application, we avoid this issue.
  */
 public class Main {
+
     private static Logger logger = LogsCenter.getLogger(Main.class);
 
     public static void main(String[] args) {
@@ -38,4 +39,5 @@ public class Main {
         logger.warning("The warning about Unsupported JavaFX configuration below can be ignored.");
         Application.launch(MainApp.class, args);
     }
+
 }
