@@ -42,10 +42,6 @@ public class AddJobCommand extends Command {
         }
 
         model.addJob(job);
-        // TODO: remove print statements once UI is up and running
-        for (Job j: model.getFilteredJobList()) {
-            System.out.println(j);
-        }
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, job));
     }
 

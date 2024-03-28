@@ -75,6 +75,30 @@ public class Job {
             && vacancy == otherJob.vacancy;
     }
 
+    /**
+     * Gets the job title
+     * @return the job title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * Gets the job description
+     * @return the job description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Gets the job vacancies
+     * @return the job vacancies
+     */
+    public int getVacancy() {
+        return vacancy;
+    }
+
     // hash only the title, as different jobs are not allowed to have the same title
     @Override
     public int hashCode() {
