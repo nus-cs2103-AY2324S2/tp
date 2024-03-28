@@ -3,54 +3,35 @@ layout: page
 title: User Guide
 pageNav: 3
 ---
-Welcome to <span style="color: #f66a0a;">CareerSync</span>'s  User Guide! <span style="color: #f66a0a;">CareerSync</span> 
-is an **internship application manager designed to simplify the management of internship applications**. It is designed to help you **keep track of all your
-internship applications in one place**, so that you can focus on preparing for your interviews and securing your dream internship.
+### Introduction
+Welcome to <span style="color: #f66a0a;">CareerSync</span>'s User Guide! <br>
 
-CareerSync features a sleek and user-friendly interface primarily driven by command inputs through **Command Line Interface (CLI)**. 
-For those who are **proficient typists**, CareerSync facilitates quicker completion of internship applications 
-compared to conventional GUI-based applications. If you are a NUS Computer Science student who is looking to apply for
-many internships, CareerSync is practically made just for you!
+<span style="color: #f66a0a;">CareerSync</span> is an **internship application manager designed to simplify the management of internship applications**. We're here to help 
+you keep track of your internships, so you can focus on preparing for your interviews and securing your dream internship! :grin:
 
-In this user guide, we will guide you through all the functionalities of CareerSync, so that you can make the most out of this app. 
-From a Year 1 rookie who just started applying for internships, to a Year 4 veteran who has been through multiple
-internship applications, our guide will ensure that you can use CareerSync to its full potential.
+#### Who is CareerSync for?
+<span style="color: #f66a0a;">CareerSync</span> is **tailored to NUS Computing students** with **experience in command line interfaces (CLI)**.
+Our app is driven by command inputs through the CLI, making it **faster than conventional GUI-based applications.**<br>
 
-### What do I need to know for this User Guide?
-This user guide is designed to be approachable for beginners, requiring no previous familiarity with administrative tools
-or command interfaces, and is self-sufficient. Our [Quick Start](#quick-start) section will guide you through the installation
-of all the necessary tools, even if you have never used a CLI before.
+If you are a beginner, don't worry! Our [Quick Start](#quick-start) section will guide you through the installation of all the necessary tools, even if you have never used a CLI before.
 
-### How to use this User Guide?
-This user guide is split into these primary sections: [Quick Start](#quick-start), [Interface Overview](#interface-overview), [Tutorial](#tutorial), 
-[Commands](#commands), [FAQ](#faq), [Known Issues](#known-issues), [Command Summary](#command-summary), [Field Summary](#field-summary) and [Glossary](#glossary). 
-We recommend that you navigate our User Guide in this order:
-1. Go through the [Quick Start](#quick-start) section to get started with the installation of CareerSync.
-2. Take a look at [Interface Overview](#interface-overview) to understand the elements of our GUI.
-3. Follow the instructions in [Tutorial](#tutorial) to understand the basic commands and how to use them.
-4. Read through the [Commands](#commands) section to understand all the commands and how to use them.
-5. Read through the [Field Summary](#field-summary) section to understand all the fields and their restrictions.
+#### What is the purpose of this User Guide?
+This user guide was created to help students starting out with CareerSync get started with using our application quickly!
 
-[FAQ](#faq), [Known Issues](#known-issues) and [Glossary](#glossary) sections provide additional information that you may find useful.
-[Command Summary](#command-summary) provides a quick reference to all the commands available and their formats in CareerSync.
+**For first-time users**, we recommend starting at the [Quick Start](#quick-start) section to install CareerSync, before heading to the [Tutorial](#tutorial) section.
 
-After that, you would be ready to use CareerSync to manage your internship applications!
+**For experienced users**, check out the [Commands](#commands) section for a quick reference. 
 
-## Introduction
+Do check out our [FAQ](#faq), [Known Issues](#known-issues) and [Glossary](#glossary) sections for more information!
 
-Applying for multiple internships can be a daunting task, especially when you have to keep track of all the different
-application statuses, contact details, and tasks to-do for each internship. Having to manage all these details can be
-overwhelming, and it is easy to lose track of important information. Especially when you are applying for multiple internships,
-it can be hard to remember which internship you have applied to, which ones you have received a response from, and which ones
-you have yet to apply to.
+#### What can students do with CareerSync?
 
-If you are someone who applies for multiple internships, CareerSync aspires to eliminate your worries by providing a
-comprehensive solution to manage all your internship applications in one place. As an internship application manager, CareerSync
-does so via the following features:
-1. **Information Management**: Store relevant information about your internship applications, such as contact, status and tasks-to do amongst others in one place. 
-   a. For more information on what information you can store, refer to the [Fields Summary](#fields-summary) section.
-2. **Search and Filter**: Search and filter your internship applications by keywords, making it easy to find the information you need.
-3. **Task Management**: Add tasks to your individual internship applications and keep track of their individual deadlines.
+As computing students, keeping track of all the internship applications we've made tends to be a hassle.<br>
+With CareerSync, you can:
+1. **Add** internships, along with details such as company name, description, status and more!
+2. **Find** internships by keywords, making it easy to find the information you need.
+3. **Manage tasks** for your applications and keep track of their individual deadlines.
+And so much more!
 
 ### Table Of Contents
 
@@ -68,10 +49,8 @@ does so via the following features:
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick Start
-
-### Installation
-
+### Quick Start
+#### Installation
 1. Ensure that you have [Java 11 or above](https://www.java.com/en/download/) installed on your computer if you are using Windows.
     - If you are using MacOS, follow the instructions [here](https://nus-cs2103-ay2324s2.github.io/website/admin/programmingLanguages.html) instead.
 2. Download the latest `CareerSync.jar` file [here](https://github.com/AY2324S2-CS2103T-W11-1/tp/releases/tag/v1.2).
@@ -84,10 +63,6 @@ does so via the following features:
    - For **Windows**:
        - Open the folder containing `CareerSync.jar`.
        - Double-click on `CareerSync.jar` to start up our application!
-   - For **Linux**:
-       - Open up your Terminal by typing <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>, then <kbd>Enter</kbd>.<br>
-       - Navigate to the folder containing your jar file using `cd`.
-       - Enter `java -jar CareerSync.jar` and type <kbd>Enter</kbd>.
 5. The **Graphical User Interace** similar to the image below should pop up on your screen.
 
 ![Ui](images/Ui.png)
