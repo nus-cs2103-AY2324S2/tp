@@ -126,17 +126,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given exam {@code target} in the list with {@code editedExam}.
-     * {@code target} must exist in the address book.
-     * The exam identity of {@code editedExam} must not be the same as another existing exam in the address book.
-     */
-    public void setExam(Exam target, Exam editedExam) {
-        requireNonNull(editedExam);
-
-        exams.setExam(target, editedExam);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */

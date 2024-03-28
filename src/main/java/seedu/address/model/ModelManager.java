@@ -181,13 +181,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setExam(Exam target, Exam editedExam) {
-        requireAllNonNull(target, editedExam);
-
-        addressBook.setExam(target, editedExam);
-    }
-
-    @Override
     public ObservableList<Exam> getExamList() {
         return addressBook.getExamList();
     }

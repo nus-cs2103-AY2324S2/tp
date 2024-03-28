@@ -113,13 +113,6 @@ public interface Model {
     void addExam(Exam exam);
 
     /**
-     * Replaces the given exam {@code target} with {@code editedExam}.
-     * {@code target} must exist in the address book.
-     * The exam identity of {@code editedExam} must not be the same as another existing exam in the address book.
-     */
-    void setExam(Exam target, Exam editedExam);
-
-    /**
      * Selects the given exam.
      * The exam must exist in the address book.
      */
