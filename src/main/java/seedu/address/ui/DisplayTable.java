@@ -63,30 +63,29 @@ public class DisplayTable extends UiPart<Region> {
     private static class DisplayPerson {
         // Change method to utilise optionals instead of directly assuming the fields exist in the Person
         // person.getField().map(person -> String).orElse(DEFAULT)
-        // Use a static private class to store data.
 
         private static final String NAME_FIELD = "Name";
         private static final String PHONE_FIELD = "Phone";
         private static final String EMAIL_FIELD = "Email";
         private static final String ADDRESS_FIELD = "Address";
-        private static final String DESCRIPTION_FIELD = "Description";
+        private static final String NOK_FIELD = "Next of Kin";
 
         private final FieldDescription name;
         private final FieldDescription phone;
         private final FieldDescription email;
         private final FieldDescription address;
-        private final FieldDescription description;
+        private final FieldDescription nok;
 
         public DisplayPerson(Person person) {
             this.name = new FieldDescription(NAME_FIELD, person.getName().toString());
             this.email = new FieldDescription(EMAIL_FIELD, person.getEmail().toString());
             this.phone = new FieldDescription(PHONE_FIELD, person.getPhone().toString());
             this.address = new FieldDescription(ADDRESS_FIELD, person.getAddress().toString());
-            this.description = new FieldDescription(DESCRIPTION_FIELD, person.getDescription().toString());
+            this.nok = new FieldDescription(NOK_FIELD, person.getDescription().toString());
         }
 
         private ObservableList<FieldDescription> getFieldDescriptions() {
-            return FXCollections.observableArrayList(name, email, phone, address, description);
+            return FXCollections.observableArrayList(name, email, phone, address, nok);
         }
 
         public static class FieldDescription {
@@ -106,11 +105,9 @@ public class DisplayTable extends UiPart<Region> {
             public String getFieldProperty() {
                 return fieldProperty.get();
             }
-
             public void setDescriptionProperty(String fName) {
                 descriptionProperty.set(fName);
             }
-
             public String getDescriptionProperty() {
                 return descriptionProperty.get();
             }
