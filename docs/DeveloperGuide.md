@@ -542,6 +542,13 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Listing all students
+1. Listing all students in the address book.
+    1. Test case: `list`<br>
+      Expected: All students showing without timetables.
+    1. Test case: `list timetable`<br>
+      Expected: All students showing with timetables appearing in student cards.
+
 ### Deleting a student
 
 1. Deleting a student while all students are being shown

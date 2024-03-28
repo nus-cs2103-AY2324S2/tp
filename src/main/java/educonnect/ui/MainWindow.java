@@ -163,6 +163,18 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Displays student timetable based on user list command.
+     */
+    @FXML
+    public void handleShowTimetable(boolean showTimetable) {
+        logger.info("User chooses to show timetables of students: " + showTimetable);
+        if (showTimetable) {
+            studentListPanel.showTimetable();
+        } else {
+            studentListPanel.hideTimetable();
+        }
+    }
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -185,7 +197,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            handleShowTimetable(commandResult.isShowTimetable());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);

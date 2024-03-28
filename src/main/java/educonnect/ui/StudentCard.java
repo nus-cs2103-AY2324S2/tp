@@ -55,7 +55,7 @@ public class StudentCard extends UiPart<Region> {
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public StudentCard(Student student, int displayedIndex, boolean showTimetable) {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
@@ -70,7 +70,8 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        timetable.setText(student.getTimetable().toString());
+        String timetableStr = showTimetable ? student.getTimetable().toString() : "";
+        timetable.setText(timetableStr);
     }
 
     @FXML
