@@ -326,6 +326,7 @@ Format: `help`
 ### Adding an internship: `add`
 
 With any internship manager, it is important to know how to add an internship entry with all the relevant fields. <br>
+
 This command lets you add an internship entry easily!
 
 **Format:** `add /com COMPANY_NAME /desc DESCRIPTION /status STATUS /poc CONTACT_NAME /email CONTACT_EMAIL /phone CONTACT_NUMBER /loc LOCATION_ENUM /role ROLE ​` <br>
@@ -357,6 +358,7 @@ Refer to the format and example displayed along with this message, to help you r
 ### Deleting an internship: `delete`
 
 With any internship manager, it is important to know how to delete an internship entry with all the relevant fields. <br>
+
 This command lets you delete the internship entry with the corresponding index (based on the displayed list at point of deletion)
 
 Format: `delete INDEX`
