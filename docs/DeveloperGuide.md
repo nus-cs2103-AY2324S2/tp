@@ -259,15 +259,15 @@ The following activity diagram summarizes what happens when a user executes a ne
       * Increases coupling as `Model` will now need a reference to `Storage`.
 </li>
 
-* **Alternative 3:** Save the entire address book as a JSON `String`.
+* **Alternative 3:** Save the entire address book as a JSON `String` in RAM.
     * Pros:
-      * Reduces memory footprint as compared to objects.
+      * Reduces memory footprint as only 1 String is used as compared to a many objects per Person.
       * Faster than JSON files as there are no accesses to storage.
     * Cons:
       * May have performance issues as it has to be deserialized each time.
 </li>
 
-* **Alternative 4:** Individual command knows how to undo/redo by itself.
+* **Alternative 4:** Each command implements their own specific `undo()` and `redo()` methods
     * Pros:
       * Will use less memory (e.g. for `delete`, just save the person being deleted).
       * Best performance.
@@ -301,8 +301,9 @@ The following activity diagram summarizes what happens when a user executes a ne
       * Fast in dropping many nodes after a specified index.
       * Simple data structure.
     * Cons:
-      * Time-consuming to implement: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index,
-        and hence a custom data structure would have to be used.
+      * Time-consuming to implement: Unfortunately, the built-in LinkedList does not have a method to drop all nodes after a certain index.
+        Hence a custom data structure would have to be used in order to quickly drop nodes after a certain index.
+        There would be no benefits of using a LinkedList here otherwise.
 </li>
 
 ### \[Proposed\] Data archiving
