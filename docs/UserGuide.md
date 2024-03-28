@@ -31,6 +31,8 @@ TutorsContactsPro is a **desktop app for tutors teaching Computer Science course
 
   * [Deleting a student: `delete`](#feature-delete)
 
+  * [Adding a group: `addgroup`](#feature-addgroup)
+
   * [Mail broadcast: `mail`](#feature-mail)
 
   * [Clearing all entries: `clear`](#feature-clear)
@@ -208,6 +210,15 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the major book.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### <span id='feature-addgroup'> Adding a group: `filter` <span>
+Adds a tutorial/lab/recitation group to be assigned on students later.
+Format: `addgroup g/[GROUP NAME]`
+* Adds a group with a given group name
+* The group name must be prefixed by TUT/LAB/REC, followed by two digits.
+
+Examples
+* `addgroup g/LAB12` Adds a lab numbered 12.
 
 ### <span id='feature-mail'> Mail broadcast : `mail` <span>
 
