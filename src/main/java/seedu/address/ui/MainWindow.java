@@ -51,9 +51,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane bookingListPanelPlaceholder;
 
     @FXML
-    private StackPane commandListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -135,9 +132,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        CommandListPanel commandListPanel = new CommandListPanel();
-        commandListPanelPlaceholder.getChildren().add(commandListPanel.getRoot());
     }
 
     /**
