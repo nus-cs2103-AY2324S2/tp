@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Split as SplitPackage<<Rectangle>>{
+
+Class LogicManager
+Class AddressBookParser
+Class SplitCommandParser
+Class SplitCommand
+Class Index
+Class CommandResult
+
+
+LogicManager -down-> "1" SplitCommand : executes >
+LogicManager -right-> "1" AddressBookParser
+AddressBookParser ..> SplitCommandParser : creates >
+SplitCommand -right-> "1..*" MoneyOwed
+SplitCommandParser ..> SplitCommand : creates >
+SplitCommand -right-> "1..*" Index
+SplitCommand ..down> CommandResult : generates >
+MoneyOwed -[hidden]down-> Index
+
+}
+
+@enduml

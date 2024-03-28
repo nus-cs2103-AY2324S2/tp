@@ -1,0 +1,24 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR_T1
+skinparam classBackgroundColor MODEL_COLOR_T1
+
+Class "{abstract}\nPayNowPayload" as PayNowPayload
+Class PayNowCode {
+    +{static}generateQrCode(String, float)
+}
+Class MerchantAccountInformation
+Class PayNowField {
+    -int id
+    -Object value
+}
+show PayNowField fields
+show PayNowCode methods
+
+PayNowPayload *--> "fields" PayNowField
+MerchantAccountInformation --|> PayNowPayload
+PayNowCode --|> PayNowPayload
+PayNowCode .. MerchantAccountInformation
+
+@enduml
