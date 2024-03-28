@@ -10,8 +10,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-  original source as well}
+[//]: # (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
+
+* https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator was referred to for the format of PayNow QR codes as well as the CRC-16 algorithm.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -106,8 +107,7 @@ The `UI` component,
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -145,10 +145,18 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
+Directly executing commands without user input:
+
+* The application has instances where some function might be performed on a button click instead of a user input.
+* In such cases, the flow bypasses the need to parse a user input, and we directly pass a `Command` object into the `Logic` class to be executed.
+
+The following sequence diagram illustrates how the components interact with each other when a user clicks on a button to reset the debt they have with a specific `Person`.
+
+![Interactions for when a ResetDebtCommand is manually executed](images/ResetDebtSequenceDiagram.png)
+
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -156,13 +164,11 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
-  this list so that the UI automatically updates when the data in the list change.
+* stores a separate _sorted_ list of `Person` objects (e.g., results of a sort query) which is then used to construct the filtered list below
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
-  should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -172,8 +178,7 @@ The `Model` component,
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T16-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -218,7 +223,23 @@ then returned. Part of the class diagram is shown below.
 
 <img src="images/SplitClassDiagram.png" width="500"/>
 
-[insert next UML here]
+### PayNow
+
+PayNow QR codes are basically encoded string, further encoded into a QR code. The string follow a specific format and can be generated offline. The specifications of the format have been referenced from [this repo](https://github.com/poonchuanan/Python-PayNow-QR-Code-Generator).
+
+Basically, the string represents an object (similar to JSON) and it contains "fields" (similar to JSON attributes). In one of the required fields is a nested object.
+
+The class diagram is as such:
+
+![PayNow Code modelling](images/PayNowDiagram.png)
+
+`PayNowPayload` is the aforementioned representation of an object. One `PayNowPayload` can contain multiple `PaynowField`s.
+
+`PayNowCode` is what we encode into the QR code that we can then scan. One of the fields contain a `MerchantAccountInformation`, which is also a `PayNowPayload` itself (which is the nested object that had been mentioned above).
+
+We then call PayNowCode's static method, passing in a phone number and an initial amount (that will be autofilled when users scan the QR code with their banking application), to generate the QR code.
+
+[//]: # ([insert next UML here])
 
 ### \[Proposed\] Undo/redo feature
 
